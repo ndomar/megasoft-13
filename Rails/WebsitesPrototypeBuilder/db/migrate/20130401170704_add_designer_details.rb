@@ -8,8 +8,6 @@ class AddDesignerDetails < ActiveRecord::Migration
   	add_column :designers, :day_dob, :integer
   	add_column :designers, :month_dob, :integer
   	add_column :designers, :year_dob, :integer
-  	add_column :designers, :credit_card_number, :integer
-  	add_column :designers, :cvv2, :integer
   	add_column :designers, :profession, :string
   	add_column :designers, :facebook_email, :string
   	add_column :designers, :gender, :string

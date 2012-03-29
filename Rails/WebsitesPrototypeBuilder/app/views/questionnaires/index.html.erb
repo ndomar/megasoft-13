@@ -15,10 +15,10 @@
       <td><%= link_to 'Show', questionnaire %></td>
       <td><%= link_to 'Edit', edit_questionnaire_path(questionnaire) %></td>
       <td><%= link_to 'Destroy', questionnaire, method: :delete, data: { confirm: "هل انت متأكد !" } %></td>
-      <td><%= link_to 'Answer', :controller => :questionnaires, :action => :answer_show, :id => questionnaire %></td>
+      <td><%= link_to 'اجب', :controller => :questionnaires, :action => :answer_show, :id => questionnaire %></td>
     </tr>
   <% end %>
 </table>
 <br/>
 
-<%= link_to 'New Questionnaire', new_questionnaire_path %>
+<%= link_to 'New Questionnaire', :controller => :questionnaires, :action => :new, :project_id => @project  %>

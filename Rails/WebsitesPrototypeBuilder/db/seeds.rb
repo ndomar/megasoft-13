@@ -127,7 +127,7 @@ end
 end
 
 # Task_result
-(0..50).each do |i|
+(0..10).each do |i|
 	TaskResult.create(task_id: (i%3),
 		reviewer_id: (i%3),
 		clicks: (i%3),
@@ -208,3 +208,6 @@ Designer.create(:fullname => "Test Designer4",
 (0..10).each do |i|
       Reviewer.find((i%3)+1).tasks << Task.find((i%3)+1)
 end
+
+(0..10).each do |i|
+  Cardsort.find((i%3)+1).reviewers << Reviewer.find((i%3)+1)

@@ -171,3 +171,8 @@ select {
   background-color: white;
   direction: rtl;
 }
+
+#popup-cardsort{
+  height: 500px;
+  margin-top: 20px;
+}
