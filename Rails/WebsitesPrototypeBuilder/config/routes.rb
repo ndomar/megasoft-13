@@ -1,11 +1,15 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
-	# set devise for Designer, and set the registerations controller to the custom one
-	devise_for :designers, :controllers => { :registrations => "registrations" }
+  get "tests/test_image"
 
-get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
-post 'steps/update'
+  # set devise for Designer, and set the registerations controller to the custom one
+  devise_for :designers, :controllers => { :registrations => "registrations" }
 
+  post "/projects/destroy"
+  get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+  post 'steps/update'
+
+<<<<<<< HEAD
 	resources :projects do
 		resources :statistics
 		resources :tasks do
@@ -14,10 +18,15 @@ post 'steps/update'
 		end
 	end
 
+	resources :tasks do
+    resources :task_results
+  end
 
 	resources :tasks do
 		resources :steps
 	end
+
+
 
  post 'cardsorts/:cardsort_id/reviewer_create_group' => 'cardsorts#reviewer_create_group'
  post 'cardsorts/submit/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#submit'
