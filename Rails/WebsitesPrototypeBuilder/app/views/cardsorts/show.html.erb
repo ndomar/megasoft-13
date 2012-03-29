@@ -12,13 +12,13 @@
 			<div class='view-button'>
 				<img src='/assets/grid_View_button.png'>
 			</div>
+			<div class='add-button'>
+				</div>
 			<ul id='groups-thumbnail'>
 				<% @groups.each_with_index do |group, index| %>
 					<%= render "group_thumbnail", :index => index, :cssClass => "group",
 					 :name => group.title, :desc => group.description, :id => group.id %>
 				<% end %>
-				<div class='add-button'>
-				</div>
 			</ul>
 			<div id='groups-list'>
 				<table>
@@ -41,12 +41,12 @@
 			<div class='view-button'>
 				<img src='/assets/grid_View_button.png'>
 			</div>
+			<div class='add-button'>
+			</div>
 			<ul id='cards-thumbnail'>
 				<% @cards.each_with_index do |card, index| %>
 					<%= render "card_thumbnail", :index => index, :name => card.title, :desc => card.description, :id => card.id %>
 				<% end %>
-				<div class='add-button'>
-				</div>
 			</ul>
 			<div id='cards-list'>
 				<table>
@@ -61,6 +61,10 @@
 	</div>
 
 	<div id='content'>
+		<a href='/cardsorts/invitations/<%= @cardsort.id %>' title='انتهيت'>
+		<div id='submit-button'>
+		</div>
+		</a>
 			<div class='error-box'>
 				asd
 			</div>
@@ -69,15 +73,15 @@
 			</div>
 			<div id='main-card' class='main-wrapper'>
 				<%= form_for :card, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_card" do |form| %>
-					<%= form.text_field :title, :placeholder => "اسم البطاقة", :id => "main-card-title"%>
-					<%= form.text_area :description, :placeholder => "وصف البطاقة", :id => "main-card-desc"%>
+					<%= form.text_field :title, :placeholder => "اسم البطاقة", :id => "main-card-title", :maxlength => 13%>
+					<%= form.text_area :description, :placeholder => "وصف البطاقة", :id => "main-card-desc", :maxlength => 75%>
 					<%= form.submit :class => "btn btn-primary"%>
 				<% end %>
 			</div>
 			<div id='main-group' class='main-wrapper'>
 				<%= form_for :group, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_group" do |form| %>
-					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title"%>
-					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc"%>
+					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title", :maxlength => 20%>
+					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc", :maxlength => 75%>
 					<%= form.submit :class => "btn btn-primary" %>
 				<% end %>
 			</div>

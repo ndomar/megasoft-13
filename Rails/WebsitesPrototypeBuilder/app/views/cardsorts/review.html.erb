@@ -10,12 +10,11 @@
 			المجموعات
 		</div>
 		<div id='review-groups-content'>
-			
-			<ul id='review-groups-thumbnail'>
-				<% if (@cardsort.open) %>
+			<% if (@cardsort.open) %>
 				<div class='review-add-button'>
 				</div>
 				<% end %>
+			<ul id='review-groups-thumbnail'>
 				<% @groups.each_with_index do |group, index| %>
 					<%= render "group_thumbnail", :index => index, :cssClass => "review-group",
 					 :name => group.title, :desc => group.description, :id => group.id %>
@@ -66,8 +65,8 @@
 			<% if @cardsort.open %>
 			<div id='main-group' class='main-wrapper'>
 				<%= form_for :group, :remote => true, :url => "/cardsorts/#{@cardsort.id}/reviewer_create_group", :html => {:id => "group-form"} do |form| %>
-					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title"%>
-					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc"%>
+					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title", :maxlength => 20%>
+					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc", :maxlength => 75%>
 				<% end %>
 			</div>
 			<% end %>

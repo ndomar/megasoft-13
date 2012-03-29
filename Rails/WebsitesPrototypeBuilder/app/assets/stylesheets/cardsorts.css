@@ -99,9 +99,8 @@
 	margin-left: -44px;
 	display: inline-block;
 	float: left;
+	cursor: hand; cursor: pointer; 
 }
-
-
 
 #groups-tag{
 	 margin-left: -46px;
@@ -209,8 +208,8 @@
 
 #trash{
 	float: left;
-	position: fixed;
-	bottom: 100px;
+	position: absolute;
+	bottom: 10px;
 	left: 0px;
 	width: 55px;
 	height: 67px;
@@ -384,6 +383,7 @@ td{
 	margin-right: -45px;
 	transform: rotate(270deg) scale(-1) skew(0deg) translate(0px);
 	-webkit-transform: rotate(270deg) scale(-1) skew(0deg) translate(0px);
+		cursor: hand; cursor: pointer; 
 }
 
 #review-groups-content{
@@ -481,4 +481,28 @@ float: right;
 
 .review-add-button:active{
 	background-size: 50px 50px;
+}
+
+#submit-button{
+	background-color: transparent;
+  background-image: url("/assets/submit.png");
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  float: left;
+  height: 65px;
+  margin-left: 20px;
+  margin-top: -119px;
+  position: absolute;
+  width: 65px;
+}
+
+#submit-button:hover{
+	width: 70px;
+	height:  70px;
+}
+
+#submit-button:active{
+	width: 60px;
+	height:  60px;
 }
