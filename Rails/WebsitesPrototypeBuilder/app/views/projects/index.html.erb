@@ -105,8 +105,8 @@
         </p>
         <p>
           <%= f.label :Open, "النوع" %>
-          <%= f.radio_button :open, true, :checked => true %><label for="cardsort_open_true">مفتوح</label>
-          <%= f.radio_button :open, false %><label for="cardsort_open_true">مغلق</label>
+          <%= f.radio_button :open, true, :checked => true, :style=>"float:right; margin-left:5px;" %><label for="cardsort_open_true">مفتوح</label>
+          <%= f.radio_button :open, false, :style=>"float:right; margin-left:5px;" %><label for="cardsort_open_true">مغلق</label>
         </p>
         <p>
           <%= f.label :Description, "وصف ترتيب الأوراق" %>
