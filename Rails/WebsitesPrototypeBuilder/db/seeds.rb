@@ -58,25 +58,6 @@ end
     step_id: (i%3))
 end
 
-# Step
-(0..10).each do |i|
-  Step.create(component: "element#{i}",
-    event: "onclick",
-    reviewer_id: rand(0..5))
-end
-
-# Reviewer
-(0..10).each do |i|
-  Reviewer.create(email: "email#{i}@gmail.com")
-end
-
-# Step_answers
-(0..10).each do |i|
-  StepAnswer.create(successful: true,
-    reviewer_id: (i%3),
-    task_result_id: (i%3),
-    step_id: (i%3))
-end
 
 # Step
 (0..10).each do |i|
@@ -141,7 +122,7 @@ end
 (0..10).each do |i|
 	Step.create(component: "element#{i}",
 		event: "onclick",
-		description: "description#{i0}",
+		description: "description#{i}",
 		task_id: (i%3))
 end
 
@@ -225,5 +206,5 @@ Designer.create(:fullname => "Test Designer4",
 
 # Reviewer_Task
 (0..10).each do |i|
-      Reviewer.find((i%3)).tasks << Task.find((i%3))
+      Reviewer.find((i%3)+1).tasks << Task.find((i%3)+1)
 end
