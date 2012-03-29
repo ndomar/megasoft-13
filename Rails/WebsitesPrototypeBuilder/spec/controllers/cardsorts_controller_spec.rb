@@ -1,59 +1,61 @@
 require 'spec_helper'
 
 describe CardsortsController do
-	before(:each) do
-		get :new
-	end
+	describe 'create' do
+		it "shoud create a new cardsort" do
+			nCardsorts_before = Cardsort.all.count
+			post :create_cardsort, {:cardsort => {:title => "cardsort1"}}
+			nCardsorts_after = Cardsort.all.count
+			nCardsorts_after.should be > nCardsorts_before
+		end
 
-	it "shoud create a new cardsort" do
-		nCardsorts_before = Cardsort.all.count
-		get :new
-		nCardsorts_after = Cardsort.all.count
-		nCardsorts_after.should be > nCardsorts_before
-	end
+		it "@cards should not be nill" do
+			post :create_cardsort, {:cardsort => {:title => "cardsort1"}}
+			get :show, {:cardsort_id => 1}
+			assigns(:cards).should_not be_nil
+		end
 
-	it "@cards should not be nill" do
-		get :new
-		assigns(:cards).should_not be_nil
-	end
-
-	it "@groups should not be nill" do
-		get :new
-		assigns(:groups).should_not be_nil
-	end
-
-
-end
-
-describe CardsortsController do
-	before(:each) do
-		@cardsort = Cardsort.new
-		@cardsort.title = "cardsort"
-		@cardsort.save
-		get :edit, {:cardsort_id => 1}
-	end
-
-	it "@cards should not be nill" do
-		assigns(:cards).should_not be_nil
-	end
-
-	it "@groups should not be nill" do
-		assigns(:groups).should_not be_nil
+		it "@groups should not be nill" do
+			post :create_cardsort, {:cardsort => {:title => "cardsort1"}}
+			get :show, {:cardsort_id => 1}
+			assigns(:groups).should_not be_nil
+		end
 	end
 end
 
 describe CardsortsController do
 	before() do
-		get :new
+		get :create_cardsort, {:cardsort => {:title => "cardsort1"}}
 	end
 
 	it "create new card" do
-		get :create_card
+		post :create_card
 		assigns(:card).should_not be_nil
 	end
 
+	it "should not be valid" do
+		post :create_card
+		assigns(:card).should_not be_valid
+	end
+
+	it "should not be valid" do
+		post :create_card, {:title => 'card1'}
+		assigns(:card).should be_valid
+	end
+
 	it "create new group" do
-		get :create_group
+		post :create_group
 		assigns(:group).should_not be_nil
 	end
+
+	it "create new group" do
+		post :create_group
+		assigns(:group).should_not be_valid
+	end
+
+	it "create new group" do
+		post :create_group, {:title => 'group1'}
+		assigns(:group).should be_valid
+	end
+
 end
