@@ -10,11 +10,20 @@
 			المجموعات
 		</div>
 		<div id='review-groups-content'>
+<<<<<<< HEAD
 			<% if (@cardsort.open) %>
 				<div class='review-add-button'>
 				</div>
 				<% end %>
 			<ul id='review-groups-thumbnail'>
+=======
+			
+			<ul id='review-groups-thumbnail'>
+				<% if (@cardsort.open) %>
+				<div class='review-add-button'>
+				</div>
+				<% end %>
+>>>>>>> 8606ba0d35759da268ba584a28bfcec19586e2ac
 				<% @groups.each_with_index do |group, index| %>
 					<%= render "group_thumbnail", :index => index, :cssClass => "review-group",
 					 :name => group.title, :desc => group.description, :id => group.id %>

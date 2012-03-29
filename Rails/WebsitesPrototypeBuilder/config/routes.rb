@@ -32,7 +32,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
  post 'cardsorts/:cardsort_id/create_card' => 'cardsorts#create_card'
  post 'cardsorts/:cardsort_id/create_group' => 'cardsorts#create_group'
  post 'cardsorts/create_cardsort'
-  get 'cardsorts/new'
+ get 'cardsorts/new'
   get 'cardsorts/edit'
   get 'cardsorts/create_card'
   get 'cardsorts/create_group'

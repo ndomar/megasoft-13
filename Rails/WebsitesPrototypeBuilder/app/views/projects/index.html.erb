@@ -90,7 +90,7 @@
 
  <div class='popup-darkbackground' id='popup-cardsortbck'></div>
   <div class = 'popup-createProject' id='popup-cardsort'> 
-    <%= form_for :project, :url => "/cardsorts/create_cardsort" do |f| %>
+    <%= form_for :cardsort, :url => "/cardsorts/create_cardsort", :remote => true do |f| %>
       <div class = "pattern_form_up">
         <%= link_to_function "", "hideCardsortForm()", :class => "icon-remove", :id => "Close" %>
         <h5>أضف مشروع</h5>
@@ -101,12 +101,12 @@
         <br>
         <p>
           <%= f.label :Title, "إسم ترتيب الأوراق" %> 
-          <%= f.text_field :project_name , :id => "field"%> <br/>  
+          <%= f.text_field :title , :id => "field"%> <br/>  
         </p>
         <p>
           <%= f.label :Open, "النوع" %>
-          <%= f.radio_button :open, true %><label for="cardsort_open_true">مفتوح</label>
-``````````<%= f.radio_button :open, false %><label for="cardsort_open_true">مغلق</label>
+          <%= f.radio_button :open, true, :checked => true %><label for="cardsort_open_true">مفتوح</label>
+          <%= f.radio_button :open, false %><label for="cardsort_open_true">مغلق</label>
         </p>
         <p>
           <%= f.label :Description, "وصف ترتيب الأوراق" %>

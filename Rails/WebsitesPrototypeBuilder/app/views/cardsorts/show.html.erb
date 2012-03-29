@@ -3,7 +3,6 @@
 <%= stylesheet_link_tag "cardsorts" %>
 
 <div id='wrapper'>
-
 	<div class='sidebar' id='groups-view'>
 		<div id='groups-tag' class='sidebar-tag'>
 			المجموعات
@@ -61,7 +60,8 @@
 	</div>
 
 	<div id='content'>
-		<a href='/cardsorts/invitations/<%= @cardsort.id %>' title='انتهيت'>
+		<!-- <h3><%= @cardsort.title%></h3> -->
+		<a href='/cardsorts/invitations/<%= @cardsort.id %>' onclick='return save();' title='انتهيت'>
 		<div id='submit-button'>
 		</div>
 		</a>

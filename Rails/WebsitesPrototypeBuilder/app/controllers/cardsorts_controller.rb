@@ -28,7 +28,9 @@ class CardsortsController < ApplicationController
 	def create_cardsort
 		@cardsort = Cardsort.new(params[:cardsort])
 		@cardsort.save
-		render "show"
+		respond_to do |form|
+			form.js {}
+		end
 	end
 
 	##
