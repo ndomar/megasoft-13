@@ -320,16 +320,6 @@ img{
 	width: 100%;
 }
 
-table{
-	margin-top: 20px;
-	width: 100%;
-	height: 100%;
-}
-
-td{
-	padding: 10px;
-}
-
 .btn{
 	margin-right: 129px;
   margin-top: 25px;
@@ -505,4 +495,18 @@ float: right;
 #submit-button:active{
 	width: 60px;
 	height:  60px;
+}
+
+.pending{
+	width: 20ox;
+	height: 20px;
+	background-image: url(/assets/pending.png);
+	padding: 10px;
+}
+
+.done{
+	width: 20px;
+	height: 20px;
+	background-image: url(/assets/done.png);
+	padding: 10px;
 }

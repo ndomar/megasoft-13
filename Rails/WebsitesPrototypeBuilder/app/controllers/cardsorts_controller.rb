@@ -153,4 +153,22 @@ class CardsortsController < ApplicationController
 			form.js {render "reviewer_new_group"}
 		end
 	end
+
+	def invite_reviewer
+		@email = params[:email]
+		@msg = params[:msg]
+		@cardsort = Cardsort.find(params[:cardsort_id])
+		@cardsort.invite(@email,@msg)
+		respond_to do |format|
+			format.js{}
+		end
+	end
+	
+	def invitations
+		@cardsort=Cardsort.find(params[:cardsort_id])
+		@reviewers=@cardsort.reviewers
+		@statuses=@reviewers.map do |reviewer|
+			@cardsort.get_status(reviewer.id)
+		end
+	end
 end
