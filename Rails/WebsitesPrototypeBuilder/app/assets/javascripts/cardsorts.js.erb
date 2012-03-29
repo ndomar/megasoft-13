@@ -127,6 +127,7 @@ function initButtons() {
 			$('#main-group').show(200);
 		});
 	});
+	$('#submit-button').click(save);
 }
 
 var tempClass;
@@ -163,5 +164,15 @@ function deleteThmb(ui) {
 		method: 'post'
 	});
 	$(ui.helper).fadeOut();
+}
+
+function save(){
+	if ($(cardsView).find('.card:visible').length < 1 || $(groupsView).find('.group:visible').length < 1){
+		alert('Must have at least one group and one card');
+		return false;
+	}
+	
+	else
+		window.location.href = '/cardsorts/invitations/'+id;
 }
 
