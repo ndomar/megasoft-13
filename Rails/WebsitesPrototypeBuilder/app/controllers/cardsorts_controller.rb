@@ -7,9 +7,9 @@ class CardsortsController < ApplicationController
 	##
 	# show a cardsort that has been already created
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def show
 		@cardsort = Cardsort.find(params[:cardsort_id])
@@ -21,9 +21,9 @@ class CardsortsController < ApplicationController
 	##
 	# create new cardsort from sent parameters
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def create_cardsort
 		@cardsort = Cardsort.new(params[:cardsort])
@@ -36,9 +36,9 @@ class CardsortsController < ApplicationController
 	##
 	# creates a new card and sends the javascript that renders to the client
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-        # - void
+    #   - void
 	#
 	def create_card
 		@card = Card.new(params[:card])
@@ -55,9 +55,9 @@ class CardsortsController < ApplicationController
 	##
 	# creates a new group and sends the javascript that renders to the client
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def create_group
 		@group = Group.new(params[:group])
@@ -74,9 +74,9 @@ class CardsortsController < ApplicationController
 	##
 	# deletes a certain card and send a javascruot the removees its icon client side
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def delete_card
 		@card = Cardsort.find(params[:cardsort_id]).cards.find(params[:card_id]);
@@ -89,9 +89,9 @@ class CardsortsController < ApplicationController
 	##
 	# deletes a certain group and send a javascruot the removees its icon client side
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def delete_group
 		@group = Cardsort.find(params[:cardsort_id]).groups.find(params[:group_id]);
@@ -104,9 +104,9 @@ class CardsortsController < ApplicationController
 	##
 	# opens an existing cardosrt for rreiveweing 
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def review
 		@reviewer = Reviewer.find(params[:reviewer_id])
@@ -127,9 +127,9 @@ class CardsortsController < ApplicationController
 	##
 	# submit the review of a cardsort to be save in the database
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def submit
 		Cardsort.save_results(params[:id], params[:cards], params[:cardsort_id], params[:reviewer_id])
@@ -141,9 +141,9 @@ class CardsortsController < ApplicationController
 	##
 	# creates a new group for a cardsort that is begin reviewed called be the reviewer
 	# * *Args* :
-	# - none
+	#   - none
 	# * *Returns* :
-	# - void
+	#   - void
 	#
 	def reviewer_create_group
 		@group = Group.new(params[:group])
