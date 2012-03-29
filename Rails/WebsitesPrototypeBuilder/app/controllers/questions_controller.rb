@@ -14,9 +14,11 @@ class QuestionsController < ApplicationController
     if @question.save
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully created.' }
+      format.js {}
   	else
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question could not be saved. Please fill in all fields' }
+      format.js  { render "questions_error" }
       end
     end
   end
@@ -36,7 +38,7 @@ class QuestionsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully deleted.' }
       # Use AJAX for deletion
-      format.js   { render :layout => false }
+      format.js   {}
     end
   end
 end
