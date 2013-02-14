@@ -1,10 +1,12 @@
 megasoft-13
 ===========
-<<<<<<< HEAD
-Mennatullah Ashraf 22-0910 
-=======
 
 Ahmed Osama Saad 22-1811
 Omar Nada 19-4332
+Samy Saad 22-3798
+Hossam Ahmed 22-3950
+Ahmed Osama Saad 22-1811
+Omar Nada 19-4332
+Sarah Mohamed Nouh 22-1297
+Mennatullah Ashraf 22-0910 
 
->>>>>>> 512a165b39327e5c91958b6a4b564eab88ca2157
