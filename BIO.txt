@@ -23,3 +23,9 @@ Name: Maged Shalaby
 ID: 22-4408
 Company Role: Employee
 About Me: Love music, politics, coding, writing, history. Hate about me's in general.
+
+
+Name: Hesham ElWerdany
+ID: 22-0549
+Company Role: Employee
+About Me: I love history and music.
