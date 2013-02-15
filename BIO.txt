@@ -8,3 +8,8 @@ Name : Ahmed Jihad Matar
 ID : 22-3855
 Company Role : Team Member
 About Me : 6th Semester CS Student, currently doing my windows 8 app. Gaming is my thing. I love chelsea, I think student activities are lame.
+
+Name : Ahmed Malatawy
+ID: 22-1452
+Company Role : Company Manager
+About Me : 6th Semester CS Student, currently working at Microsoft's App Factory. I'm an ACMer and an AIESECer. I used to play handball for Al Ahly club from 2000 to 2011. Huge Milan Fan #ForzaMilan
