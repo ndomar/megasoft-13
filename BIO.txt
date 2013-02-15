@@ -13,3 +13,13 @@ Name : Samy Saad
 ID : 22-3798
 Company Role : Team Member C4
 About Me : 6th Semester CS student. Into gaming, never watched a football match.
+
+Name : Marwan El Derwy
+ID : 22-0668
+Company Role : Employee
+About me : 6th sem cs student
+
+Name: Maged Shalaby
+ID: 22-4408
+Company Role: Employee
+About Me: Love music, politics, coding, writing, history. Hate about me's in general.
