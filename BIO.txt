@@ -8,3 +8,8 @@ Name : Ahmed Jihad Matar
 ID : 22-3855
 Company Role : Team Member
 About Me : 6th Semester CS Student, currently doing my windows 8 app. Gaming is my thing. I love chelsea, I think student activities are lame.
+
+Name : Samy Saad
+ID : 22-3798
+Company Role : Team Member C4
+About Me : 6th Semester CS student. Into gaming, never watched a football match.
