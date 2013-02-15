@@ -24,8 +24,21 @@ ID: 22-4408
 Company Role: Employee
 About Me: Love music, politics, coding, writing, history. Hate about me's in general.
 
-
 Name: Hesham ElWerdany
 ID: 22-0549
 Company Role: Employee
 About Me: I love history and music.
+
+Name: George Samy
+ID : 22-4673
+Company Role: Emploee
+About Me: Online Gamer. Joined CS with dreams of becoming a computer games programmer wishing maybe join Blizzard Entertainment and become a legendary hacker. Now I wish I get my degree in 5 years :')
+
+Name: youssef tarek
+ID: 19-3954
+About Me: why would that matter exactly :)
+
+Name: Ahmed Osama 
+ID: 122-1811
+Compoany role: Employee
+About Me: football fan, Manchester United fan, love to read and listen to music
