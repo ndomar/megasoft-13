@@ -23,3 +23,8 @@ Name: Maged Shalaby
 ID: 22-4408
 Company Role: Employee
 About Me: Love music, politics, coding, writing, history. Hate about me's in general.
+
+Name: George Samy
+ID : 22-4673
+Company Role: Emploee
+About Me: Online Gamer. Joined CS with dreams of becoming a computer games programmer wishing maybe join Blizzard Entertainment and become a legendary hacker. Now I wish I get my degree in 5 years :')
