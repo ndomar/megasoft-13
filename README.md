@@ -7,7 +7,6 @@ Hossam Ahmed 22-3950
 Omar Nada 19-4332
 Sarah Mohamed Nouh 22-1297
 Hesham ElWerdany 22-0549
-<<<<<<< HEAD
 Amy Mohamed 7-5606
 
 =======
