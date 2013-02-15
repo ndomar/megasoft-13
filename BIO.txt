@@ -4,6 +4,11 @@ Company Role : Scrum Master
 About Me : 8th Semester CS Student, currently doing my bachelor thesis. huge football fan, i am an Arsenal
 FC supporter. I play as a Corner Back for the GUC American Football team (GUC EAGLES)
 
+Name : Ahmed Jihad Matar
+ID : 22-3855
+Company Role : Team Member
+About Me : 6th Semester CS Student, currently doing my windows 8 app. Gaming is my thing. I love chelsea, I think student activities are lame.
+
 Name : Marwan El Derwy
 ID : 22-0668
 Company Role : Employee
