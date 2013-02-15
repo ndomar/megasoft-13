@@ -3,3 +3,8 @@ ID : 19-4332
 Company Role : Scrum Master
 About Me : 8th Semester CS Student, currently doing my bachelor thesis. huge football fan, i am an Arsenal
 FC supporter. I play as a Corner Back for the GUC American Football team (GUC EAGLES)
+
+Name : Marwan El Derwy
+ID : 22-0668
+Company Role : Employee
+About me : cs student
