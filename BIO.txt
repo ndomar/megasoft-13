@@ -1,0 +1,45 @@
+Name : Omar Nada
+ID : 19-4332
+Company Role : Scrum Master
+About Me : 8th Semester CS Student, currently doing my bachelor thesis. huge football fan, i am an Arsenal
+FC supporter. I play as a Corner Back for the GUC American Football team (GUC EAGLES)
+
+Name : Ahmed Jihad Matar
+ID : 22-3855
+Company Role : Team Member
+About Me : 6th Semester CS Student, currently doing my windows 8 app. Gaming is my thing. I love chelsea, I think student activities are lame.
+
+Name : Samy Saad
+ID : 22-3798
+Company Role : Team Member C4
+About Me : 6th Semester CS student. Into gaming, never watched a football match.
+
+Name : Marwan El Derwy
+ID : 22-0668
+Company Role : Employee
+About me : 6th sem cs student
+
+Name: Maged Shalaby
+ID: 22-4408
+Company Role: Employee
+About Me: Love music, politics, coding, writing, history. Hate about me's in general.
+
+Name: George Samy
+ID : 22-4673
+Company Role: Emploee
+About Me: Online Gamer. Joined CS with dreams of becoming a computer games programmer wishing maybe join Blizzard Entertainment and become a legendary hacker. Now I wish I get my degree in 5 years :')
+
+Name: youssef tarek
+ID: 19-3954
+About Me: why would that matter exactly :)
+
+Name: Ahmed Osama 
+ID: 122-1811
+Compoany role: Employee
+About Me: football fan, Manchester United fan, love to read and listen to music
+
+
+Name : Sarah Nouh
+ID : 22-1297
+Company Role : Component 2 lead
+About me : 6th Semester CS Student.I'm a member at Bdaya (Geneh). I used to play basketball for three years before university.I love passion ,Venice,blue ,left-handed people and I hate watching football matches!
