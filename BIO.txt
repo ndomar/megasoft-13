@@ -37,3 +37,8 @@ Name: Ahmed Osama
 ID: 122-1811
 Compoany role: Employee
 About Me: football fan, Manchester United fan, love to read and listen to music
+
+Name : Menna Ashraf
+ID : 22-0910
+Company Role : Employee
+About me : I am 6th semester student, I love travelling, reading and listening to music.
