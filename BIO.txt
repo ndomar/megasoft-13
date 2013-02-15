@@ -4,19 +4,11 @@ Company Role : Scrum Master
 About Me : 8th Semester CS Student, currently doing my bachelor thesis. huge football fan, i am an Arsenal
 FC supporter. I play as a Corner Back for the GUC American Football team (GUC EAGLES)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 Name : Marwan El Derwy
 ID : 22-0668
 Company Role : Employee
 About me : cs student
-=======
-Name : Ahmed Jihad Matar
-ID : 22-3855
-Company Role : Team Member
-About Me : 6th Semester CS Student, currently doing my windows 8 app. Gaming is my thing. I love chelsea, I think student activities are lame.
->>>>>>> b92d9caed4734759b1912e7896575c75568a71c7
-=======
+
 Name : Ahmed Jihad Matar
 ID : 22-3855
 Company Role : Team Member
@@ -26,4 +18,8 @@ Name : Marwan El Derwy
 ID : 22-0668
 Company Role : Employee
 About me : 6th sem cs student
->>>>>>> c5ada43758cbccf570424bd5c2f8441598bbc669
+
+Name: Maged Shalaby
+ID: 22-4408
+Company Role: Employee
+About Me: Love music, politics, coding, writing, history. Hate about me's in general.
