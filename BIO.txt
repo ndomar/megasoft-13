@@ -47,6 +47,11 @@ ID: 122-1811
 Compoany role: Employee
 About Me: football fan, Manchester United fan, love to read and listen to music
 
+Name: Ahmad Soliman
+ID: 22-0627
+Company Role: Lead
+About Me: I love driving :D, currently Obsessed by ACM competitions.
+
 Name : Hossam Ahmed Ismail
 ID : 22-3950
 Company Role : Team Member
