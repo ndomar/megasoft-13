@@ -29,6 +29,11 @@ ID: 22-4408
 Company Role: Employee
 About Me: Love music, politics, coding, writing, history. Hate about me's in general.
 
+Name: Hesham ElWerdany
+ID: 22-0549
+Company Role: Employee
+About Me: I love history and music.
+
 Name: George Samy
 ID : 22-4673
 Company Role: Employee
@@ -47,6 +52,10 @@ ID: 122-1811
 Compoany role: Employee
 About Me: football fan, Manchester United fan, love to read and listen to music
 
+Name : Sarah Nouh
+ID : 22-1297
+Company Role : Component 2 lead
+About me : 6th Semester CS Student.I'm a member at Bdaya (Geneh). I used to play basketball for three years before university.I love passion ,Venice,blue ,left-handed people and I hate watching football matches!
 
 Name: Ahmad Soliman
 ID: 22-0627
@@ -67,5 +76,3 @@ Name : Menna Ashraf
 ID : 22-0910
 Company Role : Employee
 About me : I am 6th semester CS student, I love travelling, reading and listening to music.
-
-
