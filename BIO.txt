@@ -56,3 +56,8 @@ Name : Hossam Ahmed Ismail
 ID : 22-3950
 Company Role : Team Member
 About Me : i really like Coding, Exploiting and Diving
+
+Name : Maya Tarek Osman
+ID : 22-1899
+Company Role : Team Member
+About Me : LOVE driving, reading, music, travelling, cooking
