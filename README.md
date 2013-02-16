@@ -13,6 +13,5 @@ Mennatullah Ashraf 22-0910
 George Samy 22-4673
 Ahmed Malatawy 22-1452
 Karim Tarek 22-466
-Ahmed Malatawy 22-1452
 Amy Mohamed 7-5606
 Marwan El Derwy 22-0668

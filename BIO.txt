@@ -37,3 +37,17 @@ About Me: Online Gamer. Joined CS with dreams of becoming a computer games progr
 Name: youssef tarek
 ID: 19-3954
 About Me: why would that matter exactly :)
+
+Name: Karim tarek
+ID: 22-466
+About Me: Into coding, inventing, drawing, robotics, built few robots currently developing a 3d game.
+
+Name: Ahmed Osama 
+ID: 122-1811
+Compoany role: Employee
+About Me: football fan, Manchester United fan, love to read and listen to music
+
+Name : Hossam Ahmed Ismail
+ID : 22-3950
+Company Role : Team Member
+About Me : i really like Coding, Exploiting and Diving
