@@ -76,3 +76,8 @@ Name : Menna Ashraf
 ID : 22-0910
 Company Role : Employee
 About me : I am 6th semester CS student, I love travelling, reading and listening to music.
+
+Name: Amy Mohamed
+ID : 7-5606
+Company Role : Employee
+About Me : 10th semester CS student. I like reading, drawing and sports.
