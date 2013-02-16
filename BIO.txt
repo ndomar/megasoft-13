@@ -31,7 +31,7 @@ About Me: Love music, politics, coding, writing, history. Hate about me's in gen
 
 Name: George Samy
 ID : 22-4673
-Company Role: Emploee
+Company Role: Employee
 About Me: Online Gamer. Joined CS with dreams of becoming a computer games programmer wishing maybe join Blizzard Entertainment and become a legendary hacker. Now I wish I get my degree in 5 years :')
 
 Name: youssef tarek
@@ -47,6 +47,7 @@ ID: 122-1811
 Compoany role: Employee
 About Me: football fan, Manchester United fan, love to read and listen to music
 
+
 Name: Ahmad Soliman
 ID: 22-0627
 Company Role: Lead
@@ -61,3 +62,10 @@ Name : Maya Tarek Osman
 ID : 22-1899
 Company Role : Team Member
 About Me : LOVE driving, reading, music, travelling, cooking
+
+Name : Menna Ashraf
+ID : 22-0910
+Company Role : Employee
+About me : I am 6th semester CS student, I love travelling, reading and listening to music.
+
+
