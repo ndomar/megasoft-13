@@ -1,0 +1,59 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Omar Nada's Company Profile</title>
+	<link rel="stylesheet" type="text/css" href="OmarNada.css">
+	<script type="text/javascript">
+		function expand(divName)
+		{
+			alert(divName)
+			var status = (document.getElementById(divName).style.display)
+			alert(status)
+			if(status == ("block") || 
+				status == (""))
+				document.getElementById(divName).style.display = "none"
+			if(status == "none")
+				document.getElementById(divName).style.display == "block"
+			alert('hi')
+		}
+	</script>
+</head>
+<body>
+	<div id ="image">
+		<img class ="profile" src="OmarNada_profile_pic.jpg">
+	</div>
+	<h1 class="name">Omar Nada</h1>
+	<h2 onclick="expand('about_me')">About me </h2>
+	<div id ="about_me">
+		<p>A 21 years old CS 8th Semester student, A big Arsenal FC fan, used to be a professional call of duty 4 gamer. I play as a Corner Back for GUC Eagles, interested in bodybuilding and coding</p>
+	</div>
+	<h3>Company Role</h3>
+	<div id ="role">
+		<p> Scrum Master</p>
+ 	</div>
+	<h2>Programming Technologies</h2>
+ 	<div id ="programming_technologies">
+		<ul>
+			<li>Java</li>
+			<li>C</li>
+			<li>C++</li>
+			<li>C#</li>
+			<li>PHP</li>
+			<li>Ruby</li>
+			<li>R</li>
+			<li>Haskell</li>
+			<li>Prolog</li>
+			<li>CakePHP</li>
+			<li>Ruby on Rails</li>
+			<li>ASP.NET</li>
+			<li>HTML</li>
+			<li>CSS</li>
+			<li>JavaScript</li>
+			<li>JQuery</li>
+			<li>SQL</li>
+			<li>MySQL</li>
+			<li>MongoDB</li>
+		</ul>
+	 </div>
+</body>
+</html>
