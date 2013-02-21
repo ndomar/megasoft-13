@@ -17,11 +17,12 @@ left:650px;
 position:absolute;
 }
 
-img {
+.imageDiv {
     margin: 50px;
-    height: 40%;
-    width:15%;
-    display:none;
+    height: 80%;
+    width:25%;
+    display:inline;
+    position:absolute;
   
 }
 
@@ -52,9 +53,20 @@ h1 {
     background-image:url("name2.png");
 }
 
-div {
-    display:none;
+.divText {
+    display:inline;
     margin:50px;
     font-family:Haettenschweiler;
     font-size:24pt;
+    left: 30%;
+    top:50%;
+    position:absolute;
+}
+
+img {
+    display: none;
+}
+
+ul {
+    display: none;
 }
