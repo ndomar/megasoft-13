@@ -2,17 +2,105 @@
 <head>
 	<title>Maged Shalaby's BIO</title>
 
-	<link rel="stylesheet" type="text/css" href="MagedShalaby.css"
+	<link rel="stylesheet" type="text/css" href="MagedShalaby.css">
+	<script type="text/javascript" src="MagedShalaby.js"></script>
+	<script type="text/javascript" src="dom-drag.js"></script>
+	<!--
+	<script language="JavaScript" type="text/javascript" src="tool-man/core.js"></script>
+	<script language="JavaScript" type="text/javascript" src="tool-man/events.js"></script>
+	<script language="JavaScript" type="text/javascript" src="tool-man/css.js"></script>
+	<script language="JavaScript" type="text/javascript" src="tool-man/coordinates.js"></script>
+	<script language="JavaScript" type="text/javascript" src="tool-man/drag.js"></script>
+	<script language="JavaScript" type="text/javascript" src="tool-man/dragsort.js"></script>
+	<script language="JavaScript" type="text/javascript" src="tool-man/cookies.js"></script>
+
+	<script language="JavaScript" type="text/javascript"><!--
+		var dragsort = ToolMan.dragsort()
+		var junkdrawer = ToolMan.junkdrawer()
+
+		window.onload = function() {
+			junkdrawer.restoreListOrder("technologies")
+			//junkdrawer.restoreListOrder("twolists1")
+			//junkdrawer.restoreListOrder("twolists2")
+			dragsort.makeListSortable(document.getElementById("technologies"),
+					saveOrder)
+
+			/*
+			dragsort.makeListSortable(document.getElementById("twolists1"),
+					saveOrder)
+			dragsort.makeListSortable(document.getElementById("twolists2"),
+					saveOrder)
+			*/
+		}
+
+		function verticalOnly(item) {
+			item.toolManDragGroup.verticalOnly()
+		}
+
+		function speak(id, what) {
+			var element = document.getElementById(id);
+			element.innerHTML = 'Clicked ' + what;
+		}
+
+		function saveOrder(item) {
+			var group = item.toolManDragGroup
+			var list = group.element.parentNode
+			var id = list.getAttribute("id")
+			if (id == null) return
+			group.register('dragend', function() {
+				ToolMan.cookies().set("list-" + id, 
+						junkdrawer.serializeList(list), 365)
+			})
+		}
+
+		//-->
+	</script>
 </head>
 <body>
 	<div>
+
+	<img class="middle" src = "MagedShalaby.jpg" height="200" />
 	<p class = "title"> 
-		Maged Shalaby 
-		
-		<img class="middle" src = "MagedShalaby.jpg" height="200" align="right" />
-		
+		Maged Shalaby 	
 	</p> 
 
 	</div>
+
+	<div>
+		<h2 class="header"> About Me </h2>
+		A 19 year old with quite a few interests.
+		<h2 class = "header">Company Role</h2>
+		Employee.
+		<h2 class = "header">Programming Technologies</h2>
+
+		<ul>
+			<li id="Draggabble1" style="position: relative">Java (Drag Me!)</li>
+			<script type="text/javascript">
+			Drag.init(document.getElementById("Draggabble1"));
+			</script>
+
+			<li id="Draggabble2" style="position: relative">C# (Drag Me!)</li>
+			<script type="text/javascript">
+			Drag.init(document.getElementById("Draggabble2"));
+			</script>
+
+			<li id="Draggabble3" style="position: relative">T-SQL (Drag Me!)</li>
+			<script type="text/javascript">
+			Drag.init(document.getElementById("Draggabble3"));
+			</script>
+			
+			<li id="Draggabble4" style="position: relative">HTML (Drag Me!)</li>
+			<script type="text/javascript">
+			Drag.init(document.getElementById("Draggabble4"));
+			</script>
+			
+			<li id="Draggabble5" style="position: relative">Javascript (not really) (Drag Me!)</li>
+			<script type="text/javascript">
+			Drag.init(document.getElementById("Draggabble5"));
+			</script>
+		</ul>
+
+	</div>
+
 </body>
 </html>
