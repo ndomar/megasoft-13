@@ -41,7 +41,7 @@ About Me: Online Gamer. Joined CS with dreams of becoming a computer games progr
 
 Name: youssef tarek
 ID: 19-3954
-About Me: why would that matter exactly :)
+About Me: 8th semester student
 
 Name: Karim tarek
 ID: 22-466
@@ -81,3 +81,8 @@ Name: Amy Mohamed
 ID : 7-5606
 Company Role : Employee
 About Me : 10th semester CS student. I like reading, drawing and sports.
+
+Name: Basem Ali
+ID : 19-1360
+Company Role : Employee
+About Me : 8th semester CS student. I enjoy books and music. Drawing is my addictive habit. 
