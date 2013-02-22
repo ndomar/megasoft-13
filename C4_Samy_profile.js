@@ -1,13 +1,9 @@
 ﻿function startup() {
-    $("form").animate({top:150, left:350, width:1080, height: 600}, 500, startup2);
-	$("form").fadeIn(500);
+    $("img").fadeIn(1000, startup2);
 }
 function startup2() {
     
-    $("img").fadeIn(600, startup3);
+    $(".name1").animate({ left: 1000 }, 500, null);
+    $(".name2").animate({ left: 1200 }, 500, function () { $(".divText").slideDown(1000); });
 }
 
-function startup3() {
-    $(".name1").animate({ left: 620 }, 500, null);
-    $(".name2").animate({ left: 400 }, 500, function () { $("ul").fadeIn(500); });
-}

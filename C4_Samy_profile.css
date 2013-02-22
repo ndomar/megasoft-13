@@ -1,44 +1,30 @@
 body {
-background-image:url("bg.jpg");
-background-size:cover;
+    background-image: url("bg.jpg");
+    background-repeat:repeat;
 }
 
-.BioArea {
-background-image:url("bg2.jpg");
-background-size:cover;
-background-repeat:no-repeat;
-display:block;
-margin:auto;
-width:500px;
-height:300px;
-left:auto;
-top:350px;
-left:650px;
-position:absolute;
-}
-
-.imageDiv {
-    margin: 50px;
-    height: 80%;
-    width:25%;
-    display:inline;
+img {
+    height: 400px;
+    width:300px;
+    display:none;
     position:absolute;
+    top:0px;
+    left:40%;
   
 }
 
 h1 {
-     width:40px;
-    height:45%;
-    width:120%;
-    background-size:cover;
+     width:50%;
+    height:20%;
+    background-size:contain;
      position:absolute;
-     display:inline;
+     display:block;
     text-indent:-9999em;
     background-repeat:no-repeat;
 }
 
 .name1 {
-        top:20%;
+        top:45%;
         left:-200%;
     background-image:url("name1.png");
    
@@ -48,25 +34,15 @@ h1 {
 }
 
 .name2 {
-    top:5%;
+    top:65%;
     left:300%;
     background-image:url("name2.png");
 }
 
-.divText {
-    display:inline;
-    margin:50px;
-    font-family:Haettenschweiler;
-    font-size:24pt;
-    left: 30%;
-    top:50%;
+div {
+    top: 50%;
     position:absolute;
+    display:none;
+    
 }
 
-img {
-    display: none;
-}
-
-ul {
-    display: none;
-}
