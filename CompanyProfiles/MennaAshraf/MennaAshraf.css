@@ -1,0 +1,17 @@
+body {
+	background-image: url("background.jpg");
+	margin-left: 25%;
+}
+li,h4,h5{
+	font-size: 20px;
+	color : #804000
+}
+h2{
+	font-size: 30px;
+color:#580000;
+}
+h1.MyName{
+	/*margin-left: 5%;*/
+	font-size: 50px;
+	color:#900000;
+}
