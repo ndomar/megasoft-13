@@ -1,0 +1,9 @@
+p.title {
+	font-size: 36px;
+	font-family: Helvetica;
+	color: #abc;
+}
+
+img.middle{
+	vertical-align: middle;
+}
