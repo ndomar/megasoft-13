@@ -1,0 +1,17 @@
+<%= form_for @blogpost do |form| %>
+	<% if @blogpost.errors.any? %>
+	<div id="errorExplanation">
+		<h2>Post could not be saved. <%= pluralize(@blogpost.errors.count, "error") %> were found.</h2>
+		<ul>
+			<% @blogpost.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<%= form.text_field :title, :placeholder => "Title" %>
+	<br/>
+	<%= form.text_area :content, :placeholder => "Content" %>
+	<br/>
+	<%= form.submit %>
+<% end %>

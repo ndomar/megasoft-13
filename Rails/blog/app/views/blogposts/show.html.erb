@@ -1,4 +1,8 @@
-<h1><%= @blogpost.title %></h1>
+<h2>
+	<%= @blogpost.title %>
+	<%= link_to "Delete", {:action => :index}, {:style => 'color:black;border-right:solid;font-size:10px;padding-right:2px; border-width:1px;'}%>
+	<%= link_to "Update", {:id => @blogpost.id, :action => :edit}, {:style => 'color:black;font-size:10px;'} %>
+</h2>
 
 <div>
 	<span><%= @blogpost.content %></span>

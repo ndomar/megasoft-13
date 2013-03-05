@@ -4,8 +4,6 @@
 	<hr >
 	<h3 > 
 		<%= link_to blogpost.title, {:action => :show, :id => blogpost}, {:style => 'color:darkblue;'} %>
-		<%= link_to "Delete", {:action => :index}, {:style => 'color:black;border-right:solid;font-size:10px;padding-right:2px; border-width:1px;'}%>
-		<%= link_to "Update", {:action => :index}, {:style => 'color:black;font-size:10px;'} %>
 
 	</h3>
 	<span style="color:gray"> <%= blogpost.content %> </span>

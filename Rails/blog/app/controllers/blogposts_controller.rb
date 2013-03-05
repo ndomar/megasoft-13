@@ -20,4 +20,17 @@ class BlogpostsController < ApplicationController
 	def show
 		@blogpost = Blogpost.find(params[:id])
 	end
+
+	def edit
+		@blogpost = Blogpost.find(params[:id])
+	end
+	
+	def update
+		@blogpost = Blogpost.find(params[:id])
+		if @blogpost.update_attributes(params[:blogpost])
+			redirect_to :action => :show, :id => @blogpost.id
+		else
+			render 'edit'
+		end
+	end
 end

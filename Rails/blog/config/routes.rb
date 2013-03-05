@@ -2,7 +2,9 @@ Blog::Application.routes.draw do
   get "blogposts" => "blogposts#index"
   get "blogposts/new"
   post "blogposts" => "blogposts#create"
-  get "blogposts/:id" => "blogposts#show"
+  get "blogposts/:id" => "blogposts#show", :as => :blogpost
+  get "blogposts/:id/edit" => "blogposts#edit"
+  put "blogposts/:id" => "blogposts#update"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
