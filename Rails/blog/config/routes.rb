@@ -1,4 +1,8 @@
 Blog::Application.routes.draw do
+  get "blogposts" => "blogposts#index"
+  get "blogposts/new"
+  post "blogposts" => "blogposts#create"
+  get "blogposts/:id" => "blogposts#show"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
