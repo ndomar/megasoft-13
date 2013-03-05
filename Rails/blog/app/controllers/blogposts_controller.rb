@@ -11,7 +11,7 @@ class BlogpostsController < ApplicationController
 		@blogpost = Blogpost.new(params[:blogpost])
 
 		if @blogpost.save
-			render :text => params[:blogpost].inspect
+			redirect_to :action => :show, :id => @blogpost.id
 		else
 			render 'new'
 		end
@@ -24,7 +24,7 @@ class BlogpostsController < ApplicationController
 	def edit
 		@blogpost = Blogpost.find(params[:id])
 	end
-	
+
 	def update
 		@blogpost = Blogpost.find(params[:id])
 		if @blogpost.update_attributes(params[:blogpost])
@@ -33,4 +33,11 @@ class BlogpostsController < ApplicationController
 			render 'edit'
 		end
 	end
+
+	def destroy
+		@blogpost = Blogpost.find(params[:id])
+		@blogpost.destroy
+		redirect_to :action => :index
+	end
+
 end

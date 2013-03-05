@@ -1,6 +1,6 @@
 <h2>
 	<%= @blogpost.title %>
-	<%= link_to "Delete", {:action => :index}, {:style => 'color:black;border-right:solid;font-size:10px;padding-right:2px; border-width:1px;'}%>
+	<%= link_to "Delete", {:action => :destroy, :id => @blogpost.id},  {:method => :delete, :data => {:confirm => 'Are you sure?'} ,:style => 'color:black;border-right:solid;font-size:10px;padding-right:2px; border-width:1px;'}%>
 	<%= link_to "Update", {:id => @blogpost.id, :action => :edit}, {:style => 'color:black;font-size:10px;'} %>
 </h2>
 
