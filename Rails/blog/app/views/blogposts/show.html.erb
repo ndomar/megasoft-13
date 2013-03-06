@@ -14,6 +14,7 @@
 	<div style="border:double; padding:12px; padding-top:0px">
 		<h3><%# User.find(comment.user_id).name%></h3>
 		<span><%= comment.text %></span>
+		<%= link_to "Edit", edit_blogpost_comment_path(@blogpost, comment), {:style => "font-size:8px;"} %>
 </div>
 <br/>
 <% end %>
