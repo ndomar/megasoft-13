@@ -8,4 +8,36 @@
 	<span><%= @blogpost.content %></span>
 </div>
 
+<h2>Comments</h2>
+
+<% @blogpost.comments.each do |comment| %>
+	<div style="border:double; padding:12px; padding-top:0px">
+		<h3><%# User.find(comment.user_id).name%></h3>
+		<span><%= comment.text %></span>
+</div>
+<br/>
+<% end %>
+
+<% if @comment.errors.any? %>
+	<div id="errorExplanation">
+		<h3>Comment could not be saved. <%= pluralize(@comment.errors.count, "error") %> were found.</h3>
+		<ul>
+			<% @comment.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+<h2>Add a comment</h2>
+<%= form_for [@blogpost, @blogpost.comments.build] do |form| %>
+	<p>
+		<%= form.text_area :text, :placeholder => "Comment" %>
+	</p>
+
+	<p>
+		<%= form.submit %>
+	</p>
+<% end %>
+
 <%= link_to "Back", blogposts_path %>
