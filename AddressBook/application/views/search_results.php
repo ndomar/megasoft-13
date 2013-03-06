@@ -17,27 +17,31 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <?php echo form_open('site/create'); ?>
+                            <?php echo form_open('site/search'); ?>
                             <h1> Your Address-Book </h1> 
                             <?php
-                            $i=0; //youssef: i added this to delete contacts
+
+                           // $names =new array();
+                         
                             if (isset($records)) {
+                                     $i=0;
                                 foreach ($records as $row) {
-                                    echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->first_name . '</label>' . '</p>';
+                                    echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->first_name . '</label>';
                                     echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->last_name . '</label>' . '</p>';
                                     echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->phone . '</label>' . '</p>';
                                     echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->address . '</label>' . '</p>';
                                     echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->city . '</label>' . '</p>';
                                     echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->country . '</label>' . '</p>';
                                     echo '<p>' . '<label for = "usernamesignup" class = "uname">' . $row->email . '</label>' . '</p>';
-                                
-                                  $i= "site/delete_contact/$row->id";    //  youssef: here is the url that will delete
-                                  echo  anchor($i, 'delete', 'class="to_register"');    //youssef : delete button
+                                         $i= "site/delete_contact/$row->id";
+                                       
+                                    echo  anchor($i, 'delete', 'class="to_register"');
+                                    //form_submit('delete','delete');
                                     echo '<hr>';
-                                
+
                                 }
                             } else {
-                                echo '<p>' . '<label for = "usernamesignup" class = "uname">' . 'No Records' . '</label>' . '</p>';
+                                echo form_input('searchfor','First_Name'); echo form_submit('searched','Search');
                             }
                             ?>
 
