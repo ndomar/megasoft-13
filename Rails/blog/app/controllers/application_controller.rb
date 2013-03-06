@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
 	def save_login_state
 		if session[:user_id]
-			redirect_to(:controller => 'profile', :action => 'show')
+			render "profile/show"
 			return false
 		else
 			return true
