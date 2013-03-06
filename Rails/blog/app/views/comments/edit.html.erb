@@ -1,0 +1,22 @@
+<h2>Edit Comment</h2>
+
+<% if @comment.errors.any? %>
+	<div id="errorExplanation">
+		<h3>Comment could not be saved. <%= pluralize(@comment.errors.count, "error") %> were found.</h3>
+		<ul>
+			<% @comment.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+<%= form_for [@blogpost, @comment] do |form| %>
+	<p>
+		<%= form.text_area :text, :placeholder => "Comment" %>
+	</p>
+
+	<p>
+		<%= form.submit %>
+	</p>
+<% end %>
