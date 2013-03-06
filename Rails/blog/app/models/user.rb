@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
 
+	has_many :comments
+
+
 	def self.authenticate(email="", login_password="")
 		user = User.find_by_email(email)
 
