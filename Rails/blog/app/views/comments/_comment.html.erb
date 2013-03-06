@@ -1,0 +1,12 @@
+  <p>
+    <b>Comment:</b>
+    <%= comment.body %>
+  </p>
+
+<!-- should add condition only to appear to the right user, which is logged in "session" use database-->
+  <p>
+  <%= link_to 'Edit', [comment.blogpost, comment],
+               :confirm => 'Are you sure?',
+               :method => :delete %>
+              
+</p>

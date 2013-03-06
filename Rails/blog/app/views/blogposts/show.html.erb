@@ -4,8 +4,18 @@
 	<%= link_to "Update", {:id => @blogpost.id, :action => :edit}, {:style => 'color:black;font-size:10px;'} %>
 </h2>
 
+
 <div>
 	<span><%= @blogpost.content %></span>
 </div>
+
+<h2>Comments</h2>
+<%= render @blogpost.comments %>
+
+
+<h2>Add a comment:</h2>
+<!-- should add condition if theres a user session loggedin HERE DON'T FORGET-->
+<%= render "comments/form" %>
+<br />
 
 <%= link_to "Back", blogposts_path %>
