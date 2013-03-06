@@ -1,5 +1,15 @@
 Blog::Application.routes.draw do
+
  resources :blogposts
+  
+  get "home/index"
+
+  resources :users
+  root :to => "home#index"
+
+  resources :profile
+  root :to => "profile#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
