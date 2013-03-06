@@ -9,15 +9,30 @@ class login extends CI_Controller {
 
     // If the login data is valid it redirects to the members zone else it reloads the login-page
     // Now it only compares it with my account it should be replaced with normal login
+
     public function validate_inputs() {
-        
-        if ($this->input->post('username')=='kimo') {
-            $data = array('username' => 'kimo', 'islogged_in' => true);
-            $this->session->set_userdata($data);
-            redirect('site/membersarea');
-        } else {
-            $this->index();
-        }
+
+
+    $this->load->model('members_model');
+		$query = $this->members_model->validate();
+
+		if($query) // if the user's credentials validated...
+		{
+			$data = array(
+				'username' => $this->input->post('username'),
+				'is_logged_in' => true
+			);
+			$this->session->set_userdata($data);
+			redirect('site/membersarea');
+		}
+		else // incorrect username or password
+		{
+
+			$this->index();
+		}
+
+
+  
     }
 
     // Load the sign-up form page
