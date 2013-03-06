@@ -1,4 +1,15 @@
 Blog::Application.routes.draw do
+  get "sessions/login"
+
+  get "sessions/login"
+  post "sessions/login_attempt"
+
+  get "sessions/home"
+
+  get "sessions/profile"
+
+  get "sessions/setting"
+
   get "home/index"
 
   resources :users
