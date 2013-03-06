@@ -12,12 +12,19 @@ class SessionsController < ApplicationController
 		if authorized_user
 			session[:user_id] = authorized_user.id
 			flash[:notice] = "Wow Welcome again, you logged in as #{authorized_user.email}"
-			redirect_to(:action => 'index', :controlller => 'profile')
+			#redirect_to(:action => 'show', :controlller => 'profile')
+			render("profile/show")
 		else
 			flash[:notice] = "Invalid Username or Password"
 			flash[:color]= "invalid"
 			render "login"	
 		end
+	end
+
+	def logout
+		session[:user_id] = nil
+		flash[:notice] = "You are now logged out!"
+		render("home/index")
 	end
 
 end
