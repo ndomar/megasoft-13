@@ -10,6 +10,20 @@ class contacts_model extends CI_Model {
         $q = $this->db->get('contacts');
         return $q->result();
     }
+    
+    function search()
+    {
+         $this->db->where('username', $this->session->userdata('username'));
+           $this->db->where('first_name', $this->input->post('searchfor'));
+              $q = $this->db->get('contacts');
+        return $q->result();
+    }
+    function delete($f)
+    {
+                    $this->db->where('username', $this->session->userdata('username'));
+           $this->db->where('id', $f);
+           $q =$this->db->delete("contacts");
+    }
 
     // To add a contact to the logged-in user contacts list
     function add_record() {
