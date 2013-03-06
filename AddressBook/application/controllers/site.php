@@ -38,6 +38,36 @@ class site extends CI_Controller {
     function add_contact() {
         $this->load->view('create_contact');
     }
+    function search()
+    {           $this->load->model('contacts_model');
+		$query = $this->contacts_model->search();
+
+
+                  $data2 = array();
+        //Get records from the model and save them in the array
+        if ($q = $this->contacts_model->search()) {
+            $data2['records'] = $q;
+        }
+        // Loads the view with the records
+        $this->load->view('search_results', $data2);
+    }
+    function delete_contact($f)
+    {
+                $this->load->model('contacts_model');
+		$query = $this->contacts_model->delete($f);
+                                 	redirect('site/membersarea');
+               // $this->load->view('search_results');
+
+    }
+    function search_contact()
+    {           
+                     $this->load->view('search_results');
+
+
+
+
+
+    }
 
     // Validates the inputs to add a contact in the contact list
     function create() {
