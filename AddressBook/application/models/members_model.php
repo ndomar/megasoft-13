@@ -4,7 +4,14 @@ class members_model extends CI_Model {
 
     // Login Checking Part 
     public function validate() {
-
+   	$this->db->where('username', $this->input->post('username'));
+		$this->db->where('password', md5($this->input->post('password')));
+		$query = $this->db->get('members');
+		
+		if($query->num_rows == 1)
+		{
+			return true;
+		}
     }
 
     // Signup Part (by inserting inputs to the members table)
