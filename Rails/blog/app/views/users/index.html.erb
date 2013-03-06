@@ -16,6 +16,7 @@
     <td><%= user.email %></td>
     <td><%= user.password %></td>
     <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Go to Profile', :controller => 'profile', :action => :show, :id => user.id %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
@@ -24,4 +25,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New User', :controller => 'users', :action => :new %>

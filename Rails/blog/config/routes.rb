@@ -1,10 +1,32 @@
 Blog::Application.routes.draw do
 
+
  resources :blogposts do
   resources :comments
- end
-  
+end
+
+  get "sessions/login"
+
+  get "sessions/login"
+
+  get "sessions/logout"
+
+  post "sessions/login_attempt"
+
+  get "users/edit"
+
+  get "users/update"
+
+  get "sessions/home"
+
+  get "sessions/profile"
+
+  get "sessions/setting"
+
+
   get "home/index"
+
+  get "profile/show"
 
   resources :users
   root :to => "home#index"
