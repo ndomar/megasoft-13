@@ -1,0 +1,6 @@
+<h1>Seach Results</h1>
+
+<% @blogposts.each do |blogpost| %>
+	<h2><%= link_to blogpost.title, :controller => :blogposts, :action => :show, :id => blogpost.id %></h2>
+	<span><%= blogpost.content %></span>
+<% end %>
