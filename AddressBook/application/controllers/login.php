@@ -20,7 +20,7 @@ class login extends CI_Controller {
 		{
 			$data = array(
 				'username' => $this->input->post('username'),
-				'is_logged_in' => true
+				'islogged_in' => true
 			);
 			$this->session->set_userdata($data);
 			redirect('site/membersarea');
