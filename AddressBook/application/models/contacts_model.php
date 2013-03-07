@@ -10,13 +10,58 @@ class contacts_model extends CI_Model {
         $q = $this->db->get('contacts');
         return $q->result();
     }
-    
+
     function search()
     {
          $this->db->where('username', $this->session->userdata('username'));
            $this->db->where('first_name', $this->input->post('searchfor'));
               $q = $this->db->get('contacts');
-        return $q->result();
+              
+              if($q->num_rows != 0)
+              {
+                    return $q->result();
+              }
+              else
+              {
+                   $this->db->where('username', $this->session->userdata('username'));
+                   $this->db->where('username', $this->input->post('searchfor'));
+                   $q = $this->db->get('contacts');
+
+                  if($q->num_rows != 0)
+                  {
+                   return $q->result();
+                  }
+                  else
+                  {
+                   
+                        $this->db->where('username', $this->session->userdata('username'));
+                   $this->db->where('email', $this->input->post('searchfor'));
+                   $q = $this->db->get('contacts');
+                        if($q->num_rows != 0)
+                        {
+
+                           return $q->result();
+                        }
+                        else
+                        {
+                          
+                                 $this->db->where('username', $this->session->userdata('username'));
+                                 $this->db->where('phone', $this->input->post('searchfor'));
+                                 $q = $this->db->get('contacts');
+
+
+                                                return $q->result();
+
+
+
+                        }
+
+
+                  }
+              }
+
+
+        
     }
     function delete($f)
     {
