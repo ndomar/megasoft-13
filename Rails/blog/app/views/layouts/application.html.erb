@@ -10,8 +10,8 @@
 
 <%= form_tag({:controller => "blogposts", :action => "search"}, :method => "get") do %>
   <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
+  <%= text_field_tag(:q,nil, :class => "search") %>
+  <%= submit_tag("Search", :class => "search") %>
 <% end %>
 
 <%= yield %>
