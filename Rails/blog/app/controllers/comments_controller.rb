@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 	def create
+		@user = User.find(session[:user_id])
 		@blogpost = Blogpost.find(params[:blogpost_id])
 		@comment = @blogpost.comments.create(params[:comment])
 		render "/blogposts/show"

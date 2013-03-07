@@ -7,8 +7,6 @@ end
 
   get "sessions/login"
 
-  get "sessions/login"
-
   get "sessions/logout"
 
   post "sessions/login_attempt"
@@ -23,6 +21,7 @@ end
 
   get "sessions/setting"
 
+  get "blogposts/index"
 
   get "home/index"
 

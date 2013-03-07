@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+	has_many :user_blogs
+	has_many :blogpostss
 	has_many :comments
 
 
