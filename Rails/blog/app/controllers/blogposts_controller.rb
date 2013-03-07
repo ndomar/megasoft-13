@@ -41,4 +41,9 @@ class BlogpostsController < ApplicationController
 		redirect_to :action => :index
 	end
 
+	def search
+		query = params[:q]
+		@blogposts = Blogpost.where("title LIKE ?",  '%' + params[:q] + '%')
+	end
+
 end

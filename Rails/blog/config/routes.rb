@@ -1,9 +1,11 @@
 Blog::Application.routes.draw do
 
 
+get "blogposts/Search" => "blogposts#search"
  resources :blogposts do
   resources :comments
-end
+ end
+
 
   get "sessions/login"
 
