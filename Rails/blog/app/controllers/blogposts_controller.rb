@@ -18,8 +18,10 @@ class BlogpostsController < ApplicationController
 	end
 
 	def show
+
 		@blogpost = Blogpost.find(params[:id])
 		@comment = Comment.new
+		@user = User.find(@comment.user_id)
 	end
 
 	def edit
@@ -43,7 +45,7 @@ class BlogpostsController < ApplicationController
 
 	def search
 		query = params[:q]
-		@blogposts = Blogpost.where("title LIKE ?",  '%' + params[:q] + '%')
+		@blogposts = Blogpost.where("title LIKE ? or content LIKE ?",  '%' + params[:q] + '%',  '%' + params[:q] + '%')
 	end
 
 end

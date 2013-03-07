@@ -11,12 +11,7 @@
 <h2>Comments</h2>
 
 <% @blogpost.comments.each do |comment| %>
-	<div style="border:double; padding:12px; padding-top:0px">
-		<h3><%=  comment.user.name %></h3>
-		<span><%= comment.text %></span>
-		<%= link_to "Edit", edit_blogpost_comment_path(@blogpost, comment), {:style => "font-size:10px;"} %>
-</div>
-<br/>
+	<%= render "comments/show", :id => comment.id %>
 <% end %>
 
 <% if @comment.errors.any? %>

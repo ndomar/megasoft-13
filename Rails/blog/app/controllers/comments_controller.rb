@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
 	def create
 		@user = User.find(session[:user_id])
 		@blogpost = Blogpost.find(params[:blogpost_id])
-		@comment = @blogpost.comments.create(params[:comment])
+		#params[:comment]=[:user_id=>@user.id]
+		@comment = @blogpost.comments.create(:user_id=>@user.id, :text => (params[:comment])[:text])
 		render "/blogposts/show"
 	end
 
@@ -19,5 +20,10 @@ class CommentsController < ApplicationController
 			@blogpost = Blogpost.find(params[:blogpost_id])
 			render edit_blogpost_comment_path(@blogpost, @comment)
 		end
+	end
+
+	def show
+		@comment = Comment.find(params[:id])
+		@user = User.find(@comment.user_id)
 	end
 end
