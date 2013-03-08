@@ -4,5 +4,11 @@
 <%#= link_to 'View your blogposts', :controller => 'blogposts', :action => :index %>
 
 <% @user_blogs.each do |user_blog| %>
-<%= render 'user_blogs/show', :id => user_blog.id %>
+<h3> <%= link_to user_blog.name, user_user_blog_path(@current_user, user_blog)
+%></h3>
+<% end %>
+
+<%= form_for [@current_user, @current_user.user_blogs.build] do |form| %>
+	<%= form.text_field :name, :placeholder => "Blog name" %>
+	<%= form.submit %>
 <% end %>

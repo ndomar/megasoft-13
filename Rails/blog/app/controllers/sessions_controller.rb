@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
 		if authorized_user
 			session[:user_id] = authorized_user.id
 			flash[:notice] = "Wow Welcome again, you logged in as #{authorized_user.email}"
-			#redirect_to(:action => 'show', :controlller => 'profile')
-			render "profile/show"
+			redirect_to :controller => 'profile', :action => 'show', :id =>authorized_user.id
+			#render "profile/show"
 		else
 			flash[:notice] = "Invalid Username or Password"
 			flash[:color]= "invalid"

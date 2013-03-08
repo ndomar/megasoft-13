@@ -21,7 +21,6 @@ class BlogpostsController < ApplicationController
 
 		@blogpost = Blogpost.find(params[:id])
 		@comment = Comment.new
-		@user = User.find(@comment.user_id)
 	end
 
 	def edit

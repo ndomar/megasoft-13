@@ -27,7 +27,9 @@ get "blogposts/Search" => "blogposts#search"
 
   get "home/index"
 
-  get "profile/show"
+  get "profile/:id" => "profile#show"
+
+
 
 resources :users do
   resources :user_blogs
