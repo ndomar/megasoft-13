@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Contact</title>
+</head>
+<body>
+ <p>{{msg}}</p>
+ <div>
+  <h3>Add a new contact: </h3>
+
+      {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post"> {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Add a contact">
+    </form>
+
+ </div>
+
+</body>
+</html>
