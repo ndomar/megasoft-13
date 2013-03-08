@@ -23,6 +23,24 @@ def check(request):
 		fail = "Wrong Password Or Username Please Try Again"
 		return render(request, 'AddressBookapp/login.html', {'fail':fail})
 
+def delcontact(request, ContactID):
+	Contact = Contacts.objects.get(id = ContactID) 
+	if request.POST :
+		if "delete" in request.POST:
+			Contacts.objects.get(id = ContactID).delete()
+			return render(request, 'AddressBook/index.html')
+		elif "edit" in request.POST:
+			return render(request, 'AddressBook/editcontact.html', {'Contact' : Contact})
+		
+def editcontact(request, ContactID):
+	c = Contacts.objects.get(id = ContactID)
+	c.name = request.POST['name']
+	c.number = request.POST['number']
+	c.email = request.POST['number']
+	c.address = request.POST['address']
+	done = "Done !"
+	return render(request, 'AddressBook/editcontact.html', {"done" : done})
+		
 def hello(request):
     return HttpResponse("Hello, world!")
     
