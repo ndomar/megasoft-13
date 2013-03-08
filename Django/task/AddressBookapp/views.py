@@ -2,6 +2,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, HttpResponse
 from AddressBookapp.models import *
+from AddressBookapp.forms import *
 import datetime
 from django.template import Context, loader
 
@@ -50,10 +51,11 @@ def register(request):
             error = True
         else:
             user1 = Users(request.GET['user_name'],request.GET['name'],request.GET['user_email'],request.GET['pass'])
-            return render_to_response('viewAddrsBk.html',
+            return render_to_response('addContact.html',
                 {'msg': 'You have successfully registered! *wohoo*'})
     return render_to_response('register_form.html',
         {'error': error})
+
 
 def index(request):
     contact_list = Contacts.objects.filter(user_name=request.username)[:]
@@ -62,3 +64,28 @@ def index(request):
         'contact_list': contact_list,
     })
     return HttpResponse(template.render(context))
+
+        
+def add_contact2(request):
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			f = form.cleaned_data
+			contact= Contacts(f['name'],f['email'],f['number'],f['address'])
+			return render_to_response('viewAddrsBK.html',{'msg':'Contact has been succesfully added'})
+	else:
+		form = ContactForm()
+	return render_to_response('addcontact.html', {'form': form})
+	
+def add_contact(request):
+    error = False
+    if 'name' in request.GET:
+        name = request.GET['name']
+        if not name:
+            error = True
+        else:
+            contact1 = Contacts(request.GET['name'],request.GET['user_email'],request.GET['num'],request.GET['addrs'])
+            return render_to_response('viewAddrsBk.html',
+                {'msg': 'You have successfully added a new contact! *wohoo*'})
+    return render_to_response('addcontact.html',
+        {'error': error})
