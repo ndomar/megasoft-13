@@ -67,7 +67,7 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
+STATICFILES_DIRS = ( "/Users/sarahnouh/megasoft-13/Django/task/templates/static", 
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -107,6 +107,7 @@ ROOT_URLCONF = 'task.urls'
 WSGI_APPLICATION = 'task.wsgi.application'
 
 TEMPLATE_DIRS = (
+	'/Users/sarahnouh/megasoft-13/Django/task/templates',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
