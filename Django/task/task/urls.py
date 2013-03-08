@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from AddressBookapp.views import hello
+from AddressBookapp.views import hello, current_datetime, hours_ahead,register_form,register
 
 
 # Uncomment the next two lines to enable the admin:
@@ -7,7 +7,11 @@ from AddressBookapp.views import hello
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    ('^hello/$',hello),
+    ('^hello/$', hello),
+    (r'^time/$', current_datetime),
+    (r'^time/plus/(\d{1,2})/$', hours_ahead),
+    (r'^register-form/$',register_form),
+    (r'^register/$',register),
 )
 
 
