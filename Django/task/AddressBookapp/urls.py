@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from polls import views
+from AddressBookapp import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index')
