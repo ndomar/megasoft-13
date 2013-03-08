@@ -3,11 +3,18 @@
 <head>
 	<title>Register</title>
 </head>
-<body>
+<body class="background">
 
   <div>
-    <p>Enter the contact's info below please! :)</p>
-    <form action="#">
+    <p>{{msg}}</p>
+
+      {% if error %}
+        <p style="color: red;">Please Enter the required info.</p>
+      {% endif %}
+
+      <h3>Add a new contact: </h3>
+
+    <form action="/addcontact/" method="get">
       <dl>
         <dt>Name: </dt>
         <dd><input type="text" name="name"></dd>
@@ -15,11 +22,19 @@
         <dt>E-mail: </dt>
         <dd><input type="text" name="user_email"></dd>
 
-         <dt>Number: </dt>
+        <dt>number: </dt>
         <dd><input type="text" name="num"></dd>
 
         <dt>Address: </dt>
-        <dd><textarea name="addrs" rows="10" cols="20"></textarea></dd>
+        <dd><input type="text" name="addrs"></dd>
+
+        <h3>Add a custom field: (optional) </h3>
+
+         <dt>field name: </dt>
+        <dd><input type="text" name="fn"></dd>
+
+         <dt>field content: </dt>
+        <dd><input type="text" name="fc"></dd>
 
         <dt> </dt>
         <dd><input type="submit"></dd>
