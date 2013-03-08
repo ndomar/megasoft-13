@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ <title>Edit Contact</title>
+ </head>
+ <body>
+ <table>
+ <tr>
+ <td>Name</td>
+ <td>Phone</td>
+ <td>Email</td>
+ <td>Address</td>
+ </tr>
+ <tr>
+	<form action = "{% url 'editcontact' Contact.id %}" method = "post">
+	{% csrf_token %}
+	Name: 
+	<input type="text" name="name" value = {{ Contact.name }}>
+	<br><br>
+	Number: 
+	<input type="text" name="nbr" value = {{ Contact.number }}>
+	<br><br>
+	email: 
+	<input type="text" name="email" value = {{ Contact.email }}>
+	<br><br>
+	Address: 
+	<input type="text" name="address" value = {{ Contact.Address }}>
+	<input type="submit" value="Edit" name = "Edit">
+	<input type="submit" value="Remove Image" name = "img">
+	</form>
+	<p>{{done}}</p>
+	<form method="get" action="index">
+		<button type="submit">Go Back To Contacts List</button>
+		</form>
+ </tr>
+ 
