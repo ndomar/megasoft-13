@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from AddressBookapp.views import hello
 
 
 # Uncomment the next two lines to enable the admin:
@@ -7,7 +6,7 @@ from AddressBookapp.views import hello
 # admin.autodiscover()
 
 urlpatterns = patterns('',
-    ('^hello/$',hello),
+    (r'^AddressBookapp/',include('AddressBookapp.urls')),
 )
 
 

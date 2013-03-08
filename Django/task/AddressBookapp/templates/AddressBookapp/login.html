@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ <title>Login</title>
+ </head>
+ 
+ <body>
+
+ <h1 style : " color : blue; position:center"> Address Book</h1>
+<form action = "{% url 'check' %}" method = "post">
+{% csrf_token %}
+ Username: 
+ <input type="text" name="username">
+ <br><br>
+ Password: 
+ <input type="text" name="password">
+  <input type="submit" value="Login">
+ </form>
+ <br>
+ </body>
+ </html>
