@@ -2,6 +2,7 @@ Blog::Application.routes.draw do
 
 
   get "blogposts/Search" => "blogposts#search"
+  get "blogposts/index"
 
   resources :users do
     resources :user_blogs do
@@ -29,7 +30,7 @@ Blog::Application.routes.draw do
 
   get "sessions/setting"
 
-  get "blogposts/index"
+  
 
   get "home/index"
 

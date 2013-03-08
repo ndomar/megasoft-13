@@ -10,7 +10,7 @@ class BlogpostsController < ApplicationController
 	def create
 		@user_blog = UserBlog.find(params[:user_blog_id])
 		@user = User.find(params[:user_id])
-		@blogpost = @user_blog.blogposts.create(params[:blogpost])
+		@blogpost = @user_blog.blogposts.create(:content => (params[:blogpost])[:content], :title => (params[:blogpost])[:title], :user_blog_id => @user_blog.id )
 
 		if @blogpost.save
 			redirect_to user_user_blog_path(@user, @user_blog)
