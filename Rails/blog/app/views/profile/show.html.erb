@@ -6,6 +6,8 @@
 <% @user_blogs.each do |user_blog| %>
 <h3> <%= link_to user_blog.name, user_user_blog_path(@current_user, user_blog)
 %></h3>
+<%= link_to "Update", edit_user_user_blog_path(@current_user, user_blog), {:style => 'color:black;font-size:10px;'} %>
+
 <% end %>
 
 <%= form_for [@current_user, @current_user.user_blogs.build] do |form| %>

@@ -9,10 +9,11 @@ class BlogpostsController < ApplicationController
 
 	def create
 		@user_blog = UserBlog.find(params[:user_blog_id])
+		@user = User.find(params[:user_id])
 		@blogpost = @user_blog.blogposts.create(params[:blogpost])
 
 		if @blogpost.save
-			redirect_to 'users/:user_id/user_blogs/:user_blog_id/blogposts', :user_blog_id => @user_blog.id, :id => @blogpost.id , :user_id => session[:user_id]
+			redirect_to user_user_blog_path(@user, @user_blog)
 		else
 			render 'new'
 		end
@@ -27,12 +28,17 @@ class BlogpostsController < ApplicationController
 
 	def edit
 		@blogpost = Blogpost.find(params[:id])
+		@user_blog = UserBlog.find(params[:user_blog_id])
+		@user = User.find(params[:user_id])
+		
 	end
 
 	def update
 		@blogpost = Blogpost.find(params[:id])
+		@user = User.find(params[:user_id])
+		@user_blog = UserBlog.find(params[:user_blog_id])
 		if @blogpost.update_attributes(params[:blogpost])
-			redirect_to :action => :show, :id => @blogpost.id
+			redirect_to user_user_blog_path(@user, @user_blog)
 		else
 			render 'edit'
 		end
@@ -40,8 +46,11 @@ class BlogpostsController < ApplicationController
 
 	def destroy
 		@blogpost = Blogpost.find(params[:id])
+		@user = User.find(params[:user_id])
+		@user_blog = UserBlog.find(params[:user_blog_id])
 		@blogpost.destroy
-		redirect_to :action => :index
+		redirect_to user_user_blog_path(@user, @user_blog)
+		
 	end
 
 	def search

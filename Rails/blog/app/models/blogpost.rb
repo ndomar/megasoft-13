@@ -1,7 +1,7 @@
 class Blogpost < ActiveRecord::Base
-	
-	belongs_to :user_blog
-	has_many :comments
+  belongs_to :user_blog
+
+ 	has_many :comments
 
 
 	validates :title, :presence => true,

@@ -14,7 +14,7 @@
 	<div style="border:double; padding:12px; padding-top:0px">
 		<h3><%= User.find(comment.user_id).name%></h3>
 		<span><%= comment.text %></span>
-		<%= link_to "Edit", edit_blogpost_comment_path(@blogpost, comment), {:style => "font-size:10px;"} %>
+		<%= link_to "Edit", edit_user_user_blog_blogpost_comment_path(@user, @user_blog, @blogpost, comment), {:style => "font-size:10px;"} %>
 </div>
 <br/>
 <% end %>
@@ -31,7 +31,7 @@
 	<% end %>
 
 <h2>Add a comment</h2>
-<%= form_for [@blogpost, @blogpost.comments.build] do |form| %>
+<%= form_for [@user, @user_blog, @blogpost, @blogpost.comments.build] do |form| %>
 	<p>
 		<%= form.text_area :text, :placeholder => "Comment" %>
 	</p>

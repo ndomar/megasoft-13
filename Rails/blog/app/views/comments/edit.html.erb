@@ -11,7 +11,7 @@
 	</div>
 	<% end %>
 
-<%= form_for [@blogpost, @comment] do |form| %>
+<%= form_for [@user, @user_blog, @blogpost, @comment] do |form| %>
 	<p>
 		<%= form.text_area :text, :placeholder => "Comment" %>
 	</p>

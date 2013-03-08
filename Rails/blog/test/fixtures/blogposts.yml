@@ -3,7 +3,9 @@
 one:
   title: MyString
   content: MyText
+  user_blog: 
 
 two:
   title: MyString
   content: MyText
+  user_blog: 
