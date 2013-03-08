@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response, HttpResponse
 from AddressBookapp.models import *
 import datetime
+from django.template import Context, loader
 
 def home(request):
 	return render(request, 'AddressBookapp/home.html')
@@ -53,3 +54,11 @@ def register(request):
                 {'msg': 'You have successfully registered! *wohoo*'})
     return render_to_response('register_form.html',
         {'error': error})
+
+def index(request):
+    contact_list = Contacts.objects.filter(user_name=request.username)[:]
+    template = loader.get_template('AddressBook/index.html')
+    context= Context({
+        'contact_list': contact_list,
+    })
+    return HttpResponse(template.render(context))
