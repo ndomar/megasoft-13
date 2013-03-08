@@ -1,11 +1,17 @@
 Blog::Application.routes.draw do
 
 
-get "blogposts/Search" => "blogposts#search"
- resources :blogposts do
-  resources :comments
- end
+  get "blogposts/Search" => "blogposts#search"
 
+  resources :users do
+    resources :user_blogs do
+      resources :blogposts do
+        resources :comments
+      end
+    end
+  end
+
+  root :to => "home#index"
 
   get "sessions/login"
 
@@ -27,17 +33,8 @@ get "blogposts/Search" => "blogposts#search"
 
   get "home/index"
 
-  get "profile/:id" => "profile#show"
+  get "profile/" => "profile#show"
 
-
-
-resources :users do
-  resources :user_blogs
-end
-  root :to => "home#index"
-
-  resources :profile
-  root :to => "profile#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

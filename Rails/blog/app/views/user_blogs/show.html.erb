@@ -1,6 +1,6 @@
 <h1> Blog: <%= @user_blog.name %> </h1>
 
-<% @blogposts1.each() do |blogpost| %>
+<% @blogposts.each() do |blogpost| %>
 	<hr >
 	<h3 > 
 		<%= link_to blogpost.title, {:action => :show, :id => blogpost}, {:style => 'color:darkblue;'} %>

@@ -8,17 +8,19 @@ class BlogpostsController < ApplicationController
 	end
 
 	def create
-		@blogpost = Blogpost.new(params[:blogpost])
+		@user_blog = UserBlog.find(params[:user_blog_id])
+		@blogpost = @user_blog.blogposts.create(params[:blogpost])
 
 		if @blogpost.save
-			redirect_to :action => :show, :id => @blogpost.id
+			redirect_to 'users/:user_id/user_blogs/:user_blog_id/blogposts', :user_blog_id => @user_blog.id, :id => @blogpost.id , :user_id => session[:user_id]
 		else
 			render 'new'
 		end
 	end
 
 	def show
-
+		@user = User.find(params[:user_id])
+		@user_blog = UserBlog.find(params[:user_blog_id])
 		@blogpost = Blogpost.find(params[:id])
 		@comment = Comment.new
 	end
