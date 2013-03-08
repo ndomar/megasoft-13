@@ -1,7 +1,9 @@
 <h2>
 	<%= @blogpost.title %>
+	<% if session[:user_id] == UserBlog.find(@blogpost.user_blog_id).user_id %>
 	<%= link_to "Delete", {:action => :destroy, :id => @blogpost.id},  {:method => :delete, :data => {:confirm => 'Are you sure?'} ,:style => 'color:black;border-right:solid;font-size:10px;padding-right:2px; border-width:1px;'}%>
 	<%= link_to "Update", {:id => @blogpost.id, :action => :edit}, {:style => 'color:black;font-size:10px;'} %>
+	<% end %>
 </h2>
 
 <div>
@@ -14,7 +16,9 @@
 	<div style="border:double; padding:12px; padding-top:0px">
 		<h3><%= User.find(comment.user_id).name%></h3>
 		<span><%= comment.text %></span>
+		<% if session[:user_id] == comment.user_id %>
 		<%= link_to "Edit", edit_user_user_blog_blogpost_comment_path(@user, @user_blog, @blogpost, comment), {:style => "font-size:10px;"} %>
+		<% end %>
 </div>
 <br/>
 <% end %>

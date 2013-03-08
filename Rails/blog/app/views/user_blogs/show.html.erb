@@ -10,6 +10,8 @@
 <% end %>	
 <hr>
 <br/>
+<% if session[:user_id] == @user_blog.user_id %>
+
 <%= form_for [@user, @user_blog, @user_blog.blogposts.build] do |form| %>
 	<% if @blogpost.errors.any? %>
 	<div id="errorExplanation">
@@ -26,5 +28,6 @@
 	<%= form.text_area :content, :placeholder => "Content" %>
 	<br/>
 	<%= form.submit %>
+<% end %>
 <% end %>
 
