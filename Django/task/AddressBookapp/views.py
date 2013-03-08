@@ -33,13 +33,18 @@ def delcontact(request, ContactID):
 			return render(request, 'AddressBook/editcontact.html', {'Contact' : Contact})
 		
 def editcontact(request, ContactID):
-	c = Contacts.objects.get(id = ContactID)
-	c.name = request.POST['name']
-	c.number = request.POST['number']
-	c.email = request.POST['number']
-	c.address = request.POST['address']
-	done = "Done !"
-	return render(request, 'AddressBook/editcontact.html', {"done" : done})
+	if request.POST :
+		if "Edit" in request.POST:
+			c = Contacts.objects.get(id = ContactID)
+			c.name = request.POST['name']
+			c.number = request.POST['number']
+			c.email = request.POST['number']
+			c.address = request.POST['address']
+			done = "Done !"
+		elif "img" in request.POST:
+			Contacts.objects.get(id = ContactID).image = ""
+		return render(request, 'AddressBook/editcontact.html', {"done" : done})
+	
 		
 def hello(request):
     return HttpResponse("Hello, world!")
