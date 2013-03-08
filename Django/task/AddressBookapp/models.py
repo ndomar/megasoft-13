@@ -11,9 +11,9 @@ class Users(models.Model):
     
 class Contacts(models.Model):
     user = models.ForeignKey(Users)
-    name= models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     email = models.EmailField(max_length=300)
-    number=models.IntegerField(default=0)
-    address=models.CharField(max_length=300)
+    number = models.IntegerField(default=0)
+    address = models.CharField(max_length=300)
     def __unicode__(self):
         return '%s' % (self.name)
