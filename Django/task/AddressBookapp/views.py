@@ -58,7 +58,25 @@ def add_contact(request):
             error = True
         else:
             contact1 = Contacts(request.GET['name'],request.GET['user_email'],request.GET['num'],request.GET['addrs'])
-            return render_to_response('viewAddrsBk.html',
+            return render_to_response('index.html',
                 {'msg': 'You have successfully added a new contact! *wohoo*'})
     return render_to_response('addcontact.html',
         {'error': error})
+        
+def delete_contact(request):
+    error = False
+    if 'name' in request.GET:
+        name = request.GET['name']
+        if not name:
+            error = True
+        else:
+            contact1=Contacts.objects.filter(name__icontains=name)
+            if contact1:
+            	Contacts.objects.filter(name__icontains=name).delete()
+            
+            return render_to_response('index.html',
+                {'msg': 'You have successfully deleted contact!'})
+    return render_to_response('index.html',
+        {'error': error})
+        
+

@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^register/$',register),
     (r'^add_contact/$', add_contact),
     (r'^addcontact/$', add_contact),
+    (r'^index/$',delete_contact),
     #(r'^ViewAddrsBk/$', viewAddrsBk),
 )
 
