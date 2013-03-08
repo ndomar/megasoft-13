@@ -1,12 +1,10 @@
-	<h1>Sessions#login,</h1>
-<p>Find me in app/views/sessions/login,.html.erb</p>
 
 <% @page_title = "UserAuth | Login" -%>
-<div class= "Sign_Form">
-<h1>Log in</h1>
+<div class= "login">
 <%= form_tag(:action => 'login_attempt') do %>
-<p>Username or Email:</br> <%= text_field_tag(:username_or_email) %></p>
-<p>Password:</br> <%= password_field_tag :login_password %></p>
+ <%= text_field_tag(:username_or_email, nil ,:placeholder => "Username") %>
+  <%= password_field_tag :login_password, nil, :placeholder => "Password"%>
 <%= submit_tag("Log In") %>
 <% end %>
 </div>
+<div class="shadow"></div>
