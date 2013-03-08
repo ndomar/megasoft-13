@@ -18,7 +18,7 @@ def check(request):
 	try:
 		u = Users.objects.get(user_name = username, password = pwd)
 		id = u.id
-		return render(request, 'AddressBookapp/Contacts.html', {"id":id})
+		return render(request, 'AddressBookapp/index.html', {"id":id})
 	except :
 		fail = "Wrong Password Or Username Please Try Again"
 		return render(request, 'AddressBookapp/login.html', {'fail':fail})
