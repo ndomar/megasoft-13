@@ -33,7 +33,8 @@ def register(request):
         if not name:
             error = True
         else:
-            user1 = Users(request.GET['user_name'],request.GET['name'],request.GET['user_email'],request.GET['pass'])
+            user1 = Users(user_name= request.GET['user_name'],name=request.GET['name'],email=request.GET['user_email'],password=request.GET['pass'])
+            user1.save()
             return render_to_response('addContact.html',
                 {'msg': 'You have successfully registered! *wohoo*'})
     return render_to_response('register_form.html',
@@ -44,7 +45,7 @@ def add_contact2(request):
 		form = ContactForm(request.POST)
 		if form.is_valid():
 			f = form.cleaned_data
-			contact= Contacts(f['name'],f['email'],f['number'],f['address'])
+			contact= Contacts(name= f['name'],email=f['email'],number= f['number'],address= f['address'])
 			return render_to_response('viewAddrsBK.html',{'msg':'Contact has been succesfully added'})
 	else:
 		form = ContactForm()
@@ -57,9 +58,9 @@ def add_contact(request):
         if not name:
             error = True
         else:
-            contact1 = Contacts(request.GET['name'],request.GET['user_email'],request.GET['num'],request.GET['addrs'])
-            return render_to_response('index.html',
-                {'msg': 'You have successfully added a new contact! *wohoo*'})
+			contact1 = Contacts(name= request.GET['name'],email= request.GET['user_email'],number= request.GET['num'],address=request.GET['addrs'])
+			contact1.save()
+			return render_to_response('index.html',{'msg': 'You have successfully added a new contact! *wohoo*'})
     return render_to_response('addcontact.html',
         {'error': error})
         
@@ -75,7 +76,7 @@ def delete_contact(request):
             	Contacts.objects.filter(name__icontains=name).delete()
             
             return render_to_response('index.html',
-                {'msg': 'You have successfully deleted contact!'})
+                {'msg': 'You have successfully deleted a contact!'})
     return render_to_response('index.html',
         {'error': error})
         
