@@ -1,0 +1,6 @@
+<div style="border:double; padding:12px; padding-top:0px">
+		<h3><%= @user.name%></h3>
+		<span><%= @comment.text %></span>
+		<%= link_to "Edit", edit_blogpost_comment_path(@blogpost, @comment), {:style => "font-size:10px;"} %>
+</div>
+<br/>
