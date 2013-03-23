@@ -1,7 +1,0 @@
-<h1>Seach Results</h1>
-
-<% @blogposts.each do |blogpost| %>
-<%user_blog = UserBlog.find(blogpost.user_blog_id)%>
-	<h2><%= link_to blogpost.title, user_user_blog_blogpost_path(User.find(user_blog.user_id), user_blog, blogpost) %></h2>
-	<span><%= blogpost.content %></span>
-<% end %>
