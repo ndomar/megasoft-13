@@ -1,0 +1,36 @@
+<h1> Blog: <%= @user_blog.name %> </h1>
+
+<% @blogposts.each() do |blogpost| %>
+	<hr >
+	<h3 > 
+		<%= link_to blogpost.title, user_user_blog_blogpost_path(@user, @user_blog, blogpost) %>
+
+	</h3>
+	<span style="color:gray"> <%= blogpost.content %> </span>
+<% end %>	
+<hr>
+<br/>
+<% if session[:user_id] == @user_blog.user_id %>
+
+<%= form_for [@user, @user_blog, @user_blog.blogposts.build] do |form| %>
+	<% if @blogpost.errors.any? %>
+	<div id="errorExplanation">
+		<h2>Post could not be saved. <%= pluralize(@blogpost.errors.count, "error") %> were found.</h2>
+		<ul>
+			<% @blogpost.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+	<%= form.text_field :title, :placeholder => "Title", :class => "search"%>
+	<br/>
+	<%= form.text_area :content, :placeholder => "Content" %>
+	<br/>
+	<%= form.submit %>
+<% end %>
+
+
+<%= link_to "Back", '/profile' %>
+<% end %>
+
