@@ -7,7 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<!-- layout stuff for the home page -->
+<div id="designer_nav">
+	<!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
+  <% if designer_signed_in? %>
+    Signed in as <%= current_designer.email %>. Not you?
+    <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
+  <% else %>
+    <%= link_to "تسجىل", new_designer_registration_path %> or <%= link_to "دخول",new_designer_session_path %>
+  <% end %>
+</div>
+<!-- making a flash for any errors -->
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+ <!-- -------------------- -->
 <%= yield %>
 
 </body>
