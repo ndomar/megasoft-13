@@ -1,9 +1,11 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   devise_for :designers
   
+  #at start up page goes to the home controller and the index action
+  root to: "home#index"
+  
   resources :dashboard
- #at start up page goes to the home controller and the main action
-root to: "home#main"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
