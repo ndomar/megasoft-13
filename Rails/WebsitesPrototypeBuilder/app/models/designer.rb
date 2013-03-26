@@ -4,7 +4,7 @@ class Designer < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+#Registration attributes and validations
 validates :username, :uniqueness => true, :presence => true
 validates :phone_number, :length => { :minimum => 8, :maximum => 11 } 
 validates :phone_number,:day_dob,:month_dob,:year_dob, :credit_card_number, :cvv2, :numericality => { :only_integer => true }
