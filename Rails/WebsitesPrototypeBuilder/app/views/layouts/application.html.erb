@@ -16,7 +16,7 @@
     Signed in as <%= current_designer.username %>. Not you?
     <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
   <% else %>
-    <%= link_to "تسجىل", new_designer_registration_path %> or <%= link_to "دخول",new_designer_session_path %>
+    <%= link_to "التسجىل", new_designer_registration_path %> او <%= link_to "الدخول",new_designer_session_path %>
   <% end %>
 </div>
 <!-- making a flash for any errors -->

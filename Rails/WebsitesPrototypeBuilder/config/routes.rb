@@ -3,7 +3,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   
   resources :dashboard
  #at start up page goes to the home controller and the main action
-root to: "home#main"
+root :to =>  "home#main"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
