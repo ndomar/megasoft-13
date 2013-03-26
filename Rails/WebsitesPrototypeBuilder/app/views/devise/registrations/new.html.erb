@@ -15,6 +15,25 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
+<div><%= f.label :phone_number %><br />
+  <%= f.text_field :phone_number %></div>
+
+<div><%= f.label :country %><br />
+  <%= f.text_field :country %></div>
+
+<div>
+	<label>Date of birth:
+	</label><br />
+		<p id = 'bod' >
+			<p style = float:left>Day: </p>
+  			 <%= f.text_field :day_dob , options = {:size => 1, :style => "float:left;"}%>
+  			 <p style = float:left>/ Month: </p>
+  			<%= f.text_field :month_dob , options = {:size => 1, :style => "float:left;"} %>
+  			<p style = float:left>/ Year: </p>
+  			<%= f.text_field :year_dob , options = {:size => 1}%>
+		</p>
+</div>
+<br />
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
