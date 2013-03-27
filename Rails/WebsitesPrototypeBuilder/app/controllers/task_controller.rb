@@ -3,6 +3,7 @@ class TaskController < ApplicationController
   def invite
     #Sends an email to a new/already existing reviewer with an invitation link to take the desired task.
     if(params[:email]!=nil) then
+      @invitations = Invitations.all
       @reviewer = Reviewer.find_by_email(params[:email])
       if @reviewer == nil
         @reviewer = Reviewer.create(:email => params[:email]) 
