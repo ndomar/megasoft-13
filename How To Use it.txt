@@ -1,5 +1,0 @@
-
-
-1- Just copy the addressbook folder to (C:\wamp\www)
-2- Open Phpmyadmin and import the addressbook.sql as a database.
-3- To login use username: 'kimo' and any password 
