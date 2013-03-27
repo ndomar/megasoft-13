@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
+  ##
+  # shows all tasks
   def index
     @tasks = Task.all
 
@@ -12,6 +14,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   # GET /tasks/1.json
+  ##
+  #show a specific task
   def show
     @task = Task.find(params[:id])
 
@@ -23,6 +27,8 @@ class TasksController < ApplicationController
 
   # GET /tasks/new
   # GET /tasks/new.json
+  ##
+  #define a new task
   def new
     @task = Task.new
 
@@ -33,6 +39,8 @@ class TasksController < ApplicationController
   end
 
   # GET /tasks/1/edit
+  ##
+  #edit an existing task
   def edit
     @task = Task.find(params[:id])
   end
