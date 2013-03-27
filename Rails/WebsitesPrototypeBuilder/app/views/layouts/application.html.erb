@@ -15,6 +15,8 @@
   <% if designer_signed_in? %>
     Signed in as <%= current_designer.username %>. Not you?
     <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
+    <!-- link to facebook account -->
+<h4><%= link_to_rpx "ادخل باستخدام حساب الفيسبوك", designer_session_url %></h4>
   <% else %>
     <%= link_to "تسجىل", new_designer_registration_path %> or <%= link_to "دخول",new_designer_session_path %>
   <% end %>
