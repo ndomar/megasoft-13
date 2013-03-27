@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.order("project").all
+    session[:project_id] = :id
+    @tasks = Task.where(:project => params[:id])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tasks }
@@ -24,7 +25,6 @@ class TasksController < ApplicationController
   # GET /tasks/new.json
   def new
     @task = Task.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }

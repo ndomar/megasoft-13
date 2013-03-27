@@ -1,0 +1,17 @@
+<h1>Listing tasks</h1>
+
+<table align = "right">
+  <tr>
+    <th></th>
+    <th>مشروع</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= link_to 'اظهار', tasks_path %></td>
+    <td><%= project.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
