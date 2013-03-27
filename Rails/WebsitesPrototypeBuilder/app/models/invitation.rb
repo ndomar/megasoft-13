@@ -1,5 +1,7 @@
 class Invitation < ActiveRecord::Base
   attr_accessible :reviewer_id, :status
+  
+  has_one :reviewer
 
   STATUS = {
   	pending: 0,
@@ -9,9 +11,8 @@ class Invitation < ActiveRecord::Base
 
   # maybe the whole reviewer should be passed
   # elemenates searching for him again when linking
-  def self.send_invitation(email, msg, url)
-  	reviewer = Reviewer.find_by_email(email) 
-  	ReviewerInviter.task_invitation(email, msg, url).deliver()
+  def self.send_invitation(reviewer, msg, url)
+  	ReviewerInviter.task_invitation(reviewer.email, msg, url).deliver()
   	Invitation.create(STATUS[:pending])
   end
 
