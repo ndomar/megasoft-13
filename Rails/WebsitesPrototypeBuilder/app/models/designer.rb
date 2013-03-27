@@ -2,6 +2,7 @@ class Designer < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+  # :rpx_connectable tells devise to connect rpx with designer
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :rpx_connectable,
          :validatable, :authentication_keys => [:login]
@@ -18,6 +19,7 @@ validates_numericality_of :year_dob, :greater_than_or_equal_to =>  1900, :less_t
   
   #virtual attr accessor to sign in with email, username or facebook email
   attr_accessor :login
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :login, :email, :password, :password_confirmation, :username, :phone_number, :country,:day_dob,:month_dob, :year_dob, :credit_card_number, :cvv2,:profession, :gender, :facebook_email, :remember_me
 
