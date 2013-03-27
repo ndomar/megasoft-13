@@ -2,6 +2,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "task/invite"
 
+  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
