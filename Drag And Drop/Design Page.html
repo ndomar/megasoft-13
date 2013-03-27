@@ -1,0 +1,41 @@
+<!DOCTYPE html/>
+<html>
+<head>
+	<title>Design Page</title>
+	<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" /> -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!-- <link href="twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+	<script src="jquery-1.9.1.js"></script>
+	<script src="jquery-ui-1.9.2.custom.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('button').button().draggable({cancel:false});
+    $( "#element" ).draggable();
+    $( "#design" ).droppable({
+      drop: function( event, ui ) {
+        // alert("Hey "+ui.draggable.parent().attr("id"));
+        var x = ui.draggable;
+        var position1 = $("#design").offset();
+        var position2 = x.offset();
+        // alert(position1.top+" "+position2.top);
+        x.css("left",(position2.left-position1.left)+"");
+        x.css("top",(position2.top-position1.top-35)+"");
+        // $("#design").append(x);
+        x.appendTo("#design");
+      }
+    });
+  });
+		</script>
+</head>
+<body>
+	<!-- <p>Here is some text</p> -->
+	<div id="mainpage">
+		<div id ="design" droppable="true">
+			<p>Design Page Here</p>
+		</div>
+		<div id="element" draggable="true" class="c1" >
+			<!-- <button id="element" draggable="true" onclick="func">Here</button> -->
+			<p>Droppable</p>
+	</div>
+</body>
+</html>
