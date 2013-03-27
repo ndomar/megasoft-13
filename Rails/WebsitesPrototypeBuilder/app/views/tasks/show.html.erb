@@ -1,0 +1,6 @@
+<h1>Task name: </h1>
+<p> <%= @task.name %></p>
+<h2>This is a new task</h2>
+
+
+<%= link_to "share", :controller => :tasks, :action => :share, :id => params[:id]%>

@@ -1,0 +1,10 @@
+<form accept-charset="UTF-8" action="/task" method="post">
+  <dl>
+    <dt>Task Name: </dt>
+    <input type="text" name="task[name]"  />
+    <dt>Task Description:</dt>
+    <input type="text" name="task[description]" />
+  </dl>   
+  
+</form>
+<%= button_to "create task", :action => "create" %>

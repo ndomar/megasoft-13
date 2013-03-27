@@ -1,0 +1,22 @@
+<h2> *This is a list of tasks*</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.name %></td>
+    <td><%= task.description %></td>
+    <td><%= link_to 'Show', tasks_path %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= button_to "New Task", :action => "new" %>
+
+

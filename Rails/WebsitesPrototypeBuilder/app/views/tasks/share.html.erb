@@ -1,0 +1,5 @@
+<h3>Here's the link to the task: </h3>
+<%= link_to 'Task', params[:url] %>
+<div> <%= button_to "Share on fb", :action => :share, :id => params[:id], :url => url_for(:controller => 'tasks', :only_path => false, :protocol => 'http')+ "/#{@task.id}/reviewer"%></div>
+  
+ 
