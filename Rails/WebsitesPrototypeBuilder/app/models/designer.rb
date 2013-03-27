@@ -3,7 +3,7 @@ class Designer < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
+         :recoverable, :rememberable, :trackable, :rpx_connectable,
          :validatable, :authentication_keys => [:login]
 
 validates :username, :uniqueness => true, :presence => true
@@ -30,4 +30,19 @@ validates_numericality_of :year_dob, :greater_than_or_equal_to =>  1900, :less_t
 	    where(conditions).first
 	  end
 	end
+
+  # {"identifier"=>"http://www.facebook.com/profile.php?id=624556624", 
+  # "email"=>"offa_4@hotmail.com", "username"=>"AhmadAdelRoshdySoliman", 
+  # "name"=>"Ahmad Adel Roshdy Soliman", "extended"=>{"limited_data"=>"false"}}
+
+  # Called before a successfull facebook log in
+  def before_rpx_success(rpx_user)
+    # Do something with rpx_user
+  end
+  
+  # Called before a successfull first time facebook log in (authentication)
+  def before_rpx_auto_create(rpx_user)
+    # Do something with rpx_user
+  end
+
 end
