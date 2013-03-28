@@ -22,6 +22,10 @@ function delete_all() {
 	$('.note').css({"display":"none"});
 }
 
+function test_page(){
+	//gets the page html from the database and goes to it to test it.
+}
+
 $(document).ready(function() {
 
 	$("#drag_resize").resizable({
