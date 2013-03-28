@@ -1,4 +1,14 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  get "task/index"
+
+  get "project/index"
+
+  resources :project do
+    resources :tasks
+  end
+
+  match 'tasks/report/:id' => 'tasks#report'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
