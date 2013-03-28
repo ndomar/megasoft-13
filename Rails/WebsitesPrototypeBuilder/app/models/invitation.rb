@@ -1,7 +1,8 @@
 class Invitation < ActiveRecord::Base
-  attr_accessible :reviewer_id, :status
+  attr_accessible :reviewer_id, :status, :task_id
   
   belongs_to :reviewer
+  belongs_to :task, :inverse_of => :invitation
 
   STATUS = {
   	pending: 0,
