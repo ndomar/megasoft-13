@@ -1,21 +1,14 @@
-<h1>Listing tasks</h1>
-
+<p id="notice"><%= notice %></p>
 <table align = "right">
   <tr>
     <th></th>
-    <th></th>
-    <th></th>
-    <th>مشروع</th>
     <th>مهمة</th>
     <th>وصف</th>
   </tr>
 
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= link_to 'اظهار', task %></td>
-    <td><%= link_to 'تعديل', edit_task_path(task) %></td>
     <td><%= link_to 'الغاء', task, method: :delete, data: { confirm: 'هل تريد الغاء هذه المهمة' } %></td>
-    <td><%= task.project %></td>
     <td><%= task.name %></td>
     <td><%= task.description %></td>
   </tr>
@@ -24,4 +17,4 @@
 
 <br />
 
-<p align = "right" ><%= link_to 'مهمة جديدة', new_task_path %></p>
+<p align = "right" ><%= link_to 'مهمة جديدة', new_project_task_path(@project) %></p>

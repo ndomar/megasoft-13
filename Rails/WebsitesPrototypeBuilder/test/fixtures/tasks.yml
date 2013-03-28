@@ -2,10 +2,8 @@
 
 one:
   name: MyString
-  project: MyString
-  description: MyText
+  description: MyString
 
 two:
   name: MyString
-  project: MyString
-  description: MyText
+  description: MyString
