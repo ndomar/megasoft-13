@@ -5,6 +5,13 @@ Review::Application.routes.draw do
 
   resources :pages do
     resources :comments
+  get "questions/create"
+
+  get "questions/destroy"
+
+  resources :pages do
+    resources :questions
+ 
   end
 
 

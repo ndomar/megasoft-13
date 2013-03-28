@@ -15,7 +15,7 @@ development:
   database: Review_development
   pool: 5
   username: root
-  password: "123456"
+  password: ""
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +28,7 @@ test:
   database: Review_test
   pool: 5
   username: root
-  password: "123456"
+  password: ""
   host: localhost
 
 production:
@@ -38,5 +38,5 @@ production:
   database: Review_production
   pool: 5
   username: root
-  password: "123456"
+  password: ""
   host: localhost
