@@ -217,36 +217,7 @@
     }
     </style>
 
-   <script type="text/javascript">
-		var selElem = null;
-		var origBorder = "";
-		
-        function OnMouseMove (event) {
-			var posX = event.clientX, posY = event.clientY;
-
-
-			var overElem = document.elementFromPoint (posX, posY);
-
-			if (overElem && overElem.tagName === undefined) {
-				overElem = overElem.parentNode;	
-			}
-
-			if (selElem) {
-				if (selElem == overElem) {
-					return;
-				}
-				selElem.style.border = origBorder;
-				selElem = null;
-			}
-			if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {
-				selElem = overElem;	
-				origBorder = overElem.style.border;
-				overElem.style.border = "1px dashed gray";
-			}
-        }
-    </script>
-
-   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
@@ -257,11 +228,10 @@
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
-	    
 								   				   
   </head>
 
-  <body onmousemove="OnMouseMove (event);" onload="some_fn();">
+  <body>
 
 
 
@@ -294,7 +264,7 @@
 		 </div>
     <!-- Carousel
     ================================================== -->
-    <div class="headd" >
+    <div class="headd">
           <div class="container">
 		  <div class="caption">
 					 						 We specialize in crafting beautiful and engaging people ideas for startups.<br>
@@ -303,7 +273,7 @@
 					
 		 <div class="row1">
         <div class="span3">
-          <img src="../assets/img/help.png">
+          <img src="../assets/img/help.png"">
           </div><!-- /.span4 -->
         <div class="span3">
           <img src="../assets/img/sketch_idea.png">
@@ -373,13 +343,6 @@
     <script src="../assets/js/bootstrap-collapse.js"></script>
     <script src="../assets/js/bootstrap-typeahead.js"></script>
     <script src="../assets/js/holder/holder.js"></script>
-	<script>
-		$(document).ready(function(){       
-			$('a').click(function(event) {
-				event.preventDefault();
-			}); 
-	});
-	</script>
 	
   </body>
 </html>

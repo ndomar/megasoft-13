@@ -1,4 +1,5 @@
 <div id="wrapper">
+	<!-- The SideBar -->
 	<div id="sidebar">
 		<h4>التعليقلت</h4>
 		<% @page.comments.each do |comment| %>
@@ -6,19 +7,30 @@
 		<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?"%>
 		<hr>
 		<%end%>
-	</div>
-		
+		<div id="add_comment" onclick="draw_circle();">+</div>
+	</div>	
+
+	<!-- Main Content -->
 	<div id="content"> 
+		<!-- Notice to see the errors -->
 		<p id="notice"><%= notice %></p>
-		<p><%= @page.html_markup%></p>
-		<%= form_for [@page,@page.comments.build] do |f| %>
-		<p><%= f.text_area :body, :size => '40x10'%></p>
-		<p><%= f.submit "Post Comment"%></p>
-	<% end %>
+		<!-- Draw the circle initially hidden -->
+		<div id="drag_resize"><img src="/assets/circle.png"/>
+			<!-- Circle buttons to delete or to add a comment -->
+			<div id="choose_area" class="circle_settings"  onclick="create_note();">+</div>
+			<div id="delete_circle" class="circle_settings"  onclick="delete_circle();">-</div>
+		</div>
+		<!-- The iframe to contain the page to be reviewed-->
+		<iframe id="myiframe" scrolling="auto" src="" width="100%" height="1300px"></iframe>
+		<!-- Draw NotePaper -->
+		<div class="note hide">	
+			<%= form_for [@page,@page.comments.build] do |f| %>
+				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
+				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all();"%>
+			<% end %>
+			<!-- Button to delete the comment -->
+			<div class="circle_button" id="delete_comment" onclick="delete_all();">-</div>
+		</div>
 	</div>
+
 </div>
-
-
-
-
-
