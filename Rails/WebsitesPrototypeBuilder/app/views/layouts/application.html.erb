@@ -16,9 +16,15 @@
     Signed in as <%= current_designer.username %>. Not you?
     <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
   <% else %>
-    <%= link_to "التسجىل", new_designer_registration_path %> او <%= link_to "الدخول",new_designer_session_path %>
+  <div class = "span2">
+    <%= link_to "التسجىل", new_designer_registration_path %> 
+    <label class ="label label-important" >او </label>
+    <%= link_to "الدخول",new_designer_session_path%>
   <% end %>
+  
 </div>
+</div>
+
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>

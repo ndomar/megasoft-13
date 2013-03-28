@@ -1,62 +1,62 @@
-<h1 align="right">التسجىل</h1>
 
+<div class = "container">
+<div class = "span10">
+<legend align="right">التسجىل</legend>
 
 <!-- All register labels and fields for a new registration -->
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
-<div align="right">
+<div class = "well" align="right">
   <div><label>اسم المستخدم</label><br /><!--  username -->
-  <%= f.text_field :username, :required => true %></div>
+  <%= f.text_field :username, :required => true,  :autofocus => true %></div>
 
   <div><label>البريد الإلكتروني</label><br /> <!-- email -->
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.email_field :email, :required => true%></div>
 
   <div><label>كلمة السر</label><br /> <!-- password -->
-  <%= f.password_field :password %></div>
+  <%= f.password_field :password, :required => true %></div>
 
   <div><label>اعادة كلمة السر</label><br /> <!-- re-write password -->
-  <%= f.password_field :password_confirmation %></div>
+  <%= f.password_field :password_confirmation , :required => true%></div>
 
-   <div><label>البريد الإلكتروني لالفيسبوك ---اختياري</label><br /> <!-- facebook email ---optional -->
-  <%= f.email_field :facebook_email, :autofocus => true %></div>
+   <div><label>البريد الإلكتروني لالفيسبوك</label><br /> <!-- facebook email ---optional -->
+  <%= f.email_field :facebook_email, options = {:placeholder => "اختياري"}%></div>
 
 <div><label>الهاتف أو رقم الجوال</label><br /> <!-- phone number -->
-  <%= f.text_field :phone_number %></div>
+  <%= f.text_field :phone_number, :required => true %></div>
 
 <div><label>من أي بلد</label><br /> <!-- country -->
-  <%= f.text_field :country %></div>
+  <%= f.text_field :country, :required => true %></div>
 
-<div>
 	
 	<label>تاريخ الميلاد</label> <!-- birth date -->
 		<div>
 			<!-- Day -->
-  			 <%= f.text_field :day_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اليوم"}%>
-  			 <label style = float:right>/  </label><!-- Month: -->
-  			<%= f.text_field :month_dob , options = {:size => 1, :style => "float:right;", :placeholder => "الشهر"} %>
+  			 <%= f.text_field :day_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اليوم", :required => true}%>
+  			 <label style = float:right; width:"100";>/  </label><!-- Month: -->
+  			<%= f.text_field :month_dob , options = {:size => 1, :style => "float:right;", :placeholder => "الشهر", :required => true} %>
   			<label style = float:right>/</label> <!-- Year: -->
-  			<%= f.text_field :year_dob , options = {:size => 1, :placeholder => "السنة"}%>
+  			<%= f.text_field :year_dob , options = {:size => 1, :placeholder => "السنة", :required => true}%>
         
 		</div>
-</div>
 
 <div><label>ذكر ام أنثى</label><br /> <!-- gender -->
 <%= f.select(:gender, options_for_select([ "ذكر", "أنثى" ], "ذكر"))%>
-
-<div><label>المهنة ---اختياري</label><br /> <!-- profession---optional -->
-  <%= f.text_field :profession %>
+</div>
+<div><label>المهنة</label><br /> <!-- profession---optional -->
+  <%= f.text_field :profession, options = {:placeholder => "اختياري"}%>
 </div>
 
 <div><label>رقم بطاقة الائتمان</label><br /> <!-- credit_card_number -->
-  <%= f.text_field :credit_card_number %></div>
+  <%= f.text_field :credit_card_number, :required => true %></div>
 
   <div><label>آخر ثلاثة أرقام من رقم حسابك </label><br /> <!-- cvv2---Last 3 digits of your account number -->
-  <%= f.text_field :cvv2 ,options = {:size => 1}%></div>
-
+  <%= f.text_field :cvv2 ,options = {:size => 1, :required => true}%></div>
 <br />
-  <div><%= f.submit "تسجىل" %></div>
+  <div><%= f.submit "تسجىل",options = {:class => "btn btn-info"}%></div>
 <% end %>
 </div>
-<%= render "devise/shared/links" %>
+</div>
+</div>
+
