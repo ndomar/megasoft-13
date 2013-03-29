@@ -33,4 +33,23 @@ class TasksController < ApplicationController
       end
     end
   end
+  # Calculates average time_frame and percentage success
+  # from task_results of the task and sends thes values 
+  # to the view to be displayed
+  def report
+    @task = Task.find(params[:format])
+    @results = @task.task_results
+    @count = 1
+    @avg = 0
+    @success = 0
+    @results.each do |result|
+      if result.success 
+        @success = @success + 1
+      end
+      @count = @count + 1
+      @avg = @avg + result.time_frame
+    end
+    @success = @success / @count
+    @avg = @avg / @count
+  end
 end

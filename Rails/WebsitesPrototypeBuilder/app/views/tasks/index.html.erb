@@ -8,7 +8,8 @@
 
 <% @tasks.each do |task| %>
   <tr>
-    <td> عمل تقرير </td>
+    <td> <%= link_to "عمل تقرير", tasks_report_path(task)%> </td>
+    <%= hidden_field_tag :task_id, task.id %>
     <td><%= task.description %></td>
     <td><%= task.name %></td>
   </tr>
@@ -17,4 +18,4 @@
 
 <br />
 
-<p align = "right" ><%= link_to 'مهمة جديدة', new_project_task_path(@project) %></p>
+<p align = "right" ><%= link_to 'مهمة جديدة', new_project_task_path %></p>
