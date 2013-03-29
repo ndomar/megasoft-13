@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<table align = "right">
+  <tr>
+    <th></th>
+    <th>وصف</th>
+    <th>مهمة</th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td> <%= link_to "عمل تقرير", tasks_report_path(task)%> </td>
+    <%= hidden_field_tag :task_id, task.id %>
+    <td><%= task.description %></td>
+    <td><%= task.name %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<p align = "right" ><%= link_to 'مهمة جديدة', new_project_task_path %></p>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  success: false
+<<<<<<< HEAD
+  time_fram: 2013-03-29 10:55:48
+  clicks: 1
+
+two:
+  success: false
+  time_fram: 2013-03-29 10:55:48
+  clicks: 1
+=======
+  timeframe: 1
+
+two:
+  success: false
+  timeframe: 1
+>>>>>>> 4e9e24f57fc6cc9091e895ab879efd58b3125ea4
