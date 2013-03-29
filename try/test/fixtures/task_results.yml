@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  time: 2013-03-27 15:17:35
+  success: 1.5
+  clicks: 1
+  reviewer: 
+  task: 
+
+two:
+  time: 2013-03-27 15:17:35
+  success: 1.5
+  clicks: 1
+  reviewer: 
+  task: 

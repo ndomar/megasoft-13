@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+
+ <h2 align="right">نتائج المهام</h2>
+
+<table align="right">
+  <tr>
+    <th>البريد الالكتروني</th>
+    <th>الوقت</th>
+    <th>نسبة النجاح</th>
+  </tr>
+
+<% @task.task_results.each do |result| %>
+  <tr>
+    <td><%= result.reviewer.email %></td>
+    <td><%= result.time %></td>
+    <td><%= result.success %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>
