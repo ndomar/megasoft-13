@@ -1,41 +1,97 @@
-<!DOCTYPE html/>
 <html>
 <head>
 	<title>Design Page</title>
-	<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" /> -->
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<!-- <link href="twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
-	<script src="jquery-1.9.1.js"></script>
-	<script src="jquery-ui-1.9.2.custom.js"></script>
+		<script src="http://www.google.com/jsapi" type="text/javascript">
+</script>
+<script type="text/javascript">
+   google.load("jquery", "1.3.2");
+   google.load("jqueryui", "1.7.3");
+</script>
+	<link rel="stylesheet" type="text/css" href="Style1.css">
 	<script type="text/javascript">
-		$(function() {
-			$('button').button().draggable({cancel:false});
-    $( "#element" ).draggable();
-    $( "#design" ).droppable({
-      drop: function( event, ui ) {
-        // alert("Hey "+ui.draggable.parent().attr("id"));
-        var x = ui.draggable;
-        var position1 = $("#design").offset();
-        var position2 = x.offset();
-        // alert(position1.top+" "+position2.top);
-        x.css("left",(position2.left-position1.left)+"");
-        x.css("top",(position2.top-position1.top-35)+"");
-        // $("#design").append(x);
-        x.appendTo("#design");
-      }
-    });
-  });
-		</script>
+		$(document).ready(function (){
+			counter = 0;
+			$(".drag").draggable({
+				helper: 'clone',
+				containment: 'designpage',
+				cancel:false,
+				start: function (event,ui){
+					counter++;
+				},
+				stop: function(event, ui){
+					var pos = $(ui.helper).offset();
+					var name = "#element"+counter;
+					if ($(name).parent().attr("id")!="designpage"){
+						counter--;
+						// alert("removed");
+						$(name).remove();
+					}
+					else{
+						$(name).css({
+						"left": pos.left,
+						"top": pos.top
+						});
+						$(name).removeClass("drag");
+						$(name).draggable({
+							containment: 'parent',
+							cancel:false
+						});
+					}
+				}
+			});
+
+			$("#designpage").droppable({
+				drop: function(event, ui){
+					if (ui.helper.attr('id').search(/element([0-9])/)==-1){
+						// counter++;
+						var element = $(ui.draggable).clone();
+						element.attr("id","element"+counter);
+						element.addClass("appended");
+						$(this).append(element);
+					}
+				}
+			});
+		});
+	</script>
 </head>
 <body>
-	<!-- <p>Here is some text</p> -->
-	<div id="mainpage">
-		<div id ="design" droppable="true">
-			<p>Design Page Here</p>
-		</div>
-		<div id="element" draggable="true" class="c1" >
-			<!-- <button id="element" draggable="true" onclick="func">Here</button> -->
-			<p>Droppable</p>
+<div id="main">
+	<div id="toolbox">
+		<table>
+			<thead><h3 style="text-align: center">Toolbox</h3></thead>
+			<tbody>
+				<tr>
+					<div id="buttondiv" class="drag toolboxelement">
+						<button>Button</button>
+					</div>
+				</tr>
+				<tr>
+					<div id="imagediv" class="drag toolboxelement">
+						<img src="gimg.jpg" width="20px" hight="20px">
+					</div>
+				</tr>
+				<tr>
+					<div class="drag toolboxelement">
+						<label>Label</label>
+					</div>
+				</tr>
+				<tr>
+					<div class="drag toolboxelement">
+						<a href="#">Hyperlink</a>
+					</div>
+				</tr>
+				<tr>
+					<div class="drag toolboxelement">
+						<textarea>Text Area</textarea>
+					</div>
+				</tr>
+			</tbody>
+		</table>
+
 	</div>
+	<div id="designpage">
+		<p>Design page here</p>
+	</div>
+</div>
 </body>
 </html>
