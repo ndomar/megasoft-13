@@ -1,5 +1,5 @@
 class ReviewerInviter < ActionMailer::Base
-  default from: "ssshihata@gmail.com"
+  default from: "Prototyper"
 
   def task_invitation(email, msg, url)
     #Creatse a mail to a recipient with (email), and content containing (msg) and link (url)

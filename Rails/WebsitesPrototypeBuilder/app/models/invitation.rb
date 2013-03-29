@@ -1,4 +1,7 @@
+# Represent a single invitation to a single reviwere
+# to take a task
 class Invitation < ActiveRecord::Base
+
   attr_accessible :reviewer_id, :status
   
   belongs_to :reviewer
@@ -15,7 +18,6 @@ class Invitation < ActiveRecord::Base
   	inv = Invitation.create(:status => STATUS[:pending])
     inv.reviewer = reviewer
     inv.save
-
   end
 
   def self.get_invitation_status(reviewer_id)
