@@ -8,53 +8,53 @@
 </head>
   <body>
 
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
         
-        <ul class="nav">
-           <li><a href="#">تواصل</a></li>
-           <li class="divider-vertical"></li>
-           <li class="active"><%= link_to "مشروع جديد", new_project_path %> </li>
-           <li class="divider-vertical"></li>
-           <li><%= link_to "الصفحة الرئيسية", projects_path %></li>
-        </ul>
-        <a class="brand" href="#">ميجا سوفت</a>
+          <ul class="nav">
+             <li><a href="#">تواصل</a></li>
+             <li class="divider-vertical"></li>
+             <li class="active"><%= link_to "مشروع جديد", new_project_path %> </li>
+             <li class="divider-vertical"></li>
+             <li><%= link_to "الصفحة الرئيسية", projects_path %></li>
+          </ul>
+          <a class="brand" href="#">ميجا سوفت</a>
+        </div>
       </div>
     </div>
-  </div>
 
-<hr>
-<hr>
+    <hr>
+    <hr>
 
-<%= form_for @project do |f| %>
- <% if @project.errors.any? %> <!-- check if any error in creating te new project occured "no name " or "name is already taken" -->
-  <ul>
-       <% @project.errors.full_messages.each do |message| %> <!-- loop on the error messages -->
-       <li class = l> <%= message %> </li> <!-- the message will appear on the page -->
-       <% end %>
-  </ul>
- <% end %>
+    <%= form_for @project do |f| %>
+      <% if @project.errors.any? %> <!-- check if any error in creating te new project occured "no name " or "name is already taken" -->
+        <ul>
+          <% @project.errors.full_messages.each do |message| %> <!-- loop on the error messages -->
+          <li class = l> <%= message %> </li> <!-- the message will appear on the page -->
+          <% end %>
+        </ul>
+      <% end %>
  
-    <p>
-    <label class = l><%= f.label :Name, "اسم المشروع" %></label> <!-- the name label -->
-    <div class = name><%= f.text_field :name %> <br/> </div> <!-- the text field where the name will be written in -->
-    </p>
+      <p>
+        <label class = l><%= f.label :Name, "اسم المشروع" %></label> <!-- the name label -->
+        <div class = name><%= f.text_field :name %> <br/> </div> <!-- the text field where the name will be written in -->
+      </p>
 
-    <p>
-    <label class = l><%= f.label :Type, "النوع" %> </label><!-- the type label -->
-    <%= f.text_field :project_type %> <br/><!-- the text field where the type will be written in -->
-    </p>
+      <p>
+        <label class = l><%= f.label :Type, "النوع" %> </label><!-- the type label -->
+        <%= f.text_field :project_type %> <br/><!-- the text field where the type will be written in -->
+      </p>
 
-    <p>
-    <label class = l><%= f.label :Description, "وصف المشروع" %> </label><!-- the description label -->
-    <%= f.text_area :description %> <br/><!-- the text area where the type will be written in -->
-    </p>
+      <p>
+        <label class = l><%= f.label :Description, "وصف المشروع" %> </label><!-- the description label -->
+        <%= f.text_area :description %> <br/><!-- the text area where the type will be written in -->
+      </p>
 
-    <p>
-    <%= f.submit "حفظ" %>
-    </p>
+      <p>
+        <%= f.submit "حفظ" %>
+      </p>
 
-  <%end%>
- </body>
+    <%end%>
+  </body>
 </html>
