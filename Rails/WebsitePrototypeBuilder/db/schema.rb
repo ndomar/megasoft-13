@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20130329143933) do
     t.integer  "max_size"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.string   "rpx_identifier"
   end
 
   create_table "invitations", :force => true do |t|
