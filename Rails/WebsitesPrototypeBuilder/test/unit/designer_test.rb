@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class InvitationsTest < ActiveSupport::TestCase
+class DesignerTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

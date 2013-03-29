@@ -3,12 +3,12 @@ class CreateDesigners < ActiveRecord::Migration
     create_table :designers do |t|
       t.string :designer_name
       t.string :email
-      t.int :facebook_id
-      t.string :credit_card_number
+      t.integer :facebook_id
+      t.integer :credit_card_number
       t.string :phone_number
       t.string :country
       t.string :profession
-      t.int :max_size
+      t.string :max_size
 
       t.timestamps
     end
