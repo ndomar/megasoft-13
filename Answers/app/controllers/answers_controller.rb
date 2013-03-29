@@ -1,4 +1,8 @@
 class AnswersController < ApplicationController
+  #Creates a new answer
+  #
+  #@param [none]
+  #@return [none]
   def answer
   	@page = Page.find(params[:page_id])
   	@answer = @page.answers.build(params[:answer])
@@ -7,6 +11,10 @@ class AnswersController < ApplicationController
   	redirect_to @page
   end
 
+  #Destroys an answer
+  #
+  #@param [none]
+  #@return [none]
   def destroy
   	@answer = Answer.find(params[:id])
   	@answer.destroy
