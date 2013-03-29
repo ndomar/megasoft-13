@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+  task: 
+  reviewer: 
   status: 1
-  reviewer_id: 
 
 two:
+  task: 
+  reviewer: 
   status: 1
-  reviewer_id: 
