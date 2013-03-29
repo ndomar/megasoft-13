@@ -7,6 +7,8 @@ gem 'rails', '3.2.12'
 
 gem 'sqlite3'
 
+# gem for sending mails
+gem 'mail'
 
 # Gems used only for assets and not required
 # in production environments by default.
