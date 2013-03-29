@@ -1,7 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   get "project/index"
   get "tasks/report"
-  # match 'task/:id/report' => 'tasks#report'
 
   resources :project do
     resources :tasks
