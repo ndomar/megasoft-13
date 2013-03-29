@@ -47,6 +47,7 @@ $(document).ready(function() {
 	doc.open();
 	doc.write(designed_html);
 	doc.close();
+
 	$("#drag_resize").resizable({
 			maxHeight: 350,
 			maxWidth: 350,
@@ -62,3 +63,17 @@ $(document).ready(function() {
 			scroll: false
 		});
 });
+
+
+function getSelectedItem(elementId,elementObj){
+	var id=elementId;
+	var theobj=elementObj;
+	document.getElementById('assignedpart').value=elementId+','+theobj;
+	document.getElementById('myAnchor').value=id;
+	document.getElementById('myAnchor2').value=theobj;
+}
+		
+function selectItem (event) {
+	var posX = event.clientX, posY = event.clientY-51-($('#drag_resize').height()/2);
+	window.frames[0].OnMouseMove(posX,posY);
+}

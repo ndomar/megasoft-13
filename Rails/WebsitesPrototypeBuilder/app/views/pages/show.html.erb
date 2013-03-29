@@ -6,6 +6,7 @@
 		<h4>التعليقلت</h4>
 		<% @page.comments.each do |comment| %>
 		<p><%= comment.body %></p>
+		<p>Assign: <%= comment.assigned_part %></p>
 		<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?"%>
 		<hr>
 		<%end%>
@@ -28,6 +29,7 @@
 		<div class="note hide">	
 			<%= form_for [@page,@page.comments.build] do |f| %>
 				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
+				<p><%= f.text_area :assigned_part,:id => "assignedpart"%></p>
 				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all();"%>
 			<% end %>
 			<!-- Button to delete the comment -->

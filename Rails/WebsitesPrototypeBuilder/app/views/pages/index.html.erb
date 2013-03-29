@@ -8,8 +8,10 @@
     <p>
       <%= truncate page.html_markup %>
     </p>
+        <p><%= link_to 'Edit', edit_page_path(page) %></p>
+    <p><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></p>
   <%end%>
 
 
   <p>
-    <%= link_to "New Page", new_page_path%>
+<%= link_to "New Page", new_page_path%>
