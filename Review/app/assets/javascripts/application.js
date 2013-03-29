@@ -42,6 +42,11 @@ function delete_all() {
 }
 
 $(document).ready(function() {
+	var designed_html= $('#html_content').text();
+	var doc = document.getElementById('myiframe').contentWindow.document;
+	doc.open();
+	doc.write(designed_html);
+	doc.close();
 	$("#drag_resize").resizable({
 			maxHeight: 350,
 			maxWidth: 350,

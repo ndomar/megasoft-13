@@ -317,3 +317,7 @@ textarea{
 	border: 0px;
 	resize: none;
 }
+
+#html_content{
+	display:none;
+}
