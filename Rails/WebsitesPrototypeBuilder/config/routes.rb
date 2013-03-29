@@ -1,4 +1,12 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+
+  get "task/invite/:id" => 'task#invite'
+
+  match "task/invite_user/:id" => 'task#invite_user'
+
+  match "/task/fill_task/" => 'task#fill_task', :as => :task_invitation #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+
+  root :to => "task#invite", :id => 1
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
