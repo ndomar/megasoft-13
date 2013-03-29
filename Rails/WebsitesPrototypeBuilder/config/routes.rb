@@ -1,4 +1,4 @@
-PrototypesBuilder::Application.routes.draw do
+WebsitesPrototypeBuilder::Application.routes.draw do
   match "/tasks/:id/reviewer" => "tasks#task_reviewer"
   get "/tasks/share" => "tasks#share"
   post "/tasks/share" => "tasks#share"
