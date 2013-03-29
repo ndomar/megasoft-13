@@ -1,5 +1,8 @@
 class AddRpxIdentifierToDesigners < ActiveRecord::Migration
-  def change
+ class Designer < ActiveRecord::Base
+ end
+
+ def change
   	add_column :designers, :rpx_identifier, :string
   end
 end
