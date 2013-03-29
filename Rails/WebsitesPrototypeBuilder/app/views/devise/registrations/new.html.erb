@@ -9,7 +9,7 @@
   <%= devise_error_messages! %>
 <div class = "well" align="right">
   <div><label>اسم المستخدم</label><br /><!--  username -->
-  <%= f.text_field :username, :required => true,  :autofocus => true %></div>
+  <%= f.text_field :designer_name, :required => true,  :autofocus => true %></div>
 
   <div><label>البريد الإلكتروني</label><br /> <!-- email -->
   <%= f.email_field :email, :required => true%></div>
@@ -40,14 +40,12 @@
   			<%= f.text_field :year_dob , options = {:size => 1, :placeholder => "السنة", :required => true}%>
         
 		</div>
-
 <div><label>ذكر ام أنثى</label><br /> <!-- gender -->
 <%= f.select(:gender, options_for_select([ "ذكر", "أنثى" ], "ذكر"))%>
 </div>
 <div><label>المهنة</label><br /> <!-- profession---optional -->
   <%= f.text_field :profession, options = {:placeholder => "اختياري"}%>
 </div>
-
 <div><label>رقم بطاقة الائتمان</label><br /> <!-- credit_card_number -->
   <%= f.text_field :credit_card_number, :required => true %></div>
 
@@ -56,6 +54,7 @@
 <br />
   <div><%= f.submit "تسجىل",options = {:class => "btn btn-info"}%></div>
 <% end %>
+
 </div>
 </div>
 </div>

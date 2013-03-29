@@ -13,7 +13,7 @@
 <div id="designer_nav">
 	<!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
   <% if designer_signed_in? %>
-    Signed in as <%= current_designer.username %>. Not you?
+    Signed in as <%= current_designer.designer_name %>. Not you?
     <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
   <% else %>
   <div class = "span2">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326165956) do
+ActiveRecord::Schema.define(:version => 20130328223055) do
 
   create_table "designers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20130326165956) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "username"
+    t.string   "designer_name"
     t.integer  "phone_number"
     t.string   "country"
     t.integer  "day_dob"
