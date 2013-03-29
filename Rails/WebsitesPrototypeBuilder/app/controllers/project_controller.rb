@@ -1,5 +1,5 @@
 class ProjectController < ApplicationController
-  #Sends to the view an array of all available projects to display
+  #Sends to the index view an array of all available projects to display
   def index
     @projects = Project.all()
 

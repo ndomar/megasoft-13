@@ -10,7 +10,7 @@ class TasksController < ApplicationController
     format.json { render json: @tasks }
     end
   end
-  #Uses project_id to create task that belongs to the project
+  #Directs to the form of new task 
   def new
     @task = Task.new
     respond_to do |format|
@@ -19,6 +19,8 @@ class TasksController < ApplicationController
     end
   end
   #It creates and saves the new task in the database
+  #If task saved succesfully it redirects to the tasks index
+  #If task is not save it shows the errors
   def create
     @task = Project.find(params[:project_id]).tasks.create(params[:task])
     respond_to do |format|
