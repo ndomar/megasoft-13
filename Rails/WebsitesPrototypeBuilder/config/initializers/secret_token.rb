@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-WebsitesPrototypeBuilder::Application.config.secret_token = 'eaf011f628e9be0a73fe6f44a734d8daa6158f7930bc6ae5af5f1a1a8c3481822991be11f1f0b2ecd4595e441beb32dd0276efce5feaf810a4eb8b53889ca8d4'
+WebsitesPrototypeBuilder::Application.config.secret_token = '4a4eba84f36fcd1323423a1b42df89d0340a9cab905068f1d5b44bb6236ce31a2f110d0affd077711b73ee0b9a8597d8c03e9441145386720a5c596ee4ecde22'
