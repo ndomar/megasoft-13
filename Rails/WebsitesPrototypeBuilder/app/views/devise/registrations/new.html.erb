@@ -1,0 +1,59 @@
+<h1>التسجىل</h1>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :username %><br />
+  <%= f.text_field :username, :required => true %></div>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+   <div><%= f.label :facebook_email %><label> (Optional)</label><br />
+  <%= f.email_field :facebook_email, :autofocus => true %></div>
+
+<div><%= f.label :phone_number %><br />
+  <%= f.text_field :phone_number %></div>
+
+<div><%= f.label :country %><br />
+  <%= f.text_field :country %></div>
+<br />
+<div>
+	
+	<label>Date of birth:
+		<br />
+	</label>
+		<div>
+			<label style = float:left>Day:</label>
+  			 <%= f.text_field :day_dob , options = {:size => 1, :style => "float:left;"}%>
+  			 <label style = float:left>/ Month: </label>
+  			<%= f.text_field :month_dob , options = {:size => 1, :style => "float:left;"} %>
+  			<label style = float:left>/ Year: </label>
+  			<%= f.text_field :year_dob , options = {:size => 1}%>
+		</div>
+</div>
+<br />
+<div><%= f.label :gender %><br />
+<%= f.select(:gender, options_for_select([ "Male", "Female" ], "Male"))%>
+
+<div><%= f.label :profession %><label> (Optional)</label><br />
+  <%= f.text_field :profession %>
+</div>
+
+<div><%= f.label :credit_card_number %><br />
+  <%= f.text_field :credit_card_number %></div>
+
+  <div><%= f.label :cvv2 %> <label>(Last 3 digits of your account number)</label><br />
+  <%= f.text_field :cvv2 ,options = {:size => 1}%></div>
+
+<br />
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
