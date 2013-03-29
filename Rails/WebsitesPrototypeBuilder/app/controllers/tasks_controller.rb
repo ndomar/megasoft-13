@@ -12,8 +12,7 @@ class TasksController < ApplicationController
   end
   #Uses project_id to create task that belongs to the project
   def new
-    @project = Project.find(params[:project_id])
-    @task = @project.tasks.create(params[:task])
+    @task = Task.new
     respond_to do |format|
     format.html # index.html.erb
     format.json { render json: @task }
@@ -21,33 +20,15 @@ class TasksController < ApplicationController
   end
   #It creates and saves the new task in the database
   def create
-    @task = Task.new(params[:task])
-    if @task.save
-      respond_to do |format|
-      format.html { redirect_to project_tasks_path, notice: @task.project_id }
-      format.json { render json: @task, status: :created, location: @task }
+    @task = Project.find(params[:project_id]).tasks.create(params[:task])
+    respond_to do |format|
+      if @task.save
+        format.html { redirect_to project_tasks_path, notice: "Task Created Succesfully" }
+        format.json { render json: @task, status: :created, location: @task }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
-
-
-    #respond_to do |format|
-      #if @task.save
-       # format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        #format.json { render json: @task, status: :created, location: @task }
-      #else
-       # format.html { render action: "new" }
-        #format.json { render json: @task.errors, status: :unprocessable_entity }
-      #end
-    #end
   end
-  #Shows individual task page
-  def show
-    @task = Task.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @task }
-    end
-  end
-
 end

@@ -1,4 +1,4 @@
-<h1> Projects </h1>
+<h1 align = "right"> المشاريع </h1>
 
 <table align = "right">
   <tr>
@@ -6,10 +6,10 @@
     <th>مشروع</th>
   </tr>
 
-<% @projects.each do |p| %>
+<% @projects.each do |project| %>
   <tr>
-    <td><%= link_to 'اظهار', project_tasks_path(p)%></td>
-    <td><%= p.name %></td>
+    <td><%= link_to 'اظهار', project_tasks_path(project)%></td>
+    <td><%= project.name %></td>
   </tr>
 <% end %>
 </table>
