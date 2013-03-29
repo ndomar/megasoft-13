@@ -46,11 +46,4 @@ class TasksController < ApplicationController
         render :action => "new"
     end
   end
-
-  
-   
-  
-  def share_on_fb
-  end 
-    
 end
