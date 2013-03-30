@@ -19,6 +19,8 @@
 function draw_circle() {
 	$('#drag_resize').css({"display":"block" ,'top' : 0+'px', 'left' : 0+'px'});	
 	$('#drag_resize').draggable( "enable");  
+	$('#choose_area').css({"display":"table-cell"});
+	$('#delete_circle').css({"display":"table-cell"});
 }
 
 // Make the notepaper visible and set it position
@@ -30,10 +32,12 @@ function create_note(top_pos, left_pos) {
 	var notepaper_left =left_pos+ $('#drag_resize').width()/2;
 	$('.note').css({"display":"block", 'top' : notepaper_top+'px', 'left' : notepaper_left+'px'});
 	$('#drag_resize').draggable( "disable");  
+	$('#choose_area').css({"display":"none"});
+	$('#delete_circle').css({"display":"none"});
 }
 
 function delete_circle() {
-	$('#drag_resize').css({"display":"none"});		
+	$('#drag_resize').css({"display":"none"});
 }
 
 function delete_all() {
@@ -41,13 +45,32 @@ function delete_all() {
 	$('.note').css({"display":"none"});
 }
 
+// It takes the id and the object from the Iframe and set the assignedpart value to it.
+function getSelectedItem(elementId,elementObj){
+	var id=elementId;
+	var theobj=elementObj;
+	document.getElementById('assignedpart').value=elementId+','+theobj;
+}
+
+// Send circle location to the Iframe
+function selectItem () {
+	var element = document.getElementById('drag_resize')
+	var isVisible = element.offsetWidth > 0 || element.offsetHeight > 0;
+	if(isVisible){
+		var offset = $('#drag_resize').offset();
+		var posY =offset.top;
+		var posX =offset.left;
+		window.frames[0].OnMouseMove(posX,posY);
+	}
+}
+
+// Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {
 	var designed_html= $('#html_content').text();
 	var doc = document.getElementById('myiframe').contentWindow.document;
 	doc.open();
 	doc.write(designed_html);
 	doc.close();
-
 	$("#drag_resize").resizable({
 			maxHeight: 350,
 			maxWidth: 350,
@@ -63,17 +86,3 @@ $(document).ready(function() {
 			scroll: false
 		});
 });
-
-
-function getSelectedItem(elementId,elementObj){
-	var id=elementId;
-	var theobj=elementObj;
-	document.getElementById('assignedpart').value=elementId+','+theobj;
-	document.getElementById('myAnchor').value=id;
-	document.getElementById('myAnchor2').value=theobj;
-}
-		
-function selectItem (event) {
-	var posX = event.clientX, posY = event.clientY-51-($('#drag_resize').height()/2);
-	window.frames[0].OnMouseMove(posX,posY);
-}

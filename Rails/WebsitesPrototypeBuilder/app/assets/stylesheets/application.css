@@ -226,9 +226,9 @@ iframe {
 	background-color: rgb(190, 170, 120);
 	cursor:pointer;
 	position: fixed;
-	/*right: 8px;
+	right: 8px;
 	left :10px;
-	bottom: 8px;*/
+	bottom: 8px;
 	border: 0px;
 }
 
@@ -323,5 +323,9 @@ textarea{
 }
 
 #assignedpart{
+	width: 0;
+	height: 0;
+	padding: 0;
+	margin: 0;
 	display:none;
 }

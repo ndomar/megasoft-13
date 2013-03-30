@@ -1,5 +1,5 @@
-Review::Application.routes.draw do
-  get "comments/create"
+WebsitesPrototypeBuilder::Application.routes.draw do
+   get "comments/create"
 
   get "comments/destroy"
 

@@ -6,7 +6,6 @@
 		<h4>التعليقلت</h4>
 		<% @page.comments.each do |comment| %>
 		<p><%= comment.body %></p>
-		<p>Assign: <%= comment.assigned_part %></p>
 		<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?"%>
 		<hr>
 		<%end%>
@@ -14,7 +13,7 @@
 	</div>	
 
 	<!-- Main Content -->
-	<div id="content"> 
+	<div id="content" onmousemove="selectItem();"> 
 		<!-- Notice to see the errors -->
 		<p id="notice"><%= notice %></p>
 		<!-- Draw the circle initially hidden -->
@@ -29,7 +28,7 @@
 		<div class="note hide">	
 			<%= form_for [@page,@page.comments.build] do |f| %>
 				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
-				<p><%= f.text_area :assigned_part,:id => "assignedpart"%></p>
+				<p class="hide"><%= f.text_area :assigned_part,:id => "assignedpart"%></p>
 				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all();"%>
 			<% end %>
 			<!-- Button to delete the comment -->
