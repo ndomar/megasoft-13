@@ -1,1 +1,36 @@
-<h1>داشبوووورد -dashboard-</h1>
+<<html dir="rtl">
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h1>داشبورد-</h1>
+		 <div id='fb-root'></div>
+   		 <script src='http://connect.facebook.net/en_US/all.js'></script>
+   		 <p><a onclick='postToFeed(); return false;'>Post to Feed, click here</a></p>
+   		 <p id='msg'></p>
+	    <script> 
+	      FB.init({appId: "346985668734261", status: true, cookie: true});
+
+	      function postToFeed() {
+
+	        // calling the API ...
+	        var obj = {
+	          method: 'feed',
+	          redirect_uri: 'http://localhost:3000',
+	          link: 'https://developers.facebook.com/docs/reference/dialogs/',
+	          picture: 'http://fbrell.com/f8.jpg',
+	          name: 'Facebook Dialogs',
+	          caption: 'Reference Documentation',
+	          description: 'Using Dialogs to interact with users.'
+	        };
+
+	        function callback(response) {
+	          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+	        }
+
+	        FB.ui(obj, callback);
+	      }
+	    
+	    </script>
+	</body>
+</html>
