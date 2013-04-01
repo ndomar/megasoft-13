@@ -1,0 +1,5 @@
+<h1 align = "right">قائمة المشاريع</h1>
+<% @projects.each do |project| %>
+<p align = "right"><%= project.project_name %></p>
+<p align = "right"><%= link_to "المهمات", project_tasks_path(project)%></p>
+<% end %>
