@@ -41,7 +41,6 @@ class TasksController < ApplicationController
       end
     end
   end
-
   # PUT /tasks/1
   # PUT /tasks/1.json
   def update

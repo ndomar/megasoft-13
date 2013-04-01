@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
+<<<<<<< HEAD
   project_name: MyString
   type: 
   description: MyText
@@ -9,3 +10,9 @@ two:
   project_name: MyString
   type: 
   description: MyText
+=======
+  name: MyString
+
+two:
+  name: MyString
+>>>>>>> 702328961b57d80ff3becfb564dde2ac1c70bf17
