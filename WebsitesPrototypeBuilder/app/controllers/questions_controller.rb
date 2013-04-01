@@ -7,10 +7,10 @@ class QuestionsController < ApplicationController
     @question = @page.questions.build(params[:question])
     respond_to do |format|
     if @question.save
-      format.html { redirect_to ("/pages/designer"),:notice => 'Question was successfully created.' }
+      format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully created.' }
       #format.html { redirect_to(@page, :notice => 'Question was successfully created.') }
   	else
-      format.html { redirect_to ("/pages/designer"),:notice => 'Question could not be saved. Please fill in all fields'}
+      format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question could not be saved. Please fill in all fields' }
       #format.html { redirect_to(@page, :notice => 'Question could not be saved. Please fill in all fields')}
       end
     end
@@ -23,7 +23,7 @@ def destroy
     @page = Page.find(params[:page_id])
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to ("/pages/designer"),:notice => 'Question was successfully deleted.'}
+      format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully deleted.' }
       #format.html { redirect_to(@question.page, :notice => 'Question was successfully deleted.') }
       format.js   { render :layout => false }
     end

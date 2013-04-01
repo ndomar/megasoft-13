@@ -24,7 +24,7 @@ function draw_circle() {
 }
 
 // Make the notepaper visible and set it position
-function create_note(top_pos, left_pos) {
+function create_note() {
 	var offset = $('#drag_resize').offset();
 	var top_pos =offset.top;
 	var left_pos =offset.left;

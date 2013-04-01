@@ -81,12 +81,12 @@ class PagesController < ApplicationController
   end
 
   def reviewer
-    @page = Page.find(5)
+    @page = Page.find(params[:id])
     render 'reviewer'
   end
 
   def designer
-    @page = Page.find(5)
+    @page = Page.find(params[:id])
     render 'designer'
   end
 
