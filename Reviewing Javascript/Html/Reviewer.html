@@ -1,0 +1,57 @@
+﻿<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../assets/css/navigationbar.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="../assets/css/sidebar.css" media="screen" />
+		<link href="../assets/css/main.css" rel="stylesheet" type="text/css" /> 
+		<link rel="stylesheet" href="../assets/css/jquery.ui.all.css">
+		<script src="../assets/javascript/jquery.js"></script>
+        <script type="text/javascript" src="../assets/javascript/jquery-ui.js"></script>
+        <script type="text/javascript" src="../assets/javascript/main.js"></script>
+	</head>
+	<body>
+	<!-- container for positioning the banner -->
+		<div id="navigation_container">
+		<!-- the ribbon body -->
+			<div class="rectangle">
+			<!-- the navigation links -->
+					<ul id="navigation">
+					<li><a href="#">خط عربي<div class="tabBar active" ></div></a></li>
+					<li><a href="#">خط عربي<div class="tabBar" ></div></a></li>
+					<li><a href="#">خط عربي<div class="tabBar"></div></a></li>
+					</ul>
+					<a href="#"><div width="107px" height="51px" class="logo"></div></a>
+			<!-- end navigation links -->
+			</div>
+			<!-- end container -->
+		</div>
+		
+		<div id="wrapper">
+			<div id="sidebar">
+				<h4>خط عربي</h4>
+				<div id="add_comment"  onclick="draw_circle();">+</div>
+				<div id="add_comment" href="myiframe" onclick="test_page();">Test Page</div>
+			</div>
+			<div id="content"> 
+			<div id="drag_resize"><img src="../assets/img/circle.png"/>
+				<div id="choose_area" class="circle_settings"  onclick="create_note();">+</div>
+				<div id="delete_circle" class="circle_settings"  onclick="delete_circle();">-</div>
+			</div>
+			<iframe id="myiframe" scrolling="auto" src="Fekra/Html/Fekra_select.html" width="100%" height="1300px"></iframe>
+				
+			<div class="note hide">	
+				<div class="textarea">
+					<p contenteditable="true">علق هنا</p>
+				</div>
+				<div class="circle_button" id="submit_comment" onclick="delete_all();">+</div>
+				<div class="circle_button" id="delete_comment" onclick="delete_all();">-</div>
+			 </div>
+			</div>
+		</div>
+		
+		<hr>
+		<footer>
+			<p>&copy;أرابليتي 2013</p>
+		</footer>
+
+	</body>
+</html>

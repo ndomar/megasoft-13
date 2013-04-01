@@ -1,0 +1,24 @@
+<div id="wrapper">
+	<div id="sidebar">
+		<h4>التعليقلت</h4>
+		<% @page.comments.each do |comment| %>
+		<p><%= comment.body %></p>
+		<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?"%>
+		<hr>
+		<%end%>
+	</div>
+		
+	<div id="content"> 
+		<p id="notice"><%= notice %></p>
+		<p><%= @page.html_markup%></p>
+		<%= form_for [@page,@page.comments.build] do |f| %>
+		<p><%= f.text_area :body, :size => '40x10'%></p>
+		<p><%= f.submit "Post Comment"%></p>
+	<% end %>
+	</div>
+</div>
+
+
+
+
+

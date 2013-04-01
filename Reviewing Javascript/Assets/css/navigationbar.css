@@ -1,0 +1,79 @@
+@font-face { font-family: arabi-bold; src: url('../fonts/arabi-bold.otf');format("opentype"); }
+@font-face { font-family: arabi-light; src: url('../fonts/arabi-light.otf');format("opentype"); }
+
+html{background: #fdfdfd;}
+body{
+	text-align:right;
+	font-family: arabi-light;
+	width: 100%; 
+	height: 100%;
+	margin: 0 0;
+}
+	  
+.tabBar {
+	background-color: #ebebeb;
+	background-color: #e08f46;
+	height: 4px;
+	position: absolute;
+	top: 0px;
+	width: 110px;
+	background-color: rgb(235, 235, 235);
+}
+		
+.active{
+	background-color: rgb(69, 162, 224);
+}
+		
+::selection {
+	background-color: rgb(165, 234, 243);
+}
+	
+#navigation_container {
+	margin: 0 auto;
+	width: 100%;
+}
+
+#navigation {
+	padding-left: 120px;
+}
+
+#navigation li {
+		height:51px;
+		width:110px;
+		font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+		text-align: center;
+        list-style: none;
+        display: block;
+        float: left;
+		vertical-align: top;
+}
+
+#navigation li a {
+        display: block;
+        text-decoration: none;
+        color: #000000;
+        font-size: 1.6em;
+        margin-top: 11px;
+        line-height: 28px;
+}
+
+#navigation li:hover{
+	background-color: #fafafa;
+}
+
+
+.rectangle {
+   background: #ffffff;
+   height: 51px;
+   position: relative;
+   z-index: 500; /* the stack order: foreground */
+   border-bottom: 1px solid #d4d4d4;
+}
+
+.logo{
+	background-image:url('../img/logo.png');
+	width:107px;
+	height:51px;
+	float: right;
+	margin-right: 120px;
+}
