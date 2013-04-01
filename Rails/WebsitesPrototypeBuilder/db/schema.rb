@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329213128) do
+ActiveRecord::Schema.define(:version => 20130331075140) do
+
+  create_table "cards", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "cardsort_id"
+    t.integer  "group_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "cardsorts", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "project_id"
+    t.boolean  "open"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "designers", :force => true do |t|
     t.string   "designer_name"
@@ -25,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20130329213128) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.string   "rpx_identifier"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "cardsort_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "invitations", :force => true do |t|

@@ -1,0 +1,2 @@
+class DesignPageController < ApplicationController
+end
