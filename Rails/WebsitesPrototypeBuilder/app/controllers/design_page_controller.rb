@@ -1,2 +1,0 @@
-class DesignPageController < ApplicationController
-end
