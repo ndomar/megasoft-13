@@ -1,6 +1,7 @@
 <h1>Welcome to Commenter</h1>
 
 <% @pages.each do |page| %>
+    <!--<h2><%= link_to page.html_markup,page %></h2>-->
     <h2><%= link_to page.html_markup,page %></h2>
     <p>
       <%= time_ago_in_words page.created_at %> ago
@@ -10,6 +11,8 @@
     </p>
         <p><%= link_to 'Edit', edit_page_path(page) %></p>
     <p><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <p><%= link_to 'Reviewer',:controller => :pages, :action => :reviewer, :id => page %></p>
+    <p><%= link_to 'Designer',:controller => :pages, :action => :designer, :id => page %></p>
   <%end%>
 
 

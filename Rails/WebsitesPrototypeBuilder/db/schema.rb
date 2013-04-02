@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326222407) do
+ActiveRecord::Schema.define(:version => 20130402085948) do
+
+  create_table "answers", :force => true do |t|
+    t.string   "answer"
+    t.integer  "question_id"
+    t.integer  "page_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "answers", ["page_id"], :name => "index_answers_on_page_id"
+  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "page_id"
@@ -26,6 +37,14 @@ ActiveRecord::Schema.define(:version => 20130326222407) do
     t.text     "html_markup"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "page_id"
+    t.text     "assigned_part"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

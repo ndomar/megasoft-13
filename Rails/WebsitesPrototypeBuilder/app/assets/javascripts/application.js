@@ -24,12 +24,12 @@ function draw_circle() {
 }
 
 // Make the notepaper visible and set it position
-function create_note(top_pos, left_pos) {
+function create_note() {
 	var offset = $('#drag_resize').offset();
 	var top_pos =offset.top;
 	var left_pos =offset.left;
-	var notepaper_top =top_pos+ $('#drag_resize').height()/2;
-	var notepaper_left =left_pos+ $('#drag_resize').width()/2;
+	var notepaper_top =top_pos + $('#drag_resize').height()/2;
+	var notepaper_left =left_pos + $('#drag_resize').width()/2;
 	$('.note').css({"display":"block", 'top' : notepaper_top+'px', 'left' : notepaper_left+'px'});
 	$('#drag_resize').draggable( "disable");  
 	$('#choose_area').css({"display":"none"});
@@ -49,17 +49,17 @@ function delete_all() {
 function getSelectedItem(elementId,elementObj){
 	var id=elementId;
 	var theobj=elementObj;
-	document.getElementById('assignedpart').value=elementId+','+theobj;
+	document.getElementById('assignedpart').value=elementId;
 }
 
 // Send circle location to the Iframe
 function selectItem () {
-	var element = document.getElementById('drag_resize')
+	var element = document.getElementById('drag_resize');
 	var isVisible = element.offsetWidth > 0 || element.offsetHeight > 0;
 	if(isVisible){
 		var offset = $('#drag_resize').offset();
-		var posY =offset.top;
-		var posX =offset.left;
+		var posY =offset.top + ($('#drag_resize').height()/2) -51 ;
+		var posX =offset.left+ ($('#drag_resize').width()/2);
 		window.frames[0].OnMouseMove(posX,posY);
 	}
 }
@@ -71,11 +71,17 @@ $(document).ready(function() {
 	doc.open();
 	doc.write(designed_html);
 	doc.close();
+
+	var myIframe = document.getElementById("myiframe");
+	var script = myIframe.contentWindow.document.createElement("script");
+	script.type = "text/javascript";
+	script.text  = 'var selElem = null;var origBorder = "";function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.border = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.border;overElem.style.border = "1px dashed gray";}parent.getSelectedItem(selElem.id,selElem);}';
+	myIframe.contentWindow.document.body.appendChild(script);
 	$("#drag_resize").resizable({
 			maxHeight: 350,
 			maxWidth: 350,
-			minHeight: 150,
-			minWidth: 200,
+			minHeight: 60,
+			minWidth: 100,
 			animate: true,
 			iframe: true,
 			modal : true

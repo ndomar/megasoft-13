@@ -13,8 +13,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = Page.find(params[:id])
-
+    @page = Page.find(params[:id])  
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @page }
@@ -80,4 +79,15 @@ class PagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def reviewer
+    @page = Page.find(params[:id])
+    render 'reviewer'
+  end
+
+  def designer
+    @page = Page.find(params[:id])
+    render 'designer'
+  end
+
 end
