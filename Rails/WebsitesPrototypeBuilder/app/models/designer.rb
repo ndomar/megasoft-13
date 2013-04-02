@@ -9,7 +9,7 @@ class Designer < ActiveRecord::Base
          :validatable, :authentication_keys => [:login]
 
 #Registration attributes and validations
-validates :designer_name, :presence => trues
+validates :designer_name, :presence => true
 validates :phone_number, :length => { :minimum => 8, :maximum => 11 } 
 validates :phone_number,:day_dob,:month_dob,:year_dob, :credit_card_number, :cvv2, :numericality => { :only_integer => true }
 validates :credit_card_number, :length => { :minimum => 12, :maximum => 19 }
