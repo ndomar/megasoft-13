@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+<style> 
+#txt
+{
+top:100px;
+left:200px;
+position:absolute;
+width:300px;
+height:100px;
+box-shadow: 0px 0px 15px 2px violet;
+border:none;
+}
+
+.btn{
+position:absolute;
+width:100px;
+height:100px;
+box-shadow: 0px 0px 15px 2px orange;
+border:none;
+
+}
+</style>
+-->
+
+
+<style>
+input:active, input:focus ,input:hover{
+    box-shadow:0px 0px 10px 2px orange;
+    border:0;
+}
+</style>
+
+
+<script>
+function highlight(id)
+{
+var element= document.getElementById(id) ;
+element.style.border='none';
+element.style.boxShadow="0px 0px 6px 2px orange";
+//var txtbox= document.getElementById('txt');
+//txtbox.style.border='none';
+//txtbox.style.boxShadow="0px 0px 6px 2px orange";
+}
+//document.getElementById('bttn').onclick='highlight()';
+//alert("Would you please enter some text?"); 
+</script>
+
+<!--<script type="text/javascript">
+function notEmpty(){
+  var myTextField = document.getElementById('myText');
+  if(myTextField.value != "")
+    alert("You entered: " + myTextField.value)
+  else
+    alert("Would you please enter some text?")    
+}
+</script> -->
+
+</head>
+<body>
+
+<input id="txt" type="text" onclick='highlight(id)' ></input>
+<input type ="submit"  value= "test button" class="btn" id='bttn' onclick='highlight(id)'/>
+
+</body>
+</html>
+
+
+
