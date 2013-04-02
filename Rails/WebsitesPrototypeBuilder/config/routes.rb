@@ -3,8 +3,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   
   #at start up page goes to the home controller and the index action
   root to: "home#index"
-  
-  resources :dashboard
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

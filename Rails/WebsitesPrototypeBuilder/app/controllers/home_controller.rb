@@ -2,11 +2,10 @@
 #actions for the homepage views
 class HomeController < ApplicationController
 
-	#if the user is signed in he is redirected to dashboard index controller
+	before_filter :authenticate_designer!
+
 	def index
- 		if designer_signed_in?
-    		redirect_to :controller=>'dashboard', :action => 'index'
-		end
+ 		
 	end
 	
 end
