@@ -4,7 +4,7 @@
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><label>البريد الإلكتروني</label><br /> <!-- :email -->
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.text_field :login, :autofocus => true %></div>
 
   <div><label>كلمة السر</label><br />  <!--:password-->
   <%= f.password_field :password %></div>
@@ -14,6 +14,9 @@
   <% end -%>
 
   <div><%= f.submit "تسجيل دخول " %></div>
+
+  <%# Link to sign in with facebook %>
+  <h4><%= link_to_rpx "ادخل باستخدام حساب الفيسبوك", designer_session_url %></h4>
 <% end %>
 
 <%= render "devise/shared/links" %>

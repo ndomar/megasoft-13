@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/ahmadsoliman/devise_rpx_connectable.git
+  revision: 54099cc035ab0abbca4e4f44d0495cf5f35b8603
+  specs:
+    devise_rpx_connectable (0.2.2)
+      devise (>= 1.1.2)
+      rpx_now (>= 0.6.23)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -59,7 +67,12 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.7)
+<<<<<<< HEAD
     mail (2.5.3)
+=======
+    json_pure (1.7.7)
+    mail (2.4.4)
+>>>>>>> C4S11b_Register_Using_Facebook
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -92,6 +105,8 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    rpx_now (0.6.24)
+      json_pure
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -120,10 +135,11 @@ PLATFORMS
   ruby
   x86-mingw32
 
-DEPENDENCIES
   bootstrap-sass
+  bcrypt-ruby
   coffee-rails (~> 3.2.1)
   devise
+  devise_rpx_connectable!
   jquery-rails
   jquery-ui-rails
   rails (= 3.2.13)
