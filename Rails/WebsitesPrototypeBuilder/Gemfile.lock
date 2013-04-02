@@ -67,15 +67,11 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.7)
-<<<<<<< HEAD
-    mail (2.5.3)
-=======
     json_pure (1.7.7)
-    mail (2.4.4)
->>>>>>> C4S11b_Register_Using_Facebook
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mail (2.5.3)
     mime-types (1.21)
     multi_json (1.7.2)
     orm_adapter (0.4.0)
@@ -132,11 +128,18 @@ GEM
       rack (>= 1.0)
 
 PLATFORMS
+  bcrypt-unknown
+  bootstrap-unknown
+  coffee-unknown
+  jquery-unknown
   ruby
+  sass-unknown
+  unknown
   x86-mingw32
 
-  bootstrap-sass
+DEPENDENCIES
   bcrypt-ruby
+  bootstrap-sass
   coffee-rails (~> 3.2.1)
   devise
   devise_rpx_connectable!
