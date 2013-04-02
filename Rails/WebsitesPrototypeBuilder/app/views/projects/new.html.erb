@@ -1,13 +1,13 @@
 <br>
 <%= form_for @project do |f| %>
 <!-- check if any error occured -->
-<% if @project.errors.any? %>
-<ul>
-  <!--if yes loop on the errors and print them on the page-->
-  <% @project.errors.each do |attr,msg| %>
-  <h5> <%= msg %> </h5>
+  <% if @project.errors.any? %>
+    <ul>
+    <!--if yes loop on the errors and print them on the page-->
+    <% @project.errors.each do |attr,msg| %>
+    <h5> <%= msg %> </h5>
+    <% end %>
   <% end %>
-<% end %>
   <p>
     <!-- the name label -->
     <%= f.label :Name, "اسم المشروع" %> 
