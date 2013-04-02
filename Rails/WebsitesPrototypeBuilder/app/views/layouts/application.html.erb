@@ -12,26 +12,26 @@
 
 <body>
 <!-- layout stuff for the home page -->
-<div id="designer_nav">
+<div id="designer_nav" align="right">
 	<!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
   <% if designer_signed_in? %>
-    Signed in as 
     <% if current_designer.fullname.eql?nil %>
       <%= current_designer.email %>
     <% else %>
       <%= current_designer.fullname %>
     <% end %>
-    . Not you?
+    مسجل بإسم<br /> ليس أنت؟
     <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
   <% else %>
-  <div class = "span2">
-    <%= link_to "التسجىل", new_designer_registration_path %>
-    <label class ="label label-important" >او </label>
-    <%= link_to "الدخول",new_designer_session_path%>
+    <div class = "span2" align="right">
+      <%= link_to "التسجيل", new_designer_registration_path %>
+      <label class ="label label-important" >او </label>
+      <%= link_to "الدخول",new_designer_session_path%>
+    </div>
   <% end %>
-  
 </div>
-</div>
+
+<br />
 
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
@@ -39,7 +39,7 @@
 <% end %>
  <!-- -------------------- -->
  
-<%= yield %>
+<div class="container"> <%= yield %></div>
 
 <%= javascript_include_rpx(designer_session_url) %>
 </body>

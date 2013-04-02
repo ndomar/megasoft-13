@@ -2,22 +2,28 @@
 <body dir="rtl">
 <h2>تسجيل الدخول</h2>
 
+<img src="/images/login-icon.png"/>
+<br /><br />
+
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
   <div><label>البريد الإلكتروني</label><br /> <!-- :email -->
   <%= f.email_field :email, :autofocus => true %></div>
+  <br />
 
   <div><label>كلمة السر</label><br />  <!--:password-->
   <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <label>تذكرني</label></div> <!-- remember me-->
-  <% end -%>
+    <div>تذكرني <%= f.check_box :remember_me %></div> <!-- remember me-->
+  <% end %>
+  <br />
+  <div><%= f.submit "تسجيل دخول" %></div>
 
-  <div><%= f.submit "تسجيل دخول " %></div>
-
+  <br />
   <%# Link to sign in with facebook %>
-  <h4><%= link_to_rpx "ادخل باستخدام حساب الفيسبوك", designer_session_url %></h4>
+  <h4><%= link_to_rpx image_tag("/images/facebook_login_button_arabic.png"), designer_session_url %></h4>
+  <br />
 <% end %>
 
 <%= render "devise/shared/links" %>
