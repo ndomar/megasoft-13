@@ -3,8 +3,8 @@ class AnswersController < ApplicationController
   def create
     # finds the selected page
   	@page = Page.find(params[:page_id])
-  	@question = @page.questions.find([:question_id])
-    @answer = @page.question.answers.build(params[:answer])
+    @question = @page.questions.find(params[:question_id])
+    @answer =@question.answers.build(params[:answer])
     respond_to do |format|
     if @answer.save
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Answer was successfully created.' }
@@ -29,5 +29,4 @@ def destroy
       format.js   { render :layout => false }
     end
   end
-end
 end

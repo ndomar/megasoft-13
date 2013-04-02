@@ -15,12 +15,28 @@
 		</div>
 		<hr>
 		<div id="questions">
+			<h5>الاسءلة</h5>
 			<% @page.questions.each do |question| %>
 			<div>
 				<p><%= question.body %></p>
-				<p><%= link_to_function "اجب",'create_note();'%> </p>
+				<p><%= link_to_function "اجب",'answer_question();'%> </p>
+				<h5>:اجابتك </h5>
+					<% question.answers.each do |ans| %>
+			<div>
+
+				<p><%= ans.answer %></p>
+				<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_answer" %>
 				<hr>
-			</div>
+			</div>			<%end%>
+				<hr>
+				<div>
+											<%= form_for [@page,question,question.answers.build] do |f| %>
+											<p><%= f.text_area :answer,:placeholder => "Answer"%></p>
+											<%= f.submit "answer+"%>
+											<%end%>
+							<hr>
+						</div>
+						</div>
 			<%end%>
 		</div>
 		<div id="add_comment" onclick="draw_circle();">+</div>
@@ -39,10 +55,7 @@
 		<!-- The iframe to contain the page to be reviewed-->
 		<iframe id="myiframe" scrolling="auto" src="" width="100%" height="1300px"></iframe>
 		<!-- Draw NotePaper -->
-		<!-- draw notepaper for answering question -->
-	
-		<!-- draw notepaper for commenting-->
-		<div class="note hide">	
+		<div class="note hide" id = "cnote">	
 			<%= form_for [@page,@page.comments.build] do |f| %>
 				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
 				<p class="hide"><%= f.text_area :assigned_part,:id => "assignedpart"%></p>

@@ -3,13 +3,13 @@ class QuestionsController < ApplicationController
   # called to create a new item in the database
   def create
     # finds the selected page
-  	@page = Page.find(params[:page_id])
+    @page = Page.find(params[:page_id])
     @question = @page.questions.build(params[:question])
     respond_to do |format|
     if @question.save
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully created.' }
       #format.html { redirect_to(@page, :notice => 'Question was successfully created.') }
-  	else
+    else
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question could not be saved. Please fill in all fields' }
       #format.html { redirect_to(@page, :notice => 'Question could not be saved. Please fill in all fields')}
       end
