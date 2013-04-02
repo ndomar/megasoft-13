@@ -43,16 +43,6 @@ function delete_circle() {
 function delete_all() {
 	$('#drag_resize').css({"display":"none"});
 	$('.note').css({"display":"none"});
-	document.getElementById('assignedpart').value="";
-}
-
-function submit_all() {
-	var assignedpart=document.getElementById('assignedpart').value;
-	if(assignedpart === "" ||assignedpart === null){
-		alert("Please choose an area");
-	}else{
-		delete_all();
-	}
 }
 
 // It takes the id and the object from the Iframe and set the assignedpart value to it.
