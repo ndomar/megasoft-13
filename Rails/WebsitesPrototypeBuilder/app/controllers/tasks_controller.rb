@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
-  # GET /tasks
-  # GET /tasks.json
+  # gets the list of tasks with project_id and renders the view to display them
   def index
     @tasks = Project.find(params[:project_id]).tasks.all
 
@@ -10,8 +9,7 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/new
-  # GET /tasks/new.json
+  # Make a new instance of task and render new view that has the form
   def new
     @task = Task.new
 
@@ -21,13 +19,12 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1/edit
+  # Find the task with the project_id and render edit view that has the form to edit the task
   def edit
     @task = Project.find(params[:project_id]).tasks.find(params[:id])
   end
 
-  # POST /tasks
-  # POST /tasks.json
+  # Use the :task parameter to create an instance of tasks related to current project
   def create
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
 
@@ -41,8 +38,7 @@ class TasksController < ApplicationController
       end
     end
   end
-  # PUT /tasks/1
-  # PUT /tasks/1.json
+  # get the new parameters and update the database
   def update
     @task = Task.find(params[:id])
 
@@ -57,8 +53,7 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
+  # destroy the task with :id
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
