@@ -1,4 +1,5 @@
 class Designer < ActiveRecord::Base
+<<<<<<< HEAD
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -18,4 +19,8 @@ validates_numericality_of :year_dob, :greater_than_or_equal_to =>  1900, :less_t
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :designer_name, :phone_number, :country,:day_dob,:month_dob, :year_dob, :credit_card_number, :cvv2,:profession, :gender, :facebook_email, :remember_me
   # attr_accessible :title, :body
+=======
+  attr_accessible :country, :credit_card_number, :designer_name, :email, :facebook_id, :max_size, :phone_number, :profession
+
+>>>>>>> 0bae01ad4975579ff0efd5b359a5cf18bf23c361
 end
