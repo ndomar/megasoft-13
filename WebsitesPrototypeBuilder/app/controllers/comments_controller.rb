@@ -6,11 +6,11 @@ class CommentsController < ApplicationController
     @comment = @page.comments.build(params[:comment])
     respond_to do |format|
     if @comment.save
+      # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Comment was successfully created.' }
-      #format.html { redirect_to(reviewer, :notice => 'Comment was successfully created.') }
   	else
+      # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Comment could not be saved. Please fill in all fields' }
-      #format.html { redirect_to(reviewer, :notice => 'Comment could not be saved. Please fill in all fields')}
       end
     end
   end
@@ -23,7 +23,7 @@ def destroy
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Comment was successfully deleted.' }
-      #format.html { redirect_to(reviewer :notice => 'Comment was successfully deleted.') }
+      # Use AJAX for deletion
       format.js   { render :layout => false }
     end
   end

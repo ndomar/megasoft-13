@@ -1,0 +1,84 @@
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (24.0ms)[0m  [1mSELECT @@FOREIGN_KEY_CHECKS[0m
+  [1m[35m (0.0ms)[0m  SET FOREIGN_KEY_CHECKS = 0
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mFixture Delete (0.0ms)[0m  DELETE FROM `comments`
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO `comments` (`page_id`, `reviewer`, `assigned_part`, `body`, `created_at`, `updated_at`, `id`) VALUES (1, 1, 'MyText', 'MyText', '2013-03-27 21:20:22', '2013-03-27 21:20:22', 980190962)[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO `comments` (`page_id`, `reviewer`, `assigned_part`, `body`, `created_at`, `updated_at`, `id`) VALUES (1, 1, 'MyText', 'MyText', '2013-03-27 21:20:22', '2013-03-27 21:20:22', 298486374)
+  [1m[36mFixture Delete (0.0ms)[0m  [1mDELETE FROM `pages`[0m
+  [1m[35mFixture Insert (0.0ms)[0m  INSERT INTO `pages` (`html_markup`, `created_at`, `updated_at`, `id`) VALUES ('MyText', '2013-03-27 21:20:22', '2013-03-27 21:20:22', 980190962)
+  [1m[36mFixture Insert (0.0ms)[0m  [1mINSERT INTO `pages` (`html_markup`, `created_at`, `updated_at`, `id`) VALUES ('MyText', '2013-03-27 21:20:22', '2013-03-27 21:20:22', 298486374)[0m
+  [1m[35m (42.0ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mSET FOREIGN_KEY_CHECKS = 1[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+Processing by CommentsController#create as HTML
+Completed 404 Not Found in 1ms
+  [1m[36m (1.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+Processing by CommentsController#destroy as HTML
+Completed 404 Not Found in 0ms
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mPage Load (0.0ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (18.0ms)[0m  SELECT COUNT(*) FROM `pages` 
+Processing by PagesController#create as HTML
+  Parameters: {"page"=>{"html_markup"=>"MyText"}}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO `pages` (`created_at`, `html_markup`, `updated_at`) VALUES ('2013-03-27 21:20:23', 'MyText', '2013-03-27 21:20:23')
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/pages/980190963
+Completed 302 Found in 7ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.0ms)[0m  SELECT COUNT(*) FROM `pages` 
+  [1m[36m (107.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mPage Load (0.0ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  SELECT COUNT(*) FROM `pages` 
+Processing by PagesController#destroy as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPage Load (1.0ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mDELETE FROM `pages` WHERE `pages`.`id` = 980190962[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://test.host/pages
+Completed 302 Found in 6ms (ActiveRecord: 1.0ms)
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM `pages` [0m
+  [1m[35m (34.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mPage Load (0.0ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1
+Processing by PagesController#edit as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[36mPage Load (0.0ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1[0m
+  Rendered pages/_form.html.erb (5.0ms)
+Completed 200 OK in 80ms (Views: 79.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (1.1ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mPage Load (1.0ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1
+Processing by PagesController#index as HTML
+  [1m[36mPage Load (0.0ms)[0m  [1mSELECT `pages`.* FROM `pages` [0m
+Completed 200 OK in 4ms (Views: 3.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mPage Load (1.0ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1
+Processing by PagesController#new as HTML
+  Rendered pages/_form.html.erb (2.0ms)
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.0ms)[0m  [1mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mPage Load (0.0ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1[0m
+Processing by PagesController#show as HTML
+  Parameters: {"id"=>"980190962"}
+  [1m[35mPage Load (0.0ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1
+  [1m[36mComment Load (1.0ms)[0m  [1mSELECT `comments`.* FROM `comments` WHERE `comments`.`page_id` = 980190962[0m
+Completed 200 OK in 39ms (Views: 37.0ms | ActiveRecord: 1.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mPage Load (1.0ms)[0m  SELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1
+Processing by PagesController#update as HTML
+  Parameters: {"page"=>{"html_markup"=>"MyText"}, "id"=>"980190962"}
+  [1m[36mPage Load (1.0ms)[0m  [1mSELECT `pages`.* FROM `pages` WHERE `pages`.`id` = 980190962 LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/pages/980190962
+Completed 302 Found in 3ms (ActiveRecord: 1.0ms)
+  [1m[35m (1.0ms)[0m  ROLLBACK

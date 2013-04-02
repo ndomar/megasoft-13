@@ -7,11 +7,11 @@ class QuestionsController < ApplicationController
     @question = @page.questions.build(params[:question])
     respond_to do |format|
     if @question.save
+      # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully created.' }
-      #format.html { redirect_to(@page, :notice => 'Question was successfully created.') }
   	else
+      # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question could not be saved. Please fill in all fields' }
-      #format.html { redirect_to(@page, :notice => 'Question could not be saved. Please fill in all fields')}
       end
     end
   end
@@ -24,7 +24,7 @@ def destroy
     @question.destroy
     respond_to do |format|
       format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully deleted.' }
-      #format.html { redirect_to(@question.page, :notice => 'Question was successfully deleted.') }
+      # Use AJAX for deletion
       format.js   { render :layout => false }
     end
   end

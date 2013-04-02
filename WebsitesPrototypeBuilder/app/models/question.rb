@@ -4,6 +4,7 @@ class Question < ActiveRecord::Base
   belongs_to :page
   #validates that the body isn't empty
   validates :body, :presence => true
+  #validates that the assigned part isn't empty
   validates :assigned_part, :presence => true
   
 end
