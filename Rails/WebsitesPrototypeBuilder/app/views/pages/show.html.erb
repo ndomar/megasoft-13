@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Html:</b>
+</p>
+
+<p> The following button is not part of the embedded HTML fetched from database. </p>
+<input id="test"> Just Testing </input>
+
+<p>
+  RENDERED HTML PAGE!
+</p>
+<div id="embedded">
+  <%= @page.html.html_safe %>
+</div>
+
+<p> OKAY, ENOUGH RENDERING FOR NOW </p>
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>
+
+<script type="text/javascript">
+  $(function(){
+   // $("#embedded").
+    $('input').click(function(event){
+        var id = event.target.id;
+        alert ('The id of the HTML component you clicked on is ' + id);
+  });});
+</script>
