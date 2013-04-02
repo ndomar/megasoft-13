@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   #to make sure that the designer is logged in
-#before_filter :authenticate_designer! 
+  before_filter :authenticate_designer! 
   def new()
     #Create a new project
     @project = Project.new() 
