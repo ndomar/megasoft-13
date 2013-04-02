@@ -1,0 +1,1 @@
+When Generating a scaffold make sure to edit or remove the auto-generated css as it affects the design
