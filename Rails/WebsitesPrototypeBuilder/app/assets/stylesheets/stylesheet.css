@@ -1,0 +1,14 @@
+#block {
+  position: relative;
+  left:50%;
+  width:500px;
+  text-align:center;
+}
+#task {
+  border:2px solid;
+  border-radius:25px;
+  box-shadow: 10px 10px 5px #888888;
+}
+h1 {
+  text-align:right;
+}

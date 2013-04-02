@@ -3,7 +3,5 @@ class Task < ActiveRecord::Base
 
   belongs_to :project
 
-  has_many :invitaions, :dependent => :destroy
-
   validates :name, :presence => true
 end

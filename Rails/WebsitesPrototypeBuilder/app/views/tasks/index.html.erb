@@ -1,23 +1,20 @@
-<h1 align="right">قائمة المهام</h1>
+<link rel="stylesheet" type="text/css" href="/assets/stylesheet.css">
 
-<div align="right">
-<table >
-  <tr>
-    <th></th>
-    <th></th>
-    <th>الوصف</th>
-    <th>اسم المهمة</th>
-  </tr>
+<h1>قائمة المهام</h1>
+
+<div id="block">
 
 <% @tasks.each do |task| %>
-  <tr>
-    <td><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></td>
-    <td><%= link_to 'الغاء',project_task_path(params[:project_id], task), :confirm => 'Are you sure?', :method => :delete %></t>
-    <td><%= task.description %></td>
-    <td><%= task.name %></td>
-  </tr>
+  <div id="task">
+    <p><%= task.name %></p>
+    <p><%= task.description %></p>
+    <button><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></button>
+    <button><%= link_to 'الغاء',project_task_path(params[:project_id], task), :confirm => 'هل تريد الغاء المهمة', :method => :delete %></button>
+    <button>النتائج</button>
+    <button>تحديد تسلسل المهمة</button>
+  </div>
+  <br />
 <% end %>
-</table>
 
 <br />
 
