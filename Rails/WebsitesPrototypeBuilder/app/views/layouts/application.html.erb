@@ -20,7 +20,7 @@
   <div class="rectangle">
     <div class = "span3" align= left>
      <% if designer_signed_in? %>
-      Signed in as <%= current_designer.designer_name %>. Not you?
+      Signed in as <%= current_designer.email %>. Not you?
       <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
       <% else %>
         <div class = "span2">

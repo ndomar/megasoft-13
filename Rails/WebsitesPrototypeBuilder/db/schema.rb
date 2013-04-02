@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20130401174354) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "designer_name"
+    t.string   "fullname"
     t.string   "phone_number"
     t.string   "country"
     t.integer  "day_dob"

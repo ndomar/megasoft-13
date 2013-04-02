@@ -1,7 +1,7 @@
 class AddDesignerDetails < ActiveRecord::Migration
   
   def change
-  	add_column :designers, :designer_name, :string
+  	add_column :designers, :fullname, :string
   	add_column :designers, :phone_number, :string
   	add_column :designers, :country, :string
   	add_column :designers, :day_dob, :integer

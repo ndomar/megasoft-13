@@ -6,7 +6,7 @@ class Designer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 #Registration attributes and validations
-validates :designer_name, :uniqueness => true, :presence => true
+validates :fullname, :presence => true
 validates :phone_number, :length => { :minimum => 8, :maximum => 11 } 
 validates :phone_number,:day_dob,:month_dob,:year_dob, :credit_card_number, :cvv2, :numericality => { :only_integer => true }
 validates :credit_card_number, :length => { :minimum => 12, :maximum => 19 }
@@ -17,8 +17,7 @@ validates_numericality_of :month_dob,:greater_than_or_equal_to =>  1 , :less_tha
 validates_numericality_of :year_dob, :greater_than_or_equal_to =>  1900, :less_than_or_equal_to =>  2012
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :designer_name, :phone_number, :country,:day_dob,:month_dob, :year_dob, :credit_card_number, :cvv2,:profession, :gender, :facebook_email, :remember_me
-  # attr_accessible :title, :body
-  attr_accessible :country, :credit_card_number, :designer_name, :email, :facebook_id, :max_size, :phone_number, :profession
+  attr_accessible :email, :password, :password_confirmation,:fullname , :phone_number, :country,:day_dob,:month_dob, :year_dob, :credit_card_number, :cvv2,:profession, :gender, :facebook_email, :remember_me
+
 
 end
