@@ -1,29 +1,92 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!-- array of countries for the list -->
+<%countries = ["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegowina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "Brunei Darussalam", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Congo, the Democratic Republic of the", "Cook Islands", "Costa Rica", "Cote d'Ivoire", "Croatia (Hrvatska)", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands (Malvinas)", "Faroe Islands", "Fiji", "Finland", "France", "France Metropolitan", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard and Mc Donald Islands", "Holy See (Vatican City State)", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran (Islamic Republic of)", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, Democratic People's Republic of", "Korea, Republic of", "Kuwait", "Kyrgyzstan", "Lao, People's Democratic Republic", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libyan Arab Jamahiriya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia, The Former Yugoslav Republic of", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia, Federated States of", "Moldova, Republic of", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "Northern Mariana Islands", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russian Federation", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia (Slovak Republic)", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "Spain", "Sri Lanka", "St. Helena", "St. Pierre and Miquelon", "Sudan", "Suriname", "Svalbard and Jan Mayen Islands", "Swaziland", "Sweden", "Switzerland", "Syrian Arab Republic", "Taiwan, Province of China", "Tajikistan", "Tanzania, United Republic of", "Thailand", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Virgin Islands (British)", "Virgin Islands (U.S.)", "Wallis and Futuna Islands", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"]%>
+<h2> تعديل البيانات </h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+  <% if resource.email == "" %>
+    <div>
+      <label>البريد الإلكتروني</label><br /><!--  username -->
+      <%= f.text_field :email, :required => true,  :autofocus => true %>
+    </div>
+  <% end %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div>
+    <label>اسم المستخدم</label><br /><!--  username -->
+    <%= f.text_field :fullname, :required => true%>
+  </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+  <% if resource.email != "" %>
+    <div><label>كلمة السر</label><i>(اتركها فارغة إذا لا تريد تغييرها)</i><br /><br /> 
+    <%= f.password_field :password, :autocomplete => "off" %></div>
 
-  <div><%= f.submit "Update" %></div>
+    <div><label>تأكيد كلمة السر</label><br />
+    <%= f.password_field :password_confirmation %></div>
+
+    <div><label>كلمة السر الحالية</label><i>(نحتاج كلمة السر الحالية لإتمام التغيير)</i><br /><br /> 
+    <%= f.password_field :current_password %></div>
+
+    <div>
+      <label>البريد الإلكتروني لالفيسبوك</label><br /> <!-- facebook email ---optional -->
+      <%= f.email_field :facebook_email, options = {:placeholder => "اختياري"}%>
+    </div>
+  <% else %>
+    <%= f.hidden_field :current_password , :value => '' %>
+  <% end %>
+
+  <div>
+    <label>الهاتف أو رقم الجوال</label><br /> <!-- phone number -->
+    <%= f.text_field :phone_number, :required => true %>
+  </div>
+
+  <div>
+    <label>من أي بلد</label><br /> <!-- country -->
+    <!-- "Select Country" -->
+    <%= f.select(:country, options_for_select(countries), options ={:prompt => "اختر البلد", :required => true})%>
+  </div>
+
+
+  <label>تاريخ الميلاد</label> <!-- birth date -->
+  <div>
+ <!-- Day -->
+   <%= f.text_field :day_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اليوم", :required => true}%>
+   <label style = float:right; width:"100";>/  </label><!-- Month: -->
+   <%= f.text_field :month_dob , options = {:size => 1, :style => "float:right;", :placeholder => "الشهر", :required => true} %>
+   <label style = float:right>/</label> <!-- Year: -->
+   <%= f.text_field :year_dob , options = {:size => 1, :placeholder => "السنة", :required => true}%>
+  </div>
+
+  <div>
+    <label>ذكر ام أنثى</label><br /> <!-- gender -->
+    <%= f.select(:gender, options_for_select([ "ذكر", "أنثى" ], "ذكر"))%>
+  </div>
+
+  <div>
+    <label>المهنة</label><br /> <!-- profession---optional -->
+    <%= f.text_field :profession, options = {:placeholder => "اختياري"}%>
+  </div>
+
+  <div>
+    <label>رقم بطاقة الائتمان</label><br /> <!-- credit_card_number -->
+    <%= f.text_field :credit_card_number, :required => true %>
+  </div>
+
+  <div>
+    <label>(CVV) رقم التأكيد</label><br /> <!-- cvv2---Last 3 digits of your account number -->
+    <%= f.text_field :cvv2 ,options = {:size => 1, :required => true}%>
+  </div>
+
+  <div><%= f.submit "تعديل" %></div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>إلغاء الحساب</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+<p><%= button_to "الغي الحساب", registration_path(resource_name), :data => { :confirm => "هل أنت متأكد؟" }, :method => :delete %>.</p>
 
-<%= link_to "Back", :back %>
+<%= link_to "إرجع", :back %>
+<br />
