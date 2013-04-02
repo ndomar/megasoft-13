@@ -3,6 +3,7 @@
 <h2>تسجيل الدخول</h2>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
   <div><label>البريد الإلكتروني</label><br /> <!-- :email -->
   <%= f.text_field :login, :autofocus => true %></div>
 
