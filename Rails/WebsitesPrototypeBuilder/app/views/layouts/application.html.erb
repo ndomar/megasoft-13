@@ -7,31 +7,45 @@
   <%= csrf_meta_tags %>
 </head>
 
-<style>
-</style>
-
 <body>
 <!-- layout stuff for the home page -->
-<div id="designer_nav">
-	<!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
-  <% if designer_signed_in? %>
-    Signed in as <%= current_designer.designer_name %>. Not you?
-    <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
-  <% else %>
-  <div class = "span2">
-    <%= link_to "التسجىل", new_designer_registration_path %> 
-    <label class ="label label-important" >او </label>
-    <%= link_to "الدخول",new_designer_session_path%>
-  <% end %>
-  
-</div>
-</div>
 
-<!-- making a flash for any errors -->
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
- <!-- -------------------- -->
+	<!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
+ 
+
+<!-- container for positioning the banner -->
+  <div id="navigation_container">
+
+  <!-- the ribbon body -->
+  <div class="rectangle">
+    <div class = "span3" align= left>
+     <% if designer_signed_in? %>
+      Signed in as <%= current_designer.designer_name %>. Not you?
+      <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
+      <% else %>
+        <div class = "span2">
+        <%= link_to "التسجىل", new_designer_registration_path %> 
+        <label class ="label label-important" >او </label>
+        <%= link_to "الدخول",new_designer_session_path%>
+      <% end %>
+    </div>
+  </div>
+    <!-- the navigation links -->
+      <ul id="navigation">
+      <li><a href="#">خط عربي<div class="tabBar active" ></div></a></li>
+      <li><a href="#">خط عربي<div class="tabBar" ></div></a></li>
+      <li><a href="#">خط عربي<div class="tabBar"></div></a></li>
+      </ul>
+      <a href="#"><div width="107px" height="51px" class="logo"></div></a>
+    <!-- end navigation links -->
+    </div>
+  <!-- end container -->
+  </div>
+
+  <hr>
+  <footer>
+    <p>&copy;أرابليتي 2013</p>
+  </footer>
  
 <%= yield %>
 
