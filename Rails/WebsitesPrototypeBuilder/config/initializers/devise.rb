@@ -23,7 +23,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [ :email ]
+  config.authentication_keys = [ :login ]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -237,4 +237,15 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
+
+  #Configure rpx to link devise with facebook log in
+  config.rpx_application_name = "websitesprototypebuilder"
+  RPXNow.api_key = "f35920158c476f67064834a23430ac8bd2135a38"
+  
+  # false if you don't want to create users automaticaly. True by default.
+  config.rpx_auto_create_account = true
+  
+  # default [], get some extra profile info from RPXnow, default only a few fields are available in the rpx_user object (https://rpxnow.com/docs#profile_data)
+  config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo]
+  
 end
