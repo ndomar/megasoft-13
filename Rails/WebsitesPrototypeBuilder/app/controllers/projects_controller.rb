@@ -1,16 +1,21 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_designer! 
-  
+#to make sure that the designer is logged in
+before_filter :authenticate_designer! 
   def new()
-    @project = Project.new() #Create a new Project
+    #Create a new project
+    @project = Project.new() 
   end
 
   def create()
-    @project = Project.new(params[:project]) #Create the new project with the info passed by the user
-    if @project.save() #save, which will return either true or false
-      redirect_to projects_path # if it returned true -> go back to the index page
+    #Create a new project with the info passed by the user
+    @project = Project.new(params[:project])
+    #save, which will return either true ro false
+    if @project.save() 
+       #so if it returned true, go to the project design page
+      redirect_to @project
     else
-      render"new" # else if not, returned false ->the project description page will appear again 
+      #else if it returned false, the project description page will appear again
+      render"new" 
     end
   end
 

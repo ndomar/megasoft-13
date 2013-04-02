@@ -1,60 +1,36 @@
-<html lang="en">
-<head>
-  <title>Project</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../../../assets/stlesheets/bootstrap.min.css">
-  <link rel="stylesheet" href="../../../assets/stlesheets/bootstrap-responsive.min.css">
-  <link rel="stylesheet" href="../../../assets/stlesheets/project.css">
-</head>
-  <body>
+<br>
+<%= form_for @project do |f| %>
+<!-- check if any error occured -->
+<% if @project.errors.any? %>
+<ul>
+  <!--if yes loop on the errors and print them on the page-->
+  <% @project.errors.each do |attr,msg| %>
+  <h5> <%= msg %> </h5>
+  <% end %>
+<% end %>
+  <p>
+    <!-- the name label -->
+    <%= f.label :Name, "اسم المشروع" %> 
+    <!-- the text field where the name will be written in -->
+    <%= f.text_field :project_name %> <br/>  
+  </p>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-        
-          <ul class="nav">
-             <li><a href="#">تواصل</a></li>
-             <li class="divider-vertical"></li>
-             <li class="active"><%= link_to "مشروع جديد", new_project_path %> </li>
-             <li class="divider-vertical"></li>
-             <li><%= link_to "الصفحة الرئيسية", projects_path %></li>
-          </ul>
-          <a class="brand" href="#">ميجا سوفت</a>
-        </div>
-      </div>
-    </div>
+  <p>
+     <!-- the type label -->
+    <%= f.label :Type, "النوع" %>
+    <!-- the text field where the type will be selected from -->
+    <%= f.select :project_type, ['تعليمي','ترفيهي','عملي','أخرى'] %> <br/>
+  </p>
 
-    <hr>
-    <hr>
+  <p>
+     <!-- the description label -->
+    <%= f.label :Description, "وصف المشروع" %>
+    <!-- the text area where the description will be written in -->
+    <%= f.text_area :description %> <br/>
+  </p>
 
-    <%= form_for @project do |f| %>
-      <% if @project.errors.any? %> <!-- check if any error in creating te new project occured "no name " or "name is already taken" -->
-        <ul>
-          <% @project.errors.full_messages.each do |message| %> <!-- loop on the error messages -->
-          <li class = l> <%= message %> </li> <!-- the message will appear on the page -->
-          <% end %>
-        </ul>
-      <% end %>
- 
-      <p>
-        <label class = l><%= f.label :Name, "اسم المشروع" %></label> <!-- the name label -->
-        <div class = name><%= f.text_field :name %> <br/> </div> <!-- the text field where the name will be written in -->
-      </p>
+  <p>
+    <%= f.submit "حفظ" %>
+  </p>
 
-      <p>
-        <label class = l><%= f.label :Type, "النوع" %> </label><!-- the type label -->
-        <%= f.text_field :project_type %> <br/><!-- the text field where the type will be written in -->
-      </p>
-
-      <p>
-        <label class = l><%= f.label :Description, "وصف المشروع" %> </label><!-- the description label -->
-        <%= f.text_area :description %> <br/><!-- the text area where the type will be written in -->
-      </p>
-
-      <p>
-        <%= f.submit "حفظ" %>
-      </p>
-
-    <%end%>
-  </body>
-</html>
+<%end%>

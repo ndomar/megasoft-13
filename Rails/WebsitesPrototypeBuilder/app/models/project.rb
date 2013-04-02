@@ -1,9 +1,8 @@
+# encoding: utf-8
 class Project < ActiveRecord::Base
-  belongs_to :designer #The project belongs to one designer
+  belongs_to :designer
+  attr_accessible :description, :project_name, :project_type
 
-  attr_accessible :name, :project_type, :description
-
-  validates :name, :presence => true #The name of the project should be available
-  validates :name, :uniqueness => true #The project name should be unique
-
+  validates :project_name, :presence => {:message => ".برجاء ادخال اسم المشروع"}
+  validates :project_name, :uniqueness => {:message => ".يوجد مشروع بهذا الاسم, برجاء ادخال اسم مشروع آخر"}
 end
