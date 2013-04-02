@@ -1,9 +1,9 @@
 class Project < ActiveRecord::Base
-  belongs_to :designer #The project belongs to one designer
+  belongs_to :designer
 
   attr_accessible :name, :project_type, :description
 
-  validates :name, :presence => true #The project name should not be empty
-  validates :name, :uniqueness => true #The project name should be unique
+  validates :name, :presence => true
+  validates :name, :uniqueness => true
 
 end

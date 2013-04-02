@@ -1,31 +1,34 @@
 <html lang="en">
-  <head>
-    <title>Project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../assets/stlesheets/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../assets/stlesheets/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="../../../assets/stlesheets/project.css">
-  </head>
-  <body>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-            <li><a href="#">تواصل</a></li>
-            <li class="divider-vertical"></li>
-            <li><%= link_to "مشروع جديد", new_project_path %> </li>
-            <li class="divider-vertical"></li>
-            <li class="active"><%= link_to "الصفحة الرئيسية", projects_path %></li>
-          </ul>
-          <a class="brand" href="#">ميجا سوفت</a>
-        </div>
+<head>
+  <title>Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../../assets/stlesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../assets/stlesheets/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="../../../assets/stlesheets/project.css">
+</head>
+<body>
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        
+        <ul class="nav">
+           <li><a href="#">تواصل</a></li>
+           <li class="divider-vertical"></li>
+           <li><%= link_to "مشروع جديد", new_project_path %> </li>
+           <li class="divider-vertical"></li>
+           <li class="active"><%= link_to "الصفحة الرئيسية", projects_path %></li>
+        </ul>
+        <a class="brand" href="#">ميجا سوفت</a>
       </div>
     </div>
-    <hr>
-    <hr>
-    <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
-      <h2><%= p.name %></h2> <!-- show each project name -->
-      <hr/>
-    <%end%>
-  </body>
+  </div>
+<hr>
+<hr>
+<% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
+<h2><%= p.name %></h2> <!-- show each project name -->
+<hr/>
+<%end%>
+
+</body>
 </html>
