@@ -246,6 +246,6 @@ Devise.setup do |config|
   config.rpx_auto_create_account = true
   
   # default [], get some extra profile info from RPXnow, default only a few fields are available in the rpx_user object (https://rpxnow.com/docs#profile_data)
-  config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo]
+  #config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo]
   
 end

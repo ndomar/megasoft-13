@@ -15,11 +15,17 @@
 <div id="designer_nav">
 	<!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
   <% if designer_signed_in? %>
-    Signed in as <%= current_designer.designer_name %>. Not you?
+    Signed in as 
+    <% if current_designer.fullname.eql?nil %>
+      <%= current_designer.email %>
+    <% else %>
+      <%= current_designer.fullname %>
+    <% end %>
+    . Not you?
     <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
   <% else %>
   <div class = "span2">
-    <%= link_to "التسجىل", new_designer_registration_path %> 
+    <%= link_to "التسجىل", new_designer_registration_path %>
     <label class ="label label-important" >او </label>
     <%= link_to "الدخول",new_designer_session_path%>
   <% end %>
