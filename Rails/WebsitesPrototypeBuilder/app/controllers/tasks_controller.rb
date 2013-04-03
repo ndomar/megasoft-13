@@ -1,10 +1,10 @@
 class TasksController < ApplicationController
   ## 
   # passes the list of tasks that belongs to the project to the index view
-  # * *Args* :
-  # - 
+  # * *Args*    :
+  #   - 
   # * *Returns* :
-  # - 
+  #   - 
   #
   def index
     @tasks = Project.find(params[:project_id]).tasks.all
@@ -16,10 +16,10 @@ class TasksController < ApplicationController
   end
   ## 
   # Make a new instance of task and render new view that has the form
-  # * *Args* :
-  # - 
+  # * *Args*    :
+  #   - 
   # * *Returns* :
-  # - 
+  #   - 
   #
   def new
     @task = Task.new
@@ -31,20 +31,20 @@ class TasksController < ApplicationController
   end
   ## 
   # Find the task with the project_id and render edit view that has the form to edit the task
-  # * *Args* :
-  # - 
+  # * *Args*    :
+  #   - 
   # * *Returns* :
-  # - 
+  #   - 
   #
   def edit
     @task = Project.find(params[:project_id]).tasks.find(params[:id])
   end
   ## 
   # Use the :task parameter to create an instance of tasks related to current project
-  # * *Args* :
-  # - 
+  # * *Args*    :
+  #   - 
   # * *Returns* :
-  # - 
+  #   - 
   #
   def create
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
@@ -61,10 +61,10 @@ class TasksController < ApplicationController
   end
   ## 
   # get the new parameters and update the database
-  # * *Args* :
-  # - 
+  # * *Args*    :
+  #   - 
   # * *Returns* :
-  # - 
+  #   - 
   #
   def update
     @task = Task.find(params[:id])
@@ -81,10 +81,10 @@ class TasksController < ApplicationController
   end
   ## 
   # destroy the task with :id
-  # * *Args* :
-  # - 
+  # * *Args*    :
+  #   - 
   # * *Returns* :
-  # - 
+  #   - 
   #
   def destroy
     @task = Task.find(params[:id])

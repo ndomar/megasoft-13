@@ -5,12 +5,9 @@ class Task < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  ##
-  # Task Model
-  # * *Attribute* :
-  # - +name+ -> name of the task (string)
-  # - +description+ -> description of the task (text)
-  #* *Relations* :
-  # - belongs_to:project
-  #
+  #* *Attributes*    :
+  #   -+name+ -> name of the task (string)
+  #   -+description+ -> description of task (text)
+  #* *Relations*    :
+  #   -belongs to the Project model
 end
