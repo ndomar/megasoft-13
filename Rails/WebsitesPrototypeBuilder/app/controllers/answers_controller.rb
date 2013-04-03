@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
     @answer.destroy
     respond_to do |format|
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Answer was successfully deleted.' }
+      # Use AJAX for deletion
       format.js   { render :layout => false }
     end
   end

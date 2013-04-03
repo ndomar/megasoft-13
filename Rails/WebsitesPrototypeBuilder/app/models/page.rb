@@ -1,9 +1,11 @@
 class Page < ActiveRecord::Base
-  attr_accessible :html_markup
-  # set it to contain many comments
-  has_many :comments
-  # set it to contain many questions and answers
-  has_many :questions
-  has_many :answers
+
+  attr_accessible :html ,:page_name
+  # set it to contain many comments, when deleted delete all related comments
+  has_many :comments,:dependent => :destroy
+  # set it to contain many questions, when deleted delete all related questions
+  has_many :questions,:dependent => :destroy
+  # set it to contain many answer, when deleted delete all related answers
+  has_many :answers,:dependent => :destroy
 
 end

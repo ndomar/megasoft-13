@@ -1,28 +1,40 @@
+
+<%= stylesheet_link_tag "reviewing"%>
+<%= javascript_include_tag "reviewing"%>
+
 <div id="wrapper">
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
-	<div id="html_content"><%= @page.html_markup%></div>
+	<div id="html_content"><%= @page.html%></div>
 	<!-- The SideBar -->
 	<div id="sidebar">
-		<h4>الاسئلة</h4>
+		<h4>التعليقلت</h4>
+		<!-- Fetching comments from the database,just for testing -->
 		<div id="comments">
 			<% @page.comments.each do |comment| %>
 			<div>
+				<!-- Getting the comment -->
 				<p><%= comment.body %></p>
+				<!-- The deleting method uses AJAX destroy.js.erb -->
 				<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
 				<hr>
 			</div>
 			<%end%>
 		</div>
 		<hr>
+		<!-- Fetching questions from the database,just for testing -->
 		<div id="questions">
 			<% @page.questions.each do |question| %>
 			<div>
+				<!-- Getting the question -->
 				<p><%= question.body %></p>
+				<!-- The deleting method uses AJAX destroy.js.erb -->
 				<p><%= link_to "امسح", [@page,question], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_question" %>
 				<hr>
 			</div>
 			<%end%>
 		</div>
+
+		<!-- The + buttom on clicking draw the circle -->
 		<div id="add_comment" onclick="draw_circle();">+</div>
 		<!-- Notice to see the errors -->
 		<p id="notice"><%= notice %></p>
