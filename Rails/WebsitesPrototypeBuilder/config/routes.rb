@@ -1,5 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
  get 'cardsorts/new'
+ get 'cardsorts/edit'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
