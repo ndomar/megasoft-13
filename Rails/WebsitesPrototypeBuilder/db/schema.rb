@@ -21,9 +21,6 @@ ActiveRecord::Schema.define(:version => 20130402085948) do
     t.datetime "updated_at",  :null => false
   end
 
-  add_index "answers", ["page_id"], :name => "index_answers_on_page_id"
-  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
-
   create_table "comments", :force => true do |t|
     t.integer  "page_id"
     t.integer  "reviewer"

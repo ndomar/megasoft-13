@@ -15,55 +15,55 @@
 		</div>
 		<hr>
 		<div id="questions">
-			<h5>الاسءلة</h5>
+			<h4>الاسءلة</h4>
 			<% @page.questions.each do |question| %>
 			<div>
 				<p><%= question.body %></p>
 				<p><%= link_to_function "اجب",'answer_question();'%> </p>
 				<h5>:اجابتك </h5>
 					<% question.answers.each do |ans| %>
-			<div>
+					<div>
 
-				<p><%= ans.answer %></p>
-				<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_answer" %>
+						<p><%= ans.answer %></p>
+						<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_answer" %>
+						<hr>
+					</div>			
+				<%end%>
 				<hr>
-			</div>			<%end%>
-				<hr>
-				<div>
-											<%= form_for [@page,question,question.answers.build] do |f| %>
-											<p><%= f.text_area :answer,:placeholder => "Answer"%></p>
-											<%= f.submit "answer+"%>
-											<%end%>
+					<div>
+							<%= form_for [@page,question,question.answers.build] do |f| %>
+							<p><%= f.text_area :answer,:placeholder => "Answer"%></p>
+							<%= f.submit "answer+"%>
+							<%end%>
 							<hr>
-						</div>
-						</div>
+					</div>
+				</div>
 			<%end%>
-		</div>
-		<div id="add_comment" onclick="draw_circle();">+</div>
-		<!-- Notice to see the errors -->
-		<p id="notice"><%= notice %></p>
-	</div>	
+			</div>
+				<div id="add_comment" onclick="draw_circle();">+</div>
+				<!-- Notice to see the errors -->
+					<p id="notice"><%= notice %></p>
+				</div>	
 
 	<!-- Main Content -->
-	<div id="content" onmousemove="selectItem();"> 
+					<div id="content" onmousemove="selectItem();"> 
 		<!-- Draw the circle initially hidden -->
-		<div id="drag_resize"><img src="/assets/circle.png"/>
+						<div id="drag_resize"><img src="/assets/circle.png"/>
 			<!-- Circle buttons to delete or to add a comment -->
-			<div id="choose_area" class="circle_settings"  onclick="create_note();">+</div>
-			<div id="delete_circle" class="circle_settings"  onclick="delete_circle();">-</div>
-		</div>
+						<div id="choose_area" class="circle_settings"  onclick="create_note();">+</div>
+						<div id="delete_circle" class="circle_settings"  onclick="delete_circle();">-</div>
+					</div>
 		<!-- The iframe to contain the page to be reviewed-->
-		<iframe id="myiframe" scrolling="auto" src="" width="100%" height="1300px"></iframe>
-		<!-- Draw NotePaper -->
-		<div class="note hide" id = "cnote">	
-			<%= form_for [@page,@page.comments.build] do |f| %>
+			<iframe id="myiframe" scrolling="auto" src="" width="100%" height="1300px"></iframe>
+			<!-- Draw NotePaper -->
+			<div class="note hide" id = "cnote">	
+				<%= form_for [@page,@page.comments.build] do |f| %>
 				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
 				<p class="hide"><%= f.text_area :assigned_part,:id => "assignedpart"%></p>
 				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all();"%>
-			<% end %>
-			<!-- Button to delete the comment -->
-			<div class="circle_button" id="delete_comment" onclick="delete_all();">-</div>
+				<% end %>
+				<!-- Button to delete the comment -->
+				<div class="circle_button" id="delete_comment" onclick="delete_all();">-</div>
+			</div>
 		</div>
-	</div>
-
 </div>

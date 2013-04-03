@@ -8,7 +8,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   resources :pages do
     resources :comments
-     resources :question do
+     resources :questions do
       resources :answers
     end
   end
