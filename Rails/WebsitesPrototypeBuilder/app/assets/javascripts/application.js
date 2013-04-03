@@ -45,6 +45,7 @@ function delete_all() {
 	$('.note').css({"display":"none"});
 }
 
+$('#addCommentForm').slideDown();
 // It takes the id and the object from the Iframe and set the assignedpart value to it.
 function getSelectedItem(elementId,elementObj){
 	var id=elementId;

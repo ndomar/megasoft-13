@@ -5,41 +5,43 @@
 	<div id="sidebar">
 		<h4>التعليقلت</h4>
 		<div id="comments">
+			<!-- show each comment -->
 			<% @page.comments.each do |comment| %>
 			<div>
 				<p><%= comment.body %></p>
-				<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
+				<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_comment" %>
 				<hr>
 			</div>
 			<%end%>
 		</div>
 		<hr>
+		<!-- show each question with a form to answer the question-->
 		<div id="questions">
 			<h4>الاسءلة</h4>
 			<% @page.questions.each do |question| %>
 			<div>
 				<p><%= question.body %></p>
-				<p><%= link_to_function "اجب",'answer_question();'%> </p>
+		<!-- 		<p><%= link_to_function "اجب",'answer_question();'%> </p> -->
 				<h5>:اجابتك </h5>
 					<% question.answers.each do |ans| %>
 					<div>
-
 						<p><%= ans.answer %></p>
-						<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_answer" %>
+						<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
 						<hr>
 					</div>			
 				<%end%>
 				<hr>
 					<div>
+						<!-- show each answer for every question -->
 							<%= form_for [@page,question,question.answers.build] do |f| %>
-							<p><%= f.text_area :answer,:placeholder => "Answer"%></p>
-							<%= f.submit "answer+"%>
+							<p><%= f.text_area :answer,:placeholder => "اكتب الاجابة هنا",:id => "message_area", :presence=> true%></p>
+							<%= f.submit "تسجىل", :class => "delete_comment"%>
 							<%end%>
 							<hr>
 					</div>
-				</div>
-			<%end%>
 			</div>
+			<%end%>
+		</div>
 				<div id="add_comment" onclick="draw_circle();">+</div>
 				<!-- Notice to see the errors -->
 					<p id="notice"><%= notice %></p>
