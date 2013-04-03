@@ -5,11 +5,16 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'bcrypt-ruby'
 gem 'sqlite3'
+gem 'devise'
 
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
+#which enables connecting facebook login with devise
+gem 'devise_rpx_connectable'
+#gem 'devise_rpx_connectable', :git => 'https://github.com/ahmadsoliman/devise_rpx_connectable.git'
 
 # Gems used only for assets and not required
 # in production environments by default.
