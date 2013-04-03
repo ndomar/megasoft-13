@@ -1,3 +1,8 @@
+  #* *Attributes*    :
+  #   -+name+ -> name of the task (string)
+  #   -+description+ -> description of task (text)
+  #* *Relations*    :
+  #   -belongs to the Project model
 class Task < ActiveRecord::Base
   attr_accessible :description, :name
 
@@ -5,9 +10,4 @@ class Task < ActiveRecord::Base
 
   validates :name, :presence => true
 
-  #* *Attributes*    :
-  #   -+name+ -> name of the task (string)
-  #   -+description+ -> description of task (text)
-  #* *Relations*    :
-  #   -belongs to the Project model
 end
