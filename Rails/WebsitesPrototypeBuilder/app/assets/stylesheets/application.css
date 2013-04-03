@@ -10,7 +10,6 @@
  *
  *= require jquery.ui.all
  *= require_self
- *= require_tree .
  */
  
 @font-face { font-family: arabi-bold; src: url('arabi-bold.otf');format("opentype"); }

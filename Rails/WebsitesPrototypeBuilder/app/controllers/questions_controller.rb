@@ -1,0 +1,31 @@
+class QuestionsController < ApplicationController
+
+  # called to create a new item in the database
+  def create
+    # finds the selected page
+  	@page = Page.find(params[:page_id])
+    @question = @page.questions.build(params[:question])
+    respond_to do |format|
+    if @question.save
+      # if Succedeed notify the user, and redirect to the reviewing page
+      format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully created.' }
+  	else
+      # if Succedeed notify the user, and redirect to the reviewing page
+      format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question could not be saved. Please fill in all fields' }
+      end
+    end
+  end
+
+# called to delete an item from the database
+def destroy
+    # find the item
+    @question = Question.find(params[:id])
+    @page = Page.find(params[:page_id])
+    @question.destroy
+    respond_to do |format|
+      format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully deleted.' }
+      # Use AJAX for deletion
+      format.js   { render :layout => false }
+    end
+  end
+end

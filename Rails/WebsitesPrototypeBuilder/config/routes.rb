@@ -1,4 +1,15 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  get "comments/create"
+  get "comments/destroy"
+  get "questions/create"
+  get "questions/destroy"
+  get "pages/reviewer"
+  get "pages/designer"
+
+  resources :pages do
+    resources :comments
+    resources :questions
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

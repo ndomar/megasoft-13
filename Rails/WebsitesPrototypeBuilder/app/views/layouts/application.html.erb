@@ -2,7 +2,10 @@
 <html>
 <head>
   <title>Arability</title>
+  <!-- If you want to add your own style or js just make callit by useing (<%= stylesheet_link_tag 'mystlye'%>)in your view (don't callit here)-->
+  <!-- It will use the application.css the Global css file for the site containig the (navg. bar and fonts).-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <!-- It will use the application.js the Global js file for the site-->
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>

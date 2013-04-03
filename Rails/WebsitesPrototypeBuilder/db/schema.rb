@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(:version => 20130401174354) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "reviewer"
+    t.text     "assigned_part"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "designers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -82,6 +91,14 @@ ActiveRecord::Schema.define(:version => 20130401174354) do
     t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "page_id"
+    t.text     "assigned_part"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "reviewer_infos", :force => true do |t|
