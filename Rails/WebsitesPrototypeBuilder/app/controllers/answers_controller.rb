@@ -2,6 +2,12 @@ class AnswersController < ApplicationController
   # called to create a new answer in the database
   def create
     # finds the selected page and question and fetches the answer
+# * *Args* :
+# - +@page+ -> the current page
+# - +@question+ -> question the reviewer is answering
+# - +@answer+ -> answer the reviewer wrote
+# * *Returns* :
+# - page refreshed and answer added to db
   	@page = Page.find(params[:page_id])
     @question = @page.questions.find(params[:question_id])
     @answer =@question.answers.build(params[:answer])
@@ -15,6 +21,12 @@ class AnswersController < ApplicationController
   end
 
   # called to delete an answer from the database
+  # * *Args* :
+# - +@page+ -> the current page
+# - +@question+ -> question the reviewer wants to delete its answer
+# - +@answer+ -> answer ID
+# * *Returns* :
+# - AJAX used to delete answer (slides up and answer removed)
   def destroy
     # find the answer id and the related question id and page id
     @answer = Answer.find(params[:id])
