@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-
   # called to create a new question in the database
   # finds the selected page
   # * *Args* :
