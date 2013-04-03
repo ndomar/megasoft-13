@@ -1,0 +1,61 @@
+<!doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Resizable - Constrain resize area</title>
+      <link href="jquery-ui/css/ui-lightness/jquery-ui-1.9.2.custom.css" rel="stylesheet">
+    <script src="jquery-ui/js/jquery-1.8.3.js"></script>
+    <script src="jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
+
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <style>
+  #container { width: 300px; height: 300px;background-color: blue; }
+  #container h3 { text-align: center; margin: 0; margin-bottom: 10px; }
+  #resizable {  background-color: red;}
+ #container { padding: 0.5em; }
+ #B{ width: 100%; display: block; }
+  </style>
+  <script>
+  $(function() {
+    $( "#resizable" ).resizable({
+      alsoResize: "#B",
+      cancel: false,
+      containment: "#container",
+      start: function(event, ui){
+        ui.element.children("#B").css({
+          "width": "100%" ,
+          "height": "100%"
+        });
+      },
+      resize: function(event, ui){
+        ui.element.children("#B").css({
+          "width": "100%" ,
+          "height": "100%"
+        });
+      },
+      stop: function(event, ui){
+        ui.element.children("#B").css({
+          "width": "100%" ,
+          "height": "100%"
+        });
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+
+
+<div id="container" >
+  <h3 >Containment</h3>
+  <div id="resizable" >
+    <!-- <button>Button</button> -->
+    <!-- <h3>Title</h3> -->
+    <button id = "B">Button</button>
+  </div>
+</div>
+ 
+ 
+</body>
+</html>
