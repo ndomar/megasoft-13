@@ -56,12 +56,13 @@
 
   <label>تاريخ الميلاد</label> <!-- birth date -->
   <div>
- <!-- Day -->
-   <%= f.text_field :day_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اليوم", :required => true}%>
-   <label style = float:right; width:"100";>/  </label><!-- Month: -->
-   <%= f.text_field :month_dob , options = {:size => 1, :style => "float:right;", :placeholder => "الشهر", :required => true} %>
-   <label style = float:right>/</label> <!-- Year: -->
-   <%= f.text_field :year_dob , options = {:size => 1, :placeholder => "السنة", :required => true}%>
+    <%= f.text_field :day_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اليوم", :required => true}%><!-- Day -->
+
+    <label style = float:right; width:"100";>/  </label><!-- Month: -->
+    <%= f.text_field :month_dob , options = {:size => 1, :style => "float:right;", :placeholder => "الشهر", :required => true} %>
+
+    <label style = float:right>/</label> <!-- Year: -->
+    <%= f.text_field :year_dob , options = {:size => 1, :placeholder => "السنة", :required => true}%>
   </div>
 
   <div>
