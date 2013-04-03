@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -101,6 +100,19 @@ ActiveRecord::Schema.define(:version => 20130401174354) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "task_results", :force => true do |t|
+    t.time     "time"
+    t.float    "success"
+    t.integer  "clicks"
+    t.integer  "reviewer_id"
+    t.integer  "task_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "task_results", ["reviewer_id"], :name => "index_task_results_on_reviewer_id"
+  add_index "task_results", ["task_id"], :name => "index_task_results_on_task_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
