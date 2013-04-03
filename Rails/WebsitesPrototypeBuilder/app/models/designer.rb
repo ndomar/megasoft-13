@@ -1,3 +1,23 @@
+##
+# The designer model used as our main user type management
+# * *Attribute* :
+# - +email+ -> string
+# - +password+ -> encrypted string
+# - +fullname+ -> string
+# - +facebook_email+ -> string
+# - +phone_number+ -> string
+# - +country+ -> string
+# - +day_dob+ -> integer day of date of birth
+# - +month_dob+ -> integer month of date of birth
+# - +year_dob+ -> integer year of date of birth
+# - +credit_card_number+ -> integer
+# - +cvv2+ -> string
+# - +profession+ -> string
+# - +gender+ -> string
+# - +rpx_identifier+ -> string used to log in with facebook
+#* *Relations* :
+# 
+#
 class Designer < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
