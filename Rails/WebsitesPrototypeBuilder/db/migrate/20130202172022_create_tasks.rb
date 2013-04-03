@@ -3,12 +3,9 @@ class CreateTasks < ActiveRecord::Migration
     create_table :tasks do |t|
       t.string :name
       t.text :description
-      t.references :project
-      t.references :page
+      t.integer :project_id
 
       t.timestamps
     end
-    add_index :tasks, :project_id
-    add_index :tasks, :page_id
   end
 end
