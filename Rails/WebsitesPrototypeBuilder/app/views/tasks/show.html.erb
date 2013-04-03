@@ -12,7 +12,7 @@
       <th></th>
     </tr>
     <% @task.task_results.each do |result| %>
-      <%if @task.task_results.reviewer %>
+      <%if result.reviewer %>
 	<tr>
 	  <td><%= result.reviewer.email %></td>
 	  <td><%= result.time %></td>
