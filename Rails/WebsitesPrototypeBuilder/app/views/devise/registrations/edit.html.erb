@@ -9,18 +9,20 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  <!--  if email is already set, you can not change it -->
   <% if resource.email == "" %>
     <div>
-      <label>البريد الإلكتروني</label><br /><!--  username -->
+      <label>البريد الإلكتروني</label><br /><!--  email -->
       <%= f.text_field :email, :required => true,  :autofocus => true %>
     </div>
   <% end %>
 
   <div>
-    <label>اسم المستخدم</label><br /><!--  username -->
+    <label>اسم المستخدم</label><br /><!--  fullname -->
     <%= f.text_field :fullname, :required => true%>
   </div>
 
+  <!--  if signed in with facebook you should not change your password -->
   <% if resource.email != "" %>
     <div><label>كلمة السر</label><i>(اتركها فارغة إذا لا تريد تغييرها)</i><br /><br /> 
     <%= f.password_field :password, :autocomplete => "off" %></div>
@@ -36,6 +38,7 @@
       <%= f.email_field :facebook_email, options = {:placeholder => "اختياري"}%>
     </div>
   <% else %>
+    <!--  if signed in with facebook password is set for you -->
     <%= f.hidden_field :current_password , :value => '' %>
   <% end %>
 
