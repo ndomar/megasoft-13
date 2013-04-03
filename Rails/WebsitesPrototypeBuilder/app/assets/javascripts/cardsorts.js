@@ -21,3 +21,14 @@ function fillTable(tableID) {
 		nRows--;
 	}
 }
+
+function setTableEffect(){
+	$("td").click(function () {
+		$("input").hide();
+		$("label").show();
+		var label = $(this).children("label").hide();
+		var input = $(this).children("input").show();
+		$(input).focus();
+		$(input).val($(label).text());
+	});
+}

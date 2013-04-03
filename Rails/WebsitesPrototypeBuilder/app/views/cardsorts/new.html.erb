@@ -17,17 +17,23 @@
 			<table id="cards-table" class="table table-bordered table-hover">
 				<thead>
 					<tr class="well">
-						<th>Label</th>
+						<th Width='220px'>Label</th>
 						<th>Description(obtional)</th>
 					</tr>
 				</thead>
-				<%= @cards.each do |card| %>
+				<% @cards.each do |card| %>
 					<tr>
 						<td>
-							<%= card.title %>
+							<label><%= card.title %></label>
+							<input type='text' class='cardsort-input'
+								Style='display:none;' placeholder='Label' />
 						</td>
 						<td>
-							<%= card.description %>
+							<label>
+								<%= card.description %>
+							</label>
+							<input type='text' class='cardsort-input' 
+								Style='display:none;' placeholder='Description' />
 						</td>
 					</tr>
 				<% end %>
@@ -38,4 +44,5 @@
 
 <script>
  	fillTable("cards-table");
+ 	$(document).ready(setTableEffect);
 </script>
