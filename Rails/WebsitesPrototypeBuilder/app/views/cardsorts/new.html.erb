@@ -1,4 +1,31 @@
-<h1>Cardsorts#create_cardsort</h1>
-<p>Find me in app/views/cardsorts/create_cardsort.html.erb</p>
+<div id="wrapper">
+	<div id="sidebar">
+	</div>
+	<div id="content">
+		<ul class="nav nav-tabs">
+			<li class='active'>
+				<a href="#">Home</a>
+			</li>
+			<li>
+				<a href="#">Home</a>
+			</li>
+			<li>
+				<a href="#">Home</a>
+			</li>
+		</ul>
+		<div class="scrollable">
+			<table id="cards-table" class="table table-bordered table-hover">
+				<thead>
+					<tr class="well">
+						<th>Label</th>
+						<th>Description(obtional)</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
 
-<%= @cardsort.open %>
+<script>
+ 	fillTable("cards-table");
+</script>

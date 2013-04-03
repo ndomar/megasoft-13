@@ -35,3 +35,9 @@
 	border-width: 1px;
 	border-color: white;
 }
+
+.scrollable{
+	display:block;
+	overflow-y:scroll;
+	height:530px;
+}
