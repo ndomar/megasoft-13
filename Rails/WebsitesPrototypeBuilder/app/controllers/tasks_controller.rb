@@ -20,10 +20,10 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   ##
   #show a specific task by searchinng for its id
-  #* *Args*
-  #-+Task+->: an instance of the class task
-  #* *Returns*:
-  #-the details of this task and renders itas an html
+  #* *Args*    :
+  #   -+Task+->: an instance of the class task
+  #* *Returns*    :
+  #   -the details of this task and renders itas an html
   #
   
   
