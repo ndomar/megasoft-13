@@ -1,6 +1,9 @@
+<%= stylesheet_link_tag "reviewing"%>
+<%= javascript_include_tag "reviewing"%>
+
 <div id="wrapper">
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
-	<div id="html_content"><%= @page.html_markup%></div>
+	<div id="html_content"><%= @page.html%></div>
 	<!-- The SideBar -->
 	<div id="sidebar">
 		<h4>التعليقلت</h4>
@@ -24,7 +27,7 @@
 				<!-- Getting the question -->
 				<p><%= question.body %></p>
 				<!-- The deleting method uses AJAX destroy.js.erb -->
-				<p><%= link_to "امسح", [@page,question], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
+				<p><%= link_to "امسح", [@page,question], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_question" %>
 				<hr>
 			</div>
 			<%end%>
