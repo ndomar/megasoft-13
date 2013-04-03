@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Review</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+	<body>
+	<!-- container for positioning the banner -->
+	<div id="navigation_container">
+	<!-- the ribbon body -->
+		<div class="rectangle">
+		<!-- the navigation links -->
+			<ul id="navigation">
+			<li><a href="#">خط عربي<div class="tabBar active" ></div></a></li>
+			<li><a href="#">خط عربي<div class="tabBar" ></div></a></li>
+			<li><a href="#">خط عربي<div class="tabBar"></div></a></li>
+			</ul>
+		<!--	<div onclick="$('#sidebar').toggle();" class="sl" style="display:block"></div> used to hide and show the comments bar -->
+                        <div onClick="slideit();" class="sl" ></div>
+			<a href="#"><div width="107px" height="51px" class="logo"></div></a>
+		<!-- end navigation links -->
+		</div>
+	<!-- end container -->
+	</div>
+
+	<%= yield %>
+
+	<hr>
+	<footer>
+	 	<p>&copy;أرابليتي 2013</p>
+	</footer>
+
+</body>
+</html>
