@@ -4,5 +4,4 @@ class Page < ActiveRecord::Base
   has_many :comments,:dependent => :destroy
   # set it to contain many questions, when deleted delete all related questions
   has_many :questions,:dependent => :destroy
-
 end

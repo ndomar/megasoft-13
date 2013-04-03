@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
   end
 
 # called to delete an item from the database
-def destroy
+  def destroy
     # find the item
     @question = Question.find(params[:id])
     @page = Page.find(params[:page_id])

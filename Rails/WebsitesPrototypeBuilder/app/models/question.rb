@@ -6,5 +6,4 @@ class Question < ActiveRecord::Base
   validates :body, :presence => true
   #validates that the assigned part isn't empty
   validates :assigned_part, :presence => true
-  
 end
