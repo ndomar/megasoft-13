@@ -4,13 +4,13 @@
 	<div id="content">
 		<ul class="nav nav-tabs">
 			<li class='active'>
-				<a href="#">Home</a>
+				<a href="#">Cards</a>
 			</li>
 			<li>
-				<a href="#">Home</a>
+				<a href="#">Groups</a>
 			</li>
 			<li>
-				<a href="#">Home</a>
+				<a href="#">Settings</a>
 			</li>
 		</ul>
 		<div class="scrollable">
@@ -21,6 +21,16 @@
 						<th>Description(obtional)</th>
 					</tr>
 				</thead>
+				<%= @cards.each do |card| %>
+					<tr>
+						<td>
+							<%= card.title %>
+						</td>
+						<td>
+							<%= card.descirption %>
+						</td>
+					</tr>
+				<% end %>
 			</table>
 		</div>
 	</div>

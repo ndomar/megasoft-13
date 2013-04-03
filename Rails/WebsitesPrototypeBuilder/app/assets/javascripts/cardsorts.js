@@ -9,10 +9,10 @@ function hidePopup() {
 function fillTable(tableID) {
 	code = "<tr>"
 		+ "<td>"
-		+ "<input type='text' Width='100%' placeholder='Label' />"
+		+ "<input type='text' class='cardsort-input' Style='display:none;' placeholder='Label' />"
 		+ "</td>"
 		+ "<td>"
-		+ "<input type='text' Width='100%' placeholder='Description' />"
+		+ "<input type='text' class='cardsort-input' Style='display:none;' placeholder='Description' />"
 		+ "</td>"
 		+ "</tr>";
 	nRows = 15;
