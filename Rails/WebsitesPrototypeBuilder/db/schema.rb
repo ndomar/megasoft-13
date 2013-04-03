@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401174354) do
+ActiveRecord::Schema.define(:version => 20130402085948) do
+
+  create_table "answers", :force => true do |t|
+    t.string   "answer"
+    t.integer  "question_id"
+    t.integer  "page_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "cards", :force => true do |t|
     t.string   "title"
@@ -101,15 +109,6 @@ ActiveRecord::Schema.define(:version => 20130401174354) do
     t.datetime "updated_at",    :null => false
   end
 
-
-  create_table "answers", :force => true do |t|
-    t.string   "answer"
-    t.integer  "question_id"
-    t.integer  "page_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
   create_table "reviewer_infos", :force => true do |t|
     t.string   "name"
     t.integer  "age"
@@ -137,4 +136,3 @@ ActiveRecord::Schema.define(:version => 20130401174354) do
   end
 
 end
-
