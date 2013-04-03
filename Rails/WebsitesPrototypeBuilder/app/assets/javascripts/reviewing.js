@@ -3,7 +3,7 @@
 //Using jquery-ui to drag and resize the circle
 function draw_circle() {
 	$('#drag_resize').css({"display":"block" ,'top' : 0+'px', 'left' : 0+'px'});	
-	$('#drag_resize').draggable( "enable");  
+	$('#drag_resize').draggable("enable");  
 	$('#choose_area').css({"display":"table-cell"});
 	$('#delete_circle').css({"display":"table-cell"});
 }

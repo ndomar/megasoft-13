@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
   #
   def create
     # finds the selected page
+
   	@page = Page.find(params[:page_id])
     @question = @page.questions.build(params[:question])
     respond_to do |format|

@@ -22,11 +22,27 @@
 		<hr>
 		<!-- Fetching questions from the database,just for testing -->
 		<div id="questions">
+			<h4>الاسءلة</h4>
 			<% @page.questions.each do |question| %>
 			<div>
-				<!-- Getting the question -->
 				<p><%= question.body %></p>
+				<h5>:اجابتك </h5>
+					<% question.answers.each do |ans| %>
+					<div>
+						<p><%= ans.answer %></p>
+						<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
+						<hr>
+					</div>			
+				<%end%>
 				<hr>
+					<div>
+						<!-- show each answer for every question -->
+							<%= form_for [@page,question,question.answers.build] do |f| %>
+							<p><%= f.text_area :answer,:placeholder => "اكتب الاجابة هنا",:id => "message_area", :presence=> true%></p>
+							<%= f.submit "تسجىل", :class => "delete_comment"%>
+							<%end%>
+							<hr>
+					</div>
 			</div>
 			<%end%>
 		</div>
@@ -57,5 +73,4 @@
 			<div class="circle_button" id="delete_comment" onclick="delete_all();">-</div>
 		</div>
 	</div>
-
 </div>
