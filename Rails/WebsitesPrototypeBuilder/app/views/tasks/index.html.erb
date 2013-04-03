@@ -8,14 +8,14 @@
     <th></th>
   </tr>
 
-<% @tasks.each do |task| %>
-  <tr>
-    <td><%= task.name %></td>
-    <td><%= link_to 'النتائج', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= link_to 'النتائج', task %></td>
+      <td><%= link_to 'Edit', edit_task_path(task) %></td>
+      <td><%= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />
