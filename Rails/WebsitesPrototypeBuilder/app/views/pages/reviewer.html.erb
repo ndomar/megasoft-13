@@ -3,20 +3,21 @@
 
 <div id="wrapper">
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
-	<div id="html_content"><%= @page.html%></div>
+	<div id="html_content"><%= @page.html%>
+	</div>
 	<!-- The SideBar -->
 	<div id="sidebar">
 		<h4>التعليقلت</h4>
 		<!-- Fetching comments from the database,just for testing -->
 		<div id="comments">
 			<% @page.comments.each do |comment| %>
-			<div>
-				<!-- Getting the comment -->
-				<p><%= comment.body %></p>
-				<!-- The deleting method uses AJAX destroy.js.erb -->
-				<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
-				<hr>
-			</div>
+				<div>
+					<!-- Getting the comment -->
+					<p><%= comment.body %></p>
+					<!-- The deleting method uses AJAX destroy.js.erb -->
+					<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
+					<hr>
+				</div>
 			<%end%>
 		</div>
 		<hr>
@@ -24,32 +25,32 @@
 		<div id="questions">
 			<h4>الاسءلة</h4>
 			<% @page.questions.each do |question| %>
-			<div>
-				<p><%= question.body %></p>
-				<h5>:اجابتك </h5>
+				<div>
+					<p><%= question.body %></p>
+					<h5>:اجابتك </h5>
 					<% question.answers.each do |ans| %>
-					<div>
-						<p><%= ans.answer %></p>
-						<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
-						<hr>
-					</div>			
-				<%end%>
-				<hr>
+						<div>
+							<p><%= ans.answer %></p>
+								<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
+								<hr>
+						</div>			
+					<%end%>
+					<hr>
 					<div>
 						<!-- show each answer for every question -->
-							<%= form_for [@page,question,question.answers.build] do |f| %>
+						<%= form_for [@page,question,question.answers.build] do |f| %>
 							<p><%= f.text_area :answer,:placeholder => "اكتب الاجابة هنا",:id => "message_area", :presence=> true%></p>
 							<%= f.submit "تسجىل", :class => "delete_comment"%>
-							<%end%>
-							<hr>
+						<%end%>
+						<hr>
 					</div>
-			</div>
+				</div>
 			<%end%>
 		</div>
-		<!-- The + buttom on clicking draw the circle -->
-		<div id="add_comment" onclick="draw_circle();">+</div>
-		<!-- Notice to see the errors -->
-		<p id="notice"><%= notice %></p>
+			<!-- The + buttom on clicking draw the circle -->
+			<div id="add_comment" onclick="draw_circle();">+</div>
+			<!-- Notice to see the errors -->
+			<p id="notice"><%= notice %></p>
 	</div>	
 
 	<!-- Main Content -->
