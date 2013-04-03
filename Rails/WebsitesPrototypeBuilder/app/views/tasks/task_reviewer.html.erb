@@ -25,26 +25,26 @@ border:none;
 </style>
 -->
 
-
+<!--
 <style>
 input:active, input:focus ,input:hover{
     box-shadow:0px 0px 10px 2px orange;
     border:0;
 }
 </style>
+-->
 
 
 <script>
 function highlight(id)
 {
-var element= document.getElementById(id) ;
+  //alert(id);
+var element= document.getElementById(id);
 element.style.border='none';
 element.style.boxShadow="0px 0px 6px 2px orange";
-//var txtbox= document.getElementById('txt');
-//txtbox.style.border='none';
-//txtbox.style.boxShadow="0px 0px 6px 2px orange";
 }
-//document.getElementById('bttn').onclick='highlight()';
+  
+//document.getElementById('bttn').onclick='highlight(el_id)';
 //alert("Would you please enter some text?"); 
 </script>
 
@@ -61,9 +61,20 @@ function notEmpty(){
 </head>
 <body>
 
+<div id="content">
+  <%= @step.component_id%>
 <input id="txt" type="text" onclick='highlight(id)' ></input>
-<input type ="submit"  value= "test button" class="btn" id='bttn' onclick='highlight(id)'/>
 
+<input type = "submit" value ="Component" class="btn" id='cmp' onclick="highlight('bttn')"/>
+
+<input type ="button"  value= "next" class="btn" id='bttn' onclick="highlight('<%=@step.component_id %>')"/>
+
+
+</div>
+<script type="text/javascript">
+var el_id= "<%= @step.component_id %>";
+ // $("#bttn").click(highlight(el_id));
+</script>
 </body>
 </html>
 
