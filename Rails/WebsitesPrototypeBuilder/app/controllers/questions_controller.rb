@@ -1,6 +1,13 @@
 class QuestionsController < ApplicationController
 
-  # called to create a new item in the database
+  # called to create a new question in the database
+  # finds the selected page
+  # * *Args* :
+  # - +@page+ -> the current page
+  # - +@question+ -> the question written in the notepaper
+  # * *Returns* :
+  # - page refreshed and question added to db
+  #
   def create
     # finds the selected page
   	@page = Page.find(params[:page_id])
@@ -16,8 +23,14 @@ class QuestionsController < ApplicationController
     end
   end
 
-# called to delete an item from the database
-def destroy
+  # called to delete a question from the database
+  # * *Args* :
+  # - +@page+ -> the current page
+  # - +@question+ -> the question selected to be deleted
+  # * *Returns* :
+  # - AJAX used to delete answer (slides up and the question is removed from the db)
+  #
+  def destroy
     # find the item
     @question = Question.find(params[:id])
     @page = Page.find(params[:page_id])
