@@ -1,4 +1,8 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  #this is to make me able to use the link_to method with destination projects_path .. etc
+  resources :projects
+  resources :pages
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

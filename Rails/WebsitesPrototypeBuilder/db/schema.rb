@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130331075140) do
+ActiveRecord::Schema.define(:version => 20130404133253) do
 
   create_table "cards", :force => true do |t|
     t.string   "title"
@@ -73,10 +73,10 @@ ActiveRecord::Schema.define(:version => 20130331075140) do
 
   create_table "projects", :force => true do |t|
     t.string   "project_name"
-    t.string   "type"
     t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "project_type"
   end
 
   create_table "reviewer_infos", :force => true do |t|
