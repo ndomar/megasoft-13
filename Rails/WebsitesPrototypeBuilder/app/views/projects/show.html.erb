@@ -14,7 +14,20 @@
   <b>Type:</b>
   <%= @project.project_type %>
 </p>
+<H1>Show pages</H1>
+<% @pages.each do |page| %>
+	  <p>
+	    <b>Page name:</b>
+	   	 <%= page.page_name %>
+	   	 <br>
+	   	 <b>Page html:</b>
+	   	 <%= page.html %>
+	  </p>
+	  
+	<% end %>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+
