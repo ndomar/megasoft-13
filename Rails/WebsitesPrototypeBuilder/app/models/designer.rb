@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##
 # The designer model used as our main user type management
 # * *Attribute* :
@@ -61,3 +62,9 @@ class Designer < ActiveRecord::Base
   end
 
 end
+=======
+class Designer < ActiveRecord::Base
+  attr_accessible :country, :credit_card_number, :designer_name, :email, :facebook_id, :max_size, :phone_number, :profession
+
+end
+>>>>>>> 82332a2c2fa820535ee36563a0e4f1e9aafe6aa7
