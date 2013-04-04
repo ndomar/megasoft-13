@@ -1,10 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   
 
-
-  resources :pages
-
-
   #this is to make me able to use the link_to method with destination projects_path .. etc
   resources :projects
   resources :pages
