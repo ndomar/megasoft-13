@@ -13,7 +13,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project = Project.find(params[:id])
+    
+    @project = Project.find(params[:id])  #I am sending the project to the design page
+    @id = @project.id             #I am sending the project id explicitly to the design page
+    @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
     # @pages = Page.find(all,)
     respond_to do |format|
       format.html # show.html.erb
@@ -71,15 +74,13 @@ class ProjectsController < ApplicationController
 
   end
 
+  # def design()
+  #   #I am using this method instead of what Menna has provided me "show" so that i won't mess anyones work
+  # @project = Project.find(params[:id])  #I am sending the project to the design page
+  # @id = @project.id             #I am sending the project id explicitly to the design page
+  #   @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
+  # end
 
-    def design
-    @project = Project.find(params[:id])
-
-     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @project }
-    end
-    end
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
