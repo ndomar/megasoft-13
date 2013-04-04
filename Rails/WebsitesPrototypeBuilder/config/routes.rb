@@ -3,6 +3,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "comments/destroy"
   get "questions/create"
   get "questions/destroy"
+  get "answers/create"
+  get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
 
@@ -12,7 +14,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
       resources :answers
     end
   end
-
   resources :tasks do
     resources :task_results
   end

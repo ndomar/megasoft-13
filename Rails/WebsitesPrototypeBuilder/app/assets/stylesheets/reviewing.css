@@ -30,7 +30,6 @@ iframe {
 .textarea{
 	height: 170px;
 	overflow-y: scroll;
-
 }
 
 .hide{
@@ -78,24 +77,24 @@ iframe {
 }
 
 .note_controls {
-    font-size: .7em;
-    margin-top: 10px;
+	font-size: .7em;
+	margin-top: 10px;
 }
 
 #note_adder {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    padding: 10px;
-    background-color:#333;
-    border: 1px solid black;
-    opacity: .95;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    height: 65px;
-    width:  200px;
-    z-index: 1000;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	padding: 10px;
+	background-color:#333;
+	border: 1px solid black;
+	opacity: .95;
+	position: absolute;
+	top: 40%;
+	left: 40%;
+	height: 65px;
+	width:  200px;
+	z-index: 1000;
 }
 
 #draggable {
@@ -138,7 +137,7 @@ iframe {
 #choose_area{
 	border-right: 1px solid gray;
 }
-	
+
 #choose_area:hover{
 	background-color: rgb(100, 100, 100);
 }

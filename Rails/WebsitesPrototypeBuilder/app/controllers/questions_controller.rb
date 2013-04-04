@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-
   # called to create a new question in the database
   # finds the selected page
   # * *Args* :
@@ -10,7 +9,6 @@ class QuestionsController < ApplicationController
   #
   def create
     # finds the selected page
-
   	@page = Page.find(params[:page_id])
     @question = @page.questions.build(params[:question])
     respond_to do |format|
