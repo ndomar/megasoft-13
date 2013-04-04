@@ -81,12 +81,15 @@ function changeSelected(event){
 		default:
 			return;
 	}
+
 	var nextSelected = $(".card[card-index="+selectedIndex+"]");
 	if (nextSelected.length){
 		$(".selected-card").removeClass("selected-card");
 		$(nextSelected).addClass("selected-card");
 
 		$(mainCard).fadeOut(300);
+		$("#title").val($(nextSelected).attr("title"));
+		$("#description").val($(nextSelected).attr("description"));
 		$(mainCard).fadeIn(300);
 	}
 }

@@ -11,43 +11,14 @@
 			</div>
 
 		<div id='cards'>
-			<div class='card' card-index='18'>
-			</div>
-			<div class='card'card-index='17'>
-			</div>
-			<div class='card'card-index='16'>
-			</div>
-			<div class='card'card-index='15'>
-			</div>
-			<div class='card'card-index='14'>
-			</div>
-			<div class='card'card-index='13'>
-			</div>
-			<div class='card'card-index='12'>
-			</div>
-			<div class='card'card-index='11'>
-			</div>
-			<div class='card'card-index='10'>
-			</div>
-			<div class='card'card-index='9'>
-			</div>
-			<div class='card'card-index='8'>
-			</div>
-			<div class='card'card-index='7'>
-			</div>
-			<div class='card'card-index='6'>
-			</div>
-			<div class='card'card-index='5'>
-			</div>
-			<div class='card'card-index='4'>
-			</div>
-			<div class='card'card-index='3'>
-			</div>
-			<div class='card'card-index='2'>
-			</div>
-			<div class='card selected-card'card-index='1'>
-			</div>
-			<div class='card new-card'card-index='0'>
+			<% @cards.each_with_index do |card, index| %>
+				<div class='card' card-index=<%= index+1 %>
+					title=<%=card.title %> description=<%= card.description %> >
+				</div>
+			<% end %>
+
+			<div class='card new-card selected-card' card-index='0'
+				title='' description=''>
 			</div>
 		</div>
 		
