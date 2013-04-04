@@ -8,4 +8,3 @@ class Task<ActiveRecord::Base
   has_many :task_results
 
   validates :name, :presence => true
-end

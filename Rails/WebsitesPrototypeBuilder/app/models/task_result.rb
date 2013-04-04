@@ -8,8 +8,6 @@
 #   -has a many to one relation with model task
 #   -has a many to one relation with model reviewer
 #
-
-
 class TaskResult < ActiveRecord::Base
   belongs_to :reviewer
   belongs_to :task
