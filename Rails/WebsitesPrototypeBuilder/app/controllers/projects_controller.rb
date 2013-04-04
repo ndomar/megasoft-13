@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-
+    # @pages = Page.find(all,)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -67,8 +67,19 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+
+
   end
 
+
+    def design
+    @project = Project.find(params[:id])
+
+     respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @project }
+    end
+    end
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
