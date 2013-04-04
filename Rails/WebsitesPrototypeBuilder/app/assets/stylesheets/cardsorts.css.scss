@@ -42,6 +42,35 @@
 	height:530px;
 }
 
+.card{
+	float: right;
+	margin-left: 10px;
+	float: bottom;
+	width: 55px;
+	height: 75px;
+	background-size: contain;
+	background-image: url(/assets/card.png);
+}
+
+#main-card{
+	display: block;
+	margin-bottom: 20px;
+}
+
+#thumbnail{
+	float: right;
+	margin-left: 20px;
+}
+
+
+#title{
+	margin-top: 20px;
+}
+
+#description{
+	width: 400px;
+}
+
 .cardsort-input{
 	Width: 95%;
 	text-align: left;
@@ -51,3 +80,4 @@
 	height: 20px;
 	text-align: left;
 }
+
