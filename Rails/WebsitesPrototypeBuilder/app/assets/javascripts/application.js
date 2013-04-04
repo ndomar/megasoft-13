@@ -13,4 +13,3 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
-// Only write functions which are goinig to be globally used in the site (most of the pages)

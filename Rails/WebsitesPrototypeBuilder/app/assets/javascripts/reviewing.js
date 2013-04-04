@@ -3,7 +3,7 @@
 //Using jquery-ui to drag and resize the circle
 function draw_circle() {
 	$('#drag_resize').css({"display":"block" ,'top' : 0+'px', 'left' : 0+'px'});	
-	$('#drag_resize').draggable( "enable");  
+	$('#drag_resize').draggable("enable");  
 	$('#choose_area').css({"display":"table-cell"});
 	$('#delete_circle').css({"display":"table-cell"});
 }
@@ -83,16 +83,9 @@ $(document).ready(function() {
 			scroll: false
 		});
 });
-
 //opens the slected page in a new window to test when the test button is clicked
 function test_page(){
-	
-	//var page_html = page.text;
-
 	var designed_html= $('#html_content').text();
-	var w = window.open("",null,
-    "height=500,width=1000,status=yes,toolbar=no,menubar=no,location=no");
+	var w = window.open("",null,"height=500,width=1000,status=yes,toolbar=no,menubar=no,location=no");
     $(w.document.body).html(designed_html);
-    //window.write(designed_html);
-
 };

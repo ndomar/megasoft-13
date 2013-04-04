@@ -1,5 +1,12 @@
 class CommentsController < ApplicationController
-  # called to create a new item in the database
+  # called to create a new comment in the database
+  # finds the selected page
+  # * *Args* :
+  # - +@page+ -> the current page
+  # - +@comment+ -> the comment written in the notepaper
+  # * *Returns* :
+  # - page refreshed and comment added to db
+  #
   def create
     # finds the selected page
   	@page = Page.find(params[:page_id])
@@ -15,8 +22,14 @@ class CommentsController < ApplicationController
     end
   end
 
-# called to delete an item from the database
-def destroy
+  # called to delete a comment from the database
+  # * *Args* :
+  # - +@page+ -> the current page
+  # - +@comment+ -> the comment selected to be deleted
+  # * *Returns* :
+  # - AJAX used to delete answer (slides up and the comment is removed from the db)
+  #
+  def destroy
     # find the item
     @comment = Comment.find(params[:id])
     @page = Page.find(params[:page_id])
