@@ -10,9 +10,11 @@ function fillTable(tableID) {
 	code = "<tr>"
 		+ "<td>"
 		+ "<input type='text' class='cardsort-input' Style='display:none;' placeholder='Label' />"
+		+ "<label/>"
 		+ "</td>"
 		+ "<td>"
 		+ "<input type='text' class='cardsort-input' Style='display:none;' placeholder='Description' />"
+		+ "<label/>"
 		+ "</td>"
 		+ "</tr>";
 	nRows = 15;
@@ -30,5 +32,22 @@ function setTableEffect(){
 		var input = $(this).children("input").show();
 		$(input).focus();
 		$(input).val($(label).text());
+	});
+
+	$("td").each(function () {
+		var input = $(this).children("input");
+		$(input).focusout(function () {
+			$(this).siblings("label")
+				.text($(this).val());
+		});
+	});
+
+	$("input").keypress(function (event) {
+		if (event.which == 13){
+			$(this).hide();
+			var label = $(this).siblings("label").show();
+			$(label).text($(this).val());
+			$(this).parent().next().next().click();		
+		}
 	});
 }

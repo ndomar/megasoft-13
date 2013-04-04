@@ -1,7 +1,13 @@
 <div id="wrapper">
+
+	<!-- sidebar -->
 	<div id="sidebar">
 	</div>
+
+	<!-- content -->
 	<div id="content">
+
+		<!-- tabbar -->
 		<ul class="nav nav-tabs">
 			<li class='active'>
 				<a href="#">Cards</a>
@@ -13,12 +19,14 @@
 				<a href="#">Settings</a>
 			</li>
 		</ul>
+
+		<!-- cards table -->
 		<div class="scrollable">
 			<table id="cards-table" class="table table-bordered table-hover">
 				<thead>
 					<tr class="well">
 						<th Width='220px'>Label</th>
-						<th>Description(obtional)</th>
+						<th>Description(optional)</th>
 					</tr>
 				</thead>
 				<% @cards.each do |card| %>
@@ -29,9 +37,7 @@
 								Style='display:none;' placeholder='Label' />
 						</td>
 						<td>
-							<label>
-								<%= card.description %>
-							</label>
+							<label><%= card.description %></label>
 							<input type='text' class='cardsort-input' 
 								Style='display:none;' placeholder='Description' />
 						</td>
@@ -39,6 +45,7 @@
 				<% end %>
 			</table>
 		</div>
+		
 	</div>
 </div>
 
