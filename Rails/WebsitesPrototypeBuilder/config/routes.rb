@@ -1,7 +1,10 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
+  
+  get "comments/create"
 
+  get "comments/destroy"
   resources :pages do
     resources :comments
     resources :questions
