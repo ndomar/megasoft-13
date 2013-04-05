@@ -1,3 +1,5 @@
+<%= javascript_include_tag "projects"%>
+
 <H1>Show pages</H1>
 	<% @pages.each do |page| %>
 	  <p id="pages">
@@ -9,27 +11,11 @@
 	   	 <br>
 	   	 <td><%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	   	 <div id="div"></div>
-	   	 <iframe id =page.id src="" width="100" height="100" onclick="add"></iframe>	
-	   	    	
+	   	 <iframe id =page.id src="" width="100" height="100" onclick="add"></iframe>	  	
 	  </p>
-
-	  <script type="text/javascript">
-		function add(){
-			document.write("FAKES");
-			var div = document.getElementById('div');
-			var btn=document.createElement("BUTTON");
-			var t=document.createTextNode("CLICK ME");
-			var frame = document.createElement("iframe");
-
-			btn.appendChild(t); 
-			div.appendChild(btn);
-			div.appendChild(frame);
-		}
-	  </script>
-	
 	<% end %>
 
-<button onclick="add">Add Page</button>
+<button onclick="adding">Add Page</button>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
