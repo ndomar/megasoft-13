@@ -9,6 +9,7 @@ gem 'sqlite3'
 
 # gem for using bootstrap
 gem 'bootstrap-sass'
+gem 'rubyvis'
 
 
 # Gems used only for assets and not required

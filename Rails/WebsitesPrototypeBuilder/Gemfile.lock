@@ -84,6 +84,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    rubyvis (0.5.2)
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -116,6 +117,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   rails (= 3.2.13)
+  rubyvis
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
