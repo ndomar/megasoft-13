@@ -53,6 +53,15 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+    @task = Task.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @task }
+    end
+  end
+
   # destroy the task with :id
   def destroy
     @task = Task.find(params[:id])

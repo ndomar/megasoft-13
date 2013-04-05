@@ -3,5 +3,7 @@ class Task < ActiveRecord::Base
 
   belongs_to :project
 
+  has_many :reviewers
+
   validates :name, :presence => true
 end
