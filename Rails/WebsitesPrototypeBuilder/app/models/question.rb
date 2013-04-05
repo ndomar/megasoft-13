@@ -14,7 +14,5 @@ class Question < ActiveRecord::Base
   validates :body, :presence => true
   #validates that the assigned part isn't empty
   validates :assigned_part, :presence => true
-  # set it to contain many answer, when deleted delete all related answers
-  has_many :answers,:dependent => :destroy
   
 end
