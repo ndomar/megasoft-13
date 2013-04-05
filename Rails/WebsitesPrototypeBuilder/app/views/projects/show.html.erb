@@ -1,7 +1,22 @@
+
+<script type="text/javascript">function addPage(){
+
+	var input =window.prompt("Please enter Page Name","");
+
+	if(input != null){
+		<%= p = Page.new() %>		
+		<%= p.page_name = @param %>
+		<%= p.project_id = @id %>
+		<%= p.save() %>
+	}
+}</script>
+
+
+
 <p id="notice"><%= notice %></p>
 
 <H1>Show pages</H1>
-<% @pages.each do |page| %>
+	<% @pages.each do |page| %>
 	  <p id="pages">
 	    <b>Page name:</b>
 	   	 <%= page.page_name %>
@@ -11,10 +26,10 @@
 	   	 <br>
 	   	 <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </p>
-	  
+	
 	<% end %>
 
-<button onclick="addPage">Add Page</button>
+<button >Add Page</button>
 
 
 
