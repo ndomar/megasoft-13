@@ -49,6 +49,12 @@ element.style.boxShadow="0px 0px 6px 2px orange";
   element.style.boxShadow= 'none';
   element.style.border=1;
  } 
+
+ function dehighlight_all(){
+  $("input").each(function(){
+    dehighlight(this.id);
+  });
+ }
 //document.getElementById('bttn').onclick='highlight(el_id)';
 //alert("Would you please enter some text?"); 
 </script>
@@ -67,31 +73,62 @@ function notEmpty(){
 <body>
 
 <div id="content">
+  
+  <%= @step.id %>
   <%= @step.component_id%>
-<input id="txt" type="text" onclick='highlight(id)' ></input>
+<input id="cmp4" type="text"/>
 
-<input type = "submit" value ="Component" class="btn" id='cmp' onclick="dehighlight('cmp')"/>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               c 
-<input type ="button"  value= "next" class="btn" id='bttn' />
+<input type = "submit" value ="Step 1 cmp" class="btn" id='cmp'/>
+<input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2'/>
+<input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' />
+<p>this is a paragraph</p>
+</div>
+
+<div id = "content">
 
 </div>
 
 <script>
-var el_id= "<%= @step.component_id %>";
- $('#bttn').click(function() {
-  highlight(el_id);
- // alert(el_id.originalEvent);
+var currstep_id= "<%= @step.component_id %>";
+
+//  $('#bttn').click(function() {
+//   highlight(currstep_id);
+// });
+
+
+// $(document).ready(function() {
+//     $("input").click(function(event) {
+//         alert(event.target.id);
+//     });
+// });
+
+$(window).load(function (){
+  highlight(currstep_id); //when the page load the 1st step's elements are highlighted
 });
 
- var currstep_elementId= document.getElementById(el_id);
- //alert(currstep_element.data());
-//var target_element=event.target.id
-//alert(target_element); 
-  $(document).ready(function() {
-    $("#bttn").on('toggle',function(event) {
-        alert(event.target.id);
+
+ var count =1;
+
+ $("input").click( function(event) {
+
+  var curr_element_id= event.target.id;
+  if (curr_element_id == currstep_id) {
+    count=count+1; 
+   // curr_element_id= <%=@step.component_id%>;
+    //alert("cmp"+count);
+    highlight("cmp"+count);
+    dehighlight(curr_element_id);
+    curr_element_id="cmp"+count;
+    currstep_id= curr_element_id;
+
+   // alert (event.target.id + "clicked");
+
+       }
     });
-});
+
+ // console.log( index + ": " + $(this).text() );
+//    $( "input" ).each(function() {
+// });
 </script>
 
 </body>
