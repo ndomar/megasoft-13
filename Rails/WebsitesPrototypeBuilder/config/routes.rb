@@ -3,8 +3,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/designer"
   
   get "comments/create"
-
   get "comments/destroy"
+  get "questions/create"
+  get "questions/destroy"
   resources :pages do
     resources :comments
     resources :questions

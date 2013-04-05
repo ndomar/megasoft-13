@@ -1,13 +1,8 @@
 require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase
-  test "should get create" do
-    get :create
-    assert_response :success
+  test "web_site_count" do
+    assert_equal 2, Comment.count
   end
 
-  test "should get destroy" do
-    get :destroy
-    assert_response :success
-  end
 end
