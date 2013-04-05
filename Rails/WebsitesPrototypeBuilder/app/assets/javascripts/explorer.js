@@ -11,3 +11,15 @@ document.write("aaa");
 // 	document.body.appendChild(btn);
 	
 // }
+
+
+function adding()
+{
+	
+	var div = document.getElementById("div");
+  var frame=document.createElement("iframe");
+	var t=document.createTextNode("CLICK ME");
+	frame.appendChild(t); 
+	document.body.appendChild(frame);
+	
+}
