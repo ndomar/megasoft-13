@@ -18,31 +18,36 @@ function setCardEffects(){
 
 	$(document).keypress(moveSelection);
 	$("#main-card").keypress(function (event){
-		if (event.which == 13)
+		if (event.which == 13 && $('.selected-card').hasClass('new-card'))
 			$("#add-button").click();
 	});
 }
 
 function moveSelection(event){
 	var selectedIndex = parseInt($(".selected-card").attr('card-index'));
+	var newCard;
 	switch(event.keyCode){
 		case 37: 
-			selectedIndex--;
+			newCard = $(".selected-card").next();
 			break;
 		case 38:
-			selectedIndex += 14;
+			newCard = $(".selected-card");	
+			for (var i = 0; i < 14; i++)
+				newCard = $(newCard).prev();
 			break;
 		case 39:
-			selectedIndex++;
+			newCard = $(".selected-card").prev();
 			break;
 		case 40:
-			selectedIndex -= 14;
+			newCard = $(".selected-card");
+			for (var i = 0; i < 14; i++)
+				newCard = $(newCard).next();
 			break;
 		default:
 			return;
 	}
 
-	var newCard = $(".card[card-index="+selectedIndex+"]");
+	//var newCard = $(".card[card-index="+selectedIndex+"]");
 	if (newCard.length){
 		changeSelectedCard(newCard);
 	}

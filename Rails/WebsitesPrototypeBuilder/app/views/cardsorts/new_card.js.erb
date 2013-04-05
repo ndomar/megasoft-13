@@ -1,7 +1,4 @@
-var index = $('.card').length;
-alert(index);
-$('<%= escape_javascript(render "card", index: -2, desc: @card.description, title: @card.title) %>').prependTo("#cards");
-var newCard = $(".card[card-index=-1]").attr("card-index", index);
+var newCard = $('<%= escape_javascript(render "card", desc: @card.description, title: @card.title) %>').prependTo("#cards");
 $(newCard).click(function (){
 	changeSelectedCard(this);
 });

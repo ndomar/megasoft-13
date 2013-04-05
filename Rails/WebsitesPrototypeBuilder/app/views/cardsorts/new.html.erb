@@ -20,8 +20,8 @@
 		</div>		
 
 		<div id='cards'>
-			<% @cards.each_with_index do |card, index| %>
-				<%= render "card", index: index, desc: card.description, title: card.title %>
+			<% @cards.each_with_index do |card| %>
+				<%= render "card", desc: card.description, title: card.title %>
 			<% end %>
 
 			<div class='card new-card selected-card' card-index='0'
