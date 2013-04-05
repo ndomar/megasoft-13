@@ -18,8 +18,4 @@ class Comment < ActiveRecord::Base
   validates :body, :presence => true
   #validates that the assigned part isn't empty
   validates :assigned_part, :presence => true
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa

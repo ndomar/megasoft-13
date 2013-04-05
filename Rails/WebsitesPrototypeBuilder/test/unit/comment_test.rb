@@ -6,4 +6,5 @@ class CommentTest < ActiveSupport::TestCase
 	  comment = Comment.new
 	  assert !comment.save, "Saved the comment without a body"
 	end
+	
 end

@@ -14,18 +14,9 @@ class Question < ActiveRecord::Base
   # Belongs to one page
   belongs_to :page
   # Each question has many answers
-  has_many :answers
+  has_many :answers,:dependent => :destroy
   #validates that the body isn't empty
   validates :body, :presence => true
   #validates that the assigned part isn't empty
-  validates :assigned_part, :presence => true
-<<<<<<< HEAD
-  
+  validates :assigned_part, :presence => true  
 end
-=======
-  attr_accessible :assigned_part, :body, :page
-  has_many :answers,:dependent => :destroy
-  
-end
-
->>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa

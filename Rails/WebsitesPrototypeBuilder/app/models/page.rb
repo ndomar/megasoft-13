@@ -11,9 +11,4 @@ class Page < ActiveRecord::Base
   # set it to contain many questions, when deleted delete all related questions
   has_many :questions,:dependent => :destroy
   has_many :answers,:dependent => :destroy
-<<<<<<< HEAD
 end
-=======
-
-end
->>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa
