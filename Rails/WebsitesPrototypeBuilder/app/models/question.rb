@@ -19,5 +19,13 @@ class Question < ActiveRecord::Base
   validates :body, :presence => true
   #validates that the assigned part isn't empty
   validates :assigned_part, :presence => true
+<<<<<<< HEAD
   
 end
+=======
+  attr_accessible :assigned_part, :body, :page
+  has_many :answers,:dependent => :destroy
+  
+end
+
+>>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa

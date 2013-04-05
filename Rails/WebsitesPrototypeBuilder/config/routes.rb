@@ -1,4 +1,10 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  get "comments/create"
+  get "comments/destroy"
+  get "questions/create"
+  get "questions/destroy"
+  get "answers/create"
+  get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
   
@@ -13,11 +19,18 @@ WebsitesPrototypeBuilder::Application.routes.draw do
       resources :answers
     end
   end
+<<<<<<< HEAD
 
+=======
+>>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa
   resources :tasks do
     resources :task_results
   end
   get "/log/:id" => 'task_results#index'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

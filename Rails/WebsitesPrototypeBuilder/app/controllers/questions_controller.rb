@@ -40,4 +40,8 @@ class QuestionsController < ApplicationController
       format.js   { render :layout => false }
     end
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa

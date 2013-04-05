@@ -10,6 +10,10 @@ class Page < ActiveRecord::Base
   has_many :comments,:dependent => :destroy
   # set it to contain many questions, when deleted delete all related questions
   has_many :questions,:dependent => :destroy
-  # set it to contain many answer, when deleted delete all related answers
   has_many :answers,:dependent => :destroy
+<<<<<<< HEAD
 end
+=======
+
+end
+>>>>>>> 72d122609efb8f9f36ebbd85721b8339aaff1afa
