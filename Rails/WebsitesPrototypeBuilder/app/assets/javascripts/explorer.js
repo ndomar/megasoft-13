@@ -1,13 +1,13 @@
-document.write("sadsadasdasd");
+document.write("aaa");
 
-function adding(){
-    		document.write("FAKES");
-			var div = document.getElementById('div');
-			var btn=document.createElement("BUTTON");
-			var t=document.createTextNode("CLICK ME");
-			var frame = document.createElement("iframe");
-
-			btn.appendChild(t); 
-			div.appendChild(btn);
-			div.appendChild(frame);
-		}
+//this is working efficently
+// function adding()
+// {
+	
+// 	var div = document.getElementById("div");
+//   var btn=document.createElement("BUTTON");
+// 	var t=document.createTextNode("CLICK ME");
+// 	btn.appendChild(t); 
+// 	document.body.appendChild(btn);
+	
+// }
