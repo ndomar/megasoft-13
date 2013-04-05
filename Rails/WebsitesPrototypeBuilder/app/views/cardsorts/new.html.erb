@@ -1,14 +1,23 @@
 <div id='wrapper'>
 	<div id='content'>
 
-		<div id='main-card'>
-			<img id='thumbnail' src="/assets/card.png" alt='card thumbnail'>
-			<div id='details'>
-				<input  id='title' type="text" />
-				<br/>
-				<textarea id='description'></textarea>
+		<div id='main-card-wrapper'>
+			<div>
+				<!-- This div is left empty
+						 intentionally to maintain the
+						 height of main-card-wrapper
+				-->
 			</div>
+			<div id='main-card'>
+				<img id='thumbnail' src="/assets/card.png" alt='card thumbnail'>
+				<div id='details'>
+					<input  id='title' type="text" />
+					<br/>
+					<textarea id='description'></textarea>
+				</div>
+				<a id='add-button'></a>
 			</div>
+		</div>		
 
 		<div id='cards'>
 			<% @cards.each_with_index do |card, index| %>
@@ -26,5 +35,5 @@
 </div>
 
 <script type="text/javascript">
-	setCardEffects();
+	$(document).ready(init);
 </script>

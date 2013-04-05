@@ -6,64 +6,20 @@ function hidePopup() {
 	$(".popup-darkscreen").hide();
 }
 
-function fillTable(tableID) {
-	code = "<tr>"
-		+ "<td>"
-		+ "<input type='text' class='cardsort-input' Style='display:none;' placeholder='Label' />"
-		+ "<label/>"
-		+ "</td>"
-		+ "<td>"
-		+ "<input type='text' class='cardsort-input' Style='display:none;' placeholder='Description' />"
-		+ "<label/>"
-		+ "</td>"
-		+ "</tr>";
-	nRows = 15;
-	while(nRows > 0) {
-		$("#"+tableID).append(code);
-		nRows--;
-	}
-}
-
-function setTableEffect(){
-	$("td").click(function () {
-		$("input").hide();
-		$("label").show();
-		var label = $(this).children("label").hide();
-		var input = $(this).children("input").show();
-		$(input).focus();
-		$(input).val($(label).text());
-	});
-
-	$("td").each(function () {
-		var input = $(this).children("input");
-		$(input).focusout(function () {
-			$(this).siblings("label")
-				.text($(this).val());
-		});
-	});
-
-	$("input").keypress(function (event) {
-		if (event.which == 13){
-			$(this).hide();
-			var label = $(this).siblings("label").show();
-			$(label).text($(this).val());
-			$(this).parent().next().next().click();		
-		}
-	});
+function init(){
+	setCardEffects();
+	setRemoteFunc();
 }
 
 function setCardEffects(){
 	$(".card").click(function (){
-		$(".card").removeClass('selected-card');
-		$(this).addClass('selected-card');
+		changeSelectedCard(this);
 	});
 
-	$(document).keypress(changeSelected);
+	$(document).keypress(moveSelection);
 }
 
-function changeSelected(event){
-	var mainCard = $("#main-card").stop();
-
+function moveSelection(event){
 	var selectedIndex = parseInt($(".selected-card").attr('card-index'));
 	switch(event.keyCode){
 		case 37: 
@@ -82,14 +38,37 @@ function changeSelected(event){
 			return;
 	}
 
-	var nextSelected = $(".card[card-index="+selectedIndex+"]");
-	if (nextSelected.length){
-		$(".selected-card").removeClass("selected-card");
-		$(nextSelected).addClass("selected-card");
-
-		$(mainCard).fadeOut(300);
-		$("#title").val($(nextSelected).attr("title"));
-		$("#description").val($(nextSelected).attr("description"));
-		$(mainCard).fadeIn(300);
+	var newCard = $(".card[card-index="+selectedIndex+"]");
+	if (newCard.length){
+		changeSelectedCard(newCard);
 	}
+}
+
+function changeSelectedCard(newCard){
+	var mainCard = $("#main-card").stop();
+	$(".selected-card").removeClass("selected-card");
+	$(newCard).addClass("selected-card");
+
+	$(mainCard).hide(300, checkAddButton);
+	$("#title").val($(newCard).attr("title"));
+	$("#description").val($(newCard).attr("description"));
+	$(mainCard).show(300);
+}
+
+function checkAddButton(){
+	if ($(".selected-card").hasClass('new-card')){
+		$("#add-button").show();
+	} else {
+		$("#add-button").hide();
+	}
+}
+
+function setRemoteFunc(){
+	$('#add-button').click(function (){
+		var params = $.param({
+			title: $('#title').val(),
+			desc: $('#description').val()
+		});
+		$.ajax("/cardsorts/create?" + params);
+	});
 }
