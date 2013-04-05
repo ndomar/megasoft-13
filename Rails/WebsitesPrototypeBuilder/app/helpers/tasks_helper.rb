@@ -2,6 +2,9 @@ module TasksHelper
   def gender(task_id)
   reviewers = Task.find(task_id).reviewers.all
 
+  reviewers.each do |r|
+    if r.gender == ""
+
   data = pv.range(2).map {rand()}
 
 
