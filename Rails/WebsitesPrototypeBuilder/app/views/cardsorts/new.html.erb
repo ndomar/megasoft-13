@@ -21,9 +21,7 @@
 
 		<div id='cards'>
 			<% @cards.each_with_index do |card, index| %>
-				<div class='card' card-index=<%= index+1 %>
-					title=<%=card.title %> description=<%= card.description %> >
-				</div>
+				<%= render "card", index: index, desc: card.description, title: card.title %>
 			<% end %>
 
 			<div class='card new-card selected-card' card-index='0'

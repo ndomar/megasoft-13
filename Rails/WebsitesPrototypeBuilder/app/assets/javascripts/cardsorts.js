@@ -17,6 +17,10 @@ function setCardEffects(){
 	});
 
 	$(document).keypress(moveSelection);
+	$("#main-card").keypress(function (event){
+		if (event.which == 13)
+			$("#add-button").click();
+	});
 }
 
 function moveSelection(event){
