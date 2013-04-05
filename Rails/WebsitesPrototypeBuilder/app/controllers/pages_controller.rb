@@ -74,9 +74,9 @@ class PagesController < ApplicationController
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
-
+    @projid = @page.project_id
     respond_to do |format|
-      format.html { redirect_to pages_url }
+      format.html { redirect_to request.referer }
       format.json { head :no_content }
     end
   end
