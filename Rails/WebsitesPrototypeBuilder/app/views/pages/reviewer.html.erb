@@ -40,7 +40,7 @@
 						<!-- show each answer for every question -->
 						<%= form_for [@page,question,question.answers.build] do |f| %>
 							<p><%= f.text_area :answer,:placeholder => "اكتب الاجابة هنا",:id => "message_area", :presence=> true%></p>
-							<%= f.submit "تسجىل", :class => "delete_comment"%>
+							<%= f.submit "تسجىل", :class => "delete_answer"%>
 						<%end%>
 						<hr>
 					</div>

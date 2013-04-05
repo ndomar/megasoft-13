@@ -2,3 +2,7 @@
 $('.delete_answer').bind('ajax:success', function() {  
         $(this).closest('div').slideUp("slow");
 });
+
+$('.delete_answer').bind('ajax:success', function() {  
+        $(this).closest('div').slideDown("slow");
+});
