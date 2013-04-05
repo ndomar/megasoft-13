@@ -10,11 +10,17 @@
  *
  *= require jquery.ui.all
  *= require_self
- *= require_tree .
  */
+ 
+@font-face { 
+	font-family: arabi-bold; src: url('arabi-bold.otf');
+	format("opentype"); 
+}
 
-@font-face { font-family: arabi-bold; src: url('arabi-bold.otf');format("opentype"); }
-@font-face { font-family: arabi-light; src: url('arabi-light.otf');format("opentype"); }
+@font-face { 
+	font-family: arabi-light; src: url('arabi-light.otf');
+	format("opentype"); 
+}
 
 html{
 	background: #fdfdfd;
@@ -28,12 +34,7 @@ body{
 	margin: 0 0;
 	margin-top:-16px;
 }
-
-textarea#message_area {
-  width: 100%;
-  height: 50px;
-}
-
+	  
 .tabBar {
 	background-color: #ebebeb;
 	background-color: #e08f46;
@@ -66,32 +67,31 @@ textarea#message_area {
 	width:110px;
 	font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
 	text-align: center;
-    list-style: none;
-    display: block;
-    float: left;
+	list-style: none;
+	display: block;
+	float: left;
 	vertical-align: top;
 }
 
 #navigation li a {
-    display: block;
-    text-decoration: none;
-    color: #000000;
-    font-size: 1.6em;
-    margin-top: 11px;
-    line-height: 28px;
+	display: block;
+	text-decoration: none;
+	color: #000000;
+	font-size: 1.6em;
+	margin-top: 11px;
+	line-height: 28px;
 }
 
 #navigation li:hover{
 	background-color: #fafafa;
 }
 
-
 .rectangle {
-   background: #ffffff;
-   height: 51px;
-   position: relative;
-   z-index: 500;
-   border-bottom: 1px solid #d4d4d4;
+	background: #ffffff;
+	height: 51px;
+	position: relative;
+	z-index: 500;
+	border-bottom: 1px solid #d4d4d4;
 }
 
 .logo{
@@ -111,8 +111,7 @@ textarea#message_area {
 }
 
 #sidebar{
-  color: #fafafa;
-	overflow: auto;
+	color: #fafafa;
 	width: 260px;
 	padding: 20px 30px 0px 30px;
 	background:#1b1b1b;
@@ -120,6 +119,7 @@ textarea#message_area {
 	top: 0;
 	right: 0;
 	bottom: 0;
+	height: 100%;
 }
 
 #sidebar h4{
@@ -127,10 +127,10 @@ textarea#message_area {
 }
 
 #sidebar hr{
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(128, 128, 128, 0.3);
 }
 
 #sidebar a{
@@ -146,7 +146,7 @@ textarea#message_area {
 	height: 35px;
 	width: 35px;
 	text-align: center;
-    vertical-align: middle;
+	vertical-align: middle;
 	background-color: rgb(69, 162, 224);
 }
 
@@ -164,4 +164,12 @@ hr {
 	border: 0;
 	border-top: 1px solid #eeeeee;
 	border-bottom: 1px solid #ffffff;
+}
+
+iframe {
+	border: 0px;
+	-moz-transform:rotate(0deg);
+	-webkit-transform:rotate(0deg);
+	-o-transform:rotate(0deg);
+	-ms-transform:rotate(0deg);
 }

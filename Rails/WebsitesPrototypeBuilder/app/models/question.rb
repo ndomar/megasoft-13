@@ -8,8 +8,13 @@ class Question < ActiveRecord::Base
 	#* *Relations* :
 	# - has foreign key to the page and the reviewer
 	# - has many to one relation with model page
+	# - has many answers
 	#
+  attr_accessible :assigned_part, :body, :page_id
+  # Belongs to one page
   belongs_to :page
+  # Each question has many answers
+  has_many :answers
   #validates that the body isn't empty
   validates :body, :presence => true
   #validates that the assigned part isn't empty
