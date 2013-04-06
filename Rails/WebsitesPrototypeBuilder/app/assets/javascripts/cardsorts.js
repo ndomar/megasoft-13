@@ -7,39 +7,72 @@ function hidePopup() {
 }
 
 function init(){
-	setCardEffects();
+	setTabs();
+	setEffects();
 	setRemoteFunc();
 }
 
-function setCardEffects(){
-	$(".card").click(function (){
-		changeSelectedCard(this);
+function setTabs(){
+	$('#cards-tab').click(function (){
+		$('#groups-wrapper').fadeOut(300, function (){
+			$('#cards-wrapper').fadeIn(300);
+		});
+		$('.active').removeClass('active');
+		$('#cards-tab').addClass('active');
 	});
 
-	$(document).keypress(moveSelection);
-	$("#main-card").keypress(function (event){
-		if (event.which == 13 && $('.selected-card').hasClass('new-card'))
-			$("#add-button").click();
+	$('#groups-tab').click(function (){
+		$('#cards-wrapper').fadeOut(300, function (){
+			$('#groups-wrapper').fadeIn(300);
+		});
+		$('.active').removeClass('active');
+		$('#groups-tab').addClass('active');
 	});
 }
 
-function moveSelection(event){
-	var selectedIndex = parseInt($(".selected-card").attr('card-index'));
+function setEffects(){
+	$(".card").click(function (){
+		changeSelected(this, 'card');
+	});
+
+	$(".group").click(function (){
+		changeSelected(this, 'group');
+	});
+
+	$(document).keypress(handleKeyPress);
+}
+
+function handleKeyPress(event){
+	if (event.which == 13){
+		if ($('#cards-wrapper').css('display') != 'none'){
+			if ($('.selected-card').hasClass('new-card')){
+				$("#add-button-card").click();
+			}
+		} else if ($('.selected-group').hasClass('new-group')){
+			$("#add-button-group").click();
+		}
+		return;
+	}
+
+	moveSelection(event, ($('#cards-wrapper').css('display') != 'none') ? 'card' : 'group');
+}
+
+function moveSelection(event, element){
 	var newCard;
 	switch(event.keyCode){
 		case 37: 
-			newCard = $(".selected-card").next();
+			newCard = $(".selected-"+element+'[display!=none]').next();
 			break;
 		case 38:
-			newCard = $(".selected-card");	
+			newCard = $(".selected-"+element+'[display!=none]');	
 			for (var i = 0; i < 14; i++)
 				newCard = $(newCard).prev();
 			break;
 		case 39:
-			newCard = $(".selected-card").prev();
+			newCard = $(".selected-"+element+'[display!=none]').prev();
 			break;
 		case 40:
-			newCard = $(".selected-card");
+			newCard = $(".selected-"+element+'[display!=none]');
 			for (var i = 0; i < 14; i++)
 				newCard = $(newCard).next();
 			break;
@@ -49,35 +82,49 @@ function moveSelection(event){
 
 	//var newCard = $(".card[card-index="+selectedIndex+"]");
 	if (newCard.length){
-		changeSelectedCard(newCard);
+		changeSelected(newCard, element);
 	}
 }
 
-function changeSelectedCard(newCard){
-	var mainCard = $("#main-card").stop();
-	$(".selected-card").removeClass("selected-card");
-	$(newCard).addClass("selected-card");
+function changeSelected(newCard, element){
+	var mainCard = $("#main-"+element).stop();
+	$(".selected-"+element).removeClass("selected-"+element);
+	$(newCard).addClass("selected-"+element);
 
-	$(mainCard).hide(300, checkAddButton);
-	$("#title").val($(newCard).attr("title"));
-	$("#description").val($(newCard).attr("description"));
+	$(mainCard).hide(300, function (){
+		checkAddButton(element)
+		$("#title-"+element).val($(newCard).attr("title"));
+		$("#description-"+element).val($(newCard).attr("description"));
+	});
 	$(mainCard).show(300);
 }
 
-function checkAddButton(){
-	if ($(".selected-card").hasClass('new-card')){
-		$("#add-button").show();
+function checkAddButton(element){
+	if ($(".selected-"+element).hasClass('new-'+element)){
+		$("#add-button-"+element).show();
+		$('#error-'+element).text("Click the plus button to add a new card.");
+	
 	} else {
-		$("#add-button").hide();
+		$("#add-button-"+element).hide();
+		$('#error-'+element).text("you can edit the details of this card.");
+	
 	}
 }
 
 function setRemoteFunc(){
-	$('#add-button').click(function (){
+	$('#add-button-card').click(function (){
 		var params = $.param({
-			title: $('#title').val(),
-			desc: $('#description').val()
+			title: $('#title-card').val(),
+			desc: $('#description-card').val()
 		});
-		$.ajax("/cardsorts/create?" + params);
+		$.ajax("/cardsorts/create_card?" + params);
+	});
+
+	$('#add-button-group').click(function (){
+		var params = $.param({
+			title: $('#title-group').val(),
+			desc: $('#description-group').val()
+		});
+		$.ajax("/cardsorts/create_group?" + params);
 	});
 }
