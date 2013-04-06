@@ -16,13 +16,13 @@ class CardsortsController < ApplicationController
 
 	def create
 		@card = Card.new(title: params[:title],
-			description: params[:description])
+			description: params[:desc])
 		@card.cardsort_id = session[:cardsort_id]
 		respond_to do |format|
 			if (@card.save)
-				format.js {render "new_card"}
+				format.js {render "new_card", :status => :created}
 			else
-				format.js {render :nothing => true, :status => :unprocessable_entity}
+				format.js {render "new_card", :status => :ok}
 			end
 		end
 	end

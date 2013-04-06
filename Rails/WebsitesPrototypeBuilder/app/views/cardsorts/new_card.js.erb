@@ -1,4 +1,14 @@
-var newCard = $('<%= escape_javascript(render "card", desc: @card.description, title: @card.title) %>').prependTo("#cards");
-$(newCard).click(function (){
-	changeSelectedCard(this);
-});
+<% if (@card.valid?) %>
+	$('#error').text("A new card have been added successfully.");
+
+	var newCard = $('<%= escape_javascript(render "card", desc: @card.description, title: @card.title) %>').prependTo("#cards");
+	$(newCard).click(function (){
+		changeSelectedCard(this);
+	});
+<% else %>
+	var errorDiv = $('#error').text("");
+	<% @card.errors.full_messages.each do |error| %>
+		$(errorDiv).append("<%= error %>");
+	<% end %>
+<% end %>
+

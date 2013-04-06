@@ -101,6 +101,15 @@
 	background-color: transparent;
 	margin-top: -10px;
 	outline: none;	
+	float: right;
+}
+
+#error{
+	display: block;
+	width: 200px;
+	font-size: 12px;
+	font-weight: 700;
+	color: gray;
 }
 
 #add-button:active{
