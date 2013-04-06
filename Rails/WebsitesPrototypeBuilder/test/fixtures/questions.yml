@@ -6,6 +6,6 @@ one:
   body: MyText
 
 two:
-  page_id: 1
+  page_id: 2
   assigned_part: MyText
   body: MyText

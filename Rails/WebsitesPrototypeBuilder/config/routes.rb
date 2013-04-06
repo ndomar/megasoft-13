@@ -14,6 +14,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
       resources :answers
     end
   end
+
   resources :tasks do
     resources :task_results
   end

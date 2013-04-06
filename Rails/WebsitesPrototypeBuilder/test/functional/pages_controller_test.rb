@@ -18,7 +18,7 @@ class PagesControllerTest < ActionController::TestCase
 
   test "should create page" do
     assert_difference('Page.count') do
-      post :create, page: { html_markup: @page.html_markup }
+      post :create, page: { html: @page.html}
     end
 
     assert_redirected_to page_path(assigns(:page))
@@ -35,7 +35,7 @@ class PagesControllerTest < ActionController::TestCase
   end
 
   test "should update page" do
-    put :update, id: @page, page: { html_markup: @page.html_markup }
+    put :update, id: @page, page: { html: @page.html }
     assert_redirected_to page_path(assigns(:page))
   end
 
