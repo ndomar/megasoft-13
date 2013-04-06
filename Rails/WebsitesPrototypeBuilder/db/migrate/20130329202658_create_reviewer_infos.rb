@@ -9,6 +9,7 @@ class CreateReviewerInfos < ActiveRecord::Migration
       t.integer :day_of_birth
       t.integer :month_of_birth
       t.integer :year_of_birth
+      t.integer :reviewer_id
 
       t.timestamps
     end

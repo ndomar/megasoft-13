@@ -11,30 +11,69 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130329203243) do
+ActiveRecord::Schema.define(:version => 20130401174354) do
 
-  create_table "designers", :force => true do |t|
-    t.string   "designer_name"
-    t.string   "email"
-    t.integer  "facebook_id"
-    t.integer  "credit_card_number"
-    t.string   "phone_number"
-    t.string   "country"
-    t.string   "profession"
-    t.string   "max_size"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+  create_table "cards", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "cardsort_id"
+    t.integer  "group_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
-  create_table "invitations", :force => true do |t|
-    t.text     "invitation_text"
-    t.text     "invitation_link"
-    t.datetime "expiry_date"
-    t.integer  "status"
-    t.integer  "reviewer_id"
-    t.integer  "task_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table "cardsorts", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "project_id"
+    t.boolean  "open"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "designers", :force => true do |t|
+    t.string   "email",                  :default => "", :null => false
+    t.string   "encrypted_password",     :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "fullname"
+    t.string   "phone_number"
+    t.string   "country"
+    t.integer  "day_dob"
+    t.integer  "month_dob"
+    t.integer  "year_dob"
+    t.integer  "credit_card_number"
+    t.integer  "cvv2"
+    t.string   "profession"
+    t.string   "facebook_email"
+    t.string   "gender"
+    t.string   "rpx_identifier"
+  end
+
+  add_index "designers", ["email"], :name => "index_designers_on_email", :unique => true
+  add_index "designers", ["reset_password_token"], :name => "index_designers_on_reset_password_token", :unique => true
+
+  create_table "groups", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "cardsort_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "page_name"
+    t.text     "html"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "projects", :force => true do |t|
@@ -53,12 +92,14 @@ ActiveRecord::Schema.define(:version => 20130329203243) do
     t.integer  "day_of_birth"
     t.integer  "month_of_birth"
     t.integer  "year_of_birth"
+    t.integer  "reviewer_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
 
   create_table "reviewers", :force => true do |t|
     t.string   "email"
+    t.integer  "task_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,42 +1,51 @@
 module TasksHelper
-  def gender(task_id)
-  reviewers = Task.find(task_id).reviewers.all
+  def gender (id)
+    reviewers = Task.find(id).reviewers
 
-  reviewers.each do |r|
-    if r.gender == ""
+    m = 0
+    f = 0
 
-  data = pv.range(2).map {rand()}
+    reviewers.each do |r|
 
+      if r.reviewer_info.gender == 0
+        m += 1
+      else
+        f += 1
+      end
 
-  w = 400
-  h = 400
+    end
 
-  r = w / 2.0
+    data = [m,f]
 
-  a = pv.Scale.linear(0, pv.sum(data)).range(0, 2 * Math::PI)
+    w = 100
+    h = 100
 
-  #/* The root panel. */
-  vis = pv.Panel.new()
-    .width(w)
-    .height(h);
-  #/* The wedge, with centered label. */
+    r = w / 2.0
 
-  vis.add(pv.Wedge)
-    .data(data.sort(&pv.reverse_order))
-    .bottom(w / 2.0)
-    .left(w / 2.0)
-    .innerRadius(r - 40)
-    .outerRadius(r)
-    .angle(a)
-    .event("mouseover", lambda {self.inner_radius(0)})
-    .event("mouseout", lambda{ self.inner_radius(r - 40)})
-    .anchor("center").add(pv.Label)
-    .visible(lambda {|d|  d > 0.15})
-    .textAngle(0)
-    .text(lambda {|d| "%0.2f" %  d});
+    a = pv.Scale.linear(0, pv.sum(data)).range(0, 2 * Math::PI)
 
-  vis.render();
+    #/* The root panel. */
+    vis = pv.Panel.new()
+        .width(w)
+        .height(h);
+    #/* The wedge, with centered label. */
 
-  puts raw vis.to_svg
+    vis.add(pv.Wedge)
+        .data(data.sort(&pv.reverse_order))
+        .bottom(w / 2.0)
+        .left(w / 2.0)
+        .innerRadius(0)
+        .outerRadius(r)
+        .angle(a)
+        .event("mouseover", lambda {self.inner_radius(0)})
+        .event("mouseout", lambda{ self.inner_radius(r - 40)})
+      .anchor("center").add(pv.Label)
+      .visible(lambda {|d|  d > 0.15})
+        .textAngle(0)
+        .text(lambda {|d| "%0.2f" %  d});
+
+    vis.render();
+
+    vis.to_svg
   end
 end
