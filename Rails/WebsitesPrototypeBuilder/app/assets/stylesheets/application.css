@@ -121,6 +121,7 @@ body{
 	right: 0;
 	bottom: 0;
 	height: 100%;
+	word-wrap:break-word;
 }
 
 #sidebar h4{
@@ -142,18 +143,21 @@ body{
 	text-align: left;
 }
 
-#add_comment{
+.add_comment{
 	display: table-cell;
 	height: 35px;
 	width: 35px;
 	text-align: center;
 	vertical-align: middle;
 	background-color: rgb(69, 162, 224);
+	border: 0px;
+	color:white;
 }
 
-#add_comment:hover{
+.add_comment:hover{
 	background-color: rgb(50, 124, 173);
 	cursor:pointer
+	border:0px;
 }
 
 footer{

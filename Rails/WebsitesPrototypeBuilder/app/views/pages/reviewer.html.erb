@@ -21,11 +21,11 @@
 			<%end%>
 		</div>
 		<!-- The + buttom on clicking draw the circle -->
-		<div id="add_comment" onclick="draw_circle();">+</div>
+		<div class="add_comment" onclick="draw_circle();">+</div>
 		<hr>
 		<!-- Fetching questions from the database,just for testing -->
 		<div id="questions">
-			<h4>الاسءلة</h4>
+			<h4>الاسئلة</h4>
 			<% @page.questions.each do |question| %>
 				<div>
 					<p><%= question.body %></p>
@@ -44,8 +44,10 @@
 					<%end%>
 					<div class = "form_message">
 						<%= form_for [@page,question,question.answers.build] do |f| %>
-							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:id => "message_area", :presence=> true%>
-							<%= f.submit "تسجيل", :class => "btn_custom"%>
+							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :presence=> true %>
+							<div align:"left">
+							<%= f.submit "+", :class => "add_comment blue_circle", :align => 'left'%>
+							</div>
 						<%end%>
 					</div>
 					<hr>

@@ -64,11 +64,11 @@ iframe {
 	-moz-transform:rotate(0.6deg);
 }
 
-textarea#message_area {
+textarea.message_area {
   width: 100%;
   height: 50px;
   color:#ffffff;
- overflow: auto;
+  overflow: auto;
 }
 
 .textarea{
@@ -115,6 +115,13 @@ textarea#message_area {
 	border: 0px;
 }
 
+.blue_circle{
+	background-color: rgb(48, 156, 184);
+	color: white;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+}
 .note a{
 	color:#000000;
 	text-decoration: none;
