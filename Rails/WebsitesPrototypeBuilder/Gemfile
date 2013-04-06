@@ -9,6 +9,11 @@ gem 'bcrypt-ruby'
 gem 'sqlite3'
 gem 'devise'
 
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
+end
+
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
