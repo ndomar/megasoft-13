@@ -1,13 +1,16 @@
 <h1>احصائيات</h1>
 
 <div id="statistics">
-  
-  <div id="gender">
-    <%= raw gender(@task) %>
+  <div id="demographic">
+    <p> معملومات عن المراجعين </p>
+    <div id="gender">
+      <p>النوع</p>
+      <%= raw gender(@task) %>
+    </div>
+    
+    <div id="age">
+      <p>السن</p>
+      <%= raw age(@task) %>
+    </div>
   </div>
-  
-  <div id="age">
-
-  </div>
-
 </div>
