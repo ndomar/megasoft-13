@@ -1,3 +1,4 @@
+
 class CreateReviewerInfos < ActiveRecord::Migration
   
   def change
