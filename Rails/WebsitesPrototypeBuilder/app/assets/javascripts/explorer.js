@@ -13,7 +13,7 @@ document.write("aaa");
 // }
 
 
-function adding()
+function addingIFrame()
 {
 	var div = document.getElementById("div");
   var frame=document.createElement("iframe");
@@ -21,6 +21,18 @@ function adding()
 	frame.appendChild(t); 
 	document.body.appendChild(frame);
 	changing();
+}
+
+function addHtml(id,html){
+	var doc = this.contentWindow.document;
+	doc.open();
+	doc.write(html);
+	doc.close();
+	var script = this.contentWindow.document.createElement("script");
+	script.type = "text/javascript";
+	script.text  = 'if (document.all || document.getElementById) {for (i = 0; i < theform.length; i++) {var formElement = theform.elements[i];if (true) {formElement.disabled = true;}}}';
+	// script to deactivate all actions
+	this.contentWindow.document.body.appendChild(script);};
 }
 
 function changing(){
