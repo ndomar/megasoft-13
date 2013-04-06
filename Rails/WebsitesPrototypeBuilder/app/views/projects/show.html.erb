@@ -11,17 +11,21 @@
 	   	 <%= page.html %>
 	   	 <br>
 	   	 <td><%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-	   	 <iframe id =page.id src="" width="100" height="100" onclick="MALATAWY" ></iframe>	  	
+	   	 <button onclick="adding(<%= page.html %>)">Add Page</button>
+	   	 <iframe id =<%= page.id %> src="" width="100" height="100" onclick="MALATAWY" ></iframe>	  	
 	  </p>
 	<% end %>
 </div>
 
 
 <!-- <button onclick="adding()">Add Page</button> -->
-<button onclick="addPage()">Add Page</button>
+<button onclick="adding()">Add Page</button>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<script type="text/javascript">
+	<%= render "ID"%>
+</script>
 
 

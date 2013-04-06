@@ -15,7 +15,6 @@ document.write("aaa");
 
 function adding()
 {
-	
 	var div = document.getElementById("div");
   var frame=document.createElement("iframe");
 	var t=document.createTextNode("CLICK ME");
