@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(:version => 20130404230143) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "reviewer"
+    t.text     "assigned_part"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "designers", :force => true do |t|
     t.string   "designer_name"
     t.string   "email"
@@ -80,6 +89,14 @@ ActiveRecord::Schema.define(:version => 20130404230143) do
     t.string   "project_type"
   end
 
+  create_table "questions", :force => true do |t|
+    t.integer  "page_id"
+    t.text     "assigned_part"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "reviewer_infos", :force => true do |t|
     t.string   "name"
     t.integer  "age"
@@ -97,6 +114,17 @@ ActiveRecord::Schema.define(:version => 20130404230143) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "steps", :force => true do |t|
+    t.string   "component"
+    t.string   "event"
+    t.text     "description"
+    t.integer  "task_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "steps", ["task_id"], :name => "index_steps_on_task_id"
 
   create_table "task_results", :force => true do |t|
     t.boolean  "success"
