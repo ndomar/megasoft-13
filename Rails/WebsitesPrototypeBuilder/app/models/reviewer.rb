@@ -1,6 +1,8 @@
+##
+# It represents a reviewer in the database
+# * *Attribute*    :
+#   - +email+ -> the email of the reviewer
+#
 class Reviewer < ActiveRecord::Base
-  
-  has_many :task_results
-  
   attr_accessible :email
 end
