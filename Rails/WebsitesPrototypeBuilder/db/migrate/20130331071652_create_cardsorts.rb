@@ -1,3 +1,4 @@
+
 class CreateCardsorts < ActiveRecord::Migration
 
   def change

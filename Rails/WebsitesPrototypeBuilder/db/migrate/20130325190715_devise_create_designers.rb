@@ -1,5 +1,4 @@
 class DeviseCreateDesigners < ActiveRecord::Migration
-
   def change
     create_table(:designers) do |t|
       ## Database authenticatable
@@ -43,6 +42,5 @@ class DeviseCreateDesigners < ActiveRecord::Migration
     # add_index :designers, :confirmation_token,   :unique => true
     # add_index :designers, :unlock_token,         :unique => true
     # add_index :designers, :authentication_token, :unique => true
-  end  
-  
+  end
 end

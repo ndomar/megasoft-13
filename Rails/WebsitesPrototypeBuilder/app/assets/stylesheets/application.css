@@ -10,11 +10,17 @@
  *
  *= require jquery.ui.all
  *= require_self
- *= require_tree .
  */
  
-@font-face { font-family: arabi-bold; src: url('arabi-bold.otf');format("opentype"); }
-@font-face { font-family: arabi-light; src: url('arabi-light.otf');format("opentype"); }
+@font-face { 
+	font-family: arabi-bold; src: url('arabi-bold.otf');
+	format("opentype"); 
+}
+
+@font-face { 
+	font-family: arabi-light; src: url('arabi-light.otf');
+	format("opentype"); 
+}
 
 html{
 	background: #fdfdfd;
@@ -61,32 +67,31 @@ body{
 	width:110px;
 	font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
 	text-align: center;
-    list-style: none;
-    display: block;
-    float: left;
+	list-style: none;
+	display: block;
+	float: left;
 	vertical-align: top;
 }
 
 #navigation li a {
-    display: block;
-    text-decoration: none;
-    color: #000000;
-    font-size: 1.6em;
-    margin-top: 11px;
-    line-height: 28px;
+	display: block;
+	text-decoration: none;
+	color: #000000;
+	font-size: 1.6em;
+	margin-top: 11px;
+	line-height: 28px;
 }
 
 #navigation li:hover{
 	background-color: #fafafa;
 }
 
-
 .rectangle {
-   background: #ffffff;
-   height: 51px;
-   position: relative;
-   z-index: 500;
-   border-bottom: 1px solid #d4d4d4;
+	background: #ffffff;
+	height: 51px;
+	position: relative;
+	z-index: 500;
+	border-bottom: 1px solid #d4d4d4;
 }
 
 .logo{
@@ -104,6 +109,7 @@ body{
 	height: 100%;
 	overflow: hidden;
 }
+
 #sidebar{
 	color: #fafafa;
 	width: 260px;
@@ -121,10 +127,10 @@ body{
 }
 
 #sidebar hr{
-    border: 0;
-    height: 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(128, 128, 128, 0.3);
 }
 
 #sidebar a{
@@ -140,7 +146,7 @@ body{
 	height: 35px;
 	width: 35px;
 	text-align: center;
-    vertical-align: middle;
+	vertical-align: middle;
 	background-color: rgb(69, 162, 224);
 }
 
@@ -162,8 +168,5 @@ hr {
 
 iframe {
 	border: 0px;
-	-moz-transform:rotate(0deg);
-	-webkit-transform:rotate(0deg);
-	-o-transform:rotate(0deg);
-	-ms-transform:rotate(0deg);
+	
 }
