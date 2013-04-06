@@ -74,22 +74,22 @@ function notEmpty(){
 
 <div id="content">
   
-  <%= @step.id %>
-  <%= @step.component_id%>
 <input id="cmp4" type="text"/>
 
 <input type = "submit" value ="Step 1 cmp" class="btn" id='cmp'/>
 <input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2'/>
 <input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' />
-<p>this is a paragraph</p>
-</div>
-
-<div id = "content">
 
 </div>
+
+<%= form_for @step do |f| %>
+  <%= hidden_field_tag "change_id", @step.id %>
+  <%= submit_tag %>
+<% end %>
+
 
 <script>
-var currstep_id= "<%= @step.component_id %>";
+var currstep_element_id= "<%= @step.component_id %>";
 
 //  $('#bttn').click(function() {
 //   highlight(currstep_id);
@@ -103,36 +103,61 @@ var currstep_id= "<%= @step.component_id %>";
 // });
 
 $(window).load(function (){
-  highlight(currstep_id); //when the page load the 1st step's elements are highlighted
+  highlight(currstep_element_id); //when the page load the 1st step's elements are highlighted
 });
 
 
  var count =1;
+ var currstep_id= "<%= @step.id %>";
+ var step_event = "<%= @step.event %>";
 
- $("input").click( function(event) {
+ //alert("<%= @step.event %>");
+
+ $("input").on(step_event, function(event) {
 
   var curr_element_id= event.target.id;
-  if (curr_element_id == currstep_id) {
+  if (curr_element_id == currstep_element_id) {
     count=count+1; 
-   // curr_element_id= <%=@step.component_id%>;
-    //alert("cmp"+count);
-    highlight("cmp"+count);
-    dehighlight(curr_element_id);
-    curr_element_id="cmp"+count;
-    currstep_id= curr_element_id;
-
-   // alert (event.target.id + "clicked");
-
+    currstep_id = <%=@step.id%>+1;
+    $("#change_id").val(currstep_id);
+ 
+    dehighlight(currstep_element_id);
+ 
+    $(function() { $("form").submit(); });
+    currstep_element_id= "<%=@step.component_id%>";
+    highlight(currstep_element_id);
+       //currstep_element_id= "<%=@step.component_id%>";
+       //highlight(currstep_element_id);
        }
     });
+
+     $(window).load(function(){
+       currstep_element_id= "<%=@step.component_id%>";
+       highlight(currstep_element_id);
+
+    });
+
+
+  //    $("input").click( function(event) {
+
+  // var curr_element_id= event.target.id;
+  // if (curr_element_id == currstep_element_id) {
+  //   count=count+1; 
+  //  // curr_element_id= <%=@step.component_id%>;
+  //   //alert("cmp"+count);
+  //   highlight("cmp"+count);
+  //   dehighlight(curr_element_id);
+  //   curr_element_id="cmp"+count;
+  //   currstep_element_id= curr_element_id;
+
+  //  // alert (event.target.id + "clicked");
+
+  //      }
+  //   });
 
  // console.log( index + ": " + $(this).text() );
 //    $( "input" ).each(function() {
 // });
 </script>
-
 </body>
 </html>
-
-
-
