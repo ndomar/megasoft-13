@@ -23,3 +23,24 @@ two:
   country: MyString
   profession: MyString
   max_size: MyString
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  designer_name: MyString
+  email: MyString
+  facebook_id: 1
+  credit_card_number: 1
+  phone_number: MyString
+  country: MyString
+  profession: MyString
+  max_size: MyString
+
+two:
+  designer_name: MyString
+  email: MyString
+  facebook_id: 1
+  credit_card_number: 1
+  phone_number: MyString
+  country: MyString
+  profession: MyString
+  max_size: MyString
