@@ -6,7 +6,7 @@ class Answer < ActiveRecord::Base
 # * *Relations* :
 #   - has foreign key to the page and the question
 #   - related to one page and one question
-  validates :answer,:presence => true
+  validates_presence_of :answer
   belongs_to :question
   belongs_to :page
   attr_accessible :answer, :question, :page
