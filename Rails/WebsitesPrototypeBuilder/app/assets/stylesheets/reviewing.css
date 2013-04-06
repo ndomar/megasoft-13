@@ -12,30 +12,6 @@ iframe {
 	display: none;
 }
 
-.btn_custom {
-	-moz-box-shadow:inset -18px 1px 0px -22px #ffffff;
-	-webkit-box-shadow:inset -18px 1px 0px -22px #ffffff;
-	box-shadow:inset -18px 1px 0px -22px #ffffff;
-	background-color:transparent;
-	-moz-border-radius:32px;
-	-webkit-border-radius:42px;
-	border-radius:42px;
-	border:2px solid #000000;
-	display:inline-block;
-	color:#777777;
-	font-family:arial;
-	font-size:14px;
-	font-weight:bold;
-	padding:3px 13px;
-	text-decoration:none;
-	text-shadow:1px 0px 30px #ffffff;
-}
-
-.btn_custom:hover{
-	background-color: rgb(190, 190, 190);
-	cursor:pointer;
-}
-
 .pressed{
 	margin-left: 24px;
 }
