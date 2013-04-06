@@ -1,9 +1,11 @@
 class Project < ActiveRecord::Base
   belongs_to :designer
 
-  attr_accessible :name, :project_type, :description
+  attr_accessible :description, :project_name, :type
 
-  validates :name, :presence => true
-  validates :name, :uniqueness => true
+  validates :project_name, :presence => true
+  validates :project_name, :uniqueness => true
+
+  has_many :tasks, :dependent => :destroy
 
 end

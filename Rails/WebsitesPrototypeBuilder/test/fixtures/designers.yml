@@ -1,5 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+<<<<<<< HEAD
 one:
   user_name: MyString
   email: MyString
@@ -15,3 +16,49 @@ two:
   credit_card_number: MyString
   phone_number: MyString
   country: MyString
+=======
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one:
+  designer_name: MyString
+  email: MyString
+  facebook_id: 1
+  credit_card_number: 1
+  phone_number: MyString
+  country: MyString
+  profession: MyString
+  max_size: MyString
+
+two:
+  designer_name: MyString
+  email: MyString
+  facebook_id: 1
+  credit_card_number: 1
+  phone_number: MyString
+  country: MyString
+  profession: MyString
+  max_size: MyString
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  designer_name: MyString
+  email: MyString
+  facebook_id: 1
+  credit_card_number: 1
+  phone_number: MyString
+  country: MyString
+  profession: MyString
+  max_size: MyString
+
+two:
+  designer_name: MyString
+  email: MyString
+  facebook_id: 1
+  credit_card_number: 1
+  phone_number: MyString
+  country: MyString
+  profession: MyString
+  max_size: MyString
+>>>>>>> 43205bf7a5380981dc3ba62217a1af2ed2e7b700
