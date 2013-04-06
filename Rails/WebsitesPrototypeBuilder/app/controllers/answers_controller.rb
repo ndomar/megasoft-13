@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
 
   	@page = Page.find(params[:page_id])
     @question = @page.questions.find(params[:question_id])
-    @answer =@question.answers.build(params[:answer])
+    @answer =@question.answers.build(params[:answer], :presence => true)
     respond_to do |format|
       if @answer.save
         format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Answer was successfully created.' }

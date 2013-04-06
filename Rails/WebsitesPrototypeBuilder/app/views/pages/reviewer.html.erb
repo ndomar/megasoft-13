@@ -20,6 +20,8 @@
 				</div>
 			<%end%>
 		</div>
+		<!-- The + buttom on clicking draw the circle -->
+		<div id="add_comment" onclick="draw_circle();">+</div>
 		<hr>
 		<!-- Fetching questions from the database,just for testing -->
 		<div id="questions">
@@ -27,28 +29,30 @@
 			<% @page.questions.each do |question| %>
 				<div>
 					<p><%= question.body %></p>
-					<h5>:اجابتك </h5>
+					<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
+					<hr>
+						<hr>
+					<% if !(question.answers.find(:all).empty?) %>
+						<h5>:اجابتك </h5>
+					<%end%>
 					<% question.answers.each do |ans| %>
 						<div>
 							<p><%= ans.answer %></p>
 								<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
 								<hr>
-						</div>			
+						</div>		
 					<%end%>
-					<hr>
-					<div>
-						<!-- show each answer for every question -->
+					<div class = "form_message">
 						<%= form_for [@page,question,question.answers.build] do |f| %>
-							<p><%= f.text_area :answer,:placeholder => "اكتب الاجابة هنا",:id => "message_area", :presence=> true%></p>
-							<%= f.submit "تسجىل", :class => "delete_comment"%>
+							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:id => "message_area", :presence=> true%>
+							<%= f.submit "تسجيل", :class => "btn_custom"%>
 						<%end%>
-						<hr>
 					</div>
+					<hr>
 				</div>
 			<%end%>
 		</div>
-			<!-- The + buttom on clicking draw the circle -->
-			<div id="add_comment" onclick="draw_circle();">+</div>
+
 			<!-- Notice to see the errors -->
 			<p id="notice"><%= notice %></p>
 	</div>	
