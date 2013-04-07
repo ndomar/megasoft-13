@@ -75,7 +75,8 @@ class PagesController < ApplicationController
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to :referer }
+      format.html { redirect_to request.referer }
+      #this is to stay at the same page when a page is deleted
       format.json { head :no_content }
     end
   end
