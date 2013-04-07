@@ -1,0 +1,7 @@
+
+<% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
+  <h2><%= link_to p.project_name , p %></h2> <!-- show each project name -->
+  <% message = @task ? 'There is task assigned to this project are you sure you want to delete this project' : 'Are you sure you want to delete this project' %>
+  <%= link_to "مسح", p, :confirm => message, :method => :delete %>
+  <br>
+<%end%>
