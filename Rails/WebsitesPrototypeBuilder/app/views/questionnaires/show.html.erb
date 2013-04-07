@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @questionnaire.title %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @questionnaire.project %>
+</p>
+
+
+<%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
+<%= link_to 'Back', questionnaires_path %>
