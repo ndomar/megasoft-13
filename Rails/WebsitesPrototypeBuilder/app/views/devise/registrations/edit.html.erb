@@ -85,7 +85,7 @@
     <%= f.text_field :cvv2 ,options = {:size => 1, :required => true}%>
   </div>
 
-  <div><%= f.submit "تعديل" %></div>
+  <div><%= f.submit "تعديل" ,options = {:value => "Update", :class => "btn btn-info"} %></div>
 <% end %>
 
 <h3>إلغاء الحساب</h3>

@@ -18,9 +18,9 @@
     <div>تذكرني <%= f.check_box :remember_me %></div> <!-- remember me-->
   <% end %>
   <br />
-  <div><%= f.submit "تسجيل دخول" %></div>
+  <div><%= f.submit "تسجيل دخول", options = {:value => "Sign in", :class => "btn btn-info"} %></div>
 
-  <br />
+  <br />  
   <%# Link to sign in with facebook %>
   <h4><%= link_to_rpx image_tag("/images/facebook_login_button_arabic.png"), designer_session_url %></h4>
   <br />
