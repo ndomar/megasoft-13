@@ -1,47 +1,34 @@
 class ProjectsController < ApplicationController
-  # GET /projects
-  # GET /projects.json
+
   def index
     @projects = Project.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html 
       format.json { render json: @projects }
     end
   end
 
-  # GET /projects/1
-  # GET /projects/1.json
-  def show
-    
-    @project = Project.find(params[:id])  #I am sending the project to the design page
-    @id = @project.id             #I am sending the project id explicitly to the design page
+  #This is all what i am using
+  def show   
+    @project = Project.find(params[:id])   #I am sending the project to the design page
+    @id = @project.id                      #I am sending the project id explicitly to the design page
     @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
-    # @pages = Page.find(all,)
     respond_to do |format|
-      format.html # show.html.erb
+      format.html 
       format.json { render json: @project }
     end
   end
 
-  # GET /projects/new
-  # GET /projects/new.json
   def new
     @project = Project.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @project }
     end
   end
 
-  # GET /projects/1/edit
-  def edit
-    @project = Project.find(params[:id])
-  end
-
-  # POST /projects
-  # POST /projects.json
   def create
     @project = Project.new(params[:project])
 
@@ -56,8 +43,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # PUT /projects/1
-  # PUT /projects/1.json
   def update
     @project = Project.find(params[:id])
 
@@ -70,19 +55,8 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
-
-
   end
 
-  # def design()
-  #   #I am using this method instead of what Menna has provided me "show" so that i won't mess anyones work
-  # @project = Project.find(params[:id])  #I am sending the project to the design page
-  # @id = @project.id             #I am sending the project id explicitly to the design page
-  #   @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
-  # end
-
-  # DELETE /projects/1
-  # DELETE /projects/1.json
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
@@ -92,4 +66,5 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
