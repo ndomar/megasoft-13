@@ -15,6 +15,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :tasks do
     resources :task_results
   end
+
+  get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
   get "/log/:id" => 'task_results#index'
   
   # The priority is based upon order of creation:
