@@ -1,7 +1,8 @@
 <!-- <div id="wrapper"> -->
 	
 	<div id="sidebar">
-		
+		<input type='text'>
+
 		<div id="pages_list">
 			<H1>صفحات</H1>
 			<% @pages.each do |page| %>
@@ -19,8 +20,11 @@
 			<% end %>
 		</div>
 
+
 		<%= link_to 'Edit', edit_project_path(@project) %> |
 		<%= link_to 'Back', projects_path %>
 	</div>
-	<div id="content"></div>
+	<div id="content">
+			
+	</div>
 <!-- </div> -->
