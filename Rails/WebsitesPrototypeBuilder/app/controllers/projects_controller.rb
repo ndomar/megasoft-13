@@ -42,6 +42,10 @@ class ProjectsController < ApplicationController
       end
     end
   end
+  
+  def create_page
+     Page.create!(:project_id => id)
+  end
 
   def update
     @project = Project.find(params[:id])

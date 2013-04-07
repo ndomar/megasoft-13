@@ -1,30 +1,27 @@
 <%= javascript_include_tag "explorer"%>
 
-<div id="div">
+<div id="pages_list">
 <H1>Show pages</H1>
 	<% @pages.each do |page| %>
 	  <p id="pages">
 	     <b>Page name:</b>
 	   	 <%= page.page_name %>
 	   	 <br>
-	   	 <b>Page html:</b>
-	   	 <%= page.html %>
-	   	 <br>
 	   	 <td><%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	   	 <br>
-	   	<!--  <button onclick="createIframeWithContent(<%= page.id %>,<%= page.html %>)">Show Page</button>
-	   	 <br> -->
-	   	<!--  <div onload="createIframeWithContent(<%= page.id %>,<%= page.html %>)"></div> -->
-	   	 <iframe onload="addHtml(<%= page.id %>,<%= page.html %>)" id ="<%= page.id %>" src="" width="100" height="100"  onclick="MALATAWY" frameborder="1" border="1" framespacing="1" noresize scrolling=auto></iframe>	  	
+	   	 <iframe onload="addHtml('<%= page.id %>','<%= page.html %>')" id ="<%= page.id %>" src="" width="100" height="100"  onclick="MALATAWY" frameborder="1" border="1" frames'pcing="1" noresize scrolling=auto style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);"></iframe>	  	
 	  </p>
 	<% end %>
 </div>
 
-
-<!-- <button onclick="adding()">Add Page</button> -->
-<!-- <button onclick='addHtml(1,"<p>dsasda</p>")'>Add Page</button> -->
-<br>
-<button onclick='createIframeWithContent(4,"<p>dsasda</p>")'>Add Page</button>
+<p id="add_link"><%= link_to_function("Add a Page","Element.remove('add_link'); Element.show('add_page')")%></p>
+<div id="add_page" style="display:none;">
+	<% form_tag(:url => {:action => 'create_page'},:update => "pages_list", :position => :bottom,:html => {:id => 'page_form'}) do %>
+	<!-- this part is what i don't get -->
+			Name: <%= text_field "page", "page_name" %>
+			<%= submit_tag 'Add' %>
+	<% end %>
+</div>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
