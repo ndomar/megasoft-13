@@ -7,11 +7,11 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
+ *= require bootstrap
  *= require jquery.ui.all
  *= require_self
+ *
  */
- 
 @font-face { 
 	font-family: arabi-bold; src: url('arabi-bold.otf');
 	format("opentype"); 

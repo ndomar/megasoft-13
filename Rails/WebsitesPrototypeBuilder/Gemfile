@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'bcrypt-ruby'
 gem 'sqlite3'
 gem 'devise'
+gem 'execjs'
 
 # gem for using bootstrap
 gem 'bootstrap-sass'
