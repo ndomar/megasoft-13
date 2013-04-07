@@ -1,11 +1,4 @@
-//function to be used when i need to add an item to any item
-// function adding(){	
-// 	var div = document.getElementById("div");
-//   var btn=document.createElement("BUTTON");
-// 	var t=document.createTextNode("CLICK ME");
-// 	btn.appendChild(t); 
-// 	document.body.appendChild(btn);
-// }
+//these functions are used in the package explorer
 
 //function to create iframes with their attributes
 function createIframeWithContent(id,html){
@@ -42,15 +35,4 @@ function addHtml(id,html){
 	this.contentWindow.document.body.appendChild(script);
 }
 
-//function used to retrieve name of new page to be created
-function addPage(){
-	document.write("entered");
-	var input =window.prompt("Please enter Page Name","");
-	//if(input != null){
-		// <%= p = Page.new() %>		
-		// <%= p.page_name = @param %>
-		// <%= p.project_id = @id %>
-		// <%= p.save() %>
-	//}
-}
 

@@ -1,4 +1,5 @@
 class CreateCardsorts < ActiveRecord::Migration
+
   def change
     create_table :cardsorts do |t|
       t.string :title
@@ -9,4 +10,5 @@ class CreateCardsorts < ActiveRecord::Migration
       t.timestamps
     end
   end
+  
 end

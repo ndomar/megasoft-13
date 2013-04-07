@@ -1,4 +1,5 @@
 class CreateReviewers < ActiveRecord::Migration
+  
   def change
     create_table :reviewers do |t|
       t.string :email
@@ -6,4 +7,5 @@ class CreateReviewers < ActiveRecord::Migration
       t.timestamps
     end
   end
+  
 end
