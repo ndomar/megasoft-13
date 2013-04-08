@@ -1,7 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   resources :questionnaires
-
-
   get "comments/create"
   get "comments/destroy"
   get "questions/create"

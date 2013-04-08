@@ -11,6 +11,8 @@
  *= require jquery.ui.all
  *= require_self
  */
+
+html,body{ margin:0; padding:0; height:100%; width:100%; min-width: 700px;}
  
 @font-face { 
 	font-family: arabi-bold; src: url('arabi-bold.otf');
@@ -158,6 +160,11 @@ body{
 	background-color: rgb(50, 124, 173);
 	cursor:pointer
 	border:0px;
+}
+
+#content{
+	height: 100%;
+	overflow-y: scroll;
 }
 
 footer{
