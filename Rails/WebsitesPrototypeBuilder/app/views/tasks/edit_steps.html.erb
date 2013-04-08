@@ -1,0 +1,16 @@
+<p> Page ID is <%=@page.id %> </p>
+
+<table>
+  <tr>
+      <td> Step ID  </td>
+      <td> Component</td>
+      <td> Event</td>
+  </tr>
+  <% @steps.each do |step| %>
+    <tr>
+      <td><%= step.id %> </td>
+      <td><%= step.component %> </td>
+      <td><%= step.event %> </td>
+    </tr>
+  <% end %>
+</table>

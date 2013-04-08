@@ -101,4 +101,11 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def edit_steps
+    @task = Task.find(params[:id])
+    @steps = @task.steps
+    @page = @task.page
+
+  end
 end
