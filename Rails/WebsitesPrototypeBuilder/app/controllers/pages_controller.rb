@@ -72,6 +72,7 @@ class PagesController < ApplicationController
   # DELETE /pages/1.json
   def destroy
     @page = Page.find(params[:id])
+    @task = Task.find(:all, :conditions => {:page_id => @page.id})
     @page.destroy
 
     respond_to do |format|
