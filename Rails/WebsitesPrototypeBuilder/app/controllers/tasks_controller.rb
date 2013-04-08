@@ -14,6 +14,7 @@ class TasksController < ApplicationController
       format.json { render json: @tasks }
     end
   end
+  
   ## 
   # Make a new instance of task and render new view that has the form
   # * *Args*    :
@@ -29,6 +30,25 @@ class TasksController < ApplicationController
       format.json { render json: @task }
     end
   end
+
+  # GET /tasks/1
+  # GET /tasks/1.json
+  ##
+  #show a specific task by searchinng for its id
+  #* *Args*    :
+  #   -+Task+->: an instance of the class task
+  #* *Returns*    :
+  #   -the details of this task and renders itas an html
+  #
+  def show
+    @task = Task.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @task }
+    end
+  end
+
   ## 
   # Find the task with the project_id and render edit view that has the form to edit the task
   # * *Args*    :
@@ -39,6 +59,7 @@ class TasksController < ApplicationController
   def edit
     @task = Project.find(params[:project_id]).tasks.find(params[:id])
   end
+
   ## 
   # Use the :task parameter to create an instance of tasks related to current project
   # * *Args*    :
@@ -59,6 +80,7 @@ class TasksController < ApplicationController
       end
     end
   end
+
   ## 
   # get the new parameters and update the database
   # * *Args*    :
@@ -79,6 +101,7 @@ class TasksController < ApplicationController
       end
     end
   end
+
   ## 
   # destroy the task with :id
   # * *Args*    :

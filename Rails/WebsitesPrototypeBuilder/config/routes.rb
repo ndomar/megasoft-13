@@ -1,9 +1,26 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   
   resources :projects do
-    resources :tasks
+    resources :tasks do
+      resources :task_results
+    end
   end
 
+  devise_for :designers
+  
+  #at start up page goes to the home controller and the index action
+  root to: "home#index"
+
+  get "pages/reviewer"
+  get "pages/designer"
+
+  resources :pages do
+    resources :comments
+    resources :questions
+  end
+  
+  get "/log/:id" => 'task_results#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -53,7 +70,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'tasks#index'
 
   # See how all your routes lay out with "rake routes"
 

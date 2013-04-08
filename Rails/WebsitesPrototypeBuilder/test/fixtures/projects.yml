@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
@@ -16,3 +17,16 @@ two:
 two:
   name: MyString
 >>>>>>> 702328961b57d80ff3becfb564dde2ac1c70bf17
+=======
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  project_name: MyString
+  type: 
+  description: MyText
+
+two:
+  project_name: MyString
+  type: 
+  description: MyText
+>>>>>>> c022d2e30cacb2260dd4f2638fc3f5ec1ee9e756
