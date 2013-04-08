@@ -1,5 +1,9 @@
 <p> Page ID is <%=@page.id %> </p>
 
+<div id ="embedded">
+<%= @page.html.html_safe %>
+</div>
+
 <table>
   <tr>
       <td> Step ID  </td>
