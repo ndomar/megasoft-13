@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag    "application", :media => "all" %>
+<p id="notice"><%= notice %></p>
+
+
+<table align="right" class="table table-striped table-bordered">
+    <tr>
+      <th>البريد الالكتروني</th>
+      <th>الوقت</th>
+      <th>نسبة النجاح</th>
+      <th>عدد الضغطات</th>
+    </tr>
+	<tr>
+	  <td><%= @task_result.reviewer.email %></td>
+	  <td><%= @task_result.time %></td>
+	  <td><%= @task_result.success %></td>
+	  <td><%= @task_result.clicks %><td>
+	</tr>
+  </table> 
