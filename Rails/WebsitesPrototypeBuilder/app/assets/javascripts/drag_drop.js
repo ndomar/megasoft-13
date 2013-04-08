@@ -1,4 +1,7 @@
 			$(document).ready(function (){
+				$("#imagediv").css({
+					"width": "100px"
+				});
 				counter = 0; //Counts number of elements in the Design Page
 				$(".drag").draggable({
 					helper: 'clone',// clone the dragged element and drag the newly created one
@@ -36,6 +39,9 @@
 							       	  "width": "100%" ,
 							          "height": "100%"
 							       });
+							       $("#eid").text("ID: "+ui.element.attr("id"));
+  								   $("#width").text("Width: "+ui.size.width);
+  								   $("#height").text("Height: "+ui.size.height);
 						        },
 						        stop: function(event, ui){
 							       ui.element.children(".toolboxelement").css({
@@ -47,6 +53,12 @@
 							.draggable({ //new draggable to avoid cloning elements that are moved within the design page
 								containment: 'parent',
 								cancel:false
+							})
+							.click(function() {
+  								var eid = $(this).parent().attr("id");
+  								$("#eid").text("ID: "+eid);
+  								$("#width").text("Width: "+$(this).width());
+  								$("#height").text("Height: "+$(this).height());
 							});
 						}
 					}
