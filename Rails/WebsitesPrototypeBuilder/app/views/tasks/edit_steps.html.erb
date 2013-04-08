@@ -18,3 +18,17 @@
     </tr>
   <% end %>
 </table>
+
+<script type="text/javascript">
+  $(function(){
+   $("#embedded").find('input').click(function(event){
+        var id = event.target.id;
+        alert ('The id of the HTML component you clicked on is ' + id);
+        var params = $.param({
+        component: id,
+        "event" : "onclick"
+        //desc: $('#description').val()
+        });
+        $.ajax("/tasks/new_step?" + params)
+  });});
+</script>
