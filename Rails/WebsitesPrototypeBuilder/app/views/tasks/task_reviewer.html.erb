@@ -82,14 +82,16 @@ function notEmpty(){
 
 </div>
 
-<%= form_for @step do |f| %>
-  <%= hidden_field_tag "change_id", @step.id %>
-  <%= submit_tag %>
+<%= form_for [@task,@step] do |f| %>  
+  <%= hidden_field_tag "change_success", 'false' %>
+  <%= hidden_field_tag "change_id", '1' %>
+  <%= hidden_field_tag "start_time", '1' %>
+  <%= hidden_field_tag "change_clicks", '0' %>
 <% end %>
 
 
 <script>
-var currstep_element_id= "<%= @step.component_id %>";
+var currstep_element_id= "<%= @step.component %>";
 
 //  $('#bttn').click(function() {
 //   highlight(currstep_id);
@@ -102,39 +104,48 @@ var currstep_element_id= "<%= @step.component_id %>";
 //     });
 // });
 
-$(window).load(function (){
-  highlight(currstep_element_id); //when the page load the 1st step's elements are highlighted
-});
+// $(window).load(function (){
+//   highlight(currstep_element_id); //when the page load the 1st step's elements are highlighted
+// });
 
 
  var count =1;
  var currstep_id= "<%= @step.id %>";
  var step_event = "<%= @step.event %>";
+ var step_answer_success ='true';
+ var clicks_count = 0;
+ var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>";
 
- //alert("<%= @step.event %>");
+
 
  $("input").on(step_event, function(event) {
 
   var curr_element_id= event.target.id;
-  if (curr_element_id == currstep_element_id) {
+  if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event
+
     count=count+1; 
     currstep_id = <%=@step.id%>+1;
-    $("#change_id").val(currstep_id);
- 
-    dehighlight(currstep_element_id);
- 
-    $(function() { $("form").submit(); });
-    currstep_element_id= "<%=@step.component_id%>";
-    highlight(currstep_element_id);
-       //currstep_element_id= "<%=@step.component_id%>";
-       //highlight(currstep_element_id);
+    clicks_count=<%= @task_result.click%>+1;
+
+    $("#change_id").val(currstep_id); //to increment the value of the curr step
+    $("#start_time").val(curr_time); //set the time_from_start
+    $("#change_clicks").val(clicks_count); //update clicks_count in DB
+    $("#change_success").val(step_answer_success); //set successful = true for step_answer
+
+    dehighlight(currstep_element_id); 
+    
+    alert ($("#change_clicks").val()); 
+    $(function() { $("form").submit(); }); //to update the step_id in the DB
+
        }
     });
 
      $(window).load(function(){
-       currstep_element_id= "<%=@step.component_id%>";
+       currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
        highlight(currstep_element_id);
+       clicks_count= "<%= @task_result.click%>";
 
+// initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
     });
 
 
@@ -143,7 +154,7 @@ $(window).load(function (){
   // var curr_element_id= event.target.id;
   // if (curr_element_id == currstep_element_id) {
   //   count=count+1; 
-  //  // curr_element_id= <%=@step.component_id%>;
+  //  // curr_element_id= <%=@step.component%>;
   //   //alert("cmp"+count);
   //   highlight("cmp"+count);
   //   dehighlight(curr_element_id);
