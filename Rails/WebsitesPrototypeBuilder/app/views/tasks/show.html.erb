@@ -1,32 +1,42 @@
-<p id="notice"><%= notice %></p>
+<h2 align="right">الاحصائيات</h2>
+<div id="task_results">
+  <% if @task.task_results.length !=0 %>
+    <table align="right">
+      <tr>
+        <th>البريد الالكتروني</th>
+        <th>الوقت</th>
+        <th>نسبة النجاح</th>
+        <th></th>
+      </tr>
+      <% @task.task_results.each do |result| %>
+        <%if result.reviewer %>
+  	<tr>
+  	  <td><%= result.reviewer.email %></td>
+  	  <td><%= result.time %></td>
+  	  <td><%= result.success %></td>
+  	  <td><%= link_to 'التفاصيل', :controller=> :task_results, :action => 	:index, :id => result.id %></td>
+  	</tr>
+        <% end %>
+      <% end %> 
+    </table>
+  <% else %> 
+    <div>
+        <h2> No one took the task </h2>
+    </div>    
+  <% end %>
+</div>
 
-
-<h2 align="right">نتائج المهام</h2>
-
-<% if @task.task_results.length !=0 %>
-  <table align="right">
-    <tr>
-      <th>البريد الالكتروني</th>
-      <th>الوقت</th>
-      <th>نسبة النجاح</th>
-      <th></th>
-    </tr>
-    <% @task.task_results.each do |result| %>
-      <%if result.reviewer %>
-	<tr>
-	  <td><%= result.reviewer.email %></td>
-	  <td><%= result.time %></td>
-	  <td><%= result.success %></td>
-	  <td><%= link_to 'التفاصيل', :controller=> :task_results, :action => 	:index, :id => result.id %></td>
-	</tr>
-      <% end %>
-    <% end %> 
-  </table>
-<% else %> 
-  <div>
-      <h2> No one took the task </h2>
-  </div>    
-<% end %>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<div id="statistics">
+  <div id="gender">
+    <p>النوع</p>
+    <%= raw compareGender(@task) %>
+  </div>
+  <div id = "age">
+    <p>السن</p>
+    <%= raw compareAge(@task) %>
+  </div>
+  <div id="country">
+    <p>البلد</p>
+    <%= raw compareCountry(@task) %>
+  </div>
+</div>
