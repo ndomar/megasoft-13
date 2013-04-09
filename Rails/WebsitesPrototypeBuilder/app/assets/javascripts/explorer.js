@@ -34,5 +34,3 @@ function addHtml(id,html){
 	//this script is to deactivate all actions within that html
 	this.contentWindow.document.body.appendChild(script);
 }
-
-

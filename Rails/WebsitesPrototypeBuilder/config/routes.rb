@@ -8,7 +8,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/designer"
   get "projects/index"
 
-  resources :projects
+  resources :projects do
+    resources :pages
+  end
 
   resources :pages do
     resources :comments

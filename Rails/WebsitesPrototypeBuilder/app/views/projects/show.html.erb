@@ -24,7 +24,8 @@
 		<%= link_to 'Edit', edit_project_path(@project) %> |
 		<%= link_to 'Back', projects_path %>
 
-		<button id="add_page">Add Page</button>
+		<button id="add_page" onclick="addPage()">Add Page</button>
+		<%= render 'page_form'%>
 	</div>
 	<div id="content">
 			

@@ -1,4 +1,13 @@
 // AJAX called on delete it slides(hides) the question
-$('.add_page').bind('ajax:success', function() {  
-	$(this).closest('div').slideUp("slow");
-});
+
+
+
+function setRemoteAddFunc(){
+	$('#add-button').click(function (){
+		var params = $.param({
+			title: $('#title').val(),
+			desc: $('#description').val()
+		});
+		$.ajax("/cardsorts/create?" + params);
+	});
+}
