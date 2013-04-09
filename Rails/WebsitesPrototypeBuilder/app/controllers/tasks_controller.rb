@@ -108,6 +108,10 @@ class TasksController < ApplicationController
   end
   def invite_user
     
-    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email])}s")
+    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
+  
+  end
+  def makesure
+    puts(params[:task_id] , params[:reviewer_id])
   end
 end

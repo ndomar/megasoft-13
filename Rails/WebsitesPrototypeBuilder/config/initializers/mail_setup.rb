@@ -11,3 +11,5 @@ ActionMailer::Base.smtp_settings = {
 
 # Setting ActionMailer delivery method
 ActionMailer::Base.delivery_method = :smtp
+
+ActionMailer::Base.default_url_options[:host] = "localhost:3000"
