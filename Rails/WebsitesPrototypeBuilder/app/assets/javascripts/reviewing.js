@@ -3,8 +3,6 @@
 //sliding down the form to insert an answer
 $(document).ready(function sliding_form(){
 
-// $(this).closest('div').slideUp("slow");
-
   $('.pressed').click(function(){
     if ($(this).closest('div').children('.form_message').is(":hidden")){
       $(this).closest('div').children('.form_message').slideDown("slow");
