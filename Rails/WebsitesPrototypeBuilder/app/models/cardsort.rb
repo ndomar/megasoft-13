@@ -1,5 +1,5 @@
 ##
-# a brief description of the model
+# represents a cardsort entity
 # **Attribute* :
 # - +description+ -> a short desciption of the card sort and its purpose
 # - +open+ -> boolean to set the type of the cardsort
