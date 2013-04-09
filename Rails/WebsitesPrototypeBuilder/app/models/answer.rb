@@ -9,5 +9,5 @@ class Answer < ActiveRecord::Base
   validates_presence_of :answer
   belongs_to :question
   belongs_to :page
-  attr_accessible :answer, :question, :page
+  attr_accessible :answer, :question_id, :page_id
 end
