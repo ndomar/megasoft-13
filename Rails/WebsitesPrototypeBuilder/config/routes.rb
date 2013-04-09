@@ -12,8 +12,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :questions
   end
 
-  get 'tests/test_file'
-  post 'tests/test_file' => 'tests#create'
   
   resources :tasks do
     resources :task_results
