@@ -1,3 +1,5 @@
+
+
 <h1>Listing tasks</h1>
 
 <table class="table table-striped table-bordered">
@@ -9,12 +11,25 @@
   </tr>
 
   <% @tasks.each do |task| %>
+  
     <tr>
       <td><%= task.name %></td>
       <td><%= link_to 'النتائج', task %></td>
       <td><%= link_to 'Edit', edit_task_path(task) %></td>
       <td><%= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+      
     </tr>
+    <tr>
+    <td> <div class="progress">
+  <div class="bar bar-success" style="width: 10%;">1</div>
+  <div class="bar bar-danger" style="width: 10%;">2</div>
+  <div class="bar bar-danger" style="width: 10%;">3</div>
+  <div class="bar bar-danger" style="width: 10%;">4</div>
+  <div class="bar bar-danger" style="width: 10%;">5</div>
+  <div class="bar bar-danger" style="width: 10%;">6</div>
+</div> </td>
+</tr>
+    
   <% end %>
 </table>
 
@@ -24,9 +39,4 @@
 
 
   
-  <div class="progress">
-  <div class="bar bar-success" style="width: 35%;"></div>
-  <div class="bar bar-warning" style="width: 20%;"></div>
-  <div class="bar bar-danger" style="width: 10%;"></div>
-</div>
-
+  
