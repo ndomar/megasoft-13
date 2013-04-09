@@ -10,12 +10,14 @@ class Project < ActiveRecord::Base
   # * *Relations  :
   #   -A project belongs to one designer
   #   -A project has many tasks 
-  belongs_to :designer
   attr_accessible :description, :project_name, :project_type
 
   validates :project_name, :presence => {:message => ".برجاء ادخال اسم المشروع"}
   validates :project_name, :uniqueness => {:message => ".يوجد مشروع بهذا الاسم, برجاء ادخال اسم مشروع آخر"}
 
   has_many :tasks, :dependent => :destroy
-end
+  has_many :pages, :dependent => :destroy
+  belongs_to :designer
 
+
+end
