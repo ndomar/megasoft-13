@@ -106,6 +106,13 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @steps = @task.steps
     @page = @task.page
+  end
 
+  def new_step
+    @step = Step.create(:task_id => params[:task], :event => params[:event], :component => params[:component])
+    respond_to do |format|
+      format.html {render :nothing => true}
+      format.js {render "step_list"}
+    end
   end
 end
