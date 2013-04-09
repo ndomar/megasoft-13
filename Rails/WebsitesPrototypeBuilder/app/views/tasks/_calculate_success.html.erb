@@ -1,0 +1,9 @@
+<% successful_steps = 0 %>
+<% f.step_answers.each do |solution| %>
+	<% if solution.successful %>
+	  <% successful_steps += 1 %>
+	<% end %>
+      <% end %>
+      <% number_of_steps = f.step_answers.length %>
+      <% f.success = (successful_steps.to_f / number_of_steps) * 100 %>
+      <% f.save %> 

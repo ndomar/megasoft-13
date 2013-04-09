@@ -15,15 +15,7 @@
     </tr>
     <% @task.task_results.each do |result| %>
       <% result = TaskResult.find(params[:id])%>
-      <% successful_steps = 0 %>
-      <% result.step_answers.each do |solution| %>
-	<% if solution.successful %>
-	  <% successful_steps += 1 %>
-	<% end %>
-      <% end %>
-      <% number_of_steps = result.step_answers.length %>
-      <% result.success = (successful_steps.to_f / number_of_steps) * 100 %>
-      <% result.save %>
+<!--       <% render "calculate_success", :f => result %> -->
       <%if result.reviewer %>
 	<tr>
 	  <td><%= result.reviewer.email %></td>
@@ -31,21 +23,11 @@
 	  <td><%= result.success %> % </td>
 	  <td><%= result.clicks %><td>
 	</tr>
-	<tr>
-	<td>
-	    <div class="progress">
-	      <% step_number = 0 %>
-	      <% result.step_answers.each do |sol| %>
-		<% step_number += 1%>
-		<% if sol.successful %>
-		  <div class="bar bar-success" style="width: 10%;"><%= step_number %></div>
-		<% else %>
-		  <div class="bar bar-danger" style="width: 10%;"><%= step_number %></div>
-		<% end %>
-	      <% end %> 
-	    </div>  
-	  </td>
-	</tr>
+<!-- 	<tr> -->
+<!-- 	<td> -->
+<!-- 	    <% render "create_bars", :x => result %> -->
+<!-- 	  </td> -->
+<!-- 	</tr> -->
       <% end %>
     <% end %> 
   </table>
