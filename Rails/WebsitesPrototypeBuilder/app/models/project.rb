@@ -3,15 +3,13 @@ class Project < ActiveRecord::Base
 
   ##
   # Attributes:
-  #  description -> This is the description of the project
-  #  Project_name -> This is the name of the project
-  #  type - > This is the type of the project
-  # Relations :
-  #  A project belongs to one designer
-  # Validations:
-  #  Project name cannot be blank
-  #  Project name should be unique
-  
+  # This is the project model 
+  # * *Attributes*    :
+  #   - +Project_name+-> This is the name of the project
+  #   - +type+-> This is the type of the project
+  # * *Relations  :
+  #   -A project belongs to one designer
+  #   -A project has many tasks 
   belongs_to :designer
   attr_accessible :description, :project_name, :project_type
 

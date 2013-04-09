@@ -2,18 +2,21 @@ class ProjectsController < ApplicationController
   #To make sure that the designer is logged in
   before_filter :authenticate_designer! 
 
-    ##
-    #Create a new project
-
+  ##
+  #The index method is used, to preview all the projects created by the logged in designer
+  # * *Instance*    :
+  #   - +project+-> The new created project
+  
   def new()
     @project = Project.new() 
   end
 
-    ##
-    #Create a new project with the info passed by the user (peoject_name : string , Project_type :String, Description : string)
-    #then save(), which will return either true ro false
-    #so if it returned true, go to the project design page
-    #else if it returned false, the project description page will appear again
+  ##
+  #The create method in project controller class creates a new project with a given parameter and then
+  # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
+  # * *Instance*    :
+  #   - +projects+-> The new created project with the passed parameters
+    
 
   def create()
     @project = Project.new(params[:project])
