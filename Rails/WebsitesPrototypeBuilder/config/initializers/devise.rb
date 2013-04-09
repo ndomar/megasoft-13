@@ -81,6 +81,9 @@ Devise.setup do |config|
   # a value less than 10 in other environments.
   config.stretches = Rails.env.test? ? 1 : 10
 
+  # The default HTTP method used to sign out a resource. Default is :delete.
+  config.sign_out_via = Rails.env.test? ? :get : :delete
+
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "e3c7b6fdd582f5d7b2722795a0f2b106e6d9ba16fd82d490d97d82604af3a9a9c7502014456cfb308bc502d1791cb618b460dbc481ab53fe55a4ca6314dd0868"
 
