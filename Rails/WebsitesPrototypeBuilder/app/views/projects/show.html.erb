@@ -5,6 +5,10 @@
 
 		<div id="pages_list">
 			<H1>صفحات</H1>
+			<%= form_for :picture do |form| %>
+				<%= form.file_field :image %>
+				<%= form.submit "upload" %>
+			<% end %>
 			<% @pages.each do |page| %>
 			  <p id="pages">
 			     <%= page.page_name %>
