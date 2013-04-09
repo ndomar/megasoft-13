@@ -1,3 +1,4 @@
+<% f = TaskResult.find(params[:id])%>
 <% successful_steps = 0 %>
 <% f.step_answers.each do |solution| %>
 	<% if solution.successful %>
