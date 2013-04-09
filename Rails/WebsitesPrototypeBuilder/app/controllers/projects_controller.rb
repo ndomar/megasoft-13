@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+sclass ProjectsController < ApplicationController
   before_filter :authenticate_designer!
   ##
   #The index method is used, to preview all the projects created by the logged in designer
