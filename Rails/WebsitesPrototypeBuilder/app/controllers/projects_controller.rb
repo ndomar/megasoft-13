@@ -1,18 +1,7 @@
 class ProjectsController < ApplicationController
-  before_filter :require_correct_designer
+  # before_filter :require_correct_designer
 
-   def require_correct_designer(pid , did)
-     @project = Project.find(:all, :conditions => {:project_id => pid , :designer_id => did}) 
-    if(@project != nil)
-      return true
-    else
-      return false
-
-    # unless logged_in?
-    #   flash[:error] = "You must be logged in to access this section"
-    #   redirect_to new_login_url # halts request cycle
-    end
-  end
+   
 
 
   def index
@@ -27,7 +16,11 @@ class ProjectsController < ApplicationController
   #This is all what i am using
   def show   
     @project = Project.find(params[:id])   #I am sending the project to the design page
-    @id = @project.id                      #I am sending the project id explicitly to the design page
+    # unless @project.designer_id == current_user.id
+    #   flash[:error] = "unauthorized"
+    #   redirect_to :index
+    # end
+    @id = @project.id                                     #I am sending the project id explicitly to the design page
     @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
     respond_to do |format|
       format.html 
