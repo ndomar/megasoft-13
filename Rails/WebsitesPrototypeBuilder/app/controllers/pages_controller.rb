@@ -43,9 +43,11 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
+        format.js { render :layout => false }
         format.html { redirect_to @page, notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
       else
+        format.js { render :layout => false }
         format.html { render action: "new" }
         format.json { render json: @page.errors, status: :unprocessable_entity }
       end
