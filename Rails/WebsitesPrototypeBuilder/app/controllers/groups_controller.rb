@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
 # * *Returns* :
 #   Void
 #
-end
    def index
     @groups = Group.all
     @cards = Card.all

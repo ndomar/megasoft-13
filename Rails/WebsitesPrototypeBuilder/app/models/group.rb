@@ -17,7 +17,7 @@
 ## 
 #This method finds all groups belonging to a certain cardsort
 # * *Args*    :
-#none
+#   none
 # * *Returns* :
 #   none
 #

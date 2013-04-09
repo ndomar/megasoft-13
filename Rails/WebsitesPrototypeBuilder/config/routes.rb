@@ -1,5 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   get "home/index"
+  get "cardortsreviewer/groupsandcards/:id" => 'cardorts_reviewer#groupsandcards'
 
   resources :groups
 
@@ -52,7 +53,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => 'cardorts_reviewer#groupsandcards'
 
   # See how all your routes lay out with "rake routes"
 
