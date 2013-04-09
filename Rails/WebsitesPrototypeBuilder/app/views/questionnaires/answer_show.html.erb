@@ -1,0 +1,8 @@
+<h1>WOHOO</h1>
+<div id="html_content">
+	<div id="comments">
+			<% @questionnaire.qquestions.each do |qquestion| %>
+			<p><%=qquestion.body %></p>
+			<%end%>
+	</div>
+</div>

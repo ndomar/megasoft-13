@@ -1,5 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  get "answer_questionnaires/Show"
+  get "answer_questionnaires/show"
 
   get "comments/create"
   get "comments/destroy"
@@ -9,6 +9,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
+  get "questionnaires/answer_show"
 
   resources :pages do
     resources :comments

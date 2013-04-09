@@ -16,6 +16,7 @@
     <td><%= link_to 'Show', questionnaire %></td>
     <td><%= link_to 'Edit', edit_questionnaire_path(questionnaire) %></td>
     <td><%= link_to 'Destroy', questionnaire, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Answer', :controller => :questionnaires, :action => :answer_show, :id => questionnaire %></td>
   </tr>
 <% end %>
 </table>

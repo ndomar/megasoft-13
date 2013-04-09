@@ -21,6 +21,11 @@ class QuestionnairesController < ApplicationController
     end
   end
 
+  def answer_show
+    @questionnaire = Questionnaire.find(params[:id])
+    render 'answer_show'
+  end
+
   # GET /questionnaires/new
   # GET /questionnaires/new.json
   def new

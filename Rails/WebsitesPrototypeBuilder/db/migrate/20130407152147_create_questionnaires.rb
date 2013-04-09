@@ -7,5 +7,6 @@ class CreateQuestionnaires < ActiveRecord::Migration
       t.timestamps
     end
     add_index :questionnaires, :project_id
+    Questionnaire.create(:title => "1st questionnaire")
   end
 end
