@@ -1,5 +1,5 @@
 
-<%= form_for [@project,@project.pages.build] do |f| %>
+<%= form_for [@project,@project.pages.build],:remote => true do |f| %>
         <p><%= f.text_field :page_name,:placeholder => "علق هنا"%></p>
         <%= f.submit "+"%>
 <% end %>
