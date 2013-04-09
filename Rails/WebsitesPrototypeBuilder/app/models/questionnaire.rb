@@ -3,4 +3,5 @@ class Questionnaire < ActiveRecord::Base
   attr_accessible :title
   has_many :qquestions,:dependent => :destroy
   has_many :choice_qquestions,:dependent => :destroy
+  has_many :answer_questionnaires,:dependent => :destroy
 end

@@ -1,5 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  resources :questionnaires
+  get "answer_questionnaires/Show"
+
   get "comments/create"
   get "comments/destroy"
   get "questions/create"
@@ -14,6 +15,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
      resources :questions do
       resources :answers
     end
+  end
+
+  resources :questionnaires do
+    resources :qquestions do
+      resources :choice_qquestions
+    end 
+    resources :answer_questionnaires
   end
 
   resources :tasks do

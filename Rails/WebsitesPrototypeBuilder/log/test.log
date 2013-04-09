@@ -1,0 +1,667 @@
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/functional/answers_controller_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/functional/answers_controller_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+Unable to load invitation, underlying cause No such file to load -- invitation 
+
+ C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:317:in `rescue in depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:312:in `depend_on'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activesupport-3.2.13/lib/active_support/dependencies.rb:225:in `require_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:767:in `try_to_load_dependency'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:782:in `block in require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `each'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:779:in `require_fixture_classes'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/activerecord-3.2.13/lib/active_record/fixtures.rb:762:in `fixtures'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:10:in `<class:TestCase>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/test_helper.rb:5:in `<top (required)>'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `require'
+D:/Work/GUC/6th Semester/Software Engineering/Project/megasoft-13/Rails/WebsitesPrototypeBuilder/test/unit/answer_test.rb:1:in `<top (required)>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `require'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:15:in `block in <main>'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `select'
+C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/rake-10.0.4/lib/rake/rake_test_loader.rb:4:in `<main>'
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDesigner Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (55.0ms)[0m  INSERT INTO "designers" ("country", "created_at", "credit_card_number", "current_sign_in_at", "current_sign_in_ip", "cvv2", "day_dob", "email", "encrypted_password", "facebook_email", "fullname", "gender", "last_sign_in_at", "last_sign_in_ip", "month_dob", "phone_number", "profession", "remember_created_at", "reset_password_sent_at", "reset_password_token", "rpx_identifier", "sign_in_count", "updated_at", "year_dob") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["country", "Egypt"], ["created_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["credit_card_number", 1234567891234567], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["cvv2", 123], ["day_dob", 15], ["email", "designer@gmail.com"], ["encrypted_password", "$2a$04$tWnZ4NEKaVr1zYMoZLRaNOTHwWvmpI5nvYk9hTQOlR.VebAEAgoVC"], ["facebook_email", nil], ["fullname", "Test Designer"], ["gender", nil], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["month_dob", 10], ["phone_number", "01004509771"], ["profession", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["rpx_identifier", nil], ["sign_in_count", 0], ["updated_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["year_dob", 1990]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mDesigner Exists (0.0ms)[0m  SELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1
+  [1m[36m (0.9ms)[0m  [1mrollback transaction[0m
+  [1m[35m (4.9ms)[0m  DELETE FROM "answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (3.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (3.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (4.1ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (3.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (43.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (19.1ms)[0m  DELETE FROM "groups";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (40.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (5.1ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36mDesigner Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@foo,com' LIMIT 1[0m
+  [1m[35mDesigner Exists (0.0ms)[0m  SELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer_at_foo.org' LIMIT 1
+  [1m[36mDesigner Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'example.designer@foo.' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (30.0ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (12.0ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (14.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (7.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (8.1ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mDesigner Exists (0.0ms)[0m  SELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@foo.com' LIMIT 1
+  [1m[36mDesigner Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'the_user@foo.bar.org' LIMIT 1[0m
+  [1m[35mDesigner Exists (0.0ms)[0m  SELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'first.last@foo.jp' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (20.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (17.1ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (13.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mDesigner Exists (0.0ms)[0m  SELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "designers" ("country", "created_at", "credit_card_number", "current_sign_in_at", "current_sign_in_ip", "cvv2", "day_dob", "email", "encrypted_password", "facebook_email", "fullname", "gender", "last_sign_in_at", "last_sign_in_ip", "month_dob", "phone_number", "profession", "remember_created_at", "reset_password_sent_at", "reset_password_token", "rpx_identifier", "sign_in_count", "updated_at", "year_dob") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["country", "Egypt"], ["created_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["credit_card_number", 1234567891234567], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["cvv2", 123], ["day_dob", 15], ["email", "designer@gmail.com"], ["encrypted_password", "$2a$04$nBcjNnidBeqglgPe02LC7.MYNQZ1IeIFFvnYqPo1wjdFD7mRvjv9O"], ["facebook_email", nil], ["fullname", "Test Designer"], ["gender", nil], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["month_dob", 10], ["phone_number", "01004509771"], ["profession", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["rpx_identifier", nil], ["sign_in_count", 0], ["updated_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["year_dob", 1990]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mDesigner Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (32.0ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (17.0ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (40.1ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (19.0ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (15.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (17.1ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDesigner Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "designers" ("country", "created_at", "credit_card_number", "current_sign_in_at", "current_sign_in_ip", "cvv2", "day_dob", "email", "encrypted_password", "facebook_email", "fullname", "gender", "last_sign_in_at", "last_sign_in_ip", "month_dob", "phone_number", "profession", "remember_created_at", "reset_password_sent_at", "reset_password_token", "rpx_identifier", "sign_in_count", "updated_at", "year_dob") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["country", "Egypt"], ["created_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["credit_card_number", 1234567891234567], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["cvv2", 123], ["day_dob", 15], ["email", "designer@gmail.com"], ["encrypted_password", "$2a$04$tVYA4selV/6Z7k06DsaVKOJZBN.SS3y7OEjpaHp6U.UfBOIyp9sFC"], ["facebook_email", nil], ["fullname", "Test Designer"], ["gender", nil], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["month_dob", 10], ["phone_number", "01004509771"], ["profession", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["rpx_identifier", nil], ["sign_in_count", 0], ["updated_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["year_dob", 1990]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (4.1ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (20.1ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (6.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDesigner Exists (0.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "designers" ("country", "created_at", "credit_card_number", "current_sign_in_at", "current_sign_in_ip", "cvv2", "day_dob", "email", "encrypted_password", "facebook_email", "fullname", "gender", "last_sign_in_at", "last_sign_in_ip", "month_dob", "phone_number", "profession", "remember_created_at", "reset_password_sent_at", "reset_password_token", "rpx_identifier", "sign_in_count", "updated_at", "year_dob") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["country", "Egypt"], ["created_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["credit_card_number", 1234567891234567], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["cvv2", 123], ["day_dob", 15], ["email", "designer@gmail.com"], ["encrypted_password", "$2a$04$Xlcudi9.4/kDntelT.c/4ePH7oNJgsA4Ek7bU6CTu398aA6d96/7u"], ["facebook_email", nil], ["fullname", "Test Designer"], ["gender", nil], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["month_dob", 10], ["phone_number", "01004509771"], ["profession", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["rpx_identifier", nil], ["sign_in_count", 0], ["updated_at", Mon, 08 Apr 2013 18:55:16 UTC +00:00], ["year_dob", 1990]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (7.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mDesigner Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "designers" ("country", "created_at", "credit_card_number", "current_sign_in_at", "current_sign_in_ip", "cvv2", "day_dob", "email", "encrypted_password", "facebook_email", "fullname", "gender", "last_sign_in_at", "last_sign_in_ip", "month_dob", "phone_number", "profession", "remember_created_at", "reset_password_sent_at", "reset_password_token", "rpx_identifier", "sign_in_count", "updated_at", "year_dob") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["country", "Egypt"], ["created_at", Mon, 08 Apr 2013 18:55:17 UTC +00:00], ["credit_card_number", 1234567891234567], ["current_sign_in_at", nil], ["current_sign_in_ip", nil], ["cvv2", 123], ["day_dob", 15], ["email", "designer@gmail.com"], ["encrypted_password", "$2a$04$eZ5rctkhyUisZPlJCgnRe.nOsOCM6TEQkvn6HmGUQu8uniqE9THBC"], ["facebook_email", nil], ["fullname", "Test Designer"], ["gender", nil], ["last_sign_in_at", nil], ["last_sign_in_ip", nil], ["month_dob", 10], ["phone_number", "01004509771"], ["profession", nil], ["remember_created_at", nil], ["reset_password_sent_at", nil], ["reset_password_token", nil], ["rpx_identifier", nil], ["sign_in_count", 0], ["updated_at", Mon, 08 Apr 2013 18:55:17 UTC +00:00], ["year_dob", 1990]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (6.1ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (3.9ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (36.1ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (5.1ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (19.0ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mDesigner Exists (0.0ms)[0m  SELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (32.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (17.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (29.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (16.0ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (11.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mDesigner Exists (1.1ms)[0m  [1mSELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (48.1ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (4.0ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (5.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mDesigner Exists (0.0ms)[0m  SELECT 1 AS one FROM "designers" WHERE "designers"."email" = 'designer@gmail.com' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (8.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (15.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (10.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (8.1ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (8.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (14.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (33.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (27.1ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (8.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (21.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (8.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (18.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (6.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (4.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (19.0ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (13.1ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (5.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m

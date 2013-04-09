@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130407152147) do
+ActiveRecord::Schema.define(:version => 20130409000722) do
+
+  create_table "answer_questionnaires", :force => true do |t|
+    t.string   "answer"
+    t.string   "string"
+    t.integer  "project_id"
+    t.integer  "questionnaire_id"
+    t.integer  "qquestion_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "answer_questionnaires", ["project_id"], :name => "index_answer_questionnaires_on_project_id"
+  add_index "answer_questionnaires", ["qquestion_id"], :name => "index_answer_questionnaires_on_qquestion_id"
+  add_index "answer_questionnaires", ["questionnaire_id"], :name => "index_answer_questionnaires_on_questionnaire_id"
 
   create_table "answers", :force => true do |t|
     t.string   "answer"
@@ -38,6 +52,20 @@ ActiveRecord::Schema.define(:version => 20130407152147) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "choice_qquestions", :force => true do |t|
+    t.text     "body"
+    t.integer  "number"
+    t.integer  "questionnaire_id"
+    t.integer  "project_id"
+    t.integer  "qquestion_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "choice_qquestions", ["project_id"], :name => "index_choice_qquestions_on_project_id"
+  add_index "choice_qquestions", ["qquestion_id"], :name => "index_choice_qquestions_on_qquestion_id"
+  add_index "choice_qquestions", ["questionnaire_id"], :name => "index_choice_qquestions_on_questionnaire_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "page_id"
@@ -100,6 +128,19 @@ ActiveRecord::Schema.define(:version => 20130407152147) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "qquestions", :force => true do |t|
+    t.text     "body"
+    t.integer  "number"
+    t.integer  "type"
+    t.integer  "questionnaire_id"
+    t.integer  "project_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "qquestions", ["project_id"], :name => "index_qquestions_on_project_id"
+  add_index "qquestions", ["questionnaire_id"], :name => "index_qquestions_on_questionnaire_id"
 
   create_table "questionnaires", :force => true do |t|
     t.string   "title"
