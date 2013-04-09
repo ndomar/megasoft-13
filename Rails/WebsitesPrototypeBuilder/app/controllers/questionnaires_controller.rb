@@ -31,7 +31,7 @@ class QuestionnairesController < ApplicationController
   def new
     @questionnaire = Questionnaire.new
       question = @questionnaire.qquestions.build
-      question.choices.build
+      3.times {question.choices.build}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @questionnaire }

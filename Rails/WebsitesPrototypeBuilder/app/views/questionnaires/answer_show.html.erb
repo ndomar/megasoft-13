@@ -1,8 +1,13 @@
-<h1>WOHOO</h1>
+<h1>Questionnaire</h1>
 <div id="html_content">
 	<div id="comments">
 			<% @questionnaire.qquestions.order('number').each do |qquestion| %>
-			<p><%=qquestion.body %></p>
+						<p><%=qquestion.body %></p>
+			<% if qquestion.q_type ==1%>
+			 <textarea placeholder = "اكتب هنا"></textarea>
 			<%end%>
+			<%end%>
+		</br>
+			<button>تسجىل</button>
 	</div>
 </div>
