@@ -1,6 +1,4 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  get "answer_questionnaires/show"
-
   get "comments/create"
   get "comments/destroy"
   get "questions/create"

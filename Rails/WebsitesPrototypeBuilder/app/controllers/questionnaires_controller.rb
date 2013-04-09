@@ -30,7 +30,8 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/new.json
   def new
     @questionnaire = Questionnaire.new
-
+      question = @questionnaire.qquestions.build
+      question.choices.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @questionnaire }
@@ -46,7 +47,6 @@ class QuestionnairesController < ApplicationController
   # POST /questionnaires.json
   def create
     @questionnaire = Questionnaire.new(params[:questionnaire])
-
     respond_to do |format|
       if @questionnaire.save
         format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully created.' }

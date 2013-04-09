@@ -1,0 +1,11 @@
+<div class ="fields">
+	<p>
+	  <%= f.label :body,"-- Question --" %></br>
+	  <%= link_to_remove_fields "remove",f %></br>
+	  <%= f.text_area :body %></br>
+	</p>
+  <% f.fields_for :choices do |builder| %>
+  	<%= render 'choice_fields',:f => builder %>
+  <%end%>
+  <%= link_to_add_fields "Add Answer",f,:choices %>
+</div>
