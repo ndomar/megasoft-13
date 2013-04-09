@@ -10,6 +10,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :comments
     resources :questions
   end
+
   
   resources :tasks do
     resources :task_results
