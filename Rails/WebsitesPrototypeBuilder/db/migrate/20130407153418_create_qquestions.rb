@@ -5,11 +5,9 @@ class CreateQquestions < ActiveRecord::Migration
       t.integer :number
       t.integer :type
       t.references :questionnaire
-      t.references :project
 
       t.timestamps
     end
     add_index :qquestions, :questionnaire_id
-    add_index :qquestions, :project_id
   end
 end

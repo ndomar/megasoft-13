@@ -10,6 +10,16 @@
   <%= @questionnaire.project %>
 </p>
 
+<ul>
+	<% for qquestion in @questionnaire.qquestions %>
+		<li><h4><%= qquestion.body %></h4></li>
+			<ul>
+			<% for choice in qquestion.choices %>
+				<li><%=h choice.body %></li>
+			<%end%>
+		</ul>
+	<%end%>
+</ul>
 
 <%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
 <%= link_to 'Back', questionnaires_path %>

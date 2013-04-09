@@ -11,10 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
+<p>
     <%= f.label :الاسم %><br />
-    <%= f.text_field :title %>
-  </div>
+    <%= f.text_field :title %></br>
+</p>
+
+  <%= f.fields_for :qquestions do |builder| %>
+    <%= render "qquestion_fields", :f => builder %>
+  <%end%>
+  <%= link_to_add_fields "Add Question",f,:qquestions %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
