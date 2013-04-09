@@ -20,6 +20,8 @@
 #
 class Designer < ActiveRecord::Base
 
+  has_many :projects
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -30,7 +32,7 @@ class Designer < ActiveRecord::Base
 
   #Registration attributes and validations
   validates :fullname, :presence => true
-  validates :phone_number, :length => { :minimum => 8, :maximum => 11 } 
+  validates :phone_number, :length => { :minimum => 8, :maximum => 11 } , :numericality => { :only_integer => true }
   validates :day_dob,:month_dob,:year_dob, :credit_card_number, :cvv2, :numericality => { :only_integer => true }
   validates :credit_card_number, :length => { :minimum => 12, :maximum => 19 }
   validates :cvv2, :length => { :minimum => 3, :maximum => 4 }

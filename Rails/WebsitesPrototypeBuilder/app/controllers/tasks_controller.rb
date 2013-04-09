@@ -1,3 +1,4 @@
+# encoding: utf-8
 class TasksController < ApplicationController
   ## 
   # passes the list of tasks that belongs to the project to the index view
@@ -72,7 +73,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_tasks_path, notice: 'Task was successfully created.' }
+        format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -93,7 +94,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to project_tasks_path, notice: 'Task was successfully updated.' }
+        format.html { redirect_to project_tasks_path, notice: 'تم تحديث المهمة' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
