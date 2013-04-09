@@ -1,5 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  devise_for :designers
+  devise_for :designers, :controllers => { :registrations => "registrations" }
   
   #at start up page goes to the home controller and the index action
   root to: "home#index"
