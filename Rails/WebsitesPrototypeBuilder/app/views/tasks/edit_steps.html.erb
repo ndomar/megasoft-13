@@ -1,34 +1,51 @@
-<p> Page ID is <%=@page.id %> </p>
+<div id ="wrapper" >
 
-<div id ="embedded">
-<%= @page.html.html_safe %>
+  <div id ="sidebar">
+
+    <ul id="event_list">
+      <li> onhover </li>
+    </ul>
+
+    <table dir ="rtl">
+      <tr>
+          <td> رقم الخطوة  </td>
+          <td> الجزء</td>
+          <td> الحدث</td>
+      </tr>
+      <% @steps.each do |step| %>
+        <tr>
+          <td align="center"><%= step.id %> </td>
+          <td><%= step.component %> </td>
+          <td><%= step.event %> </td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+  <div id="content" height = "1000px">
+      <p> Page ID is <%=@page.id %> </p>
+
+    <div id ="embedded">
+      <%= @page.html.html_safe %>
+    </div>
+
+    <%= link_to "أضف خطوة", new_step_path, :task => @task.id, :event => "onclick", :component => "button1" %>
+  </div>
 </div>
-
-<table>
-  <tr>
-      <td> Step ID  </td>
-      <td> Component</td>
-      <td> Event</td>
-  </tr>
-  <% @steps.each do |step| %>
-    <tr>
-      <td><%= step.id %> </td>
-      <td><%= step.component %> </td>
-      <td><%= step.event %> </td>
-    </tr>
-  <% end %>
-</table>
 
 <script type="text/javascript">
   $(function(){
    $("#embedded").find('input').click(function(event){
+        $("#event_list").show();
         var id = event.target.id;
         alert ('The id of the HTML component you clicked on is ' + id);
         var params = $.param({
+        task: <%= @task.id %>,
         component: id,
         "event" : "onclick"
         //desc: $('#description').val()
         });
-        $.ajax("/tasks/new_step?" + params)
+        $.ajax("/tasks/new_step/?" + params)
   });});
 </script>
