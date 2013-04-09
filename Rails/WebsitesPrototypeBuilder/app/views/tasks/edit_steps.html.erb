@@ -2,24 +2,39 @@
 
   <div id ="sidebar">
 
+  </div>
+
+  <div id="content">
+    <p> Page ID is <%=@page.id %> </p>
+
+    <div id ="embedded">
+      <%= @page.html.html_safe %>
+    </div>
+
+    <%= link_to "أضف خطوة", new_step_path, :task => @task.id, :event => "onclick", :component => "button1" %>
+
+    <%= hidden_field_tag(:component_id, :id,  :value => "hidden") %>
+
     <div id="add_step" style ="display:none; text-align:left">
-      <p> Add Step </p>
+
+      <h2> أضف خطوة جديدة </h2>
+
+      <div id = "general_events" >
+        <% ['onclick', 'onhover'].each do |event| %>
+          <br><%= radio_button_tag 'event', event, @event == event %>
+          <%= label_tag "event_#{event}", event.humanize %>
+        <% end %>
+      </div>
 
       <div>
         <input id = "step_description" placeholder = "Enter Step Description" > </input>
       </div>
 
-      <div>
-        <button id ="save_step" onclick = "" > </button>
-      </div>
-
-      <ul style="text-align:left">
-        <li> onhover </li>
-      </ul>
+      <button id ="save_step" style="width: 200px; height:30px;"> إضافة الخطوة </button>
 
     </div>
 
-    <p> Event List </p>
+    <h2 style = "text-align:left"> الخطوات </h2>
     <table dir ="rtl">
       <tr>
           <td> رقم الخطوة  </td>
@@ -35,16 +50,7 @@
       <% end %>
     </table>
 
-  </div>
 
-  <div id="content">
-    <p> Page ID is <%=@page.id %> </p>
-
-    <div id ="embedded">
-      <%= @page.html.html_safe %>
-    </div>
-
-    <%= link_to "أضف خطوة", new_step_path, :task => @task.id, :event => "onclick", :component => "button1" %>
   </div>
 </div>
 
@@ -53,13 +59,17 @@
    $("#embedded").find('input').click(function(event){
         $("#add_step").show();
         var id = event.target.id;
+
         alert ('The id of the HTML component you clicked on is ' + id);
+        $("#component_id").val(id);
+
         var params = $.param({
         task: <%= @task.id %>,
         component: id,
         "event" : "onclick"
         //desc: $('#description').val()
         });
-        $.ajax("/tasks/new_step/?" + params)
+
+        //$.ajax("/tasks/new_step/?" + params)
   });});
 </script>
