@@ -2,10 +2,24 @@
 
   <div id ="sidebar">
 
-    <ul id="event_list">
-      <li> onhover </li>
-    </ul>
+    <div id="add_step" style ="display:none; text-align:left">
+      <p> Add Step </p>
 
+      <div>
+        <input id = "step_description" placeholder = "Enter Step Description" > </input>
+      </div>
+
+      <div>
+        <button id ="save_step" onclick = "" > </button>
+      </div>
+
+      <ul style="text-align:left">
+        <li> onhover </li>
+      </ul>
+
+    </div>
+
+    <p> Event List </p>
     <table dir ="rtl">
       <tr>
           <td> رقم الخطوة  </td>
@@ -23,8 +37,8 @@
 
   </div>
 
-  <div id="content" height = "1000px">
-      <p> Page ID is <%=@page.id %> </p>
+  <div id="content">
+    <p> Page ID is <%=@page.id %> </p>
 
     <div id ="embedded">
       <%= @page.html.html_safe %>
@@ -37,7 +51,7 @@
 <script type="text/javascript">
   $(function(){
    $("#embedded").find('input').click(function(event){
-        $("#event_list").show();
+        $("#add_step").show();
         var id = event.target.id;
         alert ('The id of the HTML component you clicked on is ' + id);
         var params = $.param({
