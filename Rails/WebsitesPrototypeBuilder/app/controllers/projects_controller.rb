@@ -1,4 +1,19 @@
 class ProjectsController < ApplicationController
+  before_filter :require_correct_designer
+
+   def require_correct_designer(pid , did)
+     @project = Project.find(:all, :conditions => {:project_id => pid , :designer_id => did}) 
+    if(@project != nil)
+      return true
+    else
+      return false
+
+    # unless logged_in?
+    #   flash[:error] = "You must be logged in to access this section"
+    #   redirect_to new_login_url # halts request cycle
+    end
+  end
+
 
   def index
     @projects = Project.all

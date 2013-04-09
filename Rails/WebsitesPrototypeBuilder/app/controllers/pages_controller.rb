@@ -39,17 +39,18 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    @page = Page.new(params[:page])
+    @project = Project.find(params[:project_id])
+    @page = @project.pages.build(params[:page])
 
     respond_to do |format|
       if @page.save
-        format.js { render :layout => false }
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to :back, notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
-      else
         format.js { render :layout => false }
+      else
         format.html { render action: "new" }
         format.json { render json: @page.errors, status: :unprocessable_entity }
+        format.js { render :layout => false }
       end
     end
   end

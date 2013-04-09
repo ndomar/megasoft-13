@@ -15,16 +15,18 @@
 
 			   	 <!-- frames'pcing="1" noresize scrolling=auto style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);' -->
 			   	 <!-- this is to make sure that the ratio is good when there are big pages and when i know the size of the frame Malatawy is using -->
-
 			  </p>
 			<% end %>
 		</div>
 
 
-		<%= link_to 'Edit', edit_project_path(@project) %> |
 		<%= link_to 'Back', projects_path %>
 
-		<%= render 'page_form'%>
+		<%= form_for [@project,@project.pages.build] do |f| %>
+        <p><%= f.text_field :page_name,:placeholder => "علق هنا"%></p>
+        <%= f.submit "+"%>
+		<% end %>
+
 	</div>
 	<div id="content">
 			

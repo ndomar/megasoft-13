@@ -1,13 +1,1 @@
-// AJAX called on delete it slides(hides) the question
-
-
-
-function setRemoteAddFunc(){
-	$('#add-button').click(function (){
-		var params = $.param({
-			title: $('#title').val(),
-			desc: $('#description').val()
-		});
-		$.ajax("/cardsorts/create?" + params);
-	});
-}
+$('#sidebar').html("<h1><%= escape_javaScript(@page.page_name) %></h1>").append("<%= escape_javaScript(@page.page_name) %>");  
