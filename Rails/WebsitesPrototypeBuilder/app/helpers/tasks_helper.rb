@@ -1,6 +1,62 @@
 #encoding: utf-8
 module TasksHelper
+  ##
+  # calculates average time taken per each month anc calls generateLineGraph method
+  #* *Args*    :
+  #   -+id+->: id of the particular task
+  #* *Returns*    :
+  #   a call to method generateLineGraph
+  #
+  def avgtime(id)
+    if Task.find(id).task_results.length == 0
+      return notice = "لم يتم احد المهمة"
+    end
 
+    months = []
+    avgtime = []
+    count = []
+
+    Task.find(id).task_results.each do |t|
+      month = t.created_at.strftime("%B")
+      if months.include?(month)
+        avgtime[months.index(month)] += t.time
+        count[months.index(month)] += 1
+      else
+        months[months.length] = month
+        avgtime[months.index(month)] = t.time
+        count[months.index(month)] = 1.0
+      end
+    end
+
+    avgtime.each do |a|
+      avgtime[avgtime.index(a)] = a/count[avgtime.index(a)]
+    end
+
+    generateLineGraph("Average time taken", avgtime, months)
+
+  end
+
+  ##
+  # generate a url to an image of the generated chart
+  #* *Args*    :
+  #   -+title+->: title of chart
+  #   -+avgtime+->: array of average time taken per month
+  #   -+labels+->: array of months
+  #* *Returns*    :
+  #   url for chart
+  #
+  def generateLineGraph(title, avgtime, labels)
+    Gchart.line(:title => title, :axis_with_labels => 'y', :size => '600x200',
+              :data => avgtime, :labels => labels, :stacked => false)
+  end
+
+  ##
+  # calculates the number of reviewers in each countrys
+  #* *Args*    :
+  #   -+id+->: id of task
+  #* *Returns*    :
+  #   a call for generatePieChart method
+  #
   def compareCountry(id)
     if Task.find(id).reviewers.length == 0
       return notice = "لم يتم احد المهمة"
@@ -13,7 +69,7 @@ module TasksHelper
       if r.reviewer_info != nil
         if r. reviewer_info.country != nil
           if countries.include?r.reviewer_info.country
-            occurrences[countries.index[r.reviewer_info.country]] += 1
+            occurrences[countries.index(r.reviewer_info.country)] += 1
           else
             countries[countries.length] = r.reviewer_info.country
             occurrences[countries.index(r.reviewer_info.country)] = 1
@@ -29,6 +85,13 @@ module TasksHelper
     generatePieChart("Countries", occurrences, countries)
   end
 
+  ##
+  # orders the ages of reviewers into four categories
+  #* *Args*    :
+  #   -+id+->: id of task
+  #* *Returns*    :
+  #   a call for generatePieChart method
+  #
   def compareAge(id)
     if Task.find(id).reviewers.length == 0
       return notice = "لم يتم احد المهمة"
@@ -59,6 +122,13 @@ module TasksHelper
     generatePieChart("Age", [a,b,c,d], ["< 20", "< 40", "< 60", "otherwise"])
   end
 
+  ##
+  # calculates the number of male reviewers versus female reviewers
+  #* *Args*    :
+  #   -+id+->: id of task
+  #* *Returns*    :
+  #   a call for generatePieChart method
+  #
   def compareGender(id)
     if Task.find(id).reviewers.length == 0
       return notice = "لم يتم احد المهمة"
@@ -83,7 +153,15 @@ module TasksHelper
 
     generatePieChart("Gender", [m,f], ["Male", "Female"])
   end
-  
+  ##
+  # generate a url to an image of the generated chart
+  #* *Args*    :
+  #   -+title+->: title of chart
+  #   -+data+->: array of data values
+  #   -+labels+->: array of months
+  #* *Returns*    :
+  #   url for chart
+  #
   def generatePieChart(title, data, labels)
     Gchart.pie_3d(:title => title, :size => '400x200',
               :data => data, :labels => labels)
