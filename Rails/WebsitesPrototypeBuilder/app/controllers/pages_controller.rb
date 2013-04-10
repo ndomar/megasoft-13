@@ -70,6 +70,13 @@ class PagesController < ApplicationController
 
   # DELETE /pages/1
   # DELETE /pages/1.json
+
+  ##
+  # The destroy method in the page controller is used, to delete any particular page
+  # * *Instances*   :
+  #   - +page+-> is the page to be deleted
+  #   - +task+-> are the tasks that the page to be deleted has it
+
   def destroy
     @page = Page.find(params[:id])
     @task = Task.find(:all, :conditions => {:page_id => @page.id})
