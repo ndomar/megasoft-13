@@ -7,7 +7,7 @@ class AnswerQuestionnairesController < ApplicationController
   # - +@qquestion+ -> the id of the question he's answering
   # - +@answer+ -> the answer the user wants to save
   # * *Returns* :
-  # - page refreshed and question added to db
+  # - page redirected if answers are valid to questionnaire view or not.
   #
   def create
     # finds the selected page

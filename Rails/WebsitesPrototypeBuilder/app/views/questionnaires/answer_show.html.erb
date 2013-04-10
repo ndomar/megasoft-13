@@ -3,6 +3,7 @@
 	<div id="comments">
 		<%@array = []%>
 		<%@c_all = ""%>
+	<%= nested_form_for (@questionnaire) do |f| %>
 		<% @questionnaire.qquestions.order('number').each do |qquestion| %>
 			<p><%=qquestion.body %></p>
 			<% if qquestion.qtype ==1%>
@@ -16,6 +17,7 @@
 				<%=select_tag "people", options_for_select(@c_all.split(","))%>
 			<%end%>
 		<%end%>
+	<%end%>
 		</br>
 		<button>تسجىل</button>
 	</div>

@@ -1,7 +1,7 @@
 <div class ="fields">
 	<div class="qquestion"><span onclick="del(this);"class="ui-icon ui-icon-close"></span><span class="ui-icon ui-icon-pencil"></span>
 	  <%= f.text_field :body,:placeholder =>"السوال" %></br>
-		<%= f.select(:qtype, options_for_select([['نص', 1], ['فقرة', 2], ['خيارات متعددة',3],['مربعات',4]])) %></br>
+		<%= f.select(:qtype, options_for_select([['نص', 1], ['فقرة', 2], ['خيارات متعددة',3]])) %></br>
   	<%= f.link_to_remove "Remove this question" %></br>
 	  <% f.fields_for :choices do |builder| %>
 	  	<%= render 'choice_fields',:f => builder %>

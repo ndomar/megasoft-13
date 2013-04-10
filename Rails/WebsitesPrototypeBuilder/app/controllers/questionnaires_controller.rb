@@ -19,7 +19,14 @@ class QuestionnairesController < ApplicationController
       format.json { render json: @questionnaire }
     end
   end
-
+  ## 
+  # called to show answer view for questionnaires
+  # finds the selected questionnaire
+  # * *Args* :
+  # - +@questionnaire+ -> the id of the questionnaire he wants to answer
+  # * *Returns* :
+  # - doesnt return anything just renders the answer_show view
+  #
   def answer_show
     @questionnaire = Questionnaire.find(params[:id])
     render 'answer_show'
