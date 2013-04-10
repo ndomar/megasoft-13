@@ -102,15 +102,34 @@ class TasksController < ApplicationController
     end
   end
 
+  ##
+  # Displays a task and its current steps to allow the designer to edit the steps.
+  # * *Args*    :
+  #   - +id+ ->: The id of the task for which the steps will be edited.
+  # * *Returns*  :
+  #   -The page this task is associated with, and the steps added to the task.
+  #
+
   def edit_steps
     @task = Task.find(params[:id])
     @steps = @task.steps
     @page = @task.page
   end
 
+  ##
+  # Adds a new step to the task.
+  # * *Args*    :
+  #   - +task+ ->: The id of the task for which the step will be added.
+  #   - +event+ ->: The event associated with the step.
+  #   - +component+ ->: The component associated with the step.
+  #   - +description+ ->: The description for the step.
+  # * *Returns*  :
+  #   -The list of new steps if the step was successfully added, or an error if the step could not be saved.
+  #
+
   def new_step
-    @step = Step.new(:task_id => params[:task], :event => params[:event], :component => params[:component], :description => params[:description])
-    @task = Task.find_by_id(params[:task])
+    @step = Step.new(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
+    @task = Task.find_by_id(params[:id])
     @steps = @task.steps
     respond_to do |format|
       if @step.save
@@ -120,6 +139,15 @@ class TasksController < ApplicationController
       end
     end
   end
+
+  ##
+  # Deletes a step from a task.
+  # * *Args*    :
+  #   - +id+ ->: The id of the step to be deleted.
+  #   - +task+ ->: The id of the task from which the step is to be deleted.
+  # * *Returns*  :
+  #   -The new list of steps after deletion.
+  #
 
   def delete_step
     @task = Task.find_by_id(params[:task])

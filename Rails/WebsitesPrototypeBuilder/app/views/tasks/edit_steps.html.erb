@@ -40,7 +40,17 @@
    $("#embedded").find('input').click(function(event){
         $("#add_step").show();
         var id = event.target.id;
-        alert ('The id of the HTML component you clicked on is ' + id);
+        //alert ('The id of the HTML component you clicked on is ' + id);
+        $("#component_id").val(id);
+  });});
+</script>
+
+<script type="text/javascript">
+  $(function(){
+   $("#embedded").find('button').click(function(event){
+        $("#add_step").show();
+        var id = event.target.id;
+        //alert ('The id of the HTML component you clicked on is ' + id);
         $("#component_id").val(id);
   });});
 </script>
@@ -49,7 +59,7 @@
   $(function(){
     $("#save_step").click(function(event){
         var params = $.param({
-        task: <%= @task.id %>,
+        id: <%= @task.id %>,
         component: $("#component_id").val(),
         "event" : $("input:radio[name=events_list]:checked").val(),
         description: $("#step_description").val()
