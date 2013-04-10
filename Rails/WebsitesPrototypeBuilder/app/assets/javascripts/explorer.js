@@ -47,15 +47,7 @@ function loadToDesignPage(id,html){
 function store(){
 	var html = document.getElementById('designpage').innerHTML;
 	var pageId = document.getElementById('designpage').getAttribute("data-pageid");
-
-
-}
-
-function loadHTMLToDesignPage(html){
-	var designPage = document.getElementById('designpage');
-	designPage.innerHTML="";
-	designPage.innerHTML=html;
-	  // $.ajax({
+	// $.ajax({
    //              data: { 'some_data_to_send_to_server':'any_data_goes_here' },
    //              type: 'POST',
    //              url: '/some_path_to_your_controller',
@@ -66,6 +58,17 @@ function loadHTMLToDesignPage(html){
    //                  // we had an error
    //              }
    //          });
+
+}
+
+function loadHTMLToDesignPage(html){
+	var designPage = document.getElementById('designpage');
+	if(designpage==null){
+		alert("design page is null");
+	}else{
+	designPage.innerHTML="";
+	designPage.innerHTML=html;
+	}
 }
 
 function saveProjectProgress(){
