@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   #   -A project belongs to one designer
   #   -A project has many tasks 
   #   -A project has many pages
-  attr_accessible :description, :project_name, :project_type
+  attr_accessible :description, :project_name, :project_type, :designer_id
 
   belongs_to :designer
   has_many :tasks, :dependent => :destroy
