@@ -1,6 +1,8 @@
 <h1>Questionnaire</h1>
 <div id="html_content">
 	<div id="comments">
+		<%@array = []%>
+		<%@c_all = ""%>
 		<% @questionnaire.qquestions.order('number').each do |qquestion| %>
 			<p><%=qquestion.body %></p>
 			<% if qquestion.qtype ==1%>
@@ -9,9 +11,9 @@
 				<textarea placeholder = "اكتب هنا"></textarea>
 			<%elsif qquestion.qtype==3%>
 				<% qquestion.choices.order('number').each do |choice| %>
-				<%@listofbooks = @listofbooks.to_a.push choice.body%>
+				<%@c_all+=choice.body+ ","  %> 
 			<%end%>
-				<%=select_tag "people", option_tags = @listofbooks%>
+				<%=select_tag "people", options_for_select(@c_all.split(","))%>
 			<%end%>
 		<%end%>
 		</br>
