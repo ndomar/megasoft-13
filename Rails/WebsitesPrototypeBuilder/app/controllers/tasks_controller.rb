@@ -109,10 +109,23 @@ class TasksController < ApplicationController
   end
 
   def new_step
+    @task = Task.find_by_id(params[:task])
     @step = Step.create(:task_id => params[:task], :event => params[:event], :component => params[:component], :description => params[:description])
+    @steps = @task.steps
+    respond_to do |format|
+      format.js {render "step_list", :status => :created}
+    end
+  end
+
+  def delete_step
+    @task = Task.find_by_id(params[:task])
+    @step = Step.find(params[:id])
+    @step.destroy
+    @steps = @task.steps
     respond_to do |format|
       format.html {render :nothing => true}
       format.js {render "step_list"}
     end
   end
+
 end

@@ -7,7 +7,7 @@
 
       <div id = "general_events" >
 
-        <input type ="radio" name = "events_list" value = "click" selected = "true"> onclick <br/> </input>
+        <input type ="radio" name = "events_list" value = "click" checked = "checked"> onclick <br/> </input>
         <input type ="radio" name = "events_list" value = "mouseover"> onhover <br/> </input>
         <br/>
         <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
@@ -17,25 +17,17 @@
     </div>
 
     <h2 style = "text-align:center"> الخطوات </h2>
-    <table id = "steps_list" dir ="rtl" align = "center">
-      <tr>
-          <td> الجزء</td>
-          <td> الحدث</td>
-          <td> الوصف </td>
-          <td> إزالة </td>
-      </tr>
+
+    <div id = "steps_list">
       <%= render "steps" %>
-    </table>
+    </div>
   </div>
 
   <div id="content">
-    <p> Page ID is <%=@page.id %> </p>
 
     <div id ="embedded">
       <%= @page.html.html_safe %>
     </div>
-
-    <%= link_to "أضف خطوة", new_step_path, :task => @task.id, :event => "onclick", :component => "button1" %>
 
     <%= hidden_field_tag(:component_id, :id,  :value => "hidden") %>
 
@@ -59,9 +51,10 @@
         var params = $.param({
         task: <%= @task.id %>,
         component: $("#component_id").val(),
-        "event" : "onclick",
+        "event" : $("input:radio[name=events_list]:checked").val(),
         description: $("#step_description").val()
     });
     $.ajax("/tasks/new_step/?" + params);
+    $("#add_step").hide();
   });});
 </script>
