@@ -2,7 +2,17 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "home/index"
   get "cardortsreviewer/groupsandcards/:id" => 'cardorts_reviewer#groupsandcards'
 
+
   resources :groups
+
+  get "comments/create"
+  get "comments/destroy"
+  get "questions/create"
+  get "questions/destroy"
+  get "answers/create"
+  get "answers/destroy"
+  get "pages/reviewer"
+  get "pages/designer"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
