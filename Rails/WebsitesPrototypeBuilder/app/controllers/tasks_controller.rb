@@ -24,7 +24,6 @@ class TasksController < ApplicationController
   #   -+Task+->: an instance of the class task
   #* *Returns*    :
   #   -the details of this task and renders itas an html
-  #
   
   
   def show
@@ -101,13 +100,27 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  ##
+  #routes to the view invite which contins a form to share the task
+  #* *Args*    :
+  #   -+Task+->: an instance of the class task
+  #* *Returns*    :
+  #   - routes to view invite and renders it as an html form
   
   def invite 
     @task = Task.find(params[:id])
     
   end
+  
+  #is invoked when the user submites the form in the invite view
+  #* *Args*    :
+  #   -+Task+->: an instance of the class task
+  #   -+messege+->: from the form in view invite of type string
+  #   -+email+->: from the form in the view invite of type string
+  #* *Returns*    :
+  #   -
   def invite_user
     
-    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email])}s")
+    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
   end
 end
