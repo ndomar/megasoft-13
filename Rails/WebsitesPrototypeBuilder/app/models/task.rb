@@ -5,6 +5,15 @@ class Task<ActiveRecord::Base
   has_many :task_results
   has_and_belongs_to_many :reviewers
   validates :name, :presence => true
+  
+  #send the message and the url to solve a ask to the action mailer to be sent  to 
+  #the user by email 
+  #* *Args*    :
+  #   -+email+->: the email of the user as string
+  #   -+messege+->: a message to be sent to the users in the invitation as string
+  #   -+url+->: a url of the to open the task and solve it a string
+  #* *Returns*    :
+  #   -sends the three args to the task mailer
 
   def send_invitation(email, msg, url)
     @reviewer = Reviewer.find_by_email(email)
