@@ -1,0 +1,14 @@
+<% @steps.each do |step| %>
+  <tr id = "<%="step_#{step.id}"%>" >
+    <td><%= step.component %> </td>
+    <td><%= step.event %> </td>
+    <td> 
+      <% if step.description %> 
+      <%= step.description %> 
+      <% end %>
+    </td>
+    <td align = "center">
+          <%= link_to "x", delete_step_path(:id => step.id), :remote => true %>
+    </td>
+  </tr>
+<% end %>
