@@ -192,3 +192,28 @@ Then /^I should see my name$/ do
   create_designer
   page.should have_content @designer[:fullname]
 end
+#########################################################
+#Hossam's Tests
+
+#This is so wrong!!!
+def add_page
+  @page ||= { :page_name => "Page Name", :project_id => 1,:html => "<p>adasdadas</p>"}
+end
+
+
+### GIVEN ###
+
+##<<<<-------------------------------------
+Given /^I selected a specific project$/ do
+  #click_link "project name"  <<<<------------This is dynamic so i cant specify a certain name
+end
+
+### WHEN ###
+When /^I view the design page$/ do
+  
+end
+
+### THEN ###
+Then /^Then I should see a button in the side bar with a "+" sign and has text field beside it$/ do
+  #page.should have_content "+"
+end
