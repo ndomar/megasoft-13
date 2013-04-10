@@ -19,9 +19,9 @@
   <div class="rectangle">
   <!-- the navigation links -->
     <ul id="navigation">
-    <li><a href="#">خط عربي<div class="tabBar active" ></div></a></li>
-    <li><a href="#">خط عربي<div class="tabBar" ></div></a></li>
-    <li><a href="#">خط عربي<div class="tabBar"></div></a></li>
+    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
+    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
+    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar"></div></a></li>
     </ul>
     <a href="#"><div width="107px" height="51px" class="logo"></div></a>
   <!-- end navigation links -->
@@ -33,15 +33,16 @@
         <% else %>
           <%= current_designer.fullname %>
         <% end %>
-        مسجل بإسم<br /> ليس أنت؟
-        <%= link_to "خروج", destroy_designer_session_path, :method => :delete %>
+        ﻣﺴﺠﻞ ﺑﺈﺳﻢ<br /> ﻟﻴﺲ ﺃﻧﺖ؟
+        <%= link_to "ﺧﺮﻭﺝ", destroy_designer_session_path, :method => :delete %>
+
         <br />
-        <%= link_to "تعديل البيانات", edit_designer_registration_path %>
+        <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
       <% else %>
-        <div class = "span2" align="right">
-          <%= link_to "التسجيل", new_designer_registration_path %>
-          <label class ="label label-important" >او </label>
-          <%= link_to "الدخول",new_designer_session_path%>
+        <div>
+          <%= link_to "اﻟﺘﺴﺠﻴﻞ", new_designer_registration_path %>
+          <label class ="label label-important" >اﻭ </label>
+          <%= link_to "اﻟﺪﺧﻮﻝ",new_designer_session_path%>
         </div>
       <% end %>
     </div>
@@ -49,7 +50,6 @@
 <!-- end container -->
 </div>
 
-<br />
 
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
@@ -57,11 +57,10 @@
 <% end %>
  <!-- -------------------- -->
 
-<div class="container"> <%= yield %></div>
-
+<div class="container"><%= yield %></div>
 <hr>
 <footer>
- 	<p>&copy;أرابليتي 2013</p>
+  <p>&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</p>
 </footer>
 
 <%= javascript_include_rpx(designer_session_url) %>
