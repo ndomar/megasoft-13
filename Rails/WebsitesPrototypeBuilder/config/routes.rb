@@ -20,6 +20,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
   get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
+  get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   
   resources :tasks do
     resources :task_results
