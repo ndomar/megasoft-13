@@ -35,4 +35,11 @@ function addHtml(id,html){
 	// this.contentWindow.document.body.appendChild(script);
 }
 
+function loadToDesignPage(html){
+
+	var designPage = document.getElementById('designpage');
+	designpage.innerHTML="";
+	designpage.append(html);
+}
+
 

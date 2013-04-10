@@ -51,13 +51,13 @@ function selectItem () {
 	}
 }
 
-function(){
-	for (var i = window.frames.length - 1; i >= 0; i--) {
-var script = window.frames[i].contentWindow.document.createElement("script");
-	script.type = "text/javascript";
-	script.text  = 'var selElem = null;var origBorder = "";function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.border = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.border;overElem.style.border = "1px dashed gray";}parent.getSelectedItem(selElem.id,selElem);}';
-	window.frames[i].contentWindow.document.body.appendChild(script);};
-}
+// function(){
+// 	for (var i = window.frames.length - 1; i >= 0; i--) {
+// var script = window.frames[i].contentWindow.document.createElement("script");
+// 	script.type = "text/javascript";
+// 	script.text  = 'var selElem = null;var origBorder = "";function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.border = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.border;overElem.style.border = "1px dashed gray";}parent.getSelectedItem(selElem.id,selElem);}';
+// 	window.frames[i].contentWindow.document.body.appendChild(script);};
+// }
 
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {
