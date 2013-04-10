@@ -6,5 +6,4 @@ Feature: View project pages in package explorer
       Given I am logged in
       and I selected a specific Project from my projects
       When I view the design page
-      Then I should see all the webpages included in the project 
-      located in the sidebar in the right of the screen
+      Then I should see all the webpages included in the project located in the sidebar in the right of the screen

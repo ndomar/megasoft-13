@@ -192,3 +192,35 @@ Then /^I should see my name$/ do
   create_designer
   page.should have_content @designer[:fullname]
 end
+
+#########################################################
+#Hossam's Tests
+
+#This is so wrong!!!
+def delete_page
+  @page ||= Page.where(:id => @given_page[:id])
+  @page.destroy unless @page.nil?
+end
+
+
+### GIVEN ###
+
+##<<<<-------------------------------------
+Given /^I selected a specific project$/ do
+  #click_link "project name"  <<<<------------This is dynamic so i cant specify a certain name
+end
+
+### WHEN ###
+When /^I view the design page$/ do
+  
+end
+
+### THEN ###
+Then /^I should see all the webpages included in the project$/ do
+  #page.should have_content "صفحات"
+end
+
+Then /^I should see all the webpages included in the project with delete buttons for each one of them$/ do
+  #page.should not have_content "page name"
+end
+#<<------------------ should i state that or what is after deleting
