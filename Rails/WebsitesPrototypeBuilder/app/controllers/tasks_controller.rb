@@ -32,8 +32,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   ##
   #show a specific task by searchinng for its id
   #* *Args*    :
@@ -120,13 +118,20 @@ class TasksController < ApplicationController
     end
   end
 
+  ## 
+  # save the statistics page as pdf on user's local machine
+  # * *Args*    :
+  #   - 
+  # * *Returns* :
+  #   - 
+  #
   def save
     begin
       client = Pdfcrowd::Client.new("megasoft13", "b3964d6234ee767783f9b946e66ca19b")
       client.usePrintMedia(true)
 
       @task = Task.find(params[:id])
-      pdfa = render_to_string(:action => "show")
+      pdfa = render_to_string(:action => "show", :layout => false)
       pdf = client.convertHtml(pdfa)
 
 
@@ -137,5 +142,5 @@ class TasksController < ApplicationController
     rescue Pdfcrowd::Error => why
       render :text => why
     end
-end
+  end
 end
