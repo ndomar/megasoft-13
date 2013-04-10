@@ -1,4 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
   
   #at start up page goes to the home controller and the index action

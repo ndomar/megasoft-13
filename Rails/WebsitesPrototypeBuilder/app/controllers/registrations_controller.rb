@@ -1,4 +1,12 @@
+# Registrations Controller override the Registrations Controller of Devise
 class RegistrationsController < Devise::RegistrationsController
+  ## 
+  #update method is overrided to allow a designer to change his details without providing a password.
+  # * *Args* :
+  # - +params+ -> params[:designer] contains new details of designer
+  # * *Returns* :
+  # - void
+  #
   def update
     # required for settings form to submit when password is left blank
     if params[:designer][:password].blank?
