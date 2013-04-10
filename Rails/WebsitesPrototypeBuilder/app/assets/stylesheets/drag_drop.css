@@ -5,15 +5,22 @@ body {
 #toolbox{
 	width: 200px;
 	height:700px;
-	border:1px solid black;
 	float:left;
+	left: 0px;
+	border: solid;
+	border-left: none;
+	border-width: 1px;
+	position: absolute;
+	background-color: lightgray;
+	/*border-radius: 20px;*/
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px; 
+	
 }
 
 #main{
 	text-align: left;
-	  width: 720px;
-	  margin-left: auto;
-	  margin-right: auto;
+	 width: 720px;
 }
 
 #designpage{
@@ -33,9 +40,45 @@ body {
 
 .toolboxelement{
 	z-index: 100;
-	width: 180px;
+	width: 160px;
+	border-radius: 5px;
+}
+
+.tblhdr{
+	background-color: black;
+	font-color: white;
 }
 
 .tbldevs{
 	padding-top: 10px;
+	padding-left: 20px;
+	/*width: 100%;*/
+}
+
+.properties{
+	background-color: transparent;
+	height: 200px;
+	overflow-y: scroll;
+	text-align: left;
+	visibility: hidden;
+}
+
+.prop_panel{
+	background-color: transparent;
+}
+
+.inp{
+	width: 80px;
+	height: 15px;
+	/*visibility: hidden;*/
+	border-radius: 5px;
+	text-align: center;
+	/*float: left;*/
+}
+
+.p_prop{
+	/*float: left;*/
+	/*visibility: hidden;*/
+	display: inline-block;
+	width: 90px;
 }
