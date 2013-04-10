@@ -12,35 +12,35 @@
 							<tbody>
 								<tr>
 									<td class="tbldevs" align="center">
-										<div id="buttondiv" class="drag toolboxelement">
+										<div id="buttondiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
 											<button class="toolboxelement btn">Button</button>
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="tbldevs" align="center">
-										<div id="imagediv" class="drag toolboxelement">
+										<div id="imagediv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
 											<img src="/assets/gimg.jpg" width="20px" hight="20px" class="toolboxelement">
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="tbldevs" align="center">
-										<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" >
+										<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
 											<label class="toolboxelement">Label</label>
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="tbldevs" align="center">
-										<div id="hyperlinkdiv" class="drag toolboxelement">
+										<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
 											<a href="#" class="toolboxelement">Hyperlink</a>
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<td class="tbldevs" align="center">
-										<div id="textareadiv" class="drag toolboxelement">
+										<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
 											<textarea class="toolboxelement" style="resize: none">Text Area</textarea>
 										</div>
 									</td>
@@ -61,9 +61,9 @@
 							<div class="tab-content">
 						    	<div class="tab-pane active properties" id="properties">
 						      		<div><label id = "eid" class="p_prop">ID: </label><input id = "eid_inp" class="inp" property="id" readonly></div>
-						      		<div><label id = "left" class="p_prop">Left position: </label><input id = "left_inp" class="inp" property="left"></div>
-						      		<div><label id = "top" class="p_prop">Top position: </label><input id = "top_inp" class="inp" property="top"></div>
-						      		<div><label id = "text" class="p_prop">Text: </label><input id = "text_inp" class="inp" property="top"></div>
+						      		<div><label id = "left" class="p_prop">Left position: </label><input id = "left_inp" class="inp" property="left" min="0"></div>
+						      		<div><label id = "top" class="p_prop">Top position: </label><input id = "top_inp" class="inp" property="top" min="0"></div>
+						      		<div><label id = "text" class="p_prop">Text: </label><input id = "text_inp" class="inp" property="text"></div>
 						      		<div><label id = "width" class="p_prop">Width: </label><input id = "width_inp" class="inp" property="width"></div>
 						      		<div><label id = "height" class="p_prop">Height: </label><input id = "height_inp" class="inp" property="height"></div>
 						      		<div><label id = "margin_left" class="p_prop">Margin left: </label><input id = "margin_left_inp" class="inp" property="margin-left"></div>
@@ -77,12 +77,21 @@
 						      		<div><label id = "text_align" class="p_prop">Text Align: </label><input id = "text_align_inp" class="inp" property="text-align"></div>
 						    	</div>
 						    	<div class="tab-pane properties" id="events">
-						      		<label>On Click:</label>
-									<input type="radio" name="eve" value="popup"> Pop-up<br>
-								    <input type="radio" name="eve" value="link"> Link<br>
+						    		<label>Event Type:</label>
+									<select id = "event_selector" style="width: 180px">
+										<option value="onClick">On Click</option>
+										<option value="onHover">On Hover</option>
+									</select>
+								    <label>Action to do:</label>
+									<select id = "action_selector" style="width: 180px">
+										<option value="url">URL</option>
+										<option value="message">Message</option>
+									</select>
+									<label>Specify Message or URL:</label>
+								    <input id = "action_value" style="width: 175px;border-radius: 5px;"></input>
 								    <br>
-									<label>Message or URL</label>
-								    <input></input>
+								    <br>
+								    <button style="margin-left: 50px;border-radius: 5px;" id="save_event">Save Event</button>
 						    	</div>
 						  	</div>
 						</div>
@@ -93,9 +102,9 @@
 		<div id="main">
 			<!-- toolbox containing elements to add to the design page -->
 			
-			<!-- empty design page -->
-			<div id="designpage" class="ui-widget-content">
-				<p>Design page here</p>
+            <!-- empty design page -->            
+             <div id="designpage" class="ui-widget-content">
+                    <p>Design page here</p>
 			</div>
-		</div>
-	</body>
+         </div>     
+     </body>

@@ -2,8 +2,62 @@ $(document).ready(function (){
 	$("#imagediv").css({
 		"width": "100px"
 	});
+	$("#save_event").click(function(){
+		if ($("#event_selector").val()=="onClick"){
+			if ($("#action_selector").val()=="url"){
+				$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
+			}
+			else{
+				$("#"+$("#eid_inp").val()).attr("onclickevent","alert(\""+$("#action_value").val()+"\");");
+			}
+		}
+		else if ($("#event_selector").val()=="onHover"){
+			if ($("#action_selector").val()=="url"){
+				$("#"+$("#eid_inp").val()).attr("onhoverevent","window.location = "+$("#action_value").val()+";");
+			}
+			else{
+				$("#"+$("#eid_inp").val()).attr("onhoverevent","alert(\""+$("#action_value").val()+"\");");
+			}
+		}
+		alert("Event saved successfully");
+	});
 	$(".inp").blur(function(){
-		$("#"+$("#eid_inp").val()).css($(this).attr("property"),$(this).val());
+		if ($(this).attr("property")=="text"){
+			$("#"+$("#eid_inp").val()).children().first().text($(this).val());
+		}
+		// else{
+		// 	if ($(this).attr("property")=="left"){
+		// 		if ($("#left_inp").val().match([0-9]+)){
+					
+		// 		}
+		// 	}
+		// 	else if ($(this).attr("property")=="right"){
+		// 		if ($("#left_inp").val().match([0-9]+)){
+					
+		// 		}
+		// 	}
+		// 	else if ($(this).attr("property")=="margin-left"){
+		// 		if ($("#left_inp").val().match([0-9]+)){
+					
+		// 		}
+		// 	}
+		// 	else if ($(this).attr("property")=="margin-right"){
+
+		// 	}
+		// 	else if ($(this).attr("property")=="margin-top"){
+
+		// 	}
+		// 	else if ($(this).attr("property")=="margin-bottom"){
+
+		// 	}
+		// 	else if ($(this).attr("property")=="margin-right"){
+
+		// 	}
+		// 	else if ($(this).attr("property")=="margin-right"){
+
+		// 	}
+			$("#"+$("#eid_inp").val()).css($(this).attr("property"),$(this).val());
+		// }
 	});
 	counter = 0; //Counts number of elements in the Design Page
 	$(".drag").draggable({
@@ -43,8 +97,16 @@ $(document).ready(function (){
 			       	  		"width": "100%" ,
 			          		"height": "100%"
 			       		});
-					   $("#width_inp").val(ui.size.width);
-					   $("#height_inp").val(ui.size.height);
+			        	if (ui.element.outerWidth(true)>$("#designpage").width()){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
+			        	}
+			        	else if (ui.element.outerHeight(true)>$("#designpage").height()){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
+			        	}
+					    $("#width_inp").val(ui.size.width);
+					    $("#height_inp").val(ui.size.height);
 			        },
 			        stop: function(event, ui){
 				       ui.element.children(".toolboxelement").css({
@@ -68,9 +130,10 @@ $(document).ready(function (){
 					/*$(".inp").css("visibility","visible");
 					$(".p_prop").css("visibility","visible");*/
 					$(".properties").css("visibility","visible");
+
 					var eid = $(this).attr("id");
 					$("#eid_inp").val(eid);
-					$("#text_inp").val($(this).html());
+					$("#text_inp").val($(this).children().first().text());
 					$("#width_inp").val($(this).width());
 					$("#height_inp").val($(this).height());
 					$("#margin_left_inp").val($(this).css("margin-left"));
