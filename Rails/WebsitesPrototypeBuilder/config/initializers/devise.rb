@@ -23,7 +23,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [ :login ]
+  # config.authentication_keys = [ :email ]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -80,6 +80,9 @@ Devise.setup do |config|
   # your test suite dramatically. However, it is STRONGLY RECOMMENDED to not use
   # a value less than 10 in other environments.
   config.stretches = Rails.env.test? ? 1 : 10
+
+  # The default HTTP method used to sign out a resource. Default is :delete.
+  config.sign_out_via = Rails.env.test? ? :get : :delete
 
   # Setup a pepper to generate the encrypted password.
   # config.pepper = "e3c7b6fdd582f5d7b2722795a0f2b106e6d9ba16fd82d490d97d82604af3a9a9c7502014456cfb308bc502d1791cb618b460dbc481ab53fe55a4ca6314dd0868"
@@ -246,6 +249,6 @@ Devise.setup do |config|
   config.rpx_auto_create_account = true
   
   # default [], get some extra profile info from RPXnow, default only a few fields are available in the rpx_user object (https://rpxnow.com/docs#profile_data)
-  config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo]
+  #config.rpx_additional_user_data = [:verifiedEmail, :url, :providerName,:photo]
   
 end
