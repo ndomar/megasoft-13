@@ -87,7 +87,9 @@ function notEmpty(){
   <%= hidden_field_tag "change_id", '1' %>
   <%= hidden_field_tag "start_time", '1' %>
   <%= hidden_field_tag "change_clicks", '0' %>
+  <%= hidden_field_tag "total_time_taken", '0' %>
 <% end %>
+
 
 
 <script>
@@ -115,7 +117,12 @@ var currstep_element_id= "<%= @step.component %>";
  var step_answer_success ='true';
  var clicks_count = 0;
  var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>";
+ var total_time= 0;
+ var temp_time_nw=0;
+ var x= new Date();
+ var starting_time= x.getMinutes();
 
+ 
 
 
  $("input").on(step_event, function(event) {
@@ -123,18 +130,23 @@ var currstep_element_id= "<%= @step.component %>";
   var curr_element_id= event.target.id;
   if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event
 
+    var d2= new Date();
+
+
     count=count+1; 
     currstep_id = <%=@step.id%>+1;
     clicks_count=<%= @task_result.click%>+1;
+    total_time= d2.getMinutes() - starting_time;
 
     $("#change_id").val(currstep_id); //to increment the value of the curr step
     $("#start_time").val(curr_time); //set the time_from_start
     $("#change_clicks").val(clicks_count); //update clicks_count in DB
     $("#change_success").val(step_answer_success); //set successful = true for step_answer
+    $("#total_time_taken").val(total_time); //sets the value of  the time taken
 
     dehighlight(currstep_element_id); 
     
-    alert ($("#change_clicks").val()); 
+    alert (total_time); 
     $(function() { $("form").submit(); }); //to update the step_id in the DB
 
        }
@@ -144,6 +156,7 @@ var currstep_element_id= "<%= @step.component %>";
        currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
        highlight(currstep_element_id);
        clicks_count= "<%= @task_result.click%>";
+       temp_time_nw= "<%=Time.now.strftime("%I:%M:%S")%>" ;
 
 // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
     });
