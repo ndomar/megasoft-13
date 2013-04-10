@@ -26,7 +26,7 @@ module TasksHelper
       return notice = "لا توجد معلومات"
     end
 
-    generatePieChart(occurrences)
+    generatePieChart("Countries", occurrences, countries)
   end
 
   def compareAge(id)
@@ -56,7 +56,7 @@ module TasksHelper
       return notice = "لا توجد معلومات"
     end
 
-    generatePieChart([a,b,c,d])
+    generatePieChart("Age", [a,b,c,d], ["< 20", "< 40", "< 60", "otherwise"])
   end
 
   def compareGender(id)
@@ -82,38 +82,11 @@ module TasksHelper
       return notice = "لا توجد معلومات"
     end
 
-    generatePieChart([m,f])
+    generatePieChart("Gender", [m,f], ["Male", "Female"])
   end
-  def generatePieChart(data)
-    w = 150
-    h = 150
-
-    r = w / 2.0
-
-    a = pv.Scale.linear(0, pv.sum(data)).range(0, 2 * Math::PI)
-
-    vis = pv.Panel.new()
-        .width(w)
-        .height(h)
-
-    vis.add(pv.Wedge)
-        .data(data.sort(&pv.reverse_order))
-        .bottom(w / 2.0)
-        .left(w / 2.0)
-        .innerRadius(0)
-        .outerRadius(r)
-        .angle(a)
-        .event("mouseover", lambda {self.inner_radius(0)})
-        .event("mouseout", lambda{ self.inner_radius(r - 40)})
-      .anchor("center").add(pv.Label)
-      .visible(lambda {|d|  d > 0.15})
-        .textAngle(0)
-        .text(lambda {|d| "%0.2f" %  d})
-
-
-    vis.render()
-
-    vis.to_svg
+  def generatePieChart(title, data, labels)
+    Gchart.pie_3d(:title => title, :size => '400x200',
+              :data => data, :labels => labels)
   end
 
   def generateLineGraph ()

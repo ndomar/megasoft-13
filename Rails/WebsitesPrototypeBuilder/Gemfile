@@ -22,7 +22,7 @@ gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
 gem 'bootstrap-sass'
 
 # gem to generate graphs for statistics story
-gem 'rubyvis'
+gem 'googlecharts'
 
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
