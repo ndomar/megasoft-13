@@ -45,6 +45,8 @@ element.style.boxShadow="0px 0px 6px 2px orange";
 <input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2' style= "left : 600px; position : absolute;"/>
 <input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' style ="left : 400px; position : absolute;"/>
 
+<%= @page.html.html_safe %>
+
 </div>
 
 <%= form_for [@task,@step] do |f| %>  
