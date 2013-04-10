@@ -19,12 +19,9 @@
 # 
 #
 class Designer < ActiveRecord::Base
-<<<<<<< HEAD
-=======
 
   has_many :projects
 
->>>>>>> 4ed0d450706ccf00c8a712de72eb624d4b348755
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
