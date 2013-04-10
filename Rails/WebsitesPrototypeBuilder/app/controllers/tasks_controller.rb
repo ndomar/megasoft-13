@@ -119,4 +119,23 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def save
+    begin
+      client = Pdfcrowd::Client.new("megasoft13", "b3964d6234ee767783f9b946e66ca19b")
+      client.usePrintMedia(true)
+
+      @task = Task.find(params[:id])
+      pdfa = render_to_string(:action => "show")
+      pdf = client.convertHtml(pdfa)
+
+
+      send_data(pdf, 
+                :filename => "untitled.pdf",
+                :type => "application/pdf",
+                :disposition => "attachment")
+    rescue Pdfcrowd::Error => why
+      render :text => why
+    end
+end
 end

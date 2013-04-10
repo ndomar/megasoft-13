@@ -6,6 +6,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
+  match 'projects/:project_id/tasks/:id/save' => 'tasks#save'
+
   devise_for :designers
   
   #at start up page goes to the home controller and the index action

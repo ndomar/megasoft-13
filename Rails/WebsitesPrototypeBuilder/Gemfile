@@ -24,6 +24,10 @@ gem 'bootstrap-sass'
 # gem to generate graphs for statistics story
 gem 'rubyvis'
 
+# gem to save html as pdf
+gem 'prawn'
+gem 'prawn-svg'
+
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
 gem 'devise_rpx_connectable', :git => 'https://github.com/ahmadsoliman/devise_rpx_connectable.git'

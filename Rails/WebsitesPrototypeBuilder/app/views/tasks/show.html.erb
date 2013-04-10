@@ -40,3 +40,5 @@
     <%= raw compareCountry(@task) %>
   </div>
 </div>
+
+<button><%= link_to 'حفظ الملف' , '/projects/' + params[:project_id] + '/tasks/' + params[:id] + '/save'%></button>
