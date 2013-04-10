@@ -1,0 +1,343 @@
+/*<!-- CSS for the log in form-->*/
+
+*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, 
+h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+fieldset, img {	border: 0; }
+
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+caption, th { text-align: right; }
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+
+q:before, q:after { content: ''; }
+
+strong { font-weight: bold; }
+
+em { font-style: italic; }
+
+a img {	border: none; } /* Gets rid of IE's blue borders */
+
+a { text-decoration: none; }
+
+body { font-size: 1em; /* Prevents an IE bug where em's scale out of proportion */ }
+
+/* ---------- CLEARFIX ---------- */
+/* For modern browsers */
+.cf:before,
+.cf:after {
+    content: "";
+    display: table;
+}
+
+.cf:after { clear:both; }
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf { zoom: 1; }
+
+/* ---------- GENERAL ---------- */
+.round {
+	border-radius: 0.3125em; /* 5/16 */
+	-moz-border-radius: 0.3125em; /* 5/16 */
+	-webkit-border-radius: 0.3125em; /* 5/16 */
+}
+
+p {
+	margin-bottom: 1.25em; /* 20/16 */
+	color: #9498a1;
+}
+
+.fl { float: left; }
+.fr { float: right; }
+.cb { clear: both; }
+
+.half-size-column {
+	width: 48%;
+}
+
+div.stripe-separator {
+	background: transparent url('../images/separator-bg.png') repeat-x left center;
+	height: 0.562em; /* 9/16 */
+	display: block;
+	margin: 1.25em 0; /* 20/16 */
+}
+
+h1, h2, h3, h4, h5, h6 { margin-bottom: 0.625em; /* 10/16 */ }
+
+/*Temporary styles*/
+ul.temporary-button-showcase {
+	list-style-type: none;
+}
+
+ul.temporary-button-showcase li {
+	width: 24%;
+	float: left;
+	margin-bottom: 1em;
+}
+
+code {
+	display: inline-block;
+	background-color: #f8f9fa;
+	border: 1px solid #eeefef;
+	padding: 0.416em 0.833em; /* 5/12 10/12 */
+	color: #2a2e36;
+}
+
+blockquote {
+	display: block;
+	font-style: italic;
+	border-left: 2px solid #eeefef;
+	padding-left: 0.833em; /* 10/12 */
+	color: #9498a1;
+}
+
+cite {
+	font-style: italic;
+	font-weight: bold;
+	display: block;
+	padding-left: 0.833em; /* 10/12 */
+	margin-top: 0.833em; /* 10/12 */
+	color: #9498a1;
+}
+
+/* ---------- TYPOGRAPHY ---------- */
+body, form {
+	font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+	line-height: 1.125em; /* 18/16 */
+}
+
+p, .button, form input, ul#nav li ul, ul#tabs, div.side-menu ul li a, table,
+.information-box, .confirmation-box, .error-box, .warning-box, ol, .regular-ul, 
+.custom-ul, blockquote, cite { font-size: 0.75em; /* 12/16 */ }
+
+div.content-module-heading span { font-size: 0.625em; /* 10/16 */ }
+
+form p input[type="text"], form p input[type="password"], form p input[type="checkbox"], form p input[type="radio"] { font-size: 1em; /* 12/12. I did 12 because they're contained within a P tag, that has font size of 12px*/ }
+
+h1 { font-size: 1.125em; /* 18/16 */ }
+h2 { font-size: 0.875em; /* 14/16 */ }
+h3 { font-size: 0.75em; /* 12/16 */ }
+h4 { font-size: 0.685em; /* 11/16 */ }
+h5 { font-size: 0.625em; /* 10/16 */ }
+
+/* ---------- COLORS ---------- */
+a { color: #2069b4; }
+a:hover { color: #2a2e36; }
+
+p a, p a:hover { border-bottom: 1px dotted; }
+
+.blue {
+	background-color: #2069b4;
+	color: white;
+}
+
+.blue:hover {
+	background-color: #5081b3;
+	color: white;
+}
+
+/* ---------- WIDTHS ---------- */
+/* Form Inputs Style */
+.default-width-input { width: 20.833em; /* Default Value. Equals 250px for the 12px font size */ }	
+
+.full-width-input { width: 95%; }
+
+/* Textarea Style */
+.full-width-textarea {
+	width: 95%;
+	height: 12.5em; /* 150/12 */
+}
+
+/* Page Container Style */
+.page-full-width { padding: 0 1.875em; /* 30/16 */ }
+
+.page-limited {
+	width: 60em; /* 960/16 */
+	margin: 0 auto;
+}
+
+/* ---------- BUTTONS ---------- */
+.button {
+	padding: 0.833em; /* 10/12 */
+	
+	display: inline-block;
+	text-decoration: none;
+	background-repeat: no-repeat;
+}
+
+.dark {
+	background-color: #3f4551;
+	color: white;
+}
+.dark:hover {
+	background-color: #5d6677;
+	color: white;
+}
+
+.text-upper { text-transform: uppercase; }
+
+.small-button { padding: 0.312em 1em; /* 5/16 16/16 */ }
+
+.image-left {
+	background-position: 0.833em center; /* 10/12 */
+	padding-left: 3em; /* 36/12 */
+}
+
+.image-right {
+	background-position: right center;
+	padding-right: 3em; /* 36/12 */
+}
+
+.ic-left-arrow { background-image: url("../images/icons/ic_left.png"); }
+.ic-right-arrow { background-image: url("../images/icons/ic_right.png"); }
+
+::selection {
+	background-color: rgb(165, 234, 243);
+}
+
+/* ---------- FORMS ---------- */
+form label {
+	display: block;
+	text-transform: uppercase;
+	color: #2a2e36;
+	margin: 0 0 0.3125em 0;
+}
+
+form label.alt-label { text-transform: none; }
+
+form input[type="text"], input[type="password"], textarea {
+	border: 1px solid #d9dbdd;
+	outline: none;
+}
+
+form input[type="text"]:hover, input[type="password"]:hover, textarea:hover,
+form input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+	border: 1px solid #bbbdbe;
+}
+
+form input[type="checkbox"], form input[type="radio"] { margin-right: 0.833em; /* 10/12 */ }
+
+form input[type="submit"] {
+	border: none;
+	cursor: pointer;
+	padding: 0.833em; /* 10/12 */
+
+	background-position: right center;
+	padding-left: 2em; /* 36/12 */
+	background-repeat: no-repeat;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: right;
+}
+
+form#search-form input {
+	border: none;
+	/* The inner text overflows on the BG image, so we're setting a right padding to stop that */
+	padding-right: 3em; /* 36/12 */
+}
+
+form#search-form input:focus {
+	/* Same as .dark:hover */
+	background-color: #5d6677;
+	color: white;
+}
+
+form p em {
+	margin-top: 0.833em; /* 10/12 */
+	display: block;
+}
+
+form p.form-error, form p.form-error label { color: #cf4425; }
+
+form p.form-error em {
+	background: transparent url('../images/icons/message-boxes/error.png') no-repeat left center;
+	padding-left: 2em; /* 24/12 */
+}
+
+form input.error-input { border: 1px solid #ff876f; }
+form input.error-input:hover { border: 1px solid #b03e27; }
+
+/* Styling the HTML5 placeholders */
+/* So far they don't work in: IE, Opera 10 and below, Firefox 3.6 and below */
+::-webkit-input-placeholder { color: #858d9c; }
+:-moz-placeholder { color: #858d9c; }
+
+/* ---------- CONTENT BOXES ---------- */
+.information-box, .confirmation-box, .error-box, .warning-box {
+	padding: 0.833em 0.833em 0.833em 3em; /* 10/12 36/12 */
+	margin-bottom: 0.833em; /* 20/12 */
+}
+
+.information-box {
+	background: #e5f5f9 url('../images/icons/message-boxes/information.png') no-repeat 0.833em center;
+	border: 1px solid #cae0e5;
+	color: #5a9bab;
+}
+
+.confirmation-box {
+	background: #e7fae6 url('../images/icons/message-boxes/confirmation.png') no-repeat 0.833em center;
+	border: 1px solid #b7cbb6;
+	color: #52964f;
+}
+
+.error-box {
+	background: #fde8e4 url('../images/icons/message-boxes/error.png') no-repeat 0.833em center;
+	border: 1px solid #e6bbb3;
+	color: #cf4425;
+}
+
+.warning-box {
+	background: #fdf7e4 url('../images/icons/message-boxes/warning.png') no-repeat 0.833em center;
+	border: 1px solid #e5d9b2;
+	color: #b28a0b;
+}
+
+/* ---------- TOP + HEADER ---------- */
+div#top-bar {
+	background-color: #2a2e36;
+	padding: 0.625em 0; /* 10/16 */
+}
+
+div#header { padding: 1.25em 0; /* 20/16 */ }
+
+div#header-with-tabs { padding: 1.25em 0 0 0; /* 20/16 */ }
+
+div#login-intro {
+	background: transparent url('../images/login-icon.png') no-repeat left center;
+	padding: 0.312em 0 0.312em 3.125em;
+}
+div#login-intro h1 { text-transform: uppercase; margin: 0.312em 0 0 0; }
+div#login-intro h5 { color: #9498a1; }
+
+a#company-branding img { height: 39px; }	
+a#company-branding-small img { height: 30px; }
+
+/* ---------- CONTENT ---------- */
+div#content {
+	background: #f8f9fa url('../images/artwork-pattern.png') repeat-x left bottom;
+	border: 1px solid #eeefef;
+	padding: 1.875em 0; /* 30/16 */
+}
+
+form#login-form {
+	width: 18.75em; /* 300/16 */
+	margin: 0 auto;
+}
+
+/* ---------- FOOTER ---------- */
+div#footer {
+	text-align: center;
+	padding: 1.875em 0; /* 30/16 */
+}
