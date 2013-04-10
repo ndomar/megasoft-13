@@ -29,14 +29,38 @@
 <div id="statistics">
   <div id="gender">
     <p>النوع</p>
-    <img src = <%=compareGender(@task) %>>
+    <% a = compareGender(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
   </div>
   <div id = "age">
     <p>السن</p>
-    <img src = <%=compareAge(@task) %>>
+    <% a = compareAge(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
   </div>
   <div id="country">
     <p>البلد</p>
-    <img src = <%=compareCountry(@task) %>>
+    <% a = compareCountry(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
+  </div>
+  <div id = "taskresutls">
+    <p>احصائيات النتائج</p>
+    <% a = avgtime(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
   </div>
 </div>
