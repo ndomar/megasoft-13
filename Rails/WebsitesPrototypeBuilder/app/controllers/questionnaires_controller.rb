@@ -3,7 +3,6 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires.json
   def index
     @questionnaires = Questionnaire.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @questionnaires }
