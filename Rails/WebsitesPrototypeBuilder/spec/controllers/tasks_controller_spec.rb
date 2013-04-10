@@ -65,4 +65,13 @@ describe TasksController do
       response.should redirect_to project_tasks_path
     end
   end
+
+  describe "show statistics page of one task" do
+    it "renders the show view of the task" do
+      project = FactoryGirl.create(:project)
+      task = project.tasks.create(FactoryGirl.attributes_for(:task))
+      get :show, :project_id => project, :id => task
+      response.should render_template 'show'
+    end
+  end
 end
