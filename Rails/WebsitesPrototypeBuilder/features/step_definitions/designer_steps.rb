@@ -37,7 +37,7 @@ def sign_up
   fill_in "designer_email", :with => @visitor[:email]
   fill_in "designer_password", :with => @visitor[:password]
   fill_in "designer_password_confirmation", :with => @visitor[:password_confirmation]
-  #click_button "Sign up"
+  click_button "Sign up"
   find_designer
 end
 
@@ -45,7 +45,7 @@ def sign_in
   visit '/designers/sign_in'
   fill_in "designer_email", :with => @visitor[:email]
   fill_in "designer_password", :with => @visitor[:password]
-  #click_button "Sign in"
+  click_button "Sign in"
 end
 
 ### GIVEN ###

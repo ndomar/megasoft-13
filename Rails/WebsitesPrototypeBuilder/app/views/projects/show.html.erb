@@ -1,8 +1,7 @@
 <!-- <div id="wrapper"> -->
 	
-	<div id="sidebar">
-		<input type='text'>
-
+	<!-- <div id="sidebar"> -->
+		
 		<div id="pages_list">
 			<H1>صفحات</H1>
 			<% @pages.each do |page| %>
@@ -11,7 +10,8 @@
 			   	 <br>
 			   	 <td><%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 			   	 <br>
-			   	 <iframe onload="addHtml('<%= page.id %>','<%= page.html %>')" id ="<%= page.id %>" src="" width="100" height="100"  onclick="loadToDesignPage('<%= page.html %>')" frameborder="1" border="1" ></iframe>	  	
+			   	 <iframe onload="addHtml('<%= page.id %>','<%= page.html %>')" id ="<%= page.id %>" src="" width="100" height="100"  frameborder="1" border="1" ></iframe>	  	
+			   	 <button  onclick="loadToDesignPage('<%= page.id %>','<%= page.html %>')">Show content</button>
 
 			   	 <!-- frames'pcing="1" noresize scrolling=auto style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);' -->
 			   	 <!-- this is to make sure that the ratio is good when there are big pages and when i know the size of the frame Malatawy is using -->
@@ -20,11 +20,14 @@
 			<% end %>
 		</div>
 
+		<button onclick="store()">Save Content</button>
 
 		<%= link_to 'Edit', edit_project_path(@project) %> |
 		<%= link_to 'Back', projects_path %>
-	</div>
+	<!-- </div> -->
 	<div id="content">
-			<div id="designpage"></div>
+			<div id="designpage" data-pageid="0"></div>
 	</div>
+
+	<button onclick="loadToDesignPage('<p>sdasdas</p>')">LOAD</button>
 <!-- </div> -->

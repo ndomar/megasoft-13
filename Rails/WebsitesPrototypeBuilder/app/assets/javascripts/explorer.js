@@ -35,11 +35,43 @@ function addHtml(id,html){
 	// this.contentWindow.document.body.appendChild(script);
 }
 
-function loadToDesignPage(html){
-
+function loadToDesignPage(id,html){
+	store();
 	var designPage = document.getElementById('designpage');
-	designpage.innerHTML="";
-	designpage.append(html);
+	designPage.innerHTML="";
+	designPage.innerHTML=html;
+	designPage.setAttribute("data-pageid", id);
+	// document.write(html);
+}
+
+function store(){
+	var html = document.getElementById('designpage').innerHTML;
+	var pageId = document.getElementById('designpage').getAttribute("data-pageid");
+
+
+}
+
+function loadHTMLToDesignPage(html){
+	var designPage = document.getElementById('designpage');
+	designPage.innerHTML="";
+	designPage.innerHTML=html;
+	  // $.ajax({
+   //              data: { 'some_data_to_send_to_server':'any_data_goes_here' },
+   //              type: 'POST',
+   //              url: '/some_path_to_your_controller',
+   //              success: function () {
+   //                  // it worked!  
+   //              },
+   //              error: function (response) {
+   //                  // we had an error
+   //              }
+   //          });
+}
+
+function saveProjectProgress(){
+	store();
+	//save tasks
+	//save cardsorting
 }
 
 
