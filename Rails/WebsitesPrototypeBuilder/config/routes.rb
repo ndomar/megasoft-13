@@ -3,14 +3,24 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
+
  
+
+  
+
+
+  root to: "home#index"
+
+  get "comments/create"
+  get "comments/destroy"
+  get "questions/create"
+  get "questions/destroy"
+  get "answers/create"
+  get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
   get "projects/index"
 
-  resources :projects do
-    resources :pages
-  end
 
   resources :pages do
     resources :comments
@@ -21,6 +31,12 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :tasks do
     resources :task_results
   end
+
+  resources :projects do
+    resources :pages
+  end
+
+  
   get "/log/:id" => 'task_results#index'
   
 
