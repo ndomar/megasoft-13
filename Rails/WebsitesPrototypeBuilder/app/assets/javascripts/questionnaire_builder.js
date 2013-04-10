@@ -1,23 +1,22 @@
 $(function() {
-  $( "#sortable" ).sortable({ placeholder: "ui-state-highlight" });
-  $( "#sortable" ).disableSelection();
+    $('#sortable').sortable({ placeholder: "ui-state-highlight" ,
+        update: function(event, ui) {
+            var start_pos = ui.item.data('start_pos');
+            var end_pos = $(ui.item).index();
+            //alert(end_pos); 
+          }
+    });
+    $( "#sortable" ).disableSelection();
 });
 
-function create_textQuestion(){
-  $("#sortable").append('<li class="ui-state-default"><span onclick="del(this);"class="ui-icon ui-icon-close"></span>New Question</li>');
-}
 
 function del(question){
 	$(question).parent().slideUp('slow', function() { $(this).remove(); });
 }
 
-function remove_fields(link) {
-  $(link).prev("input[type=hidden]").val("1");
-  $(link).closest(".fields").hide();
-}
-
-function add_fields(link, association, content) {
-  var new_id = new Date().getTime();
-  var regexp = new RegExp("new_" + association, "g")
-  $(link).parent().before(content.replace(regexp, new_id));
-}
+$(document).on('nested:fieldRemoved', function(event){
+  // this field was just inserted into your form
+  var field = event.field; 
+  // it's a jQuery object already! Now you can find date input
+ field.parent().slideUp('slow', function() { field.remove(); });
+})

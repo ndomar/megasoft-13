@@ -3,7 +3,7 @@ class CreateQquestions < ActiveRecord::Migration
     create_table :qquestions do |t|
       t.text :body
       t.integer :number
-      t.integer :type
+      t.integer :qtype
       t.references :questionnaire
 
       t.timestamps

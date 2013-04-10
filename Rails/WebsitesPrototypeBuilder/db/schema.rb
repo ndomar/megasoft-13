@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(:version => 20130409015011) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "choice_qquestions", :force => true do |t|
+    t.text     "body"
+    t.integer  "number"
+    t.integer  "questionnaire_id"
+    t.integer  "project_id"
+    t.integer  "qquestion_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "choice_qquestions", ["project_id"], :name => "index_choice_qquestions_on_project_id"
+  add_index "choice_qquestions", ["qquestion_id"], :name => "index_choice_qquestions_on_qquestion_id"
+  add_index "choice_qquestions", ["questionnaire_id"], :name => "index_choice_qquestions_on_questionnaire_id"
+
   create_table "choices", :force => true do |t|
     t.string   "body"
     t.integer  "number"
@@ -114,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20130409015011) do
   create_table "qquestions", :force => true do |t|
     t.text     "body"
     t.integer  "number"
-    t.integer  "type"
+    t.integer  "qtype"
     t.integer  "questionnaire_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
