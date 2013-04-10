@@ -7,7 +7,14 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   #at start up page goes to the home controller and the index action
   root to: "home#index"
 
+  get "comments/create"
+  get "comments/destroy"
+  get "questions/create"
+  get "questions/destroy"
+  get "answers/create"
+  get "answers/destroy"
   get "pages/reviewer"
+  get "pages/designer"
 
   resources :pages do
     resources :comments

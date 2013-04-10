@@ -42,7 +42,7 @@
         <br />
         <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
       <% else %>
-        <div class = "span2" align="right">
+        <div>
           <%= link_to "اﻟﺘﺴﺠﻴﻞ", new_designer_registration_path %>
           <label class ="label label-important" >اﻭ </label>
           <%= link_to "اﻟﺪﺧﻮﻝ",new_designer_session_path%>
@@ -54,15 +54,13 @@
 </div>
 <% end %>
 <br />
-
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
  <!-- -------------------- -->
 
-<div class="container"> <%= yield %></div>
-
+<div class="container"><%= yield %></div>
 <hr>
 <footer>
   <p>&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</p>
