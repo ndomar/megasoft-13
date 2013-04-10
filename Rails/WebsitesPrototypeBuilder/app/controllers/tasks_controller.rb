@@ -32,8 +32,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   ##
   #show a specific task by searchinng for its id
   #* *Args*    :
