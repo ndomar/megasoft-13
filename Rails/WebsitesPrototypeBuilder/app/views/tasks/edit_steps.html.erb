@@ -26,12 +26,19 @@
           <td> رقم الخطوة  </td>
           <td> الجزء</td>
           <td> الحدث</td>
+          <td> الوصف </td>
+          <td> إزالة </td>
       </tr>
       <% @steps.each do |step| %>
         <tr>
           <td align="center"><%= step.id %> </td>
           <td><%= step.component %> </td>
           <td><%= step.event %> </td>
+          <td> 
+            <% if step.description %> 
+            <%= step.description %> 
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>
@@ -57,11 +64,8 @@
    $("#embedded").find('input').click(function(event){
         $("#add_step").show();
         var id = event.target.id;
-
         alert ('The id of the HTML component you clicked on is ' + id);
         $("#component_id").val(id);
-        //desc: $('#description').val()
-
   });});
 </script>
 
@@ -71,7 +75,8 @@
         var params = $.param({
         task: <%= @task.id %>,
         component: $("#component_id").val(),
-        "event" : "onclick"
+        "event" : "onclick",
+        description: $("#step_description").val()
     });
     $.ajax("/tasks/new_step/?" + params);
   });});

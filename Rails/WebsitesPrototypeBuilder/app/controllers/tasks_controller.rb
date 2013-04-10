@@ -109,7 +109,7 @@ class TasksController < ApplicationController
   end
 
   def new_step
-    @step = Step.create(:task_id => params[:task], :event => params[:event], :component => params[:component])
+    @step = Step.create(:task_id => params[:task], :event => params[:event], :component => params[:component], :description => params[:description])
     respond_to do |format|
       format.html {render :nothing => true}
       format.js {render "step_list"}
