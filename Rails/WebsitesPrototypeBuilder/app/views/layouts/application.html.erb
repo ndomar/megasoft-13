@@ -6,29 +6,63 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-	<body>
-	<!-- container for positioning the banner -->
-	<div id="navigation_container">
-	<!-- the ribbon body -->
-		<div class="rectangle">
-		<!-- the navigation links -->
-			<ul id="navigation">
-			<li><a href="#">خط عربي<div class="tabBar active" ></div></a></li>
-			<li><a href="#">خط عربي<div class="tabBar" ></div></a></li>
-			<li><a href="#">خط عربي<div class="tabBar"></div></a></li>
-			</ul>
-			<a href="#"><div width="107px" height="51px" class="logo"></div></a>
-		<!-- end navigation links -->
-		</div>
-	<!-- end container -->
-	</div>
 
-	<%= yield %>
+<style>
+</style>
 
-	<hr>
-	<footer>
-	 	<p>&copy;أرابليتي 2013</p>
-	</footer>
+<body>
+<!-- layout stuff for the home page -->
+  
+<!-- container for positioning the banner -->
+<div id="navigation_container">
+<!-- the ribbon body -->
+  <div class="rectangle">
+  <!-- the navigation links -->
+    <ul id="navigation">
+    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
+    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
+    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar"></div></a></li>
+    </ul>
+    <a href="#"><div width="107px" height="51px" class="logo"></div></a>
+  <!-- end navigation links -->
+    <div id="designer_nav" align="right">
+      <!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
+      <% if designer_signed_in? %>
+        <% if current_designer.fullname.eql?nil %>
+          <%= current_designer.email %>
+        <% else %>
+          <%= current_designer.fullname %>
+        <% end %>
+        ﻣﺴﺠﻞ ﺑﺈﺳﻢ<br /> ﻟﻴﺲ ﺃﻧﺖ؟
+        <%= link_to "ﺧﺮﻭﺝ", destroy_designer_session_path, :method => :delete %>
 
+        <br />
+        <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
+      <% else %>
+        <div>
+          <%= link_to "اﻟﺘﺴﺠﻴﻞ", new_designer_registration_path %>
+          <label class ="label label-important" >اﻭ </label>
+          <%= link_to "اﻟﺪﺧﻮﻝ",new_designer_session_path%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<!-- end container -->
+</div>
+
+
+<!-- making a flash for any errors -->
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+<% end %>
+ <!-- -------------------- -->
+
+<div class="container"><%= yield %></div>
+<hr>
+<footer>
+  <p>&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</p>
+</footer>
+
+<%= javascript_include_rpx(designer_session_url) %>
 </body>
 </html>
