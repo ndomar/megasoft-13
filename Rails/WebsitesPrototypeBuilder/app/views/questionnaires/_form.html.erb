@@ -1,4 +1,4 @@
-<%= form_for(@questionnaire) do |f| %>
+<%= nested_form_for (@questionnaire) do |f| %>
   <% if @questionnaire.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@questionnaire.errors.count, "error") %> prohibited this questionnaire from being saved:</h2>
@@ -10,39 +10,18 @@
       </ul>
     </div>
   <% end %>
+  <p>
+    <%= f.label :الاسم %><br />
+    <%= f.text_field :title %></br>
+  </p>
 
-<p>
-  <%= f.label :الاسم %><br />
-  <%= f.text_field :title %></br>
-</p>
 
-<!--
-  <%= f.fields_for :qquestions do |builder| %>
-    <%= render "qquestion_fields", :f => builder %>
-  <%end%>
-  <%= link_to_add_fields "Add Question",f,:qquestions %>
--->
-  <%= f.fields_for :qquestions do |builder| %>
-  <div class ="fields">
-    <p>
-      <%= builder.label :body,"-- Question --" %></br>
-      <%= link_to_remove_fields "remove",builder %></br>
-      <%= builder.text_area :body %></br>
-      <%= builder.label :Qtype %>
-      <%= builder.text_field :q_type %></br>
-    </p>
-    <% builder.fields_for :choices do |builde| %>
-      <p class ="fields">
-        <%= builde.label :body,"-- The Option --" %></br>
-        <%= builde.text_field :body %></br>
-        <%= link_to_remove_fields "remove",builde %></br>
-      </p>
+  <div id="sortable">     
+    <%= f.fields_for :qquestions do |builder| %>
+      <%= render "qquestion_fields", :f => builder %>
     <%end%>
-    <%= link_to_add_fields "Add Option",builder,:choices %>
+    <%= f.link_to_add "Add a Question", :qquestions %>
   </div>
-  <%end%>
-    <%= link_to_add_fields "Add Question",f,:qquestions %>
-
   <div class="actions">
     <%= f.submit %>
   </div>

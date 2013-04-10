@@ -3,7 +3,7 @@
 	<div id="comments">
 			<% @questionnaire.qquestions.order('number').each do |qquestion| %>
 						<p><%=qquestion.body %></p>
-			<% if qquestion.q_type ==1%>
+			<% if qquestion.qtype ==1%>
 			 <textarea placeholder = "اكتب هنا"></textarea>
 			<%end%>
 			<%end%>

@@ -142,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20130409015011) do
   create_table "qquestions", :force => true do |t|
     t.text     "body"
     t.integer  "number"
-    t.integer  "q_type"
+    t.integer  "qtype"
     t.integer  "questionnaire_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

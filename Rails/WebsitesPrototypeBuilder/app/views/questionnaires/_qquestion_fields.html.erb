@@ -1,13 +1,11 @@
 <div class ="fields">
-	<p>
-	  <%= f.label :body,"-- Question --" %></br>
-	  <%= link_to_remove_fields "remove",f %></br>
-	  <%= f.text_area :body %></br>
-	  <%= f.label :Qtype %>
-	  <%= f.text_field :q_type %></br>
-	</p>
-  <% f.fields_for :choices do |builder| %>
-  	<%= render 'choice_fields',:f => builder %>
-  <%end%>
-  <%= link_to_add_fields "Add Answer",f,:choices %>
+	<div class="qquestion"><span onclick="del(this);"class="ui-icon ui-icon-close"></span><span class="ui-icon ui-icon-pencil"></span>
+	  <%= f.text_field :body,:placeholder =>"السوال" %></br>
+		<%= f.select(:qtype, options_for_select([['نص', 1], ['فقرة', 2], ['خيارات متعددة',3],['مربعات',4]])) %></br>
+  	<%= f.link_to_remove "Remove this question" %></br>
+	  <% f.fields_for :choices do |builder| %>
+	  	<%= render 'choice_fields',:f => builder %>
+	  <%end%>
+	  <%= f.link_to_add "Add a Option", :choices %>
+	</div>
 </div>
