@@ -9,7 +9,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  #This is all what i am using
   def show   
     @project = Project.find(params[:id])   #I am sending the project to the design page
     @id = @project.id                      #I am sending the project id explicitly to the design page
@@ -31,7 +30,6 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
-
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -72,13 +70,14 @@ class ProjectsController < ApplicationController
   end
 
   def save
-    @page = Page.find(params[:id])
-    @page.html = params[:html]
-    @page.save
+    @page = Page.find(params[:id])  # I am retrieving the page whose id is the provided id
+    @page.html = params[:html]      # I am updating the page's html
+    @page.save                      # I am saving the page after updating it
     respond_to do |format|
       format.html { render :nothing => true }
       format.json { head :no_content }
     end
+
   end
 
 end

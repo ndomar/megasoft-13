@@ -1,6 +1,6 @@
 Feature: View project pages in package explorer
   As a registered designer of the website
-  I want to view my created webpages 
+  I should be able to view my created webpages within a Project 
 
     Scenario: I sign in then select one of my projects
       Given I am logged in
