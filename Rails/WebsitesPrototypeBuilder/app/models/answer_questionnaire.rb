@@ -1,4 +1,3 @@
-class AnswerQuestionnaire < ActiveRecord::Base
 ##
 # the answer a user is entering
 # * *Attribute* :
@@ -6,8 +5,10 @@ class AnswerQuestionnaire < ActiveRecord::Base
 # * *Relations* :
 #   - has foreign key to the project,questionnaire, and qquestion
 #   - related to one page and one question
+class AnswerQuestionnaire < ActiveRecord::Base
   belongs_to :project
   belongs_to :questionnaire
   belongs_to :qquestion
   attr_accessible :answer, :qquestion_id, :questionnaire_id
+  validates_presence_of :answer
 end

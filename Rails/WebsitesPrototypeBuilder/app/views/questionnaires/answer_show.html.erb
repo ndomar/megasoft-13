@@ -7,6 +7,7 @@
  				<div>
 					<%@array = []%>
 					<%@c_all = ""%>
+					<!-- checking question type to give the correct form -->
 					<% if question.qtype ==1%>
 						<%= d.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
 					<%elsif question.qtype==2%>
@@ -21,6 +22,9 @@
 					<%= d.submit "Save Answer" %>
 				<%end%>
 			<%end%>
+			<br/>
+			<p><%= link_to "Finish", {:action => 'new' }%></p>
+			<%= button_to 'Finish', :action => 'index' %>
 		</div>
 </div>
   

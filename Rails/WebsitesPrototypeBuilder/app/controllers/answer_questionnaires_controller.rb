@@ -15,13 +15,13 @@ class AnswerQuestionnairesController < ApplicationController
   	@qquestion = @questionnaire.qquestions.find(params[:qquestion_id])
   	@answer =@qquestion.answer_questionnaires.build(params[:answer], :presence => true)
     respond_to do |format|
-    if @answer.save
-      # if Succedeed notify the user, and redirect to the reviewing page
-      format.html {redirect_to :controller => :questionnaires, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was successfully created.' }
-  	else
-      # if did not Succedeed notify the user, and refresh and give a notice
-      format.html {redirect_to :controller => :questionnaires, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was not successfully created.' }
+      if @answer.save
+        # if Succedeed notify the user, and redirect to the reviewing page
+        format.html {redirect_to :controller => :questionnaires, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was successfully created.' }
+  	   else
+        # if did not Succedeed notify the user, and refresh and give a notice
+        format.html {redirect_to :controller => :questionnaires, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was not successfully created.' }
+      end
     end
-  end
   end
 end
