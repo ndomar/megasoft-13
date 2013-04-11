@@ -1,5 +1,4 @@
-class Reviewer < ActiveRecord::Base
-  
+class Reviewer < ActiveRecord::Base 
   has_many :task_results
   has_and_belongs_to_many :tasks
 

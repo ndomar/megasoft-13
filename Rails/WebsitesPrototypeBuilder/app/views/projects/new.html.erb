@@ -1,0 +1,41 @@
+<br>
+<%= form_for @project do |f| %>
+<!-- check if any error occured -->
+  <% if @project.errors.any? %>
+    <ul>
+    <!--if yes loop on the errors and print them on the page-->
+    <% @project.errors.each do |attr,msg| %>
+    <h5> <%= msg %> </h5>
+    <% end %>
+  <% end %>
+  <p>
+    <!-- the name label -->
+    <%= f.label :Name, "اسم المشروع" %> 
+    <br>
+    <!-- the text field where the name will be written in -->
+    <%= f.text_field :project_name %> <br/>  
+  </p>
+
+  <p>
+     <!-- the type label -->
+    <%= f.label :Type, "النوع" %>
+    <br>
+    <!-- the text field where the type will be selected from -->
+    <%= f.select :project_type, ['تعليمي','ترفيهي','عملي','أخرى'] %> <br/>
+  </p>
+
+  <p>
+     <!-- the description label -->
+    <%= f.label :Description, "وصف المشروع" %>
+    <br>
+    <!-- the text area where the description will be written in -->
+    <%= f.text_area :description %> <br/>
+  </p>
+  
+    <%= f.hidden_field :designer_id, :value => current_designer.id %>
+
+  <p>
+    <%= f.submit "حفظ" %>
+  </p>
+
+<%end%>

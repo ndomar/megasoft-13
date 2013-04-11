@@ -11,6 +11,9 @@
 </style>
 
 <body>
+
+<% if designer_signed_in? %>
+
 <!-- layout stuff for the home page -->
   
 <!-- container for positioning the banner -->
@@ -20,7 +23,7 @@
   <!-- the navigation links -->
     <ul id="navigation">
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
-    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
+    <li><%= link_to "مشروع جديد" , new_project_path %><div class="tabBar" ></div></li>
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar"></div></a></li>
     </ul>
     <a href="#"><div width="107px" height="51px" class="logo"></div></a>
@@ -49,8 +52,8 @@
   </div>
 <!-- end container -->
 </div>
-
-
+<% end %>
+<br />
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
