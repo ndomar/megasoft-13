@@ -5,5 +5,5 @@ Feature: Save Page
 
     Scenario: Saves a Page
       	Given I am on a project's design page
-     	When I press "Save content"
+     	When I press Save content
       	Then page's content should be updated to what is in the design page

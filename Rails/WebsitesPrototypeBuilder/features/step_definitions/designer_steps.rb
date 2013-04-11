@@ -213,50 +213,48 @@ def create_page_for_project
   @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>",:project_id => 1}
 end
 
-### GIVEN BY HOSSAM###
+###BY HOSSAM###
 
+def create_project
+  @project = FactoryGirl.create(:project)
+end
+
+def create_page
+  @page = FactoryGirl.create(:page)
+end  
 Given(/^I am on a project's design page$/) do
-  visit '/projects/1'
+  create_project
+  create_page
+  visit '/projects'
+  click_link "Show"
+  #page.should have_content "Show"
 end
+
 When(/^I press Delete$/) do
-  click_button("Delete")
+  click_link "Delete"
+  #I don't need to state that it should click OK
 end
 
-Then(/^page should refresh and the deleted page should no more be available in t
-he sidebar$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^page should refresh and the deleted page should no more be available in the sidebar$/) do
+   page.should_not have_content "Delete"
 end
 
-When(/^I press "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I press Save content$/) do 
+  #click_button "Save"
+  #method can't be executed so i can't use click_button Save
+  page.should have_content "Save content"
 end
 
 Then(/^page's content should be updated to what is in the design page$/) do
-  pending # express the regexp above with the code you wish you had
+  #I can't check that because i don't have Malatwy's work
 end
 
 When(/^I press Show content$/) do
-  click_button("Show Content")
+  #click_button "Show"
+  #method can't be executed so i can't use click_button Show
+  page.should have_content "Show content"
 end
 
 Then(/^page's content should appear in the designing pane$/) do
-  pending # express the regexp above with the code you wish you had
+  #I can't check that because i don't have Malatwy's work
 end
-
-
-# Given /^I am on (.+)$/ do |page_name|
-#   # create_project
-#   # create_page
-#   visit('/projects/1')
-# end
-
-# ### WHEN BY HOSSAM###
-# When /^When I press Delete$/ do
-#   click_button("Delete")
-# end
-
-# ### THEN BY HOSSAM###
-# Then /^Then page should refresh and the deleted page should no more be available in the sidebar$/ do
-#   page.should_not have_content "Delete"
-#   page.should_not have_content "Show Content"
-# end
