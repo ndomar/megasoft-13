@@ -17,10 +17,10 @@ class AnswerQuestionnairesController < ApplicationController
     respond_to do |format|
     if @answer.save
       # if Succedeed notify the user, and redirect to the reviewing page
-      format.html { redirect_to :questionnaires,:notice => 'Answers successfully submitted.' }
+      format.html {redirect_to :controller => :questionnaires, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was successfully created.' }
   	else
       # if did not Succedeed notify the user, and refresh and give a notice
-      format.html {redirect_to :controller => :questionnaire, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was not successfully created.' }
+      format.html {redirect_to :controller => :questionnaires, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was not successfully created.' }
     end
   end
   end

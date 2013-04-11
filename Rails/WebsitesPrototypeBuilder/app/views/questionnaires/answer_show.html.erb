@@ -1,30 +1,27 @@
+<!-- the answer form for the reviewer to answer -->
 <h1>Questionnaire</h1>
 <div>
-	<div>
-
 		<% @questionnaire.qquestions.each do |question| %>
 			<p><%=question.body %></p>
 			<%= form_for [@questionnaire,question,question.answer_questionnaires.build] do |d| %>
- 		<div>
-		<%@array = []%>
-		<%@c_all = ""%>
-		<% if question.qtype ==1%>
-			<%= d.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
-		<%elsif question.qtype==2%>
-			<%= d.text_area :answer, :required => true,:placeholder => "اكتب هنا"%>
-		<%elsif question.qtype==3%>
-			<% question.choices.each do |choice| %>
-		 		<%@c_all+=choice.body+ "," %> 
+ 				<div>
+					<%@array = []%>
+					<%@c_all = ""%>
+					<% if question.qtype ==1%>
+						<%= d.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
+					<%elsif question.qtype==2%>
+						<%= d.text_area :answer, :required => true,:placeholder => "اكتب هنا"%>
+					<%elsif question.qtype==3%>
+						<% question.choices.each do |choice| %>
+		 					<%@c_all+=choice.body+ "," %> 
+						<%end%>
+						<%=d.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+					<%end%>
+					</br>
+					<%= d.submit "Save Answer" %>
+				<%end%>
 			<%end%>
-			<%=d.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
-				</br>
-			<%= d.submit %>
-		<%end%>
-		<%end%>
-
-		<%end%>
-</div>
-	</div>
+		</div>
 </div>
   
 

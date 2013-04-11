@@ -20,7 +20,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :qquestions do
       resources :choice_qquestions
       resources :answer_questionnaires
-    end 
+    end
   end
 
   resources :tasks do
