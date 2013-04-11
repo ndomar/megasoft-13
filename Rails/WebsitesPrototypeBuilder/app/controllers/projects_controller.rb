@@ -71,4 +71,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def save
+    @page = Page.find(params[:id])
+    @page.html = params[:html]
+    @page.save
+    respond_to do |format|
+      format.html { render :nothing => true }
+      format.json { head :no_content }
+    end
+  end
+
 end

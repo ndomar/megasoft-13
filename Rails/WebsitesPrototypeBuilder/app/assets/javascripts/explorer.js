@@ -41,24 +41,19 @@ function loadToDesignPage(id,html){
 	designPage.innerHTML="";
 	designPage.innerHTML=html;
 	designPage.setAttribute("data-pageid", id);
-	// document.write(html);
 }
 
 function store(){
-	var html = document.getElementById('designpage').innerHTML;
-	var pageId = document.getElementById('designpage').getAttribute("data-pageid");
-	// $.ajax({
-   //              data: { 'some_data_to_send_to_server':'any_data_goes_here' },
-   //              type: 'POST',
-   //              url: '/some_path_to_your_controller',
-   //              success: function () {
-   //                  // it worked!  
-   //              },
-   //              error: function (response) {
-   //                  // we had an error
-   //              }
-   //          });
-
+	//alert("asd");
+	//var html = "<p>sdadwa</p>"; used for testing
+	var html = document.getElementById('designpage').innerHTML;	//this gets the html from the designpage pane and stores it in the variable html
+	var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
+	var params = $.param({
+		id: pageId,
+		"html": html
+	});
+	$.ajax("/projects/save?"+params);
+	//this is the ajax request to update and save the updated page
 }
 
 function loadHTMLToDesignPage(html){

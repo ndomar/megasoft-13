@@ -16,6 +16,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "pages/designer"
   get "projects/index"
+  get "projects/save/" => "projects#save", :as => :page_save
 
   resources :projects
 
