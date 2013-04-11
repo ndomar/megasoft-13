@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+
   def show   
     @project = Project.find(params[:id])   #I am sending the project to the design page
     @id = @project.id                      #I am sending the project id explicitly to the design page
@@ -69,6 +70,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # called to create a new comment in the database
+  # finds the page with the given id
+  # * *Args* :
+  # - +id+ -> the page's id
+  # - +html+ -> the updated html
+  # * *Returns* :
+  # - page will be updated with the new content
+  #
   def save
     @page = Page.find(params[:id])  # I am retrieving the page whose id is the provided id
     @page.html = params[:html]      # I am updating the page's html

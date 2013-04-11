@@ -197,30 +197,43 @@ end
 #Hossam's Tests
 
 #This is so wrong!!!
+def create_page
+  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>"}
+end
+
+def create_page
+  @project ||= { :project_name => "Test Project"}
+end
+
+  
 def delete_page
-  @page ||= Page.where(:id => @given_page[:id])
   @page.destroy unless @page.nil?
 end
+
+def create_page_for_project
+  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>",:project_id => 1}
+end
+
 
 
 ### GIVEN ###
 
 ##<<<<-------------------------------------
-Given /^I selected a specific project$/ do
-  #click_link "project name"  <<<<------------This is dynamic so i cant specify a certain name
+Given /^I selected a specific Project from my projects$/ do
+  click_link "project_name"  
 end
 
 ### WHEN ###
 When /^I view the design page$/ do
-  
+    visit 'http://localhost:3000/projects/1'
 end
 
 ### THEN ###
 Then /^I should see all the webpages included in the project$/ do
-  #page.should have_content "صفحات"
+  page.should have_content "Test Page"
 end
 
 Then /^I should see all the webpages included in the project with delete buttons for each one of them$/ do
-  #page.should not have_content "page name"
+  #page.should not have_content "Test Page"
 end
 #<<------------------ should i state that or what is after deleting

@@ -1,8 +1,9 @@
-Feature: Delete pages from the project using package explorer
-  As a registered designer of the website
-  I should be able to delete any of my created webpages within a Project
+Feature: Delete Page
+    In order to delete a page
+    A designer
+    Should click the delete page link in the design page
 
-      Given I am logged in
-      And I selected a specific Project from my projects
-      When I view the design page
-      Then I should see all the webpages included in the project with a delete buttons for each one of them
+    Scenario: Deletes a Page
+      	Given I am on a project's design page
+     	When I press "Delete"
+      	Then page should refresh and the deleted page should no more be available in the sidebar
