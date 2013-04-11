@@ -10,7 +10,7 @@ class CardsortsController < ApplicationController
 	end
 
 	def edit
-		@cardsort = Cardsort.find(17)
+		@cardsort = Cardsort.find(params[:cardsort_id])
 		@cards = @cardsort.cards
 		@groups = @cardsort.groups
 		@card = Card.new
