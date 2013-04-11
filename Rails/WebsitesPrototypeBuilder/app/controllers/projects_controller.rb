@@ -9,6 +9,7 @@ class ProjectsController < ApplicationController
   
   def new()
     @project = Project.new() 
+    p @project, "ay 7aga"
   end
 
   ##
