@@ -2,11 +2,11 @@ class AnswerQuestionnairesController < ApplicationController
  	## 
  	# called to create a new question in the database
   # finds the selected page
-  # * *Args* :
+  # * *Args*    :
   # - +@questionnaire+ -> the id of the questionnaire he's answering
   # - +@qquestion+ -> the id of the question he's answering
   # - +@answer+ -> the answer the user wants to save
-  # * *Returns* :
+  # * *Returns*    :
   # - page redirected if answers are valid to questionnaire view or not.
   #
   def create
