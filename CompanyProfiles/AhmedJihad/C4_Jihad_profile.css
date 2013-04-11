@@ -1,0 +1,26 @@
+body{
+	background-image: url("bg.jpg");
+}
+h1.name{
+	font-size: 40px;
+	text-align: center;
+	color: #75A3FF;
+}
+img.profile{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px
+}
+p.info{
+color: #FFFFFF;
+}
+#butt{
+	font-size: 20px;
+	color:#8D38C9;
+	float: right;
+	 background: transparent;
+}
+div {
+	display: block;
+}

@@ -3,8 +3,6 @@ require 'spec_helper'
 describe Designer do
 
   before(:each) do
-
-    
     @attr = {
       :fullname => "Test Designer",
       :email => "designer@gmail.com",
