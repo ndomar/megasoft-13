@@ -19,8 +19,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :questionnaires do
     resources :qquestions do
       resources :choice_qquestions
+      resources :answer_questionnaires
     end 
-    resources :answer_questionnaires
   end
 
   resources :tasks do

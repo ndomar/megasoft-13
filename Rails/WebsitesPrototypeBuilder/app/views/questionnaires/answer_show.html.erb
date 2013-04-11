@@ -1,24 +1,30 @@
 <h1>Questionnaire</h1>
-<div id="html_content">
-	<div id="comments">
+<div>
+	<div>
+
+		<% @questionnaire.qquestions.each do |question| %>
+			<p><%=question.body %></p>
+			<%= form_for [@questionnaire,question,question.answer_questionnaires.build] do |d| %>
+ 		<div>
 		<%@array = []%>
 		<%@c_all = ""%>
-	<%= nested_form_for (@questionnaire) do |f| %>
-		<% @questionnaire.qquestions.order('number').each do |qquestion| %>
-			<p><%=qquestion.body %></p>
-			<% if qquestion.qtype ==1%>
-			 	<input placeholder = "اكتب هنا"></input>
-			<%elsif qquestion.qtype==2%>
-				<textarea placeholder = "اكتب هنا"></textarea>
-			<%elsif qquestion.qtype==3%>
-				<% qquestion.choices.order('number').each do |choice| %>
-				<%@c_all+=choice.body+ ","  %> 
+		<% if question.qtype ==1%>
+			<%= d.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
+		<%elsif question.qtype==2%>
+			<%= d.text_area :answer, :required => true,:placeholder => "اكتب هنا"%>
+		<%elsif question.qtype==3%>
+			<% question.choices.each do |choice| %>
+		 		<%@c_all+=choice.body+ "," %> 
 			<%end%>
-				<%=select_tag "people", options_for_select(@c_all.split(","))%>
-			<%end%>
+			<%=d.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+				</br>
+			<%= d.submit %>
 		<%end%>
-	<%end%>
-		</br>
-		<button>تسجىل</button>
+		<%end%>
+
+		<%end%>
+</div>
 	</div>
 </div>
+  
+

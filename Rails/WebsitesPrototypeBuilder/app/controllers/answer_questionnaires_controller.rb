@@ -13,14 +13,15 @@ class AnswerQuestionnairesController < ApplicationController
     # finds the selected page
     @questionnaire = Questionnaire.find(params[:questionnaire_id])
   	@qquestion = @questionnaire.qquestions.find(params[:qquestion_id])
-  	@answer =@qquestion.answers.build(params[:body], :presence => true)
+  	@answer =@qquestion.answer_questionnaires.build(params[:answer], :presence => true)
     respond_to do |format|
     if @answer.save
       # if Succedeed notify the user, and redirect to the reviewing page
-      format.html { redirect_to :controller => :questionnaire, :action => :show, :id => @questionnaire,:notice => 'Answers successfully submitted.' }
+      format.html { redirect_to :questionnaires,:notice => 'Answers successfully submitted.' }
   	else
       # if did not Succedeed notify the user, and refresh and give a notice
       format.html {redirect_to :controller => :questionnaire, :action => :answer_show, :id => @questionnaire,:notice => 'Answer was not successfully created.' }
     end
+  end
   end
 end
