@@ -1,4 +1,3 @@
-class Answer < ActiveRecord::Base
 ##
 # the answer a user is entering
 # * *Attribute*    :
@@ -6,6 +5,7 @@ class Answer < ActiveRecord::Base
 # * *Relations* :
 #   - has foreign key to the page and the question
 #   - related to one page and one question
+class Answer < ActiveRecord::Base
   validates_presence_of :answer
   belongs_to :question
   belongs_to :page
