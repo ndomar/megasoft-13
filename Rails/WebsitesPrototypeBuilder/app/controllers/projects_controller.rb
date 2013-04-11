@@ -73,11 +73,11 @@ class ProjectsController < ApplicationController
     @page = Page.find(params[:id])  # I am retrieving the page whose id is the provided id
     @page.html = params[:html]      # I am updating the page's html
     @page.save                      # I am saving the page after updating it
+    
     respond_to do |format|
       format.html { render :nothing => true }
       format.json { head :no_content }
     end
-
   end
 
 end
