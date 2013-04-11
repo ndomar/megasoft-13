@@ -1,19 +1,21 @@
+<%= javascript_include_tag "edit_steps" %>
+
 <div id ="wrapper" >
 
   <div id ="sidebar">
+
     <div id="add_step" style ="display:none; text-align:left">
-
       <h2 style = "text-algin:center"> أضف خطوة جديدة </h2>
-
+      
       <div id = "general_events" >
-
         <input type ="radio" name = "events_list" value = "click" checked = "checked"> onclick <br/> </input>
         <input type ="radio" name = "events_list" value = "mouseover"> onhover <br/> </input>
         <br/>
         <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
         <br/> <br/>
-        <button id ="save_step" style="width: 200px; height:30px;"> إضافة الخطوة </button>
+        <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>')"> إضافة الخطوة </button>
       </div>
+
     </div>
 
     <h2 style = "text-align:center"> الخطوات </h2>
@@ -21,6 +23,7 @@
     <div id = "steps_list">
       <%= render "steps" %>
     </div>
+    
   </div>
 
   <div id="content">
@@ -31,40 +34,6 @@
 
     <%= hidden_field_tag(:component_id, :id,  :value => "hidden") %>
 
-
   </div>
 </div>
 
-<script type="text/javascript">
-  $(function(){
-   $("#embedded").find('input').click(function(event){
-        $("#add_step").show();
-        var id = event.target.id;
-        //alert ('The id of the HTML component you clicked on is ' + id);
-        $("#component_id").val(id);
-  });});
-</script>
-
-<script type="text/javascript">
-  $(function(){
-   $("#embedded").find('button').click(function(event){
-        $("#add_step").show();
-        var id = event.target.id;
-        //alert ('The id of the HTML component you clicked on is ' + id);
-        $("#component_id").val(id);
-  });});
-</script>
-
-<script type = "text/javascript">
-  $(function(){
-    $("#save_step").click(function(event){
-        var params = $.param({
-        id: <%= @task.id %>,
-        component: $("#component_id").val(),
-        "event" : $("input:radio[name=events_list]:checked").val(),
-        description: $("#step_description").val()
-    });
-    $.ajax("/tasks/new_step/?" + params);
-    $("#add_step").hide();
-  });});
-</script>
