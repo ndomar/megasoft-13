@@ -194,26 +194,23 @@ Then /^I should see my name$/ do
 end
 #########################################################
 #Hossam's Tests
-
-#This is so wrong!!!
-def add_page
-  @page ||= { :page_name => "Page Name", :project_id => 1,:html => "<p>adasdadas</p>"}
+def create_project
+  # @project ||= {:id => 1 }
+  @project = FactoryGirl.create(:project)
 end
 
-
-### GIVEN ###
-
-##<<<<-------------------------------------
-Given /^I selected a specific project$/ do
-  #click_link "project name"  <<<<------------This is dynamic so i cant specify a certain name
+Given(/^I am on a project's design page$/) do
+  create_project
+  visit '/projects'
+  click_link "Show"
+  #page.should have_content "Show"
 end
 
-### WHEN ###
-When /^I view the design page$/ do
-  
+When(/^I enter data in the textbox and press "(.*?)"$/) do |name|
+  fill_in "page_page_name", :with => name
+  click_button "+"
 end
 
-### THEN ###
-Then /^Then I should see a button in the side bar with a "+" sign and has text field beside it$/ do
-  #page.should have_content "+"
+Then(/^page should refresh and the added page should appear in the sidebar$/) do 
+  page.should have_content "Delete"
 end
