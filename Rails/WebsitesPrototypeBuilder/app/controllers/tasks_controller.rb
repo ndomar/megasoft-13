@@ -1,5 +1,16 @@
 class TasksController < ApplicationController
 
+## 
+#finds the current task, it's page, creates a new instance of step_answer and task_result
+# * *Args* :
+# - +@task+ -> the current task
+# - +@page+ -> the current task's page
+# - +@step+ -> the first step of the current task
+# - +@step_answer+ -> a new instance of step_answer contains the info of the current step
+# - +@task_result+ -> a new instance of task_result contains the info about the current task's results
+# * *Returns* :
+# - the current task, current step, step_answer for the current_task and task_result for the current task
+#
   def task_reviewer
     @task= Task.find_by_id(1)
     @page= Page.find_by_id(1)
