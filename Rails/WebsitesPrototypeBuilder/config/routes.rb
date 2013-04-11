@@ -13,7 +13,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
 
-
   resources :pages do
     resources :comments
     resources :questions do

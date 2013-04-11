@@ -44,7 +44,7 @@
 					<%end%>
 					<div class = "form_message">
 						<%= form_for [@page,question,question.answers.build] do |f| %>
-							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :presence=> true %>
+							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :required=> true %>
 							<div align:"left">
 							<%= f.submit "+", :class => "add_comment blue_circle", :align => 'left'%>
 							</div>
