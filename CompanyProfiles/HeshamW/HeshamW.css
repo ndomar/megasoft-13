@@ -1,0 +1,36 @@
+body{
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+	background-image: url("bg.jpg");
+}
+
+h1.name{
+	font-size : 40px;
+	text-align: center;
+	color: gray;
+}
+
+div{
+	display : block;
+	color: gray;
+	font-family: "comic sans ms";
+	background-color: black;
+}
+
+.menu{
+position : absolute;
+top : 200px;
+width : 200px;
+bottom: 200px;
+}
+
+.info{
+position : absolute;
+left : 250px;
+top: 200px;
+right: 200px;
+bottom: 200px;
+}
+
