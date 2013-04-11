@@ -5,5 +5,5 @@ Feature: View Page
 
     Scenario: Views a Page
       	Given I am on a project's design page
-     	When I press "Show content"
+     	When I press Show content
       	Then page's content should appear in the designing pane

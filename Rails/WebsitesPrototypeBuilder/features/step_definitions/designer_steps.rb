@@ -198,13 +198,12 @@ end
 
 #This is so wrong!!!
 def create_page
-  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>"}
+  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>" ,:project_id => 1}
 end
 
-def create_page
+def create_project
   @project ||= { :project_name => "Test Project"}
 end
-
   
 def delete_page
   @page.destroy unless @page.nil?
@@ -214,26 +213,50 @@ def create_page_for_project
   @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>",:project_id => 1}
 end
 
+### GIVEN BY HOSSAM###
 
-
-### GIVEN ###
-
-##<<<<-------------------------------------
-Given /^I selected a specific Project from my projects$/ do
-  click_link "project_name"  
+Given(/^I am on a project's design page$/) do
+  visit '/projects/1'
+end
+When(/^I press Delete$/) do
+  click_button("Delete")
 end
 
-### WHEN ###
-When /^I view the design page$/ do
-    visit 'http://localhost:3000/projects/1'
+Then(/^page should refresh and the deleted page should no more be available in t
+he sidebar$/) do
+  pending # express the regexp above with the code you wish you had
 end
 
-### THEN ###
-Then /^I should see all the webpages included in the project$/ do
-  page.should have_content "Test Page"
+When(/^I press "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
 end
 
-Then /^I should see all the webpages included in the project with delete buttons for each one of them$/ do
-  #page.should not have_content "Test Page"
+Then(/^page's content should be updated to what is in the design page$/) do
+  pending # express the regexp above with the code you wish you had
 end
-#<<------------------ should i state that or what is after deleting
+
+When(/^I press Show content$/) do
+  click_button("Show Content")
+end
+
+Then(/^page's content should appear in the designing pane$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+
+# Given /^I am on (.+)$/ do |page_name|
+#   # create_project
+#   # create_page
+#   visit('/projects/1')
+# end
+
+# ### WHEN BY HOSSAM###
+# When /^When I press Delete$/ do
+#   click_button("Delete")
+# end
+
+# ### THEN BY HOSSAM###
+# Then /^Then page should refresh and the deleted page should no more be available in the sidebar$/ do
+#   page.should_not have_content "Delete"
+#   page.should_not have_content "Show Content"
+# end
