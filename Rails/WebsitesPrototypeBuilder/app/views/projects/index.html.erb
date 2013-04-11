@@ -1,5 +1,9 @@
+<%= stylesheet_link_tag 'cardsorts' %>
+<%= javascript_include_tag 'cardsorts' %>
+
 <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
 <h2><%= p.project_name %></h2> <!-- show each project name -->
+<%= button_to "create new cardsort", {:controller => :cardsorts, :action => :new}, :method => :get %>
 <hr/>
 <%end%>
 
