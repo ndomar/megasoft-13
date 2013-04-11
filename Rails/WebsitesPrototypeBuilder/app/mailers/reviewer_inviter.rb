@@ -1,13 +1,26 @@
+##
+# ActionMailer to send invitations by email
+# * *Attribute* :
+# - +from+ -> the sender email added to the header
+#* *Relations* :
+# - none
+#
 class ReviewerInviter < ActionMailer::Base
-  default from: "Prototyper"
+  default :from => "Prototyper"
 
+    ##
+    # sends a mail to the specified email, carrying
+    # a custom invitation to a task
+    # * *Args* :
+    # - +email+ -> the email to send to
+    # - +msg+ -> a custom message for the invitation
+    # - +url+ -> url for the task to be taken
+    # * *Returns* :
+    # - a mail object to be sent
+    #
   def task_invitation(email, msg, url)
-    #Creatse a mail to a recipient with (email), and content containing (msg) and link (url)
-  	@msg = msg
-  	@url = url
-  	m = mail(to: email, subject: "Prototyper task invitation")
-  	puts m.to_yaml
-  	return m
+    @msg = msg
+    @url = url
+    mail(:to => email, :subject => "Prototyper task invitation")
   end
-
 end
