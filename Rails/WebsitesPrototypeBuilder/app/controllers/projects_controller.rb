@@ -1,15 +1,13 @@
 class ProjectsController < ApplicationController
   #To make sure that the designer is logged in
-  before_filter :authenticate_designer! 
-
+  before_filter :authenticate_designer!
   ##
   #The index method is used, to preview all the projects created by the logged in designer
   # * *Instance*    :
   #   - +project+-> The new created project
   
   def new()
-    @project = Project.new() 
-    p @project, "ay 7aga"
+    @project = Project.new()
   end
 
   ##
@@ -22,7 +20,7 @@ class ProjectsController < ApplicationController
   def create()
     @project = Project.new(params[:project])
     if @project.save() 
-      redirect_to @project
+      redirect_to projects_path
     else
       render"new" 
     end
