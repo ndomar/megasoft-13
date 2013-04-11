@@ -1,9 +1,9 @@
-Feature: Add pages to the project using package explorer
-  As a registered designer of the website
-  I want to add webpages to the project using the package explorer
+Feature: Add Page
+    In order to add a page
+    A designer
+    Should click the add page button in the design page
 
-      Given I am logged in
-      and I selected a specific Project from my projects
-      When I view the design page
-      Then I should see a button in the side bar with a "+" sign and has text field beside it
-     
+    Scenario: Deletes a Page
+      	Given I am on a project's design page
+     	When I enter data in the textbox and press "Add"
+      	Then page should refresh and the added page should appear in the sidebar
