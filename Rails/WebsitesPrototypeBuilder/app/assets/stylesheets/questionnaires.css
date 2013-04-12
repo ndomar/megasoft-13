@@ -1,0 +1,14 @@
+textarea {
+    resize: none;
+}
+#main_form
+{
+	border-style:solid;
+	border-color:#F7F2F2;
+	border-radius:20px;
+	padding-top: 10pt;
+	padding-bottom: 10pt;
+  padding-right: 5pt;
+  padding-left: 5pt;
+
+}

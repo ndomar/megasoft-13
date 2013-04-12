@@ -1,8 +1,14 @@
 <!-- the answer form for the reviewer to answer -->
-<h1>Questionnaire</h1>
-<div>
+<%= stylesheet_link_tag "questionnaires"%>
+<%= javascript_include_tag "questionnaires"%>
+<div align = "right">
+	<legend align="right"><%=@questionnaire.title%></legend>
+	<div id = 'main_form' >
+		<label align="right">الرجاء الإجابة على الأسئلة التالية</label>
+		<hr>
+		<hr>
 		<% @questionnaire.qquestions.each do |question| %>
-			<p><%=question.body %></p>
+			<strong><%=question.body %></strong>
 			<%= form_for [@questionnaire,question,question.answer_questionnaires.build] do |d| %>
  				<div>
 					<%@array = []%>
@@ -11,7 +17,7 @@
 					<% if question.qtype ==1%>
 						<%= d.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
 					<%elsif question.qtype==2%>
-						<%= d.text_area :answer, :required => true,:placeholder => "اكتب هنا"%>
+						<%= d.text_area :answer, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
 					<%elsif question.qtype==3%>
 						<% question.choices.each do |choice| %>
 		 					<%@c_all+=choice.body+ "," %> 
@@ -19,12 +25,14 @@
 						<%=d.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
 					<%end%>
 					</br>
-					<%= d.submit "Save Answer" %>
+					<%= d.submit "تسجىل الاجابة", :class => "btn btn-info" %>
+					<hr>
 				<%end%>
 			<%end%>
-			<br/>
-			<p><%= link_to "Finish", {:action => 'new' }%></p>
-			<%= button_to 'Finish', :action => 'index' %>
+			</br>
+			</div>
+			<p><%= link_to "انتهيت", "../pages/reviewer" ,:class => "btn btn-info"%></p>
+			<%= button_to 'انتهيت', :action => 'index',:class => "btn btn-info" %>
 		</div>
 </div>
   
