@@ -1,4 +1,10 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+ get 'cardsorts/new'
+ get 'cardsorts/edit'
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+
+
   resources :projects
   devise_for :designers
   
