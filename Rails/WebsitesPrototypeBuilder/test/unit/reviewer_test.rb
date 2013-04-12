@@ -1,9 +1,7 @@
 require 'test_helper'
 
-class DesignerTest < ActiveSupport::TestCase
+class ReviewerTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-end
-=======
 end

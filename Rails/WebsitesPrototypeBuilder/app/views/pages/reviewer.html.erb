@@ -32,6 +32,8 @@
 		</div>
 		<!-- The + buttom on clicking draw the circle -->
 		<div id="add_comment" onclick="draw_circle();">+</div>
+		<!-- The تست بيج button on clicking new windowns opens with the page -->
+		<a  id="add_comment" onclick="test_page()" href="#" style="color: #CC0000">تست بيج</a>
 		<!-- Notice to see the errors -->
 		<p id="notice"><%= notice %></p>
 	</div>	
@@ -51,7 +53,7 @@
 			<%= form_for [@page,@page.comments.build] do |f| %>
 				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
 				<p class="hide"><%= f.text_area :assigned_part,:id => "assignedpart"%></p>
-				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all();"%>
+				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all(), send_notification;"%>
 			<% end %>
 			<!-- Button to delete the comment -->
 			<div class="circle_button" id="delete_comment" onclick="delete_all();">-</div>
