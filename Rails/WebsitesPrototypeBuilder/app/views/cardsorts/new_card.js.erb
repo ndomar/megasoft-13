@@ -1,0 +1,16 @@
+<% if (@card.valid?) %>
+	$('#error-card').text("A new card have been added successfully.");
+
+	var newCard = $('<%= escape_javascript(render "card",
+	 desc: @card.description, title: @card.title) %>')
+	 .prependTo("#cards");
+	$(newCard).click(function (){
+		changeSelected(this, 'card');
+	});
+<% else %>
+	var errorDiv = $('#error-card').text("");
+	<% @card.errors.full_messages.each do |error| %>
+		$(errorDiv).append("<%= error %>");
+	<% end %>
+<% end %>
+
