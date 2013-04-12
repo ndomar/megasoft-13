@@ -18,7 +18,7 @@ class AnswersController < ApplicationController
       if @answer.save
         format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Answer was successfully created.' }
   	   else
-        format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Answer could not be saved. Please fill in all fields' }
+        format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Answer could not be saved.' }
       end
     end
   end
