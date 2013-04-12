@@ -1,16 +1,28 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  resources :projects do
+    resources :tasks do
+      resources :steps
+      resources :task_results
+    end
+  end
+  # set devise for Designer, and set the registerations controller to the custom one
+  devise_for :designers, :controllers => { :registrations => "registrations" }
 
-  get 'cardsorts/new'
-  get 'cardsorts/edit'
-  get 'cardsorts/create_card'
-  get 'cardsorts/create_group'
+  get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+  post 'steps/update'
 
-  resources :projects
+ get 'cardsorts/new'
+ get 'cardsorts/edit'
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+
+
 
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
-  root to: "projects#index"
+  root to: "home#index"
+
 
   get "comments/create"
   get "comments/destroy"
@@ -36,18 +48,22 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   resources :pages do
     resources :comments
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
   end
+ 
+  get "/log/:id" => 'task_results#index'
 
   get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
   get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
   get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   
-  resources :tasks do
-    resources :task_results
-  end
-
   get "/log/:id" => 'task_results#index'
+
+
+  
+ get 'cardsorts/create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -102,7 +118,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
 
+
  # See how all your routes lay out with "rake routes"
+
 
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

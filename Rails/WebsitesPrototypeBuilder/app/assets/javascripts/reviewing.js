@@ -1,9 +1,22 @@
 /*  These Functions are used in the reviewing Pages */
 
+//sliding down the form to insert an answer
+$(document).ready(function sliding_form(){
+
+  $('.pressed').click(function(){
+    if ($(this).closest('div').children('.form_message').is(":hidden")){
+      $(this).closest('div').children('.form_message').slideDown("slow");
+     }
+    else{
+      $(this).closest('div').children('.form_message').slideUp("slow");
+      }
+     });
+                
+ });
 //Using jquery-ui to drag and resize the circle
 function draw_circle() {
 	$('#drag_resize').css({"display":"block" ,'top' : 0+'px', 'left' : 0+'px'});	
-	$('#drag_resize').draggable( "enable");  
+	$('#drag_resize').draggable("enable");  
 	$('#choose_area').css({"display":"table-cell"});
 	$('#delete_circle').css({"display":"table-cell"});
 }
@@ -51,43 +64,36 @@ function selectItem () {
 	}
 }
 
-// function(){
-// 	for (var i = window.frames.length - 1; i >= 0; i--) {
-// var script = window.frames[i].contentWindow.document.createElement("script");
-// 	script.type = "text/javascript";
-// 	script.text  = 'var selElem = null;var origBorder = "";function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.border = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.border;overElem.style.border = "1px dashed gray";}parent.getSelectedItem(selElem.id,selElem);}';
-// 	window.frames[i].contentWindow.document.body.appendChild(script);};
-// }
-
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
-// $(document).ready(function() {
-// 	//Load the html from the database through the hidden div with id "html_content"
-// 	var designed_html= $('#html_content').text();
-// 	var doc = document.getElementById('myiframe').contentWindow.document;
-// 	doc.open();
-// 	// Write the fetched html to the iframe with id "myiframe"
-// 	doc.write(designed_html);
-// 	doc.close();
+$(document).ready(function() {
+	//Load the html from the database through the hidden div with id "html_content"
+	var designed_html= $('#html_content').text();
+	var doc = document.getElementById('myiframe').contentWindow.document;
+	doc.open();
+	// Write the fetched html to the iframe with id "myiframe"
+	doc.write(designed_html);
+	doc.close();
 
-// 	//selecting the iframe and appeding the script for selecting thr item behind the circle and draw the border around the selected item.
-// 	var myIframe = document.getElementById("myiframe");
-// 	var script = myIframe.contentWindow.document.createElement("script");
-// 	script.type = "text/javascript";
-// 	script.text  = 'var selElem = null;var origBorder = "";function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.border = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.border;overElem.style.border = "1px dashed gray";}parent.getSelectedItem(selElem.id,selElem);}';
-// 	myIframe.contentWindow.document.body.appendChild(script);
-// 	// Make the selecting circle resizable and draggable
-// 	$("#drag_resize").resizable({
-// 			maxHeight: 350,
-// 			maxWidth: 350,
-// 			minHeight: 60,
-// 			minWidth: 100,
-// 			animate: true,
-// 			iframe: true,
-// 			modal : true
-// 		}).draggable({
-// 			iframe: true,
-// 			modal : true,
-// 			containment: "#content",
-// 			scroll: false
-// 		});
-// });
+	//selecting the iframe and appeding the script for selecting thr item behind the circle and draw the border around the selected item.
+	var myIframe = document.getElementById("myiframe");
+	var script = myIframe.contentWindow.document.createElement("script");
+	script.type = "text/javascript";
+	script.text  = 'var selElem = null;var origBorder = "";function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.border = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.border;overElem.style.border = "1px dashed gray";}parent.getSelectedItem(selElem.id,selElem);}';
+	myIframe.contentWindow.document.body.appendChild(script);
+	// Make the selecting circle resizable and draggable
+	$("#drag_resize").resizable({
+			maxHeight: 350,
+			maxWidth: 350,
+			minHeight: 60,
+			minWidth: 100,
+			animate: true,
+			iframe: true,
+			modal : true
+		}).draggable({
+			iframe: true,
+			modal : true,
+			containment: "#content",
+			scroll: false
+		});
+});
+

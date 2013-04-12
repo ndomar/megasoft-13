@@ -1,32 +1,81 @@
+# encoding: utf-8
 class TasksController < ApplicationController
 
+## 
+#finds the current task, it's page, creates a new instance of step_answer and task_result
+# * *Args*    :
+#   -+@task+ -> the current task
+#   -+@page+ -> the current task's page
+#   -+@step+ -> the first step of the current task
+#   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
+#   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
+# * *Returns*    :
+# - the current task, current step, step_answer for the current_task and task_result for the current task
+#
+  def task_reviewer
+    if Project.all.last.id <= params[:project_id].to_f
+
+      @project=Project.find(params[:project_id])
+      @reviewer= Reviewer.find(params[:reviewer_id])
+      @task= @project.tasks.find(params[:task_id])
+      @page= Page.find(1)
+      @step=@task.steps.find(params[:step_id])
+      @step_answer=@step.step_answers.new
+      @step_answer.save
+      @task_result=@task.task_results.new
+      @task_result.save
+      session[:task_result_id]= @task_result.id 
+    else
+      format.html { render :template => "tasks/task_reviewer_error" }
+    end
+  end
   ## 
-  #Method index gets all the tasks from the database
-  #* *Args*
-  #-++->:
-  #* *Returns*:
-  #-all the tasks and their details as an html page
+  # passes the list of tasks that belongs to the project to the index view
+  # * *Args*    :
+  #   -+project_id+->: id of current project
+  # * *Returns* :
+  #   - list of tasks that belongs to project_id
   #
   def index
-    @tasks = Task.all
+    @tasks = Project.find(params[:project_id]).tasks.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @tasks }
+      format.json { render json: @tasks }
+    end
+  end
+  
+  ## 
+  # Make a new instance of task and render new view that has the form
+  # * *Args*    :
+  #   -+project_id+->: id of current project
+  # * *Returns* :
+  #   -renders form to create new task
+  #
+  def new
+    @pages = Project.find(params[:project_id]).pages
+    @task = Task.new
+
+    @pageslist = []
+
+    @pages.each do |p|
+      a = @pageslist.length
+      @pageslist[a] = [p.page_name, p.id]
+    end
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @task }
     end
   end
 
-  # GET /tasks/1
-  # GET /tasks/1.json
   ##
-  #show a specific task by searchinng for its id
+  # show a specific task by searchinng for its id
   #* *Args*    :
   #   -+Task+->: an instance of the class task
   #* *Returns*    :
   #   -the details of this task and renders itas an html
   #
-  
-  
   def show
     @task = Task.find(params[:id])
 
@@ -36,68 +85,73 @@ class TasksController < ApplicationController
     end
   end
 
-  # GET /tasks/new
-  # GET /tasks/new.json
-  ##
-  #define a new task
-  
-  
-  def new
-    @task = Task.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @task }
-    end
-  end
-
-  # GET /tasks/1/edit
-  ##
-  #edit an existing task
+  ## 
+  # Find the task with the project_id and render edit view that has the form to edit the task
+  # * *Args*    :
+  #   -+project_id+->: id of current project
+  #   -+id+->: id of current task
+  # * *Returns* :
+  #   -returns the task to be edited and renders the edit form
+  #
   def edit
-    @task = Task.find(params[:id])
+    @task = Project.find(params[:project_id]).tasks.find(params[:id])
   end
 
-  # POST /tasks
-  # POST /tasks.json
+  ## 
+  # Use the :task parameter to create an instance of tasks related to current project
+  # * *Args*    :
+  #   -+project_id+->: id of current project 
+  # * *Returns* :
+  #   - calls the new action if task.save is true, otherwise redirects to index page
+  #
   def create
-    @task = Task.new(params[:task])
-
+    @task = Project.find(params[:project_id]).tasks.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, :notice => 'Task was successfully created.' }
-        format.json { render :json => @task, :status => :created, :location => @task }
+        format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
+        format.json { render json: @task, status: :created, location: @task }
       else
-        format.html { render :action => "new" }
-        format.json { render :json => @task.errors, :status => :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /tasks/1
-  # PUT /tasks/1.json
+  ## 
+  # get the new parameters and update the database
+  # * *Args*    :
+  #   -+project_id+->: id of current project
+  #   -+id+->: id of task to be edited
+  # * *Returns* :
+  #   - if attributes are updated redirects to index page, otherwise renders edit form
+  #
   def update
     @task = Task.find(params[:id])
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, :notice => 'Task was successfully updated.' }
+        format.html { redirect_to project_tasks_path, notice: 'تم تحديث المهمة' }
         format.json { head :no_content }
       else
-        format.html { render :action => "edit" }
-        format.json { render :json => @task.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
+  ## 
+  # destroy the task with :id
+  # * *Args*    :
+  #   -+id+->: id of task 
+  # * *Returns* :
+  #   - redirects to index of tasks
+  #
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to project_tasks_path }
       format.json { head :no_content }
     end
   end
