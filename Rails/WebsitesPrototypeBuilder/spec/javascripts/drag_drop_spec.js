@@ -1,5 +1,6 @@
-describe("Contaions", function() {
+describe("DragDrop", function() {
   it("contains spec with an expectation", function() {
-    expect(true).toEqual(true);
+  	loadFixtures("design.html.erb");
+    expect($("#designpage")).toExist();
   });
 });
