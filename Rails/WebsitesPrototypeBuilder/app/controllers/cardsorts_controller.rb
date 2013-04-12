@@ -1,3 +1,7 @@
+    ##
+    # Controller for cardsort pages
+    # 
+
 class CardsortsController < ApplicationController
 	##
 	# create new cardsort from sent parameters
@@ -71,4 +75,3 @@ class CardsortsController < ApplicationController
 			end
 		end
 	end
-end

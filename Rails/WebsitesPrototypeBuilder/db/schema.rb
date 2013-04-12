@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403154751) do
+ActiveRecord::Schema.define(:version => 20130409143914) do
 
   create_table "cards", :force => true do |t|
     t.string   "title"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(:version => 20130403154751) do
     t.boolean  "open"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "page_id"
+    t.integer  "reviewer"
+    t.text     "assigned_part"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "designers", :force => true do |t|
@@ -74,14 +83,30 @@ ActiveRecord::Schema.define(:version => 20130403154751) do
     t.text     "html"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "project_id"
+  end
+
+  create_table "pictures", :force => true do |t|
+    t.string   "image"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "projects", :force => true do |t|
     t.string   "project_name"
-    t.string   "type"
+    t.string   "project_type"
     t.text     "description"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "designer_id"
+  end
+
+  create_table "questions", :force => true do |t|
+    t.integer  "page_id"
+    t.text     "assigned_part"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "reviewer_infos", :force => true do |t|
@@ -94,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20130403154751) do
     t.integer  "year_of_birth"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "reviewer_id"
   end
 
   create_table "reviewers", :force => true do |t|
@@ -101,6 +127,25 @@ ActiveRecord::Schema.define(:version => 20130403154751) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "reviewers_tasks", :id => false, :force => true do |t|
+    t.integer "reviewer_id"
+    t.integer "task_id"
+  end
+
+  create_table "step_answers", :force => true do |t|
+    t.boolean  "successful"
+    t.time     "time_from_start"
+    t.integer  "reviewer_id"
+    t.integer  "task_result_id"
+    t.integer  "step_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "step_answers", ["reviewer_id"], :name => "index_step_answers_on_reviewer_id"
+  add_index "step_answers", ["step_id"], :name => "index_step_answers_on_step_id"
+  add_index "step_answers", ["task_result_id"], :name => "index_step_answers_on_task_result_id"
 
   create_table "steps", :force => true do |t|
     t.string   "component"
@@ -113,13 +158,23 @@ ActiveRecord::Schema.define(:version => 20130403154751) do
 
   add_index "steps", ["task_id"], :name => "index_steps_on_task_id"
 
+  create_table "task_results", :force => true do |t|
+    t.integer  "task_id"
+    t.integer  "reviewer_id"
+    t.integer  "clicks"
+    t.boolean  "success"
+    t.integer  "time"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "project_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "page_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "page_id",     :default => 1
   end
 
 end
