@@ -1,9 +1,13 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+<<<<<<< HEAD
 
+=======
+  resources :projects
+>>>>>>> 67266e0c13407b3af0c511d4c7d32d4b5bd8f8bc
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
-  root to: "home#index"
+  root to: "projects#index"
 
   get "comments/create"
   get "comments/destroy"
@@ -14,11 +18,15 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
 
+
   get "pages/designer"
   get "projects/index"
   get "projects/save/" => "projects#save", :as => :page_save
 
   resources :projects
+
+  get 'cardsorts/new'
+
 
   resources :pages do
     resources :comments
@@ -82,6 +90,11 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   
   # See how all your routes lay out with "rake routes"
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+
+ # See how all your routes lay out with "rake routes"
+
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
