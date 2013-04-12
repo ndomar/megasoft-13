@@ -128,7 +128,7 @@ class TasksController < ApplicationController
   #
 
   def new_step
-    @step = Step.create(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
+    @step = Step.new(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
     @created = @step.save
     @task = Task.find_by_id(params[:id])
     @steps = @task.steps
