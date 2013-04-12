@@ -73,6 +73,11 @@ textarea.message_area {
 #submit_comment:hover{
 	background-color: rgb(90, 80, 60);
 	cursor:pointer;
+	width: 20px; 
+}
+
+#submit_comment{
+	width: 20px; 
 }
 
 #delete_comment:hover{

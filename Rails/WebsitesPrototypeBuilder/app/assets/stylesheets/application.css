@@ -136,7 +136,10 @@ div#content{
 	bottom: 0;
   min-height:100%; 
   word-wrap:break-word;
-
+  min-height:100%;
+	overflow: auto;
+	word-wrap:break-word;
+  overflow-y: scroll;
 }
 
 #sidebar h4{
@@ -172,7 +175,6 @@ div#content{
 	cursor:pointer
 }
 
-
 footer{
 	margin:0px 120px 0px 120px;
 	padding-bottom: 20px;
@@ -191,3 +193,4 @@ iframe {
 	-o-transform:rotate(0deg);
 	-ms-transform:rotate(0deg);
 }
+
