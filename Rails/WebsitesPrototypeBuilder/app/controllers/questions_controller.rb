@@ -1,11 +1,10 @@
 class QuestionsController < ApplicationController
-  # called to create a new question in the database
-  # finds the selected page
+  # called to create a new question in the database finds the selected page
   # * *Args* :
-  # - +@page+ -> the current page
-  # - +@question+ -> the question written in the notepaper
+  #   -+@page+ -> the current page
+  #   -+@question+ -> the question written in the notepaper
   # * *Returns* :
-  # - page refreshed and question added to db
+  #   -page refreshed and question added to db
   #
   def create
     # finds the selected page
