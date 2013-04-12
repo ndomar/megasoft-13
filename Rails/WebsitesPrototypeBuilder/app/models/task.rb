@@ -1,8 +1,13 @@
+  ##
+  # each instance of this model represents a task that belongs to one project
   #* *Attributes*    :
   #   -+name+ -> name of the task (string)
   #   -+description+ -> description of task (text)
   #* *Relations*    :
-  #   -belongs to the Project model
+  #   -belongs to one project 
+  #   -belongs to one page 
+  #   -has many task results 
+  #   -has a many to many relationship with reviewers
 class Task<ActiveRecord::Base
   attr_accessible :description, :name
 

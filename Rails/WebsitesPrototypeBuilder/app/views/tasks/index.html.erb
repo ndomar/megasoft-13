@@ -6,12 +6,15 @@
 
 <% @tasks.each do |task| %>
   <div id="task">
+    <p> تم عمل المهمة <%=task.created_at.strftime "%d-%m-%Y %H:%M:%S"%></p>
     <p><%= task.name %></p>
     <p><%= task.description %></p>
-    <button><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></button>
-    <button><%= link_to 'الغاء',project_task_path(params[:project_id], task), :confirm => 'هل تريد الغاء المهمة', :method => :delete %></button>
-    <button>النتائج</button>
-    <button>تحديد تسلسل المهمة</button>
+    <div class = "btn-group">
+      <button class = "btn" style = "width:125px;"><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></button>
+      <button class = "btn" style = "width:125px;"><%= link_to 'الغاء',project_task_path(params[:project_id], task), :confirm => 'هل تريد الغاء المهمة', :method => :delete %></button>
+      <button class = "btn" style = "width:125px;">النتائج</button>
+      <button class = "btn" style = "width:125px;">تحديد تسلسل المهمة</button>
+    </div>
   </div>
   <br />
 <% end %>
