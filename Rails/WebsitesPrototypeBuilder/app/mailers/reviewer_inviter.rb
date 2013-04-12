@@ -1,6 +1,6 @@
 ##
 # ActionMailer to send invitations by email
-# * *Attribute* :
+# * *Attribute*    :
 # - +from+ -> the sender email added to the header
 #* *Relations* :
 # - none
@@ -23,9 +23,9 @@ class ReviewerInviter < ActionMailer::Base
   	@url = url
   	mail(to: email, subject: "Prototyper task invitation")
   end
-##
+    ##
     # sends a mail to the designer
-    # * *Args* :
+    # * *Args*     :
     # - +email+ -> the email to send to
     # - +comment+ -> the comment the reviewer did
     # - +reviewer_name+ -> name of the reviewer
@@ -39,6 +39,13 @@ class ReviewerInviter < ActionMailer::Base
     @reviewer_email = reviewer_email
     mail(to: email, subject: "Someone has commented on your page!")
   end
+    ##
+    # sends a mail to the designer
+    # * *Args*    :
+    # - +url+ -> url of the page to take screenshot
+    # * *Returns* :
+    # - a screenshot to be taken
+    #
   def take_screenshot(url)
     require 'selenium-webdriver'
     width = 1024
