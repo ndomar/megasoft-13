@@ -40,6 +40,7 @@ body{
 	margin: 0 0;
 	margin-top:-10px;
 }
+
 .sw{
 
     background-image:url('\switcher.png');
@@ -76,6 +77,7 @@ body{
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
 .tabBar {
 	background-color: #ebebeb;
 	background-color: #e08f46;

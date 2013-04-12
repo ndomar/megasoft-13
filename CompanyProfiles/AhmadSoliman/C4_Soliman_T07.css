@@ -1,0 +1,38 @@
+body {
+	background-image: url("background.jpg");
+	background-repeat: no-repeat;
+	color: #FFFFFF;
+	margin-left: 8%;		
+}
+h1.name{
+	font-size: 40px;
+	margin-left: -5%;
+	color: #00AAFF;
+}
+h2{
+	margin-left: -2%;
+	color: #A0FFFF;
+}
+img.profile{
+	display: block;
+	margin-left: auto;
+	margin-right: 10%;
+	allign: left;
+	width: 300px
+}
+
+div {
+	display: block;
+}
+
+ul {
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+li.hour, li.min, li.sec, li.meridiem{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: inline;
+}
