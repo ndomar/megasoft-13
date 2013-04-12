@@ -1,5 +1,4 @@
 var questions_num=1;
-var x=true;
 // Used to make the questions sortable using Jquesry UI
 $(function() {
   //use placholder to highlight the dropping postion
