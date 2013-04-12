@@ -19,15 +19,15 @@ class Task<ActiveRecord::Base
   # send a task invitation to specified email
   # create the reviewer if not already existant
   # * *Args* :
-  # - +email+ -> the current page
-  # - +msg+ -> custom message for the email
-  # - +url+ -> url to take the invitation
+  #   - +email+ -> the current page
+  #   - +msg+ -> custom message for the email
+  #   - +url+ -> url to take the invitation
   # * *Returns* :
-  # - void
-  #
+  #   - void
+
   def send_invitation(email, msg, url)
     @reviewer = Reviewer.find_by_email(email)
-    if @reviewer == nil
+    if @reviewer = nil
       @reviewer = self.reviewers.create(:email => email) 
     end
     ReviewerInviter.task_invitation(email, msg, url).deliver()

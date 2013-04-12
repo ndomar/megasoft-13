@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   ## 
   #Method index gets all the tasks from the database
   #* *Args*
-  #-++->:
   #* *Returns*:
   #-all the tasks and their details as an html page
   #
@@ -121,7 +120,9 @@ class TasksController < ApplicationController
   #* *Returns*    :
   #   -
   def invite_user
-    
+    if Reviewer.find_by_email(params[:email]) == nil
+      Reviewer.create(:email => params[:email])
+    end
     @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
   
   end
