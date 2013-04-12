@@ -36,7 +36,6 @@ post 'steps/update'
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
-
   get 'cardsorts/new'
 
   resources :pages do
