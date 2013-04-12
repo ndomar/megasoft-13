@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
 
   create_table "choices", :force => true do |t|
     t.string   "body"
-    t.integer  "number"
     t.integer  "qquestion_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -135,7 +134,6 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
 
   create_table "qquestions", :force => true do |t|
     t.text     "body"
-    t.integer  "number"
     t.integer  "qtype"
     t.integer  "questionnaire_id"
     t.datetime "created_at",       :null => false
