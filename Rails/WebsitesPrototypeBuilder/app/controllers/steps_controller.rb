@@ -2,10 +2,10 @@ class StepsController < ApplicationController
   ## 
 #updates the value of the current step and stores success,clicks,starting time and total time taken in their tables
 # * *Args*    :
-# - +@task+ -> the current task
-# - +@step+ -> the current step being executed
-# - +@step_answer+ -> a new instance of step_answer contains the info of the current step
-# - +@task_result+ -> a new instance of task_result contains the info about the current task's results
+#   -+@task+ -> the current task
+#   -+@step+ -> the current step being executed
+#   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
+#   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
 # * *Returns*    :
 # - the current task, current step, step_answer for the current_task and task_result for the current task
 #

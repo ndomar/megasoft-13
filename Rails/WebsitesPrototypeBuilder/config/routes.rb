@@ -15,7 +15,6 @@ post 'steps/update'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
-
   resources :projects
   devise_for :designers
   
@@ -33,6 +32,7 @@ post 'steps/update'
   get "pages/reviewer"
   get "pages/designer"
 
+  resources :questionnaires
   get 'cardsorts/new'
 
   resources :pages do
