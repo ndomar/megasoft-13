@@ -9,7 +9,14 @@ post 'steps/update'
   resources :tasks do
     resources :steps
   end
-  
+
+ get 'cardsorts/new'
+ get 'cardsorts/edit'
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+
+
+  resources :projects
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
