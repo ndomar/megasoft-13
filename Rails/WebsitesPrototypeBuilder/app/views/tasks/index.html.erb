@@ -1,24 +1,20 @@
-<h1>Listing tasks</h1>
+<link rel="stylesheet" type="text/css" href="/assets/taskindex.css">
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h1>قائمة المهام</h1>
 
-  <% @tasks.each do |task| %>
-    <tr>
-      <td><%= task.name %></td>
-      <td><%= link_to 'النتائج', task %></td>
-      <td><%= link_to 'Edit', edit_task_path(task) %></td>
-      <td><%= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+<div id="block">
 
-<br />
-
-<%= link_to 'New Task', new_task_path %>
-
+<% @tasks.each do |task| %>
+  <div id="task">
+    <p> تم عمل المهمة <%=task.created_at.strftime "%d-%m-%Y %H:%M:%S"%></p>
+    <p><%= task.name %></p>
+    <p><%= task.description %></p>
+    <div>
+      <button><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></button>
+      <button><%= link_to 'الغاء',project_task_path(params[:project_id], task), :confirm => 'هل تريد الغاء المهمة', :method => :delete %></button>
+      <button>النتائج</button>
+      <button>تحديد تسلسل المهمة</button>
+    </div>
+  </div>
+  <br />
+<% end %>

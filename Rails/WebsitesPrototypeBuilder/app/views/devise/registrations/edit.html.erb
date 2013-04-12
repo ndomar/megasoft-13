@@ -23,7 +23,7 @@
   </div>
 
   <!--  if signed in with facebook you should not change your password -->
-  <% if resource.email != "" %>
+  <% if resource.rpx_identifier != '' %>
     <div><label>ﻛﻠﻤﺔ اﻟﺴﺮ</label><i>(اﺗﺮﻛﻬﺎ ﻓﺎﺭﻏﺔ ﺇﺫا ﻻ ﺗﺮﻳﺪ ﺗﻐﻴﻴﺮﻫﺎ)</i><br /><br /> 
     <%= f.password_field :password, :autocomplete => "off" %></div>
 
