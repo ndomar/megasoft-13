@@ -155,9 +155,6 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-<<<<<<< HEAD
-end
-=======
 
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
@@ -219,4 +216,3 @@ end
   end
 
 end
->>>>>>> 8b95412fda038b468d3fda0c6b1544fd213b4886
