@@ -30,3 +30,12 @@ input,select ,select option{
 	text-align: right;
 	font-family: arabi-light;
 }
+
+.add_choice{
+	display: none;
+}
+
+.question_to_delete{
+	display: none;
+}
+

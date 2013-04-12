@@ -4,13 +4,13 @@
 	<div class="qquestion"><span onclick="del(this);"class="ui-icon ui-icon-close"></span><span class="ui-icon ui-icon-pencil"></span>
 	  <%= f.text_field :body,:placeholder =>"السوال" %></br>
 		<!-- A drop down list to select type of the question with each type having a certain typr -->
-		<%= f.select(:qtype, options_for_select([['نص', 1], ['فقرة', 2], ['خيارات متعددة',3],['مربعات',4]])) %></br>
-  	<%= f.link_to_remove "امسح" %></br>
+		<%= f.select(:qtype, options_for_select([['نص', 1], ['فقرة', 2], ['خيارات متعددة',3],['مربعات',4]],1),{},{ :onchange => 'check(this,this.value);'}) %></br>
+  	<%= f.link_to_remove "امسح",:class =>"question_to_delete" %></br>
 	  <!-- Render choices for the question -->
 	  <% f.fields_for :choices do |builder| %>
 	  	<%= render 'choice_fields',:f => builder %>
 	  <%end%>
-	  <!-- A link to add a choice -->
-	  <%= f.link_to_add "اضف اختيار", :choices %>
+	  	<!-- A link to add a choice -->
+	  	<%= f.link_to_add "اضف اختيار", :choices,:class =>"add_choice" %>
 	</div>
 </div>
