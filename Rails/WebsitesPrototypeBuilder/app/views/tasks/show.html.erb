@@ -34,3 +34,42 @@
     <strong>عذراً!</strong> لا توجد نتائج 
   </div>
 <% end %>
+
+<div id="statistics">
+  <div id="gender">
+    <p>النوع</p>
+    <% a = compareGender(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
+  </div>
+  <div id = "age">
+    <p>السن</p>
+    <% a = compareAge(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
+  </div>
+  <div id="country">
+    <p>البلد</p>
+    <% a = compareCountry(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
+  </div>
+  <div id = "taskresutls">
+    <p>احصائيات النتائج</p>
+    <% a = avgtime(@task) %>
+    <% if a.start_with?('http') %>
+      <img src = <%= a %>>
+    <% else %>
+      <p><%= a %></p>
+    <% end %>
+  </div>
+</div>
