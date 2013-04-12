@@ -1,22 +1,9 @@
 /*  These Functions are used in the reviewing Pages */
 
-//sliding down the form to insert an answer
-$(document).ready(function sliding_form(){
-
-  $('.pressed').click(function(){
-    if ($(this).closest('div').children('.form_message').is(":hidden")){
-      $(this).closest('div').children('.form_message').slideDown("slow");
-     }
-    else{
-      $(this).closest('div').children('.form_message').slideUp("slow");
-      }
-     });
-                
- });
 //Using jquery-ui to drag and resize the circle
 function draw_circle() {
 	$('#drag_resize').css({"display":"block" ,'top' : 0+'px', 'left' : 0+'px'});	
-	$('#drag_resize').draggable("enable");  
+	$('#drag_resize').draggable( "enable");  
 	$('#choose_area').css({"display":"table-cell"});
 	$('#delete_circle').css({"display":"table-cell"});
 }

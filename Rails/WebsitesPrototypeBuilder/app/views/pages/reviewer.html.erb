@@ -3,8 +3,7 @@
 
 <div id="wrapper">
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
-	<div id="html_content"><%= @page.html%>
-	</div>
+	<div id="html_content"><%= @page.html%></div>
 	<!-- The SideBar -->
 	<div id="sidebar">
 		<h4>التعليقلت</h4>
@@ -20,43 +19,21 @@
 				</div>
 			<%end%>
 		</div>
-		<!-- The + buttom on clicking draw the circle -->
-		<div class="add_comment" onclick="draw_circle();">+</div>
 		<hr>
 		<!-- Fetching questions from the database,just for testing -->
 		<div id="questions">
-			<h4>الاسئلة</h4>
 			<% @page.questions.each do |question| %>
 				<div>
+					<!-- Getting the question -->
 					<p><%= question.body %></p>
-					<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
-					<hr>
-						<hr>
-					<% if !(question.answers.find(:all).empty?) %>
-						<h5>:اجابتك </h5>
-					<%end%>
-					<% question.answers.each do |ans| %>
-						<div>
-							<p><%= ans.answer %></p>
-								<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
-								<hr>
-						</div>		
-					<%end%>
-					<div class = "form_message">
-						<%= form_for [@page,question,question.answers.build] do |f| %>
-							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :required=> true %>
-							<div align:"left">
-							<%= f.submit "+", :class => "add_comment blue_circle", :align => 'left'%>
-							</div>
-						<%end%>
-					</div>
 					<hr>
 				</div>
 			<%end%>
 		</div>
-
-			<!-- Notice to see the errors -->
-			<p id="notice"><%= notice %></p>
+		<!-- The + buttom on clicking draw the circle -->
+		<div id="add_comment" onclick="draw_circle();">+</div>
+		<!-- Notice to see the errors -->
+		<p id="notice"><%= notice %></p>
 	</div>	
 
 	<!-- Main Content -->

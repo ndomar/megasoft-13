@@ -126,7 +126,6 @@ div#content{
 
 #sidebar{
 	color: #fafafa;
-	overflow: auto;
 	width: 260px;
 	padding: 0px 30px 0px 30px;
 	background:#1b1b1b;
@@ -135,8 +134,6 @@ div#content{
 	right: 0;
 	bottom: 0;
   min-height:100%; 
-  word-wrap:break-word;
-
 }
 
 #sidebar h4{
@@ -158,20 +155,19 @@ div#content{
 	text-align: left;
 }
 
-.add_comment{
+#add_comment{
 	display: table-cell;
 	height: 35px;
 	width: 35px;
 	text-align: center;
 	vertical-align: middle;
 	background-color: rgb(69, 162, 224);
-	color:white;
 }
-.add_comment:hover{
+
+#add_comment:hover{
 	background-color: rgb(50, 124, 173);
 	cursor:pointer
 }
-
 
 footer{
 	margin:0px 120px 0px 120px;
