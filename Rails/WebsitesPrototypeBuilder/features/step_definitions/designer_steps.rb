@@ -227,11 +227,15 @@ Given(/^I am on a project's design page$/) do
   create_page
   visit '/projects'
   click_link "Show"
+  #in arabic
+  #i am not responsible for that
   #page.should have_content "Show"
 end
 
 When(/^I press Delete$/) do
   click_link "Delete"
+  #in arabic
+  #click_link "حذف"
   #I don't need to state that it should click OK
 end
 
@@ -243,6 +247,8 @@ When(/^I press Save content$/) do
   #click_button "Save"
   #method can't be executed so i can't use click_button Save
   page.should have_content "Save content"
+  #in arabic
+  #page.should have_content "حفظ المحتوى"
 end
 
 Then(/^page's content should be updated to what is in the design page$/) do
@@ -253,6 +259,8 @@ When(/^I press Show content$/) do
   #click_button "Show"
   #method can't be executed so i can't use click_button Show
   page.should have_content "Show content"
+  #in arabic
+  #page.should have_content " عرض المحتوى"
 end
 
 Then(/^page's content should appear in the designing pane$/) do
