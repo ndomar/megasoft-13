@@ -49,8 +49,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   
   get "/log/:id" => 'task_results#index'
-  
- get 'cardsorts/create'
+
+  get 'projects/design/:project_id' => 'projects#design' 
+  resources :projects
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
