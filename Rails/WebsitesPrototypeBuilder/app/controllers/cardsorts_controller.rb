@@ -5,7 +5,7 @@
 class CardsortsController < ApplicationController
 	##
 	# create new cardsort from sent parameters
-  # * *Args* :
+	# * *Args* :
   # - none
   # * *Returns* :
   # - void
@@ -22,7 +22,7 @@ class CardsortsController < ApplicationController
 
 	##
 	# edit a previously made cardsort by id
-  # * *Args* :
+	# * *Args* :
   # - none
   # * *Returns* :
   # - void
@@ -43,6 +43,7 @@ class CardsortsController < ApplicationController
   # * *Returns* :
   # - void
   #
+
 	def create_card
 		@card = Card.new(title: params[:title],
 			description: params[:desc])
@@ -75,3 +76,4 @@ class CardsortsController < ApplicationController
 			end
 		end
 	end
+end
