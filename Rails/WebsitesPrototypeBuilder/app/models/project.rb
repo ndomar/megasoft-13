@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   #   -A project belongs to one designer
   #   -A project has many tasks 
   attr_accessible :description, :project_name, :project_type, :designer_id
-
+  validates :designer_id, :presence => true
   validates :project_name, :presence => {:message => ".برجاء ادخال اسم المشروع"}
   validates :project_name, :uniqueness => {:message => ".يوجد مشروع بهذا الاسم, برجاء ادخال اسم مشروع آخر",:scope => :designer_id}
 

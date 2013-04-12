@@ -25,10 +25,6 @@ describe Project do
     no_description.should be_valid
   end
 
-  it "should require a designer id" do
-    no_designer_id = Project.new(@attr)
-    no_designer_id.should be_valid
-  end
 
    it "should reject duplicate project name" do
     Project.create!(@attr)
@@ -36,9 +32,5 @@ describe Project do
     project_with_duplicate_project_name.should_not be_valid
   end
 
-  #it "should delete the selected project" do
-   # Project.delete!(@project.id)
-    #@project.should_not be_valid
-  #end
 
 end
