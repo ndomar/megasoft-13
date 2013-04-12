@@ -1,8 +1,9 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  resources :projects
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
-  root to: "home#index"
+  root to: "projects#index"
 
   get "comments/create"
   get "comments/destroy"
