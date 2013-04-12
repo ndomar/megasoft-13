@@ -2,7 +2,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
-  root to: "home#index"
+#   root to: "home#index"
 
   get "comments/create"
   get "comments/destroy"
@@ -19,11 +19,19 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
 
   
+  get "tasks/invite/:id" => "tasks#invite"
+  
   resources :tasks do
     resources :task_results
   end
   get "/log/:id" => 'task_results#index'
   
+  
+  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
+  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+
+  post "tasks/invite_user/:id" => "tasks#invite_user"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

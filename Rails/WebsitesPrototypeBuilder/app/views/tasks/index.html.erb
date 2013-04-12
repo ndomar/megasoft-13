@@ -1,20 +1,27 @@
+
+
 <h1>Listing tasks</h1>
 
-<table>
+<table class="table table-striped table-bordered">
   <tr>
     <th>Name</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
   <% @tasks.each do |task| %>
+  
     <tr>
       <td><%= task.name %></td>
       <td><%= link_to 'النتائج', task %></td>
       <td><%= link_to 'Edit', edit_task_path(task) %></td>
       <td><%= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+      <td><%= link_to 'invite',:controller=> :tasks, :action =>	 :invite, :id => task.id  %></td>
+      
     </tr>
+    
   <% end %>
 </table>
 
@@ -22,3 +29,6 @@
 
 <%= link_to 'New Task', new_task_path %>
 
+
+  
+  
