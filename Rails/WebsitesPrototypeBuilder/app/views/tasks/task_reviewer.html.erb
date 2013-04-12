@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<%= stylesheet_link_tag "reviewer_task" %>
+<%= javascript_include_tag "task_reviewer" %>
+<html>
+<head>
+</head>
+
+<body>
+
+<div id="content">
+  
+<input id="cmp4" type="text" style="left : 150px ; position : absolute ;"/>
+
+<input type = "submit" value ="Step 1 cmp" class="btn" id='cmp' style="left : 800px ; position : absolute ;"/>
+<input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2' style= "left : 600px; position : absolute;"/>
+<input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' style ="left : 400px; position : absolute;"/>
+
+<div class="desc"> 
+  "<%=@step.description %>"
+</div>
+<%= @page.html.html_safe %>
+</div>
+
+<!--A form that update the values of success, step_id. starting time and total time taken in the database -->
+<%= form_for [@task,@step] do |f| %>  
+  <%= hidden_field_tag "change_success", 'false' %>
+  <%= hidden_field_tag "change_id", '1' %>
+  <%= hidden_field_tag "start_time", '1' %>
+  <%= hidden_field_tag "change_clicks", '0' %>
+  <%= hidden_field_tag "total_time_taken", '0' %>
+<% end %>
+
+
+<script type="text/javascript">
+var currstep_element_id= "<%= @step.component %>";
+var count =1;
+var currstep_id= "<%= @step.id %>";
+var step_event = "<%= @step.event %>";
+var step_answer_success ='true';
+var clicks_count = 0;
+var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
+var total_time= 0;
+var temp_time_nw=0;
+var x= new Date(); //the current date and time
+var starting_time= x.getMinutes(); //ge the starting time of the task
+
+var desc_height = $('.desc').height();
+$('#content').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
+
+$("input").on(step_event, function(event) {
+
+var curr_element_id= event.target.id;
+if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event 
+  var d2= new Date(); //used to get the time of the start of this step
+ 
+  count=count+1; 
+  currstep_id = <%=@step.id%>+1;
+  clicks_count=<%= @task_result.clicks%>+1;
+  total_time= d2.getMinutes() - starting_time;
+
+  $("#change_id").val(currstep_id); //to increment the value of the curr step
+  $("#start_time").val(curr_time); //set the time_from_start
+  $("#change_clicks").val(clicks_count); //update clicks_count in DB
+  $("#change_success").val(step_answer_success); //set successful = true for step_answer
+  $("#total_time_taken").val(total_time); //sets the value of  the time taken
+
+  dehighlight(currstep_element_id); 
+    
+  $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
+
+  }
+});
+
+$(window).load(function(){ 
+    // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
+currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
+highlight(currstep_element_id); //highlight the current step's component
+clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
+temp_time_nw= "<%=Time.now.strftime("%I:%M:%S")%>" ;
+});
+</script>
+</body>
+</html>

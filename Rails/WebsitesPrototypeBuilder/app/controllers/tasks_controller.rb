@@ -1,5 +1,33 @@
 class TasksController < ApplicationController
 
+## 
+#finds the current task, it's page, creates a new instance of step_answer and task_result
+# * *Args*    :
+#   -+@task+ -> the current task
+#   -+@page+ -> the current task's page
+#   -+@step+ -> the first step of the current task
+#   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
+#   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
+# * *Returns*    :
+# - the current task, current step, step_answer for the current_task and task_result for the current task
+#
+  def task_reviewer
+    if Project.all.last.id <= params[:project_id].to_f
+
+      @project=Project.find(params[:project_id])
+      @reviewer= Reviewer.find(params[:reviewer_id])
+      @task= @project.tasks.find(params[:task_id])
+      @page= Page.find(1)
+      @step=@task.steps.find(params[:step_id])
+      @step_answer=@step.step_answers.new
+      @step_answer.save
+      @task_result=@task.task_results.new
+      @task_result.save
+      session[:task_result_id]= @task_result.id 
+    else
+      format.html { render :template => "tasks/task_reviewer_error" }
+    end
+  end
   ## 
   #Method index gets all the tasks from the database
   #* *Args*
