@@ -30,11 +30,13 @@
     <div id = "returning_to_home">
       <%= link_to "العودة إلي صفحة المهمة", @task %>
     </div>
+    <br/>
+
     <div id ="embedded">
       <%= @page.html.html_safe %>
     </div>
 
-    <%= hidden_field_tag(:component_id, :id,  :value => "hidden") %>
+    <%= hidden_field_tag(:component_id, :id,  :value => "embedded") %>
 
   </div>
 </div>

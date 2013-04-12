@@ -1,16 +1,44 @@
 $(function(){
- $("#embedded").find('input').click(function(event){
-      $("#add_step").show();
-      var id = event.target.id;
-      $("#component_id").val(id);
-});});
+  $('#embedded').find('a').each(function () {
+    //$(this).replaceWith($(this).text());
+    $(this).bind('click',false);
+  });
+});
 
 $(function(){
- $("#embedded").find('button').click(function(event){
-      $("#add_step").show();
-      var id = event.target.id;
-      $("#component_id").val(id);
-});});
+  $("#embedded").find('textarea').click(function(event){
+    var id = event.target.id;
+    select(id);
+  });
+});
+
+$(function(){
+  $("#embedded").find('button').click(function(event){
+    var id = event.target.id;
+    select(id);
+  });
+});
+
+$(function(){
+  $("#embedded").find('img').click(function(event){
+    var id = event.target.id;
+    select(id);
+  });
+});
+
+$(function(){
+  $("#embedded").find('a').click(function(event){
+    var id = event.target.id;
+    select(id);
+  });
+});
+
+function select(id){
+  dehighlight($("#component_id").val());
+  $("#add_step").show();
+  highlight(id);
+  $("#component_id").val(id);
+}
 
 function save(task_id){
   var params = $.param({
@@ -21,6 +49,20 @@ function save(task_id){
   });
   $.ajax("/tasks/new_step/?" + params);
   $("#add_step").hide();
+  dehighlight($("#component_id").val());
 }
+
+function highlight(id){
+  // A function that highlights a certain component given it's id
+  var element= document.getElementById(id);
+  element.style.border='none';
+  element.style.boxShadow="0px 0px 6px 2px orange";
+}
+ 
+function dehighlight(id){
+  var element = document.getElementById(id);
+  element.style.boxShadow= 'none';
+  element.style.border=1;
+ } 
 
 

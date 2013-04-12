@@ -133,7 +133,7 @@ class TasksController < ApplicationController
     @task = Task.find_by_id(params[:id])
     @steps = @task.steps
     respond_to do |format|
-      if @step
+      if @created
         format.js {render "step_list"}
       else
         format.js {render "error"}
