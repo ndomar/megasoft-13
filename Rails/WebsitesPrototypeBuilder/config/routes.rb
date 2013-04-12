@@ -1,4 +1,13 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+<<<<<<< HEAD
+=======
+ get 'cardsorts/new'
+ get 'cardsorts/edit'
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+
+
+>>>>>>> fb15e064eafc2aff80216960b0b67c3440c6f680
   resources :projects
   devise_for :designers
   
@@ -26,10 +35,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :task_results
   end
   
+<<<<<<< HEAD
  get 'cardsorts/new'
  get 'cardsorts/edit'
  get 'cardsorts/create'
 
+=======
+>>>>>>> fb15e064eafc2aff80216960b0b67c3440c6f680
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
