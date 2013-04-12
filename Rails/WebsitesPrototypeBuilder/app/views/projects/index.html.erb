@@ -13,8 +13,8 @@
     <%= form_for :cardsort, :url => {:controller => :cardsorts, :action => :new}, :method => :get do |form| %>
       <%= form.text_field :title, :placeholder => "title" %>
       <%= form.text_field :description, :placeholder => "description" %>
-      <label class="radio">Open<%= form.radio_button :open, true, :checked => true %></label>
-      <label class="radio">Close<%= form.radio_button :open, false %></label>
+      <label class="radio"><%= form.radio_button :open, true, :checked => true %>Open</label>
+      <label class="radio">Closed<%= form.radio_button :open, false %></label>
       <%= form.submit "Create cardsort" %>
       <%= button_to_function "cancel", "hidePopup()" %>
      <% end %>
