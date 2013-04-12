@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  name: MyString
-<<<<<<< HEAD
-  description: MyText
-
-two:
-  name: MyString
-  description: MyText
-=======
-  description: MyString
-
-two:
-  name: MyString
-  description: MyString
->>>>>>> 702328961b57d80ff3becfb564dde2ac1c70bf17
-=======
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 # This model initially had no columns defined.  If you add columns to the
@@ -28,4 +9,3 @@ one: {}
 #
 two: {}
 #  column: value
->>>>>>> c022d2e30cacb2260dd4f2638fc3f5ec1ee9e756

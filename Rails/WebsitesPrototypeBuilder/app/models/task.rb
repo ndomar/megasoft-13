@@ -9,7 +9,7 @@
   #   -has many task results 
   #   -has a many to many relationship with reviewers
 class Task<ActiveRecord::Base
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :page_id
 
   belongs_to :project
   

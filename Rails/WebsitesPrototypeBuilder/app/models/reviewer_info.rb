@@ -9,9 +9,8 @@
   #   -+month_of_birth+ -> month of birth of reviewer
   #   -+year_of_birth+ -> year of birth of reviewer
   #* *Relations*    :
-  #   -belongs to one reviewer
-
 class ReviewerInfo < ActiveRecord::Base
   attr_accessible :age, :country, :day_of_birth, :gender, :month_of_birth, :name, :year_of_birth
+
   belongs_to :reviewer
 end
