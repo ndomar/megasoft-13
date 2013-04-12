@@ -1,8 +1,7 @@
 class CreateAnswerQuestionnaires < ActiveRecord::Migration
   def change
     create_table :answer_questionnaires do |t|
-      t.string :answer
-      t.string :string
+      t.text :body
       t.references :questionnaire
       t.references :qquestion
       t.timestamps

@@ -14,14 +14,14 @@
 				<%@c_all = ""%>
 				<!-- checking question type to give the correct form -->
 				<% if question.qtype ==1%>
-					<%= f.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
+					<%= f.text_field :body, :required => true,:placeholder => "اكتب هنا"%>
 				<%elsif question.qtype==2%>
-					<%= f.text_area :answer, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
+					<%= f.text_area :body, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
 				<%elsif question.qtype==3%>
 					<% question.choices.each do |choice| %>
 		 				<%@c_all+=choice.body+ "," %> 
 					<%end%>
-					<%=f.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+					<%=f.select(:body, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
 				<%end%>
 				</br>
 				<%= f.submit "حفظ", :class => "submit" %>

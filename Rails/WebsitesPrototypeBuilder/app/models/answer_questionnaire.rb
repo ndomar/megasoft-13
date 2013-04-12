@@ -6,9 +6,8 @@
 #   - has foreign key to the project,questionnaire, and qquestion
 #   - related to one page and one question
 class AnswerQuestionnaire < ActiveRecord::Base
-  belongs_to :project
   belongs_to :questionnaire
   belongs_to :qquestion
-  attr_accessible :answer, :qquestion_id, :questionnaire_id
-  validates_presence_of :answer
+  attr_accessible :body, :qquestion_id, :questionnaire_id
+  validates_presence_of :body
 end

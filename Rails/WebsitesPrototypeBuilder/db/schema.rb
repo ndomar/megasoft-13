@@ -14,8 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130409103025) do
 
   create_table "answer_questionnaires", :force => true do |t|
-    t.string   "answer"
-    t.string   "string"
+    t.text     "body"
     t.integer  "questionnaire_id"
     t.integer  "qquestion_id"
     t.datetime "created_at",       :null => false
