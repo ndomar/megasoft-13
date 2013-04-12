@@ -14,6 +14,7 @@
   
     <tr>
       <td><%= task.name %></td>
+      <td><%= link_to 'تعديل الخطوات', edit_steps_path(task) %> </td>
       <td><%= link_to 'النتائج', task %></td>
       <td><%= link_to 'Edit', edit_task_path(task) %></td>
       <td><%= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
