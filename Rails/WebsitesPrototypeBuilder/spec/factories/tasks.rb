@@ -4,3 +4,4 @@ FactoryGirl.define do
     description 'test_description'
   end
 end
+

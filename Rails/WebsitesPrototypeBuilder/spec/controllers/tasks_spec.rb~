@@ -1,0 +1,27 @@
+require 'spec_helper'
+
+describe TasksController do
+  describe "GET index" do
+
+    it "renders the index template" do
+      get :index
+      response.should render_template("index")
+    end
+  end
+end
+
+
+describe TeamsController do
+  describe "GET index" do
+    it "assigns @teams" do
+      team = Team.create
+      get :index
+      assigns(:teams).should eq([team])
+    end
+
+    it "renders the index template" do
+      get :index
+      response.should render_template("index")
+    end
+  end
+end
