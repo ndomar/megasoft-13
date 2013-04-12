@@ -9,6 +9,8 @@ class Question < ActiveRecord::Base
 	# - has foreign key to the page and the reviewer
 	# - has many to one relation with model page
 	#
+  attr_accessible :description, :project_name, :project_type, :designer_id
+  
   belongs_to :page
   #validates that the body isn't empty
   validates :body, :presence => true
