@@ -1,8 +1,9 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  resources :projects
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
-  root to: "home#index"
+  root to: "projects#index"
 
   get "comments/create"
   get "comments/destroy"
@@ -13,8 +14,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
 
-
   resources :questionnaires
+  get 'cardsorts/new'
 
   resources :pages do
     resources :comments
@@ -25,7 +26,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :tasks do
     resources :task_results
   end
-  get "/log/:id" => 'task_results#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -74,7 +74,10 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   #     resources :products
   #   end
 
-  # See how all your routes lay out with "rake routes"
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+
+ # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.

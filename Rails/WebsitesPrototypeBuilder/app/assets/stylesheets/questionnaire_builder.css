@@ -1,6 +1,5 @@
-
 .qquestion{
-	border: 1px solid gray;
+	border: 1px solid rgb(223, 223, 223);
 	width: 100%;
 }
 
@@ -9,10 +8,9 @@
 }
 
 #qbuilder{
-margin:auto;
-width:70%;
-background-color:rgb(243, 243, 243);
-min-width: 600px;
+	margin:auto;
+	background-color:rgb(243, 243, 243);
+	min-width: 600px;
 }
 
 .qquestion label{
