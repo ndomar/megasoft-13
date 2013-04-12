@@ -1,22 +1,38 @@
+var questions_num=1;
+// Used to make the questions sortable using Jquesry UI
 $(function() {
-    $('#sortable').sortable({ placeholder: "ui-state-highlight" ,
-        update: function(event, ui) {
-            var start_pos = ui.item.data('start_pos');
-            var end_pos = $(ui.item).index();
-            //alert(end_pos); 
-          }
-    });
-    $( "#sortable" ).disableSelection();
+  //use placholder to highlight the dropping postion
+  $('#sortable').sortable({ placeholder: "ui-state-highlight"});
+  $( "#sortable" ).disableSelection();
 });
 
 
+// Called to delete the question with sliding effect
 function del(question){
 	$(question).parent().slideUp('slow', function() { $(this).remove(); });
 }
 
-$(document).on('nested:fieldRemoved', function(event){
-  // this field was just inserted into your form
-  var field = event.field; 
-  // it's a jQuery object already! Now you can find date input
- field.parent().slideUp('slow', function() { field.remove(); });
-})
+function check(select,value){
+	if(value==3||value==4){		
+		$(select).siblings('.fields').remove();
+		for(var i=2;i<value;i++){
+   		$(select).siblings('.add_choice').click();
+   	}
+		$(select).siblings('.add_choice').css({"display":"block"});
+    $(select).closest('.fields').find('.choice_to_delete').css({"display":"none"});
+	}else{
+		$(select).siblings('.add_choice').css({"display":"none"});
+		$(select).siblings('.fields').remove();
+	}
+}
+
+$(document).on('nested:fieldAdded:qquestions', function(event){
+	questions_num++;
+	$(".question_to_delete").css({"display":"block"});
+});
+
+$(document).on('nested:fieldRemoved:qquestions', function(event){
+	questions_num--;
+	if(questions_num<=1)
+		$(".question_to_delete").css({"display":"none"});
+});

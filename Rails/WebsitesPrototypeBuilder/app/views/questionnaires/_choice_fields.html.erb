@@ -1,5 +1,6 @@
+<!-- A Partial to render the choices creation field for question-->
 <div class ="fields">
-	<%= f.label :body,"-- The Option --" %></br>
   <%= f.text_field :body %></br>
-  <%= f.link_to_remove "Remove this Option" %>
+  <!-- A link to remove the choice -->
+  <%= f.link_to_remove "امسح", :class =>"choice_to_delete" %>
 </div>
