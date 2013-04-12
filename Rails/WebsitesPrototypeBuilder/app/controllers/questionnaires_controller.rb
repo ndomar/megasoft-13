@@ -73,7 +73,6 @@ class QuestionnairesController < ApplicationController
   def destroy
     @questionnaire = Questionnaire.find(params[:id])
     @questionnaire.destroy
-
     respond_to do |format|
       format.html { redirect_to questionnaires_url }
       format.json { head :no_content }
