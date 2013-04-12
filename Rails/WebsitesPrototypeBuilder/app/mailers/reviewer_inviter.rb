@@ -44,7 +44,7 @@ class ReviewerInviter < ActionMailer::Base
     width = 1024
     height = 728
      driver = Selenium::WebDriver.for :firefox
-     driver = Selenium::WebDriver.for :chrome
+     #driver = Selenium::WebDriver.for :chrome
     driver.navigate.to @url
     driver.execute_script Q{
     window.resizeTo(200, 100);
