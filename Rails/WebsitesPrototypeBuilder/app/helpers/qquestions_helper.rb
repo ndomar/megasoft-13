@@ -1,0 +1,2 @@
+module QquestionsHelper
+end

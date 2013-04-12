@@ -10,7 +10,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
-
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
@@ -25,6 +24,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
 
+  resources :questionnaires
   get 'cardsorts/new'
 
   resources :pages do
@@ -35,6 +35,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   
   get "/log/:id" => 'task_results#index'
   
+ get 'cardsorts/create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
