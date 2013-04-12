@@ -1,6 +1,7 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   get "home/index"
   get "cardortsreviewer/groupsandcards/:id" => 'cardorts_reviewer#groupsandcards'
+  get "cardortsreviewer/create_group" => 'cardorts_reviewer#create_group'
 
   resources :groups
 

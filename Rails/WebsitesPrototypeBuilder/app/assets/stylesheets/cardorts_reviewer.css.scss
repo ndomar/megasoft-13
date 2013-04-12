@@ -100,3 +100,29 @@
   height: 100%;
   top: 130px;
 }
+
+#add-new-group
+{
+  display: inline-block;
+  width:50px;
+  height: 50px;
+  background-image: url(/assets/new-group.png);
+  background-size: cover;
+  background-color: transparent;
+  margin-top: -10px;
+  outline: none;  
+  float: right;
+}
+
+#add-button-group{
+  display: block;
+  width: 120px;
+  height: 120px;
+  background-image: url(/assets/add-button.png);
+  background-size: cover;
+  background-color: transparent;
+  outline: none;  
+  float: left;
+
+ 
+}

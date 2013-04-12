@@ -10,6 +10,8 @@ function init(){
   setTabs();
   setEffects();
   setRemoteFunc();
+  $('.card').addClass('selected-card');
+  $('.group').addClass('selected-group');
 }
 
 function setTabs(){
@@ -93,8 +95,8 @@ function changeSelected(newCard, element){
 
   $(mainCard).hide(300, function (){
     checkAddButton(element)
-    $("#title-"+element).val($(newCard).attr("title"));
-    $("#description-"+element).val($(newCard).attr("description"));
+    $("#title-"+element).text($(newCard).attr("title"));
+    $("#description-"+element).text($(newCard).attr("description"));
   });
   $(mainCard).show(300);
 }
@@ -103,28 +105,30 @@ function checkAddButton(element){
   if ($(".selected-"+element).hasClass('new-'+element)){
     $("#add-button-"+element).show();
     $('#error-'+element).text("Click the plus button to add a new card.");
+    if (element == "group") {
+      $("#add-title-group").show();
+      $("#add-description-group").show();
+    }
+
   
   } else {
     $("#add-button-"+element).hide();
     $('#error-'+element).text("you can edit the details of this card.");
+    if (element == "group") {
+      $("#add-title-group").hide();
+      $("#add-description-group").hide();
+    }
   
   }
 }
 
 function setRemoteFunc(){
-  $('#add-button-card').click(function (){
-    var params = $.param({
-      title: $('#title-card').val(),
-      desc: $('#description-card').val()
-    });
-    $.ajax("/cardsorts/create_card?" + params);
-  });
 
   $('#add-button-group').click(function (){
     var params = $.param({
-      title: $('#title-group').val(),
-      desc: $('#description-group').val()
+      title: $('#add-title-group').text(),
+      desc: $('#add-description-group').text()
     });
-    $.ajax("/cardsorts/create_group?" + params);
+    $.ajax("/cardortsreviewer/create_group?" + params);
   });
 }

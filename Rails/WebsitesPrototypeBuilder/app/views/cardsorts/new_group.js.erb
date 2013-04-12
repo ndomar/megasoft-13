@@ -1,0 +1,16 @@
+<% if (@group.valid?) %>
+	$('#error-group').text("A new card have been added successfully.");
+
+	var newGroup = $('<%= escape_javascript(render "group",
+		desc: @group.description, title: @group.title) %>')
+		.prependTo("#groups");
+	$(newGroup).click(function (){
+		changeSelected(this, 'group');
+	});
+<% else %>
+	var errorDiv = $('#error-group').text("");
+	<% @group.errors.full_messages.each do |error| %>
+		$(errorDiv).append("<%= error %>");
+	<% end %>
+<% end %>
+

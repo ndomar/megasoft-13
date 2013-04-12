@@ -11,6 +11,7 @@
  class Group < ActiveRecord::Base
   attr_accessible :cardsort_id, :description, :title
 
+
   belongs_to :cardsort
   has_many :cards
 

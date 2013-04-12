@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##
 # It represents the rest of the reviewer's info in the database
 # * *Attribute*    :
@@ -12,3 +13,10 @@
 class ReviewerInfo < ActiveRecord::Base
   attr_accessible :age, :country, :day_of_birth, :gender, :month_of_birth, :name, :year_of_birth
 end
+=======
+class ReviewerInfo < ActiveRecord::Base
+  attr_accessible :age, :country, :day_of_birth, :gender, :month_of_birth, :name, :year_of_birth
+
+  belongs_to :reviewer
+end
+>>>>>>> 694252d354501d8eef9ed70df237c82c4ab749e6
