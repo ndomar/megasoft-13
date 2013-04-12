@@ -9,10 +9,12 @@
     <p> تم عمل المهمة <%=task.created_at.strftime "%d-%m-%Y %H:%M:%S"%></p>
     <p><%= task.name %></p>
     <p><%= task.description %></p>
-    <button><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></button>
-    <button><%= link_to 'الغاء',project_task_path(params[:project_id], task), :confirm => 'هل تريد الغاء المهمة', :method => :delete %></button>
-    <button><%= link_to 'النتائج', project_task_path(params[:project_id], task)%></button>
-    <button>تحديد تسلسل المهمة</button>
+    <div>
+      <button><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></button>
+      <button><%= link_to 'الغاء',project_task_path(params[:project_id], task), :confirm => 'هل تريد الغاء المهمة', :method => :delete %></button>
+      <button><%= link_to 'النتائج', project_task_path(params[:project_id], task)%></button>
+      <button>تحديد تسلسل المهمة</button>
+    </div>
   </div>
   <br />
 <% end %>
