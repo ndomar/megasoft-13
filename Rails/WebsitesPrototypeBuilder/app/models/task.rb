@@ -6,11 +6,32 @@ class Task<ActiveRecord::Base
   has_and_belongs_to_many :reviewers
   validates :name, :presence => true
 
+  STATUS = {
+    pending: 0,
+    done: 1,
+    expired: 3
+  }
+
   def send_invitation(email, msg, url)
     @reviewer = Reviewer.find_by_email(email)
     if @reviewer == nil
       @reviewer = self.reviewers.create(:email => email) 
     end
     ReviewerInviter.task_invitation(email, msg, url).deliver()
+  end
+  
+  ##
+  # gets the status of the reviewer, either reviewed, awaiting review or expired
+  # * *Args* :
+  # - +@reviwer_id_+ -> reviewer id to get the status
+  # * *Returns* :
+  # - status code indication the status of the invitation
+  #
+  def check_invitation_status(reviewer_id)
+    reviewer = self.reviewers.find(reviewer_id)
+    if reviewer.task_result.nil?
+      :pending
+    else
+      :done
   end
 end
