@@ -16,8 +16,11 @@ describe TasksController do
     s.id=1
     s.task_id=1
     s.save
+    r=Reviewer.new
+    r.id=1
+    r.save
 
-    get  :task_reviewer ,{ :project_id => 1 , :task_id => 1, :step_id => 1}
+    get  :task_reviewer ,{ :project_id => 1 , :task_id => 1, :step_id => 1 ,:reviewer_id => 1}
     assigns (:task).should_not be_nil
     assigns (:step).should_not be_nil
     assigns (:page).should_not be_nil
