@@ -6,7 +6,8 @@
     <p><%= time_ago_in_words page.created_at %> ago</p>
     <p><%= truncate page.html %></p>
     <p><%= link_to 'Edit', edit_page_path(page) %></p>
-    <p><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <% message = @task ? 'هناك مهام متعلقة بهذه الصفحة هل أنت متأكد من أنك تريد مسحها' : 'هل أنت متأكد من مسح هذه الصفحة ' %>
+    <p><%= link_to "مسح", page, :confirm => message, :method => :delete %><p>  
     <p><%= link_to 'Reviewer',:controller => :pages, :action => :reviewer, :id => page %></p>
     <p><%= link_to 'Designer',:controller => :pages, :action => :designer, :id => page %></p>
   <%end%>
