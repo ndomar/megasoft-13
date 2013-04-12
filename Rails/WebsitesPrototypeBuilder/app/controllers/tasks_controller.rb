@@ -123,7 +123,7 @@ class TasksController < ApplicationController
     if Reviewer.find_by_email(params[:email]) == nil
       Reviewer.create(:email => params[:email])
     end
-    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
+    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "http://localhost:3000/taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
   
   end
   def makesure
