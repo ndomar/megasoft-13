@@ -10,29 +10,27 @@
 		<% @questionnaire.qquestions.each do |question| %>
 			<strong><%=question.body %></strong>
 			<%= form_for [@questionnaire,question,question.answer_questionnaires.build] do |f| %>
- 				<div>
-					<%@array = []%>
-					<%@c_all = ""%>
-					<!-- checking question type to give the correct form -->
-					<% if question.qtype ==1%>
-						<%= f.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
-					<%elsif question.qtype==2%>
-						<%= f.text_area :answer, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
-					<%elsif question.qtype==3%>
-						<% question.choices.each do |choice| %>
-		 					<%@c_all+=choice.body+ "," %> 
-						<%end%>
-						<%=f.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+				<%@array = []%>
+				<%@c_all = ""%>
+				<!-- checking question type to give the correct form -->
+				<% if question.qtype ==1%>
+					<%= f.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
+				<%elsif question.qtype==2%>
+					<%= f.text_area :answer, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
+				<%elsif question.qtype==3%>
+					<% question.choices.each do |choice| %>
+		 				<%@c_all+=choice.body+ "," %> 
 					<%end%>
-					</br>
-					<%= f.submit "حفظ", :class => "submit" %>
-					<hr>
+					<%=f.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
 				<%end%>
+				</br>
+				<%= f.submit "حفظ", :class => "submit" %>
+				<hr>
 			<%end%>
-			</br>
-			</div>
-			<p><%= link_to "انتهيت",:controller => :questionnaires, :action => :index%></p>
-		</div>
+		<%end%>
+		</br>	
+		<p><%= link_to "انتهيت",:controller => :questionnaires, :action => :index%></p>
+	</div>
 </div>
   
 
