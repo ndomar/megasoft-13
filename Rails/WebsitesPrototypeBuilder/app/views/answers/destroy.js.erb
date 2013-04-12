@@ -1,0 +1,4 @@
+// sliding up when deleting answer
+$('.delete_answer').bind('ajax:success', function() {  
+	$(this).closest('div').slideUp("slow");
+});
