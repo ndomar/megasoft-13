@@ -17,12 +17,12 @@
       <% render "calculate_success", :f => result %> 
       <%if result.reviewer %>
         <tr>
-    <td><%= result.reviewer.email %></td>
-    <td><%= result.time %></td>
-    <td><%= result.success %> % </td>
-    <td><%= result.clicks %><td>
+      	  <td><%= result.reviewer.email %></td>
+      	  <td><%= result.time %></td>
+      	  <td><%= result.success %> % </td>
+      	  <td><%= result.clicks %><td>
         </tr>
-  <tr>
+        <tr>
           <td><%= render "create_bars", :x => result %></td>
         </tr>
       <% end %>
@@ -34,5 +34,3 @@
     <strong>عذراً!</strong> لا توجد نتائج 
   </div>
 <% end %>
-
-<%= link_to 'Back', tasks_path %>
