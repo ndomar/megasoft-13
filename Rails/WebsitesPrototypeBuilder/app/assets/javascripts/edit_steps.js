@@ -49,6 +49,7 @@ function save(task_id){
   });
   $.ajax("/tasks/new_step/?" + params);
   $("#add_step").hide();
+  //$("#component_id").val("");
   dehighlight($("#component_id").val());
 }
 
