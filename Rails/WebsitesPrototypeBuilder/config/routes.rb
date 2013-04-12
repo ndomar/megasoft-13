@@ -2,9 +2,16 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :projects do
     resources :tasks do
       resources :task_results
+      resources :steps
     end
   end
-
+get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+post 'steps/update'
+    resources :projects do
+      resources :tasks do
+        resources :steps
+    end
+  end
  get 'cardsorts/new'
  get 'cardsorts/edit'
  get 'cardsorts/create_card'
@@ -13,8 +20,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
-  root to: "projects#index"
-
+  root to: "home#index"
   get "comments/create"
   get "comments/destroy"
   get "questions/create"
@@ -31,7 +37,12 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :comments
     resources :questions
   end
+ 
+  get "/log/:id" => 'task_results#index'
 
+  get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
+  get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
+  get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   
   get "/log/:id" => 'task_results#index'
   
@@ -86,9 +97,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-
- # See how all your routes lay out with "rake routes"
-
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
