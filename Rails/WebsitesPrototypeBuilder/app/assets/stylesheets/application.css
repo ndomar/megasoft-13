@@ -10,10 +10,7 @@
  *= require bootstrap
  *= require jquery.ui.all
  *= require_self
- *= require_tree .
  */
- *= require twitter/bootstrap
-
  
 html,body{ 
 	width:100%; 
@@ -136,7 +133,9 @@ div#content{
 	top: 0;
 	right: 0;
 	bottom: 0;
-  min-height:100%; 
+  min-height:100%;
+	overflow: auto;
+	word-wrap:break-word;
 }
 
 #sidebar h4{

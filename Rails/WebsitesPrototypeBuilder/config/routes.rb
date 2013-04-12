@@ -1,4 +1,10 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+
+ get 'cardsorts/new'
+ get 'cardsorts/edit'
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+
   resources :projects
   devise_for :designers
   
@@ -14,6 +20,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
 
+  resources :questionnaires
   get 'cardsorts/new'
 
   resources :pages do
@@ -27,7 +34,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :tasks do
     resources :task_results
   end
-  get "/log/:id" => 'task_results#index'
   
   
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
@@ -35,7 +41,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
-  # The priority is based upon order of creation:
+ # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:

@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20130409143914) do
 
+  create_table "answers", :force => true do |t|
+    t.string   "answer"
+    t.integer  "question_id"
+    t.integer  "page_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "cards", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -30,6 +38,30 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  create_table "choice_qquestions", :force => true do |t|
+    t.text     "body"
+    t.integer  "number"
+    t.integer  "questionnaire_id"
+    t.integer  "project_id"
+    t.integer  "qquestion_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "choice_qquestions", ["project_id"], :name => "index_choice_qquestions_on_project_id"
+  add_index "choice_qquestions", ["qquestion_id"], :name => "index_choice_qquestions_on_qquestion_id"
+  add_index "choice_qquestions", ["questionnaire_id"], :name => "index_choice_qquestions_on_questionnaire_id"
+
+  create_table "choices", :force => true do |t|
+    t.string   "body"
+    t.integer  "number"
+    t.integer  "qquestion_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "choices", ["qquestion_id"], :name => "index_choices_on_qquestion_id"
 
   create_table "comments", :force => true do |t|
     t.integer  "page_id"
@@ -100,6 +132,26 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.datetime "updated_at",   :null => false
     t.integer  "designer_id"
   end
+
+  create_table "qquestions", :force => true do |t|
+    t.text     "body"
+    t.integer  "number"
+    t.integer  "qtype"
+    t.integer  "questionnaire_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "qquestions", ["questionnaire_id"], :name => "index_qquestions_on_questionnaire_id"
+
+  create_table "questionnaires", :force => true do |t|
+    t.string   "title"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "questionnaires", ["project_id"], :name => "index_questionnaires_on_project_id"
 
   create_table "questions", :force => true do |t|
     t.integer  "page_id"
