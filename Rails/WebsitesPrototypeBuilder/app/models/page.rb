@@ -12,5 +12,8 @@ class Page < ActiveRecord::Base
   has_many :questions,:dependent => :destroy
   #set it to belong to only one project
   belongs_to :project
+  #checks that page name is present and is unique
+  validates :page_name, :presence => {:message => "موجود صفحه إسم"}
+  validates :page_name, :uniqueness => {:message => "فريد صفحه إسم"}
 
 end
