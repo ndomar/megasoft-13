@@ -2,38 +2,69 @@
 <%= javascript_include_tag "reviewing"%>
 
 <div id="wrapper">
+	<div onClick="slideit();$('.sl').toggle();$('.sm').toggle();" class="sl" ></div>
+	<div onClick="slideit();$('.sl').toggle();$('.sm').toggle();" style="display:none" class="sm"></div>
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
 	<div id="html_content"><%= @page.html%>
 	</div>
 	<!-- The SideBar -->
 	<div id="sidebar">
-		<h4>التعليقلت</h4>
-		<!-- Fetching comments from the database,just for testing -->
+		<!-- toggles between questions and comments -->
+		<div onclick="$('#comments').toggle();$('#questions').toggle()" class="sw"></div>
+		
+		<!-- Fetching comments from the database -->
 		<div id="comments">
+		<h4>التعليقلت</h4>                         <!-- title of the side bar-->
+ 					 
+ 					 <% array = Array.new %>                 <!-- create new array to store in all comments' divs locations-->
+					 <% @page.comments.each do |comment| %>  <!-- loop on all comments -->
+					 <% array << comment.assigned_part %>    <!-- insert the assigned part in the array-->
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),0);$('#shows').toggle();" id="shows">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+					 <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=array%></p>
+
 			<% @page.comments.each do |comment| %>
-				<div>
+			<% if(comment.body!="jhhsicn comment") then %> <!-- to be used when session variables are added -->
+				<div id="<%=comment.assigned_part%>">
 					<!-- Getting the comment -->
-					<p><%= comment.body %></p>
-					<!-- The deleting method uses AJAX destroy.js.erb -->
+					<p onClick="lastm(this);"><%= comment.body %></p>
+                    <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=comment.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
+			        <!-- The deleting method uses AJAX destroy.js.erb -->
 					<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
 					<hr>
 				</div>
 			<%end%>
+			<%end%>
+
 		</div>
-		<hr>
+		
 		<!-- Fetching questions from the database,just for testing -->
-		<div id="questions">
-			<h4>الاسءلة</h4>
+		<div id="questions" style="display:none">
+			<h4>&#1575;&#1604;&#1571;&#1587;&#1574;&#1604;&#1577;</h4>
+
+                     <% ansarray = Array.new %>       
+					 <% @page.questions.each do |question| %>
+					 <% ansarray << question.assigned_part %>
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),1);$('#qshows').toggle();" id="qshows">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+
+            <!-- show and hide answers -->
+			<p onclick="$('.answers2').toggle();">  &#1592;&#1607;&#1608;&#1585; / &#1573;&#1582;&#1601;&#1575;&#1569;) &#1575;&#1604;&#1573;&#1580;&#1575;&#1576;&#1575;&#1578;) </p>
+            
 			<% @page.questions.each do |question| %>
-				<div>
-					<p><%= question.body %></p>
-					<h5>:اجابتك </h5>
+				<div id="<%=question.assigned_part%>">
+						<p onClick="lastm(this);"><%= question.body %></p>
+	                    <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
+	     				<h5>:اجابتك </h5>
 					<% question.answers.each do |ans| %>
-						<div>
+					<% if(question.body!="jhhsicn comment") then %>  <!-- to be used when session variables are added -->
+						<div class="answers2" style="display:none">
 							<p><%= ans.answer %></p>
-								<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
-								<hr>
+							<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
+							<hr>
 						</div>			
+					<%end%>
 					<%end%>
 					<hr>
 					<div>

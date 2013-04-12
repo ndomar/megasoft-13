@@ -34,6 +34,43 @@ body{
 	margin: 0 0;
 	margin-top:-16px;
 }
+
+.sw{
+
+    background-image:url('\switcher.png');
+	width:180px;
+	height:53px;
+	float: left;
+	margin-right: 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.sl
+{
+    background-image:url('\switchh.png');
+	width:30px;
+	height:100px;
+	left:935px;
+	top: 250px;
+	z-index:1000;
+	position:absolute;
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.sm
+{
+    background-image:url('\switchh.png');
+	width:30px;
+	height:100px;
+	left:1252px;
+	top: 250px;
+	z-index:1000;
+	position:absolute;
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 	  
 .tabBar {
 	background-color: #ebebeb;
@@ -178,4 +215,5 @@ iframe {
 	-webkit-transform:rotate(0deg);
 	-o-transform:rotate(0deg);
 	-ms-transform:rotate(0deg);
+	z-index: -1;
 }
