@@ -19,13 +19,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
-
-
   get "pages/designer"
   get "projects/index"
   get "projects/save/" => "projects#save", :as => :page_save
 
   resources :projects
+
+  resources :questionnaires
 
   get 'cardsorts/new'
 
