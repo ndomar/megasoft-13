@@ -17,13 +17,13 @@
       <% render "calculate_success", :f => result %> 
       <%if result.reviewer %>
         <tr>
-          <td><%= result.reviewer.email %></td>
-          <td><%= result.time %></td>
-          <td><%= result.success %> % </td>
-          <td><%= result.clicks %><td>
+      	  <td><%= result.reviewer.email %></td>
+      	  <td><%= result.time %></td>
+      	  <td><%= result.success %> % </td>
+      	  <td><%= result.clicks %><td>
         </tr>
         <tr>
-      <td><%= render "create_bars", :x => result %></td>
+          <td><%= render "create_bars", :x => result %></td>
         </tr>
       <% end %>
     <% end %> 

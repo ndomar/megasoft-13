@@ -1,6 +1,7 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   resources :projects do
     resources :tasks do
+      resources :steps
       resources :task_results
       resources :steps
     end
