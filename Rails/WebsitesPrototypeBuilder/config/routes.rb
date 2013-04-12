@@ -1,5 +1,4 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-<<<<<<< HEAD
 
 
   get 'cardsorts/new'
@@ -17,6 +16,11 @@ post 'steps/update'
         resources :steps
     end
   end
+
+  resources :projects do
+      resources :pages
+  end
+
   resources :tasks do
     resources :steps
   end
