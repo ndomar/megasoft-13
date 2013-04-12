@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe RegistrationsController do
-    before(:each) do
+    before(:each)do
     @attr = {
       :fullname => "Test Designer",
       :email => "designer@gmail.com",
