@@ -18,6 +18,10 @@ gem "launchy", ">= 2.1.2", :group => :test
 gem "capybara", ">= 2.0.2", :group => :test
 gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
 
+# gems for uploading image
+gem 'rmagick'
+gem 'carrierwave'
+
 # gem for using bootstrap
 gem 'bootstrap-sass'
 

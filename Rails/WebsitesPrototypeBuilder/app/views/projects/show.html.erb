@@ -1,0 +1,34 @@
+<!-- <div id="wrapper"> -->
+	
+	<div id="sidebar">
+		<input type='text'>
+
+		<div id="pages_list">
+			<H1>صفحات</H1>
+			<%= form_for :picture do |form| %>
+				<%= form.file_field :image %>
+				<%= form.submit "upload" %>
+			<% end %>
+			<% @pages.each do |page| %>
+			  <p id="pages">
+			     <%= page.page_name %>
+			   	 <br>
+			   	 <td><%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			   	 <br>
+			   	 <iframe onload="addHtml('<%= page.id %>','<%= page.html %>')" id ="<%= page.id %>" src="" width="100" height="100"  onclick="MALATAWY" frameborder="1" border="1" ></iframe>	  	
+
+			   	 <!-- frames'pcing="1" noresize scrolling=auto style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);' -->
+			   	 <!-- this is to make sure that the ratio is good when there are big pages and when i know the size of the frame Malatawy is using -->
+
+			  </p>
+			<% end %>
+		</div>
+
+
+		<%= link_to 'Edit', edit_project_path(@project) %> |
+		<%= link_to 'Back', projects_path %>
+	</div>
+	<div id="content">
+			
+	</div>
+<!-- </div> -->
