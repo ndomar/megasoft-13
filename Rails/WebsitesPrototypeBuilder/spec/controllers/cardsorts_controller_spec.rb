@@ -14,8 +14,14 @@ describe CardsortsController do
 
 	it "@cards should not be nill" do
 		get :new
-		assigns(:cards).should_not be_nil
+		assigns(:groups).should_not be_nil
 	end
+
+	it "@groups should not be nill" do
+		get :new
+		assigns(:groups).should_not be_nil
+	end
+
 
 end
 
@@ -25,9 +31,12 @@ describe CardsortsController do
 	end
 
 	it "@cards should not be nill" do
-		assigns(:cards).should_not be_nil
+		assigns(:groups).should_not be_nil
 	end
 
+	it "@groups should not be nill" do
+		assigns(:groups).should_not be_nil
+	end
 end
 
 describe CardsortsController do
@@ -36,7 +45,12 @@ describe CardsortsController do
 	end
 
 	it "create new card" do
-		get :create
+		get :create_card
 		assigns(:card).should_not be_nil
+	end
+
+	it "create new group" do
+		get :create_group
+		assigns(:group).should_not be_nil
 	end
 end
