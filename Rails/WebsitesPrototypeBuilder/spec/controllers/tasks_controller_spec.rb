@@ -22,6 +22,7 @@ describe TasksController do
 
     get  :task_reviewer ,{ :project_id => 1 , :task_id => 1, :step_id => 1 ,:reviewer_id => 1}
     assigns (:task).should_not be_nil
+    assigns (:reviewer).should_not be_nil
     assigns (:step).should_not be_nil
     assigns (:page).should_not be_nil
     assigns (:step_answer).should_not be_nil
