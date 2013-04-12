@@ -48,9 +48,10 @@ class PagesController < ApplicationController
         format.json { render json: @page, status: :created, location: @page }
         format.js { render :layout => false }
       else
-        format.html { render action: "new" }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
-        format.js { render :layout => false }
+        #format.html { render action: "new" }
+        format.html { redirect_to request.referer }  
+        #format.json { render json: @page.errors, status: :unprocessable_entity }
+        #format.js { render :layout => false }
       end
     end
   end

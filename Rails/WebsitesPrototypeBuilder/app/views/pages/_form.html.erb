@@ -2,7 +2,6 @@
   <% if @page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
-
       <ul>
       <% @page.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -16,7 +15,4 @@
     <%= f.text_field :page_name %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

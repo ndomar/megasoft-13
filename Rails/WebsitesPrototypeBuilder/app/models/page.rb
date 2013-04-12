@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Page < ActiveRecord::Base
 	##
 	# The Designed Page
@@ -14,7 +15,7 @@ class Page < ActiveRecord::Base
   belongs_to :project
   #checks that page name is present and is unique
   
-  #validates :page_name, :presence => {:message => "موجود صفحه إسم"}
-  #validates :page_name, :uniqueness => {:message => "فريد صفحه إسم"}
+  validates :page_name, :presence => {:message => "  إسم  صفحه موجود"}
+  validates :page_name, :uniqueness => {:message => "فريد صفحه إسم"}
 
 end
