@@ -1,9 +1,10 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-<<<<<<< HEAD
 
-=======
-  resources :projects
->>>>>>> 67266e0c13407b3af0c511d4c7d32d4b5bd8f8bc
+  get 'cardsorts/new'
+  get 'cardsorts/edit'
+  get 'cardsorts/create_card'
+  get 'cardsorts/create_group'
+
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
