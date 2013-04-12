@@ -10,7 +10,6 @@
  *= require bootstrap
  *= require jquery.ui.all
  *= require_self
- *= require_tree .
  */
  *= require twitter/bootstrap
 

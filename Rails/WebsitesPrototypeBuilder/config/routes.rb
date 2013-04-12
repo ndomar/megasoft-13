@@ -2,7 +2,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
-#   root to: "home#index"
+  root to: "home#index"
 
   get "comments/create"
   get "comments/destroy"
@@ -22,7 +22,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :tasks do
     resources :task_results
   end
-  #get "/log/:id" => 'task_results#index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
