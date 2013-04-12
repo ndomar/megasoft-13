@@ -4,4 +4,6 @@ class Reviewer < ActiveRecord::Base
   has_and_belongs_to_many :tasks
 
   attr_accessible :email
+  has_many :invitations
+  has_many :comments
 end

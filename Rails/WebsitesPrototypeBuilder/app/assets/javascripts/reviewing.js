@@ -83,3 +83,10 @@ $(document).ready(function() {
 			scroll: false
 		});
 });
+
+function test_page(){
+	var designed_html= $('#html_content').text();
+	var w = window.open("",null,"height=500,width=1000,status=yes,toolbar=no,menubar=no,location=no");
+    $(w.document.body).html(designed_html);
+};
+
