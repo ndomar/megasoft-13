@@ -39,15 +39,17 @@ post 'steps/update'
     resources :comments
     resources :questions
   end
-
  
   get "/log/:id" => 'task_results#index'
 
+  get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
+  get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
+  get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   
   resources :tasks do
     resources :task_results
   end
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
