@@ -37,7 +37,7 @@ module WebsitesPrototypeBuilder
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, :password_confirmation]
+    config.filter_parameters += [:password]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -58,13 +58,5 @@ module WebsitesPrototypeBuilder
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-
-    # don't generate Unit tests for views and helpers
-    config.generators do |g|
-      g.test_framework :rspec, fixture: true
-      g.fixture_replacement :factory_girl, dir: 'spec/factories'
-      g.view_specs false
-      g.helper_specs false
-    end
   end
 end

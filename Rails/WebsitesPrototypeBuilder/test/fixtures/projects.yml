@@ -1,3 +1,5 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
 one:
   project_name: MyString
   type: 
@@ -5,7 +7,5 @@ one:
 
 two:
   project_name: MyString
-  name: MyString
-  designer: 
-  project_type: MyString
+  type: 
   description: MyText

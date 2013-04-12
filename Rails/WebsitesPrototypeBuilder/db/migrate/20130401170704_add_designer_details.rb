@@ -17,4 +17,3 @@ class AddDesignerDetails < ActiveRecord::Migration
   end
 
 end
-

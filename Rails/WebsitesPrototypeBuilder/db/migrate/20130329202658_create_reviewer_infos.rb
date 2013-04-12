@@ -1,5 +1,4 @@
 class CreateReviewerInfos < ActiveRecord::Migration
-  
   def change
     create_table :reviewer_infos do |t|
       t.string :name
@@ -13,5 +12,4 @@ class CreateReviewerInfos < ActiveRecord::Migration
       t.timestamps
     end
   end
-  
 end

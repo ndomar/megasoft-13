@@ -1,0 +1,13 @@
+
+		<% @groups.each do |group| %>
+			<%= render "group", desc: group.description, title: group.title %>
+		<% end %>
+
+
+<% if @cardsort.open %>
+       <div type="add_new_group" id='add-new-group' class="group new-group selected-group"></div>
+
+    <% end %>
+
+    
+	

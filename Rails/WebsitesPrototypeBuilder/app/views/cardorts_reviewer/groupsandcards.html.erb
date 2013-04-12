@@ -1,0 +1,66 @@
+<%= stylesheet_link_tag "cardorts_reviewer.css.scss" %>
+<%= javascript_include_tag "cardorts_reviewer.js" %>
+
+<div id='wrapper'>
+	<div id='content'>
+ 
+    
+   <div>
+    <div class='main-wrapper' id='main-card-wrapper'>
+    <div>
+      <!-- This div is left empty
+           intentionally to maintain the
+           height of main-card-wrapper
+      -->
+    </div>
+    <div class='main' id="main-card">
+      <img class='icon' src="/assets/card.png" alt='card thumbnail'>
+      <div class='details'>
+        <label  id='title-card' type="text" />
+        <br/>
+       <label id='description-card'></label>
+      </div>
+      <a id= 'add-button-card' class='add-button'></a>
+    </div>
+    </div>
+
+    <div class='main-wrapper' id='main-group-wrapper'>
+    <div>
+      <!-- This div is left empty
+           intentionally to maintain the
+           height of main-card-wrapper
+      -->
+    </div>
+    <div class='main' id='main-group'>
+      <img class='icon' src="/assets/group.png" alt='group thumbnail'>
+      <div class='details'>
+        <label  id='title-group' type="text" />
+        <% if (@cardsort.open) %>
+        <input id='add-title-group'/>
+        <% end %>
+        <br/>
+        <label id='description-group'></label>
+         <% if (@cardsort.open) %>
+         <input id='add-description-group'/>
+         <% end %>
+         
+      </div>
+      <% if (@cardsort.open) %>
+      <a id= 'add-button-group' class='add-button'></a>
+      <% end %>
+    </div>
+    </div>    
+     </div>
+		<div id='groups'>
+					<%= render "groups_view" %>
+		</div>
+
+		<div id='cards'>
+					<%= render "cards_view" %>
+		</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(init);
+</script>
