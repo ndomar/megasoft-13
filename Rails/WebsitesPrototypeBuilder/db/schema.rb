@@ -468,6 +468,4 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.datetime "updated_at",                 :null => false
     t.integer  "page_id",     :default => 1
   end
-
 end
->>>>>>> 676ac6bb285d7a19a9c6c2642fe1edf4956d993c
