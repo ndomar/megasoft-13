@@ -5,6 +5,7 @@ class Task<ActiveRecord::Base
   has_many :steps
   has_many :task_results
   has_and_belongs_to_many :reviewers
+<<<<<<< HEAD
   has_many :steps
 
   validates :name, :presence => true
@@ -30,3 +31,7 @@ class Task<ActiveRecord::Base
   end
 end
 
+=======
+  validates :name, :presence => true
+end
+>>>>>>> master

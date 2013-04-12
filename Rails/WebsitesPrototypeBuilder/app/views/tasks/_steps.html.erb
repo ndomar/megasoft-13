@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <table dir ="rtl" align = "center">
   <tr>
     <td> الجزء</td>
@@ -20,3 +21,27 @@
     </tr>
   <% end %>
 </table>
+=======
+<table dir ="rtl" align = "center">
+  <tr>
+    <td> الجزء</td>
+    <td> الحدث</td>
+    <td align = "center"> الوصف </td>
+    <td> إزالة </td>
+  </tr>
+  <% @steps.each do |step| %>
+    <tr id = "<%="step_#{step.id}"%>" >
+      <td><%= step.component %> </td>
+      <td><%= step.event %> </td>
+      <td align = "center"> 
+        <% if step.description %> 
+        <%= step.description %> 
+        <% end %>
+      </td>
+      <td align = "center">
+          <%= link_to "x", delete_step_path(:id => step.id, :task => @task.id), :remote => true %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+>>>>>>> master

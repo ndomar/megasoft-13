@@ -1,3 +1,4 @@
+ 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 one:
   html: MyText
@@ -7,3 +8,14 @@ two:
   html: MyText
   page_name: MyText
 
+=======
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+one:
+  html: MyText
+  page_name: MyText
+
+two:
+  html: MyText
+  page_name: MyText
+
+>>>>>>> master

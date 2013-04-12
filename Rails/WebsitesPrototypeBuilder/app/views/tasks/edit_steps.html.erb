@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= javascript_include_tag "edit_steps" %>
 
 <div id ="wrapper" >
@@ -43,3 +44,50 @@
   </div>
 </div>
 
+=======
+<%= javascript_include_tag "edit_steps" %>
+
+<div id ="wrapper" >
+
+  <div id ="sidebar">
+
+    <div id="add_step" style ="display:none; text-align:left">
+      <h2 style = "text-algin:center"> أضف خطوة جديدة </h2>
+      
+      <div id = "general_events" >
+        <input type ="radio" name = "events_list" value = "click" checked = "checked"> onclick <br/> </input>
+        <input type ="radio" name = "events_list" value = "mouseover"> onhover <br/> </input>
+        <br/>
+        <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
+        <br/> <br/>
+        <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>')"> إضافة الخطوة </button>
+      </div>
+
+    </div>
+
+    <h2 style = "text-align:center"> الخطوات </h2>
+
+    <div id = "steps_list">
+      <%= render "steps" %>
+    </div>
+    
+  </div>
+
+  <div id="content">
+    <div id = "returning_to_home">
+      <%= link_to "العودة إلي صفحة المهمة", @task %>
+    </div>
+    <br/>
+
+    <div id ="embedded">
+      <%= @page.html.html_safe %>
+    </div>
+
+    <button id = "dehighlight" style = "display:none"></button>
+
+    <%= hidden_field_tag(:component_id, :id,  :value => "embedded") %>
+
+  </div>
+</div>
+
+>>>>>>> master
