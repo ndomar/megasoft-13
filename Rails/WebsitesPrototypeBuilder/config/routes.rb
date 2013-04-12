@@ -1,4 +1,21 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+
+=======
+  # set devise for Designer, and set the registerations controller to the custom one
+  devise_for :designers, :controllers => { :registrations => "registrations" }
+
+get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+post 'steps/update'
+    resources :projects do
+      resources :tasks do
+        resources :steps
+    end
+  end
+  resources :tasks do
+    resources :steps
+  end
+
+>>>>>>> f253a0989b64a7be747b405db60bf09b21c1086c
  get 'cardsorts/new'
  get 'cardsorts/edit'
  get 'cardsorts/create_card'
