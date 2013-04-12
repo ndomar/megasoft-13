@@ -13,12 +13,12 @@
     </tr>
     <% @task.task_results.each do |result| %>
       <%if result.reviewer %>
-	<tr>
-	  <td><%= result.reviewer.email %></td>
-	  <td><%= result.time %></td>
-	  <td><%= result.success %></td>
-	  <td><%= link_to 'التفاصيل', :controller=> :task_results, :action => 	:index, :id => result.id %></td>
-	</tr>
+      	<tr>
+      	  <td><%= result.reviewer.email %></td>
+      	  <td><%= result.time %></td>
+      	  <td><%= result.success %></td>
+      	  <td><%= link_to 'التفاصيل', :controller=> :task_results, :action => 	:index, :id => result.id %></td>
+      	</tr>
       <% end %>
     <% end %> 
   </table>
