@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require 'spec_helper'
 
 describe QuestionnairesController do
@@ -148,5 +147,5 @@ describe QuestionnairesController do
       response.should redirect_to questionnaires_url
     end
   end
->>>>>>> master
+ 
 end

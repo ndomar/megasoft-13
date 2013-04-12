@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require 'spec_helper.rb'
 
 describe Qquestion do
@@ -58,5 +57,5 @@ describe Qquestion do
     ono_choice.should_not be_valid
   end
 
->>>>>>> master
+ 
 end

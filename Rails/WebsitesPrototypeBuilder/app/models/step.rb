@@ -13,13 +13,13 @@
 class Step < ActiveRecord::Base
   belongs_to :task
   has_many :step_answers
-<<<<<<< HEAD
+ 
   attr_accessible :component, :description, :event
   has_many :step_answers
 
 =======
   attr_accessible :component, :description, :event, :task_id
->>>>>>> master
+ 
   validates :description, :presence => true
   validates :component, :presence => true
   validates :event, :presence => true

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require 'spec_helper'
 describe TasksController do
   it "should find task & step. create new step_answer & task_result" do
@@ -97,6 +96,4 @@ describe TasksController do
     get :edit_steps, id: task
     response.should render_template("edit_steps")
   end
-
->>>>>>> master
 end

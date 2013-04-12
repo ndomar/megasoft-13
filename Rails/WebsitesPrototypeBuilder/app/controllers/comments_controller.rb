@@ -23,10 +23,6 @@ class CommentsController < ApplicationController
     if @comment.save
       # send a notification email to the designer including theses attributes
       ReviewerInviter.send_notification(@email, @comment, @reviewer_email, @timestamp)
-<<<<<<< HEAD
-=======
-      ReviewerInviter.take_screenshot(@url)
->>>>>>> master
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Comment was successfully created.' }
   	else
@@ -97,5 +93,4 @@ class CommentsController < ApplicationController
       format.js   { render :layout => false }
     end
   end
->>>>>>> 8b95412fda038b468d3fda0c6b1544fd213b4886
 end

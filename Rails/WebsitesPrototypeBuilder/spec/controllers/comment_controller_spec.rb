@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require 'spec_helper'
 
 describe CommentsController do
@@ -116,5 +115,5 @@ describe CommentsController do
       response.should redirect_to ("/pages/reviewer?id=#{assigns(:page).id}&notice=Comment+was+successfully+deleted.")
     end
   end
->>>>>>> master
+ 
 end

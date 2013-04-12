@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require 'spec_helper.rb'
 
 describe Question do
@@ -58,5 +57,5 @@ describe Question do
     no_body.should_not be_valid
   end
 
->>>>>>> master
+ 
 end

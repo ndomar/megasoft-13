@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 FactoryGirl.define do
   factory :qquestion do
     body "My question?"
@@ -12,5 +11,5 @@ FactoryGirl.define do
     qtype 1
     project_id 1
   end
->>>>>>> master
+ 
 end

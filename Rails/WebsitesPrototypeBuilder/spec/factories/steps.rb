@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 FactoryGirl.define do 
   factory :step do
     component "testComponent"
@@ -14,5 +13,5 @@ FactoryGirl.define do
     description "testDescription"
     task_id "1"
   end
->>>>>>> master
+ 
 end

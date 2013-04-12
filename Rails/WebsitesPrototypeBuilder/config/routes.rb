@@ -16,7 +16,6 @@ post 'steps/update'
     resources :steps
   end
 
->>>>>>> f253a0989b64a7be747b405db60bf09b21c1086c
  get 'cardsorts/new'
  get 'cardsorts/edit'
  get 'cardsorts/create_card'
@@ -27,7 +26,7 @@ post 'steps/update'
   get 'cardsorts/edit'
   get 'cardsorts/create_card'
   get 'cardsorts/create_group'
->>>>>>> master
+ 
 
   resources :projects
   devise_for :designers
@@ -67,8 +66,6 @@ post 'steps/update'
 =======
 
   get "/log/:id" => 'task_results#index'
-
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

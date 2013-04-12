@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $(function(){
   $('#embedded').find('a').each(function () {
     $(this).bind('click',false);
@@ -65,7 +64,6 @@ function dehighlight(id){
  } 
 
 
-=======
 $(function(){
   $('#embedded').find('a').each(function () {
     $(this).bind('click',false);
@@ -132,4 +130,4 @@ function dehighlight(id){
  } 
 
 
->>>>>>> master
+ 

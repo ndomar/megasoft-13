@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 FactoryGirl.define do
   factory :question do
     body "My question?"
@@ -12,5 +11,5 @@ FactoryGirl.define do
     assigned_part "1"
     page_id 1
   end
->>>>>>> master
+ 
 end

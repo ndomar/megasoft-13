@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 require 'spec_helper.rb'
 
 describe Questionnaire do
@@ -78,5 +77,5 @@ describe Questionnaire do
 	  questionnaire.should be_valid
 	end
 
->>>>>>> master
+ 
 end
