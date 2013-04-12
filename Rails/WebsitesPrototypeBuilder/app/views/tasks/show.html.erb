@@ -16,25 +16,25 @@
     <% @task.task_results.each do |result| %>
       <% render "calculate_success", :f => result %> 
       <%if result.reviewer %>
-	<tr>
-	  <td><%= result.reviewer.email %></td>
-	  <td><%= result.time %></td>
-	  <td><%= result.success %> % </td>
-	  <td><%= result.clicks %><td>
-	</tr>
-	<tr>
-	<td>
-	<%= render "create_bars", :x => result %>
-	  </td>
-	</tr>
+     	  <tr>
+     	    <td><%= result.reviewer.email %></td>
+     	    <td><%= result.time %></td>
+     	    <td><%= result.success %> % </td>
+     	    <td><%= result.clicks %><td>
+     	  </tr>
+	      <tr>
+	      <td>
+	      <%= render "create_bars", :x => result %>
+	        </td>
+	      </tr>
       <% end %>
     <% end %> 
   </table>
 <% else %> 
   <div class="alert">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <strong>عذراً!</strong> لا توجد نتائج 
-</div>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>عذراً!</strong> لا توجد نتائج 
+  </div>
 <% end %>
 
 <%= link_to 'Back', tasks_path %>
