@@ -5,7 +5,6 @@ class CommentsControllerTest < ActionController::TestCase
     assert_equal 2, Comment.count
   end
 
-=======
 require 'test_helper'
 
 class CommentsControllerTest < ActionController::TestCase

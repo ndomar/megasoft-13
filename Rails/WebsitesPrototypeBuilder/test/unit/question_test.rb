@@ -5,7 +5,7 @@ class QuestionTest < ActiveSupport::TestCase
   #   assert true
   # end
 end
-=======
+
 require 'test_helper'
 
 class QuestionTest < ActiveSupport::TestCase

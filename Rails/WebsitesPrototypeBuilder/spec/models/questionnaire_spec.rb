@@ -37,7 +37,6 @@ describe Questionnaire do
 	  questionnaire.should be_valid
 	end
 
-=======
 require 'spec_helper.rb'
 
 describe Questionnaire do

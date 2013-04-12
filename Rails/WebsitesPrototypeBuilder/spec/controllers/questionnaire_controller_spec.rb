@@ -72,7 +72,7 @@ describe QuestionnairesController do
       response.should redirect_to questionnaires_url
     end
   end
-=======
+
 require 'spec_helper'
 
 describe QuestionnairesController do

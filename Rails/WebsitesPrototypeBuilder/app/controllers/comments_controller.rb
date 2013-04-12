@@ -50,7 +50,7 @@ class CommentsController < ApplicationController
       format.js   { render :layout => false }
     end
   end
-=======
+
 class CommentsController < ApplicationController
   # called to create a new comment in the database
   # finds the selected page

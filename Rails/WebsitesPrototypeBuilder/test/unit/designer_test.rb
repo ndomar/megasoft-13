@@ -5,5 +5,4 @@ class DesignerTest < ActiveSupport::TestCase
   #   assert true
   # end
 end
-=======
 end

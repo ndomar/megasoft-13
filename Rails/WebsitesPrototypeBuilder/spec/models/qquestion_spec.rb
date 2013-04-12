@@ -27,7 +27,6 @@ describe Qquestion do
     ono_choice.should_not be_valid
   end
 
-=======
 require 'spec_helper.rb'
 
 describe Qquestion do

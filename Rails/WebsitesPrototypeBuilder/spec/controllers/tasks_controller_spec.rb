@@ -61,7 +61,6 @@ describe TasksController do
     get :edit_steps, id: task
     response.should render_template("edit_steps")
   end
-=======
 require 'spec_helper'
 
 describe TasksController do

@@ -35,7 +35,6 @@ $(document).on('nested:fieldRemoved:qquestions', function(event){
 	questions_num--;
 	if(questions_num<=1)
 		$(".question_to_delete").css({"display":"none"});
-=======
 var questions_num=1;
 // Used to make the questions sortable using Jquesry UI
 $(function() {

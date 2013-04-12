@@ -3,8 +3,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
- 
-=======
+
 one:
   designer_name: MyString
   email: MyString
@@ -25,7 +24,6 @@ two:
   profession: MyString
   max_size: MyString
  
-=======
  
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
@@ -49,4 +47,3 @@ two:
   profession: MyString
   max_size: MyString
  
-=======

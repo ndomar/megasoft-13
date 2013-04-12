@@ -1,7 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
- 
-=======
+
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
@@ -21,7 +20,7 @@ post 'steps/update'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
-=======
+
   get 'cardsorts/new'
   get 'cardsorts/edit'
   get 'cardsorts/create_card'
@@ -63,7 +62,7 @@ post 'steps/update'
   end
  
   #
-=======
+
 
   get "/log/:id" => 'task_results#index'
 

@@ -27,7 +27,6 @@ describe Comment do
     no_body.should_not be_valid
   end
 
-=======
 require 'spec_helper.rb'
 
 describe Comment do

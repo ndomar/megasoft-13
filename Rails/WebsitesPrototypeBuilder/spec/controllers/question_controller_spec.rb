@@ -56,7 +56,7 @@ describe QuestionsController do
       response.should redirect_to ("/pages/designer?id=#{assigns(:page).id}&notice=Question+was+successfully+deleted.")
     end
   end
-=======
+
 require 'spec_helper'
 
 describe QuestionsController do

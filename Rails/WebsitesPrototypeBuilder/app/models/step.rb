@@ -17,7 +17,7 @@ class Step < ActiveRecord::Base
   attr_accessible :component, :description, :event
   has_many :step_answers
 
-=======
+
   attr_accessible :component, :description, :event, :task_id
  
   validates :description, :presence => true

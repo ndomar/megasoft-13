@@ -31,7 +31,7 @@ class Task<ActiveRecord::Base
   end
 end
 
-=======
+
   validates :name, :presence => true
 end
  

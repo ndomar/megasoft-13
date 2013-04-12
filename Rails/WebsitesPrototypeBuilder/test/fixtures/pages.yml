@@ -7,7 +7,6 @@ two:
   html: MyText
   page_name: MyText
 
-=======
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 one:
   html: MyText
@@ -16,4 +15,3 @@ one:
 two:
   html: MyText
   page_name: MyText
-======
