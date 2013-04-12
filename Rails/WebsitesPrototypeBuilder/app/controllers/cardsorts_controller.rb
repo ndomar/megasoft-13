@@ -1,4 +1,10 @@
 class CardsortsController < ApplicationController
+	# create new cardsort from sent parameters
+  # * *Args* :
+  # - none
+  # * *Returns* :
+  # - void
+  #
 	def new
 		@cardsort = Cardsort.new(params[:cardsort])
 		@cardsort.save
@@ -9,6 +15,12 @@ class CardsortsController < ApplicationController
 		session[:cardsort_id] = @cardsort.id
 	end
 
+	# edit a previously made cardsort by id
+  # * *Args* :
+  # - none
+  # * *Returns* :
+  # - void
+  #
 	def edit
 		@cardsort = Cardsort.find(params[:cardsort_id])
 		@cards = @cardsort.cards
@@ -18,6 +30,12 @@ class CardsortsController < ApplicationController
 		render "new"
 	end
 
+	# creates a new card and sends the javascript that renders to the client
+  # * *Args* :
+  # - none
+  # * *Returns* :
+  # - void
+  #
 	def create_card
 		@card = Card.new(title: params[:title],
 			description: params[:desc])
@@ -31,6 +49,12 @@ class CardsortsController < ApplicationController
 		end
 	end
 
+	# creates a new group and sends the javascript that renders to the client
+	# * *Args* :
+  # - none
+  # * *Returns* :
+  # - void
+  #
 	def create_group
 		@group = Group.new(title: params[:title],
 			description: params[:desc])
