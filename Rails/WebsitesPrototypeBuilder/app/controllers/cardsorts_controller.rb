@@ -1,4 +1,5 @@
 class CardsortsController < ApplicationController
+	##
 	# create new cardsort from sent parameters
   # * *Args* :
   # - none
@@ -15,6 +16,7 @@ class CardsortsController < ApplicationController
 		session[:cardsort_id] = @cardsort.id
 	end
 
+	##
 	# edit a previously made cardsort by id
   # * *Args* :
   # - none
@@ -30,6 +32,7 @@ class CardsortsController < ApplicationController
 		render "new"
 	end
 
+	##
 	# creates a new card and sends the javascript that renders to the client
   # * *Args* :
   # - none
@@ -49,6 +52,7 @@ class CardsortsController < ApplicationController
 		end
 	end
 
+	##
 	# creates a new group and sends the javascript that renders to the client
 	# * *Args* :
   # - none
