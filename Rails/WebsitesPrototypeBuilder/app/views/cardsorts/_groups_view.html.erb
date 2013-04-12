@@ -1,0 +1,32 @@
+<div id='groups-wrapper'>
+	<div class='main-wrapper'>
+		<div>
+			<!-- This div is left empty
+					 intentionally to maintain the
+					 height of main-card-wrapper
+			-->
+		</div>
+		<div class='main' id='main-group'>
+			<img class='icon' src="/assets/group.png" alt='group thumbnail'>
+			<div class='details'>
+				<input  id='title-group' type="text" />
+				<br/>
+				<textarea id='description-group'></textarea>
+			</div>
+			<a id= 'add-button-group' class='add-button'></a>
+			<div id='error-group' class='error'>
+				CLick a the plus button to add a new group.
+			</div>
+		</div>
+	</div>		
+
+	<div class='bottom-container' id="groups">
+		<% @groups.each do |group| %>
+			<%= render "group", desc: card.description, title: card.title %>
+		<% end %>
+
+		<div class='group new-group selected-group'
+			title='' description=''>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div id='cards-wrapper'>
+	<div class='main-wrapper'>
+		<div>
+			<!-- This div is left empty
+					 intentionally to maintain the
+					 height of main-card-wrapper
+			-->
+		</div>
+		<div class='main' id="main-card">
+			<img class='icon' src="/assets/card.png" alt='card thumbnail'>
+			<div class='details'>
+				<input  id='title-card' type="text" />
+				<br/>
+				<textarea id='description-card'></textarea>
+			</div>
+			<a id= 'add-button-card' class='add-button'></a>
+			<div id='error-card' class='error'>
+				CLick a the plus button to add a new card.
+			</div>
+		</div>
+	</div>		
+
+	<div class='bottom-container' id='cards'>
+		<% @cards.each do |card| %>
+			<%= render "card", desc: card.description, title: card.title %>
+		<% end %>
+
+		<div class='card new-card selected-card'
+			title='' description=''>
+		</div>
+	</div>
+</div>
