@@ -11,6 +11,8 @@
  *= require jquery.ui.all
  *= require_self
  */
+ *= require twitter/bootstrap
+
  
 html,body{ 
 	width:100%; 
