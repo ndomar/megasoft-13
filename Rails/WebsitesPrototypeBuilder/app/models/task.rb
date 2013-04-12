@@ -6,6 +6,16 @@ class Task<ActiveRecord::Base
   has_and_belongs_to_many :reviewers
   validates :name, :presence => true
 
+  ##
+  # send a task invitation to specified email
+  # create the reviewer if not already existant
+  # * *Args* :
+  # - +email+ -> the current page
+  # - +msg+ -> custom message for the email
+  # - +url+ -> url to take the invitation
+  # * *Returns* :
+  # - void
+  #
   def send_invitation(email, msg, url)
     @reviewer = Reviewer.find_by_email(email)
     if @reviewer == nil
