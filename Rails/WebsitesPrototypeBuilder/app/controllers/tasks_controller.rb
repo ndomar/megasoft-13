@@ -129,14 +129,12 @@ class TasksController < ApplicationController
 
   def new_step
     @step = Step.create(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
-    @task = Task.find_by_id(params[:id])
-    if @task
-      @steps = @task.steps
-    end
     @created = @step.save
+    @task = Task.find_by_id(params[:id])
+    @steps = @task.steps
     respond_to do |format|
-      if @created
-        format.js {render "step_list", :status => :created}
+      if @step
+        format.js {render "step_list"}
       else
         format.js {render "error"}
       end
