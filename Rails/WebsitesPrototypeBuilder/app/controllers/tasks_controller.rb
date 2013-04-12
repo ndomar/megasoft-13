@@ -24,7 +24,15 @@ class TasksController < ApplicationController
   #   -renders form to create new task
   #
   def new
+    @pages = Project.find(params[:project_id]).pages
     @task = Task.new
+
+    @pageslist = []
+
+    @pages.each do |p|
+      a = @pageslist.length
+      @pageslist[a] = [p.page_name, p.id]
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -69,7 +77,6 @@ class TasksController < ApplicationController
   #
   def create
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
