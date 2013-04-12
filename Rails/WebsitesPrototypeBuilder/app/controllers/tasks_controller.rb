@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   #   -+Task+->: an instance of the class task
   #* *Returns*    :
   #   -the details of this task and renders itas an html
+  #
   
   
   def show
@@ -122,5 +123,9 @@ class TasksController < ApplicationController
   def invite_user
     
     @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
+  
+  end
+  def makesure
+    puts(params[:task_id] , params[:reviewer_id])
   end
 end
