@@ -26,39 +26,104 @@ $(document).ready(function (){
 			$("#"+$("#eid_inp").val()).children().first().text($(this).val());
 		}
 		// else{
-		// 	if ($(this).attr("property")=="left"){
-		// 		if ($("#left_inp").val().match([0-9]+)){
-					
-		// 		}
-		// 	}
-		// 	else if ($(this).attr("property")=="right"){
-		// 		if ($("#left_inp").val().match([0-9]+)){
-					
-		// 		}
-		// 	}
-		// 	else if ($(this).attr("property")=="margin-left"){
-		// 		if ($("#left_inp").val().match([0-9]+)){
-					
-		// 		}
-		// 	}
-		// 	else if ($(this).attr("property")=="margin-right"){
+			// if ($(this).attr("property")=="left"){
+			// 	var value = parseInt($("#left_inp").val());
+			// 	if (value<0 || exceedsWidth(value)){
+			// 		return;
+			// 	}
+			// }
+			// else if ($(this).attr("property")=="top"){
+			// 	var value = parseInt($("#top_inp").val());
+			// 	if (value<0 || exceedsHeight(value)){
+			// 		return;
+			// 	}
+			// }
+			// else if ($(this).attr("property")=="margin-left"){
+			// 	var value = parseInt($("#margin_left_inp").val());
+			// 	if (exceedsWidth(value)||!insideDesignPageHorizontally(value)){
+			// 		return;
+			// 	}
+			// }
+			// else if ($(this).attr("property")=="margin-right"){
+			// }
+			// else if ($(this).attr("property")=="margin-top"){
 
-		// 	}
-		// 	else if ($(this).attr("property")=="margin-top"){
+			// }
+			// else if ($(this).attr("property")=="margin-bottom"){
 
-		// 	}
-		// 	else if ($(this).attr("property")=="margin-bottom"){
+			// }
+			// else if ($(this).attr("property")=="margin-right"){
 
-		// 	}
-		// 	else if ($(this).attr("property")=="margin-right"){
+			// }
+			// else if ($(this).attr("property")=="margin-right"){
 
-		// 	}
-		// 	else if ($(this).attr("property")=="margin-right"){
+			// }
+			else{
+				// alert(insideDesignPage($(this),$(this).attr("property"),$(this).val()));
+				if (insideDesignPage($("#"+$("#eid_inp").val()),$(this).attr("property"),$(this).val())){
+					$("#"+$("#eid_inp").val()).css($(this).attr("property"),$(this).val());
+				}
+			}
+			$("#"+$("#eid_inp").val()).click();
 
-		// 	}
-			$("#"+$("#eid_inp").val()).css($(this).attr("property"),$(this).val());
 		// }
 	});
+
+	function exceedsWidth(element,val,left_pos){
+		// alert(left_pos);
+		return element.outerWidth(true)+val>$("#designpage").width();
+	}
+
+	function exceedsHeight(element,val,top_pos){
+		// alert(top_pos);
+		return element.outerHeight(true)+val>$("#designpage").height();
+	}
+
+	function insideDesignPage(element,property,val){
+		try{
+			var pp = element.css(property);
+			element.css(property,val);
+			// var pos = element.position($("#designpage"));
+			var pos = element.offset();
+			pos.left-=$("#designpage").offset().left;
+			pos.top-=$("#designpage").offset().top;
+			// alert(pos.left+" "+pos.top+" "+property+" "+val);
+			if (pos.left>=0 && pos.left<=$("#designpage").width() && pos.top>=0 && pos.top<=$("#designpage").height() && pos.left+element.width()<=$("#designpage").width() && pos.top+element.height()<=$("#designpage").height() && element.outerWidth(true)<=$("#designpage").width() && element.outerHeight(true)<=$("#designpage").height() && parseInt(val)>=0){
+				element.css(property,pp);
+				return true;
+			}
+			else{
+				element.css(property,pp);
+				return false;
+			}
+		}
+		catch(err){
+			return false;
+		}
+	}
+
+	function maxWidth(element){
+	}
+
+	function maxHeight(element){
+	}
+
+	function maxMarginLeft(element){
+
+	}
+
+	function maxMarginRight(element){
+
+	}
+
+	function maxMarginTop(element){
+
+	}
+
+	function maxMarginBottom(element){
+
+	}
+
 	counter = 0; //Counts number of elements in the Design Page
 	$(".drag").draggable({
 		helper: 'clone',// clone the dragged element and drag the newly created one
@@ -97,11 +162,11 @@ $(document).ready(function (){
 			       	  		"width": "100%" ,
 			          		"height": "100%"
 			       		});
-			        	if (ui.element.outerWidth(true)>$("#designpage").width()){
+			        	if (exceedsWidth(ui.element,0,ui.position.left)){
 			        		$(this).resizable('widget').trigger('mouseup');
 			        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
 			        	}
-			        	else if (ui.element.outerHeight(true)>$("#designpage").height()){
+			        	else if (exceedsHeight(ui.element,0,ui.position.top)){
 			        		$(this).resizable('widget').trigger('mouseup');
 			        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
 			        	}
@@ -127,10 +192,7 @@ $(document).ready(function (){
 					}
 				})
 				.click(function() {	
-					/*$(".inp").css("visibility","visible");
-					$(".p_prop").css("visibility","visible");*/
 					$(".properties").css("visibility","visible");
-
 					var eid = $(this).attr("id");
 					$("#eid_inp").val(eid);
 					$("#text_inp").val($(this).children().first().text());

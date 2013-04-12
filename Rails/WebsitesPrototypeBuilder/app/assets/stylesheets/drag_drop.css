@@ -3,7 +3,7 @@ body {
 }
 
 #toolbox{
-	width: 200px;
+	width: 210px;
 	height:750px;
 	float:left;
 	left: 0px;
@@ -15,16 +15,17 @@ body {
 	/*border-radius: 20px;*/
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px; 
-	
+	padding-left: 10px;
+	padding-bottom: 20px;
 }
 
 #main{
 	text-align: left;
-	 width: 720px;
+	 width: 1000px;
 }
 
 #designpage{
-	width:513px;
+	width:950px;
 	height:750px;
 	text-align: center;
 	background-repeat: repeat-y;
@@ -32,6 +33,9 @@ body {
    	border:1px solid black;
    	float:right;
    	position: relative;
+   	padding: 10px;
+   	box-shadow: 0px 0px 10px 10px lightgray inset;
+   	border-radius: 10px;
 }
 
 .appended{

@@ -1,4 +1,4 @@
 class ProjectsController < ApplicationController
-	def index
+	def design
 	end
 end

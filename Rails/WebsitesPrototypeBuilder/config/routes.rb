@@ -17,6 +17,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
   get "/log/:id" => 'task_results#index'
 
+  get 'projects/design/:project_id' => 'projects#design' 
   resources :projects
   
   # The priority is based upon order of creation:
