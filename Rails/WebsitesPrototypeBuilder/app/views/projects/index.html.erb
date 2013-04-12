@@ -3,9 +3,23 @@
 
 <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
 <h2><%= p.project_name %></h2> <!-- show each project name -->
-<%= button_to "create new cardsort", {:controller => :cardsorts, :action => :new}, :method => :get %>
+<%= button_to_function "create new cardsort", "showPopup()" %>
 <hr/>
 <%end%>
+
+<div class='popup-darkscreen'>
+  <div class='popup-window'>
+    <h3 class='title'>New Cardsort</h3>
+    <%= form_for :cardsort, :url => {:controller => :cardsorts, :action => :new}, :method => :get do |form| %>
+      <%= form.text_field :title, :placeholder => "title" %>
+      <%= form.text_field :description, :placeholder => "description" %>
+      <label class="radio">Open<%= form.radio_button :open, true, :checked => true %></label>
+      <label class="radio">Close<%= form.radio_button :open, false %></label>
+      <%= form.submit "Create cardsort" %>
+      <%= button_to_function "cancel", "hidePopup()" %>
+     <% end %>
+  </div>
+</div>
 
 </body>
 </html>
