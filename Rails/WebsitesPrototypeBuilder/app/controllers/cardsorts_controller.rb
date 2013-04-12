@@ -1,3 +1,7 @@
+    ##
+    # Controller for cardsort pages
+    # 
+
 class CardsortsController < ApplicationController
 	##
 	# creates a new cardsort
