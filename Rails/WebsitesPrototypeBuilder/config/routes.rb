@@ -1,8 +1,30 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  # set devise for Designer, and set the registerations controller to the custom one
+  devise_for :designers, :controllers => { :registrations => "registrations" }
+
+get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+post 'steps/update'
+    resources :projects do
+      resources :tasks do
+        resources :steps
+    end
+  end
+  resources :tasks do
+    resources :steps
+  end
+
+ get 'cardsorts/new'
+ get 'cardsorts/edit'
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+
+  resources :projects
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
   root to: "home#index"
+
+  resources :projects
 
   get "comments/create"
   get "comments/destroy"
@@ -13,17 +35,26 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
 
+  resources :questionnaires
+  get 'cardsorts/new'
+
   resources :pages do
     resources :comments
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
   end
+ 
+  get "/log/:id" => 'task_results#index'
 
+  get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
+  get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
+  get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   
   resources :tasks do
     resources :task_results
   end
-  get "/log/:id" => 'task_results#index'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -71,8 +102,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   #     resources :products
   #   end
 
-  # See how all your routes lay out with "rake routes"
-
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
