@@ -23,6 +23,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
 
+  resources :questionnaires
   get 'cardsorts/new'
 
   resources :pages do
