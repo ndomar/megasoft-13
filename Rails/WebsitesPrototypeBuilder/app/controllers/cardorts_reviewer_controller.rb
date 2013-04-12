@@ -1,9 +1,9 @@
 class CardortsReviewerController < ApplicationController
   
-    ## 
+## 
 #It finds groups and cards belonging to a certain cardsort given its id
 # * *Args*    :
-#   Void
+#   - +id+ -> the id of the cardsort to be fetched
 # * *Returns* :
 #   Void
 #
@@ -14,6 +14,13 @@ class CardortsReviewerController < ApplicationController
     session[:cardsort_id] = @cardsort.id
   end
 
+## 
+#It creates a new group in an open cardsort system and saves it in the database
+# * *Args*    :
+#   - +id+ -> the id of the cardsort to be fetched
+# * *Returns* :
+#   Void
+#  
    def create_group
     @group = Group.new(title: params[:title],
       description: params[:desc])
@@ -26,11 +33,4 @@ class CardortsReviewerController < ApplicationController
       end
     end
   end
-
-  #def show_button
-    #@opencardsort = Cardsort.find(params[:id])
-    #if @opencardsort.open = 'true'
-    #then show button
-    #else hide button
-  #end
 end

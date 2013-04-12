@@ -1,0 +1,11 @@
+<div class="progress">
+  <% step_number = 0 %>
+  <% x.step_answers.each do |sol| %>
+    <% step_number += 1%>
+    <% if sol.successful %>
+      <div class="bar bar-success" style="width: 10%;"><%= step_number %></div>
+    <% else %>
+      <div class="bar bar-danger" style="width: 10%;"><%= step_number %></div>
+    <% end %>
+  <% end %> 
+</div>   

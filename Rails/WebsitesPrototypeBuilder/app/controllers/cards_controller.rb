@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
 
-   ## 
+## 
 #It intializes cards in the database.
 # * *Args*    :
 #   Void
