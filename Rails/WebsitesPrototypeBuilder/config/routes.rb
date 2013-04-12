@@ -37,7 +37,9 @@ post 'steps/update'
 
   resources :pages do
     resources :comments
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
   end
  
   get "/log/:id" => 'task_results#index'
