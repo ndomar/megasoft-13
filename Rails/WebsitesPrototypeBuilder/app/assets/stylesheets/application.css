@@ -10,7 +10,6 @@
  *= require bootstrap
  *= require jquery.ui.all
  *= require_self
- *
  */
  
 html,body{ 
@@ -134,7 +133,10 @@ div#content{
 	top: 0;
 	right: 0;
 	bottom: 0;
-  min-height:100%; 
+  min-height:100%;
+	overflow: auto;
+	word-wrap:break-word;
+  overflow-y: scroll;
 }
 
 #sidebar h4{
