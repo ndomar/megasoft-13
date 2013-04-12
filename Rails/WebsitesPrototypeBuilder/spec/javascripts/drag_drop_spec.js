@@ -1,6 +1,8 @@
 describe("DragDrop", function() {
   it("contains spec with an expectation", function() {
-  	loadFixtures("design.html.erb");
-    expect($("#designpage")).toExist();
+    expect($('<div id="designpage">')).toExist();
+  });
+  it("contains spec with an expectation", function() {
+    expect($('<div id="toolbox">')).toExist();
   });
 });
