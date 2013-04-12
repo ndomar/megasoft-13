@@ -12,3 +12,21 @@ textarea {
   padding-left: 5pt;
 
 }
+.submit {
+	-moz-box-shadow:inset 0px 1px 11px -50px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 11px -50px #ffffff;
+	box-shadow:inset 0px 1px 11px -50px #ffffff;
+	background-color:#f9f9f9;
+	-moz-border-radius:25px;
+	-webkit-border-radius:25px;
+	border-radius:25px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#666666;
+	font-size:15px;
+	padding:0px 10px;
+	text-decoration:none;
+	text-shadow:1px 0px 0px #ffffff;
+}.submit:hover {
+	background-color:#e9e9e9;
+}

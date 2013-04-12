@@ -13,6 +13,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
   get "questionnaires/answer_show"
+  get "questionnaires/index"
 
   resources :pages do
     resources :comments
@@ -26,6 +27,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
       resources :choice_qquestions
       resources :answer_questionnaires
     end
+     resources :answer_questionnaires
   end
 
   

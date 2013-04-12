@@ -9,30 +9,29 @@
 		<hr>
 		<% @questionnaire.qquestions.each do |question| %>
 			<strong><%=question.body %></strong>
-			<%= form_for [@questionnaire,question,question.answer_questionnaires.build] do |d| %>
+			<%= form_for [@questionnaire,question,question.answer_questionnaires.build] do |f| %>
  				<div>
 					<%@array = []%>
 					<%@c_all = ""%>
 					<!-- checking question type to give the correct form -->
 					<% if question.qtype ==1%>
-						<%= d.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
+						<%= f.text_field :answer, :required => true,:placeholder => "اكتب هنا"%>
 					<%elsif question.qtype==2%>
-						<%= d.text_area :answer, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
+						<%= f.text_area :answer, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
 					<%elsif question.qtype==3%>
 						<% question.choices.each do |choice| %>
 		 					<%@c_all+=choice.body+ "," %> 
 						<%end%>
-						<%=d.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+						<%=f.select(:answer, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
 					<%end%>
 					</br>
-					<%= d.submit "تسجىل الاجابة", :class => "btn btn-info" %>
+					<%= f.submit "حفظ", :class => "submit" %>
 					<hr>
 				<%end%>
 			<%end%>
 			</br>
 			</div>
-			<p><%= link_to "انتهيت", "../pages/reviewer" ,:class => "btn btn-info"%></p>
-			<%= button_to 'انتهيت', :action => 'index',:class => "btn btn-info" %>
+			<p><%= link_to "انتهيت",:controller => :questionnaires, :action => :index%></p>
 		</div>
 </div>
   
