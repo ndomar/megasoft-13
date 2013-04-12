@@ -37,7 +37,6 @@
 			<%end%>
 
 		</div>
-		
 		<!-- Fetching questions from the database,just for testing -->
 		<div id="questions" style="display:none">
 			<h4>&#1575;&#1604;&#1571;&#1587;&#1574;&#1604;&#1577;</h4>
@@ -57,31 +56,24 @@
 						<p onClick="lastm(this);"><%= question.body %></p>
 	                    <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
 	     				<h5>:اجابتك </h5>
-					<% question.answers.each do |ans| %>
-					<% if(question.body!="jhhsicn comment") then %>  <!-- to be used when session variables are added -->
+	     			<% question.answers.each do |ans| %>
 						<div class="answers2" style="display:none">
 							<p><%= ans.answer %></p>
 							<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
 							<hr>
 						</div>			
 					<%end%>
-					<%end%>
+					<!-- The deleting method uses AJAX destroy.js.erb -->
+					<p><%= link_to "امسح", [@page,question], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_question" %>
 					<hr>
-					<div>
-						<!-- show each answer for every question -->
-						<%= form_for [@page,question,question.answers.build] do |f| %>
-							<p><%= f.text_area :answer,:placeholder => "اكتب الاجابة هنا",:id => "message_area", :presence=> true%></p>
-							<%= f.submit "تسجىل", :class => "delete_comment"%>
-						<%end%>
-						<hr>
-					</div>
 				</div>
 			<%end%>
 		</div>
-			<!-- The + buttom on clicking draw the circle -->
-			<div id="add_comment" onclick="draw_circle();">+</div>
-			<!-- Notice to see the errors -->
-			<p id="notice"><%= notice %></p>
+		<!-- The + buttom on clicking draw the circle -->
+		<div class="add_comment" onclick="draw_circle();">+</div>
+		<!-- Fetching questions from the database,just for testing -->
+		<!-- Notice to see the errors -->
+		<p id="notice"><%= notice %></p>
 	</div>	
 
 	<!-- Main Content -->

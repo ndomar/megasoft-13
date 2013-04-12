@@ -12,7 +12,9 @@
 
 <body>
 <!-- layout stuff for the home page -->
-  
+
+<% if designer_signed_in? %>
+
 <!-- container for positioning the banner -->
 <div id="navigation_container">
 <!-- the ribbon body -->
@@ -21,7 +23,11 @@
     <ul id="navigation">
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
+
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar"></div></a></li>
+
+    <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
+
     </ul>
     <a href="#"><div width="107px" height="51px" class="logo"></div></a>
   <!-- end navigation links -->
@@ -50,12 +56,13 @@
 <!-- end container -->
 </div>
 
-
+<% end %>
+<br />
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
- <!-- -------------------- -->
+
 
 <div class="container"><%= yield %></div>
 <hr>
@@ -65,4 +72,7 @@
 
 <%= javascript_include_rpx(designer_session_url) %>
 </body>
+
+</html>
+
 </html>
