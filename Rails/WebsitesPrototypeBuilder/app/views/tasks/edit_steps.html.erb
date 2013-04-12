@@ -27,7 +27,9 @@
   </div>
 
   <div id="content">
-
+    <div id = "returning_to_home">
+      <%= link_to "العودة إلي صفحة المهمة", @task %>
+    </div>
     <div id ="embedded">
       <%= @page.html.html_safe %>
     </div>
