@@ -1,5 +1,34 @@
 # encoding: utf-8
 class TasksController < ApplicationController
+
+## 
+#finds the current task, it's page, creates a new instance of step_answer and task_result
+# * *Args*    :
+#   -+@task+ -> the current task
+#   -+@page+ -> the current task's page
+#   -+@step+ -> the first step of the current task
+#   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
+#   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
+# * *Returns*    :
+# - the current task, current step, step_answer for the current_task and task_result for the current task
+#
+  def task_reviewer
+    if Project.all.last.id <= params[:project_id].to_f
+
+      @project=Project.find(params[:project_id])
+      @reviewer= Reviewer.find(params[:reviewer_id])
+      @task= @project.tasks.find(params[:task_id])
+      @page= Page.find(1)
+      @step=@task.steps.find(params[:step_id])
+      @step_answer=@step.step_answers.new
+      @step_answer.save
+      @task_result=@task.task_results.new
+      @task_result.save
+      session[:task_result_id]= @task_result.id 
+    else
+      format.html { render :template => "tasks/task_reviewer_error" }
+    end
+  end
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
@@ -150,6 +179,64 @@ class TasksController < ApplicationController
                 :disposition => "attachment")
     rescue Pdfcrowd::Error => why
       render :text => why
+    end
+  end
+  ##
+  # Displays a task and its current steps to allow the designer to edit the steps.
+  # * *Args*    :
+  #   - +id+ ->: The id of the task for which the steps will be edited.
+  # * *Returns*  :
+  #   -The page this task is associated with, and the steps added to the task.
+  #
+
+  def edit_steps
+    @task = Task.find(params[:id])
+    @steps = @task.steps
+    @page = @task.page
+  end
+
+  ##
+  # Adds a new step to the task.
+  # * *Args*    :
+  #   - +task+ ->: The id of the task for which the step will be added.
+  #   - +event+ ->: The event associated with the step.
+  #   - +component+ ->: The component associated with the step.
+  #   - +description+ ->: The description for the step.
+  # * *Returns*  :
+  #   -The list of new steps if the step was successfully added, or an error if the step could not be saved.
+  #
+
+  def new_step
+    @step = Step.new(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
+    @created = @step.save
+    @task = Task.find_by_id(params[:id])
+    @steps = @task.steps
+    respond_to do |format|
+      if @created
+        format.js {render "step_list"}
+      else
+        format.js {render "error"}
+      end
+    end
+  end
+
+  ##
+  # Deletes a step from a task.
+  # * *Args*    :
+  #   - +id+ ->: The id of the step to be deleted.
+  #   - +task+ ->: The id of the task from which the step is to be deleted.
+  # * *Returns*  :
+  #   -The new list of steps after deletion.
+  #
+
+  def delete_step
+    @task = Task.find_by_id(params[:task])
+    @step = Step.find(params[:id])
+    @step.destroy
+    @steps = @task.steps
+    respond_to do |format|
+      format.html {render :nothing => true}
+      format.js {render "step_list"}
     end
   end
 end
