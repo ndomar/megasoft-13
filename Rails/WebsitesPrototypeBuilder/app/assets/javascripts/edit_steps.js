@@ -1,6 +1,5 @@
 $(function(){
   $('#embedded').find('a').each(function () {
-    //$(this).replaceWith($(this).text());
     $(this).bind('click',false);
   });
 });
@@ -49,12 +48,10 @@ function save(task_id){
   });
   $.ajax("/tasks/new_step/?" + params);
   $("#add_step").hide();
-  //$("#component_id").val("");
   dehighlight($("#component_id").val());
 }
 
 function highlight(id){
-  // A function that highlights a certain component given it's id
   var element= document.getElementById(id);
   element.style.border='none';
   element.style.boxShadow="0px 0px 6px 2px orange";
