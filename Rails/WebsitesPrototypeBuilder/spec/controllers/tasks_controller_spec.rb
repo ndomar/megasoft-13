@@ -2,7 +2,15 @@ require "spec_helper"
 
 describe TasksController do 
 
-  it "should find task & step. create new step_answer & task_result" do
+  describe "save pdf" do
+    it "saves statistics page as pdf" do
+      project = FactoryGirl.create(:project)
+      task = project.tasks.create(FactoryGirl.attributes_for(:task))
+      get :save, :project_id => project, :id => task
+      expect(response.code).to eq("200")
+    end
+  end
+ it "should find task & step. create new step_answer & task_result" do
     p=Project.new
     p.id=1
     p.save
@@ -136,3 +144,4 @@ describe TasksController do
       response.should render_template 'show'
     end
   end
+end

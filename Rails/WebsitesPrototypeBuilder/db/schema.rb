@@ -13,17 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130409143914) do
 
-  create_table "answer_questionnaires", :force => true do |t|
-    t.text     "body"
-    t.integer  "questionnaire_id"
-    t.integer  "qquestion_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "answer_questionnaires", ["qquestion_id"], :name => "index_answer_questionnaires_on_qquestion_id"
-  add_index "answer_questionnaires", ["questionnaire_id"], :name => "index_answer_questionnaires_on_questionnaire_id"
-
   create_table "answers", :force => true do |t|
     t.string   "answer"
     t.integer  "question_id"

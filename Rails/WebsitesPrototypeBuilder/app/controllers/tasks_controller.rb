@@ -156,6 +156,31 @@ class TasksController < ApplicationController
     end
   end
 
+  ## 
+  # save the statistics page as pdf on user's local machine
+  # * *Args*    :
+  #   - 
+  # * *Returns* :
+  #   - 
+  #
+  def save
+    begin
+      client = Pdfcrowd::Client.new("megasoft13", "b3964d6234ee767783f9b946e66ca19b")
+      client.usePrintMedia(true)
+
+      @task = Task.find(params[:id])
+      pdfa = render_to_string(:action => "show", :layout => false)
+      pdf = client.convertHtml(pdfa)
+
+
+      send_data(pdf, 
+                :filename => "untitled.pdf",
+                :type => "application/pdf",
+                :disposition => "attachment")
+    rescue Pdfcrowd::Error => why
+      render :text => why
+    end
+  end
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
   # * *Args*    :
@@ -214,5 +239,4 @@ class TasksController < ApplicationController
       format.js {render "step_list"}
     end
   end
-
 end

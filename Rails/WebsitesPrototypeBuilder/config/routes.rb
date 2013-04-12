@@ -16,13 +16,12 @@ WebsitesPrototypeBuilder::Application.routes.draw do
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
+  match 'projects/:project_id/tasks/:id/save' => 'tasks#save'
+
   devise_for :designers
   
   #at start up page goes to the home controller and the index action
   root to: "home#index"
-
-  resources :projects
-
   get "comments/create"
   get "comments/destroy"
   get "questions/create"
