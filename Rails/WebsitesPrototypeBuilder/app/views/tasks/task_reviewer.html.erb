@@ -1,33 +1,8 @@
 <!DOCTYPE html>
+<%= stylesheet_link_tag "reviewer_task" %>
+<%= javascript_include_tag "task_reviewer" %>
 <html>
 <head>
-
-<style type="text/css">
-.desc {
-position: absolute;
-background-color: #CCCCCC;
-}
-
-</style>
-
-<script>
-function highlight(id)
-{
-// A function that highlights a certain component given it's id
-var element= document.getElementById(id);
-element.style.border='none';
-element.style.boxShadow="0px 0px 6px 2px orange";
-}
- 
- //A function that de-highlight's a certain component given its id
- function dehighlight(id){
-  var element = document.getElementById(id);
-  element.style.boxShadow= 'none';
-  element.style.border=1;
- } 
-
-
-</script>
 </head>
 
 <body>
@@ -40,6 +15,9 @@ element.style.boxShadow="0px 0px 6px 2px orange";
 <input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2' style= "left : 600px; position : absolute;"/>
 <input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' style ="left : 400px; position : absolute;"/>
 
+<div class="desc"> 
+  "<%=@step.description %>"
+</div>
 <%= @page.html.html_safe %>
 
 </div>
@@ -53,14 +31,9 @@ element.style.boxShadow="0px 0px 6px 2px orange";
   <%= hidden_field_tag "total_time_taken", '0' %>
 <% end %>
 
-<div class="desc" style ="left : 1000px; top :60px" > 
-  "<%=@step.description %>"
-</div>
 
-
-
-<script>
- var currstep_element_id= "<%= @step.component %>";
+<script type="text/javascript">
+var currstep_element_id= "<%= @step.component %>";
  var count =1;
  var currstep_id= "<%= @step.id %>";
  var step_event = "<%= @step.event %>";
@@ -73,8 +46,7 @@ element.style.boxShadow="0px 0px 6px 2px orange";
  var starting_time= x.getMinutes(); //ge the starting time of the task
 
 var desc_height = $('.desc').height();
-alert(desc_height);
-$('#content').css({'margin-top':desc_height+10}); //keep the description pinned above the elements
+$('#content').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
 
  $("input").on(step_event, function(event) {
 
@@ -86,7 +58,7 @@ $('#content').css({'margin-top':desc_height+10}); //keep the description pinned 
 
     count=count+1; 
     currstep_id = <%=@step.id%>+1;
-    clicks_count=<%= @task_result.click%>+1;
+    clicks_count=<%= @task_result.clicks%>+1;
     total_time= d2.getMinutes() - starting_time;
 
     $("#change_id").val(currstep_id); //to increment the value of the curr step
@@ -106,12 +78,9 @@ $('#content').css({'margin-top':desc_height+10}); //keep the description pinned 
       // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
        currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
        highlight(currstep_element_id); //highlight the current step's component
-       clicks_count= "<%= @task_result.click%>"; //update the value of the no. of clicks
+       clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
        temp_time_nw= "<%=Time.now.strftime("%I:%M:%S")%>" ;
-
-
     });
-
 </script>
 </body>
 </html>
