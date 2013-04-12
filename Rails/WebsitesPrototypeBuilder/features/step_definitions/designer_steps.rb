@@ -203,14 +203,20 @@ Given(/^I am on a project's design page$/) do
   create_project
   visit '/projects'
   click_link "Show"
+  #In Arabic
+  #i am not responsible for that page
+
   #page.should have_content "Show"
 end
 
 When(/^I enter data in the textbox and press "(.*?)"$/) do |name|
   fill_in "page_page_name", :with => name
   click_button "+"
+
 end
 
 Then(/^page should refresh and the added page should appear in the sidebar$/) do 
   page.should have_content "Delete"
+  #In Arabic
+  #click_link "حذف"
 end
