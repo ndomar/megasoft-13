@@ -13,5 +13,4 @@ class Page < ActiveRecord::Base
   has_many :tasks
   has_many :answers,:dependent => :destroy
   belongs_to :project
-
 end

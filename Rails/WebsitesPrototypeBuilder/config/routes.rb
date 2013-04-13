@@ -58,7 +58,16 @@ post 'steps/update'
   get "pages/designer"
   get 'cardsorts/new'
 
-  resources :questionnaires
+  get "questionnaires/answer_show"
+  get "questionnaires/index"
+
+
+   resources :questionnaires do
+    resources :qquestions do
+      resources :choice_qquestions
+      resources :answer_questionnaires
+    end
+  end
 
   resources :pages do
     resources :comments

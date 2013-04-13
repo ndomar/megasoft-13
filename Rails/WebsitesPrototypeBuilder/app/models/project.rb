@@ -16,6 +16,7 @@ class Project < ActiveRecord::Base
   validates :project_name, :uniqueness => {:message => ".يوجد مشروع بهذا الاسم, برجاء ادخال اسم مشروع آخر"}
 
   belongs_to :designer
+  has_many :questionnaires,:dependent => :destroy
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
 end
@@ -41,4 +42,3 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
 end
- 
