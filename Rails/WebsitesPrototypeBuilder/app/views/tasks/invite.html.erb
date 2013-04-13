@@ -1,0 +1,6 @@
+<h3> Send New Invitation </h3>
+<%= form_tag(:action => 'invite_user', :id => params[:id]) do %>
+<p> Email: </br> <%= text_field_tag(:email) %> </p>
+<p> Invitation Message: </br> <%= text_field_tag :invitation_message %> </p>
+<%= submit_tag("Invite") %>
+<% end %>
