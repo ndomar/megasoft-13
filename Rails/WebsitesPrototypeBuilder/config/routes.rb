@@ -62,8 +62,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "/log/:id" => 'task_results#index'
 
 
+
   
  get 'cardsorts/create'
+
+ get 'projects/design/:project_id' => 'projects#design' 
+  
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

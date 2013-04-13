@@ -1,14 +1,5 @@
 class ProjectsController < ApplicationController
 
-  def index
-    @projects = Project.all
-
-    respond_to do |format|
-      format.html 
-      format.json { render json: @projects }
-    end
-  end
-
 
   def show   
     @project = Project.find(params[:id])   #I am sending the project to the design page
@@ -89,7 +80,8 @@ class ProjectsController < ApplicationController
     end
   end
 
-end
+	def design
+	end
 
   #before_filter :authenticate_designer! 
   ##
@@ -104,5 +96,7 @@ end
     #@projects = Project.find(:all, :conditions => {:designer_id => @designer.id}) #Getting all the projects done by the logged in designer
     @projects = Project.all  
   end
+
+end
 
 
