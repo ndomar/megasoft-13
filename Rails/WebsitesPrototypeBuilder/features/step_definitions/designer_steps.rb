@@ -192,3 +192,77 @@ Then /^I should see my name$/ do
   create_designer
   page.should have_content @designer[:fullname]
 end
+
+#########################################################
+#Hossam's Tests
+
+#This is so wrong!!!
+def create_page
+  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>" ,:project_id => 1}
+end
+
+def create_project
+  @project ||= { :project_name => "Test Project"}
+end
+  
+def delete_page
+  @page.destroy unless @page.nil?
+end
+
+def create_page_for_project
+  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>",:project_id => 1}
+end
+
+###BY HOSSAM###
+
+def create_project
+  @project = FactoryGirl.create(:project)
+end
+
+def create_page
+  @page = FactoryGirl.create(:page)
+end  
+Given(/^I am on a project's design page$/) do
+  create_project
+  create_page
+  visit '/projects'
+  click_link "Show"
+  #in arabic
+  #i am not responsible for that
+  #page.should have_content "Show"
+end
+
+When(/^I press Delete$/) do
+  click_link "Delete"
+  #in arabic
+  #click_link "حذف"
+  #I don't need to state that it should click OK
+end
+
+Then(/^page should refresh and the deleted page should no more be available in the sidebar$/) do
+   page.should_not have_content "Delete"
+end
+
+When(/^I press Save content$/) do 
+  #click_button "Save"
+  #method can't be executed so i can't use click_button Save
+  page.should have_content "Save content"
+  #in arabic
+  #page.should have_content "حفظ المحتوى"
+end
+
+Then(/^page's content should be updated to what is in the design page$/) do
+  #I can't check that because i don't have Malatwy's work
+end
+
+When(/^I press Show content$/) do
+  #click_button "Show"
+  #method can't be executed so i can't use click_button Show
+  page.should have_content "Show content"
+  #in arabic
+  #page.should have_content " عرض المحتوى"
+end
+
+Then(/^page's content should appear in the designing pane$/) do
+  #I can't check that because i don't have Malatwy's work
+end

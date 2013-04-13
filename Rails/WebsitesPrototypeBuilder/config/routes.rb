@@ -23,10 +23,14 @@ post 'steps/update'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
+
+
+
+  devise_for :designers
+
   #at start up page goes to the home controller and the index action
   root to: "home#index"
 
-  resources :projects
 
   get "comments/create"
   get "comments/destroy"
@@ -37,7 +41,19 @@ post 'steps/update'
   get "pages/reviewer"
   get "pages/designer"
 
+
+  
+  get "projects/index"
+  get "projects/save/" => "projects#save", :as => :page_save
+
+  resources :projects
+
+
   resources :questionnaires
+
+
+  get 'cardsorts/new'
+
 
   resources :pages do
     resources :comments
@@ -60,9 +76,20 @@ post 'steps/update'
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
+
+
+
+  
+  get 'cardsorts/create'
+
+  get 'projects/design/:project_id' => 'projects#design' 
+  
+
+
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
   get "/log/:id" => 'task_results#index'
+
 
   get 'projects/design/:project_id' => 'projects#design'
   
@@ -113,8 +140,17 @@ post 'steps/update'
   #     resources :products
   #   end
 
+
+  
+  # See how all your routes lay out with "rake routes"
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+
+ # See how all your routes lay out with "rake routes"
+
+
+
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
