@@ -4,8 +4,8 @@ describe AnswerQuestionnaire do
 
   before(:each) do
     Questionnaire.create(:title=> "test questionnaire")
-    Qquestion.create(:body => "question test",:number => 1,:qtype => 1, :questionnaire_id=>1)
-    @attr = {:body => "answer test", :qquestion_id => 1, :questionnaire_id =>1}
+    Qquestion.create(:body => "question test",:qtype => 1, :questionnaire_id=>1)
+    @attr = {:body => "answer test", :qquestion_id => 1}
   end
     it "should create a new answer" do
     AnswerQuestionnaire.create!(@attr)

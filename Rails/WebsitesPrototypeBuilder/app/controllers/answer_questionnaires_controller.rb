@@ -1,6 +1,6 @@
 class AnswerQuestionnairesController < ApplicationController
- 	## 
- 	# called to create a new question in the database
+  ## 
+  # called to create a new question in the database
   # finds the selected page
   # * *Args*    :
   # - +@questionnaire+ -> the id of the questionnaire he's answering
