@@ -62,6 +62,9 @@ post 'steps/update'
 
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
+  get "/log/:id" => 'task_results#index'
+
+  get 'projects/design/:project_id' => 'projects#design'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
