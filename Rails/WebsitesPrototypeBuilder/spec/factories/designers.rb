@@ -16,14 +16,3 @@ FactoryGirl.define do
   end
 end
 
-FactoryGirl.define do
-  factory :project do
-    id 1
-  end
-end
-
-FactoryGirl.define do
-  factory :page do
-    project_id 1
-  end
-end
