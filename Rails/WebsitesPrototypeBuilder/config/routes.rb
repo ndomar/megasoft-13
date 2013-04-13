@@ -36,8 +36,15 @@ post 'steps/update'
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
+  get "questionnaires/answer_show"
+  get "questionnaires/index"
 
-  resources :questionnaires
+   resources :questionnaires do
+    resources :qquestions do
+      resources :choice_qquestions
+      resources :answer_questionnaires
+    end
+  end
 
   resources :pages do
     resources :comments
