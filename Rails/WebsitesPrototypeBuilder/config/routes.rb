@@ -23,13 +23,11 @@ post 'steps/update'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
-<<<<<<< HEAD
+
 
 
   devise_for :designers
-  
-=======
->>>>>>> 176b364729e6d58ab88d89b2c972fd703531e5f3
+
   #at start up page goes to the home controller and the index action
   root to: "home#index"
 
@@ -52,11 +50,9 @@ post 'steps/update'
 
 
   resources :questionnaires
-<<<<<<< HEAD
+
 
   get 'cardsorts/new'
-=======
->>>>>>> 176b364729e6d58ab88d89b2c972fd703531e5f3
 
 
   resources :pages do
