@@ -42,6 +42,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+# gem for sending mails
+gem 'mail'
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
