@@ -11,6 +11,7 @@
 
 ActiveRecord::Schema.define(:version => 20130409143914) do
 
+<<<<<<< HEAD
   create_table "answers", :force => true do |t|
     t.string   "answer"
     t.integer  "question_id"
@@ -240,6 +241,8 @@ end
 
 ActiveRecord::Schema.define(:version => 20130409143914) do
 
+=======
+>>>>>>> ae19f5580882158c55dd200af8a35de574871cf5
   create_table "answer_questionnaires", :force => true do |t|
     t.text     "body"
     t.integer  "questionnaire_id"
@@ -464,4 +467,5 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.datetime "updated_at",                 :null => false
     t.integer  "page_id",     :default => 1
   end
+end
 end
