@@ -1,5 +1,16 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
+
+  # set devise for Designer, and set the registerations controller to the custom one
+  devise_for :designers, :controllers => { :registrations => "registrations" }
+
+get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+post 'steps/update'
+    resources :projects do
+      resources :tasks do
+        resources :steps
+    end
+  end
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
@@ -23,10 +34,19 @@ post 'steps/update'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
-  #at start up page goes to the home controller and the index action
-  root to: "home#index"
+
+  get 'cardsorts/new'
+  get 'cardsorts/edit'
+  get 'cardsorts/create_card'
+  get 'cardsorts/create_group'
+ 
 
   resources :projects
+  devise_for :designers
+  
+
+  #at start up page goes to the home controller and the index action
+  root to: "projects#index"
 
   get "comments/create"
   get "comments/destroy"
@@ -36,8 +56,11 @@ post 'steps/update'
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
+  get 'cardsorts/new'
+
   get "questionnaires/answer_show"
   get "questionnaires/index"
+
 
    resources :questionnaires do
     resources :qquestions do
@@ -52,8 +75,6 @@ post 'steps/update'
       resources :answers
     end
   end
- 
-  get "/log/:id" => 'task_results#index'
 
   get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
   get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
@@ -63,9 +84,14 @@ post 'steps/update'
   resources :tasks do
     resources :task_results
   end
+ 
+
+
+  get "/log/:id" => 'task_results#index'
   
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+
 
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
@@ -122,6 +148,9 @@ post 'steps/update'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+ # See how all your routes lay out with "rake routes"
+
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
