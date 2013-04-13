@@ -1,0 +1,25 @@
+<div id="sidebar">
+	<div id="pages_list">
+		<H1>صفحات</H1>
+		<% @pages.each do |page| %>
+		  <p id="pages">
+		     <%= page.page_name %>
+		   	 <br>
+		   	 <td><%= link_to 'حذف', page, method: :delete, data: { confirm: 'هل أنت متأكد؟' } %></td>
+		   	 <br>
+		   	 <iframe onload="addHtml('<%= page.id %>','<%= page.html %>')" id ="<%= page.id %>" src="" width="100" height="100"  onclick="MALATAWY" frameborder="1" border="1" ></iframe>	  	
+		   	 <!-- frames'pcing="1" noresize scrolling=auto style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);' -->
+		   	 <!-- this is to make sure that the ratio is good when there are big pages and when i know the size of the frame Malatawy is using -->
+		  </p>
+		<% end %>
+	</div>
+	<%= link_to 'إلى الوراء', projects_path %>
+	<%= form_for [@project,@project.pages.build] do |f| %>
+      <p><%= f.text_field :page_name,:placeholder => "علق هنا"%></p>
+      	<%= f.submit "+"%>
+	<% end %>
+</div>
+
+	<div id="content">			
+	</div>
+<!-- </div> -->

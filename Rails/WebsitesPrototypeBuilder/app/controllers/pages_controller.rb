@@ -39,15 +39,19 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    @page = Page.new(params[:page])
+    @project = Project.find(params[:project_id])
+    @page = @project.pages.build(params[:page])
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to :back, notice: 'Page was successfully created.' }
         format.json { render json: @page, status: :created, location: @page }
+        format.js { render :layout => false }
       else
-        format.html { render action: "new" }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
+        #format.html { render action: "new" }
+        format.html { redirect_to request.referer }  
+        #format.json { render json: @page.errors, status: :unprocessable_entity }
+        #format.js { render :layout => false }
       end
     end
   end
@@ -75,7 +79,8 @@ class PagesController < ApplicationController
     @page.destroy
 
     respond_to do |format|
-      format.html { redirect_to pages_url }
+      format.html { redirect_to request.referer }
+      #this is to stay at the same page when a page is deleted
       format.json { head :no_content }
     end
   end
@@ -91,3 +96,4 @@ class PagesController < ApplicationController
   end
 
 end
+

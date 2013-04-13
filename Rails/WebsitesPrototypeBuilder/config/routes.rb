@@ -1,10 +1,32 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
+
+
+  get 'cardsorts/new'
+  get 'cardsorts/edit'
+  get 'cardsorts/create_card'
+  get 'cardsorts/create_group'
+
+
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
-get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
-post 'steps/update'
+  get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+  post 'steps/update'
+
+    resources :projects do
+      resources :tasks do
+        resources :steps
+    end
+  end
+
+  resources :projects do
+      resources :pages
+  end
+
+  resources :tasks do
+    resources :steps
+  end
 
   resources :projects do
     resources :tasks do
@@ -26,8 +48,6 @@ post 'steps/update'
   #at start up page goes to the home controller and the index action
   root to: "home#index"
 
-  resources :projects
-
   get "comments/create"
   get "comments/destroy"
   get "questions/create"
@@ -36,8 +56,18 @@ post 'steps/update'
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
+  get "pages/designer"
+  get "projects/index"
+  get "projects/save/" => "projects#save", :as => :page_save
+
+  resources :projects
 
   resources :questionnaires
+
+
+  get 'cardsorts/new'
+
+
 
   resources :pages do
     resources :comments
@@ -113,8 +143,16 @@ post 'steps/update'
   #     resources :products
   #   end
 
+
+  
+  # See how all your routes lay out with "rake routes"
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+ # See how all your routes lay out with "rake routes"
+
+
+
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
