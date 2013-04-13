@@ -15,9 +15,3 @@ FactoryGirl.define do
     # confirmed_at Time.now
   end
 end
-
-FactoryGirl.define do
-  factory :project do
-    id 1
-  end
-end
