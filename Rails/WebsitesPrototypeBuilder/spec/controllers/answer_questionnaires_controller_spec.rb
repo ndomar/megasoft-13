@@ -3,8 +3,7 @@ require 'spec_helper'
 describe AnswerQuestionnairesController do
 
   before(:each) do
-   Questionnaire.create(:title=> "test questionnaire")
-   Qquestion.create(:body => "question test",:number => 1,:qtype => 1, :questionnaire_id=>1)
+    Questionnaire.create(:title=>'Questionnaire Title',:project_id=> 1,:qquestions_attributes=> [{:body =>"My Question?",:qtype => 1}])
   end
 
   #Testing valid attributes as a params

@@ -12249,3 +12249,4 @@ Binary data inserted for `string` type on column `encrypted_password`
   [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'task_results';[0m
   [1m[35m (4.0ms)[0m  DELETE FROM "tasks";
   [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+Connecting to database specified by database.yml
