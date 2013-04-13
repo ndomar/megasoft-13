@@ -1,12 +1,14 @@
 ##
 # ActionMailer to send invitations by email
 # * *Attribute*    :
+# * *Attribute* :
 # - +from+ -> the sender email added to the header
 #* *Relations* :
 # - none
 #
 class ReviewerInviter < ActionMailer::Base
   default from: "Prototyper"
+  default :from => "Prototyper"
 
     ##
     # sends a mail to the specified email, carrying
@@ -60,4 +62,7 @@ class ReviewerInviter < ActionMailer::Base
 
   driver.quit
 
+    @url = url
+    mail(:to => email, :subject => "Prototyper task invitation")
+  end
 end

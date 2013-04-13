@@ -469,3 +469,5 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.integer  "page_id",     :default => 1
   end
 end
+=======
+>>>>>>> 176b364729e6d58ab88d89b2c972fd703531e5f3
