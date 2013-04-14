@@ -6,9 +6,9 @@ function createIframeWithContent(id,html){
 	frame.setAttribute("id", id); 
 	document.body.appendChild(frame);
  	//the second part is done separetly to make sure that iframe was created
-  frame = document.getElementById(id);													//this is the iframe with the provided id
+    frame = document.getElementById(id);								//this is the iframe with the provided id
 	var doc=(frame.contentWindow || frame.contentDocument);				//this is to make it compatible with different browsers
-	if (doc.document)doc=doc.document;														//this is to make it compatible with different browsers
+	if (doc.document)doc=doc.document;									//this is to make it compatible with different browsers
 	doc.open();
 	doc.write(html);
 	doc.close();
@@ -22,9 +22,9 @@ function createIframeWithContent(id,html){
 
 //function to alter the iframe with given id and fill it with given html
 function addHtml(id,html){
-	var frame = document.getElementById(id);											//this is the iframe with the provided id
+	var frame = document.getElementById(id);							//this is the iframe with the provided id
 	var doc=(frame.contentWindow || frame.contentDocument);				//this is to make it compatible with different browsers
-	if (doc.document)doc=doc.document;														//this is to make it compatible with different browsers
+	if (doc.document)doc=doc.document;									//this is to make it compatible with different browsers
 	doc.open();
 	doc.write(html);
 	doc.close();
@@ -46,7 +46,7 @@ function loadToDesignPage(id,html){
 function store(){
 	//alert("asd");
 	//var html = "<p>sdadwa</p>"; used for testing
-	var html = document.getElementById('designpage').innerHTML;	//this gets the html from the designpage pane and stores it in the variable html
+	var html = document.getElementById('designpage').innerHTML;						//this gets the html from the designpage pane and stores it in the variable html
 	var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
 	var params = $.param({
 		id: pageId,
