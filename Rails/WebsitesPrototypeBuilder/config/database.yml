@@ -25,3 +25,4 @@ production:
   timeout: 5000
 
 cucumber:
+  <<: *test
