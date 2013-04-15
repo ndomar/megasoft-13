@@ -22,7 +22,7 @@ $(document).ready(function (){
 				$("#"+$("#eid_inp").val()).attr("onhoverevent","alert(\""+$("#action_value").val()+"\");");
 			}
 		}
-		alert("Event saved successfully");
+		alert("تم حفظ الحدث بنجاح");
 
 	});
 
@@ -57,8 +57,7 @@ $(document).ready(function (){
 			if (pos.left>=0 && pos.left<=$("#designpage").width() && pos.top>=0 && pos.top<=$("#designpage").height() && pos.left+element.width()<=$("#designpage").width() && pos.top+element.height()<=$("#designpage").height() && element.outerWidth(true)<=$("#designpage").width() && element.outerHeight(true)<=$("#designpage").height() && parseInt(val)>=0){
 				element.css(property,pp);
 				return true;
-			}
-			else{
+			} else {
 				element.css(property,pp);
 				return false;
 			}
@@ -163,6 +162,12 @@ $(document).ready(function (){
 					$("#margin_bottom_inp").val($(this).css("margin-bottom"));
 					$("#top_inp").val($(this).position().top+"px");
 					$("#left_inp").val($(this).position().left+"px");
+					if ($(this).attr("type")=="image"){
+
+					}
+					else if ($(this).attr("type")=="hyperlink"){
+
+					}
 
 				});
 
