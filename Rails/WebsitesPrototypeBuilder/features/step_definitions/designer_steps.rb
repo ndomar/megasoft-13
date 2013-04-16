@@ -193,28 +193,6 @@ Then /^I should see my name$/ do
   page.should have_content @designer[:fullname]
 end
 
-#########################################################
-#Hossam's Tests
-
-#This is so wrong!!!
-def create_page
-  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>" ,:project_id => 1}
-end
-
-def create_project
-  @project ||= { :project_name => "Test Project"}
-end
-  
-def delete_page
-  @page.destroy unless @page.nil?
-end
-
-def create_page_for_project
-  @page ||= { :page_name => "Test Page", :html => "<p>dasdad</p>",:project_id => 1}
-end
-
-###BY HOSSAM###
-
 def create_project
   @project = FactoryGirl.create(:project)
 end
@@ -222,6 +200,7 @@ end
 def create_page
   @page = FactoryGirl.create(:page)
 end  
+
 Given(/^I am on a project's design page$/) do
   create_project
   create_page
@@ -265,4 +244,16 @@ end
 
 Then(/^page's content should appear in the designing pane$/) do
   #I can't check that because i don't have Malatwy's work
+end
+
+When(/^I enter data in the textbox and press "(.*?)"$/) do |name|
+  fill_in "page_page_name", :with => name
+  click_button "+"
+
+end
+
+Then(/^page should refresh and the added page should appear in the sidebar$/) do 
+  page.should have_content "Delete"
+  #In Arabic
+  #click_link "حذف"
 end
