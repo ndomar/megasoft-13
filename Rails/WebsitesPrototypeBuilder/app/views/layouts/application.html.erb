@@ -12,7 +12,6 @@
 
 <body>
 <!-- layout stuff for the home page -->
-<% if designer_signed_in? %>
 <!-- container for positioning the banner -->
 <div id="navigation_container">
 <!-- the ribbon body -->
@@ -49,7 +48,6 @@
   </div>
 <!-- end container -->
 </div>
-<% end %>
 <br />
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
