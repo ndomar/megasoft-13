@@ -7,5 +7,4 @@ class CreateReviewers < ActiveRecord::Migration
       t.timestamps
     end
   end
-  
 end

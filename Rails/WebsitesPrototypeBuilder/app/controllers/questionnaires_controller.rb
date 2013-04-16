@@ -3,7 +3,6 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires.json
   def index
     @questionnaires = Questionnaire.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @questionnaires }
@@ -19,6 +18,18 @@ class QuestionnairesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @questionnaire }
     end
+  end
+  ## 
+  # called to show answer view for questionnaires
+  # finds the selected questionnaire
+  # * *Args* :
+  # - +@questionnaire+ -> the id of the questionnaire he wants to answer
+  # * *Returns* :
+  # - doesnt return anything just renders the answer_show view
+  #
+  def answer_show
+    @questionnaire = Questionnaire.find(params[:id])
+    render 'answer_show'
   end
 
   # GET /questionnaires/new

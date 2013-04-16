@@ -34,36 +34,39 @@
     <strong>عذراً!</strong> لا توجد نتائج 
   </div>
 <% end %>
-
+<br>
 <div id="statistics">
-  <div id="gender">
-    <p>النوع</p>
-    <% a = compareGender(@task) %>
-    <% if a.start_with?('http') %>
-      <img src = <%= a %>>
-    <% else %>
-      <p><%= a %></p>
-    <% end %>
+  <div id="demographic" style="border: 0px solid #000; width: 600px; margin: 0 auto;">
+    <div id="gender" style="width: 200px; height: 40px; float: left;">
+      <p>النوع</p>
+      <% a = compareGender(@task) %>
+      <% if a.start_with?('http') %>
+        <img src = <%= a %>>
+      <% else %>
+        <p><%= a %></p>
+      <% end %>
+    </div>
+    <div id = "age" style="width:200px; height: 40px; float: right;">
+      <p>السن</p>
+      <% a = compareAge(@task) %>
+      <% if a.start_with?('http') %>
+        <img src = <%= a %>>
+      <% else %>
+        <p><%= a %></p>
+      <% end %>
+    </div>
+    <div id="country" style="width: 200px; height: 40px; margin: 0 auto;">
+      <p>البلد</p>
+      <% a = compareCountry(@task) %>
+      <% if a.start_with?('http') %>
+        <img src = <%= a %>>
+      <% else %>
+        <p><%= a %></p>
+      <% end %>
+    </div>
   </div>
-  <div id = "age">
-    <p>السن</p>
-    <% a = compareAge(@task) %>
-    <% if a.start_with?('http') %>
-      <img src = <%= a %>>
-    <% else %>
-      <p><%= a %></p>
-    <% end %>
-  </div>
-  <div id="country">
-    <p>البلد</p>
-    <% a = compareCountry(@task) %>
-    <% if a.start_with?('http') %>
-      <img src = <%= a %>>
-    <% else %>
-      <p><%= a %></p>
-    <% end %>
-  </div>
-  <div id = "taskresutls">
+  <br>
+  <!-- <div id = "taskresults">
     <p>احصائيات النتائج</p>
     <% a = avgtime(@task) %>
     <% if a.start_with?('http') %>
@@ -72,4 +75,4 @@
       <p><%= a %></p>
     <% end %>
   </div>
-</div>
+ --></div>

@@ -8,8 +8,12 @@ module TasksHelper
   #   a call to method generateLineGraph
   #
   def avgtime(id)
-    if Task.find(id).task_results.length == 0
+    if Task.find(id).reviewers.length == 0
       return notice = "لم يتم احد المهمة"
+    end
+
+    if Task.find(id).task_results.length == 0
+      return notice = "لا توجد نتائج"
     end
 
     months = []
@@ -97,29 +101,47 @@ module TasksHelper
       return notice = "لم يتم احد المهمة"
     end
 
-    a = b = c = d = 0
+    agelessthan20 = agelessthan40 = agelessthan60 = agegreaterthan60 = 0
 
     Task.find(id).reviewers.each do |r|
       if r.reviewer_info != nil
-        if r.reviewer_info.age !=nil 
+        if r.reviewer_info.age != nil 
           if r.reviewer_info.age < 20
-            a += 1
+            agelessthan20 += 1
           elsif r.reviewer_info.age < 40
-            b += 1
+            agelessthan40 += 1
           elsif r.reviewer_info.age < 60
-            c += 1
+            agelessthan60 += 1
           else 
-            d += 1
+            agegreaterthan60 += 1
           end
         end
       end    
     end
 
-    if a == 0 && b == 0 && c == 0 && d == 0
+    if agelessthan20 == 0 && agelessthan40 == 0 && agelessthan60 == 0 && agegreaterthan60 == 0
       return notice = "لا توجد معلومات"
     end
-
-    generatePieChart("Age", [a,b,c,d], ["< 20", "< 40", "< 60", "otherwise"])
+    data = []
+    labels = []
+    if agelessthan20 != 0
+      data [data.length] = agelessthan20
+      labels[labels.length] = "<20"
+    end
+    if agelessthan40 != 0
+      data [data.length] = agelessthan20
+      labels[labels.length] = "<40"
+    end
+    if agelessthan60 != 0
+      data [data.length] = agelessthan20
+      labels[labels.length] = "<60"
+    end
+    if agegreaterthan60 != 0
+      data [data.length] = agelessthan20
+      labels[labels.length] = ">60"
+    end
+    
+    generatePieChart("Age", data, labels)
   end
 
   ##
