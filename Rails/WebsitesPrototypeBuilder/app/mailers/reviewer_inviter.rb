@@ -1,13 +1,11 @@
 ##
 # ActionMailer to send invitations by email
-# * *Attribute*    :
 # * *Attribute* :
 # - +from+ -> the sender email added to the header
 #* *Relations* :
 # - none
 #
 class ReviewerInviter < ActionMailer::Base
-  default from: "Prototyper"
   default :from => "Prototyper"
 
     ##
@@ -22,7 +20,7 @@ class ReviewerInviter < ActionMailer::Base
     #
   def task_invitation(email, msg, url)
     @msg = msg
-  	@url = url
-  	mail(to: email, subject: "Prototyper task invitation")
+    @url = url
+    mail(:to => email, :subject => "Prototyper task invitation")
   end
-  
+end
