@@ -44,6 +44,25 @@ class TasksController < ApplicationController
       format.json { render json: @tasks }
     end
   end
+  ## 
+  # Get the pages list of the project
+  # * *Args*    :
+  #   -+project_id+->: id of current project
+  # * *Returns* :
+  #   -returns @pageslist
+  #
+  def getPagesList(project_id)
+    @pages = Project.find(params[:project_id]).pages
+
+    @pageslist = []
+
+    @pages.each do |p|
+      a = @pageslist.length
+      @pageslist[a] = [p.page_name, p.id]
+    end
+
+    return @pageslist
+  end
   
   ## 
   # Make a new instance of task and render new view that has the form
@@ -53,15 +72,8 @@ class TasksController < ApplicationController
   #   -renders form to create new task
   #
   def new
-    @pages = Project.find(params[:project_id]).pages
     @task = Task.new
-
-    @pageslist = []
-
-    @pages.each do |p|
-      a = @pageslist.length
-      @pageslist[a] = [p.page_name, p.id]
-    end
+    @pageslist = getPagesList(params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -106,6 +118,7 @@ class TasksController < ApplicationController
   #
   def create
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
+    @pageslist = getPagesList(params[:project_id])
     respond_to do |format|
       if @task.save
         format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
@@ -155,6 +168,20 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def invite 
+    @task = Task.find(params[:id])
+    
+  end
+  def invite_user
+    
+    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
+  
+  end
+  def makesure
+    puts(params[:task_id] , params[:reviewer_id])
+  end
+
 
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
@@ -214,5 +241,4 @@ class TasksController < ApplicationController
       format.js {render "step_list"}
     end
   end
-
 end

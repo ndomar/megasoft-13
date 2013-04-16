@@ -109,6 +109,7 @@ textarea.message_area {
 	height: 20px;
 	width: 20px;
 	border-radius: 50%;
+	border-width: 0px;
 }
 .note a{
 	color:#000000;

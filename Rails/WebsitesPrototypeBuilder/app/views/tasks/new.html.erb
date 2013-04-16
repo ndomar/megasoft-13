@@ -20,7 +20,11 @@
     <%= f.label "وصف المهمة" %><br />
     <%= f.text_area :description %>
   </div>
-  <%= f.select :page_id, @pageslist %>
+  <div class = "field">
+    <% if ! @pageslist.empty? %>
+    <%= f.select :page_id, @pageslist %>
+    <% end %>
+  </div>
   <div class="actions">
     <button><%= link_to 'العودة الى قائمة المهام', project_tasks_path %></button>
     <%= f.submit "مهمة جديدة"%>

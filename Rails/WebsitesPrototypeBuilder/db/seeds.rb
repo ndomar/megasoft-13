@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+project1 = Project.create(:project_name => "Test Project 1")
+page1 = project1.pages.create(:page_name => "Test Page 1")
+
+project2 = Project.create(:project_name => "Test Project 2")
