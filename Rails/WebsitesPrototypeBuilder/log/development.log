@@ -37604,3 +37604,4 @@ Connecting to database specified by database.yml
   [1m[35m (6.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130409000722')
   [1m[36m (14.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130409015011')[0m
   [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130409103025')
+Connecting to database specified by database.yml
