@@ -72,3 +72,6 @@ function saveProjectProgress(){
 	//save cardsorting
 }
 
+function print(){
+	document.write("FAKES");
+}

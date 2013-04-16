@@ -1,16 +1,12 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
-<<<<<<< HEAD
-=======
-
-
   get 'cardsorts/new'
   get 'cardsorts/edit'
   get 'cardsorts/create_card'
   get 'cardsorts/create_group'
 
 
->>>>>>> C1S2_Add_Pages
+
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
@@ -56,10 +52,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   #at start up page goes to the home controller and the index action
   root to: "home#index"
 
-<<<<<<< HEAD
 
-=======
->>>>>>> C1S2_Add_Pages
   get "comments/create"
   get "comments/destroy"
   get "questions/create"
@@ -70,14 +63,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/designer"
   get "pages/designer"
   get "projects/index"
-  get "projects/save/" => "projects#save", :as => :page_save
-
-  resources :projects
-
-
+  get "projects/save/" => "projects#save", :as => :page_save  
   
-  get "projects/index"
-  get "projects/save/" => "projects#save", :as => :page_save
 
   resources :projects
 
@@ -86,11 +73,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
 
   get 'cardsorts/new'
-
-<<<<<<< HEAD
-=======
-
->>>>>>> C1S2_Add_Pages
 
   resources :pages do
     resources :comments
@@ -177,12 +159,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   #     resources :products
   #   end
 
-
-  
   # See how all your routes lay out with "rake routes"
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-
 
   # See how all your routes lay out with "rake routes"
 

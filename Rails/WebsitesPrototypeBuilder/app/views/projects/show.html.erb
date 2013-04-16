@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <%= javascript_include_tag "explorer.js"%>
 	
 	<div id="sidebar"> 
@@ -30,36 +30,103 @@
       		<p><%= f.text_field :page_name,:placeholder => "علق هنا"%></p>
       		<%= f.submit "+"%>
 		<% end %>
+
 	</div>
 
 	<div id="content">
 		<div id="designpage" data-pageid="0" style="width:200px;background:red"></div>
 	</div>
 
-	<div id = "testing">
-		<button id = "testButton"> Button </button>
-=======
-<div id="sidebar">
-	<div id="pages_list">
-		<H1>صفحات</H1>
-		<% @pages.each do |page| %>
-		  <p id="pages">
-		     <%= page.page_name %>
-		   	 <br>
-		   	 <td><%= link_to 'حذف', page, method: :delete, data: { confirm: 'هل أنت متأكد؟' } %></td>
-		   	 <br>
-		   	 <iframe onload="addHtml('<%= page.id %>','<%= page.html %>')" id ="<%= page.id %>" src="" width="100" height="100"  onclick="MALATAWY" frameborder="1" border="1" ></iframe>	  	
-		   	 <!-- frames'pcing="1" noresize scrolling=auto style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);' -->
-		   	 <!-- this is to make sure that the ratio is good when there are big pages and when i know the size of the frame Malatawy is using -->
-		  </p>
-		<% end %>
+	
+
+
+	<div class="carousel slide span8" id="myCarousel">
+		<div class="carousel-inner">
+			<div class="item active">
+		        <ul class="thumbnails">
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="print()">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		        </ul>
+			</div>
+			<div class="item">
+		        <ul class="thumbnails">
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		        </ul>
+			</div>
+			<div class="item">
+		        <ul class="thumbnails">
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		            <li class="span2">
+		                <div class="thumbnail" onclick="" onmouseover="" ondblclick="">
+		                    <img src="http://placehold.it/260x180" alt="">
+		                    <p>asdsada</p>
+		                </div>
+		            </li>
+		        </ul>
+			</div>
+		</div>
+		<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+		<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
 	</div>
-	
-	<%= form_for [@project,@project.pages.build] do |f| %>
-      <p><%= f.text_field :page_name,:placeholder => "علق هنا"%></p>
-      	<%= f.submit "+"%>
-	<% end %>
-</div>
-
-
-	
