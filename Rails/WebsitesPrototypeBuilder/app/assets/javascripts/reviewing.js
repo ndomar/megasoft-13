@@ -261,3 +261,10 @@ $(document).ready(function() {
 			scroll: false
 		});
 });
+
+// Called when test page button is clicked in the reviewer's page & opens the slected page in a new window to test when the test button is clicked
+function test_page(){
+	var designed_html= $('#html_content').text();
+	var w = window.open("",null,"height=500,width=1000,status=yes,toolbar=no,menubar=no,location=no");
+    $(w.document.body).html(designed_html);
+};

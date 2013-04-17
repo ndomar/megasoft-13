@@ -19,20 +19,20 @@ html,body{
 }
 .sw{
 
-    background-image:url('\switcher.png');
+  background-image:url('\switcher.png');
 	width:180px;
 	height:53px;
 	float: left;
 	margin-right: 0px;
-    background-size: contain;
-    background-repeat: no-repeat;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .sl
 {
-    background-image:url('\switchh.png');
+  background-image:url('\switchh.png');
 	width:30px;
 	height:100px;
-	left:935px;
+	right:298px;
 	top: 250px;
 	z-index:1000;
 	position:absolute;
@@ -42,10 +42,10 @@ html,body{
 }
 .sm
 {
-    background-image:url('\switchh.png');
+  background-image:url('\switchh.png');
 	width:30px;
 	height:100px;
-	left:1252px;
+	right:-15px;
 	top: 250px;
 	z-index:1000;
 	position:absolute;
