@@ -9,6 +9,7 @@
 #   -it belongs to a single task_result
 
 
+
 class StepAnswer < ActiveRecord::Base
   belongs_to :reviewer
   belongs_to :task_result

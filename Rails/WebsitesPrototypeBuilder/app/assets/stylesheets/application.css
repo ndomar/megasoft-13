@@ -17,6 +17,42 @@ html,body{
 	min-width: 800px;
 	min-height: 600px;
 }
+.sw{
+
+    background-image:url('\switcher.png');
+	width:180px;
+	height:53px;
+	float: left;
+	margin-right: 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.sl
+{
+    background-image:url('\switchh.png');
+	width:30px;
+	height:100px;
+	left:935px;
+	top: 250px;
+	z-index:1000;
+	position:absolute;
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.sm
+{
+    background-image:url('\switchh.png');
+	width:30px;
+	height:100px;
+	left:1252px;
+	top: 250px;
+	z-index:1000;
+	position:absolute;
+	display: block;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 
 @font-face { 
 	font-family: arabi-bold; src: url('arabi-bold.otf');
@@ -193,4 +229,5 @@ iframe {
 	-o-transform:rotate(0deg);
 	-ms-transform:rotate(0deg);
 }
+
 

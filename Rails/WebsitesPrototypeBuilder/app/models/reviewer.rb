@@ -9,9 +9,15 @@ class Reviewer < ActiveRecord::Base
   
   has_many :task_results
   has_and_belongs_to_many :tasks
+<<<<<<< HEAD
 
   has_many :step_answers
   has_one :reviewer_info
+=======
+  has_one :reviewer_info
+
+  has_many :step_answers
+>>>>>>> d6cb6eef11054ce5589bcb47f3f1f7f26decce12
 
   attr_accessible :email
 

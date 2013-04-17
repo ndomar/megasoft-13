@@ -1,3 +1,12 @@
+
+class Project < ActiveRecord::Base
+  attr_accessible :description, :project_name, :project_type
+
+  belongs_to :designer
+  has_many :tasks, :dependent => :destroy
+  has_many :pages, :dependent => :destroy
+end
+
 # encoding: utf-8
 class Project < ActiveRecord::Base
   ##
@@ -18,4 +27,9 @@ class Project < ActiveRecord::Base
   belongs_to :designer
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
+<<<<<<< HEAD
 end
+=======
+end
+
+>>>>>>> d6cb6eef11054ce5589bcb47f3f1f7f26decce12

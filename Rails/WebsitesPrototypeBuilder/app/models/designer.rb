@@ -62,4 +62,5 @@ class Designer < ActiveRecord::Base
     # Do something with rpx_user
   end
 
+
 end

@@ -2,61 +2,78 @@
 <%= javascript_include_tag "reviewing"%>
 
 <div id="wrapper">
+	<div onClick="slideit();$('.sl').toggle();$('.sm').toggle();" class="sl" ></div>
+	<div onClick="slideit();$('.sl').toggle();$('.sm').toggle();" style="display:none" class="sm"></div>
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
 	<div id="html_content"><%= @page.html%>
 	</div>
 	<!-- The SideBar -->
 	<div id="sidebar">
-		<h4>التعليقلت</h4>
-		<!-- Fetching comments from the database,just for testing -->
+		<!-- toggles between questions and comments -->
+		<div onclick="$('#comments').toggle();$('#questions').toggle()" class="sw"></div>
+		
+		<!-- Fetching comments from the database -->
 		<div id="comments">
+		<h4>التعليقلت</h4>                         <!-- title of the side bar-->
+ 					 
+ 					 <% array = Array.new %>                 <!-- create new array to store in all comments' divs locations-->
+					 <% @page.comments.each do |comment| %>  <!-- loop on all comments -->
+					 <% array << comment.assigned_part %>    <!-- insert the assigned part in the array-->
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),0);$('#shows').toggle();" id="shows">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+					 <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=array%></p>
+
 			<% @page.comments.each do |comment| %>
-				<div>
+			<% if(comment.body!="jhhsicn comment") then %> <!-- to be used when session variables are added -->
+				<div id="<%=comment.assigned_part%>">
 					<!-- Getting the comment -->
-					<p><%= comment.body %></p>
-					<!-- The deleting method uses AJAX destroy.js.erb -->
+					<p onClick="lastm(this);"><%= comment.body %></p>
+                    <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=comment.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
+			        <!-- The deleting method uses AJAX destroy.js.erb -->
 					<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
+					<hr>
+				</div>
+			<%end%>
+			<%end%>
+
+		</div>
+		<!-- Fetching questions from the database,just for testing -->
+		<div id="questions" style="display:none">
+			<h4>&#1575;&#1604;&#1571;&#1587;&#1574;&#1604;&#1577;</h4>
+
+                     <% ansarray = Array.new %>       
+					 <% @page.questions.each do |question| %>
+					 <% ansarray << question.assigned_part %>
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),1);$('#qshows').toggle();" id="qshows">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+
+            <!-- show and hide answers -->
+			<p onclick="$('.answers2').toggle();">  &#1592;&#1607;&#1608;&#1585; / &#1573;&#1582;&#1601;&#1575;&#1569;) &#1575;&#1604;&#1573;&#1580;&#1575;&#1576;&#1575;&#1578;) </p>
+            
+			<% @page.questions.each do |question| %>
+				<div id="<%=question.assigned_part%>">
+						<p onClick="lastm(this);"><%= question.body %></p>
+	                    <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
+	     				<h5>:اجابتك </h5>
+	     			<% question.answers.each do |ans| %>
+						<div class="answers2" style="display:none">
+							<p><%= ans.answer %></p>
+							<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
+							<hr>
+						</div>			
+					<%end%>
+					<!-- The deleting method uses AJAX destroy.js.erb -->
+					<p><%= link_to "امسح", [@page,question], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_question" %>
 					<hr>
 				</div>
 			<%end%>
 		</div>
 		<!-- The + buttom on clicking draw the circle -->
 		<div class="add_comment" onclick="draw_circle();">+</div>
-		<hr>
 		<!-- Fetching questions from the database,just for testing -->
-		<div id="questions">
-			<h4>الاسئلة</h4>
-			<% @page.questions.each do |question| %>
-				<div>
-					<p><%= question.body %></p>
-					<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
-					<hr>
-						<hr>
-					<% if !(question.answers.find(:all).empty?) %>
-						<h5>:اجابتك </h5>
-					<%end%>
-					<% question.answers.each do |ans| %>
-						<div>
-							<p><%= ans.answer %></p>
-								<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
-								<hr>
-						</div>		
-					<%end%>
-					<div class = "form_message">
-						<%= form_for [@page,question,question.answers.build] do |f| %>
-							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :required=> true %>
-							<div align:"left">
-							<%= f.submit "+", :class => "add_comment blue_circle", :align => 'left'%>
-							</div>
-						<%end%>
-					</div>
-					<hr>
-				</div>
-			<%end%>
-		</div>
-
-			<!-- Notice to see the errors -->
-			<p id="notice"><%= notice %></p>
+		<!-- Notice to see the errors -->
+		<p id="notice"><%= notice %></p>
 	</div>	
 
 	<!-- Main Content -->
