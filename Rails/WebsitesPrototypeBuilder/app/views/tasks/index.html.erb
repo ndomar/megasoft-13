@@ -1,7 +1,7 @@
 <h1>قائمة المهام</h1>
 
 <% if Project.find(params[:project_id]).pages.empty? %>
-  <h2>لا تستطيع عمل مهام في مشروع فارغ, توجه الى هذه الصفحة لتبدأ <%= link_to 'التصميم', '../design/' + params[:project_id] %></h2>
+  <h2>لا تستطيع عمل مهام في مشروع فارغ, توجه الى هذه الصفحة لتبدأ <%= link_to 'التصميم', '../../design/' + params[:project_id] %></h2>
 <% else %>
   <%= link_to 'مهمة جديدة', new_project_task_path %>
 

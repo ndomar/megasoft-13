@@ -34,76 +34,81 @@
   </div>
 <% end %>
 <div id="statistics">
-  <div id="demographic" style="border: 0px solid #000; width: 900px; display:block; height:200px; margin: 0 auto;">
+  <div id="demographic" style="border: 0px solid #000; width: 900px; display:inline-block; height:200px; margin: 0 auto; position:relative; right:0px; top:0px">
+    <p class="label label-inverse">احصائيات المراجعين</p>
+    <br><br><br><br>
     <div id="gender" style="display:inline-block; width: 300px; height: 200px; float: left;">
-      <p>النوع</p>
+      <p class="label label-inverse">النوع</p>
       <% a = compareGender(@task) %>
       <% if a.start_with?('http') %>
-        <img src = <%= a %>>
+        <img class="img-polaroid" src = <%= a %>>
       <% else %>
         <p><%= a %></p>
       <% end %>
     </div>
     <div id = "age" style="display:inline-block; width:300px; height: 200px; float: right;">
-      <p>السن</p>
+      <p class="label label-inverse">السن</p>
       <% a = compareAge(@task) %>
       <% if a.start_with?('http') %>
-        <img src = <%= a %>>
+        <img class="img-polaroid" src = <%= a %>>
       <% else %>
         <p><%= a %></p>
       <% end %>
     </div>
     <div id="country" style="display:inline-block; width: 300px; height: 200px; margin: 0 auto;">
-      <p>البلد</p>
+      <p class="label label-inverse">البلد</p>
       <% a = compareCountry(@task) %>
       <% if a.start_with?('http') %>
-        <img src = <%= a %>>
+        <img class="img-polaroid" src = <%= a %>>
       <% else %>
         <p><%= a %></p>
       <% end %>
     </div>
   </div>
   <br>
-  <div id="results_summary" style="border: 0px solid #000; width: 900px; height:200px; display:block; margin: 0 auto;">
-    <p>احصائيات النتائج</p> 
-    <div id = "time" style="display:inline; float:right; width:450px; height:200px">
+  <div id="results_summary" style="border: 0px solid #000; position:relative; top:300px; right:0px; width: 900px; height:200px; display:inline-block; margin: 0 auto;"> 
+    <p class="label label-inverse">احصائيات النتائج</p>
+    <br><br><br><br>
+    <div id = "time" style="display:inline; float:right; width:440px; height:200px">
       <% if @tasks != nil %>
         <% a = calculateResultsSummary([@task, @tasks]) %>
       <% else %>
         <% a = calculateResultsSummary([@task]) %>
       <% end %>
       <% if a[0].start_with?('http') %>
-        <img src = <%= a[0] %>>
+        <img class="img-polaroid" src = <%= a[0] %>>
       <% else %>
         <p><%= a %></p>
       <% end %>
     </div>
-    <div id = "success" style="display:inline; float:left; width:450px; height:200px">
+    <div id = "success" style="display:inline; float:left; width:440px; height:200px">
       <% if @tasks != nil %>
         <% a = calculateResultsSummary([@task, @tasks]) %>
       <% else %>
         <% a = calculateResultsSummary([@task]) %>
       <% end %>
       <% if a[1].start_with?('http') %>
-        <img src = <%= a[1] %>>
+        <img class="img-polaroid" src = <%= a[1] %>>
       <% else %>
         <p><%= a %></p>
       <% end %>
     </div>
+    <% taskslist = [] %>
+    <% tasks = Project.find(@task.project_id).tasks %> 
+    <% tasks.each do |t| %>
+    <% taskslist[tasks.index(t)] = [t.name, t.id] %>
+    <% end %>
+    <%= form_for :taskid, :url => {:action=>"show", :controller=>"tasks"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+      <div style="display:inline; float:right; position:relative; top:50px;">
+        <div class = "field">
+        <% if !taskslist.empty? %>
+        <%= f.select :task_id, taskslist %>
+        <% end %>
+        </div>
+        <div class="actions">
+          <%= f.submit "قارن هذه المهمه بمهمه أخرى"%>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <% taskslist = [] %>
-  <% tasks = Project.find(@task.project_id).tasks %> 
-  <% tasks.each do |t| %>
-  <% taskslist[tasks.index(t)] = [t.name, t.id] %>
-  <% end %>
-  <%= form_for :taskid, :url => {:action=>"show", :controller=>"tasks"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
-    <div class = "field">
-      <% if !taskslist.empty? %>
-      <%= f.select :task_id, taskslist %>
-      <% end %>
-    </div>
-    <div class="actions">
-      <%= f.submit "قارن هذه المهمه بمهمه أخرى"%>
-    </div>
-  <% end %>
 </div>
