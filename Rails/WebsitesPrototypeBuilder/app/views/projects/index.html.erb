@@ -2,14 +2,26 @@
 <%= javascript_include_tag 'cardsorts' %>
 
 <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
-<h2><%= p.project_name %></h2> <!-- show each project name -->
-<%= link_to "DesignPage", :controller => :projects, :action => :design, :project_id => p.id %>
-<br/>
-<%= link_to_function "create new cardsort", "showPopup()" %>
-<br/>
-<%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => p.id %> 
-<hr/>
-<%end%>
+<div class = "content">
+  <div class ="row-fluid">
+    <div class="span4">
+      <h2><%= link_to p.project_name , p %></h2> <!-- show each project name -->
+      <% message = @task ? 'هناك مهام متعلقة بهذا المشروع هل أنت متأكد من أنك تريد مسحه ' : 'هل أنت متأكد من مسح هذا المشروع ' %>
+        <%= link_to "مسح", p, :confirm => message, :method => :delete %>
+        <br/>
+        <%= link_to "DesignPage", :controller => :projects, :action => :design, :project_id => p.id %>
+      <br/>
+      <%= link_to_function "create new cardsort", "showPopup()" %>
+      <br/>
+      <%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => p.id %> 
+      <hr/>
+      </div>
+      <%end%>
+
+    </div>
+  </div>
+
+ 
 
 <div class='popup-darkscreen'>
   <div class='popup-window'>
@@ -27,3 +39,4 @@
 
 </body>
 </html>
+

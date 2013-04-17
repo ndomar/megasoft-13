@@ -17,3 +17,4 @@ class Card < ActiveRecord::Base
   belongs_to :cardsort
 
 end
+
