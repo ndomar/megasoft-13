@@ -1,45 +1,125 @@
 #encoding: utf-8
 module TasksHelper
   ##
-  # calculates average time taken per each month anc calls generateLineGraph method
+  # calculates average time taken per and average success and calls generateLineGraph method
   #* *Args*    :
-  #   -+id+->: id of the particular task
+  #   -+tasks+->: list of tasks
   #* *Returns*    :
   #   a call to method generateLineGraph
   #
-  def avgtime(id)
-    if Task.find(id).reviewers.length == 0
-      return notice = "لم يتم احد المهمة"
+  def calculateResultsSummary(tasks)
+    timedata = []
+    successdata = []
+    maxnbrresults = []
+    tasks.each do |id|
+      if Task.find(id).reviewers.length == 0
+        return notice = "لم يتم احد المهمة"
+      end
+
+      if Task.find(id).task_results.length == 0
+        return notice = "لا توجد نتائج"
+      end
+
+      accumulatedaveragetime = calculateAverageTime(Task.find(id).task_results)
+      accumulatedaveragesuccess = calculateAverageSuccess(Task.find(id).task_results)
+
+      nbrofresults = Array.new(Task.find(id).task_results.length + 1){ |i| i }
+      
+      timedata[timedata.length] = accumulatedaveragetime
+      successdata[successdata.length] = accumulatedaveragesuccess
+      
+      if maxnbrresults.length == 0
+        maxnbrresults = nbrofresults
+      elsif maxnbrresults.length < nbrofresults.length
+        maxnbrresults = nbrofresults
+      end
+
     end
-
-    if Task.find(id).task_results.length == 0
-      return notice = "لا توجد نتائج"
-    end
-
-    months = []
-    avgtime = []
-    count = []
-
-    Task.find(id).task_results.each do |t|
-      month = t.created_at.strftime("%B")
-      if months.include?(month)
-        avgtime[months.index(month)] += t.time
-        count[months.index(month)] += 1
-      else
-        months[months.length] = month
-        avgtime[months.index(month)] = t.time
-        count[months.index(month)] = 1.0
+    
+    indexoftimemaximumrange = 0
+    indexofsuccessmaximumrange = 0
+    timemaximumrange = 0
+    successmaximumrange = 0
+    
+    timedata.each do |d|
+      if d.max > timemaximumrange
+        timemaximumrange = d.max
+        indexoftimemaximumrange = timedata.index(d)
       end
     end
 
-    avgtime.each do |a|
-      avgtime[avgtime.index(a)] = a/count[avgtime.index(a)]
+    timelegend = []
+    successlegend = []
+    tasks.each do |task|
+      timelegend[timelegend.length] = task.name
+      successlegend[successlegend.length] = task.name
     end
 
-    generateLineGraph("Average time taken", avgtime, months)
+    timetmp = timedata[indexoftimemaximumrange]
+    timedata[indexoftimemaximumrange] = timedata [0]
+    timedata[0] = timetmp
+    timetmp = timelegend[indexoftimemaximumrange]
+    timelegend[indexoftimemaximumrange] = timelegend[0]
+    timelegend[0] = timetmp
+
+    data = []
+    data[data.length] = generateLine("الوقت", timedata, maxnbrresults, timelegend,[])
+    data[data.length] = generateLine("نسبة النجاح", successdata, maxnbrresults, successlegend, [0.0, 0.2, 0.4, 0.6, 0.8, 1.0])
+
+    return data
+  end
+
+  ##
+  # calculates the average success by results
+  #* *Args*    :
+  #   -+results+->: a list of task results
+  #* *Returns*    :
+  #   accumulatedaveragesuccess : a list of accumulated average success
+  #
+  def calculateAverageSuccess(results)
+    accumulatedaveragesuccess = [0.0]
+    results.each do |result|
+      length = accumulatedaveragesuccess.length
+      if result.success
+        if length == 1
+          accumulatedaveragesuccess[1] = 1.0
+        else
+          accumulatedaveragesuccess[length] = (accumulatedaveragesuccess[length-1] + 1.0) / length
+        end
+      else
+        if length == 1
+          accumulatedaveragesuccess[1] = 0.0
+        else
+          accumulatedaveragesuccess[length] = (accumulatedaveragesuccess[length-1] + 0.0) / length
+        end
+      end
+    end
+    return accumulatedaveragesuccess  
+  end
+
+  ##
+  # calculates the average time taken by reviewers
+  #* *Args*    :
+  #   -+results+->: a list of task results
+  #* *Returns*    :
+  #   accumulatedaveragetime : a list of accumulated average time
+  #
+  def calculateAverageTime(results)
+    accumulatedaveragetime = [0]
+    results.each do |result|
+      length = accumulatedaveragetime.length
+      if length == 1
+        accumulatedaveragetime[length] = result.time
+      else
+        accumulatedaveragetime[length] = (accumulatedaveragetime[length-1] + result.time) / length
+      end
+    end
+
+    return accumulatedaveragetime  
 
   end
 
+  
   ##
   # generate a url to an image of the generated chart
   #* *Args*    :
@@ -49,9 +129,14 @@ module TasksHelper
   #* *Returns*    :
   #   url for chart
   #
-  def generateLineGraph(title, avgtime, labels)
-    Gchart.line(:title => title, :axis_with_labels => 'y', :size => '600x200',
-              :data => avgtime, :labels => labels, :stacked => false)
+  def generateLine(title, data, count, legend, range)
+    if range.length != 0
+    Gchart.line(:title => title, :axis_with_labels => ['x', 'y'], :size => '450x200',
+              :data => data, :axis_labels => [count, range], :legend => legend, :bg => 'efefef', :line_colors => "FF0000,00FF00")
+    else
+    Gchart.line(:title => title, :axis_with_labels => ['y'], :size => '450x200',
+              :data => data, :labels => count, :legend => legend, :bg => 'efefef', :line_colors => "FF0000,00FF00")
+    end  
   end
 
   ##
@@ -86,7 +171,7 @@ module TasksHelper
       return notice = "لا توجد معلومات"
     end
 
-    generatePieChart("Countries", occurrences, countries)
+    generatePieChart("البلد", occurrences, countries)
   end
 
   ##
@@ -140,8 +225,7 @@ module TasksHelper
       data [data.length] = agelessthan20
       labels[labels.length] = ">60"
     end
-    
-    generatePieChart("Age", data, labels)
+    generatePieChart("السن", data, labels)
   end
 
   ##
@@ -156,25 +240,37 @@ module TasksHelper
       return notice = "لم يتم احد المهمة"
     end
 
-    m = f = 0
+    male = female = 0
 
     Task.find(id).reviewers.each do |r|
       if r.reviewer_info != nil
         if r.reviewer_info.gender != nil
           if r.reviewer_info.gender == true
-            m += 1
+            male += 1
           else 
-            f += 1
+            female += 1
           end
         end
       end
     end
-    if m == 0 && f == 0
+    if male == 0 && female == 0
       return notice = "لا توجد معلومات"
     end
 
-    generatePieChart("Gender", [m,f], ["Male", "Female"])
+    data = []
+    labels = []
+    if male != 0
+      data [data.length] = male
+      labels[labels.length] = "ذكر"
+    end
+    if female != 0
+      data [data.length] = female
+      labels[labels.length] = "أنثى"
+    end
+
+    generatePieChart("النوع", data, labels)
   end
+
   ##
   # generate a url to an image of the generated chart
   #* *Args*    :
@@ -185,7 +281,7 @@ module TasksHelper
   #   url for chart
   #
   def generatePieChart(title, data, labels)
-    Gchart.pie_3d(:title => title, :size => '400x200',
+    Gchart.pie_3d(:title => title, :size => '350x200',
               :data => data, :labels => labels)
   end
 end

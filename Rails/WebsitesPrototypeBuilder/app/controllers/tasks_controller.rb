@@ -90,10 +90,8 @@ class TasksController < ApplicationController
   #
   def show
     @task = Task.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @task }
+    if params[:taskid] != nil
+      @tasks = Task.find(params[:taskid][:task_id])
     end
   end
 
