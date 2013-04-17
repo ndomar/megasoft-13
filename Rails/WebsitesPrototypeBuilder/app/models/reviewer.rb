@@ -14,5 +14,4 @@ class Reviewer < ActiveRecord::Base
   has_one :reviewer_info
 
   attr_accessible :email
-
 end

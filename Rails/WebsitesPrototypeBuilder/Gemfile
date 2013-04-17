@@ -26,6 +26,9 @@ gem "nested_form"
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
+# gem to generate graphs for statistics story
+gem 'googlecharts'
+
 gem "nested_form"
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
