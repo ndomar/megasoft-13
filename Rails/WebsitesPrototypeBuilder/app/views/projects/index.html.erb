@@ -3,7 +3,11 @@
 
 <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
 <h2><%= p.project_name %></h2> <!-- show each project name -->
-<%= button_to_function "create new cardsort", "showPopup()" %>
+<%= link_to "DesignPage", :controller => :projects, :action => :design, :project_id => p.id %>
+<br/>
+<%= link_to_function "create new cardsort", "showPopup()" %>
+<br/>
+<%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => p.id %> 
 <hr/>
 <%end%>
 
