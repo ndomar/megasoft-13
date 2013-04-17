@@ -11,16 +11,18 @@
 </style>
 
 <body>
-<!-- layout stuff for the home page -->
+
 <% if designer_signed_in? %>
+
+<!-- layout stuff for the home page -->
 <!-- container for positioning the banner -->
 <div id="navigation_container">
 <!-- the ribbon body -->
   <div class="rectangle">
   <!-- the navigation links -->
     <ul id="navigation">
-    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
-    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
+    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar"></div></a></li>
+    <li><%= link_to "مشروع جديد" , new_project_path %><div class="tabBar" ></div></li>
     <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
     </ul>
     <a href="#"><div width="107px" height="51px" class="logo"></div></a>

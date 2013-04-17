@@ -20,7 +20,6 @@
 #
 class Designer < ActiveRecord::Base
 
-  has_many :projects
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -51,6 +50,9 @@ class Designer < ActiveRecord::Base
   # {"identifier"=>"http://www.facebook.com/profile.php?id=624556624", 
   # "email"=>"offa_4@hotmail.com", "username"=>"AhmadAdelRoshdySoliman", 
   # "name"=>"Ahmad Adel Roshdy Soliman", "extended"=>{"limited_data"=>"false"}}
+
+  has_many :projects
+
 
   # Called before a successfull facebook log in
   def before_rpx_success(rpx_user)

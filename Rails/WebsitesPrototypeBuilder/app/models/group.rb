@@ -16,3 +16,5 @@ class Group < ActiveRecord::Base
   									:uniqueness => {:scope => :cardsort_id}
   validates :cardsort_id, :presence => true
 end
+
+
