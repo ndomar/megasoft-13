@@ -2,6 +2,13 @@ body {
 	  text-align: center;
 }
 
+.container{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
 #toolbox{
 	width: 210px;
 	height:750px;
@@ -10,7 +17,7 @@ body {
 	border: solid;
 	border-left: none;
 	border-width: 1px;
-	position: absolute;
+	position: relative;
 	background-color: lightgray;
 	/*border-radius: 20px;*/
 	border-top-right-radius: 10px;
@@ -19,13 +26,18 @@ body {
 	padding-bottom: 20px;
 }
 
+#sidebar{
+	overflow: visible;
+	width: 210px;
+}
+
 #main{
 	text-align: left;
 	 width: 1000px;
 }
 
 #designpage{
-	width:950px;
+	width:100%;
 	height:750px;
 	text-align: center;
 	background-repeat: repeat-y;
@@ -38,15 +50,22 @@ body {
    	border-radius: 10px;
 }
 
+#content{
+	margin-left: 20px;
+}
+
 .appended{
 	position: absolute;
 }
 
 .toolboxelement{
-	z-index: 100;
-	width: 160px;
+	z-index: 1000;
+	width: 50px;
 	border-radius: 5px;
+	height: 50px;
+	text-align: center;
 }
+
 
 .tblhdr{
 	background-color: black;
@@ -54,14 +73,15 @@ body {
 }
 
 .tbldevs{
-	padding-top: 10px;
-	padding-left: 20px;
+	height: 70px;
+	width: 80px;
 	/*width: 100%;*/
 }
 
 .properties{
+	width: 210px;
 	background-color: transparent;
-	height: 250px;
+	height: 300px;
 	overflow-y: scroll;
 	text-align: left;
 	visibility: hidden;
@@ -72,7 +92,7 @@ body {
 }
 
 .inp{
-	width: 80px;
+	width: 70px;
 	height: 15px;
 	/*visibility: hidden;*/
 	border-radius: 5px;
@@ -85,4 +105,18 @@ body {
 	/*visibility: hidden;*/
 	display: inline-block;
 	width: 90px;
+}
+
+.trc{
+	width: 80px;
+	display: inline-block;
+}
+
+#arrow{
+	background-color: #3790e8;
+	width: 18px;
+	border-radius: 3px;
+	left: 0px;
+	top: 288px;
+	position: absolute;
 }

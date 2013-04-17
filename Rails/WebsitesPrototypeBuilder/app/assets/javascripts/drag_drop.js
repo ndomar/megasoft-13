@@ -1,7 +1,49 @@
 $(document).ready(function (){
 
-	$("#imagediv").css({
-		"width": "100px"
+	$(".toolboxelement").hover(function (e){
+		$(this).animate({
+			width: "+=10",
+			height: "+=10"
+		}, 100,"linear");
+	}, function(){
+		$(this).animate({
+			width: "-=10",
+			height: "-=10"
+		}, 100,"linear");
+	});
+
+	$("#arrow").click(function(){
+		if ($("#sidebar").width()>20){
+			$("#designcontainer").hide();
+			$("#sidebar").animate({
+				width: "-=190"
+			},300,"linear");
+			$("#designpage").animate({
+				width: "+=190",
+				left: "+=190"
+			},300,"linear");
+			$("#designpage").children().animate({
+				left: "+=190"
+			},300,"linear");
+			$("#arrowsymbol").removeClass("icon-chevron-right")
+			.addClass("icon-chevron-left")
+			.fadeIn();
+		}
+		else {
+			$("#sidebar").animate({
+				width: "+=190"
+			},300,"linear");
+			$("#designpage").animate({
+				width: "-=190",
+				left: "-=190"
+			},300,"linear");
+			$("#designpage").children().animate({
+				left: "-=190"
+			},300,"linear");
+			$("#designcontainer").show();
+			$("#arrowsymbol").removeClass("icon-chevron-left")
+			.addClass("icon-chevron-right");
+		}
 	});
 
 	$("#save_event").click(function(){ //attach event to the element when the "Save Event" button is clicked
@@ -27,16 +69,25 @@ $(document).ready(function (){
 	});
 
 	$(".inp").blur(function(){ //when one of the properties input boxes lose focus, try to apply the new entered value
-		if ($(this).attr("property")=="text"){
-			$("#"+$("#eid_inp").val()).children().first().text($(this).val());
+		applyChangedProperty($(this));
+	})
+	.keypress(function(e) {
+    	if(e.which == 13) {
+        	applyChangedProperty($(this));
+    	}
+	});
+
+	function applyChangedProperty(element){
+		if (element.attr("property")=="text"){
+			$("#"+$("#eid_inp").val()).children().first().text(element.val());
 		}
 		else{
-			if (insideDesignPage($("#"+$("#eid_inp").val()),$(this).attr("property"),$(this).val())){
-				$("#"+$("#eid_inp").val()).css($(this).attr("property"),$(this).val());
+			if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
+				$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val());
 			}
 		}
 		$("#"+$("#eid_inp").val()).click();
-	});
+	}
 
 	function exceedsWidth(element,val,left_pos){ //checks if the element exceeded the designpage width
 		return element.outerWidth(true)+val>$("#designpage").width();
@@ -79,17 +130,29 @@ $(document).ready(function (){
 
 		start: function (event,ui){
 			counter++; //When dragging starts, increment the counter
+			// $("#designpage").css("z-index","-1");
 		},
-
+		drag: function (event,ui){
+			if (ui.helper.parent().attr("id")=="designpage"){
+				ui.helper.css("color","black");
+			}
+			else{
+				ui.helper.css("color","white");
+			}
+		},
 		stop: function(event, ui){
-
 			var pos = $(ui.helper).offset();
 			var pos1 = $("#designpage").offset();
 			var name = "#element"+counter; //new element's name
 
 			$(name).css({ //set position of the new element
 			"left": pos.left-pos1.left,
-			"top": pos.top-pos1.top
+			"top": pos.top-pos1.top,
+			});
+
+			$(name).children().css({
+				"width": "100%",
+				"height": "100%"
 			});
 
 			if ($(name).parent().attr("id")!="designpage") { //if the element is dropped outside the design page remove it from the document and don't add it to the design page
