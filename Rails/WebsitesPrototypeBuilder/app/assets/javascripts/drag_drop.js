@@ -98,7 +98,6 @@ $(document).ready(function (){
 	}
 
 	function insideDesignPage(element,property,val){ //applies the property with the new value to the component then checks if the element still resides in the designpage
-
 		try{
 			var pp = element.css(property);
 			element.css(property,val);
@@ -117,7 +116,6 @@ $(document).ready(function (){
 		catch(err){
 			return false;
 		}
-
 	}
 
 	counter = 0; //Counts number of elements in the Design Page
