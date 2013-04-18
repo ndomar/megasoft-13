@@ -9,7 +9,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	get 'projects/design/:project_id' => 'projects#design'
 
 	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
-	get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
+	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
 	get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
 	post 'steps/update'
 	get "tasks/invite/:id" => "tasks#invite"
