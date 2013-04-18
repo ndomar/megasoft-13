@@ -18,6 +18,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	get "/log/:id" => 'task_results#index'
 
 
+	post 'cardsorts/create_cardsort'
 	get 'cardsorts/new'
 	get 'cardsorts/edit'
 	get 'cardsorts/create_card'
