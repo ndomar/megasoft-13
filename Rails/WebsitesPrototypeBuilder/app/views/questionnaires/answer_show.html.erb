@@ -2,6 +2,7 @@
 <%= stylesheet_link_tag "questionnaires"%>
 <%= javascript_include_tag "questionnaires"%>
 <div align = "right">
+	<%= nested_form_for (@questionnaire) do |f| %>
 	<legend align="right"><%=@questionnaire.title%></legend>
 	<div id = 'main_form' >
 		<label align="right">الرجاء الإجابة على الأسئلة التالية</label>
@@ -9,27 +10,30 @@
 		<hr>
 		<% @questionnaire.qquestions.each do |question| %>
 			<strong><%=question.body %></strong>
-			<%= form_for [@questionnaire,question,question.answer_questionnaires.build] do |f| %>
-				<%@array = []%>
-				<%@c_all = ""%>
-				<!-- checking question type to give the correct form -->
-				<% if question.qtype ==1%>
-					<%= f.text_field :body, :required => true,:placeholder => "اكتب هنا"%>
-				<%elsif question.qtype==2%>
-					<%= f.text_area :body, :required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2"%>
-				<%elsif question.qtype==3%>
-					<% question.choices.each do |choice| %>
-		 				<%@c_all+=choice.body+ "," %> 
-					<%end%>
-					<%=f.select(:body, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+			</br>
+			<%= f.fields_for :answer_questionnaires do |builder| %>
+      <!-- Rendering the answer fields -->
+      	<%@c_all = ""%>
+      	<%if builder.object.id == question.id%>
+					<!-- checking question type to give the correct form -->
+					<% if question.qtype ==1%>
+						<%= builder.text_field :body, options = {:required => true,:placeholder => "اكتب هنا"}%>
+					<%elsif question.qtype==2%>
+						<%= builder.text_area :body, options = {:required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2" }%>
+					<%elsif question.qtype==3%>
+						<% question.choices.each do |choice| %>
+		 					<%@c_all+=choice.body+ "," %> 
+						<%end%>
+						<%=builder.select(:body, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+					<%end%>	
 				<%end%>
-				</br>
-				<%= f.submit "حفظ", :class => "submit" %>
-				<hr>
-			<%end%>
+    	<%end%>
+			</br>	
+			<hr>
 		<%end%>
-		</br>	
-		<p><%= link_to "انتهيت",:controller => :questionnaires, :action => :index%></p>
+		<%=f.submit "انتهيت", :class => "submit legend", :controller =>:questionnaires , :action =>:answer_show%>
+	<%end%>
+	</br>	
 	</div>
 </div>
   
