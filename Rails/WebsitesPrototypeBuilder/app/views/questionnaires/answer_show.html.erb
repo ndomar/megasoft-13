@@ -1,6 +1,5 @@
 <!-- the answer form for the reviewer to answer -->
 <%= stylesheet_link_tag "questionnaires"%>
-<%= javascript_include_tag "questionnaires"%>
 <div align = "right">
 	<%= nested_form_for (@questionnaire) do |f| %>
 	<legend align="right"><%=@questionnaire.title%></legend>
@@ -10,22 +9,37 @@
 		<hr>
 		<% @questionnaire.qquestions.each do |question| %>
 			<strong><%=question.body %></strong>
+			<%show = false%>
 			</br>
 			<%= f.fields_for :answer_questionnaires do |builder| %>
       <!-- Rendering the answer fields -->
       	<%@c_all = ""%>
-      	<%if builder.object.id == question.id%>
+      	<%if builder.object.id == question.id && show ==false%>
 					<!-- checking question type to give the correct form -->
+					<%show = true%>
+					<!-- set true if fields already rendered -->
 					<% if question.qtype ==1%>
-						<%= builder.text_field :body, options = {:required => true,:placeholder => "اكتب هنا"}%>
+						<%= builder.text_field :body, options = {:required => true,:placeholder => "اكتب هنا",:value => ""}%>
 					<%elsif question.qtype==2%>
-						<%= builder.text_area :body, options = {:required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2" }%>
+						<%= builder.text_area :body, options = {:required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2" ,:value => ""}%>
 					<%elsif question.qtype==3%>
 						<% question.choices.each do |choice| %>
 		 					<%@c_all+=choice.body+ "," %> 
 						<%end%>
 						<%=builder.select(:body, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
-					<%end%>	
+					<%end%>
+				<%elsif show ==false%>
+					<%show = true%>
+					<% if question.qtype ==1%>
+						<%= builder.text_field :body, options = {:required => true,:placeholder => "اكتب هنا",:value => ""}%>
+					<%elsif question.qtype==2%>
+						<%= builder.text_area :body, options = {:required => true,:placeholder => "اكتب هنا", :cols=>"5",:rows=>"2", :value => "" }%>
+					<%elsif question.qtype==3%>
+						<% question.choices.each do |choice| %>
+		 					<%@c_all+=choice.body+ "," %> 
+						<%end%>
+						<%=builder.select(:body, options_for_select(@c_all.split(","), options ={:prompt => "اختر اجابة", :required => true}))%>
+					<%end%>
 				<%end%>
     	<%end%>
 			</br>	
