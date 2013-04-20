@@ -1,5 +1,7 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
+  get "tests/test_image"
+
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
