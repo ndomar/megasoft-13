@@ -1,17 +1,28 @@
 textarea {
-    resize: none;
+	resize: none;
+}
+body
+{
+	background: -webkit-gradient(linear, center top, center bottom, from(#F0F0F0 ), to(#ffffff));
+	background: -webkit-linear-gradient(#F0F0F0  , #ffffff);
+	background: -moz-linear-gradient(#F0F0F0  , #ffffff);
+	background: -o-linear-gradient(#F0F0F0  , #ffffff);
+	background: -ms-linear-gradient(#F0F0F0  , #ffffff);
+	background: linear-gradient(#F0F0F0  , #ffffff);
 }
 #main_form
 {
-	border-style:solid;
-	border-color:#F7F2F2;
 	border-radius:20px;
 	padding-top: 10pt;
 	padding-bottom: 10pt;
   padding-right: 5pt;
   padding-left: 5pt;
-
+  -moz-box-shadow:    inset 0 0 100px #989898;
+  -webkit-box-shadow: inset 0 0 100px #989898;
+  box-shadow: 0 0 15px 2px #989898;
+  background: white;
 }
+
 .submit {
 	-moz-box-shadow:inset 0px 1px 11px -50px #ffffff;
 	-webkit-box-shadow:inset 0px 1px 11px -50px #ffffff;
@@ -31,3 +42,4 @@ textarea {
 }.submit:hover {
 	background-color:#e9e9e9;
 }
+
