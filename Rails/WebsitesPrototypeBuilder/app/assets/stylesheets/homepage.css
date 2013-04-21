@@ -31,9 +31,52 @@
   border-radius: 5px;
   background: linear-gradient(#eeefef, #ffffff 10%);
   padding-bottom: 0px;
+  top: 0;
+  left: 0;
+  z-index: 99;
 }
  
 .forgot_password
 {
 	float:right;
+}
+
+.navbar .nav,
+.navbar .nav > li {
+  float:none;
+  display:inline-block;
+  *display:inline; /* ie7 fix */
+  *zoom:1; /* hasLayout ie7 trigger */
+  vertical-align: top;
+}
+
+.navbar-inner {
+  text-align:center;
+}
+
+.left_link
+{
+	border-left: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+}
+.right_link
+{
+	border-left: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+}
+
+.center
+{
+	padding-right:10px;
+	padding-left:10px;
+}
+.left
+{
+	padding-right:15px;
+	padding-left:10px;
+}
+.right
+{
+	padding-left:15px;
+	padding-right:15px;
 }

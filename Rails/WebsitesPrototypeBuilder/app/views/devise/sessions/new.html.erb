@@ -27,7 +27,22 @@
       <% end %>
     <% end %>
   </div>
+  </br>
+  </br>
+  </br>
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to "تسجيل", new_registration_path(resource_name) %><br /> <!-- sign up -->
+    <%= link_to "تسجيل", new_registration_path(resource_name) %> <!-- sign up -->
   <% end -%>
+  </br></br></br></br></br></br></br></br></br></br>
+  <footer>
+    <div class="navbar container">
+      <div class="navbar-inner">
+        <ul class="nav">
+          <li class = "right"><a class = "right_link" href="#">شاركنا</a></li>
+          <li class = "center"><a class = "center_link" href="#">من نحن ؟</a></li>
+          <li class = "left"><a class = "left_link"  href="#">لمحة عن الموقع</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 </body>
