@@ -1,3 +1,4 @@
+<%= javascript_include_tag "image_upload" %>
 <!-- <div id="wrapper"> -->
 	
 	<div id="sidebar">
@@ -7,7 +8,7 @@
 			<H1>صفحات</H1>
 			<%= form_for :picture, :remote => true do |form| %>
 				<%= form.hidden_field :project_id, :value => @project.id %>
-				<div id="drop" style="display:block; width: 200px; height: 200px; background-color: lightgray;" >
+				<div id="drop-area" style="display:block; width: 200px; height: 200px; background-color: lightgray;" >
 					<%= form.file_field :image %>
 					<div/>
 				
