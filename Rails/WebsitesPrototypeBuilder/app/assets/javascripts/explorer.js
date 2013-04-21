@@ -35,6 +35,7 @@ function deletePage(pageId){
 			var params = $.param({
 				pageid: pageId
 			});
+			alert(params);
 			$.ajax("/projects/deletePage?"+params);
 	  }
 	alert("Done");
