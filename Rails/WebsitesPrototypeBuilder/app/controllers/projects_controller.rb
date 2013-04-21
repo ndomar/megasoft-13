@@ -17,17 +17,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all  
   end
 
-  
-  def show   
-    @project = Project.find(params[:id])   #I am sending the project to the design page
-    @id = @project.id                                     #I am sending the project id explicitly to the design page
-    @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
-    respond_to do |format|
-      format.html 
-      format.json { render json: @project }
-    end
-  end
-
   def new
     @project = Project.new
 
@@ -78,25 +67,69 @@ class ProjectsController < ApplicationController
     end
   end
 
-  # called to create a new comment in the database
-  # finds the page with the given id
-  # * *Args* :
-  # - +id+ -> the page's id
-  # - +html+ -> the updated html
-  # * *Returns* :
-  # - page will be updated with the new content
-  #
-  def save
-    @page = Page.find(params[:id])  # I am retrieving the page whose id is the provided id
-    @page.html = params[:html]      # I am updating the page's html
-    @page.save                      # I am saving the page after updating it
-    respond_to do |format|
-      format.html { render :nothing => true }
-      format.json { head :no_content }
-    end
+  def design
   end
 
-	def design
-	end
+def show   
+  @project = Project.find(params[:id])   #I am sending the project to the design page
+  @id = @project.id                                     #I am sending the project id explicitly to the design page
+  @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
+  respond_to do |format|
+    format.html 
+    format.json { render json: @project }
+  end
+end
+
+# called to update a page in the database
+# finds the page with the given id
+# * *Args* :
+# - +pageid+ -> the page's id
+# - +html+ -> the updated html
+# * *Returns* :
+# - page will be updated with the new content
+#
+def save
+  @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
+  @page.html = params[:html]      # I am updating the page's html
+  @page.save                      # I am saving the page after updating it
+  respond_to do |format|
+    format.html { render :nothing => true }
+    format.js { render :layout => false }
+  end
+end
+
+# called to delete a page in the database
+# finds the page with the given id
+# * *Args* :
+# - +pageid+ -> the page's id
+# * *Returns* :
+# - page will be deleted from the database
+#
+def deletePage
+  @page = Page.find(params[:pageid]) 
+  @page.destroy
+  respond_to do |format|
+    format.html { render :nothing => true }
+    format.js { render :layout => false }
+  end
+end
+
+# called to create a page in the database
+# create a page with the given name in the database
+# * *Args* :
+# - +pageName+ -> the page's name
+# * *Returns* :
+# - page will be created in the database
+#	
+def createPage
+  @page = Page.new()
+  @page.project_id=id
+  @page.page_name=page
+  @page.save
+  respond_to do |format|
+    format.html { render :nothing => true }
+    format.js { render :layout => false }
+  end
+end
 
 end
