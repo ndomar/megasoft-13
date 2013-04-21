@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409143914) do
+ActiveRecord::Schema.define(:version => 20130421171013) do
 
   create_table "answer_questionnaires", :force => true do |t|
     t.text     "body"
@@ -233,9 +233,11 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.string   "name"
     t.text     "description"
     t.integer  "project_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "page_id",     :default => 1
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "page_id",                :default => 1
+    t.boolean  "requires_reviewer_info"
+    t.integer  "time_limit"
   end
 
 end

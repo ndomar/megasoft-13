@@ -39471,3 +39471,196 @@ ActiveRecord::RecordNotFound (Couldn't find Project without an ID):
   Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
   Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
   Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-3.2.13/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (34.0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (6.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (5.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (1.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateTasks (20130202172022)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "tasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "project_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130202172022')[0m
+  [1m[35m (3.0ms)[0m  commit transaction
+Migrating to DeviseCreateDesigners (20130325190715)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "designers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_designers_on_email" ON "designers" ("email")[0m
+  [1m[35m (0.0ms)[0m  CREATE UNIQUE INDEX "index_designers_on_reset_password_token" ON "designers" ("reset_password_token")
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130325190715')[0m
+  [1m[35m (4.0ms)[0m  commit transaction
+Migrating to CreateComments (20130326222407)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "page_id" integer, "reviewer" integer, "assigned_part" text, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326222407')[0m
+  [1m[35m (4.0ms)[0m  commit transaction
+Migrating to CreateReviewers (20130329202043)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "reviewers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130329202043')[0m
+  [1m[35m (4.0ms)[0m  commit transaction
+Migrating to CreateReviewerInfos (20130329202658)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "reviewer_infos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "age" integer, "gender" boolean, "country" varchar(255), "day_of_birth" integer, "month_of_birth" integer, "year_of_birth" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130329202658')[0m
+  [1m[35m (12.0ms)[0m  commit transaction
+Migrating to CreateProjects (20130329203243)
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "project_name" varchar(255), "type" varchar(255), "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130329203243')[0m
+  [1m[35m (4.0ms)[0m  commit transaction
+Migrating to CreateCardsorts (20130331071652)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "cardsorts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "project_id" integer, "open" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130331071652')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to CreateCards (20130331073052)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "cards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "cardsort_id" integer, "group_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130331073052')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to CreateGroups (20130331075140)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "cardsort_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130331075140')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to CreateQuestions (20130331185237)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "questions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "page_id" integer, "assigned_part" text, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130331185237')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to AddDesignerDetails (20130401170704)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "designers" ADD "fullname" varchar(255)
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "designers" ADD "phone_number" varchar(255)[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "designers" ADD "country" varchar(255)
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "designers" ADD "day_dob" integer[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "designers" ADD "month_dob" integer
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "designers" ADD "year_dob" integer[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "designers" ADD "credit_card_number" integer
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "designers" ADD "cvv2" integer[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "designers" ADD "profession" varchar(255)
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "designers" ADD "facebook_email" varchar(255)[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "designers" ADD "gender" varchar(255)
+  [1m[36m (0.0ms)[0m  [1mALTER TABLE "designers" ADD "rpx_identifier" varchar(255)[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130401170704')
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePages (20130401174354)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "page_name" varchar(255), "html" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130401174354')
+  [1m[36m (4.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAnswers (20130402085948)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "answers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "answer" varchar(255), "question_id" integer, "page_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130402085948')
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddDesignerIdToProjects (20130402203906)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "projects" ADD "designer_id" integer[0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130402203906')
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+Migrating to RenameColumnType (20130402204030)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TEMPORARY TABLE "altered_projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "project_name" varchar(255), "project_type" varchar(255), "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "designer_id" integer) [0m
+  [1m[35m (1.0ms)[0m  SELECT * FROM "projects"
+  [1m[36m (0.0ms)[0m  [1mDROP TABLE "projects"[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "project_name" varchar(255), "project_type" varchar(255), "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "designer_id" integer) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "altered_projects"[0m
+  [1m[35m (0.0ms)[0m  DROP TABLE "altered_projects"
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130402204030')[0m
+  [1m[35m (6.0ms)[0m  commit transaction
+Migrating to CreateSteps (20130402235755)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "steps" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "component" varchar(255), "event" varchar(255), "description" text, "task_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mCREATE INDEX "index_steps_on_task_id" ON "steps" ("task_id")[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130402235755')
+  [1m[36m (23.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddColumnPageToTasks (20130403154751)
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "tasks" ADD "page_id" integer[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130403154751')
+  [1m[36m (6.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateReviewerTaskJoinTable (20130407144634)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "reviewers_tasks" ("reviewer_id" integer, "task_id" integer) [0m
+  [1m[35m (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130407144634')
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateQuestionnaires (20130407152147)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "questionnaires" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "project_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  CREATE INDEX "index_questionnaires_on_project_id" ON "questionnaires" ("project_id")
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130407152147')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to CreateQquestions (20130407153418)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "qquestions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "qtype" integer, "questionnaire_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mCREATE INDEX "index_qquestions_on_questionnaire_id" ON "qquestions" ("questionnaire_id")[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130407153418')
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateChoiceQquestions (20130407153803)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "choice_qquestions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "number" integer, "questionnaire_id" integer, "project_id" integer, "qquestion_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  CREATE INDEX "index_choice_qquestions_on_questionnaire_id" ON "choice_qquestions" ("questionnaire_id")
+  [1m[36m (0.0ms)[0m  [1mCREATE INDEX "index_choice_qquestions_on_project_id" ON "choice_qquestions" ("project_id")[0m
+  [1m[35m (0.0ms)[0m  CREATE INDEX "index_choice_qquestions_on_qquestion_id" ON "choice_qquestions" ("qquestion_id")
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130407153803')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to CreateTaskResults (20130407230032)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "task_results" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "task_id" integer, "reviewer_id" integer, "clicks" integer, "success" boolean, "time" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130407230032')[0m
+  [1m[35m (5.0ms)[0m  commit transaction
+Migrating to AddDefaultPageToTasks (20130407230912)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TEMPORARY TABLE "altered_tasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "project_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "page_id" integer) 
+  [1m[36m (0.0ms)[0m  [1mSELECT * FROM "tasks"[0m
+  [1m[35m (1.0ms)[0m  DROP TABLE "tasks"
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "tasks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "description" text, "project_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "page_id" integer DEFAULT 1) [0m
+  [1m[35m (0.0ms)[0m  SELECT * FROM "altered_tasks"
+  [1m[36m (0.0ms)[0m  [1mDROP TABLE "altered_tasks"[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130407230912')
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStepAnswers (20130408111500)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "step_answers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "successful" boolean, "time_from_start" time, "reviewer_id" integer, "task_result_id" integer, "step_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  CREATE INDEX "index_step_answers_on_reviewer_id" ON "step_answers" ("reviewer_id")
+  [1m[36m (0.0ms)[0m  [1mCREATE INDEX "index_step_answers_on_task_result_id" ON "step_answers" ("task_result_id")[0m
+  [1m[35m (0.0ms)[0m  CREATE INDEX "index_step_answers_on_step_id" ON "step_answers" ("step_id")
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130408111500')[0m
+  [1m[35m (6.0ms)[0m  commit transaction
+Migrating to AddProjectIdToPages (20130408195050)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "pages" ADD "project_id" integer
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130408195050')[0m
+  [1m[35m (3.0ms)[0m  commit transaction
+Migrating to CreateAnswerQuestionnaires (20130409000722)
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "answer_questionnaires" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "questionnaire_id" integer, "qquestion_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mCREATE INDEX "index_answer_questionnaires_on_questionnaire_id" ON "answer_questionnaires" ("questionnaire_id")[0m
+  [1m[35m (1.0ms)[0m  CREATE INDEX "index_answer_questionnaires_on_qquestion_id" ON "answer_questionnaires" ("qquestion_id")
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130409000722')[0m
+  [1m[35m (4.0ms)[0m  commit transaction
+Migrating to CreateChoices (20130409015011)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "choices" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "body" varchar(255), "qquestion_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mCREATE INDEX "index_choices_on_qquestion_id" ON "choices" ("qquestion_id")[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130409015011')
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePictures (20130409103025)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mCREATE TABLE "pictures" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "image" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130409103025')
+  [1m[36m (49.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddReviewerIdToReviewerInfos (20130409143914)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (2.0ms)[0m  [1mALTER TABLE "reviewer_infos" ADD "reviewer_id" integer[0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130409143914')
+  [1m[36m (4.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddNewAttributesToTask (20130421171013)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "tasks" ADD "requires_reviewer_info" boolean[0m
+  [1m[35m (0.0ms)[0m  ALTER TABLE "tasks" ADD "time_limit" integer
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130421171013')[0m
+  [1m[35m (4.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
