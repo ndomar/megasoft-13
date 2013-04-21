@@ -1,31 +1,33 @@
-<html>
+<%= stylesheet_link_tag "homepage"%>
+<%= javascript_include_tag "homepage"%>
+
 <body dir="rtl">
-<h2>ﺗﺴﺠﻴﻞ اﻟﺪﺧﻮﻝ</h2>
-
-<img src="/images/login-icon.png"/>
-<br /><br />
-
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-
-  <div><label>اﻟﺒﺮﻳﺪ اﻹﻟﻜﺘﺮﻭﻧﻲ</label><br /> <!-- :email -->
-  <%= f.email_field :email, :autofocus => true %></div>
-  <br />
-
-  <div><label>ﻛﻠﻤﺔ اﻟﺴﺮ</label><br />  <!--:password-->
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div>ﺗﺬﻛﺮﻧﻲ <%= f.check_box :remember_me %></div> <!-- remember me-->
-  <% end %>
-  <br />
-  <div><%= f.submit "ﺗﺴﺠﻴﻞ ﺩﺧﻮﻝ", options = {:class => "btn btn-info"} %></div>
-
-  <br />  
   <%# Link to sign in with facebook %>
-  <h4><%= link_to_rpx image_tag("/images/facebook_login_button_arabic.png"), designer_session_url %></h4>
-  <br />
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <table class = "icons" align="left">
+    <tr>
+      <th><img src="/images/login-icon.png" class ="login_image" onclick= "sliding_form()"/></th>
+      <th><%= link_to_rpx image_tag("/images/facebook_icon.png"), designer_session_url %>
+      </th>
+    </tr>
+  </table>
+  <div class="login_form span1">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <p>
+        <i class="icon-user icon-large"></i>
+        <%= f.email_field :email, :placeholder=> "اﻟﺒﺮﻳﺪ اﻹﻟﻜﺘﺮﻭﻧﻲ", :required =>true %>
+      </p>
+      <p>
+        <i class="icon-lock icon-large"></i>
+        <%= f.password_field :password,:placeholder=> "ﻛﻠﻤﺔ اﻟﺴﺮ", :required =>true %>
+      </p>        
+      <% if devise_mapping.rememberable? -%>
+        <div>ﺗﺬﻛﺮﻧﻲ <%= f.check_box :remember_me %></div> <!-- remember me-->
+        <p class = "forgot_password"><%= render "devise/shared/links" %></p>
+        <div align="left"><%= f.submit "ﺩﺧﻮﻝ", options = {:class => "btn btn-info"} %></div>
+      <% end %>
+    <% end %>
+  </div>
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to "تسجيل", new_registration_path(resource_name) %><br /> <!-- sign up -->
+  <% end -%>
 </body>
-</html>
