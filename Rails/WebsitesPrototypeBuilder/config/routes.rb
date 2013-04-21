@@ -1,10 +1,7 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-
-  get 'cardsorts/new'
-  get 'cardsorts/edit'
-  get 'cardsorts/create_card'
-  get 'cardsorts/create_group'
-
+  get 'projects/save'
+  get 'projects/createPage'
+  get 'projects/deletePage'
 
 
   # set devise for Designer, and set the registerations controller to the custom one
@@ -102,7 +99,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   
   get 'cardsorts/create'
 
-  get 'projects/design/:project_id' => 'projects#design' 
+  # get 'projects/design/:project_id' => 'projects#design' 
   
 
 
@@ -110,8 +107,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "/log/:id" => 'task_results#index'
 
-
-  get 'projects/design/:project_id' => 'projects#design'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

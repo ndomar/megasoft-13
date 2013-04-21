@@ -1,132 +1,126 @@
 <%= stylesheet_link_tag "explorer"%>
 <%= javascript_include_tag "explorer.js"%>
 	
-	<div id="content">
-		<div id="designpage" data-pageid="0" style="width:200px;background:red"></div>
-	</div>
+<div id="content">
+	<div id="designpage" data-pageid="0" style="width:200px;background:red"></div>
+</div>
 
-	
-	<div id="sidebar"> 
-		<H1>صفحات</H1>
-		   	<button>Show content</button>
-		<button onclick="store()">حفظ المحتوى</button>
-		
-		<%= form_for [@project,@project.pages.build] do |f| %>
-      		<p><%= f.text_field :page_name,:placeholder => "اسم الصفحة"%></p>
-      		<%= f.submit "+"%>
-		<% end %>
-		<button onclick="addPage()">Add Page</button>
-
-		
-	</div>
 
 <!-- this is the carousel implementation, It loops through the project's pages and displays them in a series of thumbnails each with an x icon over it to be used for deletion. A Carousel has to consist of at least an active 
 item which has to be the first item in the carousel, it can also contain as many items as required. After filling 
 the active item, the carousel can be filled by as many items as required.Also all the actions to be done on them 
 are stated. -->
-<div class="carousel slide span6" id="myCarousel">
-	<div class="carousel-inner">
-		<% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
-			<div class="item active" style="background-color:#AAAAAA; opacity:0.5">
-        <ul class="thumbnails">
-        	<li class="span1"></li>
-        	<% @pages.each_with_index do |page, index| %>
-						<li class="span1">
-							<a id="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
-              <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= page.id %>','<%= page.html %>')" id="<%= page.id %>" width="50px">
-                <img src="http://placehold.it/260x180" alt="">
-              </div>
-              <p><%= page.page_name %></p>
-            </li>
-					<% end %>		           
-          <li class="span1"></li>
-        </ul>
-			</div>
-		<% else %>  <!-- the case when we have more than 4 pages -->
-			<div class="item active" style="backgroundcolor=#AAAAAA">
-        <ul class="thumbnails">
-        	<li class="span1"></li>
-						<li class="span1">
-							<a id="x-button" onclick="deletePage('<%= @pages.fetch(0,nil).id %>')" href=#><div>x</div></a>
-              <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= @pages.fetch(0,nil).id %>','<%= @pages.fetch(0,nil).html %>')" id="@pages.fetch(0,nil).id">
-                <img src="http://placehold.it/260x180" alt="">
-              </div>
-              <p><%= @pages.fetch(0,nil).page_name %></p>
-            </li>
-						<li class="span1">
-							<a id="x-button" onclick="deletePage('<%= @pages.fetch(1,nil).id %>')" href=#><div>x</div></a>
-              <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= @pages.fetch(1,nil).id %>','<%= @pages.fetch(1,nil).html %>')" id="@pages.fetch(1,nil).id">
-                <img src="http://placehold.it/260x180" alt="">
-              </div>
-              <p><%= @pages.fetch(1,nil).page_name %></p>
-            </li>
-            <li class="span1">
-            	<a id="x-button" onclick="deletePage('<%= @pages.fetch(2,nil).id %>')" href=#><div>x</div></a>
-              <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= @pages.fetch(2,nil).id %>','<%= @pages.fetch(2,nil).html %>')" id="@pages.fetch(2,nil).id">
-                <img src="http://placehold.it/260x180" alt="">
-              </div>
-              <p><%= @pages.fetch(2,nil).page_name %></p>
-            </li>
-            <li class="span1">
-            	<a id="x-button" onclick="deletePage('<%= @pages.fetch(3,nil).id %>')" href=#><div>x</div></a>
-              <div class="thumbnail" style="border-color:#000000" onclick=""  \ ondblclick="loadToDesignPage('<%= @pages.fetch(3,nil).id %>','<%= @pages.fetch(3,nil).html %>')" id="@pages.fetch(3,nil).id">
-                <img src="http://placehold.it/260x180" alt="">
-              </div>
-              <p><%= @pages.fetch(3,nil).page_name %></p>
-            </li>          
-      		<li class="span1"></li>
-        </ul>
-			</div>
-			<% crousel_items_to_create = @pages.size/4%>
-			<% currentLoop = 1 %>
-			<% (1..crousel_items_to_create).each do |i| %>
-				<div class="item" style="backgroundcolor=#AAAAAA">
-	        <ul class="thumbnails">
-	        	<li class="span1"></li>      			
-						<li class="span1">
-							<% if @pages.fetch(0 + currentLoop*4,nil) != nil%> 
-								<a id="x-button" onclick="deletePage('<%= @pages.fetch(0 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                <div class="thumbnail" style="border-color:#000000" onclick="" ondblclick="loadToDesignPage('<%= @pages.fetch(0 + currentLoop*4,nil).id %>','<%= @pages.fetch(0 + currentLoop*4,nil).html %>')" id="@pages.fetch(0 + currentLoop*4,nil).id">
-                  <img src="http://placehold.it/260x180" alt="">
-                </div>
-                <p><%= @pages.fetch(0 + currentLoop*4,nil).page_name %></p>
-            	<% end %>
-            </li>
-						<li class="span1">
-							<% if @pages.fetch(1 + currentLoop*4,nil) != nil%>
-							<a id="x-button" onclick="deletePage('<%= @pages.fetch(1 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                <div class="thumbnail" style="border-color:#000000" onclick="" ondblclick="loadToDesignPage('<%= @pages.fetch(1 + currentLoop*4,nil).id %>','<%= @pages.fetch(1 + currentLoop*4,nil).html %>')" id="@pages.fetch(1 + currentLoop*4,nil).id">
-                  <img src="http://placehold.it/260x180" alt="">
-                </div>
-                <p><%= @pages.fetch(1 + currentLoop*4,nil).page_name %></p>
-              <% end %>
-            </li>
-            <li class="span1">
-            	<% if @pages.fetch(2 + currentLoop*4,nil) != nil%>
-            		<a id="x-button" onclick="deletePage('<%= @pages.fetch(2 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                <div class="thumbnail" style="border-color:#000000" onclick="" ondblclick="loadToDesignPage('<%= @pages.fetch(2 + currentLoop*4,nil).id %>','<%= @pages.fetch(2 + currentLoop*4,nil).html %>')" id="@pages.fetch(2 + currentLoop*4,nil).id">
-                  <img src="http://placehold.it/260x180" alt="">
-                </div>
-                <p><%= @pages.fetch(2 + currentLoop*4,nil).page_name %></p>
-              <% end %>
-            </li>
-            <li class="span1">
-            	<% if @pages.fetch(3 + currentLoop*4,nil) != nil%>
-            		<a id="x-button" onclick="deletePage('<%= @pages.fetch(3 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                <div class="thumbnail" style="border-color:#000000" onclick="" \ ondblclick="loadToDesignPage('<%= @pages.fetch(3 + currentLoop*4,nil).id %>','<%= @pages.fetch(3 + currentLoop*4,nil).html %>')" id="@pages.fetch(3 + currentLoop*4,nil).id">
-                  <img src="http://placehold.it/260x180" alt="">
-                </div>
-                <p><%= @pages.fetch(3 + currentLoop*4,nil).page_name %></p>
-              <% end %>	
-            </li> 
-      			<li class="span1"></li>
-	        </ul>
-				</div>
-				<% currentLoop = currentLoop + 1 %>
-			<% end %>
-		<% end %>		
-	</div>
-  <!-- the carousel sliding arrows -->
-	<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
-	<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+<div class="navbar navbar-fixed-bottom navbar-inverse span12" style="width:100%; text-align:center" >
+  <div class="span3"></div>
+  <div class="span6">
+    <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
+    <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
+    <img style"margin-bottom: 0px;" onclick="addPage('<%= @id %>')" id="addImage"  width="30" height="30" src="/assets/add-button.png">
+    <div class="bottom carousel slide" id="myCarousel" >
+    	<div class="carousel-inner">
+    		<% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
+    			<div class="item active" style="background-color:#AAAAAA; opacity:0.5">
+            <ul class="thumbnails">
+            	<li class="span1"></li>
+            	<% @pages.each_with_index do |page, index| %>
+    						<li class="span1">
+    							<a id="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
+                  <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= page.id %>','<%= page.html %>')" id="<%= page.id %>" width="50px">
+                    <img src="http://placehold.it/260x180" alt="">
+                  </div>
+                  <p><%= page.page_name %></p>
+                </li>
+    					<% end %>		           
+              <li class="span1"></li>
+            </ul>
+    			</div>
+    		<% else %>  <!-- the case when we have more than 4 pages -->
+    			<div class="item active" style="backgroundcolor=#AAAAAA">
+            <ul class="thumbnails">
+            	<li class="span1"></li>
+    						<li class="span1">
+    							<a id="x-button" onclick="deletePage('<%= @pages.fetch(0,nil).id %>')" href=#><div>x</div></a>
+                  <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= @pages.fetch(0,nil).id %>','<%= @pages.fetch(0,nil).html %>')" id="@pages.fetch(0,nil).id">
+                    <img src="http://placehold.it/260x180" alt="">
+                  </div>
+                  <p><%= @pages.fetch(0,nil).page_name %></p>
+                </li>
+    						<li class="span1">
+    							<a id="x-button" onclick="deletePage('<%= @pages.fetch(1,nil).id %>')" href=#><div>x</div></a>
+                  <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= @pages.fetch(1,nil).id %>','<%= @pages.fetch(1,nil).html %>')" id="@pages.fetch(1,nil).id">
+                    <img src="http://placehold.it/260x180" alt="">
+                  </div>
+                  <p><%= @pages.fetch(1,nil).page_name %></p>
+                </li>
+                <li class="span1">
+                	<a id="x-button" onclick="deletePage('<%= @pages.fetch(2,nil).id %>')" href=#><div>x</div></a>
+                  <div class="thumbnail" style="border-color:#000000" onclick=""  ondblclick="loadToDesignPage('<%= @pages.fetch(2,nil).id %>','<%= @pages.fetch(2,nil).html %>')" id="@pages.fetch(2,nil).id">
+                    <img src="http://placehold.it/260x180" alt="">
+                  </div>
+                  <p><%= @pages.fetch(2,nil).page_name %></p>
+                </li>
+                <li class="span1">
+                	<a id="x-button" onclick="deletePage('<%= @pages.fetch(3,nil).id %>')" href=#><div>x</div></a>
+                  <div class="thumbnail" style="border-color:#000000" onclick=""  \ ondblclick="loadToDesignPage('<%= @pages.fetch(3,nil).id %>','<%= @pages.fetch(3,nil).html %>')" id="@pages.fetch(3,nil).id">
+                    <img src="http://placehold.it/260x180" alt="">
+                  </div>
+                  <p><%= @pages.fetch(3,nil).page_name %></p>
+                </li>          
+          		<li class="span1"></li>
+            </ul>
+    			</div>
+    			<% crousel_items_to_create = @pages.size/4%>
+    			<% currentLoop = 1 %>
+    			<% (1..crousel_items_to_create).each do |i| %>
+    				<div class="item" style="backgroundcolor=#AAAAAA">
+    	        <ul class="thumbnails">
+    	        	<li class="span1"></li>      			
+    						<li class="span1">
+    							<% if @pages.fetch(0 + currentLoop*4,nil) != nil%> 
+    								<a id="x-button" onclick="deletePage('<%= @pages.fetch(0 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
+                    <div class="thumbnail" style="border-color:#000000" onclick="" ondblclick="loadToDesignPage('<%= @pages.fetch(0 + currentLoop*4,nil).id %>','<%= @pages.fetch(0 + currentLoop*4,nil).html %>')" id="@pages.fetch(0 + currentLoop*4,nil).id">
+                      <img src="http://placehold.it/260x180" alt="">
+                    </div>
+                    <p><%= @pages.fetch(0 + currentLoop*4,nil).page_name %></p>
+                	<% end %>
+                </li>
+    						<li class="span1">
+    							<% if @pages.fetch(1 + currentLoop*4,nil) != nil%>
+    							<a id="x-button" onclick="deletePage('<%= @pages.fetch(1 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
+                    <div class="thumbnail" style="border-color:#000000" onclick="" ondblclick="loadToDesignPage('<%= @pages.fetch(1 + currentLoop*4,nil).id %>','<%= @pages.fetch(1 + currentLoop*4,nil).html %>')" id="@pages.fetch(1 + currentLoop*4,nil).id">
+                      <img src="http://placehold.it/260x180" alt="">
+                    </div>
+                    <p><%= @pages.fetch(1 + currentLoop*4,nil).page_name %></p>
+                  <% end %>
+                </li>
+                <li class="span1">
+                	<% if @pages.fetch(2 + currentLoop*4,nil) != nil%>
+                		<a id="x-button" onclick="deletePage('<%= @pages.fetch(2 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
+                    <div class="thumbnail" style="border-color:#000000" onclick="" ondblclick="loadToDesignPage('<%= @pages.fetch(2 + currentLoop*4,nil).id %>','<%= @pages.fetch(2 + currentLoop*4,nil).html %>')" id="@pages.fetch(2 + currentLoop*4,nil).id">
+                      <img src="http://placehold.it/260x180" alt="">
+                    </div>
+                    <p><%= @pages.fetch(2 + currentLoop*4,nil).page_name %></p>
+                  <% end %>
+                </li>
+                <li class="span1">
+                	<% if @pages.fetch(3 + currentLoop*4,nil) != nil%>
+                		<a id="x-button" onclick="deletePage('<%= @pages.fetch(3 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
+                    <div class="thumbnail" style="border-color:#000000" onclick="" \ ondblclick="loadToDesignPage('<%= @pages.fetch(3 + currentLoop*4,nil).id %>','<%= @pages.fetch(3 + currentLoop*4,nil).html %>')" id="@pages.fetch(3 + currentLoop*4,nil).id">
+                      <img src="http://placehold.it/260x180" alt="">
+                    </div>
+                    <p><%= @pages.fetch(3 + currentLoop*4,nil).page_name %></p>
+                  <% end %>	
+                </li> 
+          			<li class="span1"></li>
+    	        </ul>
+    				</div>
+    				<% currentLoop = currentLoop + 1 %>
+    			<% end %>
+    		<% end %>		
+    	</div>
+      <!-- the carousel sliding arrows -->
+    	<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+    	<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+    </div>
+  </div>
 </div>

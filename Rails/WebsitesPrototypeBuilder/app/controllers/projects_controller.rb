@@ -81,12 +81,12 @@ def show
 end
 
 # called to update a page in the database
-# finds the page with the given id
+# finds the page with the given id and updates its html
 # * *Args* :
 # - +pageid+ -> the page's id
 # - +html+ -> the updated html
 # * *Returns* :
-# - page will be updated with the new content
+# - void
 #
 def save
   @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
@@ -103,7 +103,7 @@ end
 # * *Args* :
 # - +pageid+ -> the page's id
 # * *Returns* :
-# - page will be deleted from the database
+# - void
 #
 def deletePage
   @page = Page.find(params[:pageid]) 
@@ -115,21 +115,22 @@ def deletePage
 end
 
 # called to create a page in the database
-# create a page with the given name in the database
+# create a page with the given name in the given project in the database
 # * *Args* :
 # - +pageName+ -> the page's name
+# - +projectId+ -> current project's id
 # * *Returns* :
-# - page will be created in the database
+# - void
 #	
 def createPage
-  @page = Page.new()
-  @page.project_id=id
-  @page.page_name=page
+  @page = Page.new(params[:page])
+  @page.project_id=params[:projectId]
+  @page.page_name=params[:pageName]
   @page.save
   respond_to do |format|
     format.html { render :nothing => true }
     format.js { render :layout => false }
-  end
+  end  
 end
 
 end

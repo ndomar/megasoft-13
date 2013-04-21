@@ -15,7 +15,6 @@ class Page < ActiveRecord::Base
   has_many :answers,:dependent => :destroy
   belongs_to :project
   #checks that page name is present and is unique
-  
   validates :page_name, :presence => {:message => "  إسم  صفحه موجود"}
   validates :page_name, :uniqueness => {:message => "فريد صفحه إسم"}
 
