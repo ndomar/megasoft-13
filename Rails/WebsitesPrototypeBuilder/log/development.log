@@ -37604,6 +37604,7 @@ Connecting to database specified by database.yml
   [1m[35m (6.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130409000722')
   [1m[36m (14.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20130409015011')[0m
   [1m[35m (11.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20130409103025')
+<<<<<<< HEAD
 Connecting to database specified by database.yml
 
 
@@ -69880,3 +69881,5 @@ Served asset /bootstrap.js - 304 Not Modified (4ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2013-04-16 11:24:50 +0200
 Served asset /application.js - 304 Not Modified (18ms)
+=======
+>>>>>>> d9d2d0bdec67735b207e769a2dba8d3295edf7fd

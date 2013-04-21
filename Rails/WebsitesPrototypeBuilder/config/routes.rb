@@ -16,7 +16,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :tasks do
     resources :task_results
   end
-  
 
   resources :tasks do
     resources :steps
@@ -68,8 +67,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
   post "tasks/invite_user/:id" => "tasks#invite_user"
-
-  get "/log/:id" => 'task_results#index'
 
   get 'projects/design/:project_id' => 'projects#design'  
 end
