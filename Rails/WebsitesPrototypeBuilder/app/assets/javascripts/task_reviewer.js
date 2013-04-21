@@ -10,7 +10,9 @@ element.style.boxShadow="0px 0px 6px 2px orange";
  function dehighlight(id){
   var element = document.getElementById(id);
   element.style.boxShadow= 'none';
-  element.style.border=1;
+  element.style.borderStyle='solid';
+  element.style.borderWidth='1px';
+  element.style.borderColor='#CCCCCC';
  } 
 
 
