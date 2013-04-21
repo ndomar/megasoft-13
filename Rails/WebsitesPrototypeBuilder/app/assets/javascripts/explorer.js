@@ -1,7 +1,7 @@
 //these functions are used in the package explorer
 
 function show(id,html){
-	if(designpage.getAttribute("data-pageid")!=0){}
+	if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=id)  {
 		store();
 	}
 	var designPage = document.getElementById('designpage');
