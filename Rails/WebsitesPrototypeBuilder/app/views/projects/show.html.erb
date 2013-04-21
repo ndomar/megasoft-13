@@ -5,8 +5,12 @@
 
 		<div id="pages_list">
 			<H1>صفحات</H1>
-			<%= form_for :picture do |form| %>
-				<%= form.file_field :image %>
+			<%= form_for :picture, :remote => true do |form| %>
+				<%= form.hidden_field :project_id, :value => @project.id %>
+				<div id="drop" style="display:block; width: 200px; height: 200px; background-color: lightgray;" >
+					<%= form.file_field :image %>
+					<div/>
+				
 				<%= form.submit "upload" %>
 			<% end %>
 			<% @pages.each do |page| %>
@@ -32,3 +36,6 @@
 			
 	</div>
 <!-- </div> -->
+<script type="text/javascript">
+	initDragAndDrop();
+</script>

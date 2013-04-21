@@ -17,6 +17,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "pages/designer"
   get "projects/index"
+  post "projects/upload_image"
 
   resources :projects
 

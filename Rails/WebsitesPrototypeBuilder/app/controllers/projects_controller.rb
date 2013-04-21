@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   end
 
   #This is all what i am using
-  def show   
+  def show
     @project = Project.find(params[:id])   #I am sending the project to the design page
     @id = @project.id                      #I am sending the project id explicitly to the design page
     @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
@@ -69,6 +69,11 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
+  end
+
+  def upload_image
+    @picture = Picture.new(params[:picture])
+    @picture.save
   end
 
 end
