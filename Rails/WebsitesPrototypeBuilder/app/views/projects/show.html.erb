@@ -1,35 +1,22 @@
 <%= javascript_include_tag "image_upload" %>
+<%= stylesheet_link_tag "upload_image" %>
 <!-- <div id="wrapper"> -->
 	
 	<div id="sidebar">
-		<input type='text'>
-
-		<div id="pages_list">
-			<H1>صفحات</H1>
-			<%= form_for :picture, :remote => true do |form| %>
-				<%= form.hidden_field :project_id, :value => @project.id %>
-				<div id="drop-area" style="display:block; width: 200px; height: 200px; background-color: lightgray;" >
-					<%= form.file_field :image %>
-					<div/>
-				
-				<%= form.submit "upload" %>
-			<% end %>
-			<% @pages.each do |page| %>
-			  <p id="pages">
-			     <%= page.page_name %>
-			   	 <br>
-			   	 <td><%= link_to 'Delete', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-			   	 <br>
-			   	 <iframe onload="addHtml('<%= page.id %>','<%= page.html %>')" id ="<%= page.id %>" src="" width="100" height="100"  onclick="MALATAWY" frameborder="1" border="1" ></iframe>	  	
-
-			   	 <!-- frames'pcing="1" noresize scrolling=auto style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);' -->
-			   	 <!-- this is to make sure that the ratio is good when there are big pages and when i know the size of the frame Malatawy is using -->
-
-			  </p>
-			<% end %>
-		</div>
-
-
+	
+		<div id="drop-area">
+			<label>Drop image to upload</label>
+		<div/>
+				<form name='project' >
+					<input type=hidden name='project_id' value='<%= @project.id %>' />
+				<form/>
+				<div id='images'>
+			<% @pictures.each do |picture| %>
+			<div class='thumbnail'>
+				<img  src='<%= "/assets/project_#{@project.id}/#{picture.image}" %>' />
+			</div>
+				<%end%>
+			</div>
 		<%= link_to 'Edit', edit_project_path(@project) %> |
 		<%= link_to 'Back', projects_path %>
 	</div>

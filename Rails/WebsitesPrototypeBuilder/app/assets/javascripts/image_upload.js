@@ -20,10 +20,13 @@ function dropHandler(evt){
 }
 
 function uploadFile(file){
-	//check for file type
+	if (file.type.indexOf("image") != 0){
+		alert("Only image files allowed");
+	}
+	project_id = document.project.elements['project_id'].value;
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "upload_image", true);
 	xhr.setRequestHeader("X_FILENAME", file.name);
+	xhr.setRequestHeader("PROJECT_ID", project_id);
 	xhr.send(file);
-	alert("sd");
 }

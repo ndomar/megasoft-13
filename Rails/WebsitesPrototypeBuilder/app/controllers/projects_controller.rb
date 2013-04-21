@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])   #I am sending the project to the design page
     @id = @project.id                      #I am sending the project id explicitly to the design page
     @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
+    @pictures = @project.pictures
     respond_to do |format|
       format.html 
       format.json { render json: @project }
@@ -72,7 +73,16 @@ class ProjectsController < ApplicationController
   end
 
   def upload_image
-    @picture = Picture.new(params[:picture])
+    name = request.headers["HTTP_X_FILENAME"]
+    project_id = request.headers["HTTP_PROJECT_ID"]
+    data = request.raw_post
+    if (!Dir.exists?("app/assets/images/project_#{project_id}"))
+      Dir.mkdir("app/assets/images/project_#{project_id}")
+    end
+    @file_content = File.open("app/assets/images/project_#{project_id}/#{name}", "wb") do |f|
+      f.write(data)
+    end
+    @picture = Picture.new(image: name, project_id: project_id)
     @picture.save
   end
 
