@@ -19,10 +19,11 @@ class TasksController < ApplicationController
       @reviewer= Reviewer.find(params[:reviewer_id])
       @task= @project.tasks.find(params[:task_id])
       @page= Page.find(1)
-      @step=@task.steps.find(params[:step_id])
+      @step=@task.steps.find(@task.steps.first.id)
       @step_answer=@step.step_answers.new
       @step_answer.save
       @task_result=@task.task_results.new
+      @task_result.reviewer_id=@reviewer.id
       @task_result.save
       session[:task_result_id]= @task_result.id 
     else

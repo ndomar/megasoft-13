@@ -18,12 +18,14 @@ class StepsController < ApplicationController
       @page = returnHash[:page]
       @step_answer=returnHash[:step_answer]
       @task_result=returnHash[:task_result]
+     
     end
     respond_to do |format|
       if params[:change_id].to_s <= @task.steps.last.id.to_s
         format.html { render :template => "tasks/task_reviewer" }
       else
         format.html { render :template => "tasks/task_reviewer_done" }
+        format.js { render :template => "tasks/task_reviewer_done"}
       end
     end
   end

@@ -6,23 +6,19 @@
 </head>
 
 <body>
-
-<div id="content">
-  
-<input id="cmp4" type="text" style="left : 150px ; position : absolute ;"/>
-
-<input type = "submit" value ="Step 1 cmp" class="btn" id='cmp' style="left : 800px ; position : absolute ;"/>
-<input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2' style= "left : 600px; position : absolute;"/>
-<input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' style ="left : 400px; position : absolute;"/>
-
 <div class="desc"> 
-  "<%=@step.description %>"
+ <p id='decription_paragraph'><%=@step.description %></p> 
 </div>
+<div id="content">
 <%= @page.html.html_safe %>
 </div>
+<div class="goal">
+  <p> <%= @task.description%></p>
+</div>
+
 
 <!--A form that update the values of success, step_id. starting time and total time taken in the database -->
-<%= form_for [@task,@step] do |f| %>  
+<%= form_for [@project,@task,@step] ,remote: true do |f| %>  
   <%= hidden_field_tag "change_success", 'false' %>
   <%= hidden_field_tag "change_id", '1' %>
   <%= hidden_field_tag "start_time", '1' %>
@@ -35,48 +31,164 @@
 var currstep_element_id= "<%= @step.component %>";
 var count =1;
 var currstep_id= "<%= @step.id %>";
-var step_event = "<%= @step.event %>";
 var step_answer_success ='true';
-var clicks_count = 0;
 var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
-var total_time= 0;
-var temp_time_nw=0;
-var x= new Date(); //the current date and time
-var starting_time= x.getMinutes(); //ge the starting time of the task
+var starting_hours= new Date().getHours();
+var starting_minutes= new Date().getMinutes();
+var starting_seconds= new Date().getSeconds();
+var starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
 
 var desc_height = $('.desc').height();
 $('#content').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
 
-$("input").on(step_event, function(event) {
+// $("input").on(step_event, function(event) {
 
-var curr_element_id= event.target.id;
-if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event 
-  var d2= new Date(); //used to get the time of the start of this step
+// var curr_element_id= event.target.id;
+// if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event 
+//   var d2= new Date(); //used to get the time of the start of this step
  
-  count=count+1; 
-  currstep_id = <%=@step.id%>+1;
-  clicks_count=<%= @task_result.clicks%>+1;
-  total_time= d2.getMinutes() - starting_time;
+//   count=count+1; 
+//   currstep_id = <%=@step.id%>+1;
+//   clicks_count=<%= @task_result.clicks%>+1;
+//   total_time= d2.getMinutes() - starting_time;
 
-  $("#change_id").val(currstep_id); //to increment the value of the curr step
-  $("#start_time").val(curr_time); //set the time_from_start
-  $("#change_clicks").val(clicks_count); //update clicks_count in DB
-  $("#change_success").val(step_answer_success); //set successful = true for step_answer
-  $("#total_time_taken").val(total_time); //sets the value of  the time taken
+//   $("#change_id").val(currstep_id); //to increment the value of the curr step
+//   $("#start_time").val(curr_time); //set the time_from_start
+//   $("#change_clicks").val(clicks_count); //update clicks_count in DB
+//   $("#change_success").val(step_answer_success); //set successful = true for step_answer
+//   $("#total_time_taken").val(total_time); //sets the value of  the time taken
 
-  dehighlight(currstep_element_id); 
+//   dehighlight(currstep_element_id); 
     
-  $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
+//   $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
 
+//   }
+// });
+
+
+////////////////////////////////// new storyyy/////////
+var steps_ids_array; //array that contains all the ids of all the steps
+var steps_components_array; //array that contains all the ids of the components of all the steps
+var steps_events_array; //array that contains all the steps' events
+var steps_description_array;// array that contains all the steps' description
+
+$(window).load(function(){ 
+// initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
+  steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(',');
+  steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(',');
+  steps_events_array= "<%= @task.steps.all.map(&:event).join(',')%>".split(',');
+  steps_description_array= "<%= @task.steps.all.map(&:description).join(',')%>".split(',');
+
+  if (steps_ids_array.length >1) {
+    //If the steps mode is used it will highlight
+    currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
+    highlight(currstep_element_id); //highlight the current step's component
+    clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
+  }
+
+});
+
+var clicks_counter=0;
+var total_time=0;
+$("input").on('keyup', function(event){
+  var curr_element_id= event.target.id;
+  //alert(steps_ids_array[0]);
+  if ('keyup'== steps_events_array[0] && curr_element_id==steps_components_array[0]) {
+    clicks_counter=clicks_counter+1;
+    var hours_taken = starting_hours - new Date().getHours();
+    var minutes_taken = starting_minutes- new Date().getMinutes();
+    total_time= hours_taken + ":" + minutes_taken;
+
+    steps_events_array.splice(0,1);
+    var deleted_component= steps_components_array.splice(0,1);
+    steps_ids_array.splice(0,1);
+    steps_description_array.splice(0,1);
+
+    $("#change_id").val(steps_ids_array[0]); //to increment the value of the curr step
+    $("#start_time").val(curr_time); //set the time_from_start
+    $("#change_clicks").val(clicks_counter); //update clicks_count in DB
+    $("#change_success").val(step_answer_success); //set successful = true for step_answer
+    $("#total_time_taken").val(total_time); //sets the value of  the time taken
+    
+    dehighlight(deleted_component);
+    document.getElementById("decription_paragraph").innerHTML=steps_description_array[0];
+    highlight(steps_components_array[0]); 
+    $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
   }
 });
 
-$(window).load(function(){ 
-    // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
-currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
-highlight(currstep_element_id); //highlight the current step's component
-clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
-temp_time_nw= "<%=Time.now.strftime("%I:%M:%S")%>" ;
+//keeps track user clicked where and when
+var current_click_time= new Date();
+$("input").on('click',function(event){
+  current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ;
+ document.getElementById("decription_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
+
+});
+
+$("input").on('change', function(event){
+  var curr_element_id= event.target.id;
+  //alert(steps_ids_array[0]);
+  if ('change'== steps_events_array[0] && curr_element_id==steps_components_array[0]) {
+    clicks_counter=clicks_counter+1;
+
+    steps_events_array.splice(0,1);
+    var deleted_component= steps_components_array.splice(0,1);
+    steps_ids_array.splice(0,1);
+    steps_description_array.splice(0,1);
+
+    $("#change_id").val(steps_ids_array[0]); //to increment the value of the curr step
+    $("#start_time").val(curr_time); //set the time_from_start
+    $("#change_clicks").val(clicks_counter); //update clicks_count in DB
+    $("#change_success").val(step_answer_success); //set successful = true for step_answer
+    $("#total_time_taken").val(total_time); //sets the value of  the time taken
+    
+    dehighlight(deleted_component);
+    document.getElementById("decription_paragraph").innerHTML=steps_description_array[0];
+    highlight(steps_components_array[0]); 
+    $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
+  }  
+});
+
+$("input").on('click', function(event){
+  var curr_element_id= event.target.id;
+  //alert(steps_ids_array[0]);
+  if ('click'== steps_events_array[0] && curr_element_id==steps_components_array[0]) {
+    clicks_counter=clicks_counter+1;
+
+    var hours_taken = new Date().getHours() - starting_hours;
+    var minutes_taken =new Date().getMinutes() -  starting_minutes;
+    var seconds_taken= new Date().getSeconds() - starting_seconds;
+    total_time= hours_taken + ":" + minutes_taken + ":" + seconds_taken; 
+    alert(total_time);
+
+
+    steps_events_array.splice(0,1);
+    var deleted_component= steps_components_array.splice(0,1);
+    var deleted_step_id=steps_ids_array.splice(0,1);
+    steps_description_array.splice(0,1);
+
+    if (steps_ids_array.length ==0){
+      //alert(parseInt(deleted_step_id)+1);
+      $("#change_id").val(parseInt(deleted_step_id)+1); //to increment the value of the curr step
+
+    } 
+    else {
+      $("#change_id").val(steps_ids_array[0]); //to increment the value of the curr step
+      $("#start_time").val(curr_time); //set the time_from_start
+      $("#change_clicks").val(clicks_counter); //update clicks_count in DB
+      $("#change_success").val(step_answer_success); //set successful = true for step_answer
+      $("#total_time_taken").val(total_time); //sets the value of  the time taken
+    }
+    
+    dehighlight(deleted_component);
+    if(steps_components_array.length!=0) {
+      document.getElementById("decription_paragraph").innerHTML=steps_description_array[0];
+      alert(document.getElementById('cmp3').value);
+      highlight(steps_components_array[0]); 
+    }
+    
+    $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
+  }  
 });
 </script>
 </body>
