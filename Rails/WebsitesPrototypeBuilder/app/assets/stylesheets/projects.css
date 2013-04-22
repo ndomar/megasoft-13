@@ -1,0 +1,64 @@
+
+#content{
+  left: 0px;
+
+}
+
+.popup-darkscree{
+  height: 100%;
+  width: 100%;
+  position:fixed;
+  top: 0px;
+  left: 0px;
+  background-color: rgb(0, 0, 0);
+  display: none;
+  opacity: 0.7;
+}
+.popup-createProject{
+
+  background-color:white;
+  margin: auto;
+  width: 400px;
+  height: 500px;
+  margin-top: 125px;
+  color:black;
+  padding-left:20px;
+  padding-right:20px;
+  overflow:auto;
+  opacity: none;
+}
+
+.icon-remove{
+  top: 0px;
+  left: 0px;
+  overflow:auto;
+  }
+
+.save{
+  left: 50px;
+}
+
+#arrow{
+  background-color: #3790e8;
+  width: 18px;
+  border-radius: 3px;
+  left: 0px;
+  top: 288px;
+  position: absolute;
+}
+
+
+#sidebar {
+  height: 100%;
+  position:fixed;
+  top: 0px;
+  right: 0px;
+  display: none;
+  overflow:visible;
+
+
+}
+
+#error_project{
+  text-align: right;
+}
