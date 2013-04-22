@@ -1,5 +1,21 @@
 $(document).ready(function (){
 
+	$('#font_color_inp').ColorPicker({
+	color: '#0000ff',
+	onShow: function (colpkr) {
+		$(colpkr).fadeIn(200);
+		return false;
+	},
+	onHide: function (colpkr) {
+		$(colpkr).fadeOut(200);
+		return false;
+	},
+	onChange: function (hsb, hex, rgb) {
+		$('#font_color_inp').css('backgroundColor', '#' + hex);
+		$("#"+$("#eid_inp").val()).children().first().css("color",'#' + hex);
+	}
+});
+
 	$(".toolboxelement").hover(function (e){
 		$(this).animate({
 			width: "+=10",
@@ -16,14 +32,14 @@ $(document).ready(function (){
 		if ($("#sidebar").width()>20){
 			$("#designcontainer").hide();
 			$("#sidebar").animate({
-				width: "-=190"
+				width: "-=200"
 			},300,"linear");
 			$("#designpage").animate({
-				width: "+=190",
-				left: "+=190"
+				width: "+=200",
+				left: "+=200"
 			},300,"linear");
 			$("#designpage").children().animate({
-				left: "+=190"
+				left: "+=200"
 			},300,"linear");
 			$("#arrowsymbol").removeClass("icon-chevron-right")
 			.addClass("icon-chevron-left")
@@ -31,14 +47,14 @@ $(document).ready(function (){
 		}
 		else {
 			$("#sidebar").animate({
-				width: "+=190"
+				width: "+=200"
 			},300,"linear");
 			$("#designpage").animate({
-				width: "-=190",
-				left: "-=190"
+				width: "-=200",
+				left: "-=200"
 			},300,"linear");
 			$("#designpage").children().animate({
-				left: "-=190"
+				left: "-=200"
 			},300,"linear");
 			$("#designcontainer").show();
 			$("#arrowsymbol").removeClass("icon-chevron-left")
@@ -47,7 +63,6 @@ $(document).ready(function (){
 	});
 
 	$("#save_event").click(function(){ //attach event to the element when the "Save Event" button is clicked
-
 		if ($("#event_selector").val()=="onClick"){
 			if ($("#action_selector").val()=="url"){
 				$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
@@ -64,8 +79,7 @@ $(document).ready(function (){
 				$("#"+$("#eid_inp").val()).attr("onhoverevent","alert(\""+$("#action_value").val()+"\");");
 			}
 		}
-		alert("Event saved successfully");
-
+		alert("تم حفظ الحدث بنجاح");
 	});
 
 	$(".inp").blur(function(){ //when one of the properties input boxes lose focus, try to apply the new entered value
@@ -159,42 +173,45 @@ $(document).ready(function (){
 			}
 			else{
 				$(name).removeClass("drag");
+				$(name).append('<i id = "close" class="icon-remove" style="top: 0px; right: 0px; position: absolute;"></i>');
+				$(name).children("#close").click(function(){
+					$(name).remove();
+				});
 				$(name).resizable({ //define resizable action for the new element
 					containment: 'parent',
 					alsoResize: $(name).children(".toolboxelement"),
-			    cancel: false,
-	        start: function(event, ui){
-	  	      ui.element.children(".toolboxelement").css({
-	    	      "width": "100%" ,
-	        	  "height": "100%"
-	          });
-	          ui.element.click();
-	      	},
-			    resize: function(event, ui){
-	        	ui.element.children(".toolboxelement").css({
-       	  		"width": "100%" ,
-          		"height": "100%"
-	       		});
-
-	       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
-	        	if (exceedsWidth(ui.element,0,ui.position.left)){
-	        		$(this).resizable('widget').trigger('mouseup');
-	        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
-	        	}
-	        	else if (exceedsHeight(ui.element,0,ui.position.top)){
-	        		$(this).resizable('widget').trigger('mouseup');
-	        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
-	        	}
-	        	//update the properties "width" and "height" as the element is being resized
-				    $("#width_inp").val(ui.size.width);
-				    $("#height_inp").val(ui.size.height);
-	        },
-	        stop: function(event, ui){
-			      ui.element.children(".toolboxelement").css({
-	         	  "width": "100%" ,
-	     	      "height": "100%"
-		        });
-	        }
+				    cancel: false,
+			        start: function(event, ui){
+		  	    		ui.element.children(".toolboxelement").css({
+		      				"width": "100%" ,
+		       				"height": "100%"
+	   		        	});
+		            	ui.element.click();
+			      	},
+				    resize: function(event, ui){
+			        	ui.element.children(".toolboxelement").css({
+		       	  		"width": "100%" ,
+		          		"height": "100%"
+			       		});
+			       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
+			        	if (exceedsWidth(ui.element,0,ui.position.left)){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
+			        	}
+			        	else if (exceedsHeight(ui.element,0,ui.position.top)){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
+			        	}
+			        	//update the properties "width" and "height" as the element is being resized
+					    $("#width_inp").val(ui.size.width);
+					    $("#height_inp").val(ui.size.height);
+				    },
+			        stop: function(event, ui){
+					      ui.element.children(".toolboxelement").css({
+			         	  "width": "100%" ,
+			     	      "height": "100%"
+				        });
+			        }
 				})
 				.draggable({ //new draggable to avoid cloning elements that are moved within the design page
 					containment: 'parent',
@@ -224,7 +241,17 @@ $(document).ready(function (){
 					$("#margin_bottom_inp").val($(this).css("margin-bottom"));
 					$("#top_inp").val($(this).position().top+"px");
 					$("#left_inp").val($(this).position().left+"px");
-
+					$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
+				})
+				.hover(function(){
+					var close = $(this).children("#close");
+					close.css("visibility","visible");
+				}, function(){
+					var close = $(this).children("#close");
+					close.css("visibility","hidden");
+				})
+				.dblclick(function() {
+					$(this).children().first().attr("contenteditable","true");
 				});
 
 				$(name).click();		
@@ -233,6 +260,7 @@ $(document).ready(function (){
 	});
 
 	$("#designpage").droppable({
+		tolerance: 'fit',
 		drop: function(event, ui){
 			if (ui.draggable.attr('id').search(/element([0-9])/)==-1){ // if it is not an already dragged element
 				var element = $(ui.draggable).clone(); // clone the dragged element

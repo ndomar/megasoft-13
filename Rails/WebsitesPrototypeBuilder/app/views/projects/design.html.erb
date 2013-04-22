@@ -1,6 +1,8 @@
+<%= stylesheet_link_tag "colorpicker"%>
+<%= javascript_include_tag "colorpicker"%>
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
-
+<!-- <html dir="rtl"> -->
 <body>
 	<!-- main div containing toolbox and design page -->
 	<div id="wrapper" class="container-fluid">
@@ -11,7 +13,7 @@
 				<table>
 					<tr>
 						<table>
-							<thead class="brand"><h3 style="text-align: center">Toolbox</h3></thead>
+							<thead class="brand"><h3 style="text-align: center">صندوق لأدوات</h3></thead>
 							<tbody>
 								<tr class="trc">
 									<td class="tbldevs" align="center">
@@ -55,8 +57,8 @@
 					<tr>
 						<div class="tabbable prop_cont"> <!-- Only required for left/right tabs -->
 							<ul class="nav nav-tabs">
-						    <li class="active prop_panel"><a href="#properties" data-toggle="tab">الخصائص</a></li>
-						    <li class="prop_panel"><a href="#events" data-toggle="tab">الأحداث</a></li>
+						    <li class="active prop_panel" style="margin-right: -2px; float: right;"><a href="#properties" data-toggle="tab">الخصائص</a></li>
+						    <li class="prop_panel" style="float: right;"><a href="#events" data-toggle="tab">الأحداث</a></li>
 							</ul>
 							<!-- tabbed panel containing properties of the components. It is originally hidden -->
 							<div class="tab-content">
@@ -107,7 +109,8 @@
 				      		</div>
 				      		<div>
 				      			<label id = "font_color" class="p_prop"class="p_prop">لون الخط </label>
-				      			<input id = "font_color_inp" class="inp" property="color">
+				      			<div id = "font_color_inp" class="inp colordiv" property="color">
+				      			</div>
 				      		</div>
 				      		<div>
 				      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
@@ -138,7 +141,7 @@
 				</table>
 			</div>
 			<div id="arrow" style="background-color: #3790e8">
-					<i id="arrowsymbol" class="icon-chevron-right"></i>
+					<i id="arrowsymbol" class="icon-chevron-right" style="margin-top: 2px;"></i>
 			</div>
 		</div>	
     <!-- empty design page -->            
@@ -149,3 +152,4 @@
 	</div>
   </div>     
 </body>
+<!-- </html> -->

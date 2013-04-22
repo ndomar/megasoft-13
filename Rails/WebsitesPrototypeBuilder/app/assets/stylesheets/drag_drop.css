@@ -120,3 +120,13 @@ body {
 	top: 288px;
 	position: absolute;
 }
+
+.colordiv{
+	z-index: 10000;
+	display: inline-block;
+	padding:2px;
+	margin-top: 5px;
+	border: solid;
+	border-width: 2px;
+	border-color: grey;
+}
