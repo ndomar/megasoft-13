@@ -16,7 +16,7 @@ are stated. -->
     <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
     <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
     <img style"margin-bottom: 0px;" onclick="addPage('<%= @id %>')" id="addImage"  width="30" height="30" src="/assets/add-button.png">
-    <div class="bottom carousel slide" id="myCarousel" >
+    <div class="bottom carousel slide" id="myCarousel" style="margin-bottom: -20px;">
     	<div class="carousel-inner">
     		<% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
     			<div class="item active" style="background-color:#AAAAAA">
@@ -119,8 +119,8 @@ are stated. -->
     		<% end %>		
     	</div>
       <!-- the carousel sliding arrows -->
-    	<a data-slide="prev" href="#myCarousel" class="left carousel-control"  style="background-color:red; opacity:0.5">‹</a>
-    	<a data-slide="next" href="#myCarousel" class="right carousel-control"  style="background-color:red; opacity:0.5">›</a>
+    	<a data-slide="prev" href="#myCarousel" class="left carousel-control" style="background:none; border:none">‹</a>
+    	<a data-slide="next" href="#myCarousel" class="right carousel-control" style="background:none; border:none">›</a>
     </div>
   </div>
 </div>

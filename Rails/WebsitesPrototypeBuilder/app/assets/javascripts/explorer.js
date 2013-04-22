@@ -79,7 +79,9 @@ function display(){
 $(document).ready(function() {
 	//this is to make the user see that it is available and hide it at the begining of the designing
 	$('#myCarousel').slideUp('slow', function() {
-			// Animation complete.
 			document.getElementById('myCarousel').setAttribute("data-display","1");
+			//to hide it as soon as the page loads
 		});
+	$('#myCarousel').carousel({interval: false});
+	//to prevent the carousel from automatically sliding
 });
