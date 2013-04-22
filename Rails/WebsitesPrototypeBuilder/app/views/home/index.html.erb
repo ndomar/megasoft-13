@@ -5,12 +5,36 @@
 	<body>
 		<h1>Home Page</h1>
 		 <div id='fb-root'></div>
-   		 <script src='http://connect.facebook.net/en_US/all.js'></script>
-   		 <p><a onclick='postToFeed(); return false;'>Post to Feed, click here</a></p>
-   		 <p id='msg'></p>
-	    <script> 
-	      FB.init({appId: "346985668734261", status: true, cookie: true});
-	     </script>
+	    <div id='fb-root'></div>
+    <script src='http://connect.facebook.net/en_US/all.js'></script>
+    <p><a onclick="postToFeed('test test','http://www.google.com/'); return false;">Post to Feed</a></p>
+    <p id='msg'></p>
+
+    <script> 
+      FB.init({appId: "346985668734261", status: true, cookie: true});
+      //call this method to share on facebook
+      function postToFeed(message,link) {
+
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          redirect_uri: 'http://localhost:3000/',
+          link: link,
+          picture: 'http://www.blogcdn.com/downloadsquad.switched.com/media/2011/03/chrome-logo-1301044215.jpg',
+          name: 'Arability',
+          caption: 'Story title',
+          description: message
+        };
+        //remove this function i suppose
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
+    
+    </script>
+   		
 	</body>
 </html>
 
