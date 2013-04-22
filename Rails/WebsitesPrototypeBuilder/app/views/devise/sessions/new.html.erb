@@ -1,16 +1,15 @@
 <%= stylesheet_link_tag "homepage"%>
 <%= javascript_include_tag "homepage"%>
 
-<body dir="rtl">
+<body>
   <%# Link to sign in with facebook %>
   <table class = "icons" align="left">
     <tr>
+      <th><%= link_to_rpx image_tag("/images/facebook_icon.png"), designer_session_url %></th>
       <th><img src="/images/login-icon.png" class ="login_image" onclick= "sliding_form()"/></th>
-      <th><%= link_to_rpx image_tag("/images/facebook_icon.png"), designer_session_url %>
-      </th>
     </tr>
   </table>
-  <div class="login_form span1">
+  <div class="login_form span1" dir = "rtl">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <p>
         <i class="icon-user icon-large"></i>
@@ -30,6 +29,33 @@
   </br>
   </br>
   </br>
+  <div class ="span12">
+    <div id="slide" class="carousel slide span12">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="active item">
+          <img src="/images/2.jpg"/>
+        </div>
+        <div class="item">
+          <img src="/images/1.jpg"/>
+        </div>
+        <div class="item">
+          <img src="/images/3.jpg"/>
+        </div>
+        <div class="item">
+          <img src="/images/4.jpg"/>
+        </div>
+        <div class="item">
+          <img src="/images/5.jpg"/>
+        </div>
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#slide" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#slide" data-slide="next">&rsaquo;</a>
+    </div>
+  </div>
+
+
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <%= link_to "تسجيل", new_registration_path(resource_name) %> <!-- sign up -->
   <% end -%>

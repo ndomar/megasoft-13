@@ -56,8 +56,16 @@
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
  <!-- -------------------- -->
+<% if designer_signed_in? %>
+<div class="container">
+  <%= yield %>
+</div>
+<% else %>
+  <div>
+    <%= yield %>
+  </div>
+<% end %>
 
-<div class="container"><%= yield %></div>
 <hr>
 <footer>
   <p>&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</p>
