@@ -130,14 +130,11 @@ post 'steps/update'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-<<<<<<< HEAD
 
   root :to => 'tasks#index'
 
   # See how all your routes lay out with "rake routes"
 
-=======
->>>>>>> f72e5371672b36989e9b6880588ad5f8ed471d99
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'

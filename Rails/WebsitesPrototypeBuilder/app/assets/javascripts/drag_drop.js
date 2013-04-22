@@ -28,20 +28,20 @@ $(document).ready(function (){
 		}, 100,"linear");
 	});
 
-	$("#arrow").click(function(){
+	$(".arrow").click(function(){
 		if ($("#sidebar").width()>20){
 			$("#designcontainer").hide();
 			$("#sidebar").animate({
 				width: "-=200"
 			},300,"linear");
-			$("#designpage").animate({
-				width: "+=200",
-				left: "+=200"
-			},300,"linear");
-			$("#designpage").children().animate({
-				left: "+=200"
-			},300,"linear");
-			$("#arrowsymbol").removeClass("icon-chevron-right")
+			// $("#designpage").animate({
+			// 	width: "+=200",
+			// 	left: "+=200"
+			// },300,"linear");
+			// $("#designpage").children().animate({
+			// 	left: "+=200"
+			// },300,"linear");
+			$(".arrowsymbol").removeClass("icon-chevron-right")
 			.addClass("icon-chevron-left")
 			.fadeIn();
 		}
@@ -49,15 +49,15 @@ $(document).ready(function (){
 			$("#sidebar").animate({
 				width: "+=200"
 			},300,"linear");
-			$("#designpage").animate({
-				width: "-=200",
-				left: "-=200"
-			},300,"linear");
-			$("#designpage").children().animate({
-				left: "-=200"
-			},300,"linear");
+			// $("#designpage").animate({
+			// 	width: "-=200",
+			// 	left: "-=200"
+			// },300,"linear");
+			// $("#designpage").children().animate({
+			// 	left: "-=200"
+			// },300,"linear");
 			$("#designcontainer").show();
-			$("#arrowsymbol").removeClass("icon-chevron-left")
+			$(".arrowsymbol").removeClass("icon-chevron-left")
 			.addClass("icon-chevron-right");
 		}
 	});
