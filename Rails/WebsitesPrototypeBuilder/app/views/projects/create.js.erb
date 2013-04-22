@@ -1,0 +1,4 @@
+  var errorDiv = $('#error_project').text("");
+    <% @project.errors.each do |attr,msg| %>
+      $(errorDiv).append("<%= msg %>" )
+    <% end %>
