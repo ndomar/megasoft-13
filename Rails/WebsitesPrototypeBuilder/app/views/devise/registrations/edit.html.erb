@@ -75,16 +75,6 @@
     <%= f.text_field :profession, options = {:placeholder => "اﺧﺘﻴﺎﺭﻱ"}%>
   </div>
 
-  <div>
-    <label>ﺭﻗﻢ ﺑﻄﺎﻗﺔ اﻻﺋﺘﻤﺎﻥ</label><br /> <!-- credit_card_number -->
-    <%= f.text_field :credit_card_number, :required => true %>
-  </div>
-
-  <div>
-    <label>(CVV) ﺭﻗﻢ اﻟﺘﺄﻛﻴﺪ</label><br /> <!-- cvv2---Last 3 digits of your account number -->
-    <%= f.text_field :cvv2 ,options = {:size => 1, :required => true}%>
-  </div>
-
   <div><%= f.submit "ﺗﻌﺪﻳﻞ" ,options = {:class => "btn btn-info"} %></div>
 <% end %>
 

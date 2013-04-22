@@ -90,8 +90,6 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.integer  "day_dob"
     t.integer  "month_dob"
     t.integer  "year_dob"
-    t.integer  "credit_card_number"
-    t.integer  "cvv2"
     t.string   "profession"
     t.string   "facebook_email"
     t.string   "gender"
