@@ -4,6 +4,8 @@
   <title>Arability</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "projects" %>
+
   <%= csrf_meta_tags %>
 </head>
 
@@ -20,7 +22,7 @@
   <!-- the navigation links -->
     <ul id="navigation">
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
-    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
+    <li><%= link_to_function "مشروع جديد" ,  "showpopup()" %><div class="tabBar" ></div></li>
     <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
     </ul>
     <a href="#"><div width="107px" height="51px" class="logo"></div></a>
