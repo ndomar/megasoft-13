@@ -35,7 +35,7 @@ class PagesControllerTest < ActionController::TestCase
   end
 
   test "should update page" do
-    put :update, id: @page, page: { html: @page.html, page_name: @page.page_name }
+    put :update, id: @page, page: { html: @page.html }
     assert_redirected_to page_path(assigns(:page))
   end
 
@@ -46,4 +46,8 @@ class PagesControllerTest < ActionController::TestCase
 
     assert_redirected_to pages_path
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> f72e5371672b36989e9b6880588ad5f8ed471d99
