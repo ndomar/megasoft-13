@@ -8,12 +8,26 @@
 	<div id="wrapper" class="container-fluid">
 		<!-- toolbox containing elements to add to the design page -->
 		<div class='image-panel'>
-			<div class="arrow" style="background-color: #3790e8">
-					<i class="arrowsymbol icon-chevron-right" style="margin-top: 2px;"></i>
+			<div id='image-panel-tag' class='sidebar-tag'>
+				الصور
+			</div>
+			<div id="drop-area">
+			ارمى صورة هنا لرفعها
+			</div>
+			<div id='image-panel'>
+				<% @pictures.each do |picture| %>
+				<div class='thumbnail'>
+					<img  src='<%= "/assets/project_#{@project.id}/#{picture.image}" %>' />
+				</div>
+				<%end%>
 			</div>
 		</div>
+	
 		<div id="sidebar" class="row-fluid">
 				<!-- table with all the available toolbox elements -->
+				<div id='toolbox-tag' class='sidebar-tag'>
+				الادوات
+			</div>
 			<div id = "designcontainer">
 				<table>
 					<tr>
@@ -145,9 +159,6 @@
 					</tr>
 				</table>
 			</div>
-			<div class="arrow" style="background-color: #3790e8">
-					<i class="arrowsymbol icon-chevron-right" style="margin-top: 2px;"></i>
-			</div>
 		</div>	
     <!-- empty design page -->            
     <div id="content">
@@ -155,6 +166,9 @@
 	      <p>صمم صفحتك هنا</p>
 		</div>
 	</div>
-  </div>     
+  </div>  
+  <script type="text/javascript">
+  	initDragAndDrop();
+  </script>   
 </body>
 <!-- </html> -->

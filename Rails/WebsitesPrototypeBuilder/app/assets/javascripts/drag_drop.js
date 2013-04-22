@@ -28,11 +28,11 @@ $(document).ready(function (){
 		}, 100,"linear");
 	});
 
-	$(".arrow").click(function(){
-		if ($("#sidebar").width()>20){
+	$("#toolbox-tag").click(function(){
+		if ($("#sidebar").css("right")=='0px'){
 			$("#designcontainer").hide();
 			$("#sidebar").animate({
-				width: "-=200"
+				right: "-200px"
 			},300,"linear");
 			// $("#designpage").animate({
 			// 	width: "+=200",
@@ -41,13 +41,13 @@ $(document).ready(function (){
 			// $("#designpage").children().animate({
 			// 	left: "+=200"
 			// },300,"linear");
-			$(".arrowsymbol").removeClass("icon-chevron-right")
-			.addClass("icon-chevron-left")
-			.fadeIn();
 		}
 		else {
+			if ($(".image-panel").css("right")=='-180px'){
+				$("#image-panel-tag").click();
+			}
 			$("#sidebar").animate({
-				width: "+=200"
+				right: "0px"
 			},300,"linear");
 			// $("#designpage").animate({
 			// 	width: "-=200",
@@ -57,8 +57,37 @@ $(document).ready(function (){
 			// 	left: "-=200"
 			// },300,"linear");
 			$("#designcontainer").show();
-			$(".arrowsymbol").removeClass("icon-chevron-left")
-			.addClass("icon-chevron-right");
+		}
+	});
+
+	$("#image-panel-tag").click(function(){
+		if ($("#sidebar").css("right")=='0px'){
+			$("#toolbox-tag").click();
+			return;
+		}
+		if ($(".image-panel").css('right') == '20.2833px'){
+			$(".image-panel").animate({
+				right: "-180px"
+			},300,"linear");
+			$("#designpage").animate({
+				width: "+=200",
+				left: "+=200"
+			},300,"linear");
+			$("#designpage").children().animate({
+				left: "+=200"
+			},300,"linear");
+		}
+		else {
+			$(".image-panel").animate({
+				right: "20.2833px"
+			},300,"linear");
+			$("#designpage").animate({
+				width: "-=200",
+				left: "-=200"
+			},300,"linear");
+			$("#designpage").children().animate({
+				left: "-=200"
+			},300,"linear");
 		}
 	});
 
@@ -271,3 +300,36 @@ $(document).ready(function (){
 		}
 	});
 });
+
+function initDragAndDrop() {
+	var dragArea = document.getElementById("drop-area");
+	dragArea.addEventListener("dragover", noopHandler, false);
+	dragArea.addEventListener("dragenter", noopHandler, false);
+	dragArea.addEventListener("dragleave", noopHandler, false);
+	dragArea.addEventListener("drop", dropHandler, false);
+}
+
+function noopHandler(evt){
+	evt.stopPropagation();
+	evt.preventDefault();
+}
+
+function dropHandler(evt){
+	noopHandler(evt);
+	var files = evt.dataTransfer.files;
+	for (var i = 0; i < files.length; i++){
+		uploadFile(files[i]);
+	}
+}
+
+function uploadFile(file){
+	if (file.type.indexOf("image") != 0){
+		alert("Only image files allowed");
+	}
+	project_id = document.project.elements['project_id'].value;
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "upload_image", true);
+	xhr.setRequestHeader("X_FILENAME", file.name);
+	xhr.setRequestHeader("PROJECT_ID", project_id);
+	xhr.send(file);
+}

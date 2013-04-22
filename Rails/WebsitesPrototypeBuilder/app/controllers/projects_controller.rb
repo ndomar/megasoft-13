@@ -65,6 +65,8 @@ class ProjectsController < ApplicationController
   end
 
 	def design
+    @project = Project.find(params[:project_id]);
+    @pictures = @project.pictures
 	end
   #before_filter :authenticate_designer! 
   ##
