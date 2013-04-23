@@ -193,13 +193,3 @@ Designer.create(:fullname => "Test Designer4",
 (0..50).each do
       Reviewer.find(rand(1..5)).tasks << Task.find(rand(1..5))
 end
-
-
-
-
-
-
-
-
-
-
