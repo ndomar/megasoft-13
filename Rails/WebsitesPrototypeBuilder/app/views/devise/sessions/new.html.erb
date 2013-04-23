@@ -33,27 +33,31 @@
       <!-- Carousel items -->
       <div class="carousel-inner">
         <div class="active item" style="background-color:#AAAAAA">
-          <img class = "slide_images" src="/images/111.jpg"/>
+          <img class = "slide_images" src="/images/1.jpg"/>
         </div>
         <div class="item" style="background-color:#AAAAAA">
-          <img class = "slide_images" src="/images/222.jpg"/>
+          <img class = "slide_images" src="/images/2.jpg"/>
         </div>
         <div class="item" style="background-color:#AAAAAA">
-          <img class = "slide_images" src="/images/333.jpg"/>
+          <img class = "slide_images" src="/images/3.jpg"/>
         </div>
       </div>
       <!-- Carousel nav -->
-      <a class="slide_control_left carousel-control left" href="#slide" data-slide="prev">&lsaquo;</a>
-      <a class="slide_control_right carousel-control right" href="#slide" data-slide="next">&rsaquo;</a>
+      <a class="slide_control_left carousel-control left" href="#slide" data-slide="prev"><img src="/images/left_arrow.png"/></a>
+      <div class="slide_control_right">
+      <a class="slide_control_right carousel-control right" href="#slide" data-slide="next"><img class = "slide_r_img" src="/images/right_arrow.png"/></a>
+      </div>
     </div>
   </div>
   <div class = "register">
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to "شارك", new_registration_path(resource_name) %> <!-- sign up -->
+    <%= link_to image_tag("/images/sign_up.png" , :class=>"sign_up") , new_registration_path(resource_name) %> <!-- sign up -->
   <% end%>
   </div>
   <div id = "who_are_we">
-    
+    <div align = "center" class = "info">
+    <img src="/images/arability_info.png"/>
+    </div>
   </div>
   <div id = "glimpse">
 
@@ -62,7 +66,7 @@
     <div class="navbar navbar-fixed-bottom">
       <div class="navbar-inner foot">
         <ul class="nav">
-          <li class = "left"><a id = "left_link"  href="#">لمحة عن الموقع</a></li>
+          <li class = "left"><a id = "left_link"  href="#glimpse">لمحة عن الموقع</a></li>
           <li class = "center"><a id = "center_link" href="#who_are_we">من نحن ؟</a></li>
           <li class = "right"><a id = "right_link" href="#">شاركنا</a></li>
         </ul>
