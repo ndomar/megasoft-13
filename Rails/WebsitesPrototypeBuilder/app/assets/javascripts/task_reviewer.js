@@ -20,16 +20,26 @@ element.style.boxShadow="0px 0px 6px 2px orange";
   //alert(steps_ids_array[0]);
   if (event == steps_events_array[0] && curr_element_id==steps_components_array[0]) {
     clicks_counter=clicks_counter+1;
+    var current_hours = new Date().getHours();
+    var current_minutes= new Date().getMinutes();
+    var current_seconds = new Date().getSeconds();
 
-    var hours_taken = new Date().getHours() - starting_hours;
-    var minutes_taken =new Date().getMinutes() -  starting_minutes;
-    var seconds_taken= new Date().getSeconds() - starting_seconds;
+    var hours_taken = current_hours - starting_hours;
+    var minutes_taken = current_minutes - starting_minutes;
+    if (minutes_taken <0) {
+      minutes_taken=minutes_taken+60;
+    }
+
+    var seconds_taken= current_seconds - starting_seconds;
+    if (seconds_taken < 0) {
+      seconds_taken= seconds_taken+60; 
+    }
+
     total_time= hours_taken + ":" + minutes_taken + ":" + seconds_taken; 
     if( minutes_taken >= task_time){
       alert("Time's up!" + minutes_taken);
     }
     alert(total_time);
-    //alert ("<%= @task_result.id%>");
 
     steps_events_array.splice(0,1);
     var deleted_component= steps_components_array.splice(0,1);
