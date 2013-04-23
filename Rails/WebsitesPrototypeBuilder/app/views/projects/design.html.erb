@@ -8,16 +8,19 @@
 	<div id="wrapper" class="container-fluid">
 		<!-- toolbox containing elements to add to the design page -->
 		<div class='image-panel'>
+			<form name='project' >
+				<input type=hidden name='project_id' value='<%= @project.id %>' />
+			<form/>
 			<div id='image-panel-tag' class='sidebar-tag'>
 				الصور
 			</div>
 			<div id="drop-area">
-			ارمى صورة هنا لرفعها
+				ارمى صورة هنا لرفعها
 			</div>
 			<div id='image-panel'>
-				<% @pictures.each do |picture| %>
+				<% @medias.each do |media| %>
 				<div class='thumbnail'>
-					<img  src='<%= "/assets/project_#{@project.id}/#{picture.image}" %>' />
+					<img  src='<%= "/assets/project_#{@project.id}/#{media.url}" %>' />
 				</div>
 				<%end%>
 			</div>

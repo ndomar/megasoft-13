@@ -19,5 +19,5 @@ class Project < ActiveRecord::Base
   has_many :questionnaires,:dependent => :destroy
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
-  has_many :pictures
+  has_many :medias
 end

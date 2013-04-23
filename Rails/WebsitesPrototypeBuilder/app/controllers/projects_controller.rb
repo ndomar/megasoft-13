@@ -50,23 +50,25 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def upload_image
+  def upload_media
     name = request.headers["HTTP_X_FILENAME"]
     project_id = request.headers["HTTP_PROJECT_ID"]
     data = request.raw_post
-    if (!Dir.exists?("app/assets/images/project_#{project_id}"))
-      Dir.mkdir("app/assets/images/project_#{project_id}")
+    @media = Media.new(url: name, project_id: project_id)
+    @media.store_media(name, data, project_id)
+
+    respond_to do |format|
+      if @media.save
+        format.html { render :nothing => true, :status => :created }
+      else
+        format.html { render :nothing => true, :status => 406 }
+      end
     end
-    @file_content = File.open("app/assets/images/project_#{project_id}/#{name}", "wb") do |f|
-      f.write(data)
-    end
-    @picture = Picture.new(image: name, project_id: project_id)
-    @picture.save
   end
 
 	def design
     @project = Project.find(params[:project_id]);
-    @pictures = @project.pictures
+    @medias = @project.medias
 	end
   #before_filter :authenticate_designer! 
   ##
