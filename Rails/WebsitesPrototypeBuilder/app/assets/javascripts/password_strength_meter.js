@@ -15,7 +15,7 @@ function passwordStrength(password,username)
     score = 0 
     
     //password < 4
-    if (password.length < 4 ) { return shortPass }
+    if (password.length < 8 ) { return shortPass }
     
     //password == username
     if (password.toLowerCase()==username.toLowerCase()) return badPass
