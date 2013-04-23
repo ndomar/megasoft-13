@@ -1,20 +1,32 @@
 function showpopup() {
-  $(".popup-darkscree").fadeIn(400);
+  $(".popup-darkbackground").fadeIn(400);
+  $(".popup-createProject").fadeIn(400);
 }
 
 function hidepopup() {
-  $(".popup-darkscree").fadeOut(400);
+  $(".popup-darkbackground").fadeOut(500);
+  $(".popup-createProject").fadeOut(500);
 }
+
 $(document).ready(function(){
-  $('.thumbnail').mouseover(function()
+ 
+ $('.popup-darkbackground').on('click', function ()
+  {
+    $(".popup-darkbackground").fadeOut(500);
+    $(".popup-createProject").fadeOut(500);
+  });
+  $('.project-div').hover(function()
   {
     $(this).css("cursor","pointer");
-    $('.icon-remover').fadeIn(500);
+    $(this).children('.icon-remove').fadeIn();
+  }, function()
+  {
+    $(this).css("cursor","pointer");
+    $(this).children('.icon-remove').fadeOut();
   });
 
-  $('.thumbnail').on('click', function ()
+  $('.project-div').on('click', function ()
   {
-
     var projectid = $(this).attr("ProjectId");
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
@@ -23,4 +35,9 @@ $(document).ready(function(){
     $("#sidebar").show("medium");
   });
 
+
+  $('#arrow').on('click', function ()
+  {
+    $("#sidebar").hide("medium");
+  });
 });
