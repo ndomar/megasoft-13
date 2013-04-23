@@ -1,50 +1,67 @@
 
 #content{
   left: 0px;
-
 }
 
-.popup-darkscree{
+.Project_Name{
+  width: 70%;
+  height: 20px;
+  margin-left: 15%;
+  background-color: rgb(184,184,184) ;
+  text-align: center;
+}
+
+.popup-darkbackground{
   height: 100%;
   width: 100%;
   position:fixed;
   top: 0px;
   left: 0px;
-  background-color: rgb(0, 0, 0);
-  display: none;
+  background-color: rgb(72, 72, 72);
   opacity: 0.7;
+  display: none;
 }
-.popup-createProject{
 
-  background-color:white;
+.popup-createProject{
   margin: auto;
-  width: 400px;
+  width: 300px;
   height: 500px;
   margin-top: 125px;
+  position: absolute;
+  top: 0px;
+  left: 455px;
   color:black;
   padding-left:20px;
   padding-right:20px;
-  overflow:auto;
-  opacity: none;
+  background-color:white;
+  display: none;
 }
 
 .icon-remove{
-  top: 0px;
-  left: 0px;
-  overflow:auto;
-  }
+  top:0px;
+  right:6px;
+  float: left;
+  display: none;
+}
+
+#Close{
+  top:0px;
+  float: left;
+  display: block;
+}
 
 .save{
-  left: 50px;
+  border-radius: 0px;
+  right:270px;
+  position: absolute;
 }
 
 #arrow{
   background-color: #3790e8;
   width: 18px;
   border-radius: 3px;
-  left: 0px;
-  top: 288px;
-  position: absolute;
+  left: 50px;
+  top: 200px;
 }
 
 
@@ -55,10 +72,25 @@
   right: 0px;
   display: none;
   overflow:visible;
-
-
 }
 
 #error_project{
-  right: 0px;
+  top: 0px;
+  float: right;
+}
+
+.project-div{
+  height: 200px;
+  width: 300px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+img{
+  width: 100%;
+  height: 100%;
+}
+
+.body{
+  background-color: rgb(48, 48, 48);
 }
