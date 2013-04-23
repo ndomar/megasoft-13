@@ -39,7 +39,7 @@ end
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
-  match "tasks/invite_user/:id" => "tasks#invite_user"
+  get "tasks/invite_user" => "tasks#invite_user"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
