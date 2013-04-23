@@ -49,7 +49,7 @@ post 'steps/update'
 
   get "pages/designer"
   get "projects/index"
-  post "projects/upload_image"
+  post "projects/upload_media"
 
   resources :projects
 
@@ -77,7 +77,6 @@ post 'steps/update'
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
   get "/log/:id" => 'task_results#index'
-
   get 'projects/design/:project_id' => 'projects#design'
   
 

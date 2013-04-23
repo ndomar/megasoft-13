@@ -32,8 +32,8 @@ $(document).ready(function (){
 		if ($("#sidebar").css("right")=='0px'){
 			$("#designcontainer").hide();
 			$("#sidebar").animate({
-				right: "-200px"
-			},300,"linear");
+				right: "-230px"
+			},200,"linear");
 			// $("#designpage").animate({
 			// 	width: "+=200",
 			// 	left: "+=200"
@@ -43,12 +43,12 @@ $(document).ready(function (){
 			// },300,"linear");
 		}
 		else {
-			if ($(".image-panel").css("right")=='-180px'){
+			if ($(".image-panel").css("right")=='-210px'){
 				$("#image-panel-tag").click();
 			}
 			$("#sidebar").animate({
 				right: "0px"
-			},300,"linear");
+			},200,"linear");
 			// $("#designpage").animate({
 			// 	width: "-=200",
 			// 	left: "-=200"
@@ -67,27 +67,27 @@ $(document).ready(function (){
 		}
 		if ($(".image-panel").css('right') == '20.2833px'){
 			$(".image-panel").animate({
-				right: "-180px"
-			},300,"linear");
+				right: "-210px"
+			},200,"linear");
 			$("#designpage").animate({
-				width: "+=200",
-				left: "+=200"
-			},300,"linear");
+				width: "+=230",
+				left: "+=230"
+			},200,"linear");
 			$("#designpage").children().animate({
 				left: "+=200"
-			},300,"linear");
+			},200,"linear");
 		}
 		else {
 			$(".image-panel").animate({
 				right: "20.2833px"
-			},300,"linear");
+			},200,"linear");
 			$("#designpage").animate({
-				width: "-=200",
-				left: "-=200"
-			},300,"linear");
+				width: "-=230",
+				left: "-=230"
+			},200,"linear");
 			$("#designpage").children().animate({
 				left: "-=200"
-			},300,"linear");
+			},200,"linear");
 		}
 	});
 
@@ -314,21 +314,62 @@ function noopHandler(evt){
 	evt.preventDefault();
 }
 
+var files;
+var i;
+var dropArea;
+
 function dropHandler(evt){
 	noopHandler(evt);
-	var files = evt.dataTransfer.files;
-	for (var i = 0; i < files.length; i++){
-		uploadFile(files[i]);
+	files = evt.dataTransfer.files;
+	i = 0;
+	var dropArea = $('#drop-area');
+	$(dropArea).text("");
+	$(dropArea).append("<label id='file-name'/>");
+	$(dropArea).append("جارى التحميل");
+	$("<br/>").appendTo(dropArea);
+	$('<progress id="upload-progress" max="100" value="0"/>').appendTo("#drop-area");
+	processFile();	
+}
+
+function showImage(file){
+	var reader = new FileReader();
+	reader.onload = function(evt) {
+		var code = "<div class='thumbnail'>" + 
+							 "<img  src='" + evt.target.result + "' />" + 
+							 "</div>";
+		$(code).prependTo("#image-panel");
 	}
+	reader.readAsDataURL(file);
+}
+
+function processFile(){
+	if (i == files.length){
+		$('#drop-area').text("ارمى صورة هنا لرفعها");
+		return;
+	}
+	if (files[i].type.indexOf("image") != 0){
+		alert("Only image files allowed");
+		i++;
+		processFile();
+	}
+	$('#file-name').text(files[i].name);
+	var progress = parseInt(((i+1) / files.length * 100));
+	$("#upload-progress").attr("value", progress);
+	uploadFile(files[i]);
+	i++;
 }
 
 function uploadFile(file){
-	if (file.type.indexOf("image") != 0){
-		alert("Only image files allowed");
-	}
 	project_id = document.project.elements['project_id'].value;
 	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "upload_image", true);
+	xhr.onreadystatechange = function(evt) {
+		if (xhr.readyState == 4 ){
+			if (xhr.status == 201)
+				showImage(files[i-1]);
+			processFile();
+		}
+	};
+	xhr.open("POST", "/projects/upload_media", true);
 	xhr.setRequestHeader("X_FILENAME", file.name);
 	xhr.setRequestHeader("PROJECT_ID", project_id);
 	xhr.send(file);
