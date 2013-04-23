@@ -28,12 +28,13 @@
   </div>
 
   <div id="content">
+    <button id="cursorSwitch"> Switch Cursor </button>
     <div id = "returning_to_home">
       <%= link_to "العودة إلي صفحة المهمة", project_task_path(params[:project_id], @task) %>
     </div>
     <br/>
 
-    <div id ="embedded" class = "embeddedDiv">
+    <div id ="embedded">
       <%= @page.html.html_safe %>
     </div>
 

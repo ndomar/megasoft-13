@@ -1,5 +1,21 @@
-.embeddedDiv a, button, input, img{
+.embeddedDiv a{
   cursor: crosshair;
+}
+
+.embeddedDiv button{
+  cursor: crosshair;
+}
+
+.embeddedDiv input{
+  cursor: crosshair;
+}
+
+.embeddedDiv img{
+  cursor: crosshair;
+}
+
+.cursorPressed{
+  border-style:inset;
 }
 
 h2{

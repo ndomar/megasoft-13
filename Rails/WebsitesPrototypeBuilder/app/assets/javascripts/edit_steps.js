@@ -1,34 +1,58 @@
 $(function(){
+  $('#cursorSwitch').click(function(event){
+    var cursor = $('#cursorSwitch');
+    if(cursor.hasClass("cursorPressed")){
+      $("#add_step").hide();
+      dehighlight($("#component_id").val());
+    }
+    $('#cursorSwitch').toggleClass('cursorPressed');
+    $('#embedded').toggleClass('embeddedDiv');
+  });
+});
+
+$(function(){
   $('#embedded').find('a').each(function () {
     $(this).bind('click',false);
   });
 });
 
 $(function(){
-  $("#embedded").find('textarea').click(function(event){
-    var id = event.target.id;
-    select(id);
+  $("#embedded").find('input').click(function(event){
+    var cursor = $('#cursorSwitch');
+    if(cursor.hasClass("cursorPressed")){
+      var id = event.target.id;
+      select(id);
+    }
   });
 });
 
 $(function(){
   $("#embedded").find('button').click(function(event){
-    var id = event.target.id;
-    select(id);
+    var cursor = $('#cursorSwitch');
+    if(cursor.hasClass("cursorPressed")){
+      var id = event.target.id;
+      select(id);
+    }
   });
 });
 
 $(function(){
   $("#embedded").find('img').click(function(event){
-    var id = event.target.id;
-    select(id);
+    var cursor = $('#cursorSwitch');
+    if(cursor.hasClass("cursorPressed")){
+      var id = event.target.id;
+      select(id);
+    }
   });
 });
 
 $(function(){
   $("#embedded").find('a').click(function(event){
-    var id = event.target.id;
-    select(id);
+    var cursor = $('#cursorSwitch');
+    if(cursor.hasClass("cursorPressed")){
+      var id = event.target.id;
+      select(id);
+    }
   });
 });
 
