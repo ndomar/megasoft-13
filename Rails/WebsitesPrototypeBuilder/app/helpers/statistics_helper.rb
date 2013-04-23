@@ -1,6 +1,78 @@
 # encoding: utf-8
 module StatisticsHelper
   ## 
+  # uses googlechartsvisualr to make a pie chart of the given data
+  # * *Args*    :
+  #   -+reviewer_infos+->: an array of reviewer infos
+  #   -+type+->: type of the chart
+  # * *Returns* :
+  #   - a pie chart
+  #  
+  def drawPiechart(reviewer_infos, type)
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', type )
+    data_table.new_column('number', 'value')
+    reviewer_infos[0].each_with_index do |info, index|
+      data_table.add_row([reviewer_infos[0][index], reviewer_infos[1][index]])
+    end
+    option = { width: 300, height: 240, title: type }
+    chart = GoogleVisualr::Interactive::PieChart.new(data_table, option)
+    return chart
+  end
+
+  ## 
+  # uses googlechartsvisualr to make a bar chart of the given data
+  # * *Args*    :
+  #   -+tasks+->: an array of all tasks
+  # * *Returns* :
+  #   - a bar chart
+  #  
+  def drawBarchart(tasks)
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', 'اسم المهمة' )
+    data_table.new_column('number', 'الوقت')
+    data_table.new_column('number', 'نسبة النجاح')
+    data_table.new_column('number', 'عدد المراجعين')
+    resultsSummary = calculateAllTasksResultsSummary(tasks)
+    tasks.each_with_index do |task, index|
+      data_table.add_row([task.name,resultsSummary[0][index], 
+        resultsSummary[1][index], resultsSummary[2][index]])
+    end
+    option = { width: 400, height: 240, title: 'احصائيات نتائج المهام' }
+    chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, option)
+    return chart
+  end
+
+  ## 
+  # uses googlechartsvisualr to make a line chart of the given data
+  # * *Args*    :
+  #   -+tasks+->: an array of tasks
+  #   -+title+->: title of the chart
+  #   -+resultsSummary+->: an array containing the data
+  # * *Returns* :
+  #   - a line chart
+  #  
+  def drawLinechart(resultsSummary, tasks, title)
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('number', 'عدد المراجعين')
+    tasks.each do |task|
+      data_table.new_column('number', task.name)
+    end
+    tasks.each_with_index do |task, index|
+      resultsSummary[index].each_with_index do |time, timeindex|
+        if data_table.rows[timeindex] == nil
+          data_table.add_row()
+          data_table.set_cell(timeindex, 0, timeindex)
+        end
+        data_table.set_cell(timeindex, index + 1, time) 
+      end
+    end
+    option = { width: 400, height: 240, title: title }
+    chart = GoogleVisualr::Interactive::LineChart.new(data_table, option)
+    return chart
+  end
+
+  ## 
   # calculates the results summary of all tasks
   # * *Args*    :
   #   -+tasks+->: an array of tasks
@@ -35,10 +107,10 @@ module StatisticsHelper
   #   - a value that represents the average time taken by reviewers of one task
   #   
   def calculateAverageTime(task_results)
-    averagetime = 0
-    counter = 0
+    averagetime = 0.0
+    counter = 0.0
     task_results.each do |result|
-      counter += 1
+      counter += 1.0
       averagetime += result.time
     end
     averagetime /= counter
@@ -53,12 +125,12 @@ module StatisticsHelper
   #   - a value that represents the average success of one task
   #   
   def calculateAverageSuccess(task_results)
-    averagesuccess = 0
-    counter = 0
+    averagesuccess = 0.0
+    counter = 0.0
     task_results.each do |result|
-      counter += 1
+      counter += 1.0
       if result.success
-        averagesuccess += 1
+        averagesuccess += 1.0
       end
     end
     averagesuccess /= counter
@@ -173,7 +245,7 @@ module StatisticsHelper
     elsif agelessthan20 == 0 && agelessthan40 == 0 && agelessthan60 == 0 && agegreaterthan60 == 0
       return "لم يجب أحد من المراجعين عن سنه"
     else
-      return [agelessthan20, agelessthan40, agelessthan60, agegreaterthan60]
+      return [['age < 20', 'age < 40', 'age < 60', 'age > 60'], [agelessthan20, agelessthan40, agelessthan60, agegreaterthan60]]
     end
   end
 
@@ -242,7 +314,7 @@ module StatisticsHelper
     elsif males == 0 && females == 0
       return "لم يجب أحد من المراجعين عن نوعه"
     else
-      return [males, females]
+      return [['ذكر', 'أنثى'], [males, females]]
     end
   end
 end

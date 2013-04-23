@@ -13,8 +13,8 @@ describe StatisticsHelper do
     it "calculateAlltasksResultsSummary(tasks) returns an array of 3 arrays of integers
      if results and reviewers are available" do  
       resultssummary = helper.calculateAllTasksResultsSummary([@task])
-      expect(resultssummary[0][0]).to be_kind_of(Integer)
-      expect(resultssummary[1][0]).to be_kind_of(Integer)
+      expect(resultssummary[0][0]).to be_kind_of(Float)
+      expect(resultssummary[1][0]).to be_kind_of(Float)
       expect(resultssummary[2][0]).to be_kind_of(Integer)
     end
 
@@ -105,7 +105,41 @@ describe StatisticsHelper do
       reviewer4 = @task.reviewers.create(FactoryGirl.attributes_for(:reviewer))
       reviewer4.create_reviewer_info(:age => 84, :gender => true, :country => "Libya")
       reviewersinfos = helper.getReviewerInfos(@task)
-      expect(reviewersinfos).to eq([[1,1,1,1], [["Egypt", "Libya"], [2, 2]], [2,2]])
+      expect(reviewersinfos).to eq([[['age < 20', 'age < 40', 'age < 60', 'age > 60'], [1,1,1,1]], [["Egypt", "Libya"], [2, 2]], [['ذكر', 'أنثى'], [2,2]]])
+    end
+  end
+
+  describe "methods that generate charts should return a chart" do 
+    before(:each) do
+      project = FactoryGirl.create(:project)
+      @task = project.tasks.create(FactoryGirl.attributes_for(:task))
+      @reviewer = @task.reviewers.create(FactoryGirl.attributes_for(:reviewer))
+    end
+
+    it "drawLinechart(resultsSummary, tasks, title) should return a chart" do
+      @task.task_results.create(FactoryGirl.attributes_for(:task_result))
+      resultsSummary = calculateResultsSummary([@task])
+      timechart = helper.drawLinechart(resultsSummary[0], [@task], 'title')
+      successchart = helper.drawLinechart(resultsSummary[1], [@task], 'title')
+      expect(timechart).to be_kind_of(GoogleVisualr::Interactive::LineChart)
+      expect(successchart).to be_kind_of(GoogleVisualr::Interactive::LineChart)
+    end
+
+    it "drawBarchart(tasks) should return a chart" do
+      @task.task_results.create(FactoryGirl.attributes_for(:task_result))
+      chart = helper.drawBarchart([@task])
+      expect(chart).to be_kind_of(GoogleVisualr::Interactive::ColumnChart)
+    end
+
+    it "drawPiechart(tasks) should return a chart" do
+      @reviewer.create_reviewer_info(FactoryGirl.attributes_for(:reviewer_info))
+      reviewersinfos = getReviewerInfos(@task)
+      agechart = drawPiechart(reviewersinfos[0], 'test')
+      countrychart = drawPiechart(reviewersinfos[1], 'test')
+      genderchart = drawPiechart(reviewersinfos[2], 'test')
+      expect(agechart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
+      expect(genderchart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
+      expect(countrychart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
     end
   end
 end
