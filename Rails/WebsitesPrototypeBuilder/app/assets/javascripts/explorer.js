@@ -39,10 +39,8 @@ function deletePage(pageId){
 			var params = $.param({
 				pageid: pageId
 			});
-			alert(params);
 			$.ajax("/projects/deletePage?" + params);
-	  }
-	alert("Done");
+	}
 }
 
 function addPage(project_id){
@@ -87,13 +85,67 @@ $(document).ready(function() {
 });
 
 function showDiv(){
-  // alert($('#carousel-inner').children().last().children().children().last().prev().attr('class'));
+	 alert($('#carousel-inner').children().last().children().children().last().prev().attr('class'));
+	 //this is the div that i will check if it is empty
+	 alert($('#carousel-inner').children().last().children().children().last().prev().children().length);
+	 //i am checking the number of children
+	 if($('#carousel-inner').children().last().children().children().last().prev().children().length>0){
+	 	//this means that i should add an extra item with spans and the new thumbnail page
+	 }else{
+	 	//this means that there is place for that to add extra thumbnail in an empty span
+	 	//and i have to add these
+	  // <a class="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
+    //  <div id="<%= page.id %>" class="thumbnail" style="border-color:#000000" ondblclick="show('<%= page.id %>','<%= page.html %>')" id="<%= page.id %>" width="50px">
+    //    <img src="/assets/emptyPage.jpg" alt="">
+    //  </div>
+
+	  //creating the x button
+	  var xButton = document.createElement('a');
+	  xButton.setAttribute('class','x-button');
+	  xButton.onclick = function() { var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
+																	if(response){
+																			var params = $.param({
+																				pageid: 1	//this should be <%= page.id %>
+																			});
+																			$.ajax("/projects/deletePage?" + params);
+																		} 
+																	};
+	  //creating the thumbnail
+	  var newdiv = document.createElement('div');
+		newdiv.setAttribute('id',"id");	//this should be "<%= page.id %>"
+		newdiv.setAttribute('class',"thumbnail");
+		newdiv.style.border = null;
+		newdiv.ondblclick = function(){
+																		if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=1)//this should be "<%= page.id %>"  {
+																		store();
+																		}
+																		var designPage = document.getElementById('designpage');
+																		designPage.innerHTML="";
+																		designPage.innerHTML="";	//this should be "<%= page.html %>"
+																		designPage.setAttribute("data-pageid", 0);	//this should be "<%= page.id %>"
+																	};
+		//creating the image 
+		var newimg = document.createElement('img');
+		newimg.setAttribute('src','/assets/emptyPage.jpg');
+
+		//appending items
+		newdiv.innerHTML+=newimg;
+		$('#carousel-inner').children().last().children().children().last().prev().innerHTML+=xButton;
+		$('#carousel-inner').children().last().children().children().last().prev().innerHTML+=newdiv;
+
+}
+
+	// alert($('#carousel-inner').children().last().children().children().last().prev().attr('class'));
 	// alert($('#carousel-inner').children().last().children().children().length);
-	 alert($('#carousel-inner').children().last().children().children().length);
-	 alert($('#carousel-inner').children().last().children().children().attr('class'));
+	 
+	 // alert($('#carousel-inner').children().last().children().children().length); 
+	// alert($('#carousel-inner').children().last().children().children().last().is('empty'));
+
+	 // alert($('#carousel-inner').children().last().children().children().attr('class'));
+	 
+	 // 	alert($('#carousel-inner').children().last().children().children().text);
 	 // if($('#carousel-inner').children().last().children().children().length==6){
 	 // 	alert(6);
 	 // }else{
 	 // 	alert($('#carousel-inner').children().last().children().children().length);
 	 // }
-}

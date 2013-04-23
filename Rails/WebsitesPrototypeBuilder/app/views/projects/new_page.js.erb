@@ -1,14 +1,88 @@
 <% if (@page.valid?) %>
-	// $('#carousel-inner').children().last();
+alert($('#carousel-inner').children().last().children().children().last().prev().attr('class'));
+//this is the div that i will check if it is empty
+alert($('#carousel-inner').children().last().children().children().last().prev().children().length);
+//i am checking the number of children
+if($('#carousel-inner').children().last().children().children().last().prev().children().length>0){
+	//this means that i should add an extra item with spans and the new thumbnail page
+	alert("HERE");
+	//var item = document.createElement('div');
 
-	//$('#carousel-inner').children() this gets the carousel items
-	//$('#carousel-inner').children().last() this gets the last item in the carousel-inner
-	//$('#carousel-inner').children().last().children() this gets the thumbnails div inside the last item
-	//$('#carousel-inner').children().last().children():nth-child(5) this gets the last span in the thumbnails
-	//I want to check whether it is empty or not for adding
 
-	document.write($('#carousel-inner').children().last().children().eq(2).attr('class'));
-	// document.write((($('#carousel-inner').children().last().children()):nth-child(5)).class);
+	var xButton = document.createElement('a');
+  xButton.setAttribute('class','x-button');
+  xButton.onclick = function() { var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
+																if(response){
+																		var params = $.param({
+																			pageid: <%= @page.id %>
+																		});
+																		$.ajax("/projects/deletePage?" + params);
+																	} 
+																};
+  //creating the thumbnail
+  var newdiv = document.createElement('div');
+	newdiv.setAttribute('id',"<%= @page.id %>");	
+	newdiv.setAttribute('class',"thumbnail");
+	newdiv.style.border = null;
+	newdiv.ondblclick = function(){
+																	if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=<%= @page.id %>){
+																	store();
+																	}
+																	var designPage = document.getElementById('designpage');
+																	designPage.innerHTML="";
+																	designPage.innerHTML=<%= @page.html %>;
+																	designPage.setAttribute("data-pageid", <%= @page.id %>);	
+																};
+	//creating the image 
+	var newimg = document.createElement('img');
+	newimg.setAttribute('src','/assets/emptyPage.jpg');
+	//appending items
+	newdiv.innerHTML+=newimg;
+	$('#carousel-inner').children().last().children().children().last().prev().innerHTML+=xButton;
+	$('#carousel-inner').children().last().children().children().last().prev().innerHTML+=newdiv;
+	
+}else{
+	var spans = $('#carousel-inner').children().last().children().children().last().prev();
+	while(spans.prev().children()==0){
+		spans=spans.prev();
+	}
+	//this means that there is place for that to add extra thumbnail in an empty span
+	//and i have to add these
+
+  //creating the x button
+  var xButton = document.createElement('a');
+  xButton.setAttribute('class','x-button');
+  xButton.onclick = function() { var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
+																if(response){
+																		var params = $.param({
+																			pageid: <%= @page.id %>
+																		});
+																		$.ajax("/projects/deletePage?" + params);
+																	} 
+																};
+  //creating the thumbnail
+  var newdiv = document.createElement('div');
+	newdiv.setAttribute('id',"<%= @page.id %>");	
+	newdiv.setAttribute('class',"thumbnail");
+	newdiv.style.border = null;
+	newdiv.ondblclick = function(){
+																	if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=<%= @page.id %>){
+																	store();
+																	}
+																	var designPage = document.getElementById('designpage');
+																	designPage.innerHTML="";
+																	designPage.innerHTML=<%= @page.html %>;
+																	designPage.setAttribute("data-pageid", <%= @page.id %>);	
+																};
+	//creating the image 
+	var newimg = document.createElement('img');
+	newimg.setAttribute('src','/assets/emptyPage.jpg');
+	//appending items
+	newdiv.innerHTML+=newimg;
+	spans.innerHTML+=xButton;
+	spans.innerHTML+=newdiv;
+}
+
 <% else %>
-
+	alert("INVALID");
 <% end %>
