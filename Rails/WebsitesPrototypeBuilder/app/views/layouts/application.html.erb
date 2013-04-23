@@ -12,7 +12,6 @@
 
 <body>
 <!-- layout stuff for the home page -->
-<% if designer_signed_in? %>
 <!-- container for positioning the banner -->
 <div id="navigation_container">
 <!-- the ribbon body -->
@@ -23,7 +22,7 @@
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
     <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
     </ul>
-    <a href="#"><div width="107px" height="51px" class="logo"></div></a>
+    <a href="#"><div width="44px" height="51px" class="logo"></div></a>
   <!-- end navigation links -->
     <div id="designer_nav" align="right">
       <!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
@@ -49,17 +48,22 @@
   </div>
 <!-- end container -->
 </div>
-<% end %>
-<br />
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
  <!-- -------------------- -->
-
-<div class="container"><%= yield %></div>
+<div class="the_body">
+  <div class="container"><%= yield %></div>
+</div>
 <hr>
 <footer>
+  <ul class="social_bookmarks">
+    <li class="facebook"><a href="http://facebook.com/">Facebook</a></li>
+    <li class="twitter"><a href="http://www.twitter.com/">Twitter</a></li>
+    <li class="google"><a href="http://www.google.com//">Google+</a></li>
+  </ul>
+
   <p>&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</p>
 </footer>
 

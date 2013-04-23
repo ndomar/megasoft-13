@@ -15,7 +15,7 @@
 html,body{ 
 	width:100%; 
 	min-width: 800px;
-	min-height: 600px;
+	height: 100%;
 }
 
 @font-face { 
@@ -33,6 +33,7 @@ html{
 }
 
 body{
+
 	text-align:right;
 	font-family: arabi-light;
 	width: 100%; 
@@ -40,7 +41,15 @@ body{
 	margin: 0 0;
 	margin-top:-10px;
 }
-	  
+
+.the_body{
+	background-image:url('pattern.png');
+	background-repeat:repeat;
+	min-height: 100%;
+  height: auto !important;
+  height: 100%; 
+}
+
 .tabBar {
 	background-color: #ebebeb;
 	background-color: #e08f46;
@@ -100,12 +109,13 @@ body{
 	height: 51px;
 	position: relative;
 	z-index: 500;
-	border-bottom: 1px solid #d4d4d4;
+	border-bottom: 1px solid #eceff2;
+	box-shadow: 0 1px 0 rgb(180, 180, 180);
 }
 
 .logo{
 	background-image:url('logo.png');
-	width:107px;
+	width:44px;
 	height:51px;
 	float: right;
 	margin-right: 120px;
@@ -175,7 +185,7 @@ div#content{
 }
 
 footer{
-	margin:0px 120px 0px 120px;
+	margin:0px 240px 0px 240px;
 	padding-bottom: 20px;
 }
 		
@@ -183,6 +193,7 @@ hr {
 	border: 0;
 	border-top: 1px solid #eeeeee;
 	border-bottom: 1px solid #ffffff;
+	margin-top: 0px;
 }
 
 iframe {
@@ -191,4 +202,53 @@ iframe {
 	-webkit-transform:rotate(0deg);
 	-o-transform:rotate(0deg);
 	-ms-transform:rotate(0deg);
+}
+
+
+.social_bookmarks {
+	border: medium none;
+	display: block;
+	float: left;
+	list-style-type: none;
+	list-style-position: outside;
+	margin: 0 0 10px 0px;
+}
+
+.social_bookmarks li {
+	float: left;
+	margin: 0 7px 0 0;
+	width: 22px;
+}
+
+.social_bookmarks li a {
+	border: medium none;
+	display: block;
+	float: left;
+	height: 22px;
+	padding: 0;
+	text-indent: -9999px;
+	width: 22px;
+	outline: none;
+}
+
+.social_bookmarks .facebook a {
+background: transparent url('sprite-icons.png') 0 0 no-repeat;
+}
+
+.social_bookmarks .twitter a {
+background: transparent url('sprite-icons.png') -22px 0 no-repeat;
+}
+.social_bookmarks .google a {
+background: transparent url('sprite-icons.png') -44px 0 no-repeat;
+}
+
+.social_bookmarks .facebook a:hover {
+background: transparent url('sprite-icons.png') 0 -22px no-repeat;
+}
+
+.social_bookmarks .twitter a:hover {
+background: transparent url('sprite-icons.png') -22px -22px no-repeat;
+}
+.social_bookmarks .google a:hover {
+background: transparent url('sprite-icons.png') -44px -22px no-repeat;
 }
