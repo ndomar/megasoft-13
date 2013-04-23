@@ -13,22 +13,23 @@ class CommentsController < ApplicationController
   def create
     # finds the selected page
     @page = Page.find(params[:page_id])
-    @page_name = @page.name
+    @page_name = @page.page_name
     @comment = @page.comments.build(params[:comment])
-    @reviewer_email = "derwy" #Comment.find(@comment.reviewer_id).email
+    @reviewer_email = "Derwy" #Comment.find(@comment.reviewer_id).email
     # @project = Project.find(@page.project_id)
     # @designer = Designer.find(@project.designer_id)
-    @timestamp = Time.now.to_f
+    @timestamp = Time.now
     @email = "marwanelderwy@gmail.com" # change to designer email later
-    @screenshot = ''
+    # @screenshot = ''
     respond_to do |format|
     if @comment.save
       # send a notification email to the designer if comment was saved in the database including theses attributes
-      SendNotification.send_notification(@email, @comment, @reviewer_email, @timestamp, @page_name).deliver()
+      SendNotification.send_notification(@email, @comment, @reviewer_email, @timestamp, @page_name).deliver();
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Comment was successfully created.' }
-  	else
-      alert("comment was not created")
+  	  # alert("Comment was successfully created")
+    else
+      # alert("comment was not created")
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Comment could not be saved. Please fill in all fields' }
       end
