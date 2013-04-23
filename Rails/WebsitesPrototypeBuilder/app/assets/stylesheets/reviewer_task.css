@@ -1,7 +1,20 @@
 .desc {
 position: absolute;
-background-color: #CCCCCC;
+background-color: white;
 left : 1000px; 
-top :60px;
+top :10px;
+border-style: outset;
+border-color: #3399FF;
+border-width: 5px;
+border-radius: 8px;
 }
 
+.goal {
+  position: absolute;
+  left:10px;
+  top:20px;
+  border-style: inset;
+  border-color: #3399FF;
+  border-width: 5px;
+  border-radius: 8px;
+}
