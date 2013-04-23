@@ -1,6 +1,6 @@
 <!-- the answer form for the reviewer to answer -->
 <%= stylesheet_link_tag "questionnaires"%>
-<div align = "right">
+<div dir = "rtl" align = "right" class = "container span11">
 	<%= nested_form_for (@questionnaire) do |f| %>
 	<legend align="right"><%=@questionnaire.title%></legend>
 	<div id = 'main_form' >
@@ -45,7 +45,7 @@
 			</br>	
 			<hr>
 		<%end%>
-		<%=f.submit "انتهيت", :class => "submit legend", :controller =>:questionnaires , :action =>:answer_show%>
+		<%=f.submit "انتهيت", :class => "submit legend"%>
 	<%end%>
 	</br>	
 	</div>

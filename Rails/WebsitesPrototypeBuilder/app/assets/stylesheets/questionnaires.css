@@ -12,14 +12,14 @@ body
 }
 #main_form
 {
-	border-radius:20px;
+	border-radius:10px;
 	padding-top: 10pt;
 	padding-bottom: 10pt;
-  padding-right: 5pt;
+  padding-right: 15pt;
   padding-left: 5pt;
-  -moz-box-shadow:    inset 0 0 100px #989898;
-  -webkit-box-shadow: inset 0 0 100px #989898;
-  box-shadow: 0 0 15px 2px #989898;
+  -moz-box-shadow:    inset 0 0 50px #989898;
+  -webkit-box-shadow: inset 0 0 50px #989898;
+  box-shadow: 0 0 8px 1px #989898;
   background: white;
 }
 
