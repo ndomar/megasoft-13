@@ -24,8 +24,8 @@ class StepsController < ApplicationController
       if params[:change_id].to_s <= @task.steps.last.id.to_s
         format.html { render :template => "tasks/task_reviewer" }
       else
-        format.html { render :template => "tasks/task_reviewer_done" }
-        format.js { render :template => "tasks/task_reviewer_done"}
+        #format.html { render :template => "tasks/task_reviewer_done" }
+        format.js { render "/tasks/last_step"}
       end
     end
   end

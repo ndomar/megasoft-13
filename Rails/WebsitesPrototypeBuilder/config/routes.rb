@@ -6,6 +6,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 get "projects/:project_id/tasks/:task_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
 post 'steps/update'
 
+get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
+
   resources :projects do
     resources :tasks do
       resources :steps
@@ -13,6 +15,8 @@ post 'steps/update'
     end
   end
 
+resources :logs
+post 'logs/new'
 
   resources :tasks do
     resources :steps

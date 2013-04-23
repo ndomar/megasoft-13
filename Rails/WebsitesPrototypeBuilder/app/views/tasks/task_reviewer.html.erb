@@ -7,7 +7,7 @@
 
 <body>
 <div class="desc"> 
- <p id='decription_paragraph'><%=@step.description %></p> 
+ <p id='description_paragraph'><%=@step.description %></p> 
 </div>
 <div id="content">
 <%= @page.html.html_safe %>
@@ -18,12 +18,18 @@
 
 
 <!--A form that update the values of success, step_id. starting time and total time taken in the database -->
-<%= form_for [@project,@task,@step] ,remote: true do |f| %>  
+<%= form_for [@project,@task,@step] ,remote: true , html: {:id => "steps_form"} do |f| %>  
   <%= hidden_field_tag "change_success", 'false' %>
   <%= hidden_field_tag "change_id", '1' %>
   <%= hidden_field_tag "start_time", '1' %>
   <%= hidden_field_tag "change_clicks", '0' %>
   <%= hidden_field_tag "total_time_taken", '0' %>
+<% end %>
+
+<%= form_for :log ,remote: true , :html => {:id => "log_form"} , :url => { :controller => 'logs', :action => 'new'} do |l| %>
+<%= hidden_field_tag "change_action", ' ' %>
+<%= hidden_field_tag "change_action_time", '0' %>
+<%= hidden_field_tag "change_component_involved", ' ' %>
 <% end %>
 
 
@@ -80,7 +86,7 @@ $(window).load(function(){
   steps_description_array= "<%= @task.steps.all.map(&:description).join(',')%>".split(',');
 
   if (steps_ids_array.length >1) {
-    //If the steps mode is used it will highlight
+    //If the steps mode is used it will highlight the 1st step's component
     currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
     highlight(currstep_element_id); //highlight the current step's component
     clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
@@ -91,104 +97,36 @@ $(window).load(function(){
 var clicks_counter=0;
 var total_time=0;
 $("input").on('keyup', function(event){
-  var curr_element_id= event.target.id;
-  //alert(steps_ids_array[0]);
-  if ('keyup'== steps_events_array[0] && curr_element_id==steps_components_array[0]) {
-    clicks_counter=clicks_counter+1;
-    var hours_taken = starting_hours - new Date().getHours();
-    var minutes_taken = starting_minutes- new Date().getMinutes();
-    total_time= hours_taken + ":" + minutes_taken;
-
-    steps_events_array.splice(0,1);
-    var deleted_component= steps_components_array.splice(0,1);
-    steps_ids_array.splice(0,1);
-    steps_description_array.splice(0,1);
-
-    $("#change_id").val(steps_ids_array[0]); //to increment the value of the curr step
-    $("#start_time").val(curr_time); //set the time_from_start
-    $("#change_clicks").val(clicks_counter); //update clicks_count in DB
-    $("#change_success").val(step_answer_success); //set successful = true for step_answer
-    $("#total_time_taken").val(total_time); //sets the value of  the time taken
-    
-    dehighlight(deleted_component);
-    document.getElementById("decription_paragraph").innerHTML=steps_description_array[0];
-    highlight(steps_components_array[0]); 
-    $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
-  }
+update(event.target,'keyup');
 });
 
 //keeps track user clicked where and when
 var current_click_time= new Date();
 $("input").on('click',function(event){
+  var current_element_value = document.getElementById(event.target.id).value;
   current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ;
- document.getElementById("decription_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
-
+  $("#change_action").val("The user clicked on: ");
+  $("#change_component_involved").val(current_element_value);
+  $("#change_action_time").val(current_click_time);
+  $(function() { $("#log_form").submit(); });
+ document.getElementById("description_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
 });
 
 $("input").on('change', function(event){
-  var curr_element_id= event.target.id;
-  //alert(steps_ids_array[0]);
-  if ('change'== steps_events_array[0] && curr_element_id==steps_components_array[0]) {
-    clicks_counter=clicks_counter+1;
+  update(event.target,'change');
+  var current_change_time = new Date().getHours()+ " :" + new Date().getMinutes()
+  var current_element_value = document.getElementById(event.target.id).value;
+  $("#change_action").val("The user entered: ");
+  $("#change_component_involved").val(current_element_value);
+  $("#change_action_time").val(current_change_time);
+  $(function() { $("#log_form").submit(); });
+  document.getElementById("description_paragraph").innerHTML= "The use entered "+ document.getElementById(event.target.id).value + " at time " + current_change_time;
+  });
 
-    steps_events_array.splice(0,1);
-    var deleted_component= steps_components_array.splice(0,1);
-    steps_ids_array.splice(0,1);
-    steps_description_array.splice(0,1);
 
-    $("#change_id").val(steps_ids_array[0]); //to increment the value of the curr step
-    $("#start_time").val(curr_time); //set the time_from_start
-    $("#change_clicks").val(clicks_counter); //update clicks_count in DB
-    $("#change_success").val(step_answer_success); //set successful = true for step_answer
-    $("#total_time_taken").val(total_time); //sets the value of  the time taken
-    
-    dehighlight(deleted_component);
-    document.getElementById("decription_paragraph").innerHTML=steps_description_array[0];
-    highlight(steps_components_array[0]); 
-    $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
-  }  
-});
-
+var task_time=1;
 $("input").on('click', function(event){
-  var curr_element_id= event.target.id;
-  //alert(steps_ids_array[0]);
-  if ('click'== steps_events_array[0] && curr_element_id==steps_components_array[0]) {
-    clicks_counter=clicks_counter+1;
-
-    var hours_taken = new Date().getHours() - starting_hours;
-    var minutes_taken =new Date().getMinutes() -  starting_minutes;
-    var seconds_taken= new Date().getSeconds() - starting_seconds;
-    total_time= hours_taken + ":" + minutes_taken + ":" + seconds_taken; 
-    alert(total_time);
-
-
-    steps_events_array.splice(0,1);
-    var deleted_component= steps_components_array.splice(0,1);
-    var deleted_step_id=steps_ids_array.splice(0,1);
-    steps_description_array.splice(0,1);
-
-    if (steps_ids_array.length ==0){
-      //alert(parseInt(deleted_step_id)+1);
-      $("#change_id").val(parseInt(deleted_step_id)+1); //to increment the value of the curr step
-
-    } 
-    else {
-      $("#change_id").val(steps_ids_array[0]); //to increment the value of the curr step
-      $("#start_time").val(curr_time); //set the time_from_start
-      $("#change_clicks").val(clicks_counter); //update clicks_count in DB
-      $("#change_success").val(step_answer_success); //set successful = true for step_answer
-      $("#total_time_taken").val(total_time); //sets the value of  the time taken
-    }
-    
-    dehighlight(deleted_component);
-    if(steps_components_array.length!=0) {
-      document.getElementById("decription_paragraph").innerHTML=steps_description_array[0];
-      alert(document.getElementById('cmp3').value);
-      highlight(steps_components_array[0]); 
-    }
-    
-    $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
-  }  
+ update(event.target,'click'); 
 });
 </script>
 </body>
