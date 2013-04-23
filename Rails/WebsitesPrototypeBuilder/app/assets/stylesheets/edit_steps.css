@@ -1,5 +1,5 @@
-* {
-  cursor: crosshair !important;
+.embeddedDiv a, button, input, img{
+  cursor: crosshair;
 }
 
 h2{
