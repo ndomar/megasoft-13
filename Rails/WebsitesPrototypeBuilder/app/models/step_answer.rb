@@ -13,5 +13,5 @@ class StepAnswer < ActiveRecord::Base
   belongs_to :reviewer
   belongs_to :task_result
   belongs_to :step
-  attr_accessible :successful, :time_from_start
+  attr_accessible :successful, :time_from_start, :reviewer_id, :task_result_id, :step_id 
 end
