@@ -9,6 +9,7 @@
 	z-index: 99;
 	background-image: url(/assets/semi-transparent-black-screen.png);
 	top:0%;
+	left: 0%;
 	display:none;
 }
 
@@ -68,6 +69,7 @@
 .icon{
 	float: right;
 	margin-left: 20px;
+	width: 10%
 }
 
 .details{
@@ -77,25 +79,25 @@
 .main-wrapper{
 	height: 200px;
 	margin: 20px;
-	margin: 20px;
 	margin-right: 0px;
 }
 
 .add-button{
 	display: inline-block;
 	background-image: url(/assets/add-button.png);
-	width: 10%;
-	height: 10%;
-	background-size: contain;
+	width: 20%;
+	height: 70%;
+	background-size: cover;
 	background-color: transparent;
 	margin-top: -10px;
+	margin-right: 20px;
 	outline: none;	
 	float: right;
 }
 
 .error{
 	display: block;
-	width: 200px;
+	width: 20%;
 	font-size: 12px;
 	font-weight: 700;
 	color: gray;
@@ -103,24 +105,24 @@
 
 .add-button:active{
 	margin-top: 0px;
-	width: 110px;
-	height: 110px;
+	width: 18%;
+	height: 68%;
 }
 
 #title-card{
-	margin-top: 20px;
+	width: 100%;
 }
 
 #description-card{
-	width: 400px;
+	width: 100%;
 }
 
 #title-group{
-	margin-top: 20px;
+	width: 100%;
 }
 
 #description-group{
-	width: 400px;
+	width: 100%;
 }
 
 .cardsort-input{
@@ -137,12 +139,12 @@
 	float: right;
 	margin-left: 15px;
 	width: 80px;
-	height: 65px;
+	height: 50px;
 	background-size: cover;
 	background-position: left;
 	background-image: url(/assets/group.png);
 	background-color: transparent;
-	border-radius: 20px;
+	border-radius: 4px;
 }
 
 .new-group{
