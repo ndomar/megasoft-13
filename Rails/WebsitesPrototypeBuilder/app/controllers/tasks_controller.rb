@@ -13,7 +13,7 @@ class TasksController < ApplicationController
 # - the current task, current step, step_answer for the current_task and task_result for the current task
 #
   def task_reviewer
-    if Project.all.last.id <= params[:project_id].to_f
+    if Project.all.last.id.to_f >= params[:project_id].to_f
 
       @project=Project.find(params[:project_id])
       @reviewer= Reviewer.find(params[:reviewer_id])
@@ -26,9 +26,10 @@ class TasksController < ApplicationController
       session[:task_result_id]= @task_result.id
       @step_answer=@step.step_answers.new
       @step_answer.save
-      puts " the result tadaa"
     else
-      format.html { render :template => "tasks/task_reviewer_error" }
+      respond_to do |format|
+        format.html { render :template => "tasks/task_reviewer_error" }
+      end
     end
   end
   ## 
