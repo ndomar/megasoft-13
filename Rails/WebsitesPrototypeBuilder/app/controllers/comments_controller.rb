@@ -14,13 +14,12 @@ class CommentsController < ApplicationController
     # finds the selected page
     @page = Page.find(params[:page_id])
     @page_name = @page.page_name
+    @project = Project.find(@page.project_id)
     @comment = @page.comments.build(params[:comment])
     @reviewer_email = "Derwy" #Comment.find(@comment.reviewer_id).email
-    # @project = Project.find(@page.project_id)
-    # @designer = Designer.find(@project.designer_id)
+    @designer = Designer.find(@project.designer_id)
+    @email = @designer.email
     @timestamp = Time.now
-    @email = "marwanelderwy@gmail.com" # change to designer email later
-    # @screenshot = ''
     respond_to do |format|
     if @comment.save
       # send a notification email to the designer if comment was saved in the database including theses attributes
