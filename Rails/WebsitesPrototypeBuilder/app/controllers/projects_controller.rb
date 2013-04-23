@@ -19,7 +19,6 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-
     respond_to do |format|
       format.html
       format.json { render json: @project }
@@ -111,6 +110,7 @@ def deletePage
   respond_to do |format|
     format.html { render :nothing => true }
     format.js { render :layout => false }
+    # format.js {render "remove_page", :status => :deleted}
   end
 end
 
@@ -127,10 +127,14 @@ def createPage
   @page.project_id=params[:projectId]
   @page.page_name=params[:pageName]
   @page.save
-  respond_to do |format|
-    format.html { render :nothing => true }
-    format.js { render :layout => false }
-  end  
+  # respond_to do |format|
+  #   if(@page.save)
+  #     format.js {render "new_page", :status => :created}
+  #   else
+  #     format.js {render :nothing => true, :status => :no}
+  #     #render a new view
+  #   end
+  # end
 end
 
 end

@@ -85,3 +85,15 @@ $(document).ready(function() {
 	$('#myCarousel').carousel({interval: false});
 	//to prevent the carousel from automatically sliding
 });
+
+function showDiv(){
+  // alert($('#carousel-inner').children().last().children().children().last().prev().attr('class'));
+	// alert($('#carousel-inner').children().last().children().children().length);
+	 alert($('#carousel-inner').children().last().children().children().length);
+	 alert($('#carousel-inner').children().last().children().children().attr('class'));
+	 // if($('#carousel-inner').children().last().children().children().length==6){
+	 // 	alert(6);
+	 // }else{
+	 // 	alert($('#carousel-inner').children().last().children().children().length);
+	 // }
+}

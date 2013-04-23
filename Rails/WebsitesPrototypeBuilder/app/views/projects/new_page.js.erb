@@ -1,0 +1,14 @@
+<% if (@page.valid?) %>
+	// $('#carousel-inner').children().last();
+
+	//$('#carousel-inner').children() this gets the carousel items
+	//$('#carousel-inner').children().last() this gets the last item in the carousel-inner
+	//$('#carousel-inner').children().last().children() this gets the thumbnails div inside the last item
+	//$('#carousel-inner').children().last().children():nth-child(5) this gets the last span in the thumbnails
+	//I want to check whether it is empty or not for adding
+
+	document.write($('#carousel-inner').children().last().children().eq(2).attr('class'));
+	// document.write((($('#carousel-inner').children().last().children()):nth-child(5)).class);
+<% else %>
+
+<% end %>
