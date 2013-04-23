@@ -5,6 +5,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   #at start up page goes to the home controller and the index action
   root to: "projects#index"
 
+resources :projects do
+  resources :tasks do
+    resources :steps
+    resources :task_results
+  end
+end
+
   get "comments/create"
   get "comments/destroy"
   get "questions/create"
@@ -22,17 +29,17 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
 
   
-  get "tasks/invite/:id" => "tasks#invite"
+#  get "projects/tasks/invite/:id" => "tasks#invite"
   
-  resources :tasks do
-    resources :task_results
-  end
+#resources :tasks do
+#resources :task_results
+#end
   
   
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
-  post "tasks/invite_user/:id" => "tasks#invite_user"
+  match "tasks/invite_user/:id" => "tasks#invite_user"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

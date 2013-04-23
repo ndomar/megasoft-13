@@ -25,11 +25,10 @@ class Task<ActiveRecord::Base
   # * *Returns* :
   #   - void
 
-  def send_invitation(email, msg, url)
-    @reviewer = Reviewer.find_by_email(email)
-    if @reviewer = nil
-      @reviewer = self.reviewers.create(:email => email) 
+  def send_invitation(reviewer, msg, url)
+    if self.reviewers(reviewer.id) == nil
+      @reviewer = self.reviewers<<@reviewer
     end
-    ReviewerInviter.task_invitation(email, msg, url).deliver()
+    ReviewerInviter.task_invitation(reviewer.email, msg, url).deliver()
   end
 end

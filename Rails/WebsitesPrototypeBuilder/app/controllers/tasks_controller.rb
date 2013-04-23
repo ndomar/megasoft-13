@@ -8,7 +8,7 @@ class TasksController < ApplicationController
   #
   def index
     @tasks = Task.all
-
+    @email
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @tasks }
@@ -107,10 +107,9 @@ class TasksController < ApplicationController
   #* *Returns*    :
   #   - routes to view invite and renders it as an html form
   
-  def invite 
-    @task = Task.find(params[:id])
-    
-  end
+#  def invite 
+#   @task = Task.find(params[:id])    
+#  end
   
   #is invoked when the user submites the form in the invite view
   #* *Args*    :
@@ -120,13 +119,18 @@ class TasksController < ApplicationController
   #* *Returns*    :
   #   -
   def invite_user
-    if Reviewer.find_by_email(params[:email]) == nil
-      Reviewer.create(:email => params[:email])
+    puts(params[:email])
+    puts('bkbdvjkdbfjkvdbjhvkbsjkbvjkfsbvkjsfbvkjdsbcjkvdsbjvcscsda')
+    @Reviewer = Reviewer.find_by_email(params[:email])
+    if @Reviewer == nil
+      @Reviewer = Reviewer.create(:email => params[:email])
+      @Reviewer.save
     end
-    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "http://localhost:3000/taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
-  
-  end
-  def makesure
-    puts(params[:task_id] , params[:reviewer_id])
+     
+    @inv = Task.find(params[:id]).send_invitation(@Reviewer, params[:invitation_message],
+     "http://localhost:3000/projects/#{params[:project_id]}/tasks/#{params[:task_id]}/reviewers/#{@Reviewer.id}") 
+    respond_to do |format|
+      format.js {render 'invite_user', :status => :ok}
+    end
   end
 end
