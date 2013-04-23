@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
   #   -A project belongs to one designer
   #   -A project has many tasks 
   #   -A project has many pages
-  attr_accessible :description, :project_name, :project_type
+  attr_accessible :description, :project_name, :project_type, :designer_id
 
   validates :project_name, :presence => {:message => ".برجاء ادخال اسم المشروع"}
   validates :project_name, :uniqueness => {:message => ".يوجد مشروع بهذا الاسم, برجاء ادخال اسم مشروع آخر"}
