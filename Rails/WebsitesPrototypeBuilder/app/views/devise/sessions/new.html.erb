@@ -32,32 +32,36 @@
     <div id="slide" class="carousel slide span15">
       <!-- Carousel items -->
       <div class="carousel-inner">
-        <div class="active item">
-          <img src="/images/11.jpg"/>
+        <div class="active item" style="background-color:#AAAAAA">
+          <img class = "slide_images" src="/images/111.jpg"/>
         </div>
-        <div class="item">
-          <img src="/images/22.jpg"/>
+        <div class="item" style="background-color:#AAAAAA">
+          <img class = "slide_images" src="/images/222.jpg"/>
         </div>
-        <div class="item">
-          <img src="/images/33.jpg"/>
+        <div class="item" style="background-color:#AAAAAA">
+          <img class = "slide_images" src="/images/333.jpg"/>
         </div>
       </div>
       <!-- Carousel nav -->
-      <a class="carousel-control left" href="#slide" data-slide="prev">&lsaquo;</a>
-      <a class="carousel-control right" href="#slide" data-slide="next">&rsaquo;</a>
+      <a class="slide_control_left carousel-control left" href="#slide" data-slide="prev">&lsaquo;</a>
+      <a class="slide_control_right carousel-control right" href="#slide" data-slide="next">&rsaquo;</a>
     </div>
   </div>
-
+  <div class = "register">
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <%= link_to "تسجيل", new_registration_path(resource_name) %> <!-- sign up -->
   <% end -%>
+  </div>
+  <div id = "who_are_we">
+    sadsafafasf
+  </div>
   <footer>
-    <div class="navbar">
+    <div class="navbar navbar-fixed-bottom">
       <div class="navbar-inner foot">
         <ul class="nav">
-          <li class = "right"><a class = "right_link" href="#">شاركنا</a></li>
-          <li class = "center"><a class = "center_link" href="#">من نحن ؟</a></li>
-          <li class = "left"><a class = "left_link"  href="#">لمحة عن الموقع</a></li>
+          <li class = "left"><a id = "left_link"  href="#">لمحة عن الموقع</a></li>
+          <li class = "center"><a id = "center_link" href="#who_are_we">من نحن ؟</a></li>
+          <li class = "right"><a id = "right_link" href="#">شاركنا</a></li>
         </ul>
       </div>
     </div>

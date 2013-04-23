@@ -5,7 +5,32 @@
 	z-index: 2;
 }
 
+.slide_images{
+height: 100%;
+width:100%;
+}
 
+.slide_control_left{
+	background:none; 
+	border:none;
+	left:70%;
+}
+.slide_control_right{
+	background:none; 
+	border:none;
+}
+.register
+{
+	bottom: 30%;
+	left: 15%;
+	position: absolute;
+	z-index: 2;
+}
+#who_are_we{
+	bottom: -100%;
+	position: absolute;
+	z-index: 2;
+}
 #slide{
 	position:absolute;
 	top: 0;
