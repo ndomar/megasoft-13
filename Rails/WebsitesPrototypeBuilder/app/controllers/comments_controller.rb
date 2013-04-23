@@ -3,9 +3,12 @@ class CommentsController < ApplicationController
   # finds the selected page
   # * *Args* :
   # - +@page+ -> the current page
+  # - +@project+ -> the current project
+  # - +@project_name+ -> name of the current project
   # - +@comment+ -> the comment written in the notepaper
   # - +@reviewer_email+ -> reviewer's email
   # - +@email+ -> page designer's email
+  # - +@designer+ -> the page designer
   # - +@timestamp+ -> time when comment was submitted
   # * *Returns* :
   # - page refreshed and comment added to db and email sent to designer
