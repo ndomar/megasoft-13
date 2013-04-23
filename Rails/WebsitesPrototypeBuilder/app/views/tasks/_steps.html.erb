@@ -1,19 +1,18 @@
 <table dir ="rtl" align = "center">
+  <col width="50">
+  <col width="50">
+  <col width="100">
+  <col width="30">
   <tr>
-    <td> الجزء</td>
-    <td> الحدث</td>
+    <td align = "center"> الجزء</td>
+    <td align = "center"> الحدث</td>
     <td align = "center"> الوصف </td>
-    <td> إزالة </td>
   </tr>
   <% @steps.each do |step| %>
     <tr id = "<%="step_#{step.id}"%>" >
-      <td><%= step.component %> </td>
-      <td><%= step.event %> </td>
-      <td align = "center"> 
-        <% if step.description %> 
-        <%= step.description %> 
-        <% end %>
-      </td>
+      <td align = "center"><%= step.component %> </td>
+      <td align = "center"><%= step.event %> </td>
+      <td align = "center"><%= step.description %> </td>
       <td align = "center">
           <%= link_to "x", delete_step_path(:id => step.id, :task => @task.id), :remote => true %>
       </td>
