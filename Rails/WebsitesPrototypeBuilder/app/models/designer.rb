@@ -28,7 +28,7 @@ class Designer < ActiveRecord::Base
   # :rpx_connectable tells devise to connect rpx with designer
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :rpx_connectable,
-         :validatable
+         :validatable, :confirmable
 
   #Registration attributes and validations
   validates :fullname, :presence => true

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409143914) do
+ActiveRecord::Schema.define(:version => 20130423231951) do
 
   create_table "answers", :force => true do |t|
     t.string   "answer"
@@ -94,6 +94,10 @@ ActiveRecord::Schema.define(:version => 20130409143914) do
     t.string   "facebook_email"
     t.string   "gender"
     t.string   "rpx_identifier"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
   add_index "designers", ["email"], :name => "index_designers_on_email", :unique => true
