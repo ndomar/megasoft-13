@@ -87,6 +87,7 @@ module StatisticsHelper
       allTasksAverageTime[allTasksAverageTime.length] = calculateAccumulatedAverageTime(task.task_results)
       allTasksAverageSuccess[allTasksAverageSuccess.length]= calculateAccumulatedAverageSuccess(task.task_results)
     end
+    return resultsSummary
   end
 
   ## 
@@ -126,6 +127,21 @@ module StatisticsHelper
   end
 
   ## 
+  # gets three arrays representing the reviewers info
+  # * *Args*    :
+  #   -+task+->: a certain task
+  # * *Returns* :
+  #   - an array containing three arrays that have the data of the reviewer info
+  #
+  def getReviewerInfos(task)
+    if task.reviewers.length == 0
+      return "لم يتم احد المهمة"
+    else
+      return [compareAge(task), compareCountry(task), compareGender(task)]
+    end
+  end
+
+  ## 
   # calculates the number of reviewers in each age category
   # * *Args*    :
   #   -+task+->: a certain task
@@ -139,26 +155,28 @@ module StatisticsHelper
     reviewers.each do |reviewer|
       if reviewer.reviewer_info != nil
         numberofReviewerInfos += 1
-        if reviewer.reviewer_info.age < 20 
-          agelessthan20 += 1
-        elsif reviewer.age < 40
-          agelessthan40 += 1
-        elsif reviewer.age < 60 
-          agelessthan60 += 1
-        else
-          agegreaterthan60 += 1
+        if reviewer.reviewer_info.age != nil
+          if reviewer.reviewer_info.age < 20 
+            agelessthan20 += 1
+          elsif reviewer.reviewer_info.age < 40
+            agelessthan40 += 1
+          elsif reviewer.reviewer_info.age < 60 
+            agelessthan60 += 1
+          else
+            agegreaterthan60 += 1
+          end
         end
       end
     end
     if numberofReviewerInfos == 0
       return "لم يستكمل أحد المراجعين استمارة المعلومات الشخصية"
-    elsif agelessthan20 == agelessthan40 == agelessthan60 == agegreaterthan60 == 0
+    elsif agelessthan20 == 0 && agelessthan40 == 0 && agelessthan60 == 0 && agegreaterthan60 == 0
       return "لم يجب أحد من المراجعين عن سنه"
     else
       return [agelessthan20, agelessthan40, agelessthan60, agegreaterthan60]
     end
   end
-  
+
   ## 
   # calculates the number of reviewers in each country
   # * *Args*    :
@@ -174,11 +192,16 @@ module StatisticsHelper
     reviewers.each do |reviewer|
       if (reviewer.reviewer_info != nil)
         numberofReviewerInfos += 1
-        if countries.include(reviewer.reviewer_info.country)
-          occurrences[countries.index(reviewer.reviewer_info.country)] += 1
-        else
-          countries[countries.length] = reviewer.reviewer_info.country
-          occurrences[occurrences.length] = 1
+        if reviewer.reviewer_info.country != nil
+          if countries.length == 0
+            countries[0] = reviewer.reviewer_info.country.capitalize
+            occurrences[0] = 1
+          elsif countries.include?(reviewer.reviewer_info.country.capitalize)
+            occurrences[countries.index(reviewer.reviewer_info.country.capitalize)] += 1
+          else
+            countries[countries.length] = reviewer.reviewer_info.country.capitalize
+            occurrences[occurrences.length] = 1
+          end
         end
       end
     end
@@ -205,16 +228,18 @@ module StatisticsHelper
     reviewers.each do |reviewer|
       if reviewer.reviewer_info != nil
         numberofReviewerInfos += 1
-        if reviewer.reviewer_info.gender == true
-          males += 1
-        else
-          females += 1
+        if reviewer.reviewer_info.gender != nil
+          if reviewer.reviewer_info.gender == true
+            males += 1
+          else
+            females += 1
+          end
         end
       end
     end
     if numberofReviewerInfos == 0
       return "لم يستكمل أحد المراجعين استمارة المعلومات الشخصية"
-    elsif males == females == 0
+    elsif males == 0 && females == 0
       return "لم يجب أحد من المراجعين عن نوعه"
     else
       return [males, females]
