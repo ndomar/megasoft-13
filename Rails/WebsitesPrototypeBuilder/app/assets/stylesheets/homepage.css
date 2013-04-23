@@ -1,5 +1,5 @@
 #icons{
-	padding-left: 5%;
+	padding-left: 10%;
 	padding-top: 5%;
 	position: absolute;
 	z-index: 2;
@@ -22,14 +22,24 @@ width:100%;
 .register
 {
 	bottom: 30%;
-	left: 15%;
+	left: 14%;
 	position: absolute;
 	z-index: 2;
 }
 #who_are_we{
-	bottom: -100%;
+	background-color: black;
+	top:100%;
+	height: 100%;
+	width:100%;
 	position: absolute;
-	z-index: 2;
+}
+#glimpse
+{
+	background-color: gray;
+	top:200%;
+	height: 100%;
+	width:100%;
+	position: absolute;
 }
 #slide{
 	position:absolute;
