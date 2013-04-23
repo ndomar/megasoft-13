@@ -6,8 +6,9 @@
   <body>
     <h1><%= "Someone commented on your page" %> </h1>
     <p>
-      @reviewer_email commented on your page and said : @comment at @timestamp
+      <%= @reviewer_email "commented on your page and said :" @comment "at" @timestamp %>
     </p>
+    <img src="/assets/page_#{@page_name}">
     <p>Thanks!</p>
   </body>
 </html>

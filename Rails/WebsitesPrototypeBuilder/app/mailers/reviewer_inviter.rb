@@ -23,4 +23,4 @@ class ReviewerInviter < ActionMailer::Base
     @url = url
     mail(:to => email, :subject => "Prototyper task invitation")
   end
-end
+   
