@@ -21,4 +21,3 @@ class Project < ActiveRecord::Base
   has_many :pages, :dependent => :destroy
   has_many :cardsorts, :dependent => :destroy
 end
-
