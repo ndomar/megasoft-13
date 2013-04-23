@@ -47,8 +47,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     respond_to do |format|
       if (@project.save)
-        format.html { redirect_to(@project) }  
-        format.js
+        format.js {render "create", :status => :created }
       else
         format.js {render "create", :status => :ok}
       end
