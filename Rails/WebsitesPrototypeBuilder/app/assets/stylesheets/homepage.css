@@ -42,9 +42,13 @@ width:100%;
 	width:100%;
 	position: absolute;
 }
+.under
+{
+	width: =100%;
+}
 #glimpse
 {
-	background-color: gray;
+	background-color: white;
 	top:200%;
 	height: 100%;
 	width:100%;
@@ -175,7 +179,7 @@ width:100%;
 .left
 {
 	padding-right:25px;
-	padding-left:100px;
+	padding-left:20px;
 }
 .right
 {
