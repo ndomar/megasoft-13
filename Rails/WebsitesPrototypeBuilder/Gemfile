@@ -27,6 +27,9 @@ gem "nested_form"
 gem 'rmagick'
 gem 'carrierwave'
 
+# gem for making behavioural testing
+gem 'jasmine-rails'
+
 # gem for using bootstrap
 gem 'bootstrap-sass'
 

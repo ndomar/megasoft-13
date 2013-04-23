@@ -50,6 +50,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  ##
+  # upload media (image/video) to the server under a specific
+  # folder for the project
+  # * *Args* :
+  # - none
+  # * *Returns* :
+  # - void
+  #
   def upload_media
     name = request.headers["HTTP_X_FILENAME"]
     project_id = request.headers["HTTP_PROJECT_ID"]
