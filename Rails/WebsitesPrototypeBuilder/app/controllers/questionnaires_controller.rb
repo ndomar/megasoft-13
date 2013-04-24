@@ -71,7 +71,7 @@ class QuestionnairesController < ApplicationController
 
     respond_to do |format|
       if @questionnaire.update_attributes(params[:questionnaire])
-        flash[:notice] = "Questionnaire updated successfully"
+        flash[:message] = "Questionnaire updated successfully"
         format.html { redirect_to :action=> :index, notice: 'Questionnaire was successfully updated.' }
         format.json { head :no_content }
       else
