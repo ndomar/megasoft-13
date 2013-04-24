@@ -13,4 +13,33 @@ $(document).ready(function sliding_form(){
   	}
   }
  );        
-});z
+});
+
+
+
+$(document).ready(function(){
+  $('.center').click(function(){
+    $('html,body').animate({
+        scrollTop: $("#who_are_we").offset().top},
+        600);
+  }
+ );
+});
+
+$(document).ready(function(){
+  $('.right').click(function(){
+    $('html,body').animate({
+        scrollTop: $("#slide").offset().top},
+        600);
+  }
+ );
+});
+
+$(document).ready(function(){
+  $('.left').click(function(){
+    $('html,body').animate({
+        scrollTop: $("#glimpse").offset().top},
+        600);
+  }
+ );
+});

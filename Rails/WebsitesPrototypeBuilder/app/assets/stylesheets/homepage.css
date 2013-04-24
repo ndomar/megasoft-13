@@ -1,3 +1,7 @@
+
+html,body{
+	overflow: hidden;
+}
 #icons{
 	padding-left: 10%;
 	padding-top: 5%;
@@ -202,6 +206,18 @@ z-index: 3;
 {
 	padding-left:25px;
 	padding-right:25px;
+}
+.center:hover
+{
+	cursor: pointer;
+}
+.left:hover
+{
+	cursor: pointer;
+}
+.right:hover
+{
+	cursor: pointer;
 }
 .copy
 {
