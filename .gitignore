@@ -1,5 +1,5 @@
-schema.rb
-Gemfile.lock
+/Rails/WebsitePrototypeBuilder/schema.rb
+/Rails/WebsitePrototypeBuilderGemfile.lock
 *.log
 *.sqlite3
-/megasoft-13/Rails/WebsitePrototypeBuilder/tmp
+/Rails/WebsitePrototypeBuilder/tmp
