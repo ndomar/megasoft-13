@@ -29,6 +29,13 @@ gem 'bootstrap-sass'
 # gem for page screenshot
 gem 'delayed_job_active_record'
 
+#simplecov
+gem 'simplecov', :require => false, :group => :test
+
+#googlevisualr
+gem "google_visualr", ">= 2.1"
+
+gem "nested_form"
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
 gem 'devise_rpx_connectable', :git => 'https://github.com/ahmadsoliman/devise_rpx_connectable.git'

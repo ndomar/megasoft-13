@@ -2,7 +2,16 @@
 <%= javascript_include_tag "cardsorts" %>
 
 <div id='wrapper'>
+	<div id='sidebar' >
+		<h4> Jump to </h4>
+		<% @other_cardsorts.each do |cardsort| %>
+		<%= link_to cardsort.title, "edit", :crdsrt => cardsort.id %>
+		</br>
+		<% end %>
+	</div>
 	<div id='content'>
+
+		<H3 style="border-bottom:solid;border-width:1px"><%= @cardsort.title %></h3>
 
 		<ul class="nav nav-tabs">
 			<li class='active'>
