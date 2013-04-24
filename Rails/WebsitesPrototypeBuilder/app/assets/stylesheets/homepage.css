@@ -78,7 +78,11 @@ z-index: 3;
 	z-index: 2;
 	opacity: 0.95;
 }
-
+.image_background
+{
+	background-image: url("/images/pic_background.jpg");
+	background-repeat:repeat;
+}
 .sign_up
 {
 	opacity: 0.8;
