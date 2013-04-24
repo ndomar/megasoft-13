@@ -14,7 +14,7 @@
       <div class = "well" align="right">
         <div>
           <label>اﺳﻢ اﻟﻤﺴﺘﺨﺪﻡ</label><br /><!--  username -->
-          <%= f.text_field :fullname, :required => true,  :autofocus => true %>
+          <%= f.text_field :fullname, :required => true,  :autofocus => true, :id=>'box1' %>
         </div>
 
         <div>
@@ -42,7 +42,7 @@
 
         <div>
           <label>اﻟﻬﺎﺗﻒ ﺃﻭ ﺭﻗﻢ اﻟﺠﻮاﻝ</label><br /> <!-- phone number -->
-          <%= f.text_field :phone_number, :required => true %>
+          <%= f.text_field :phone_number, :required => true, :id=>'box2'%>
         </div>
 
         <div>
@@ -53,14 +53,15 @@
 
  
         <label>ﺗﺎﺭﻳﺦ اﻟﻤﻴﻼﺩ</label> <!-- birth date -->
-        <div>
+     <div>
     <!-- Day -->
-      <%= f.text_field :day_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اﻟﻴﻮﻡ", :required => true}%>
+      <%= f.text_field :day_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اﻟﻴﻮﻡ", :required => true, 
+        :id =>'box3'}%>
       <label style = float:right; width:"100";>/  </label><!-- Month: -->
-      <%= f.text_field :month_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اﻟﺸﻬﺮ", :required => true} %>
+      <%= f.text_field :month_dob , options = {:size => 1, :style => "float:right;", :placeholder => "اﻟﺸﻬﺮ", :required => true, :id=>'box4'} %>
       <label style = float:right>/</label> <!-- Year: -->
-      <%= f.text_field :year_dob , options = {:size => 1, :placeholder => "اﻟﺴﻨﺔ", :required => true}%>
-      </div>
+      <%= f.text_field :year_dob , options = {:size => 1, :placeholder => "اﻟﺴﻨﺔ", :required => true, :id=>'box5'}%>
+      </di>
 
         <div style=align:right>
           <label style=margin-left:300px>ﺫﻛﺮ اﻡ ﺃﻧﺜﻰ</label><br /> <!-- gender -->
