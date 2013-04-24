@@ -18,11 +18,11 @@ $(document).ready(function(){
   $('.project-div').hover(function()
   {
     $(this).css("cursor","pointer");
-    $(this).children('.icon-remove').fadeIn();
+    $(this).children('.x-button').fadeIn();
   }, function()
   {
     $(this).css("cursor","pointer");
-    $(this).children('.icon-remove').fadeOut();
+    $(this).children('.x-button').fadeOut();
   });
 
   $('.project-div').on('click', function ()
@@ -34,14 +34,15 @@ $(document).ready(function(){
     $("#Task").attr("href","tasks/index/" + projectid);
     $("#sidebar").show("medium");
     $('#content').animate({
-      "left": '-200px'
-    }, 5000);
+      "margin-left": '-9%'
+    }, "medium");
   });
 
   $('#arrow').on('click', function ()
   {
     $("#sidebar").hide("medium");
-    $(".body").css("float","none");
-
+     $('#content').animate({
+      "margin-left": '0%'
+    }, "medium");
   });
 });

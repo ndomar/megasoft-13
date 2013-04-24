@@ -3,16 +3,17 @@
 <%= stylesheet_link_tag 'projects' %>
 <%= javascript_include_tag 'projects' %>
 
-<div id='wrapper'>
+<div id='wrapper' class='container-fluid'>
 <div id = "content">
   <div id='projects'>
   <ul class="thumbnails">
     <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
       <li class="span4">
         <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
-        <div class="project-div"  ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
-          <%= link_to  '', p, :confirm => 'هل أنت متأكد من مسح هذا المشروع ', :method => :delete , :class => "icon-remove"%>
-            <img src="/assets/logo.png" alt="">
+        <div class="project-div"  style="background-image: url(/assets/logo.png); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
+            <div class='x-button'>
+            <%= link_to  '', p, :confirm => 'هل أنت متأكد من مسح هذا المشروع ', :method => :delete , :class => "icon-remove"%>    
+            </div>
         </div>
       </li>
     <%end%>

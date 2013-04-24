@@ -26,8 +26,7 @@
     <li><%= link_to_function "مشروع جديد" ,  "showpopup()" %><div class="tabBar" ></div></li>
     <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
     </ul>
-    <div class = "body-content">
-
+    
     <a href="#"><div width="107px" height="51px" class="logo"></div></a>
   <!-- end navigation links -->
     <div id="designer_nav" align="right">
@@ -55,7 +54,6 @@
 <!-- end container -->
 </div>
 <% end %>
-<br />
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>

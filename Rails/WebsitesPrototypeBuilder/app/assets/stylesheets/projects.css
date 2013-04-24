@@ -32,9 +32,11 @@
   display: none;
 }
 
-.icon-remove{
-  top:0px;
-  right:6px;
+.x-button{
+  right: 95%;
+  top:0%;
+  width: 5%;
+  display: inline-block;
   float: left;
   display: none;
 }
@@ -84,16 +86,26 @@
 
 img{
   width: 100%;
-  height: 100%;
+  height: 90%;
 }
 
-.body{
-  background-color: #333333;
+.container{
+  margin: 0px;
+  width: 100%;
 }
-.field
-{
-  direction:rtl;
+
+#wrapper{
+  padding: 0px;
 }
+
+#projects{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#content{
+  background-color: gray;
+}
+
 
 
 
