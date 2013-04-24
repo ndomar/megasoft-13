@@ -1,2 +1,5 @@
 schema.rb
 Gemfile.lock
+*.log
+*.sqlite3
+/megasoft-13/Rails/WebsitePrototypeBuilder/tmp
