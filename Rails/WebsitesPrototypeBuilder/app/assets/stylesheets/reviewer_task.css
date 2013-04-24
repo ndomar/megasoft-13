@@ -18,3 +18,15 @@ border-radius: 8px;
   border-width: 5px;
   border-radius: 8px;
 }
+
+#info_form {
+  display: none;
+  position: fixed;
+  left : 1000px; 
+}
+
+#coloured{
+  position: fixed;
+  background-color: gray;
+ 
+}

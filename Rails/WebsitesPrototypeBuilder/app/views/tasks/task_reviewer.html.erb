@@ -6,6 +6,10 @@
 </head>
 
 <body>
+<div id = "coloured"></div>
+<div id= "info_form" >
+ <%= render "reviewer_infos/reviewer_info_form" %>
+</div>
 <div class="desc"> 
  <p id='description_paragraph'><%=@step.description %></p> 
 </div>
@@ -39,51 +43,38 @@ var count =1;
 var currstep_id= "<%= @step.id %>";
 var step_answer_success ='true';
 var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
-var starting_hours= new Date().getHours();
-var starting_minutes= new Date().getMinutes();
-var starting_seconds= new Date().getSeconds();
-var starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
 
 var desc_height = $('.desc').height();
 $('#content').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
-
-// $("input").on(step_event, function(event) {
-
-// var curr_element_id= event.target.id;
-// if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event 
-//   var d2= new Date(); //used to get the time of the start of this step
- 
-//   count=count+1; 
-//   currstep_id = <%=@step.id%>+1;
-//   clicks_count=<%= @task_result.clicks%>+1;
-//   total_time= d2.getMinutes() - starting_time;
-
-//   $("#change_id").val(currstep_id); //to increment the value of the curr step
-//   $("#start_time").val(curr_time); //set the time_from_start
-//   $("#change_clicks").val(clicks_count); //update clicks_count in DB
-//   $("#change_success").val(step_answer_success); //set successful = true for step_answer
-//   $("#total_time_taken").val(total_time); //sets the value of  the time taken
-
-//   dehighlight(currstep_element_id); 
-    
-//   $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
-
-//   }
-// });
-
 
 ////////////////////////////////// new storyyy/////////
 var steps_ids_array; //array that contains all the ids of all the steps
 var steps_components_array; //array that contains all the ids of the components of all the steps
 var steps_events_array; //array that contains all the steps' events
 var steps_description_array;// array that contains all the steps' description
-
+var starting_hours;
+var starting_minutes;
+var starting_seconds
 $(window).load(function(){ 
 // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
   steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(',');
   steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(',');
   steps_events_array= "<%= @task.steps.all.map(&:event).join(',')%>".split(',');
   steps_description_array= "<%= @task.steps.all.map(&:description).join(',')%>".split(',');
+
+  starting_hours= new Date().getHours();
+  starting_minutes= new Date().getMinutes();
+  starting_seconds= new Date().getSeconds();
+  starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
+
+  //alert(starting_hours);
+ 
+ $("#coloured").show(500);
+ $("#info_form").show(500);
+  
+  //document.getElementById('info_form').style.visibility='visible';
+  //$('page').fadeOut();
+  //document.getElementById('info_form').style.visibility='hidden';
 
   if (steps_ids_array.length >1) {
     //If the steps mode is used it will highlight the 1st step's component
