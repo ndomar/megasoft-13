@@ -12,7 +12,7 @@ the active item, the carousel can be filled by as many items as required.Also al
 are stated. -->
 <div class="navbar navbar-fixed-bottom navbar-inverse span12" style="width:100%; text-align:center" >
   <div class="span3"></div>
-  <div class="span6" style="background-color:#000000">
+  <div class="span6" style="background-color:#FFFFFF">
     <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
     <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
     <img style"margin-bottom: 0px;" onclick="addPage('<%= @id %>')" id="addImage"  width="30" height="30" src="/assets/add-button.png">
@@ -73,6 +73,9 @@ are stated. -->
             </ul>
     			</div>
     			<% crousel_items_to_create = @pages.size/4%>
+          <% if @pages.size%4==0%>
+            <%crousel_items_to_create = crousel_items_to_create - 1%>
+          <%end%>
     			<% currentLoop = 1 %>
     			<% (1..crousel_items_to_create).each do |i| %>
     				<div class="item" style="background-color=#AAAAAA;">
