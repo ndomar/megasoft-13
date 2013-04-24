@@ -14,27 +14,23 @@ $(document).ready(function sliding_form(){
   }
  );
   //slide to who are we div (middel page)
-
   $('.center').click(function(){
     $('html,body').animate({
       scrollTop: $("#who_are_we").offset().top},
       600);
-  }
-  );
+  });
   //slide to the 1st page
   $('.right').click(function(){
     $('html,body').animate({
       scrollTop: $("#slide").offset().top},
       600);
-  }
-  );
+  });
   //slide to the glimpse page (last page)
   $('.left').click(function(){
     $('html,body').animate({
       scrollTop: $("#glimpse").offset().top},
       600);
-  }
-  );
+  });
 });
 
 
