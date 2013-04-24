@@ -1,8 +1,3 @@
-
-#content{
-  left: 0px;
-}
-
 .Project_Name{
   width: 70%;
   height: 20px;
@@ -72,6 +67,7 @@
   right: 0px;
   display: none;
   overflow:visible;
+  width: 210px;
 }
 
 #error_project{
@@ -92,5 +88,12 @@ img{
 }
 
 .body{
-  background-color: rgb(48, 48, 48);
+  background-color: #333333;
 }
+.field
+{
+  direction:rtl;
+}
+
+
+
