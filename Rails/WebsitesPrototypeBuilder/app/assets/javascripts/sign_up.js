@@ -21,6 +21,15 @@ $(document).ready(function() {
 	// 			break;
 	// 	}
 	// });
+	$('input[type="submit"]').attr('disabled','disabled');
+	$('input[type="text"]').keyup(function(){
+		if($(this).val()!= ''){
+			$('input[type="submit"]').removeAttr('disabled');
+		}else {
+			$('input[type="submit"]').attr('disabled','disabled');
+		}
+	});
+
 	$('#password').keyup(function(){
 		$('#result').html(passwordStrength($('#password').val(),$('#email').val().split("@")[0]));
 		switch ($('#result').html()){

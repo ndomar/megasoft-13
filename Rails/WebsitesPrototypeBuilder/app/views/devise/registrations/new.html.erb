@@ -62,12 +62,12 @@
       <%= f.text_field :year_dob , options = {:size => 1, :placeholder => "اﻟﺴﻨﺔ", :required => true}%>
       </div>
 
-        <div align=right>
-          <label>ﺫﻛﺮ اﻡ ﺃﻧﺜﻰ</label><br /> <!-- gender -->
+        <div style=align:right>
+          <label style=margin-left:300px>ﺫﻛﺮ اﻡ ﺃﻧﺜﻰ</label><br /> <!-- gender -->
           <%= f.select(:gender, options_for_select([ "ﺃﻧﺜﻰ" , "ﺫﻛﺮ" ]))%>
         </div>
 
-        <div>
+        <div style=direction:rtl>
           <label>اﻟﻤﻬﻨﺔ</label><br /> <!-- profession---optional -->
           <%= f.text_field :profession, options = {:placeholder => "اﺧﺘﻴﺎﺭﻱ"}%>
         </div>
