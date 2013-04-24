@@ -33,11 +33,15 @@ $(document).ready(function(){
     $("#Design").attr("href","projects/design/" + projectid);
     $("#Task").attr("href","tasks/index/" + projectid);
     $("#sidebar").show("medium");
+    $('#content').animate({
+      "left": '-200px'
+    }, 5000);
   });
-
 
   $('#arrow').on('click', function ()
   {
     $("#sidebar").hide("medium");
+    $(".body").css("float","none");
+
   });
 });
