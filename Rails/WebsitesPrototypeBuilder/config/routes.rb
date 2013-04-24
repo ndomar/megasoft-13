@@ -7,6 +7,7 @@ get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" 
 post 'steps/update'
 
   resources :projects do
+    resources :statistics
     resources :tasks do
       resources :steps
       resources :task_results
