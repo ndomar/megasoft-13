@@ -2,7 +2,7 @@
 <%= javascript_include_tag "homepage"%>
 
 <body>
-  <%# Link to sign in with facebook %>
+  <%# Link to sign in with facebook and the login button %>
   <div id = "icons">
     <table class = "icons" align="left">
       <tr>
@@ -11,6 +11,7 @@
       </tr>
     </table>
   </div>
+  <!-- login form -->
   <div class="login_form span2" dir = "rtl">
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       <p>
@@ -20,7 +21,8 @@
       <p>
         <i class="icon-lock icon-large"></i>
         <%= f.password_field :password,:placeholder=> "ﻛﻠﻤﺔ اﻟﺴﺮ", :required =>true %>
-      </p>        
+      </p>
+      <!-- links for remember password and remmeber me -->        
       <% if devise_mapping.rememberable? -%>
         <div>ﺗﺬﻛﺮﻧﻲ <%= f.check_box :remember_me %></div> <!-- remember me-->
         <p class = "forgot_password"><%= render "devise/shared/links" %></p>
@@ -28,9 +30,11 @@
       <% end %>
     <% end %>
   </div>
+  <!-- background image -->
   <div class ="pattern">
     <img src="/images/pattern.png"/>
   </div>
+  <!-- carousel for the slideshow -->
   <div>
     <div id="slide" class="carousel slide span15">
       <!-- Carousel items -->
@@ -52,19 +56,23 @@
       </div>
     </div>
   </div>
+  <!-- register button -->
   <div class = "register">
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
     <%= link_to image_tag("/images/sign_up.png" , :class=>"sign_up") , new_registration_path(resource_name) %> <!-- sign up -->
   <% end%>
   </div>
+  <!-- who are we div 2nd page -->
   <div id = "who_are_we">
     <div align = "center" class = "info">
     <img src="/images/arability_info.png"/>
     </div>
   </div>
+  <!-- glimpse div 3rd page -->
   <div id = "glimpse">
     <img class="under" src="/images/under_construction.png"/>
   </div>
+  <!-- navigation bar for pages -->
   <footer>
     <div class="navbar navbar-fixed-bottom">
       <div class="navbar-inner foot">

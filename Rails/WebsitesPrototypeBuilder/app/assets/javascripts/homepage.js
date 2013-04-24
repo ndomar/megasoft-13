@@ -16,7 +16,7 @@ $(document).ready(function sliding_form(){
 });
 
 
-
+//slide to who are we div (middel page)
 $(document).ready(function(){
   $('.center').click(function(){
     $('html,body').animate({
@@ -26,6 +26,7 @@ $(document).ready(function(){
  );
 });
 
+//slide to the 1st page
 $(document).ready(function(){
   $('.right').click(function(){
     $('html,body').animate({
@@ -34,7 +35,7 @@ $(document).ready(function(){
   }
  );
 });
-
+//slide to the glimpse page (last page)
 $(document).ready(function(){
   $('.left').click(function(){
     $('html,body').animate({
