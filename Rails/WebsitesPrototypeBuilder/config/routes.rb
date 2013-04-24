@@ -33,12 +33,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	get "pages/reviewer"
 	get "pages/designer"
 
-	resources :projects do
-		resources :tasks do
-			resources :steps
-			resources :task_results
-		end
-	end
+  resources :projects do
+    resources :statistics
+    resources :tasks do
+      resources :steps
+      resources :task_results
+    end
+  end
 
 	resources :tasks do
 		resources :steps
