@@ -12,35 +12,34 @@ $(document).ready(function sliding_form(){
     	$(".login_form").hide("fast");
   	}
   }
- );        
-});
+ );
+  //slide to who are we div (middel page)
 
-
-//slide to who are we div (middel page)
-$(document).ready(function(){
   $('.center').click(function(){
     $('html,body').animate({
-        scrollTop: $("#who_are_we").offset().top},
-        600);
+      scrollTop: $("#who_are_we").offset().top},
+      600);
   }
- );
-});
-
-//slide to the 1st page
-$(document).ready(function(){
+  );
+  //slide to the 1st page
   $('.right').click(function(){
     $('html,body').animate({
-        scrollTop: $("#slide").offset().top},
-        600);
+      scrollTop: $("#slide").offset().top},
+      600);
   }
- );
-});
-//slide to the glimpse page (last page)
-$(document).ready(function(){
+  );
+  //slide to the glimpse page (last page)
   $('.left').click(function(){
     $('html,body').animate({
-        scrollTop: $("#glimpse").offset().top},
-        600);
+      scrollTop: $("#glimpse").offset().top},
+      600);
   }
- );
+  );
 });
+
+
+
+
+
+
+
