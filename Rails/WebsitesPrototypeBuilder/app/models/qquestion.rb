@@ -16,7 +16,8 @@ class Qquestion < ActiveRecord::Base
   attr_accessible :body, :qtype
   has_many :choices,:dependent => :destroy
   accepts_nested_attributes_for :choices, :reject_if => lambda {|a| a[:body].blank?}, :allow_destroy => true
-  attr_accessible :choices_attributes
+  attr_accessible :choices_attributes,:body, :number, :qtype, :questionnaire_id
+  has_many :answer_questionnaires,:dependent => :destroy
 	validate :require_one_choice_if_type3
 	validate :require_two_choices_if_type4
 
@@ -29,5 +30,4 @@ class Qquestion < ActiveRecord::Base
 	  def require_two_choices_if_type4
 	    errors.add(:base, "You must provide at least two choices") if (choices.size < 2 && qtype==4)
 	  end
-
 end

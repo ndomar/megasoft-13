@@ -4,7 +4,6 @@ class CreateQquestions < ActiveRecord::Migration
       t.text :body
       t.integer :qtype
       t.references :questionnaire
-
       t.timestamps
     end
     add_index :qquestions, :questionnaire_id

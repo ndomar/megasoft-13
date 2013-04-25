@@ -1,0 +1,81 @@
+<script src='https://www.google.com/jsapi'></script>
+<div style="background-color:gray; text-align:right;">
+  <h2 style = "margin-right:20px;">احصائيات المهام</h2>
+</div>
+<br>
+<div id='all_tasks_results' style="margin-left:300px"></div>
+<% if @tasks.length != 0 %>
+  <%= render_chart(drawBarchart(@tasks), 'all_tasks_results') %>
+<% else %>
+  <p style="color:red">لا توجد مهمات في هذا المشروع, توجه الى هذه الصفحة لتبدأ <%=link_to"مهمة جديدة", project_tasks_path%></p>
+<%end%>
+<% taskslist = [] %>
+<% @tasks.each do |t| %>
+<% taskslist[@tasks.index(t)] = [t.name, t.id] %>
+<% end %>
+<% if @tasks.length != 0%>
+  <%= form_for :taskid, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+        <div>
+          <div class = "field">
+          <% if !taskslist.empty? %>
+          <%= f.select :task_id, taskslist%>
+          <% end %>
+          </div>
+          <div class="actions">
+            <%= f.submit "اختر مهمة لاظهار احصائياتها منفرده"%>
+          </div>
+        </div>
+  <% end %>
+<%end%>
+<% if @chosentasks.length != 0%>
+  <div style="background-color:gray; text-align:right;">
+    <h2 style = "margin-right:20px;">معلومات عن المراجعين</h2>
+  </div>
+  <% reviewer_infos = getReviewerInfos(@chosentasks[0]) %>
+  <% if reviewer_infos.kind_of? String%>
+    <p style="color:red;"><%=reviewer_infos%></p>
+  <%else%>  
+    <div style="display:block; width:900px;">
+      <div id='age' style="float:left; width:300px; display:inline-block;"></div>
+      <% if reviewer_infos[0].kind_of? String%>
+        <p style="color:red;"><%=reviewer_infos[0]%></p>
+      <%else%>
+        <%= render_chart(drawPiechart(reviewer_infos[0], 'السن'), 'age') %>
+      <%end%>
+      <div id='country' style="float:right; width:300px; display:inline-block;"></div>
+      <% if reviewer_infos[1].kind_of? String%>
+        <p style="color:red;"><%=reviewer_infos[1]%></p>
+      <%else%>
+        <%= render_chart(drawPiechart(reviewer_infos[1], 'البلد'), 'country') %>
+      <%end%>
+      <div id='gender' style="margin: 0 auto; width:300px; display:inline-block;"></div>
+      <% if reviewer_infos[2].kind_of? String%>
+        <p style="color:red;"><%=reviewer_infos[2]%></p>
+      <%else%>
+        <%= render_chart(drawPiechart(reviewer_infos[2], 'النوع'), 'gender') %>
+      <%end%>
+    </div>
+  <%end%>
+  <div style="background-color:gray; text-align:right;">
+    <h2 style = "margin-right:20px;">احصائيات مهمه واحده</h2>
+  </div>
+  <% resultsSummary = calculateResultsSummary(@chosentasks) %>
+  <% if resultsSummary.kind_of? String%>
+    <p style="color:red;"><%=resultsSummary%></p>
+  <%else%>
+    <% timeresults = resultsSummary[0] %>
+    <% successresults = resultsSummary[1] %>
+    <div id='single_task_time_results' style="float:left;"></div>
+    <% if (timeresults.kind_of? String) %>
+      <p style="color:red;"><%=timeresults%></p>
+    <%else%>
+      <%= render_chart(drawLinechart(timeresults, @chosentasks, 'الوقت'), 'single_task_time_results') %>
+    <%end%>
+    <div id='single_task_success_results' style="float:right;"></div>
+    <% if (successresults.kind_of? String) %>
+      <p style="color:red;"><%=successresults%></p>
+    <%else%>
+      <%= render_chart(drawLinechart(successresults, @chosentasks, 'نسبة النجاح'), 'single_task_success_results') %>
+    <%end%>
+  <%end%>
+<%end%>

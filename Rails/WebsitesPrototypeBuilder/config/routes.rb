@@ -25,6 +25,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
 
   resources :projects do
+    resources :statistics
     resources :tasks do
       resources :steps
       resources :task_results
@@ -63,11 +64,17 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "projects/save/" => "projects#save" #, :as => :page_save 
   get "projects/deletePage/" => "projects#deletePage" #, :as => :page_save 
   get "projects/createPage/" => "projects#createPage" #, :as => :page_save 
+  get "questionnaires/answer_show"
+  get "questionnaires/index"
 
   resources :projects
-
-
-  resources :questionnaires
+ 
+  resources :questionnaires do
+    resources :qquestions do
+      resources :choice_qquestions
+      resources :answer_questionnaires
+    end
+  end
 
 
   get 'cardsorts/new'

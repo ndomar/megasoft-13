@@ -136,7 +136,6 @@ div#content{
 	right: 0;
 	bottom: 0;
   min-height:100%; 
-  word-wrap:break-word;
   min-height:100%;
 	overflow: auto;
 	word-wrap:break-word;
@@ -194,8 +193,3 @@ iframe {
 	-o-transform:rotate(0deg);
 	-ms-transform:rotate(0deg);
 }
-<<<<<<< HEAD
->>>>>>> 44d3f7ff538fb785eb473d0b266439e9e319c043
-=======
-
->>>>>>> 89b39d075aacd62aa69be9b25cc108e880396787
