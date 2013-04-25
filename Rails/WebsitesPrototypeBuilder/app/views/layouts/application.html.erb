@@ -34,15 +34,8 @@
         <% end %>
         ﻣﺴﺠﻞ ﺑﺈﺳﻢ<br /> ﻟﻴﺲ ﺃﻧﺖ؟
         <%= link_to "ﺧﺮﻭﺝ", destroy_designer_session_path, :method => :delete %>
-
         <br />
         <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
-      <% else %>
-        <div>
-          <%= link_to "اﻟﺘﺴﺠﻴﻞ", new_designer_registration_path %>
-          <label class ="label label-important" >اﻭ </label>
-          <%= link_to "اﻟﺪﺧﻮﻝ",new_designer_session_path%>
-        </div>
       <% end %>
     </div>
   </div>
@@ -52,16 +45,17 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
- <!-- -------------------- -->
+ <!--end navigationbar -->
 <div class="the_body">
-  <div class="container"><%= yield %></div>
+  <div class="container max-height no-overflow"><%= yield %></div>
 </div>
-<hr>
+
 <footer>
+  <hr>
   <ul class="social_bookmarks">
-    <li class="facebook"><a href="http://facebook.com/">Facebook</a></li>
-    <li class="twitter"><a href="http://www.twitter.com/">Twitter</a></li>
-    <li class="google"><a href="http://www.google.com//">Google+</a></li>
+    <li class="facebook"><a href="http://facebook.com/"></a></li>
+    <li class="twitter"><a href="http://www.twitter.com/"></a></li>
+    <li class="google"><a href="http://www.google.com//"></a></li>
   </ul>
 
   <p>&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</p>
