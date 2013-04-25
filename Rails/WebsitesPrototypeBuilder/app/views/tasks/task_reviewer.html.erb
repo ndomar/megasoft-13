@@ -6,20 +6,22 @@
 </head>
 
 <body>
-<div id = "coloured"></div>
+<div id="content">
 <div id= "info_form" >
  <%= render "reviewer_infos/reviewer_info_form" %>
 </div>
+<div id = "coloured">
+</div>
+<div id="page">
 <div class="desc"> 
  <p id='description_paragraph'><%=@step.description %></p> 
 </div>
-<div id="content">
 <%= @page.html.html_safe %>
-</div>
 <div class="goal">
   <p> <%= @task.description%></p>
 </div>
-
+</div>
+</div>
 
 <!--A form that update the values of success, step_id. starting time and total time taken in the database -->
 <%= form_for [@project,@task,@step] ,remote: true , html: {:id => "steps_form"} do |f| %>  
@@ -67,14 +69,7 @@ $(window).load(function(){
   starting_seconds= new Date().getSeconds();
   starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
 
-  //alert(starting_hours);
- 
- $("#coloured").show(500);
- $("#info_form").show(500);
-  
-  //document.getElementById('info_form').style.visibility='visible';
-  //$('page').fadeOut();
-  //document.getElementById('info_form').style.visibility='hidden';
+  display_form(); // a function that blurs page content and displays form
 
   if (steps_ids_array.length >1) {
     //If the steps mode is used it will highlight the 1st step's component
@@ -94,6 +89,7 @@ update(event.target,'keyup');
 //keeps track user clicked where and when
 var current_click_time= new Date();
 $("input").on('click',function(event){
+  var current_element_id= event.target.id;
   var current_element_value = document.getElementById(event.target.id).value;
   current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ;
   $("#change_action").val("The user clicked on: ");
@@ -101,6 +97,12 @@ $("input").on('click',function(event){
   $("#change_action_time").val(current_click_time);
   $(function() { $("#log_form").submit(); });
  document.getElementById("description_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
+//hide_form();
+//alert(current_element_id);
+ if (current_element_id== 'submit_form_button'){
+  alert(document.getElementById("reviewer_info_name").value);
+  hide_form();
+ }
 });
 
 $("input").on('change', function(event){

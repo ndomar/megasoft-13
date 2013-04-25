@@ -18,6 +18,13 @@ get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
 resources :logs
 post 'logs/new'
 
+
+post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
+resources :reviewers do
+  resources :reviewer_infos
+end
+
+
   resources :tasks do
     resources :steps
   end

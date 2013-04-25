@@ -15,6 +15,19 @@ element.style.boxShadow="0px 0px 6px 2px orange";
   element.style.borderColor='#CCCCCC';
  } 
 
+function display_form(){
+  $("#coloured").show(500);
+  $("#info_form").show(500);
+  document.getElementById("page").style.color='transparent';
+  document.getElementById("page").style.textShadow='0 0 8px #000';
+}
+
+function hide_form(){
+  $("#coloured").fadeOut('slow');
+  $("#info_form").fadeOut('slow');
+  document.getElementById("page").style.color='black';
+  document.getElementById("page").style.textShadow='none';
+}
  function update(cmp,event){
     var curr_element_id= cmp.id;
   //alert(steps_ids_array[0]);

@@ -21,12 +21,20 @@ border-radius: 8px;
 
 #info_form {
   display: none;
-  position: fixed;
-  left : 1000px; 
+  position: absolute;
+  left : 1000px;
+  top : 10px;
+  z-index: 4; 
 }
 
-#coloured{
-  position: fixed;
+#coloured {
+  position: absolute;
   background-color: gray;
- 
+  left :0%;
+  top:  0%;
+  right: 0%;
+  z-index: 1;
+  opacity: 0.5;
+  height: 180%;
+  display: none;
 }
