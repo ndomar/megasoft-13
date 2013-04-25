@@ -10,7 +10,7 @@
     <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
       <li class="span4">
         <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
-        <div class="project-div"  style="background-image: url(/assets/logo.png); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
+        <div class="project-div" title="double click on the project to go to the design page." style="background-image: url(/assets/logo.png); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
             <div class='x-button'>
             <%= link_to  '', p, :confirm => 'هل أنت متأكد من مسح هذا المشروع ', :method => :delete , :class => "icon-remove"%>    
             </div>
@@ -22,22 +22,41 @@
 </div>
 
 
-<div id = "sidebar">
-  <br>
+  <div id="sidebar">
+    <div style="float: left;"><img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px"></div>
+   <div id='sidebar-content'>
   <br>
   <br>
   <h3 id = "projectName"> </h3>
   <hr>
+  <img src="/assets/Adds-Add-folder-icon.png" width="50" height="50">
+  <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => "-1"%></h3>
+  <br>
+  <hr>
+  <img src="/assets/Adds-Add-list-icon.png" width="50" height="50">
+  <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Questionnare"%></h3>
+  <br>
+  <hr>
+  <img src="/assets/Charts-Mind-map-icon.png" width="50" height="50">
+  <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to_function "Cardsort", "showPopup()" %></h3>
+  <br>
+  <hr>
+  <img src="/assets/Charts-Combo-icon.png" width="50" height="50">
+  <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Statistics"%></h3>
+  <br>
+  <hr>
+  <img src="/assets/DIY-Drill-icon.png" width="50" height="50">
+  <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Settings"%></h3>
+  <br>
+  <hr>
   <!-- show each project name -->
-  <h3 ><%= link_to "DesignPage", {:controller => :projects, :action => :design, :project_id => "-1"},:id => "Design" %></h3> 
-  <hr>
-  <h3><%= link_to_function "create new cardsort", "showPopup()" %></h3>
-  <hr>
-  <h3 id = "Task"><%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => "-1"%></h3>
-  <hr>
-  <div id="arrow" style="background-color: #3790e8">
+ 
+  
+
+  <!-- <div id="arrow" style="background-color: #3790e8">
     <i id="arrowsymbol" class="icon-chevron-right" style="margin-top: 2px;" ></i>
-  </div>
+  </div> -->
+</div>
 </div>
 
 <div class='popup-darkscreen'>

@@ -25,8 +25,13 @@ $(document).ready(function(){
     $(this).children('.x-button').fadeOut();
   });
 
+
   $('.project-div').on('click', function ()
   {
+    if ($('#sidebar').css("width") == '0px'){
+      $('#slidebutton').click();
+      return;
+    }
     var projectid = $(this).attr("ProjectId");
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
@@ -38,11 +43,35 @@ $(document).ready(function(){
     }, "medium");
   });
 
-  $('#arrow').on('click', function ()
+  $(".project-div").dblclick(function(){
+      var projectid = $(this).attr("ProjectId");
+      window.location.href = "/projects/design/" + projectid ;
+
+});
+
+var state = false;
+
+  $('#slidebutton').on('click', function ()
   {
-    $("#sidebar").hide("medium");
+    if (state){
+    $('#content').animate({
+      "margin-left": '-9%'
+    }, "medium");
+    $('#projects').animate({
+      "margin-right" : '0px'
+    });
+    $('#sidebar-content').fadeIn();
+    state=false;
+  }else{
+
      $('#content').animate({
       "margin-left": '0%'
     }, "medium");
+     $('#projects').animate({
+      "margin-right" : '10%'
+    });
+     $('#sidebar-content').fadeOut();
+     state=true;
+   }
   });
 });

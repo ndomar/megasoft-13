@@ -59,6 +59,7 @@
   border-radius: 3px;
   left: 50px;
   top: 200px;
+  float: right;
 }
 
 
@@ -84,16 +85,6 @@
   border-width: 1px;
 }
 
-img{
-  width: 100%;
-  height: 90%;
-}
-
-.container{
-  margin: 0px;
-  width: 100%;
-}
-
 #wrapper{
   padding: 0px;
 }
@@ -102,9 +93,20 @@ img{
   margin-left: 10%;
   margin-right: 10%;
 }
-#content{
-  background-color: gray;
+
+img{
+  float: right;
 }
+
+.container{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+
 
 
 

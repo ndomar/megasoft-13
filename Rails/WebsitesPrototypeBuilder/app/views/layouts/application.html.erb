@@ -15,7 +15,6 @@
 <body>
 <div class = "body">
 <!-- layout stuff for the home page -->
-<% if designer_signed_in? %>
 <!-- container for positioning the banner -->
 <div id="navigation_container">
 <!-- the ribbon body -->
@@ -26,8 +25,8 @@
     <li><%= link_to_function "مشروع جديد" ,  "showpopup()" %><div class="tabBar" ></div></li>
     <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
     </ul>
-    
-    <a href="#"><div width="107px" height="51px" class="logo"></div></a>
+
+    <a href="#"><div width="44px" height="51px" class="logo"></div></a>
   <!-- end navigation links -->
     <div id="designer_nav" align="right">
       <!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
@@ -39,33 +38,31 @@
         <% end %>
         ﻣﺴﺠﻞ ﺑﺈﺳﻢ<br /> ﻟﻴﺲ ﺃﻧﺖ؟
         <%= link_to "ﺧﺮﻭﺝ", destroy_designer_session_path, :method => :delete %>
-
         <br />
         <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
-      <% else %>
-        <div>
-          <%= link_to "اﻟﺘﺴﺠﻴﻞ", new_designer_registration_path %>
-          <label class ="label label-important" >اﻭ </label>
-          <%= link_to "اﻟﺪﺧﻮﻝ",new_designer_session_path%>
-        </div>
       <% end %>
     </div>
   </div>
 <!-- end container -->
 </div>
-<% end %>
+
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
 <% end %>
- <!-- -------------------- -->
-
-<div class="container"><%= yield %></div>
-<hr>
+ <!--end navigationbar -->
+<div class="the_body">
+  <div class="container max-height no-overflow"><%= yield %></div>
 </div>
 
-</div>
 <footer>
+  <hr>
+  <ul class="social_bookmarks">
+    <li class="facebook"><a href="http://facebook.com/"></a></li>
+    <li class="twitter"><a href="http://www.twitter.com/"></a></li>
+    <li class="google"><a href="http://www.google.com//"></a></li>
+  </ul>
+
   <p>&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</p>
 </footer>
 
