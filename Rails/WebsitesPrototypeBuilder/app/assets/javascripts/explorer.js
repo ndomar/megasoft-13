@@ -46,12 +46,15 @@ function deletePage(pageId){
 function addPage(project_id){
 	//this function is used to create new page by the designer
 	var pagename=prompt("الرجاء إدخال اسم الصفحة","");
+
 	if (pagename!=null && pagename!=""){
   	var params = $.param({
 			pageName: pagename,
 			projectId: project_id
 		});
 		$.ajax("/projects/createPage?" + params);
+  }else{
+  	alert("الرجاء التأكد من أن اسم الصفحة هي فريد من نوعه وغير فارغ");
   } 
 }
 
@@ -84,12 +87,12 @@ $(document).ready(function() {
 	//to prevent the carousel from automatically sliding
 });
 
-function showDiv(){
-
-	var item = document.createElement('div');
-	item.setAttribute('class','item');
-	item.style="background-color:#AAAAAA";
-	$('#carousel-inner').append(item);
-
-	alert("DONE");
+function swap(){
+	alert($('#carousel-inner').children().length);
+	var item = $('#carousel-inner').children().first();
+	while(item.next().attr('id')!="first item"){
+		alert("NEXT");
+		alert(item.next().attr('id'));
+		alert(item.next().attr('class'));
+	}
 }

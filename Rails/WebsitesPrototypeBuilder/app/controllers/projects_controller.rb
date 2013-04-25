@@ -108,9 +108,7 @@ def deletePage
   @page = Page.find(params[:pageid]) 
   @page.destroy
   respond_to do |format|
-    format.html { render :nothing => true }
-    format.js { render :layout => false }
-    # format.js {render "remove_page", :status => :deleted}
+    format.js {render "remove_page", :status => :ok}
   end
 end
 
@@ -130,8 +128,7 @@ def createPage
     if(@page.save)
       format.js {render "new_page", :status => :created}
     else
-      format.js {render :nothing => true, :status => :no}
-      #render a new view
+      format.js {render "add_problem", :status => :no}
     end
   end
 end

@@ -1,8 +1,52 @@
-// document.write("adasdas1");
-// $('<%=@page.id%>').remove();
-// document.write("adasdas2");
 <% if (@page.valid?) %>
+	// $('#<%= @page.id %>').parent().replaceWith('<div class="span1"></div>');
+	var changedItem = $('#<%= @page.id %>').parent().parent().parent();
+	var changedThumbnail = $('#<%= @page.id %>').parent().parent();
+	var span1 = changedThumbnail.children().first().next();
+	var span2 = changedThumbnail.children().first().next().next();
+	var span3 = changedThumbnail.children().first().next().next().next();
+	var span4 = changedThumbnail.children().first().next().next().next().next();
+	//changing the order in the item that contains the destined page
+	if(span1.children().first().next().attr('id')==<%= @page.id %>){
+		//the first span is the destination
+		span1.remove();
+	}else{
+		if(span2.children().first().next().attr('id')==<%= @page.id %>){
+			//the second span is the destination 
+			span2.remove();
+		}else{
+			if(span3.children().first().next().attr('id')==<%= @page.id %>){
+				//the third span is the destination
+				span3.remove();
+			}else{
+				//the forth span is the destination
+				span4.remove();
+			}
+		}
+	}
+	changedItem.children().append('<div class="span1"></div>');
 
+	var totalItems = changedItem.parent().children().length();
+	var item = $('#carousel-inner').children().first();
+	while(item.children().first().children().first().next().children().first().next().attr('id') != changedItem.children().first().children().first().next().children().first().next().attr('id') ){
+		item=item.next();
+		totalItems--;
+	}
+	alert(totalItems);
+	//Changing the order in the rest
+	// while(changedItem.next().attr('id')=="first item"){
+	while(totalItems>0){
+		var spantoTake = changedItem.next().children().children().first().next();
+		var span = changedItem.children().children().last().prev();
+		$(span).replaceWith(spantoTake);
+		changedItem=changedItem.next();
+		changedItem.children().append('<div class="span1"></div>');			
+		totalItems--;
+	}
+	if(changedItem.children().children().first().next().children().length==0){
+		changedItem.remove();
+	}	
+	alert("DONEZ");
 <% else %>
 
 <% end %>

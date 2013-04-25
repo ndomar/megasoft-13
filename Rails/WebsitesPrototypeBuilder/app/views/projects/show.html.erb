@@ -5,7 +5,7 @@
 	<div id="designpage" data-pageid="0" style="width:200px;background:red"></div>
 </div>
 
-<button onclick="showDiv()">DIV</button>
+<button onclick="swap()">Swap</button>
 <!-- this is the carousel implementation, It loops through the project's pages and displays them in a series of thumbnails each with an x icon over it to be used for deletion. A Carousel has to consist of at least an active 
 item which has to be the first item in the carousel, it can also contain as many items as required. After filling 
 the active item, the carousel can be filled by as many items as required.Also all the actions to be done on them 
@@ -19,7 +19,7 @@ are stated. -->
     <div class="bottom carousel slide" id="myCarousel" style="margin-bottom: -20px;">
     	<div id="carousel-inner" class="carousel-inner">
     		<% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
-    			<div class="item active" style="background-color:#AAAAAA">
+    			<div id="first item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
             	<li class="span1"></li>
             	<% @pages.each_with_index do |page, index| %>
@@ -38,7 +38,7 @@ are stated. -->
             </ul>
     			</div>
     		<% else %>  <!-- the case when we have more than 4 pages -->
-    			<div class="item active" style="background-color:#AAAAAA">
+    			<div id="first item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
             	<li class="span1"></li>
     						<li class="span1">
