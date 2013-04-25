@@ -9,6 +9,7 @@ post 'steps/update'
 get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
 
   resources :projects do
+    resources :statistics
     resources :tasks do
       resources :steps
       resources :task_results
