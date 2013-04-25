@@ -32,7 +32,7 @@ $(document).ready(function (){
 		if ($("#sidebar").css("right")=='0px'){
 			$("#designcontainer").hide();
 			$("#sidebar").animate({
-				right: "-230px"
+				right: "-170px"
 			},200,"linear");
 			// $("#designpage").animate({
 			// 	width: "+=200",
@@ -43,7 +43,7 @@ $(document).ready(function (){
 			// },300,"linear");
 		}
 		else {
-			if ($(".image-panel").css("right")=='-210px'){
+			if ($(".image-panel").css("right")=='-150px'){
 				$("#image-panel-tag").click();
 			}
 			$("#sidebar").animate({
@@ -67,14 +67,14 @@ $(document).ready(function (){
 		}
 		if ($(".image-panel").css('right') == '20.2833px'){
 			$(".image-panel").animate({
-				right: "-210px"
+				right: "-150px"
 			},200,"linear");
 			$("#designpage").animate({
-				width: "+=230",
-				left: "+=230"
+				width: "+=170",
+				left: "+=170"
 			},200,"linear");
 			$("#designpage").children().animate({
-				left: "+=200"
+				left: "+=170"
 			},200,"linear");
 		}
 		else {
@@ -82,11 +82,11 @@ $(document).ready(function (){
 				right: "20.2833px"
 			},200,"linear");
 			$("#designpage").animate({
-				width: "-=230",
-				left: "-=230"
+				width: "-=170",
+				left: "-=170"
 			},200,"linear");
 			$("#designpage").children().animate({
-				left: "-=200"
+				left: "-=170"
 			},200,"linear");
 		}
 	});

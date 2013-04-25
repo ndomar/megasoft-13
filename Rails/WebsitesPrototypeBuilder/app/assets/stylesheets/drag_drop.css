@@ -10,7 +10,7 @@ body {
 }
 
 #wrapper{
-	height: 800px;
+	padding-right: 280px;
 }
 
 #toolbox{
@@ -152,7 +152,6 @@ body {
 	position: absolute;
 	top: 1%;
 	height: 703px;
-	padding: 0px 30px;
 	right: 1.5%;
 	bottom: 0;
 	word-wrap:break-word;
@@ -174,12 +173,12 @@ body {
 
 #image-panel-tag{
 	top: 5%;
-	left: -11%;
+	left: -15%;
 }
 
 #toolbox-tag{
 	top: 4%;
-	left: -11%;
+	left: -15%;
 }
 
 #image-panel{
@@ -194,8 +193,7 @@ body {
 	border-width: 2px;
 	border-color: white;
 	padding: 40px;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin: 30px;
 }
 
 .thumbnail{
