@@ -17,7 +17,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
 
   resources :projects do
-      resources :pages
+    resources :pages  
   end
 
   resources :tasks do
@@ -25,7 +25,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
 
   resources :projects do
-    resources :statistics
+
+  resources :statistics
     resources :tasks do
       resources :steps
       resources :task_results
@@ -59,7 +60,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
-  get "pages/designer"
   get "projects/index"
   get "projects/save/" => "projects#save" #, :as => :page_save 
   get "projects/deletePage/" => "projects#deletePage" #, :as => :page_save 
@@ -70,6 +70,12 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   resources :projects
  
   resources :questionnaires do
+
+  get "questionnaires/answer_show"
+  get "questionnaires/index"
+
+   resources :questionnaires do
+
     resources :qquestions do
       resources :choice_qquestions
       resources :answer_questionnaires
@@ -77,7 +83,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
 
 
+
   get 'cardsorts/new'
+
 
   resources :pages do
     resources :comments

@@ -17,6 +17,4 @@ class Page < ActiveRecord::Base
   #checks that page name is present and is unique
   validates :page_name, :presence => {:message => "  إسم  صفحه موجود"}
   validates :page_name, :uniqueness => {:message => "فريد صفحه إسم"}
-
-
 end
