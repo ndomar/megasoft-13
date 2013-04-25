@@ -1,5 +1,5 @@
 class StepsController < ApplicationController
-  ## 
+## 
 #updates the value of the current step and stores success,clicks,starting time and total time taken in their tables
 # * *Args*    :
 #   -+@task+ -> the current task
