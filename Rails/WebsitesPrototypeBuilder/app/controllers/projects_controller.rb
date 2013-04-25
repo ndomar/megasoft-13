@@ -87,7 +87,7 @@ end
 # * *Returns* :
 # - void
 #
-def save
+def savePage
   @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
   @page.html = params[:html]      # I am updating the page's html
   @page.save                      # I am saving the page after updating it
@@ -125,10 +125,10 @@ def createPage
   @page.project_id=params[:projectId]
   @page.page_name=params[:pageName]
   respond_to do |format|
-    if(@page.save)
+    if (@page.save)
       format.js {render "new_page", :status => :created}
     else
-      format.js {render "add_problem", :status => :no}
+      format.js {render "add_problem", :status => :ok}
     end
   end
 end

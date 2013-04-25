@@ -1,9 +1,6 @@
 <% if (@page.valid?) %>
 	if($('#carousel-inner').children().last().children().children().last().prev().children().length>0){
-		if($('#carousel-inner').children().length>0)
-		$('#carousel-inner').append('<div class="item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');		
-	else
-		$('#carousel-inner').append('<div class="active item" id="first item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');		
+		$('#carousel-inner').append('<div class="item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');
 	}else{
 		var spans = $('#carousel-inner').children().last().children().children().last().prev();	
 		var backSpans=0;
@@ -14,4 +11,5 @@
 		spans.append('<a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p>');		
 	}
 <% else %>
+	alert("الرجاء التأكد من أن اسم الصفحة فريد من نوعه");
 <% end %>

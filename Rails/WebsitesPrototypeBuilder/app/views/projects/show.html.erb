@@ -19,7 +19,7 @@ are stated. -->
     <div class="bottom carousel slide" id="myCarousel" style="margin-bottom: -20px;">
     	<div id="carousel-inner" class="carousel-inner">
     		<% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
-    			<div id="first item" class="item active" style="background-color:#AAAAAA">
+    			<div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
             	<li class="span1"></li>
             	<% @pages.each_with_index do |page, index| %>
@@ -38,7 +38,7 @@ are stated. -->
             </ul>
     			</div>
     		<% else %>  <!-- the case when we have more than 4 pages -->
-    			<div id="first item" class="item active" style="background-color:#AAAAAA">
+    			<div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
             	<li class="span1"></li>
     						<li class="span1">

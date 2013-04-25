@@ -1,5 +1,4 @@
 <% if (@page.valid?) %>
-	// $('#<%= @page.id %>').parent().replaceWith('<div class="span1"></div>');
 	var changedItem = $('#<%= @page.id %>').parent().parent().parent();
 	var changedThumbnail = $('#<%= @page.id %>').parent().parent();
 	var span1 = changedThumbnail.children().first().next();
@@ -25,28 +24,21 @@
 		}
 	}
 	changedItem.children().append('<div class="span1"></div>');
-
-	var totalItems = changedItem.parent().children().length();
-	var item = $('#carousel-inner').children().first();
-	while(item.children().first().children().first().next().children().first().next().attr('id') != changedItem.children().first().children().first().next().children().first().next().attr('id') ){
-		item=item.next();
+	var totalItems = $('#carousel-inner').children().length;
+	var item = $('#first-item');
+	while(totalItems>1)	{
+		if(item.children().children().last().prev().children().length==0)	{
+			//swaping is required
+			// spanToRemove is item.children().children().last().prev();
+			// spanToTake is item.next().children().children().first().next();
+			$(item.children().children().last().prev()).replaceWith(item.next().children().children().first().next());
+			item = item.next();
+			item.children().append('<div class="span1"></div>');
+		}
 		totalItems--;
 	}
-	alert(totalItems);
-	//Changing the order in the rest
-	// while(changedItem.next().attr('id')=="first item"){
-	while(totalItems>0){
-		var spantoTake = changedItem.next().children().children().first().next();
-		var span = changedItem.children().children().last().prev();
-		$(span).replaceWith(spantoTake);
-		changedItem=changedItem.next();
-		changedItem.children().append('<div class="span1"></div>');			
-		totalItems--;
-	}
-	if(changedItem.children().children().first().next().children().length==0){
-		changedItem.remove();
+	if(item.children().children().first().next().children().length==0){
+		item.remove();
 	}	
-	alert("DONEZ");
 <% else %>
-
 <% end %>
