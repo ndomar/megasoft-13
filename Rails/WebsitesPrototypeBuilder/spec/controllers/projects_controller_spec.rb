@@ -6,7 +6,6 @@ describe ProjectsController	do
 		page = Page.new(:html => "<div><button>Hi</button></div>" ,:page_name => "Hossam Testing")
 		page.save
 		get :savePage,{:pageid => 1 , :html => "<p>Hossam Testing</p>"}
-		# controller.should render_template(:status => 'ok',:format => 'js')
 	end
 
 	it "Testing createPage in projects controller" do

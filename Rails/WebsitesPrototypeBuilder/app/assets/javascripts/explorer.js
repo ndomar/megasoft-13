@@ -15,23 +15,39 @@ function saveProjectProgress(){
 }
 
 function store(){
+	//i need something to notify me not to show this alert
 	var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
 	if(response==true){
-			var html = document.getElementById('designpage').innerHTML;						//this gets the html from the designpage pane and stores it in the variable html
-			var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
-			var params = $.param({
-				pageid: pageId,
-				"html": html
-			});
-			$.ajax("/projects/savePage?" + params);
-			//this is the ajax request to update and save the updated page
-		}
+		var html = document.getElementById('designpage').innerHTML;											//this gets the html from the designpage pane and stores it in the variable html
+		var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
+		//reseting the ondbclick show event
+		document.getElementById(pageId).ondblclick= function () {
+																			          	var designPage = document.getElementById('designpage');
+																									designPage.innerHTML="";
+																									designPage.innerHTML=html;
+																									designPage.setAttribute("data-pageid", pageId);
+																								};
+		// html=html.replace( "'", "\'");
+		// html=html.replace( '"', '\"');
+		var params = $.param({
+			pageid: pageId,
+			"html": html
+		});
+		$.ajax("/projects/savePage?" + params);
+		//this is the ajax request to update and save the updated page
+	}
 }
 
 function deletePage(pageId){
 	//this function is used to delete a page by the designer
 	var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
 	if(response){
+			var pageid = document.getElementById('designpage').getAttribute("data-pageid");	
+			if(pageid==pageId){
+				var designPage = document.getElementById('designpage');
+				designpage.innerHTML="<p>صمم صفحتك هنا</p>";
+				designPage.setAttribute("data-pageid", 0);
+			}
 			var params = $.param({
 				pageid: pageId
 			});
