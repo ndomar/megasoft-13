@@ -19,6 +19,4 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
   belongs_to :designer
-
-
 end

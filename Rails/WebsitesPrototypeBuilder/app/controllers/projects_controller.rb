@@ -64,6 +64,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @task = Task.find(:all, :conditions => {:project_id => @project.id})
     @project.destroy
-    redirect_to projects_path
+    respond_to do |format|
+      format.js { render "project_deleted", :status => :ok}
+    end
   end
 end

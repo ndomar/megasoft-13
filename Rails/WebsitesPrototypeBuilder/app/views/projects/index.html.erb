@@ -8,11 +8,11 @@
   <div id='projects'>
   <ul class="thumbnails">
     <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
-      <li class="span4">
+      <li ProjectId = "<%= p.id %>" class="span4">
         <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
         <div class="project-div" title="double click on the project to go to the design page." style="background-image: url(/assets/logo.png); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
             <div class='x-button'>
-            <%= link_to  '', p, :confirm => 'هل أنت متأكد من مسح هذا المشروع ', :method => :delete , :class => "icon-remove"%>    
+            <%= button_to_function nil,"deleteProject('#{p.id}')" , :class => "icon-remove"%>    
             </div>
         </div>
       </li>
@@ -101,7 +101,7 @@
       </p>
       <%= f.hidden_field :designer_id, :value => current_designer.id %>
       <p class = "save">
-        <%= f.submit "حفظ" %>
+        <%= f.submit "حفظ",:class =>"btn btn-primary" %>
       </p>
     <%end%>
   </div>

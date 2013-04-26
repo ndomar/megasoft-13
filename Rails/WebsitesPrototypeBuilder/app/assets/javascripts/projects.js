@@ -25,11 +25,26 @@ $(document).ready(function(){
     $(this).children('.x-button').fadeOut();
   });
 
-
   $('.project-div').on('click', function ()
   {
     if ($('#sidebar').css("width") == '0px'){
-      $('#slidebutton').click();
+       $('#content').animate({
+      "margin-left": '-9%'
+    }, "medium");
+    $('#projects').animate({
+      "margin-right" : '0px'
+    });
+    $('#sidebar-content').fadeIn();
+     $("#wrapper").animate({'padding-right' : sidebar_width+'px'}, 400);
+      $("#sidebar").animate({'width':sidebar_width+'px'},600);
+      $('#slidebutton').animate({'margin-left' : '-10px'},{
+        duration:400,
+        step: function(now, fx) {
+          $('#slidebutton').css('transform','scaleX(1)');
+        }
+      });
+      state = false;
+      state2 = true;
       return;
     }
     var projectid = $(this).attr("ProjectId");
@@ -49,7 +64,7 @@ $(document).ready(function(){
 
 });
 
-var state = false;
+var state2 = false;
 
   $('#slidebutton').on('click', function ()
   {
@@ -61,7 +76,7 @@ var state = false;
       "margin-right" : '0px'
     });
     $('#sidebar-content').fadeIn();
-    state=false;
+    state2=false;
   }else{
 
      $('#content').animate({
@@ -71,7 +86,16 @@ var state = false;
       "margin-right" : '10%'
     });
      $('#sidebar-content').fadeOut();
-     state=true;
+     state2=true;
    }
   });
 });
+
+function deleteProject (id){
+  var params = $.param({
+    'id': id
+  });
+  $.ajax({
+    url: '/projects/destroy?' + params,
+  });
+}
