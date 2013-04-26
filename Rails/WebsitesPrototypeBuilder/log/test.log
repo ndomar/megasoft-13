@@ -21619,3 +21619,213 @@ Completed 500 Internal Server Error in 4ms
   [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'task_results';
   [1m[36m (99.0ms)[0m  [1mDELETE FROM "tasks";[0m
   [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+Connecting to database specified by database.yml
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (18.0ms)[0m  [1mINSERT INTO "pages" ("created_at", "html", "page_name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["created_at", Fri, 26 Apr 2013 15:14:03 UTC +00:00], ["html", "<div><button>Hi</button></div>"], ["page_name", "Hossam Testing"], ["project_id", nil], ["updated_at", Fri, 26 Apr 2013 15:14:03 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (1.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (341.0ms)[0m  DELETE FROM "answer_questionnaires";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answer_questionnaires';[0m
+  [1m[35m (130.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (88.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (98.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (112.0ms)[0m  DELETE FROM "choice_qquestions";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'choice_qquestions';[0m
+  [1m[35m (109.0ms)[0m  DELETE FROM "choices";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'choices';[0m
+  [1m[35m (99.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (87.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (101.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (100.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (99.0ms)[0m  DELETE FROM "pictures";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pictures';[0m
+  [1m[35m (113.0ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (97.0ms)[0m  DELETE FROM "qquestions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'qquestions';[0m
+  [1m[35m (110.0ms)[0m  DELETE FROM "questionnaires";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questionnaires';[0m
+  [1m[35m (98.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (100.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (98.0ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (100.0ms)[0m  DELETE FROM "reviewers_tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers_tasks';[0m
+  [1m[35m (111.0ms)[0m  DELETE FROM "step_answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'step_answers';[0m
+  [1m[35m (99.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (110.0ms)[0m  DELETE FROM "task_results";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'task_results';[0m
+  [1m[35m (99.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mProject Exists (0.0ms)[0m  SELECT 1 AS one FROM "projects" WHERE "projects"."project_name" = 'Hossam Test' LIMIT 1
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "designer_id", "project_name", "project_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Fri, 26 Apr 2013 15:14:05 UTC +00:00], ["description", nil], ["designer_id", nil], ["project_name", "Hossam Test"], ["project_type", nil], ["updated_at", Fri, 26 Apr 2013 15:14:05 UTC +00:00]]
+  [1m[35m (1.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mProject Exists (0.0ms)[0m  SELECT 1 AS one FROM "projects" WHERE ("projects"."project_name" = 'Hossam Test' AND "projects"."id" != 1) LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (196.0ms)[0m  [1mDELETE FROM "answer_questionnaires";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answer_questionnaires';
+  [1m[36m (100.0ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (110.0ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (99.0ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (122.0ms)[0m  [1mDELETE FROM "choice_qquestions";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'choice_qquestions';
+  [1m[36m (110.0ms)[0m  [1mDELETE FROM "choices";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'choices';
+  [1m[36m (111.0ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (110.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (98.0ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (89.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (86.0ms)[0m  [1mDELETE FROM "pictures";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pictures';
+  [1m[36m (259.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (108.0ms)[0m  [1mDELETE FROM "qquestions";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'qquestions';
+  [1m[36m (86.0ms)[0m  [1mDELETE FROM "questionnaires";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questionnaires';
+  [1m[36m (88.0ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (111.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (87.0ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (79.0ms)[0m  [1mDELETE FROM "reviewers_tasks";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers_tasks';
+  [1m[36m (87.0ms)[0m  [1mDELETE FROM "step_answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'step_answers';
+  [1m[36m (87.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (88.0ms)[0m  [1mDELETE FROM "task_results";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'task_results';
+  [1m[36m (99.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mProject Exists (1.0ms)[0m  [1mSELECT 1 AS one FROM "projects" WHERE "projects"."project_name" = 'Hossam Testing' LIMIT 1[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "projects" ("created_at", "description", "designer_id", "project_name", "project_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Fri, 26 Apr 2013 15:14:08 UTC +00:00], ["description", nil], ["designer_id", nil], ["project_name", "Hossam Testing"], ["project_type", nil], ["updated_at", Fri, 26 Apr 2013 15:14:08 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (1.0ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 200 OK in 89ms (Views: 87.0ms | ActiveRecord: 1.0ms)
+  [1m[36m (1.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (147.0ms)[0m  DELETE FROM "answer_questionnaires";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answer_questionnaires';[0m
+  [1m[35m (113.0ms)[0m  DELETE FROM "answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'answers';[0m
+  [1m[35m (74.0ms)[0m  DELETE FROM "cards";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cards';[0m
+  [1m[35m (98.0ms)[0m  DELETE FROM "cardsorts";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'cardsorts';[0m
+  [1m[35m (91.0ms)[0m  DELETE FROM "choice_qquestions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'choice_qquestions';[0m
+  [1m[35m (89.0ms)[0m  DELETE FROM "choices";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'choices';[0m
+  [1m[35m (77.0ms)[0m  DELETE FROM "comments";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'comments';[0m
+  [1m[35m (90.0ms)[0m  DELETE FROM "designers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'designers';[0m
+  [1m[35m (88.0ms)[0m  DELETE FROM "groups";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'groups';[0m
+  [1m[35m (100.0ms)[0m  DELETE FROM "pages";
+  [1m[36m (11.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pages';[0m
+  [1m[35m (98.0ms)[0m  DELETE FROM "pictures";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'pictures';[0m
+  [1m[35m (90.0ms)[0m  DELETE FROM "projects";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'projects';[0m
+  [1m[35m (89.0ms)[0m  DELETE FROM "qquestions";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'qquestions';[0m
+  [1m[35m (88.0ms)[0m  DELETE FROM "questionnaires";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questionnaires';[0m
+  [1m[35m (110.0ms)[0m  DELETE FROM "questions";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'questions';[0m
+  [1m[35m (88.0ms)[0m  DELETE FROM "reviewer_infos";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewer_infos';[0m
+  [1m[35m (87.0ms)[0m  DELETE FROM "reviewers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers';[0m
+  [1m[35m (88.0ms)[0m  DELETE FROM "reviewers_tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'reviewers_tasks';[0m
+  [1m[35m (112.0ms)[0m  DELETE FROM "step_answers";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'step_answers';[0m
+  [1m[35m (91.0ms)[0m  DELETE FROM "steps";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'steps';[0m
+  [1m[35m (128.0ms)[0m  DELETE FROM "task_results";
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'task_results';[0m
+  [1m[35m (86.0ms)[0m  DELETE FROM "tasks";
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM sqlite_sequence where name = 'tasks';[0m
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mProject Exists (0.0ms)[0m  SELECT 1 AS one FROM "projects" WHERE "projects"."project_name" = 'Hossam Testing' LIMIT 1
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "projects" ("created_at", "description", "designer_id", "project_name", "project_type", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Fri, 26 Apr 2013 15:14:10 UTC +00:00], ["description", nil], ["designer_id", nil], ["project_name", "Hossam Testing"], ["project_type", nil], ["updated_at", Fri, 26 Apr 2013 15:14:10 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "pages" ("created_at", "html", "page_name", "project_id", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", Fri, 26 Apr 2013 15:14:10 UTC +00:00], ["html", nil], ["page_name", "Hossam Testing"], ["project_id", 1], ["updated_at", Fri, 26 Apr 2013 15:14:10 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.0ms)[0m  rollback transaction
+  [1m[36m (98.0ms)[0m  [1mDELETE FROM "answer_questionnaires";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answer_questionnaires';
+  [1m[36m (88.0ms)[0m  [1mDELETE FROM "answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'answers';
+  [1m[36m (88.0ms)[0m  [1mDELETE FROM "cards";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cards';
+  [1m[36m (88.0ms)[0m  [1mDELETE FROM "cardsorts";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'cardsorts';
+  [1m[36m (121.0ms)[0m  [1mDELETE FROM "choice_qquestions";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'choice_qquestions';
+  [1m[36m (100.0ms)[0m  [1mDELETE FROM "choices";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'choices';
+  [1m[36m (87.0ms)[0m  [1mDELETE FROM "comments";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'comments';
+  [1m[36m (144.0ms)[0m  [1mDELETE FROM "designers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'designers';
+  [1m[36m (121.0ms)[0m  [1mDELETE FROM "groups";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'groups';
+  [1m[36m (110.0ms)[0m  [1mDELETE FROM "pages";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pages';
+  [1m[36m (122.0ms)[0m  [1mDELETE FROM "pictures";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'pictures';
+  [1m[36m (111.0ms)[0m  [1mDELETE FROM "projects";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'projects';
+  [1m[36m (122.0ms)[0m  [1mDELETE FROM "qquestions";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'qquestions';
+  [1m[36m (111.0ms)[0m  [1mDELETE FROM "questionnaires";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questionnaires';
+  [1m[36m (121.0ms)[0m  [1mDELETE FROM "questions";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'questions';
+  [1m[36m (111.0ms)[0m  [1mDELETE FROM "reviewer_infos";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewer_infos';
+  [1m[36m (111.0ms)[0m  [1mDELETE FROM "reviewers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers';
+  [1m[36m (121.0ms)[0m  [1mDELETE FROM "reviewers_tasks";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'reviewers_tasks';
+  [1m[36m (111.0ms)[0m  [1mDELETE FROM "step_answers";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'step_answers';
+  [1m[36m (128.0ms)[0m  [1mDELETE FROM "steps";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'steps';
+  [1m[36m (104.0ms)[0m  [1mDELETE FROM "task_results";[0m
+  [1m[35m (0.0ms)[0m  DELETE FROM sqlite_sequence where name = 'task_results';
+  [1m[36m (122.0ms)[0m  [1mDELETE FROM "tasks";[0m
+  [1m[35m (1.0ms)[0m  DELETE FROM sqlite_sequence where name = 'tasks';
