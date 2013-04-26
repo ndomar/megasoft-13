@@ -25,6 +25,16 @@ $(document).ready(function(){
     $(this).children('.x-button').fadeOut();
   });
 
+  $('.options').hover(function()
+  {
+    $(this).css("cursor","pointer");
+    $(this).css("background-color","#6699FF");
+  }, function()
+  {
+    $(this).css("cursor","pointer");
+    $(this).css("background-color","#1b1b1b");
+  });
+
   $('.project-div').on('click', function ()
   {
     if ($('#sidebar').css("width") == '0px'){
@@ -68,7 +78,7 @@ var state2 = false;
 
   $('#slidebutton').on('click', function ()
   {
-    if (state){
+    if (state2){
     $('#content').animate({
       "margin-left": '-9%'
     }, "medium");

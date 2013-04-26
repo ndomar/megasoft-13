@@ -23,7 +23,7 @@
   height: 500px;
   margin-top: 100px;
   position: absolute;
-  top: 0px;
+  top: -10px;
   left: 455px;
   color:black;
   padding-left:20px;
@@ -107,7 +107,6 @@ img{
 #sidebar-list{
   height: 60px;
 }
-
 
 
 
