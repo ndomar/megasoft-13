@@ -1,5 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  get 'projects/save'
+  get 'projects/savePage'
   get 'projects/createPage'
   get 'projects/deletePage'
 
@@ -61,7 +61,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/reviewer"
   get "pages/designer"
   get "projects/index"
-  get "projects/save/" => "projects#save" #, :as => :page_save 
+  get "projects/savePage/" => "projects#savePage" #, :as => :page_save 
   get "projects/deletePage/" => "projects#deletePage" #, :as => :page_save 
   get "projects/createPage/" => "projects#createPage" #, :as => :page_save 
   get "questionnaires/answer_show"
@@ -79,9 +79,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :qquestions do
       resources :choice_qquestions
       resources :answer_questionnaires
+      end
     end
   end
-
 
 
   get 'cardsorts/new'

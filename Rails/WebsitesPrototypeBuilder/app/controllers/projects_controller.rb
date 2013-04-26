@@ -128,7 +128,7 @@ def createPage
     if (@page.save)
       format.js {render "new_page", :status => :created}
     else
-      format.js {render "add_problem", :status => :ok}
+      format.js {render "new_page", :status => :ok}
     end
   end
 end

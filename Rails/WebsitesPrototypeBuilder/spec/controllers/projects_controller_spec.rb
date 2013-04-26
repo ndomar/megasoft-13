@@ -1,17 +1,36 @@
 require 'spec_helper'
 
 describe ProjectsController	do	
+
 	it "Testing save in projects controller" do
-		pageCreated=Page.new()
-		pageCreated.save
-		get :save, {:id => 1,:html => "asdasdas"}
-		assigns(:page).should_not be_nil
+		page = Page.new(:html => "<div><button>Hi</button></div>" ,:page_name => "Hossam Testing")
+		page.save
+		get :savePage,{:pageid => 1 , :html => "<p>Hossam Testing</p>"}
+		# controller.should render_template(:status => 'ok',:format => 'js')
 	end
 
-it "Testing show in projects controller" do
-		projectCreated = Project.new()
-		projectCreated.save
-		get :show, {:id => 1}
-		assigns(:project).should_not be_nil
+	it "Testing createPage in projects controller" do
+		project = Project.create(:project_name => "Hossam Test")
+		project.save
+		get :createPage,{:pageName => "Hossam Test",:projectId => project.id}
+		controller.should render_template(:status => 'created',:format => 'js')
+		get :createPage,{:pageName => "Hossam Test",:projectId => project.id}
+		controller.should render_template(:status => 'ok',:format => 'js')
 	end
+
+	it "Testing show in projects controller" do
+		project = Project.new(:project_name => "Hossam Testing")
+		project.save
+		get :show, {:id => 1}
+	end
+
+	it "Testing deletePage in projects controller" do
+		project = Project.new(:project_name => "Hossam Testing")
+		project.save
+		page = Page.new(:page_name => "Hossam Testing", :project_id => project.id)
+		page.save
+		get :deletePage, {:pageid => page.id}
+		controller.should render_template(:status => 'ok',:format => 'js')
+	end
+	
 end
