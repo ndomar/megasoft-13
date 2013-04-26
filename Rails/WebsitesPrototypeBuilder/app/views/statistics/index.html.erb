@@ -3,12 +3,13 @@
   <h2 style = "margin-right:20px;">احصائيات المهام</h2>
 </div>
 <br>
-<div id='all_tasks_results' style="margin-left:300px"></div>
+<div id='all_tasks_results'></div>
 <% if @tasks.length != 0 %>
   <%= render_chart(drawBarchart(@tasks), 'all_tasks_results') %>
 <% else %>
   <p style="color:red">لا توجد مهمات في هذا المشروع, توجه الى هذه الصفحة لتبدأ <%=link_to"مهمة جديدة", project_tasks_path%></p>
 <%end%>
+<br><br>
 <% taskslist = [] %>
 <% @tasks.each do |t| %>
 <% taskslist[@tasks.index(t)] = [t.name, t.id] %>
@@ -29,7 +30,7 @@
 <%end%>
 <% if @chosentasks.length != 0%>
   <div style="background-color:gray; text-align:right;">
-    <h2 style = "margin-right:20px;">معلومات عن المراجعين</h2>
+    <h3 style = "margin-right:20px;">معلومات عن المراجعين</h2>
   </div>
   <% reviewer_infos = getReviewerInfos(@chosentasks[0]) %>
   <% if reviewer_infos.kind_of? String%>
@@ -57,7 +58,7 @@
     </div>
   <%end%>
   <div style="background-color:gray; text-align:right;">
-    <h2 style = "margin-right:20px;">احصائيات مهمه واحده</h2>
+    <h3 style = "margin-right:20px;">احصائيات مهمه واحده</h2>
   </div>
   <% resultsSummary = calculateResultsSummary(@chosentasks) %>
   <% if resultsSummary.kind_of? String%>
@@ -78,4 +79,15 @@
       <%= render_chart(drawLinechart(successresults, @chosentasks, 'نسبة النجاح'), 'single_task_success_results') %>
     <%end%>
   <%end%>
+<%end%>
+<div style="background-color:gray; text-align:right;">
+  <h2> نتائج الاستطلاعات</h2>
+</div>
+<ol>
+  <% @questionnaires.each do |questionnaire| %>
+  <li><%= questionnaire.title %></li>
+  <%end%>
+</ol>
+<% if @questionnaires.length == 0 %>
+  <p>LOL</p>
 <%end%>

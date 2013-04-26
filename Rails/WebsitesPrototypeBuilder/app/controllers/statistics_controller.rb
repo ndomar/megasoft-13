@@ -7,6 +7,7 @@ class StatisticsController < ApplicationController
   #   - list of tasks that belongs to project_id
   #
   def index
+    @questionnaires = Project.find(params[:project_id]).questionnaires
     @tasks = Project.find(params[:project_id]).tasks
     @chosentasks = []
     if params[:taskid] != nil

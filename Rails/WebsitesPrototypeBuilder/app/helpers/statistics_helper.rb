@@ -38,7 +38,7 @@ module StatisticsHelper
       data_table.add_row([task.name,resultsSummary[0][index], 
         resultsSummary[1][index], resultsSummary[2][index]])
     end
-    option = { width: 400, height: 240, title: 'احصائيات نتائج المهام' }
+    option = { width: 900, height: 240, title: 'احصائيات نتائج المهام' }
     chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, option)
     return chart
   end
