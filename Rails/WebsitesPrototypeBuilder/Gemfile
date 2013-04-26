@@ -26,6 +26,9 @@ gem "nested_form"
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
+#gem for changing confirmation boxes styles
+gem 'twitter-bootstrap-rails-confirm'
+
 #simplecov
 gem 'simplecov', :require => false, :group => :test
 

@@ -15,7 +15,8 @@ $(document).ready(function sliding_form(){
  });
 //Using jquery-ui to drag and resize the circle
 function draw_circle() {
-	$('#drag_resize').css({"display":"block" ,'top' : 0+'px', 'left' : 0+'px'});	
+	var top_window = $(window).scrollTop();
+	$('#drag_resize').css({"display":"block" ,'top' : top_window+'px', 'left' : 0+'px'});	
 	$('#drag_resize').draggable("enable");  
 	$('#choose_area').css({"display":"table-cell"});
 	$('#delete_circle').css({"display":"table-cell"});
@@ -37,12 +38,18 @@ function create_note() {
 // delete The selecting circle
 function delete_circle() {
 	$('#drag_resize').css({"display":"none"});
+	window.frames[0].removeoutline();
 }
 
 // delete The selecting circle and the notepaper
-function delete_all() {
-	$('#drag_resize').css({"display":"none"});
+function delete_all(clear) {	
 	$('.note').css({"display":"none"});
+	delete_circle();
+	if(clear){
+		$('#comment_body').val('');
+		$('#question_body').val('');
+		$('#assignedpart').val('');
+	}
 }
 
 // It takes the id and the object from the Iframe and set the assignedpart value to it.
@@ -63,7 +70,10 @@ function selectItem () {
 		window.frames[0].OnMouseMove(posX,posY);
 	}
 }
-
+function resizeIframe(newHeight)
+{
+    document.getElementById('myiframe').style.height = parseInt(newHeight,10) + 10 + 'px';
+}
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {
 	//Load the html from the database through the hidden div with id "html_content"
@@ -78,7 +88,7 @@ $(document).ready(function() {
 	var myIframe = document.getElementById("myiframe");
 	var script = myIframe.contentWindow.document.createElement("script");
 	script.type = "text/javascript";
-	script.text  = 'var selElem = null;var origBorder = "";function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.border = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.border;overElem.style.border = "1px dashed gray";}parent.getSelectedItem(selElem.id,selElem);}';
+	script.text  = 'var selElem = null;var origBorder = "";parent.resizeIframe(document.body.scrollHeight);function removeoutline(){selElem.style.outline="0px";};window.onload = function() {var anchors =document.getElementsByTagName("a");for (var i = 0; i < anchors.length; i++) {anchors[i].onclick = function() {return(false);};}};function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.outline = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.outline;overElem.style.outline = "1px dashed gray";}parent.getSelectedItem(overElem.id,overElem);}';
 	myIframe.contentWindow.document.body.appendChild(script);
 	// Make the selecting circle resizable and draggable
 	$("#drag_resize").resizable({

@@ -1,0 +1,12 @@
+<!-- Fetching questions from the database,just for testing -->
+<div id="questions">
+	<% @page.questions.each do |question| %>
+		<div>
+			<!-- Getting the question -->
+			<p><%= question.body %></p>
+			<!-- The deleting method uses AJAX destroy.js.erb -->
+			<p><%= link_to "امسح", [@page,question], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_question" %>
+			<hr>
+		</div>
+	<%end%>
+</div>
