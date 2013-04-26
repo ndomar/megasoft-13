@@ -17,11 +17,10 @@ class StepsController < ApplicationController
       @step = returnHash[:step]
       @page = returnHash[:page]
       @step_answer=returnHash[:step_answer]
-      @task_result=returnHash[:task_result]
-     
+      @task_result=returnHash[:task_result]     
     end
     respond_to do |format|
-      if params[:change_id].to_s <= @task.steps.last.id.to_s && Time.parse(@task_result.time) <= Time.parse("0:1:0")
+      if params[:change_id].to_s <= @task.steps.last.id.to_s && Time.parse(@task_result.time) <= Time.parse("0:"+@task.time_limit.to_s+":0")
         format.html { render :template => "tasks/task_reviewer" }
       else
         #format.html { render :template => "tasks/task_reviewer_done" }

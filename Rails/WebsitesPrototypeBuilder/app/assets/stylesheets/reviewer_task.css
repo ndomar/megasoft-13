@@ -1,8 +1,7 @@
 .desc {
 position: absolute;
-background-color: white;
-left : 1000px; 
-top :10px;
+left : 900px; 
+top :15%;
 border-style: outset;
 border-color: #3399FF;
 border-width: 5px;
@@ -12,7 +11,7 @@ border-radius: 8px;
 .goal {
   position: absolute;
   left:10px;
-  top:20px;
+  top:20%;
   border-style: inset;
   border-color: #3399FF;
   border-width: 5px;
@@ -22,8 +21,7 @@ border-radius: 8px;
 #info_form {
   display: none;
   position: absolute;
-  left : 1000px;
-  top : 10px;
+  left : 900px;
   z-index: 4; 
 }
 

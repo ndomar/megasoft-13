@@ -3,7 +3,7 @@ function highlight(id)
 // A function that highlights a certain component given it's id
 var element= document.getElementById(id);
 element.style.border='none';
-element.style.boxShadow="0px 0px 6px 2px orange";
+element.style.boxShadow="0px 0px 6px 5px orange";
 }
  
  //A function that de-highlight's a certain component given its id
@@ -19,13 +19,14 @@ function display_form(){
   $("#coloured").show(500);
   $("#info_form").show(500);
   document.getElementById("page").style.color='transparent';
-  document.getElementById("page").style.textShadow='0 0 8px #000';
+  document.getElementById("page").style.textShadow='0 0 8px #FFF';
+  $("input").blur();
 }
 
 function hide_form(){
   $("#coloured").fadeOut('slow');
   $("#info_form").fadeOut('slow');
-  document.getElementById("page").style.color='black';
+  document.getElementById("page").style.color='white';
   document.getElementById("page").style.textShadow='none';
 }
  function update(cmp,event){
@@ -52,7 +53,7 @@ function hide_form(){
     if( minutes_taken >= task_time){
       alert("Time's up!" + minutes_taken);
     }
-    alert(total_time);
+    //alert(total_time);
 
     steps_events_array.splice(0,1);
     var deleted_component= steps_components_array.splice(0,1);
