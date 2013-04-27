@@ -37,30 +37,15 @@ function store(){
 		var html = document.getElementById('designpage').innerHTML;											//this gets the html from the designpage pane and stores it in the variable html
 		var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
 		//reseting the ondbclick show event
-		alert(html);
 		document.getElementById(pageId).ondblclick= function () {
-																									var designpage = document.getElementById('designpage');
-																									if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=pageId)  {
+																			          	var designPage = document.getElementById('designpage');
+																			          	if(designPage.getAttribute("data-pageid")!=0 && designPage.getAttribute("data-pageid")!=pageId){	//&& hasDesigned
 																										store();
 																									}
-																									// html=html.replace( "onclick", "onclickevent");
-																									// html=html.replace( "onmouseover", "onhoverevent");
-																									// html=html.replace( 	"&amp;" , "&" , 'g');
-																									// html=html.replace(  "&lt;"  , "<" , 'g');
-																									// html=html.replace( 	"&gt;"  , ">" , 'g');
-																									// html=html.replace(  '&quot;', '"' , 'g');
-																									// html=html.replace( 	'&#39;' , "'" , 'g');
-																									// html=html.replace(  '&#x2F;', "/" , 'g');
-																									designpage.innerHTML="";
-																									designpage.innerHTML=html;
-																									designpage.setAttribute("data-pageid", pageId);
+																									designPage.innerHTML="";
+																									designPage.innerHTML=html;
+																									designPage.setAttribute("data-pageid", pageId);
 																								};
-		html=html.replace( "onclickevent", "onclick", 'g');
-		html=html.replace( "onhoverevent", "onmouseover", 'g');
-		html=html.replace( 	"#" , "" , 'g');
-		html = html.replace(/"/g, '\\"');
-		html = html.replace(/'/g, "\\'");
-		
 		// html=html.replace( 	"&", "&amp;" , 'g');
 		// html=html.replace( "<" , "&lt;"  , 'g');
 		// html=html.replace( 	">", "&gt;"  , 'g');
@@ -73,11 +58,13 @@ function store(){
 	  //   '"': '&quot;',
 	  //   "'": '&#39;',
 	  //   "/": '&#x2F;'
-
-  	alert(html);
+		html=html.replace( "onclickevent", "onclick" , 'g');
+		html=html.replace( "onhoverevent", "onmouseover" , 'g');
+		html=html.replace( "'", "\'");
+		html=html.replace( '"', '\"');
 		var params = $.param({
 			pageid: pageId,
-			html: html
+			"html": html
 		});
 		$.ajax("/projects/savePage?" + params);
 		//this is the ajax request to update and save the updated page
@@ -104,14 +91,17 @@ function deletePage(pageId){
 function addPage(project_id){
 	//this function is used to create new page by the designer
 	var pagename=prompt("الرجاء إدخال اسم الصفحة","");
-	if (pagename!=null && pagename!=""){
+	if(pagename==null ){
+		return;
+	}
+	if (pagename!=""){
   	var params = $.param({
 			pageName: pagename,
 			projectId: project_id
 		});
 		$.ajax("/projects/createPage?" + params);
   }else{
-  	alert("الرجاء التأكد من أن اسم الصفحة هي فريد من نوعه وغير فارغ");
+  	alert("الرجاء التأكد من أن اسم الصفحة فريد من نوعه وغير فارغ");
   } 
 }
 

@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag "explorer"%>
-<%= javascript_include_tag "explorer.js"%>	
+<%= javascript_include_tag "explorer.js"%>  
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
 
@@ -159,31 +159,31 @@ are stated. -->
     <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
     <img style"margin-bottom: 0px;" onclick="addPage('<%= @id %>')" id="addImage"  width="30" height="30" src="/assets/add-button.png">
     <div class="bottom carousel slide" id="myCarousel" style="margin-bottom: -20px;">
-    	<div id="carousel-inner" class="carousel-inner">
-    		<% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
-    			<div id="first-item" class="item active" style="background-color:#AAAAAA">
+      <div id="carousel-inner" class="carousel-inner">
+        <% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
+          <div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
-            	<li class="span1"></li>
-            	<% @pages.each_with_index do |page, index| %>
-    						<li class="span1">
-    							<a class="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
+              <li class="span1"></li>
+              <% @pages.each_with_index do |page, index| %>
+                <li class="span1">
+                  <a class="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
                   <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick='show("<%= page.id %>","<%= page.html %>")' id="<%= page.id %>" width="50px">
                     <img src="/assets/emptyPage.jpg" alt="">
                   </div>
                   <p><%= page.page_name %></p>
                 </li>
-    					<% end %>		           
+              <% end %>              
               <% (1..4-@pages.size).each do |i| %>
                 <li class="span1"></li>  
               <% end %>
               <li class="span1"></li>
             </ul>
-    			</div>
-    		<% else %>  <!-- the case when we have more than 4 pages -->
+          </div>
+        <% else %>  <!-- the case when we have more than 4 pages -->
           <div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
               <li class="span1"></li>
-    			    <% (1..4).each do |i| %>
+              <% (1..4).each do |i| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href=#><div>x</div></a>
                   <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')" id="@pages.fetch(i,nil).id">
@@ -195,14 +195,14 @@ are stated. -->
               <li class="span1"></li>
             </ul>
           </div> 
-    			<% crousel_items_to_create = @pages.size/4%>
+          <% crousel_items_to_create = @pages.size/4%>
           <% if @pages.size%4==0%>
             <%crousel_items_to_create = crousel_items_to_create - 1%>
           <%end%>
-    			<% (1..crousel_items_to_create).each do |currentLoop| %>
-    				<div class="item" style="background-color=#AAAAAA;">
-    	        <ul class="thumbnails" style="background-color:#AAAAAA">
-    	        	<li class="span1"></li>     
+          <% (1..crousel_items_to_create).each do |currentLoop| %>
+            <div class="item" style="background-color=#AAAAAA;">
+              <ul class="thumbnails" style="background-color:#AAAAAA">
+                <li class="span1"></li>     
                   <% (0..3).each do |i| %>
                     <li class="span1">
                       <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
@@ -213,28 +213,16 @@ are stated. -->
                         <p><%= @pages.fetch(i + currentLoop*4,nil).page_name %></p>
                       <% end %>
                     </li>
-                  <% end %> 			
-          			<li class="span1"></li>
-    	        </ul>
-    				</div>
-    			<% end %>
-    		<% end %>		
-    	</div>
+                  <% end %>       
+                <li class="span1"></li>
+              </ul>
+            </div>
+          <% end %>
+        <% end %>   
+      </div>
       <!-- the carousel sliding arrows -->
-    	<a data-slide="prev" href="#myCarousel" class="left carousel-control" style="background:none; border:none">‹</a>
-    	<a data-slide="next" href="#myCarousel" class="right carousel-control" style="background:none; border:none">›</a>
+      <a data-slide="prev" href="#myCarousel" class="left carousel-control" style="background:none; border:none">‹</a>
+      <a data-slide="next" href="#myCarousel" class="right carousel-control" style="background:none; border:none">›</a>
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
