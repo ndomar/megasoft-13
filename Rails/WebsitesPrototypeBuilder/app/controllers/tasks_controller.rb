@@ -1,6 +1,9 @@
 # encoding: utf-8
 class TasksController < ApplicationController
 
+before_filter :authenticate_designer!
+
+
 ## 
 #finds the current task, it's page, creates a new instance of step_answer and task_result
 # * *Args*    :
@@ -169,6 +172,21 @@ class TasksController < ApplicationController
     puts(params[:task_id] , params[:reviewer_id])
   end
 
+  ##
+  # Displays a task and its current steps to allow the designer to edit the steps.
+  # * *Args*    :
+  #   - +id+ ->: The id of the task for which the steps will be edited.
+  # * *Returns*  :
+  #   -The page this task is associated with, and the steps added to the task.
+  #
+
+  def select_start_page
+    @allowed = true
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+    @pages = Project.pages
+  end
+
 
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
@@ -179,10 +197,24 @@ class TasksController < ApplicationController
   #
 
   def edit_steps
+    #@allowed = current_user.projects.find(params[:project_id])
+    #@allowed = Designer.find(session[:user_id])
+    @allowed = true
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
-    @steps = @task.steps
-    @page = @task.page
+    respond_to do |format|
+      if @allowed
+        @steps = @task.steps
+        @page = @task.page
+        if @page
+          format.html {render "edit_steps"}
+        else
+          format.html {render "select_start_page"}
+        end
+      else
+        format.html {render "not_allowed"}
+      end
+    end
   end
 
   ##
