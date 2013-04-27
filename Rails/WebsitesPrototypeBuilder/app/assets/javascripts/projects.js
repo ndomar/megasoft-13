@@ -9,6 +9,11 @@ function hidepopup() {
 }
 
 $(document).ready(function(){
+
+  $('.add_button img').on('click', function ()
+  {
+    showpopup();
+  });
  
  $('.popup-darkbackground').on('click', function ()
   {
@@ -35,69 +40,28 @@ $(document).ready(function(){
     $(this).css("background-color","#1b1b1b");
   });
 
+  state=false;
   $('.project-div').on('click', function ()
   {
-    if ($('#sidebar').css("width") == '0px'){
-       $('#content').animate({
-      "margin-left": '-9%'
-    }, "medium");
-    $('#projects').animate({
-      "margin-right" : '0px'
-    });
-    $('#sidebar-content').fadeIn();
-     $("#wrapper").animate({'padding-right' : sidebar_width+'px'}, 400);
-      $("#sidebar").animate({'width':sidebar_width+'px'},600);
-      $('#slidebutton').animate({'margin-left' : '-10px'},{
-        duration:400,
-        step: function(now, fx) {
-          $('#slidebutton').css('transform','scaleX(1)');
-        }
-      });
-      state = false;
-      state2 = true;
-      return;
-    }
+    $('#slidebutton').css({"visibility":"visible"});
+    var side_width=$('#sidebar').width();
+    if(side_width<0)
+      $('#slidebutton').click();
     var projectid = $(this).attr("ProjectId");
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
-    $("#Design").attr("href","projects/design/" + projectid);
     $("#Task").attr("href","tasks/index/" + projectid);
-    $("#sidebar").show("medium");
-    $('#content').animate({
-      "margin-left": '-9%'
-    }, "medium");
+  });
+  $('#content').on('click', function ()
+  {
+    var side_width=$('#sidebar').width();
+    if(side_width>0)
+      $('#slidebutton').click();
   });
 
   $(".project-div").dblclick(function(){
       var projectid = $(this).attr("ProjectId");
       window.location.href = "/projects/design/" + projectid ;
-
-});
-
-var state2 = false;
-
-  $('#slidebutton').on('click', function ()
-  {
-    if (state2){
-    $('#content').animate({
-      "margin-left": '-9%'
-    }, "medium");
-    $('#projects').animate({
-      "margin-right" : '0px'
-    });
-    $('#sidebar-content').fadeIn();
-    state2=false;
-  }else{
-
-     $('#content').animate({
-      "margin-left": '0%'
-    }, "medium");
-     $('#projects').animate({
-      "margin-right" : '10%'
-    });
-     $('#sidebar-content').fadeOut();
-     state2=true;
-   }
   });
 });
 

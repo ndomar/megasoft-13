@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag 'cardsorts' %>
-<%= javascript_include_tag 'cardsorts' %>
 <%= stylesheet_link_tag 'projects' %>
 <%= javascript_include_tag 'projects' %>
 
@@ -10,48 +8,46 @@
     <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
       <li ProjectId = "<%= p.id %>" class="span4">
         <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
-        <div class="project-div" title="double click on the project to go to the design page." style="background-image: url(/assets/logo.png); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
+        <div class="project-div" title="double click on the project to go to the design page." style="background-image: url(/assets/project1.jpg); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
             <div class='x-button'>
-            <%= button_to_function nil,"deleteProject('#{p.id}')" , :class => "icon-remove"%>    
+            <%= link_to_function nil,"deleteProject('#{p.id}')" , :class => "ui-icon ui-icon-close"%>    
             </div>
         </div>
       </li>
     <%end%>
+      <div class="span4 add_button"><img src = "/assets/AddProject_button.png"></img></div>
   </ul>
   </div>
 </div>
 
 
+  <div style="float: right;"><img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px"></div>
   <div id="sidebar">
-    <div style="float: left;"><img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px"></div>
-   <div id='sidebar-content'>
-  <br>
-  <br>
-  <br>
+    <div id="side_content">
   <h3 id = "projectName" style ="text-align: center;"> </h3>
   <div class = "options" style = "height :90px">
   <hr>
-  <img src="/assets/Adds-Add-folder-icon.png" width="60" height="60">
+  <img class = "side-image" src="/assets/Adds-Add-folder-icon.png" width="60" height="60">
   <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => "-1"%></h3>
   </div>
   <div class = "options" style = "height :90px">
   <hr>
-  <img src="/assets/Adds-Add-list-icon.png" width="60" height="60">
+  <img class = "side-image" src="/assets/Adds-Add-list-icon.png" width="60" height="60">
   <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Questionnare"%></h3>
   </div>
   <div class = "options" style = "height :90px">
   <hr>
-  <img src="/assets/Charts-Mind-map-icon.png" width="60" height="60"><%= link_to_function "", "showPopup()" %>
+  <img class = "side-image" src="/assets/Charts-Mind-map-icon.png" width="60" height="60"><%= link_to_function "", "showPopup()" %>
   <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to_function "Cardsort", "showPopup()" %></h3>
   </div>
   <div class = "options" style = "height :90px">
   <hr>
-  <img src="/assets/Charts-Combo-icon.png" width="60" height="60">
+  <img class = "side-image" src="/assets/Charts-Combo-icon.png" width="60" height="60">
   <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Statistics"%></h3>
   </div>
   <div class = "options" style = "height :90px">
   <hr>
-  <img src="/assets/DIY-Drill-icon.png" width="60" height="60">
+  <img class = "side-image" src="/assets/DIY-Drill-icon.png" width="60" height="60">
   <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Settings"%></h3>
   </div>
   <hr>
@@ -65,31 +61,21 @@
 </div>
 </div>
 
-<div class='popup-darkscreen'>
-  <div class='popup-window'>
-    <h3 class='title'>New Cardsort</h3>
-    <%= form_for :cardsort, :url => {:controller => :cardsorts, :action => :new}, :method => :get do |form| %>
-      <%= form.text_field :title, :placeholder => "title" %>
-      <%= form.text_field :description, :placeholder => "description" %>
-      <label class="radio"><%= form.radio_button :open, true, :checked => true %>Open</label>
-      <label class="radio">Closed<%= form.radio_button :open, false %></label>
-      <%= form.submit "Create cardsort" %>
-      <%= button_to_function "cancel", "hidePopup()" %>
-     <% end %>
-  </div>
-</div>
-
 <div class='popup-darkbackground' >
   
 </div>
 <div class = 'popup-createProject'>
     <br>
     <%= form_for :project, :url => {:controller => :projects, :action => :create}, :remote => true do |f| %>
+    <div class = "pattern_form_up" style="width: 400px; top:-9px">
       <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>
       <!-- check if any error occured -->
+      <h5>أضف مشروع</h5>
+      </div>
       <div id='error_project' class='error'></div>
       <br>
       <br>
+      <div>
       <p>
         <%= f.label :Name, "اسم المشروع" %> 
         <%= f.text_field :project_name %> <br/>  
@@ -106,10 +92,16 @@
         <%= f.text_area :description, :cols => "30", :rows => "5" %> <br/>
       </p>
       <%= f.hidden_field :designer_id, :value => current_designer.id %>
+    </div>
+    <div class = "pattern_form_down">
+      <hr>
       <p class = "save">
         <%= f.submit "حفظ",:class =>"btn btn-primary" %>
       </p>
+    </div>
     <%end%>
-  </div>
 
+
+
+</div>
 </div>

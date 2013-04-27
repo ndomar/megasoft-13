@@ -4,7 +4,6 @@
   <title>Arability</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "projects" %>
 
   <%= csrf_meta_tags %>
 </head>
@@ -13,7 +12,7 @@
 </style>
 
 <body>
-<div class = "body">
+
 <!-- layout stuff for the home page -->
 <!-- container for positioning the banner -->
 <div id="navigation_container">
@@ -30,17 +29,6 @@
   <!-- end navigation links -->
     <div id="designer_nav" align="right">
       <!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
-      <% if designer_signed_in? %>
-        <% if current_designer.fullname.eql?nil %>
-          <%= current_designer.email %>
-        <% else %>
-          <%= current_designer.fullname %>
-        <% end %>
-        ﻣﺴﺠﻞ ﺑﺈﺳﻢ<br /> ﻟﻴﺲ ﺃﻧﺖ؟
-        <%= link_to "ﺧﺮﻭﺝ", destroy_designer_session_path, :method => :delete %>
-        <br />
-        <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
-      <% end %>
     </div>
   </div>
 <!-- end container -->

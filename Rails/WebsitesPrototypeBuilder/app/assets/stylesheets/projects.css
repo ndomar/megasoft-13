@@ -1,9 +1,11 @@
 .Project_Name{
   width: 70%;
-  height: 20px;
+  height: 16px;
   margin-left: 15%;
   background-color: rgb(184,184,184) ;
   text-align: center;
+  color: #222222;
+  font-size: 14px;
 }
 
 .popup-darkbackground{
@@ -17,11 +19,19 @@
   display: none;
 }
 
+.thumbnails {
+  margin-left: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  padding-right: 20px;
+}
+
 .popup-createProject{
   margin: auto;
   width: 300px;
-  height: 500px;
-  margin-top: 100px;
+  height: 550px;
+  margin-top: 70px;
   position: absolute;
   top: -10px;
   left: 455px;
@@ -40,6 +50,7 @@
   float: left;
   display: none;
 }
+
 
 #Close{
   top:0px;
@@ -62,26 +73,18 @@
   float: right;
 }
 
-
-#sidebar {
-  height: 100%;
-  position:fixed;
-  top: 0px;
-  right: 0px;
-  display: none;
-  overflow:visible;
-  width: 210px;
-}
-
 #error_project{
   top: 0px;
   float: right;
 }
 
 .project-div{
-  height: 200px;
-  width: 300px;
-  border-style: solid;
+  height: 100%;
+  width: 100%;
+}
+
+.project-div:hover{
+    border-style: solid;
   border-width: 1px;
 }
 
@@ -90,11 +93,11 @@
 }
 
 #projects{
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-img{
+.side-image{
   float: right;
 }
 
@@ -103,13 +106,72 @@ img{
   height: 100%;
   margin: 0px;
   padding: 0px;
+  background-color: transparent;
 }
+
 #sidebar-list{
   height: 60px;
 }
 
+#sidebar{
+  width: 0px;
+}
 
+#slidebutton{
+  visibility: hidden;
+}
 
+.add_button{
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
 
+}
 
+.thumbnails {
+  margin-top: auto;
+}
 
+.thumbnails > li {
+  float: left;
+  margin-bottom: 30px;
+  margin-left: 30px;
+}
+
+.add_button img{
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: 60px;
+  cursor: pointer;
+}
+
+.span4{
+  width: 260px;
+  height: 140px;
+  margin-bottom: 10px;
+}
+
+.x-button a{
+  border:none;
+  background-color: #fdfdfd;
+}
+
+.x-button a:hover{
+  border:none;
+  background-color: #888888;
+}
+
+.pattern_form_up
+{
+  border-bottom: 1px solid;
+  border-color:gray;
+
+}
+.pattern_form_down
+{
+  border-top: 1px solid;
+  border-color:gray;
+
+}
