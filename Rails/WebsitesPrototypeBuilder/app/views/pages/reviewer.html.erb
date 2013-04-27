@@ -20,14 +20,14 @@
 			<!-- Fetching questions from the database,just for testing -->
 			<div id="questions">
 				<h4>الاسئلة</h4>
-				<% @page.questions.each do |question| %>
+				<%@page.questions.each do |question|%>
 					<div>
 						<p><%= question.body %></p>
 						<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
 						<hr>
 							<hr>
 						<% if !(question.answers.find(:all).empty?) %>
-							<h5>:اجابتك </h5>
+							<h5>اجاباتك </h5>
 						<%end%>
 						<% question.answers.each do |ans| %>
 							<div>

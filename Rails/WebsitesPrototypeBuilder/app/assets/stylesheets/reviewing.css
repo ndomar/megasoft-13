@@ -48,10 +48,14 @@ iframe {
 }
 
 textarea.message_area {
-  width: 100%;
+  width: 90%;
   height: 50px;
-  color:#343434;
+  color:#FFEFD5;
   overflow: auto;
+  background: rgba(255,255,255,0);
+  resize: none;
+ 	border-color: #151515;
+  
 }
 
 .textarea{
@@ -123,8 +127,7 @@ textarea.message_area {
 .blue_circle{
 	background-color: rgb(48, 156, 184);
 	color: white;
-	height: 20px;
-	width: 20px;
+	height: 23px;
 	border-radius: 50%;
 	border-width: 0px;
 }

@@ -54,7 +54,7 @@ $(document).ready(function() {
 var starting_position = $('#navigation_container').offset();
 var top_padding = 0;
 var bottom_limit = $('footer').offset();
-var box_height = $('#side_content').height()-50;
+var box_height = $('#side_content').height()-100;
 
 $(window).scroll(function(){
   var top_window = $(window).scrollTop();
