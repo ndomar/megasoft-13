@@ -1,7 +1,7 @@
 # encoding: utf-8
 class TasksController < ApplicationController
 
-before_filter :authenticate_designer!
+before_filter :authenticate_designer!, :except => :task_reviewer
 
 
 ## 
@@ -207,9 +207,11 @@ before_filter :authenticate_designer!
   #
 
   def edit_steps
-    #@allowed = current_user.projects.find(params[:project_id])
-    #@allowed = Designer.find(session[:user_id])
-    @allowed = true
+    begin
+      @allowed = current_designer.projects.find(params[:project_id])
+    rescue 
+      @allowed = false
+    end
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     respond_to do |format|
