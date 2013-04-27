@@ -1,21 +1,26 @@
-<table dir ="rtl" align = "center">
-  <col width="50">
-  <col width="50">
-  <col width="100">
-  <col width="30">
-  <tr>
-    <td align = "center"> الجزء</td>
-    <td align = "center"> الحدث</td>
-    <td align = "center"> الوصف </td>
-  </tr>
-  <% @steps.each do |step| %>
-    <tr id = "<%="step_#{step.id}"%>" >
-      <td align = "center"><%= step.component %> </td>
-      <td align = "center"><%= step.event %> </td>
-      <td align = "center"><%= step.description %> </td>
-      <td align = "center">
-          <%= link_to "x", delete_step_path(:id => step.id, :task => @task.id), :remote => true %>
-      </td>
+<% if @steps.size == 0 %>
+    <p> لم يتم إضافة أية خطوات حتى الآن. </p>
+    <p id ="notice"> لإضافة خطوة: إنقر على صورة المؤشر، و إختر أي جزء من الصفحة على اليمين. </p>
+<%else%>
+  <table dir ="rtl" align = "center">
+    <col width="50">
+    <col width="50">
+    <col width="100">
+    <col width="30">
+    <tr>
+      <td align = "center"> الجزء</td>
+      <td align = "center"> الحدث</td>
+      <td align = "center"> الوصف </td>
     </tr>
-  <% end %>
-</table>
+    <% @steps.each do |step| %>
+      <tr id = "<%="step_#{step.id}"%>" >
+        <td align = "center"><%= step.component %> </td>
+        <td align = "center"><%= step.event %> </td>
+        <td align = "center"><%= step.description %> </td>
+        <td align = "center">
+            <%= link_to "x", delete_step_path(:id => step.id, :task => @task.id), :remote => true %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<%end%>

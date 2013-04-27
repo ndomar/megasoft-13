@@ -1,5 +1,6 @@
 $(function(){
   $('#cursorSwitch').click(function(event){
+    $("#notice").show();
     var cursor = $('#cursorSwitch');
     if(cursor.hasClass("cursorPressed")){
       $("#add_step").hide();
@@ -59,13 +60,15 @@ $(function(){
 function select(id){
   dehighlight($("#component_id").val());
   $("#add_step").show();
+  $("#notice").hide();
   highlight(id);
   $("#component_id").val(id);
 }
 
-function save(task_id){
+function save(task_id, page_id){
   var params = $.param({
     id: task_id,
+    page_id:  page_id,
     component: $("#component_id").val(),
     "event" : $("input:radio[name=events_list]:checked").val(),
     description: $("#step_description").val()

@@ -8,6 +8,7 @@
 
   <div id ="sidebar">
     <div id="side_content">
+      <button id="cursorSwitch"> Switch Cursor </button>
       <div id="add_step" style ="display:none; text-align:left">
         <h2 style = "text-algin:center"> أضف خطوة جديدة </h2>
         
@@ -17,7 +18,7 @@
           <br/>
           <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
           <br/> <br/>
-          <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>')"> إضافة الخطوة </button>
+          <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>', '<%= @page.id%>')"> إضافة الخطوة </button>
         </div>
 
       </div>
@@ -27,12 +28,11 @@
       <div id = "steps_list">
         <%= render "steps" %>
       </div>
-      
+
     </div>
   </div>
 
   <div id="content">
-    <button id="cursorSwitch"> Switch Cursor </button>
     <div id = "returning_to_home">
       <%= link_to "العودة إلي صفحة المهمة", project_task_path(params[:project_id], @task) %>
     </div>
