@@ -1,5 +1,7 @@
 $(document).ready(function (){
 
+	$(".image-panel").css("right","20.2833px");
+
 	$('#font_color_inp').ColorPicker({
 	color: '#0000ff',
 	onShow: function (colpkr) {
@@ -65,7 +67,7 @@ $(document).ready(function (){
 			$("#toolbox-tag").click();
 			return;
 		}
-		if ($(".image-panel").css('right') == '20.2833px'){
+		if (parseFloat($(".image-panel").css('right') )> 20||$(".image-panel").css('right') == '1.5%'){
 			$(".image-panel").animate({
 				right: "-150px"
 			},200,"linear");
