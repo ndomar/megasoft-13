@@ -2,14 +2,16 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
   activerecord:
     attributes:
       task:
         name: "اسم المهمة"
+        time_limit: "الحد الأقصى للوقت"
     errors:
       models:
         task:
           attributes:
             name:
+              blank: "مطلوب"
+            time_limit:
               blank: "مطلوب"

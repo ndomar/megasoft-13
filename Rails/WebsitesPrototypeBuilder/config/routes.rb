@@ -7,6 +7,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   post 'steps/update'
 
   resources :projects do
+    resources :statistics
     resources :tasks do
       resources :steps
       resources :task_results
