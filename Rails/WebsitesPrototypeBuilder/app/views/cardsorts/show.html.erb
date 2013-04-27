@@ -1,0 +1,45 @@
+<%= javascript_include_tag "cardsorts" %>
+<%= stylesheet_link_tag "cardsorts" %>
+
+<div id='wrapper'>
+
+	<div class='sidebar' id='groups-view'>
+		<div id='groups-tag' class='sidebar-tag'>
+			المجموعات
+		</div>
+		<div id='groups-thumbnail'>
+			<% @groups.each_with_index do |group, index| %>
+			<%= render "group_thumbnail", :index => index %>
+			<% end %>
+		</div>
+		<div id='groups-list'>
+			<% @groups.each_with_index do |group, index| %>
+			<%= render "group_list", :index => index %>
+			<% end %>
+		</div>
+	</div>
+
+	<div class='sidebar' id='cards-view'>
+		<div id='cards-tag' class='sidebar-tag'>
+			البطاقات
+		</div>
+		<div id='cards-thumbnail'>
+			<% @cards.each_with_index do |card, index| %>
+			<%= render "card_thumbnail", :index => index %>
+			<% end %>
+		</div>
+		<div id='cards-list'>
+			<% @cards.each do |card, index| %>
+			<%= render "card_list", :index => index %>
+			<% end %>
+		</div>
+	</div>
+
+	<div id='content'>
+	</div>
+
+</div>
+	
+<script type="text/javascript">
+	init();
+</script>

@@ -18,7 +18,7 @@ post 'steps/update'
   resources :tasks do
     resources :steps
   end
-
+ get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
  get 'cardsorts/new'
  get 'cardsorts/edit'
  get 'cardsorts/create_card'

@@ -1,0 +1,12 @@
+<% if index%3 == 0 %>
+	<div class='card card-blue' style='transform: rotate(<%= 5 - rand(10) %>deg);'>
+	</div>
+<% else %>
+	<% if index%3 == 1 %>
+		<div class='card card-red'  style='transform: rotate(<%= 5 - rand(10) %>deg);' />
+		</div>
+	<% else %>
+		<div class='card card-yellow'  style='transform: rotate(<%= 5 - rand(10) %>deg);'/>
+		</div>
+	<% end %>
+<% end %>

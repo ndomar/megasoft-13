@@ -10,38 +10,17 @@ class CardsortsController < ApplicationController
   # * *Returns* :
   # - void
   #
-	def new
-		@cardsort = Cardsort.new
+	def show
+		@cardsort = Cardsort.find(params[:cardsort_id])
+		@cards = @cardsort.cards
+		@groups = @cardsort.groups
+		#other_cardsorts = @cardsort.project.cardsorts
 	end
 
 	def create_cardsort
 		@cardsort = Cardsort.new(params[:cardsort])
 		@cardsort.save
-		@cards = @cardsort.cards
-		@groups = @cardsort.groups
-		@card = Card.new
-		@group = Group.new
-		session[:cardsort_id] = @cardsort.id
-		@other_cardsorts = @cardsort.project.cardsorts
-		render "new"
-	end
-
-	##
-	# edit a previously made cardsort by id
-	# * *Args* :
-  # - none
-  # * *Returns* :
-  # - void
-  #
-	def edit
-		@cardsort = Cardsort.find(params[:crdsrt])
-		@other_cardsorts = @cardsort.project.cardsorts
-		session[:cardsort_id] = @cardsort.id
-		@cards = @cardsort.cards
-		@groups = @cardsort.groups
-		@card = Card.new
-		@group = Group.new
-		render "new"
+		redirect_to "show"
 	end
 
 	##

@@ -24,7 +24,6 @@ gem "jasmine"
 gem "nested_form"
 
 # gems for uploading image
-gem 'rmagick'
 gem 'carrierwave'
 
 # gem for making behavioural testing
