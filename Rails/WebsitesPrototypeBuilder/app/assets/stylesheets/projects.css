@@ -29,15 +29,13 @@
 
 .popup-createProject{
   margin: auto;
-  width: 300px;
-  height: 550px;
+  width: 400px;
+  height: 520px;
   margin-top: 70px;
   position: absolute;
   top: -10px;
   left: 455px;
   color:black;
-  padding-left:20px;
-  padding-right:20px;
   background-color:white;
   display: none;
 }
@@ -59,8 +57,9 @@
 }
 
 .save{
-  border-radius: 0px;
-  right:270px;
+  right:300px;
+  top: 480px;
+  background-color: blue;
   position: absolute;
 }
 
@@ -165,13 +164,27 @@
 
 .pattern_form_up
 {
-  border-bottom: 1px solid;
-  border-color:gray;
-
+  border-bottom: 1px;
+  background-color: #D4E7ED;
+  padding-left:20px;
+  padding-right:20px;
+  padding-top: 20px;
 }
 .pattern_form_down
 {
-  border-top: 1px solid;
-  border-color:gray;
+  border-top: 1px;
+  background-color: #D4E7ED;
+  padding-left:20px;
+  padding-right:20px;
+  padding-bottom: 60px
 
 }
+.form_content{
+  left: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+ } 
+.field {
+  direction: rtl;
+}
+

@@ -64,18 +64,17 @@
 <div class='popup-darkbackground' >
   
 </div>
-<div class = 'popup-createProject'>
-    <br>
+<div class = 'popup-createProject'> 
     <%= form_for :project, :url => {:controller => :projects, :action => :create}, :remote => true do |f| %>
-    <div class = "pattern_form_up" style="width: 400px; top:-9px">
+    <div class = "pattern_form_up">
       <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>
       <!-- check if any error occured -->
       <h5>أضف مشروع</h5>
       </div>
+      <div class = "form_content">
       <div id='error_project' class='error'></div>
       <br>
       <br>
-      <div>
       <p>
         <%= f.label :Name, "اسم المشروع" %> 
         <%= f.text_field :project_name %> <br/>  
@@ -94,7 +93,6 @@
       <%= f.hidden_field :designer_id, :value => current_designer.id %>
     </div>
     <div class = "pattern_form_down">
-      <hr>
       <p class = "save">
         <%= f.submit "حفظ",:class =>"btn btn-primary" %>
       </p>
