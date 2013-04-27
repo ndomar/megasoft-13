@@ -10,7 +10,7 @@
   #   -+year_of_birth+ -> year of birth of reviewer
   #* *Relations*    :
 class ReviewerInfo < ActiveRecord::Base
-  attr_accessible :age, :country, :day_of_birth, :gender, :month_of_birth, :name, :year_of_birth
+  attr_accessible :age, :country, :day_of_birth, :gender, :month_of_birth, :name, :year_of_birth, :reviewer_id
 
   belongs_to :reviewer
 end
