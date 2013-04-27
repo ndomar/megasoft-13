@@ -8,23 +8,26 @@
 <body>
 <div id="content">
 <div id= "info_form" >
+  <div id="form_title"><p>:إملأ الاستمارة </p></div>
  <%= render "reviewer_infos/reviewer_info_form" %>
 </div>
 <div id = "coloured">
 </div>
-<div id="page">
 <div class="desc"> 
- <p id='description_paragraph'><%=@step.description %></p> 
+   <p id='description_paragraph'></p>
 </div>
-<%= @page.html.html_safe %>
 <div class="goal">
   <p> <%= @task.description%></p>
 </div>
+<div id="page">
+<br>
+<%= @page.html.html_safe %>
 </div>
+<div id="time_out"> <p>لقد أتممت المهمة بنجاح! شكراً  </p> </div>
 </div>
 
 <!--A form that update the values of success, step_id. starting time and total time taken in the database -->
-<%= form_for [@project,@task,@step] ,remote: true , html: {:id => "steps_form"} do |f| %>  
+<%= form_for [@project,@task,@step] ,remote: true, html: {:id => "steps_form"} do %>  
   <%= hidden_field_tag "change_success", 'false' %>
   <%= hidden_field_tag "change_id", '1' %>
   <%= hidden_field_tag "start_time", '1' %>
@@ -38,6 +41,10 @@
 <%= hidden_field_tag "change_component_involved", ' ' %>
 <% end %>
 
+<%= form_for [@project,@task,@task_result], remote: true , :html => {:id => "task_result_form"} do %>
+  <%= hidden_field_tag "change_clicks_count", '0' %>
+  <%= hidden_field_tag "change_time_taken", '1' %>
+<% end %>
 
 <script type="text/javascript">
 var currstep_element_id= "<%= @step.component %>";
@@ -47,7 +54,7 @@ var step_answer_success ='true';
 var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
 
 var desc_height = $('.desc').height();
-$('#content').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
+$('#page').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
 
 ////////////////////////////////// new storyyy/////////
 var steps_ids_array; //array that contains all the ids of all the steps
@@ -59,51 +66,57 @@ var starting_minutes;
 var starting_seconds
 $(window).load(function(){ 
 // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
-  steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(',');
-  steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(',');
-  steps_events_array= "<%= @task.steps.all.map(&:event).join(',')%>".split(',');
-  steps_description_array= "<%= @task.steps.all.map(&:description).join(',')%>".split(',');
+  steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(','); //array of all steps ids
+  steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(','); //array of components ids
+  steps_events_array= "<%= @task.steps.all.map(&:event).join(',')%>".split(','); //array of all steps event
+  steps_description_array= "<%= @task.steps.all.map(&:description).join(',')%>".split(',');//array of all descriptions
 
   starting_hours= new Date().getHours();
   starting_minutes= new Date().getMinutes();
   starting_seconds= new Date().getSeconds();
   starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
-
+  if ( <%= @task.requires_reviewer_info %>){
   display_form(); // a function that blurs page content and displays form
+}
 
   if (steps_ids_array.length >1) {
     //If the steps mode is used it will highlight the 1st step's component
-    currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
+    currstep_element_id=steps_components_array[0];  //update the variable to get curr_element_Value
     highlight(currstep_element_id); //highlight the current step's component
-    clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
+   $(function(){ $('.desc').show(500)});
+    document.getElementById('description_paragraph').innerHTML=steps_description_array[0]
   }
 
 });
 
 var clicks_counter=0;
 var total_time=0;
-$("input").on('keyup', function(event){
-update(event.target,'keyup');
-});
+var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for the task
+var time_parsed= <%= @task.time_limit %>
+var time_out = setTimeout('times_up()',time_parsed*60*10*10*10);
 
 //keeps track user clicked where and when
 var current_click_time= new Date();
 $("input").on('click',function(event){
+  update(event.target,'click');
   var current_element_id= event.target.id;
   var current_element_value = document.getElementById(event.target.id).value;
-  current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ;
+  current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ; //time at which the action is triggered
   $("#change_action").val("The user clicked on: ");
   $("#change_component_involved").val(current_element_value);
   $("#change_action_time").val(current_click_time);
   $(function() { $("#log_form").submit(); });
  document.getElementById("description_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
-//hide_form();
-//alert(current_element_id);
  if (current_element_id== 'submit_form_button'){
-  alert(document.getElementById("reviewer_info_name").value);
   hide_form();
  }
 });
+
+$("input").on('keyup', function(event){
+//update(event.target,'keyup');
+});
+
+
 
 $("input").on('change', function(event){
   update(event.target,'change');
@@ -117,10 +130,8 @@ $("input").on('change', function(event){
   });
 
 
-var task_time=1;
-$("input").on('click', function(event){
- update(event.target,'click'); 
-});
+
+
 </script>
 </body>
 </html>

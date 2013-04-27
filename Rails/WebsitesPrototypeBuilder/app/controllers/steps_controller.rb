@@ -22,6 +22,7 @@ class StepsController < ApplicationController
     respond_to do |format|
       if params[:change_id].to_s <= @task.steps.last.id.to_s && Time.parse(@task_result.time) <= Time.parse("0:"+@task.time_limit.to_s+":0")
         format.html { render :template => "tasks/task_reviewer" }
+        format.js{render :nothing => true}
       else
         #format.html { render :template => "tasks/task_reviewer_done" }
         format.js { render "/tasks/last_step"}

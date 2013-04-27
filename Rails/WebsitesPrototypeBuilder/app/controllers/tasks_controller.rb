@@ -14,18 +14,26 @@ class TasksController < ApplicationController
 #
   def task_reviewer
     if Project.all.last.id.to_f >= params[:project_id].to_f
-
       @project=Project.find(params[:project_id])
       @reviewer= Reviewer.find(params[:reviewer_id])
-      @task= @project.tasks.find(params[:task_id])
-      @page= Page.find(1)
-      @step=@task.steps.find(@task.steps.first.id)
-      @task_result=@task.task_results.new
-      @task_result.reviewer_id=@reviewer.id
-      @task_result.save
-      session[:task_result_id]= @task_result.id
-      @step_answer=@step.step_answers.new
-      @step_answer.save
+
+      if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f
+        @task= @project.tasks.find(params[:task_id])
+        @page= Page.find(1)
+        #if @task.steps.nil? == 'false'
+        @step=@task.steps.first
+        @step_answer=@step.step_answers.new
+        @step_answer.save
+        #end
+        @task_result=@task.task_results.new
+        @task_result.reviewer_id=@reviewer.id
+        @task_result.save
+        session[:task_result_id]= @task_result.id
+      else
+        respond_to do |format|
+          format.html { render :template => "tasks/task_reviewer_error" }
+        end
+      end
     else
       respond_to do |format|
         format.html { render :template => "tasks/task_reviewer_error" }
