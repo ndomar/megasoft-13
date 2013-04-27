@@ -1,6 +1,8 @@
 # encoding: utf-8
 class TasksController < ApplicationController
 
+before_filter :authenticate_designer!
+
 ## 
 #finds the current task, it's page, creates a new instance of step_answer and task_result
 # * *Args*    :
@@ -29,6 +31,7 @@ class TasksController < ApplicationController
       format.html { render :template => "tasks/task_reviewer_error" }
     end
   end
+  
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
@@ -37,6 +40,9 @@ class TasksController < ApplicationController
   #   - list of tasks that belongs to project_id
   #
   def index
+    if checkDesigner
+      return
+    end
     @tasks = Project.find(params[:project_id]).tasks.all
 
     respond_to do |format|
@@ -53,6 +59,9 @@ class TasksController < ApplicationController
   #   -renders form to create new task
   #
   def new
+    if checkDesigner
+      return
+    end
     @task = Task.new
     
     respond_to do |format|
@@ -69,6 +78,9 @@ class TasksController < ApplicationController
   #   -the details of this task and renders itas an html
   #
   def show
+    if checkDesigner
+      return
+    end
     @task = Task.find(params[:id])
 
     respond_to do |format|
@@ -86,6 +98,9 @@ class TasksController < ApplicationController
   #   -returns the task to be edited and renders the edit form
   #
   def edit
+    if checkDesigner
+      return
+    end
     @task = Project.find(params[:project_id]).tasks.find(params[:id])
   end
 
@@ -97,6 +112,9 @@ class TasksController < ApplicationController
   #   - calls the new action if task.save is true, otherwise redirects to index page
   #
   def create
+    if checkDesigner
+      return
+    end
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
     respond_to do |format|
       if @task.save
@@ -118,6 +136,9 @@ class TasksController < ApplicationController
   #   - if attributes are updated redirects to index page, otherwise renders edit form
   #
   def update
+    if checkDesigner
+      return
+    end
     @task = Task.find(params[:id])
 
     respond_to do |format|
@@ -139,6 +160,9 @@ class TasksController < ApplicationController
   #   - redirects to index of tasks
   #
   def destroy
+    if checkDesigner
+      return
+    end
     @task = Task.find(params[:id])
     @task.destroy
 
@@ -220,5 +244,22 @@ class TasksController < ApplicationController
       format.html {render :nothing => true}
       format.js {render "step_list"}
     end
+  end
+
+  ##
+  # Checks if the project belongs to the designer
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project
+  #   - +current_designer+ ->: The designer currently logged in
+  # * *Returns*  :
+  #   -True if project belongs to designer and false otherwise
+  #
+  def checkDesigner()
+    designer = Designer.find(current_designer.id)
+    if(designer.id != Project.find(params[:project_id]).designer_id)
+      render 'unauthorized'
+      return true
+    end
+    return false
   end
 end

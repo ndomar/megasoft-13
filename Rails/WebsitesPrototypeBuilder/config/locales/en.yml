@@ -15,3 +15,4 @@ en:
               blank: "مطلوب"
             time_limit:
               blank: "مطلوب"
+              not_a_number: "ليس رقم"
