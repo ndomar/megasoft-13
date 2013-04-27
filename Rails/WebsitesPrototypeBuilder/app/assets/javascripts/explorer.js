@@ -38,6 +38,10 @@ function store(){
 	}
 }
 
+function get(id,html){
+	var showing =  document.getElementById(id);
+}
+
 function deletePage(pageId){
 	//this function is used to delete a page by the designer
 	var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
