@@ -1,7 +1,6 @@
 require 'spec_helper'
  
 describe SendNotification do
-  describe 'notification' do
     let(:user) { mock_model(User, comment =>'comment', :email => 'lucas@email.com') }
     let(:mail) { Notifier.instructions(user) }
  
@@ -26,5 +25,4 @@ describe SendNotification do
     end
  
     
-  end
 end
