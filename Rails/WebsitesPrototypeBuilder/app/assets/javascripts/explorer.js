@@ -5,9 +5,18 @@ function show(id,html){
 	if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=id)  {
 		store();
 	}
+	html=html.replace( "onclick", "onclickevent");
+	html=html.replace( "onmouseover", "onhoverevent");
 	designPage.innerHTML="";
 	designPage.innerHTML=html;
 	designPage.setAttribute("data-pageid", id);
+}
+
+function fill(id,html){
+	var div = document.getElementById(id);
+	html=html.replace( "onclick", "onclickevent");
+	html=html.replace( "onmouseover", "onhoverevent");
+	div.innerHTML=html;
 }
 
 function saveProjectProgress(){
@@ -27,8 +36,10 @@ function store(){
 																									designPage.innerHTML=html;
 																									designPage.setAttribute("data-pageid", pageId);
 																								};
-		// html=html.replace( "'", "\'");
-		// html=html.replace( '"', '\"');
+		html=html.replace( "onclickevent", "onclick");
+		html=html.replace( "onhoverevent", "onmouseover");
+		html=html.replace( "'", "\'");
+		html=html.replace( '"', '\"');
 		var params = $.param({
 			pageid: pageId,
 			"html": html
@@ -36,10 +47,6 @@ function store(){
 		$.ajax("/projects/savePage?" + params);
 		//this is the ajax request to update and save the updated page
 	}
-}
-
-function get(id,html){
-	var showing =  document.getElementById(id);
 }
 
 function deletePage(pageId){

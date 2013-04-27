@@ -165,7 +165,7 @@ are stated. -->
             	<% @pages.each_with_index do |page, index| %>
     						<li class="span1">
     							<a class="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
-                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>','<%= page.html %>')" id="<%= page.id %>" onload="get('<%= page.id %>','<%= page.html %>')" width="50px">
+                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>','<%= page.html %>')" id="<%= page.id %>" width="50px">
                     <img src="/assets/emptyPage.jpg" alt="">
                   </div>
                   <p><%= page.page_name %></p>
