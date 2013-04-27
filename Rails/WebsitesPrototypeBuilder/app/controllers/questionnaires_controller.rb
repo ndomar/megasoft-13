@@ -29,6 +29,7 @@ class QuestionnairesController < ApplicationController
   #
   def answer_show
     @questionnaire = Questionnaire.find(params[:id])
+    answer = @questionnaire.answer_questionnaires.build
     render 'answer_show'
   end
 
@@ -70,7 +71,7 @@ class QuestionnairesController < ApplicationController
 
     respond_to do |format|
       if @questionnaire.update_attributes(params[:questionnaire])
-        format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully updated.' }
+        format.html { redirect_to :action=> :index, notice: 'Questionnaire was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
