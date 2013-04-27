@@ -180,6 +180,16 @@ before_filter :authenticate_designer!
   #   -The page this task is associated with, and the steps added to the task.
   #
 
+  def save_start_page
+    @task = Task.find(params[:id])
+    @task.page_id = params[:page_id]
+    @created = @task.save
+    @project = Project.find(params[:project_id])
+    @steps = @task.steps
+    @page = Page.find(@task.page_id)
+    render :action => :edit_steps
+  end
+
   def select_start_page
     @allowed = true
     @project = Project.find(params[:project_id])
@@ -209,6 +219,7 @@ before_filter :authenticate_designer!
         if @page
           format.html {render "edit_steps"}
         else
+          @pages = @project.pages
           format.html {render "select_start_page"}
         end
       else
@@ -229,7 +240,8 @@ before_filter :authenticate_designer!
   #
 
   def new_step
-    @step = Step.new(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
+    @step = Step.new(:task_id => params[:id], :page_id => params[:page_id],
+     :event => params[:event], :component => params[:component], :description => params[:description])
     @created = @step.save
     @task = Task.find_by_id(params[:id])
     @steps = @task.steps
