@@ -1,5 +1,13 @@
 $(document).ready(function (){
 
+	$(function() {
+    	$( "#accordion" ).accordion({
+      		collapsible: true,
+      		active:false,
+      		header: "h4"
+    	});
+  	});
+
 	$(".image-panel").css("right","20.2833px");
 
 	$('#font_color_inp').ColorPicker({
