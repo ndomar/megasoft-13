@@ -13,6 +13,17 @@
 
 ActiveRecord::Schema.define(:version => 20130423231951) do
 
+  create_table "answer_questionnaires", :force => true do |t|
+    t.text     "body"
+    t.integer  "questionnaire_id"
+    t.integer  "qquestion_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "answer_questionnaires", ["qquestion_id"], :name => "index_answer_questionnaires_on_qquestion_id"
+  add_index "answer_questionnaires", ["questionnaire_id"], :name => "index_answer_questionnaires_on_questionnaire_id"
+
   create_table "answers", :force => true do |t|
     t.string   "answer"
     t.integer  "question_id"
@@ -117,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20130423231951) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "project_id"
+    t.string   "thumbnail"
   end
 
   create_table "pictures", :force => true do |t|
@@ -224,9 +236,11 @@ ActiveRecord::Schema.define(:version => 20130423231951) do
     t.string   "name"
     t.text     "description"
     t.integer  "project_id"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "page_id",     :default => 1
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "page_id",                :default => 1
+    t.boolean  "requires_reviewer_info"
+    t.integer  "time_limit"
   end
 
 end

@@ -47,9 +47,11 @@ $(document).ready(function() {
 		switch($('#confirmation').html()){
 			case "كلمة السر غير متطابقة":
 				$('#confirmation').css("color","red");
+				$('#password2').css("border-color","red");
 				break;
 			case "كلمة السر متطابقة":
 				$('#confirmation').css("color","green");
+				$('#password2').css("border-color","red");
 				break;
 		}
 	});
