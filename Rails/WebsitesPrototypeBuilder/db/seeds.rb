@@ -53,11 +53,11 @@ end
 end
 
 # choice_questions
-(0..50).each do
-	ChoiceQquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		number: rand(0..5), questionnaire_id: rand(0..5),
-		project_id: rand(0..5), qquestion_id: rand(0..5))
-end
+#(0..50).each do
+	#ChoiceQquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
+		#number: rand(0..5), questionnaire_id: rand(0..5),
+	#	project_id: rand(0..5), qquestion_id: rand(0..5))
+#end
 
 # choices
 (0..50).each do
@@ -213,3 +213,24 @@ Designer.create(:fullname => "Test Designer4",
 (0..50).each do
       Reviewer.find(rand(1..5)).tasks << Task.find(rand(1..5))
 end
+
+#Maged's Seeds
+
+maged = Designer.create(:fullname => "Maged Shalaby",
+      :email => "maged@gmail.com",
+      :password => "maged1234",
+      :password_confirmation => "maged1234",
+      :phone_number => "01004509771",
+      :country => "Egypt",
+      :day_dob => 18,
+      :month_dob => 9,
+      :year_dob => 1993,
+      :credit_card_number => 1234567891234567,
+      :cvv2 => 123)
+magedProject = Project.create(:project_name => "Maged's Project", :designer_id => maged.id)
+magedHtml1 = "<label id = 'testLabel1'> Name </label> <br/>
+<input type ='text' id = 'testinput1'> </input> <br/>
+<label id = 'testLabel2'> Location </label> <br/>
+<input type ='text' id = 'testinput2'> </input> <br/> 
+<button id = 'testButton'> Enter </button>"
+magedPage1 = Page.create(:page_name => "Maged's Page",:project_id => magedProject.id, :html => magedHtml1)
