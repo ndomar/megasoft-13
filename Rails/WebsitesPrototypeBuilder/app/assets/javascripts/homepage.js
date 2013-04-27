@@ -1,6 +1,7 @@
+// author ahmed jihad
 // slide the login form
 $(document).ready(function sliding_form(){
-  $('.login_image').click(function(){
+  $('.login_image').click(function (){
 		var offset = $(".login_image").offset();
 		var top_pos =offset.top;
 		var left_pos =offset.left;

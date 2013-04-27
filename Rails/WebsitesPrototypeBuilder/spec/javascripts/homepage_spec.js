@@ -1,7 +1,9 @@
+// author ahmed jihad
+
 describe("Homepage", function() {
   it("testing if it slides down onclick", function() {
-  	$('.login_image').click();
-    expect($('<div class="login_form">')).toBe(true);
+    $('.login_image').click();
+    expect('.login_form').not.toBeVisible();
   });
   it("testing sliding div to go to who_are_we on click", function() {
   	$('.center').click();
