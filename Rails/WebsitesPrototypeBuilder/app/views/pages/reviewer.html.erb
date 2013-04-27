@@ -5,9 +5,17 @@
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
 	<div id="html_content"><%= @page.html%>
 	</div>
+
+		<div style="float: right;">
+		<img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px">
+		</div>
 	<!-- The SideBar -->
 	<div id="sidebar">
+		<div id="side_content">
 		<h4>التعليقلت</h4>
+		<!-- The + buttom on clicking draw the circle -->
+		<div class="add_comment" onclick="draw_circle();">+</div>
+		<hr>
 		<!-- Fetching comments from the database,just for testing -->
 		<div id="comments">
 			<% @page.comments.each do |comment| %>
@@ -20,10 +28,13 @@
 				</div>
 			<%end%>
 		</div>
+<<<<<<< HEAD
 		<!-- The + buttom on clicking draw the circle -->
 		<div class="add_comment" onclick="draw_circle();">+</div>
 		<a  id="add_comment" onclick="test_page()" href="#" style="color: #CC0000">تجربة الصفحة</a>
 		<hr>
+=======
+>>>>>>> fdd650282522cd005d302120af024ce4a3d43102
 		<!-- Fetching questions from the database,just for testing -->
 		<div id="questions">
 			<h4>الاسئلة</h4>
@@ -58,6 +69,7 @@
 
 			<!-- Notice to see the errors -->
 			<p id="notice"><%= notice %></p>
+		</div>
 	</div>	
 
 	<!-- Main Content -->
