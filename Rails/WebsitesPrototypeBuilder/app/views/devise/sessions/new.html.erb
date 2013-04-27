@@ -2,6 +2,18 @@
 <%= javascript_include_tag "homepage"%>
 
 <body>
+  <div id="" class = "navbar-fixed-top" >
+<!-- the ribbon body -->
+  <div class="rectangle bar_top">
+  <!-- the navigation links -->
+    <ul id="navigation">
+      <li><div id= "p_three" class="tabBar page3" ><a>لمحة عن الموقع</div></a></li>
+      <li><div id = "p_two" class="tabBar page2" ><a>من نحن ؟</div></a></li>
+      <li><div id = "p_one" class="tabBar active page1" ><a>شاركنا</div></a></li>    
+    </ul>
+    <a href="#"><div width="44px" height="51px" class="logo"></div></a>
+  </div>
+</div>
   <%# Link to sign in with facebook and the login button %>
   <div id = "icons">
     <table class = "icons" align="left">
@@ -10,10 +22,6 @@
         <th><img src="/images/login-icon.png" class ="login_image" onclick= "sliding_form()"/></th>
       </tr>
     </table>
-  </div>
-  <!-- inserting logo -->
-  <div>
-    <img class = "home_logo" src="/images/logo.png"/>
   </div>
   <!-- login form -->
   <div class="login_form span2" dir = "rtl">
@@ -78,10 +86,12 @@
   </div>
   <!-- navigation bar for pages -->
   <footer>
+
     <div class="navbar navbar-fixed-bottom">
       <div class="navbar-inner foot">
+        <a href="https://twitter.com/3arability"><img  class = "twitter" src="/images/twitter.png"/></a>
         <ul class="nav">
-           <li><a href="https://twitter.com/3arability"><img  class = "twitter" src="/images/twitter.png"/></a></li>
+          
           <li class = "left"><a id = "left_link" >لمحة عن الموقع</a></li>
           <li class = "center"><a id = "center_link">من نحن ؟</a></li>
           <li class = "right"><a id = "right_link">شاركنا</a></li>

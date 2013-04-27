@@ -15,18 +15,54 @@ $(document).ready(function sliding_form(){
  );
   //slide to who are we div (middel page)
   $('.center').click(function(){
+    $( "#p_three" ).removeClass( "active" );
+    $( "#p_one" ).removeClass( "active" );
+    $( "#p_two" ).addClass( "active" );
     $('html,body').animate({
       scrollTop: $("#who_are_we").offset().top},
       600);
   });
   //slide to the 1st page
   $('.right').click(function(){
+    $( "#p_three" ).removeClass( "active" );
+    $( "#p_two" ).removeClass( "active" );
+    $( "#p_one" ).addClass( "active" );
     $('html,body').animate({
       scrollTop: $("#slide").offset().top},
       600);
   });
   //slide to the glimpse page (last page)
   $('.left').click(function(){
+    $( "#p_two" ).removeClass( "active" );
+    $( "#p_one" ).removeClass( "active" );
+    $( "#p_three" ).addClass( "active" );
+    $('html,body').animate({
+      scrollTop: $("#glimpse").offset().top},
+      600);
+  });
+    //slide to who are we div (middel page)
+  $('.page2').click(function(){
+    $( "#p_three" ).removeClass( "active" );
+    $( "#p_one" ).removeClass( "active" );
+    $( this ).addClass( "active" );
+    $('html,body').animate({
+      scrollTop: $("#who_are_we").offset().top},
+      600);
+  });
+  //slide to the 1st page
+  $('.page1').click(function(){
+    $( "#p_three" ).removeClass( "active" );
+    $( "#p_two" ).removeClass( "active" );
+    $( this ).addClass( "active" );
+    $('html,body').animate({
+      scrollTop: $("#slide").offset().top},
+      600);
+  });
+  //slide to the glimpse page (last page)
+  $('.page3').click(function(){
+    $( "#p_two" ).removeClass( "active" );
+    $( "#p_one" ).removeClass( "active" );
+    $( this ).addClass( "active" );
     $('html,body').animate({
       scrollTop: $("#glimpse").offset().top},
       600);
