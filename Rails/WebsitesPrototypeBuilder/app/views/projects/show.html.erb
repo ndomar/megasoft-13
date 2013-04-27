@@ -3,6 +3,8 @@
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
 
+<button onclick="replace()">dasdasdad</button>
+
 <body>
   <!-- main div containing toolbox and design page -->
   <div id="main">
@@ -151,7 +153,7 @@ item which has to be the first item in the carousel, it can also contain as many
 the active item, the carousel can be filled by as many items as required.Also all the actions to be done on them 
 are stated. -->
 <div class="navbar navbar-fixed-bottom navbar-inverse span12" style="width:100%; text-align:center" >
-  <div class="span3"></div>
+  <div class="span5"></div>
   <div class="span6" style="background-color:#FFFFFF;opacity:0.4;">
     <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
     <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
@@ -165,7 +167,7 @@ are stated. -->
             	<% @pages.each_with_index do |page, index| %>
     						<li class="span1">
     							<a class="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
-                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>','<%= page.html %>')" id="<%= page.id %>" width="50px">
+                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick='show("<%= page.id %>","<%= page.html %>")' id="<%= page.id %>" width="50px">
                     <img src="/assets/emptyPage.jpg" alt="">
                   </div>
                   <p><%= page.page_name %></p>
@@ -178,89 +180,43 @@ are stated. -->
             </ul>
     			</div>
     		<% else %>  <!-- the case when we have more than 4 pages -->
-    			<div id="first-item" class="item active" style="background-color:#AAAAAA">
+          <div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
-            	<li class="span1"></li>
-    						<li class="span1">
-    							<a class="x-button" onclick="deletePage('<%= @pages.fetch(0,nil).id %>')" href=#><div>x</div></a>
-                  <div id="<%= @pages.fetch(0,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(0,nil).id %>','<%= @pages.fetch(0,nil).html %>')" id="@pages.fetch(0,nil).id">
-                    <img src="/assets/emptyPage.jpg" alt="">
-                  </div>
-                  <p><%= @pages.fetch(0,nil).page_name %></p>
-                </li>
-    						<li class="span1">
-    							<a class="x-button" onclick="deletePage('<%= @pages.fetch(1,nil).id %>')" href=#><div>x</div></a>
-                  <div id="<%= @pages.fetch(1,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(1,nil).id %>','<%= @pages.fetch(1,nil).html %>')" id="@pages.fetch(1,nil).id">
-                    <img src="/assets/emptyPage.jpg" alt="">
-                  </div>
-                  <p><%= @pages.fetch(1,nil).page_name %></p>
-                </li>
+              <li class="span1"></li>
+    			    <% (1..4).each do |i| %>
                 <li class="span1">
-                	<a class="x-button" onclick="deletePage('<%= @pages.fetch(2,nil).id %>')" href=#><div>x</div></a>
-                  <div id="<%= @pages.fetch(2,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(2,nil).id %>','<%= @pages.fetch(2,nil).html %>')" id="@pages.fetch(2,nil).id">
+                  <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href=#><div>x</div></a>
+                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')" id="@pages.fetch(i,nil).id">
                     <img src="/assets/emptyPage.jpg" alt="">
                   </div>
-                  <p><%= @pages.fetch(2,nil).page_name %></p>
+                  <p><%= @pages.fetch(i,nil).page_name %></p>
                 </li>
-                <li class="span1">
-                	<a class="x-button" onclick="deletePage('<%= @pages.fetch(3,nil).id %>')" href=#><div>x</div></a>
-                  <div id="<%= @pages.fetch(3,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(3,nil).id %>','<%= @pages.fetch(3,nil).html %>')" id="@pages.fetch(3,nil).id">
-                    <img src="/assets/emptyPage.jpg" alt="">
-                  </div>
-                  <p><%= @pages.fetch(3,nil).page_name %></p>
-                </li>          
-          		<li class="span1"></li>
+              <% end %>
+              <li class="span1"></li>
             </ul>
-    			</div>
+          </div> 
     			<% crousel_items_to_create = @pages.size/4%>
           <% if @pages.size%4==0%>
             <%crousel_items_to_create = crousel_items_to_create - 1%>
           <%end%>
-    			<% currentLoop = 1 %>
-    			<% (1..crousel_items_to_create).each do |i| %>
+    			<% (1..crousel_items_to_create).each do |currentLoop| %>
     				<div class="item" style="background-color=#AAAAAA;">
     	        <ul class="thumbnails" style="background-color:#AAAAAA">
-    	        	<li class="span1"></li>      			
-    						<li class="span1">
-    							<% if @pages.fetch(0 + currentLoop*4,nil) != nil%> 
-    								<a class="x-button" onclick="deletePage('<%= @pages.fetch(0 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                    <div id="<%= @pages.fetch(0 + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(0 + currentLoop*4,nil).id %>','<%= @pages.fetch(0 + currentLoop*4,nil).html %>')" id="@pages.fetch(0 + currentLoop*4,nil).id">
-                      <img src="/assets/emptyPage.jpg" alt="">
-                    </div>
-                    <p><%= @pages.fetch(0 + currentLoop*4,nil).page_name %></p>
-                	<% end %>
-                </li>
-    						<li class="span1">
-    							<% if @pages.fetch(1 + currentLoop*4,nil) != nil%>
-    							<a class="x-button" onclick="deletePage('<%= @pages.fetch(1 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                    <div id="<%= @pages.fetch(1 + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(1 + currentLoop*4,nil).id %>','<%= @pages.fetch(1 + currentLoop*4,nil).html %>')" id="@pages.fetch(1 + currentLoop*4,nil).id">
-                      <img src="/assets/emptyPage.jpg" alt="">
-                    </div>
-                    <p><%= @pages.fetch(1 + currentLoop*4,nil).page_name %></p>
-                  <% end %>
-                </li>
-                <li class="span1">
-                	<% if @pages.fetch(2 + currentLoop*4,nil) != nil%>
-                		<a class="x-button" onclick="deletePage('<%= @pages.fetch(2 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                    <div id="<%= @pages.fetch(2 + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(2 + currentLoop*4,nil).id %>','<%= @pages.fetch(2 + currentLoop*4,nil).html %>')" id="@pages.fetch(2 + currentLoop*4,nil).id">
-                      <img src="/assets/emptyPage.jpg" alt="">
-                    </div>
-                    <p><%= @pages.fetch(2 + currentLoop*4,nil).page_name %></p>
-                  <% end %>
-                </li>
-                <li class="span1">
-                	<% if @pages.fetch(3 + currentLoop*4,nil) != nil%>
-                		<a class="x-button" onclick="deletePage('<%= @pages.fetch(3 + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
-                    <div id="<%= @pages.fetch(3 + currentLoop*4,nil).id %>" class="thumbnail" style="border:none"  ondblclick="show('<%= @pages.fetch(3 + currentLoop*4,nil).id %>','<%= @pages.fetch(3 + currentLoop*4,nil).html %>')" id="@pages.fetch(3 + currentLoop*4,nil).id">
-                      <img src="/assets/emptyPage.jpg" alt="">
-                    </div>
-                    <p><%= @pages.fetch(3 + currentLoop*4,nil).page_name %></p>
-                  <% end %>	
-                </li> 
+    	        	<li class="span1"></li>     
+                  <% (0..3).each do |i| %>
+                    <li class="span1">
+                      <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
+                        <a class="x-button" onclick="deletePage('<%= @pages.fetch(i + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
+                        <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>','<%= @pages.fetch(i + currentLoop*4,nil).html %>')" id="@pages.fetch(i + currentLoop*4,nil).id">
+                          <img src="/assets/emptyPage.jpg" alt="">
+                        </div>
+                        <p><%= @pages.fetch(i + currentLoop*4,nil).page_name %></p>
+                      <% end %>
+                    </li>
+                  <% end %> 			
           			<li class="span1"></li>
     	        </ul>
     				</div>
-    				<% currentLoop = currentLoop + 1 %>
     			<% end %>
     		<% end %>		
     	</div>
@@ -270,3 +226,15 @@ are stated. -->
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+

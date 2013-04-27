@@ -1,23 +1,30 @@
 //these functions are used in the package explorer
 
 function show(id,html){
+	alert("SHOWING");
 	var designPage = document.getElementById('designpage');
-	if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=id)  {
+	if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=id)  { //&&hasDesigned
 		store();
 	}
-	html=html.replace( "onclick", "onclickevent");
-	html=html.replace( "onmouseover", "onhoverevent");
+	html=html.replace( "onclick", "onclickevent" , 'g');
+	html=html.replace( "onmouseover", "onhoverevent" , 'g');
+	// html=html.replace( 	"&amp;" , "&" , 'g');
+	// html=html.replace(  "&lt;"  , "<" , 'g');
+	// html=html.replace( 	"&gt;"  , ">" , 'g');
+	html=html.replace(  '\"', '"' , 'g');
+	html=html.replace( 	"\'" , "'" , 'g');
+	// html=html.replace(  '&#x2F;', "/" , 'g');
 	designPage.innerHTML="";
 	designPage.innerHTML=html;
 	designPage.setAttribute("data-pageid", id);
 }
 
-function fill(id,html){
-	var div = document.getElementById(id);
-	html=html.replace( "onclick", "onclickevent");
-	html=html.replace( "onmouseover", "onhoverevent");
-	div.innerHTML=html;
-}
+// function fill(id,html){
+// 	var div = document.getElementById(id);
+// 	html=html.replace( "onclick", "onclickevent");
+// 	html=html.replace( "onmouseover", "onhoverevent");
+// 	div.innerHTML=html;
+// }
 
 function saveProjectProgress(){
 	store();
@@ -30,19 +37,47 @@ function store(){
 		var html = document.getElementById('designpage').innerHTML;											//this gets the html from the designpage pane and stores it in the variable html
 		var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
 		//reseting the ondbclick show event
+		alert(html);
 		document.getElementById(pageId).ondblclick= function () {
-																			          	var designPage = document.getElementById('designpage');
-																									designPage.innerHTML="";
-																									designPage.innerHTML=html;
-																									designPage.setAttribute("data-pageid", pageId);
+																									var designpage = document.getElementById('designpage');
+																									if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=pageId)  {
+																										store();
+																									}
+																									// html=html.replace( "onclick", "onclickevent");
+																									// html=html.replace( "onmouseover", "onhoverevent");
+																									// html=html.replace( 	"&amp;" , "&" , 'g');
+																									// html=html.replace(  "&lt;"  , "<" , 'g');
+																									// html=html.replace( 	"&gt;"  , ">" , 'g');
+																									// html=html.replace(  '&quot;', '"' , 'g');
+																									// html=html.replace( 	'&#39;' , "'" , 'g');
+																									// html=html.replace(  '&#x2F;', "/" , 'g');
+																									designpage.innerHTML="";
+																									designpage.innerHTML=html;
+																									designpage.setAttribute("data-pageid", pageId);
 																								};
-		html=html.replace( "onclickevent", "onclick");
-		html=html.replace( "onhoverevent", "onmouseover");
-		html=html.replace( "'", "\'");
-		html=html.replace( '"', '\"');
+		html=html.replace( "onclickevent", "onclick", 'g');
+		html=html.replace( "onhoverevent", "onmouseover", 'g');
+		html=html.replace( 	"#" , "" , 'g');
+		html = html.replace(/"/g, '\\"');
+		html = html.replace(/'/g, "\\'");
+		
+		// html=html.replace( 	"&", "&amp;" , 'g');
+		// html=html.replace( "<" , "&lt;"  , 'g');
+		// html=html.replace( 	">", "&gt;"  , 'g');
+		// html=html.replace(  '"' , '\"', 'g');
+		// html=html.replace( 	"'", "\'" , 'g');
+		// html=html.replace( "/" , '&#x2F;', 'g');
+		//	 "&": "&amp;",
+	  //   "<": "&lt;",
+	  //   ">": "&gt;",
+	  //   '"': '&quot;',
+	  //   "'": '&#39;',
+	  //   "/": '&#x2F;'
+
+  	alert(html);
 		var params = $.param({
 			pageid: pageId,
-			"html": html
+			html: html
 		});
 		$.ajax("/projects/savePage?" + params);
 		//this is the ajax request to update and save the updated page
@@ -108,3 +143,10 @@ $(document).ready(function() {
 	$('#myCarousel').carousel({interval: false});
 	//to prevent the carousel from automatically sliding
 });
+
+function replace(){
+	html=prompt("اHTML","");
+	html = html.replace(/"/g, '\\\\"');
+	html = html.replace(/'/g, "\\\\'");
+	alert(html);
+}
