@@ -207,25 +207,18 @@ before_filter :authenticate_designer!, :except => :task_reviewer
   #
 
   def edit_steps
-    begin
-      @allowed = current_designer.projects.find(params[:project_id])
-    rescue 
-      @allowed = false
-    end
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
+    @steps = @task.steps
+    @page = @task.page
+    @designer = current_designer
+    @error = @task.allow_designer(@page, @designer, @project)
+
     respond_to do |format|
-      if @allowed
-        @steps = @task.steps
-        @page = @task.page
-        if @page
-          format.html {render "edit_steps"}
-        else
-          @pages = @project.pages
-          format.html {render "select_start_page"}
-        end
+      if @error == nil
+        format.html {render "edit_steps"}
       else
-        format.html {render "not_allowed"}
+        format.html {render "error_page"}
       end
     end
   end
