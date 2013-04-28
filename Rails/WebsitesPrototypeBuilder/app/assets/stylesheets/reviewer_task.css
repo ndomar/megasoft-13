@@ -18,7 +18,7 @@ display: none;
   vertical-align: middle;
   margin-right: auto;
   margin-left: auto;
-  width: 20%;
+  min-width: 20%;
   font-size: 20px;
   font-weight: bold;
   padding: 2px 2px 2px 2px;
@@ -31,10 +31,15 @@ display: none;
   left : 900px;
   z-index: 1000; 
   background-color: white;
-  padding: 20px;
-  color: black
+  color: black;
+  padding-right: 20px;
+  min-width: 30%;
 }
 
+#form_body{
+  padding: 20px;
+  padding-right: 5px;
+}
 #coloured {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.8);
@@ -57,11 +62,52 @@ display: none;
   text-align: center;
 }
 
+form{
+  margin:0 0 0px;
+
+}
+
 #form_title{
-  border: 1px;
   border-bottom: 1px solid;
+  background-color: rgb(230,249,255);
+  padding :10px;
+  min-width: 100%;
+  border-color: #CCC;
+
 }
 
 .form_button{
-  
+border-top: 1px solid;
+padding : 10px;
+border-color: #CCC;
+background-color: rgb(230,249,255);
+min-width: 100%;
+min-height:40px;
+
+}
+
+#info_form input[type="text"], 
+#info_form input[type="password"],
+#info_form input[type="datetime"],
+#info_form input[type="datetime-local"],
+#info_form input[type="date"], 
+#info_form input[type="month"],
+#info_form input[type="time"], 
+#info_form input[type="week"],
+#info_form input[type="number"], 
+#info_form input[type="email"], 
+#info_form input[type="url"], 
+#info_form input[type="search"],
+#info_form input[type="tel"],
+#info_form input[type="color"], .uneditable-input{
+  width: 90%;
+
+}
+
+#info_form input[type="submit"] {
+  background-color:rgb(69, 162, 224);
+  border: 0px;
+  float:left;
+  color:white;
+  font-weight: bold;
 }

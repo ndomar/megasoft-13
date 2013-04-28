@@ -20,6 +20,7 @@ function display_form(){
   $("#info_form").fadeIn(500);
   document.getElementById("page").style.color='transparent';
   document.getElementById("page").style.textShadow='0 0 8px #FFF';
+  document.getElementById('submit_form_button').value= 'إحفظ المعلومات' 
 }
 
 function hide_form(){
@@ -90,6 +91,7 @@ function times_up(){
   $('#time_out').show();
   $('#page').fadeOut(500);
   $('.desc').fadeOut(500);
+  $('#goal').fadeOut(500);
 }
 
  function update_log(){
