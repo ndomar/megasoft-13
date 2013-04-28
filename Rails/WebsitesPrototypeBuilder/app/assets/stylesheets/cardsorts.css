@@ -12,11 +12,10 @@
 
 .sidebar{
 	color: #fafafa;
-	width: 93%;
-	padding: 0px 30px 0px 30px;
+	width: 110%;
 	background:#1b1b1b;
 	position: absolute;
-	top: 0%;
+	top: 0;
 	right: 0;
 	bottom: 0;
   min-height:100%; 
@@ -29,14 +28,20 @@
 
 #cards-view{
 	z-index: 2;
-	right: -78%;
+	left: 80%;
+}
+
+#groups-view{
+	left: 78.5%;
 }
 
 #cards-thumbnail{
 	float: left;
-	width: 268px;
+	width: 210px;
 	height: 100%;
 	overflow-y: scroll; 
+	min-width: 268px;
+	min-height: 100%;
 }
 
 #cards-list{
@@ -47,7 +52,7 @@
 	right: 1.4%;
   top: 1.5%;
   z-index: 1;
-  right: -76.6%;
+  right: -627px;
 }
 
 #groups-thumbnail{
@@ -65,8 +70,8 @@
 .sidebar-tag{
 	background-color: #759eb2;
   background:-moz-linear-gradient(80% 66% 270deg, #759eb2, #1b1b1b 90%);
+  background: -webkit-gradient(linear, left top,left bottom, from(#759eb2), to(#1b1b1b));
   box-shadow: 0px 0px 4px 4px #1b1b1b;
-	position: absolute;
 	border-left: 20px solid transparent;
 	border-right: 20px solid transparent;
 	border-top-left-radius: 8px;
@@ -74,17 +79,16 @@
 	width: 70px;
 	height: 30px;
 	transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
 	text-align: center;
-}
-
-#cards-tag{
-	left: -3%;
-  top: 8%;
+	margin-top: 47px;
+	margin-left: -44px;
+	display: inline-block;
+	float: left;
 }
 
 #groups-tag{
-	  left: -3%;
-    top: 9%;
+	 margin-left: -46px;
 }
 
 .card{
@@ -98,17 +102,14 @@
 }
 
 .card-blue{
-	transform: rotate(5deg);
 	background-image: url(/assets/normal_card_b.png);
 }
 
 .card-red{
-	transform: rotate(-5deg);
 	background-image: url(/assets/normal_card_r.png);
 }
 
 .card-yellow{
-	transform: rotate(-10deg);
 	background-image: url(/assets/normal_card_y.png);
 }
 
