@@ -70,7 +70,8 @@ function store(){
 		html=html.replace( '"', '&quot;','g');
 		html=html.replace( "'", '&#39;' );
 		html=html.replace( '"', '&quot;');
-		html=html+'';
+		alert("HTML TO SAVE");
+		alert(html);
 		var params = $.param({
 			pageid: pageId,
 			"html": html
