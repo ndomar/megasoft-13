@@ -10,11 +10,13 @@ class StatisticsController < ApplicationController
     @questionnaires = Project.find(params[:project_id]).questionnaires
     @tasks = Project.find(params[:project_id]).tasks
     @chosentasks = []
+    @chosenquestionnaire
     if params[:taskid] != nil
-      if params[:taskid][:current_task] != nil
-        @chosentasks[@chosentasks.length] = Task.find(params[:taskid][:current_task])
-      end
       @chosentasks[@chosentasks.length] = Task.find(params[:taskid][:task_id])
+    end
+    if params[:questionnaire] != nil
+      @chosenquestionnaire = Questionnaire.find(params[:questionnaire][:questionnaire_id])
+      @qquestions = @chosenquestionnaire.qquestions
     end
     respond_to do |format|
       format.html 

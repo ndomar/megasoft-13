@@ -1,31 +1,3 @@
-# A project that has no tasks
-project1 = Project.create(:project_name => "Test Project 1")
-# A project with a task and no reviewers or task results
-project2 = Project.create(:project_name => "Test Project 2")
-task1 = project2.tasks.create(:name => "Task 1")
-task2 = project2.tasks.create(:name => "Task 2")
-# A project with tasks + reviewers + task results + reviewer infos
-project3 = Project.create(:project_name => "Test Project 3")
-task3 = project3.tasks.create(:name => "Task 3")
-task4 = project3.tasks.create(:name => "Task 4")
-task5 = project3.tasks.create(:name => "Task 5")
-reviewer1 = task3.reviewers.create(:email => "test@test.com")
-reviewer2 = task3.reviewers.create(:email => "test@test.com")
-reviewer1.create_reviewer_info(:age => 19, :gender => false, :country => "Egypt")
-reviewer2.create_reviewer_info(:age => 25, :gender => true, :country => "Libya")
-task3.task_results.create(:success => true, :time => 5)
-task3.task_results.create(:success => true, :time => 3)
-reviewer3 = task4.reviewers.create(:email => "test@test.com")
-reviewer4 = task4.reviewers.create(:email => "test@test.com")
-reviewer3.create_reviewer_info(:age => 19, :gender => false, :country => "Egypt")
-reviewer4.create_reviewer_info(:age => 25, :gender => true, :country => "Libya")
-task4.task_results.create(:success => true, :time => 7)
-task4.task_results.create(:success => true, :time => 4)
-reviewer5 = task5.reviewers.create(:email => "test@test.com")
-reviewer6 = task5.reviewers.create(:email => "test@test.com")
-reviewer5.create_reviewer_info(:age => 19, :gender => false)
-reviewer6.create_reviewer_info(:age => 25, :gender => true)
-
 # Answers
 (0..50).each do
 	Answer.create(answer: ('a'..'z').to_a.shuffle[0,20].join, question_id: rand(0..5), page_id: rand(0..5));
@@ -52,19 +24,6 @@ end
 		project_id: rand(0..5));
 end
 
-# choice_questions
-(0..50).each do
-	ChoiceQquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		number: rand(0..5), questionnaire_id: rand(0..5),
-		project_id: rand(0..5), qquestion_id: rand(0..5))
-end
-
-# choices
-(0..50).each do
-	Choice.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		qquestion_id: rand(0..5))
-end
-
 # comments
 (0..50).each do
 	Comment.create(body: ('a'..'z').to_a.shuffle[0,20].join,
@@ -75,8 +34,7 @@ end
 # pages
 (0..50).each do
 	Page.create(page_name: ('a'..'z').to_a.shuffle[0,20].join,
-		html: ('a'..'z').to_a.shuffle[0,20].join,
-		thumbnail: ('a'..'z').to_a.shuffle[0,20].join)
+		html: ('a'..'z').to_a.shuffle[0,20].join)
 end
 
 # projects
@@ -87,16 +45,30 @@ end
 		designer_id: rand(0..5))
 end
 
-# qquestions
-(0..50).each do
-	Qquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		qtype: rand(0..5))
-end
-
-# Questionaire
+# Questionaire with Qquestions and choices where necessary
 (0..50).each do
 	Questionnaire.create(project_id: rand(0..5),
-	  title: ('a'..'z').to_a.shuffle[0,20].join)
+	  title: ('a'..'z').to_a.shuffle[0,20].join,
+    qquestions_attributes: [{body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 1},
+     {body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 2},
+     {body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 3,
+     choices_attributes: [body: ('a'..'z').to_a.shuffle[0,20].join]}, 
+     {body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 4, 
+     choices_attributes: [{body: ('a'..'z').to_a.shuffle[0,20].join}, 
+     {body: ('a'..'z').to_a.shuffle[0,20].join}]}])
+end
+
+# AnswerQuestionnaire
+(0..200).each do
+  randomquestion = Qquestion.find(rand(1..200))
+  if randomquestion.qtype == 1 || randomquestion.qtype == 2
+    body = ('a'..'z').to_a.shuffle[0,20].join
+  else
+    body = rand(0..randomquestion.choices.length-1)
+  end
+  AnswerQuestionnaire.create(body: body, 
+    qquestion_id: randomquestion.id,
+    questionnaire_id: randomquestion.questionnaire_id)
 end
 
 # Reviewer_infos

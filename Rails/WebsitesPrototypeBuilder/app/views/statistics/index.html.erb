@@ -83,11 +83,47 @@
 <div style="background-color:gray; text-align:right;">
   <h2> نتائج الاستطلاعات</h2>
 </div>
-<ol>
-  <% @questionnaires.each do |questionnaire| %>
-  <li><%= questionnaire.title %></li>
-  <%end%>
-</ol>
 <% if @questionnaires.length == 0 %>
-  <p>LOL</p>
-<%end%>
+  <p style="color:red;"> لا توجد استطلاعات في هذا المشروع </p>
+<% else %>
+  <% questionnaireslist = [] %>
+  <% @questionnaires.each_with_index do |questionaire, index| %>
+    <% questionnaireslist[index] = [questionaire.title, questionaire.id] %>
+  <% end %>
+  <%= form_for :questionnaire, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+    <div>
+      <div class = "field">
+        <%= f.select :questionnaire_id, questionnaireslist%>
+      </div>
+      <div class="actions">
+        <%= f.submit "اختر الاستطلاع لاظهار نتائجه"%>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<% if @chosenquestionnaire != nil %>
+  <div>
+  <h3><%= @chosenquestionnaire.title %></h3>
+    <% @qquestions.each do |question| %>
+      <div style="float:right; margin-right:20px; width:600px; height:200px; overflow:scroll;"> 
+        <h4><%= question.body %> : السؤال</h4>
+        <% if question.answer_questionnaires.length == 0 %>
+            <p>لم يجب أحد عن هذا السؤال</p>
+        <% else %>
+          <% if question.qtype == 1 || question.qtype == 2 %>
+            <h5>: الأجوبة</h5>
+            <ol style="float:right; direction:rtl; margin-right:20px;">
+              <% question.answer_questionnaires.each do |answer| %>
+                <li style="text-align:right;"> <%= answer.body %></p>
+              <% end %>
+            </ol>
+          <% else %>
+            <div id='questionnaire' style="float:left;"></div>
+            <% questionresults = getQuestionResults(question) %>
+            <%= render_chart(getQuestionResults(question), 'questionnaire') %> 
+          <% end %>
+        <% end %>
+      </div>
+    <%end%>
+  </div>
+<% end %> 

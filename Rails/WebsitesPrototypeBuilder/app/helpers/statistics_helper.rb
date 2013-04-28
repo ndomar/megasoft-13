@@ -1,5 +1,26 @@
 # encoding: utf-8
 module StatisticsHelper
+
+  def getQuestionResults(question)
+    results = []
+    choices = question.choices
+    choices.each_with_index do |choice, index|
+      results[index] = 0
+    end
+    question.answer_questionnaires.each do |answer|
+      results[answer.body.to_i] += 1
+    end
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', 'choice' )
+    data_table.new_column('number', 'value')
+    results.each_with_index do |result, index|
+      data_table.add_row([choices[index].body, result])
+    end
+    option = { width: 500, height: 150, title: question.body }
+    chart = GoogleVisualr::Interactive::PieChart.new(data_table, option)
+    return chart
+  end
+
   ## 
   # uses googlechartsvisualr to make a pie chart of the given data
   # * *Args*    :
