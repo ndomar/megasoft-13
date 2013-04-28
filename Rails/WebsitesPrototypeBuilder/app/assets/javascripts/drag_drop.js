@@ -1,11 +1,99 @@
 $(document).ready(function (){
 
-	$("#imagediv").css({
-		"width": "100px"
+	$(".image-panel").css("right","20.2833px");
+
+	$('#font_color_inp').ColorPicker({
+	color: '#0000ff',
+	onShow: function (colpkr) {
+		$(colpkr).fadeIn(200);
+		return false;
+	},
+	onHide: function (colpkr) {
+		$(colpkr).fadeOut(200);
+		return false;
+	},
+	onChange: function (hsb, hex, rgb) {
+		$('#font_color_inp').css('backgroundColor', '#' + hex);
+		$("#"+$("#eid_inp").val()).children().first().css("color",'#' + hex);
+	}
+});
+
+	$(".toolboxelement").hover(function (e){
+		$(this).animate({
+			width: "+=10",
+			height: "+=10"
+		}, 100,"linear");
+	}, function(){
+		$(this).animate({
+			width: "-=10",
+			height: "-=10"
+		}, 100,"linear");
+	});
+
+	$("#toolbox-tag").click(function(){
+		if ($("#sidebar").css("right")=='0px'){
+			$("#designcontainer").hide();
+			$("#sidebar").animate({
+				right: "-170px"
+			},200,"linear");
+			// $("#designpage").animate({
+			// 	width: "+=200",
+			// 	left: "+=200"
+			// },300,"linear");
+			// $("#designpage").children().animate({
+			// 	left: "+=200"
+			// },300,"linear");
+		}
+		else {
+			if ($(".image-panel").css("right")=='-150px'){
+				$("#image-panel-tag").click();
+			}
+			$("#sidebar").animate({
+				right: "0px"
+			},200,"linear");
+			// $("#designpage").animate({
+			// 	width: "-=200",
+			// 	left: "-=200"
+			// },300,"linear");
+			// $("#designpage").children().animate({
+			// 	left: "-=200"
+			// },300,"linear");
+			$("#designcontainer").show();
+		}
+	});
+
+	$("#image-panel-tag").click(function(){
+		if ($("#sidebar").css("right")=='0px'){
+			$("#toolbox-tag").click();
+			return;
+		}
+		if (parseFloat($(".image-panel").css('right') )> 20||$(".image-panel").css('right') == '1.5%'){
+			$(".image-panel").animate({
+				right: "-150px"
+			},200,"linear");
+			$("#designpage").animate({
+				width: "+=170",
+				left: "+=170"
+			},200,"linear");
+			$("#designpage").children().animate({
+				left: "+=170"
+			},200,"linear");
+		}
+		else {
+			$(".image-panel").animate({
+				right: "20.2833px"
+			},200,"linear");
+			$("#designpage").animate({
+				width: "-=170",
+				left: "-=170"
+			},200,"linear");
+			$("#designpage").children().animate({
+				left: "-=170"
+			},200,"linear");
+		}
 	});
 
 	$("#save_event").click(function(){ //attach event to the element when the "Save Event" button is clicked
-
 		if ($("#event_selector").val()=="onClick"){
 			if ($("#action_selector").val()=="url"){
 				$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
@@ -22,21 +110,29 @@ $(document).ready(function (){
 				$("#"+$("#eid_inp").val()).attr("onhoverevent","alert(\""+$("#action_value").val()+"\");");
 			}
 		}
-		alert("Event saved successfully");
-
+		alert("تم حفظ الحدث بنجاح");
 	});
 
 	$(".inp").blur(function(){ //when one of the properties input boxes lose focus, try to apply the new entered value
-		if ($(this).attr("property")=="text"){
-			$("#"+$("#eid_inp").val()).children().first().text($(this).val());
+		applyChangedProperty($(this));
+	})
+	.keypress(function(e) {
+    	if(e.which == 13) {
+        	applyChangedProperty($(this));
+    	}
+	});
+
+	function applyChangedProperty(element){
+		if (element.attr("property")=="text"){
+			$("#"+$("#eid_inp").val()).children().first().text(element.val());
 		}
 		else{
-			if (insideDesignPage($("#"+$("#eid_inp").val()),$(this).attr("property"),$(this).val())){
-				$("#"+$("#eid_inp").val()).css($(this).attr("property"),$(this).val());
+			if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
+				$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val());
 			}
 		}
 		$("#"+$("#eid_inp").val()).click();
-	});
+	}
 
 	function exceedsWidth(element,val,left_pos){ //checks if the element exceeded the designpage width
 		return element.outerWidth(true)+val>$("#designpage").width();
@@ -47,7 +143,6 @@ $(document).ready(function (){
 	}
 
 	function insideDesignPage(element,property,val){ //applies the property with the new value to the component then checks if the element still resides in the designpage
-
 		try{
 			var pp = element.css(property);
 			element.css(property,val);
@@ -66,7 +161,6 @@ $(document).ready(function (){
 		catch(err){
 			return false;
 		}
-
 	}
 
 	counter = 0; //Counts number of elements in the Design Page
@@ -79,17 +173,29 @@ $(document).ready(function (){
 
 		start: function (event,ui){
 			counter++; //When dragging starts, increment the counter
+			// $("#designpage").css("z-index","-1");
 		},
-
+		drag: function (event,ui){
+			if (ui.helper.parent().attr("id")=="designpage"){
+				ui.helper.css("color","black");
+			}
+			else{
+				ui.helper.css("color","white");
+			}
+		},
 		stop: function(event, ui){
-
 			var pos = $(ui.helper).offset();
 			var pos1 = $("#designpage").offset();
 			var name = "#element"+counter; //new element's name
 
 			$(name).css({ //set position of the new element
 			"left": pos.left-pos1.left,
-			"top": pos.top-pos1.top
+			"top": pos.top-pos1.top,
+			});
+
+			$(name).children().css({
+				"width": "100%",
+				"height": "100%"
 			});
 
 			if ($(name).parent().attr("id")!="designpage") { //if the element is dropped outside the design page remove it from the document and don't add it to the design page
@@ -98,42 +204,45 @@ $(document).ready(function (){
 			}
 			else{
 				$(name).removeClass("drag");
+				$(name).append('<i id = "close" class="icon-remove" style="top: 0px; right: 0px; position: absolute;"></i>');
+				$(name).children("#close").click(function(){
+					$(name).remove();
+				});
 				$(name).resizable({ //define resizable action for the new element
 					containment: 'parent',
 					alsoResize: $(name).children(".toolboxelement"),
-			    cancel: false,
-	        start: function(event, ui){
-	  	      ui.element.children(".toolboxelement").css({
-	    	      "width": "100%" ,
-	        	  "height": "100%"
-	          });
-	          ui.element.click();
-	      	},
-			    resize: function(event, ui){
-	        	ui.element.children(".toolboxelement").css({
-       	  		"width": "100%" ,
-          		"height": "100%"
-	       		});
-
-	       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
-	        	if (exceedsWidth(ui.element,0,ui.position.left)){
-	        		$(this).resizable('widget').trigger('mouseup');
-	        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
-	        	}
-	        	else if (exceedsHeight(ui.element,0,ui.position.top)){
-	        		$(this).resizable('widget').trigger('mouseup');
-	        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
-	        	}
-	        	//update the properties "width" and "height" as the element is being resized
-				    $("#width_inp").val(ui.size.width);
-				    $("#height_inp").val(ui.size.height);
-	        },
-	        stop: function(event, ui){
-			      ui.element.children(".toolboxelement").css({
-	         	  "width": "100%" ,
-	     	      "height": "100%"
-		        });
-	        }
+				    cancel: false,
+			        start: function(event, ui){
+		  	    		ui.element.children(".toolboxelement").css({
+		      				"width": "100%" ,
+		       				"height": "100%"
+	   		        	});
+		            	ui.element.click();
+			      	},
+				    resize: function(event, ui){
+			        	ui.element.children(".toolboxelement").css({
+		       	  		"width": "100%" ,
+		          		"height": "100%"
+			       		});
+			       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
+			        	if (exceedsWidth(ui.element,0,ui.position.left)){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
+			        	}
+			        	else if (exceedsHeight(ui.element,0,ui.position.top)){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
+			        	}
+			        	//update the properties "width" and "height" as the element is being resized
+					    $("#width_inp").val(ui.size.width);
+					    $("#height_inp").val(ui.size.height);
+				    },
+			        stop: function(event, ui){
+					      ui.element.children(".toolboxelement").css({
+			         	  "width": "100%" ,
+			     	      "height": "100%"
+				        });
+			        }
 				})
 				.draggable({ //new draggable to avoid cloning elements that are moved within the design page
 					containment: 'parent',
@@ -163,7 +272,17 @@ $(document).ready(function (){
 					$("#margin_bottom_inp").val($(this).css("margin-bottom"));
 					$("#top_inp").val($(this).position().top+"px");
 					$("#left_inp").val($(this).position().left+"px");
-
+					$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
+				})
+				.hover(function(){
+					var close = $(this).children("#close");
+					close.css("visibility","visible");
+				}, function(){
+					var close = $(this).children("#close");
+					close.css("visibility","hidden");
+				})
+				.dblclick(function() {
+					$(this).children().first().attr("contenteditable","true");
 				});
 
 				$(name).click();		
@@ -172,6 +291,7 @@ $(document).ready(function (){
 	});
 
 	$("#designpage").droppable({
+		tolerance: 'fit',
 		drop: function(event, ui){
 			if (ui.draggable.attr('id').search(/element([0-9])/)==-1){ // if it is not an already dragged element
 				var element = $(ui.draggable).clone(); // clone the dragged element
@@ -182,3 +302,77 @@ $(document).ready(function (){
 		}
 	});
 });
+
+function initDragAndDrop() {
+	var dragArea = document.getElementById("drop-area");
+	dragArea.addEventListener("dragover", noopHandler, false);
+	dragArea.addEventListener("dragenter", noopHandler, false);
+	dragArea.addEventListener("dragleave", noopHandler, false);
+	dragArea.addEventListener("drop", dropHandler, false);
+}
+
+function noopHandler(evt){
+	evt.stopPropagation();
+	evt.preventDefault();
+}
+
+var files;
+var i;
+var dropArea;
+
+function dropHandler(evt){
+	noopHandler(evt);
+	files = evt.dataTransfer.files;
+	i = 0;
+	var dropArea = $('#drop-area');
+	$(dropArea).text("");
+	$(dropArea).append("<label id='file-name'/>");
+	$(dropArea).append("جارى التحميل");
+	$("<br/>").appendTo(dropArea);
+	$('<progress id="upload-progress" max="100" value="0"/>').appendTo("#drop-area");
+	processFile();	
+}
+
+function showImage(file){
+	var reader = new FileReader();
+	reader.onload = function(evt) {
+		var code = "<div class='thumbnail'>" + 
+							 "<img  src='" + evt.target.result + "' />" + 
+							 "</div>";
+		$(code).prependTo("#image-panel");
+	}
+	reader.readAsDataURL(file);
+}
+
+function processFile(){
+	if (i == files.length){
+		$('#drop-area').text("ارمى صورة هنا لرفعها");
+		return;
+	}
+	if (files[i].type.indexOf("image") != 0){
+		alert("Only image files allowed");
+		i++;
+		processFile();
+	}
+	$('#file-name').text(files[i].name);
+	var progress = parseInt(((i+1) / files.length * 100));
+	$("#upload-progress").attr("value", progress);
+	uploadFile(files[i]);
+	i++;
+}
+
+function uploadFile(file){
+	project_id = document.project.elements['project_id'].value;
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(evt) {
+		if (xhr.readyState == 4 ){
+			if (xhr.status == 201)
+				showImage(files[i-1]);
+			processFile();
+		}
+	};
+	xhr.open("POST", "/projects/upload_media", true);
+	xhr.setRequestHeader("X_FILENAME", file.name);
+	xhr.setRequestHeader("PROJECT_ID", project_id);
+	xhr.send(file);
+}

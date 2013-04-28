@@ -19,6 +19,9 @@ class Project < ActiveRecord::Base
   has_many :questionnaires,:dependent => :destroy
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
+  has_many :medias
   has_many :cardsorts, :dependent => :destroy
 
 end
+
+

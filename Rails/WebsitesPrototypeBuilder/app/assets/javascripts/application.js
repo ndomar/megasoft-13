@@ -55,4 +55,5 @@ var top_window = $(window).scrollTop();
 	} else {
 		$('#side_content').stop().animate({top: 0 }, 400);
 	}});
+
 });

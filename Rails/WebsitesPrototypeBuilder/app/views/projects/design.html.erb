@@ -1,147 +1,261 @@
+<%= stylesheet_link_tag "colorpicker"%>
+<%= javascript_include_tag "colorpicker"%>
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
-
+<%= stylesheet_link_tag "explorer"%>
+<%= javascript_include_tag "explorer.js"%>  
+<!-- <html dir="rtl"> -->
 <body>
 	<!-- main div containing toolbox and design page -->
-	<div id="main">
+	<div id="wrapper" class="container-fluid">
 		<!-- toolbox containing elements to add to the design page -->
-		<div id="toolbox">
+		<div class='image-panel'>
+			<form name='project' >
+				<input type=hidden name='project_id' value='<%= @project.id %>' />
+			<form/>
+			<div id='image-panel-tag' class='sidebar-tag'>
+				الصور
+			</div>
+			<div id="drop-area">
+				ارمى صورة هنا لرفعها
+			</div>
+			<div id='image-panel'>
+				<% @medias.each do |media| %>
+				<div class='thumbnail'>
+					<img  src='<%= "/assets/project_#{@project.id}/#{media.url}" %>' />
+				</div>
+				<%end%>
+			</div>
+		</div>
+	
+		<div id="sidebar" class="row-fluid">
 				<!-- table with all the available toolbox elements -->
-			<table>
-				<tr>
-					<table>
-						<thead class="brand"><h3 style="text-align: center">Toolbox</h3></thead>
-						<tbody>
-							<tr>
-								<td class="tbldevs" align="center">
-									<div id="buttondiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-										<button class="toolboxelement btn">زر</button>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="tbldevs" align="center">
-									<div id="imagediv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-										<img src="/assets/gimg.jpg" width="20px" hight="20px" class="toolboxelement">
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="tbldevs" align="center">
-									<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
-										<label class="toolboxelement">ملصق</label>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="tbldevs" align="center">
-									<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-										<a href="#" class="toolboxelement">رابط</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="tbldevs" align="center">
-									<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-										<textarea class="toolboxelement" style="resize: none">منطقة الكتابة</textarea>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</tr>
-				<hr size="3">
-				<tr>
-					<br>
-					<div class="tabbable prop_cont"> <!-- Only required for left/right tabs -->
-						<ul class="nav nav-tabs">
-					    <li class="active prop_panel"><a href="#properties" data-toggle="tab">الخصائص</a></li>
-					    <li class="prop_panel"><a href="#events" data-toggle="tab">الأحداث</a></li>
-						</ul>
-						<!-- tabbed panel containing properties of the components. It is originally hidden -->
-						<div class="tab-content">
-					    <div class="tab-pane active properties" id="properties">
-					      <div>
-					      	<label id = "eid" class="p_prop">التعريف </label>
-					      	<input id = "eid_inp" class="inp" property="id" readonly>
-					      </div>
-					      <div>
-					      	<label id = "left" class="p_prop">الموقع من اليسار </label>
-					      	<input id = "left_inp" class="inp" property="left" min="0">
-					      </div>
-					      <div>
-					      	<label id = "top" class="p_prop">الموقع من فوق </label>
-					      	<input id = "top_inp" class="inp" property="top" min="0">
-					      </div>
-					      <div>
-					      	<label id = "text" class="p_prop">الكتابة </label>
-					      	<input id = "text_inp" class="inp" property="text">
-					      </div>
-					     	<div>
-					     		<label id = "width" class="p_prop">العرض </label>
-					     		<input id = "width_inp" class="inp" property="width">
-					     	</div>
-					  		<div>
-					  			<label id = "height" class="p_prop">الطول </label>
-					  			<input id = "height_inp" class="inp" property="height">
-					  		</div>
-					      <div>
-					      	<label id = "margin_left" class="p_prop">الحد من اليسار </label>
-					      	<input id = "margin_left_inp" class="inp" property="margin-left">
-					      </div>
-					      <div>
-					      	<label id = "margin_right" class="p_prop">الحد من اليمين </label>
-					      	<input id = "margin_right_inp" class="inp" property="margin-right">
-					   		</div>
-			      		<div>
-			      			<label id = "margin_top" class="p_prop">الحد من فوق </label>
-			      			<input id = "margin_top_inp" class="inp" property="margin-top">
-			      		</div>
-			      		<div>
-			      			<label id = "margin_bottom" class="p_prop">الحد من تحت </label>
-			      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom">
-			      		</div>
-			      		<div>
-			      			<label id = "font_size" class="p_prop">حجم الخط </label>
-			      			<input id = "font_size_inp" class="inp" property="font-size">
-			      		</div>
-			      		<div>
-			      			<label id = "font_color" class="p_prop"class="p_prop">لون الخط </label>
-			      			<input id = "font_color_inp" class="inp" property="color">
-			      		</div>
-			      		<div>
-			      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
-			      			<input id = "text_align_inp" class="inp" property="text-align">
-			      		</div>
-					    </div>
-						    	<!-- division containing the event controls of the components -->
-						  <div class="tab-pane properties" id="events">
-						    <label>نوع الحدث</label>
-								<select id = "event_selector" style="width: 180px">
-									<option value="onClick">عند الضغط</option>
-									<option value="onHover">عند التحليق</option>
-								</select>
-						    <label>ردة الفعل</label>
-								<select id = "action_selector" style="width: 180px">
-									<option value="url">رابط</option>
-									<option value="message">رسالة</option>
-								</select>
-								<label>حدد الرسالة أو الرابط</label>
-						    <input id = "action_value" style="width: 175px;border-radius: 5px;"></input>
-						    <br>
-						    <br>
-						    <button style="margin-left: 50px;border-radius: 5px;" id="save_event">حفظ الحدث</button>
-				    	</div>
-				  	</div>
-					</div>
-				</tr>
-			</table>
+				<div id='toolbox-tag' class='sidebar-tag'>
+				الادوات
+			</div>
+			<div id = "designcontainer">
+				<table>
+					<tr>
+						<table>
+							<thead class="brand"><h3 style="text-align: center">صندوق الأدوات</h3></thead>
+							<tbody>
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<div id="buttondiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
+											<button class="toolboxelement btn">زر</button>
+										</div>
+									</td>
+								</tr>
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<div id="imagediv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
+											<img src="/assets/gimg.jpg" width="20px" hight="20px" class="toolboxelement">
+										</div>
+									</td>
+								</tr>
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
+											<label class="toolboxelement">ملصق</label>
+										</div>
+									</td>
+								</tr>
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="border: solid">
+											<a href="#" class="toolboxelement">رابط</a>
+										</div>
+									</td>
+								</tr>
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
+											<textarea class = "toolboxelement"style="resize: none;width:35px;height:35px;"> الكتابة</textarea>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</tr>
+					<hr size="3">
+					<tr>
+						<div class="tabbable prop_cont"> <!-- Only required for left/right tabs -->
+							<ul class="nav nav-tabs">
+						    <li class="active prop_panel" style="margin-right: -2px; float: right;"><a href="#properties" data-toggle="tab">الخصائص</a></li>
+						    <li class="prop_panel" style="float: right;"><a href="#events" data-toggle="tab">الأحداث</a></li>
+							</ul>
+							<!-- tabbed panel containing properties of the components. It is originally hidden -->
+							<div class="tab-content">
+						    <div class="tab-pane active properties" id="properties">
+						      <div>
+						      	<label id = "eid" class="p_prop">التعريف </label>
+						      	<input id = "eid_inp" class="inp" property="id" readonly>
+						      </div>
+						      <div>
+						      	<label id = "left" class="p_prop">الموقع من اليسار </label>
+						      	<input id = "left_inp" class="inp" property="left" min="0">
+						      </div>
+						      <div>
+						      	<label id = "top" class="p_prop">الموقع من فوق </label>
+						      	<input id = "top_inp" class="inp" property="top" min="0">
+						      </div>
+						      <div>
+						      	<label id = "text" class="p_prop">الكتابة </label>
+						      	<input id = "text_inp" class="inp" property="text">
+						      </div>
+						     	<div>
+						     		<label id = "width" class="p_prop">العرض </label>
+						     		<input id = "width_inp" class="inp" property="width">
+						     	</div>
+						  		<div>
+						  			<label id = "height" class="p_prop">الطول </label>
+						  			<input id = "height_inp" class="inp" property="height">
+						  		</div>
+						      <div>
+						      	<label id = "margin_left" class="p_prop">الحد من اليسار </label>
+						      	<input id = "margin_left_inp" class="inp" property="margin-left">
+						      </div>
+						      <div>
+						      	<label id = "margin_right" class="p_prop">الحد من اليمين </label>
+						      	<input id = "margin_right_inp" class="inp" property="margin-right">
+						   		</div>
+				      		<div>
+				      			<label id = "margin_top" class="p_prop">الحد من فوق </label>
+				      			<input id = "margin_top_inp" class="inp" property="margin-top">
+				      		</div>
+				      		<div>
+				      			<label id = "margin_bottom" class="p_prop">الحد من تحت </label>
+				      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom">
+				      		</div>
+				      		<div>
+				      			<label id = "font_size" class="p_prop">حجم الخط </label>
+				      			<input id = "font_size_inp" class="inp" property="font-size">
+				      		</div>
+				      		<div>
+				      			<label id = "font_color" class="p_prop"class="p_prop">لون الخط </label>
+				      			<div id = "font_color_inp" class="inp colordiv" property="color">
+				      			</div>
+				      		</div>
+				      		<div>
+				      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
+				      			<input id = "text_align_inp" class="inp" property="text-align">
+				      		</div>
+						    </div>
+							    	<!-- division containing the event controls of the components -->
+							  <div class="tab-pane properties" id="events">
+							    <label>نوع الحدث</label>
+									<select id = "event_selector" style="width: 180px">
+										<option value="onClick">عند الضغط</option>
+										<option value="onHover">عند التحليق</option>
+									</select>
+							    <label>ردة الفعل</label>
+									<select id = "action_selector" style="width: 180px">
+										<option value="url">رابط</option>
+										<option value="message">رسالة</option>
+									</select>
+									<label>حدد الرسالة أو الرابط</label>
+							    <input id = "action_value" style="width: 175px;border-radius: 5px;"></input>
+							    <br>
+							    <br>
+							    <button style="margin-left: 50px;border-radius: 5px;" id="save_event">حفظ الحدث</button>
+					    	</div>
+					  	</div>
+						</div>
+					</tr>
+				</table>
+			</div>
 		</div>	
     <!-- empty design page -->            
-   	<div id="designpage" class="ui-widget-content" data-pageid="0">
-      <p>صمم صفحتك هنا</p>
+    <div id="content">
+	   	<div id="designpage" class="ui-widget-content row-fluid designpage" data-pageid="0">
+	      <p>صمم صفحتك هنا</p>
 		</div>
-  </div>     
+	</div>
+  </div>  
+  <script type="text/javascript">
+  	initDragAndDrop();
+  </script>   
 </body>
 
 
+<!-- this is the carousel implementation, It loops through the project's pages and displays them in a series of thumbnails each with an x icon over it to be used for deletion. A Carousel has to consist of at least an active 
+item which has to be the first item in the carousel, it can also contain as many items as required. After filling 
+the active item, the carousel can be filled by as many items as required.Also all the actions to be done on them 
+are stated. -->
+<div class="navbar navbar-fixed-bottom navbar-inverse span12" style="width:100%; text-align:center" >
+  <div class="span5"></div>
+  <div class="span6" style="background-color:#FFFFFF;opacity:0.4;">
+    <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
+    <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
+    <img style"margin-bottom: 0px;" onclick="addPage('<%= @id %>')" id="addImage"  width="30" height="30" src="/assets/add-button.png">
+    <div class="bottom carousel slide" id="myCarousel" style="margin-bottom: -20px;">
+      <div id="carousel-inner" class="carousel-inner">
+        <% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
+          <div id="first-item" class="item active" style="background-color:#AAAAAA">
+            <ul class="thumbnails" style="background-color:#AAAAAA">
+              <li class="span1"></li>
+              <% @pages.each_with_index do |page, index| %>
+                <li class="span1">
+                  <a class="x-button" onclick="deletePage('<%= page.id %>')" href='#'><div>x</div></a>
+                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick='show("<%= page.id %>","<%= page.html %>")' id="<%= page.id %>" width="50px">
+                    <img src="/assets/emptyPage.jpg" alt="">
+                  </div>
+                  <p><%= page.page_name %></p>
+                </li>
+              <% end %>              
+              <li class="span1">
+              	<img style"margin-bottom: 0px;" onclick="addPage('<%= @id %>')" id="addImage"  width="100" height="3z0" src="/assets/add-button.png">
+              </li>
+              <% (1..4-@pages.size).each do |i| %>
+                <li class="span1"></li>  
+              <% end %>
+              <li class="span1"></li>
+            </ul>
+          </div>
+        <% else %>  <!-- the case when we have more than 4 pages -->
+          <div id="first-item" class="item active" style="background-color:#AAAAAA">
+            <ul class="thumbnails" style="background-color:#AAAAAA">
+              <li class="span1"></li>
+              <% (1..4).each do |i| %>
+                <li class="span1">
+                  <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href='#'><div>x</div></a>
+                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')" id="@pages.fetch(i,nil).id">
+                    <img src="/assets/emptyPage.jpg" alt="">
+                  </div>
+                  <p><%= @pages.fetch(i,nil).page_name %></p>
+                </li>
+              <% end %>
+              <li class="span1"></li>
+            </ul>
+          </div> 
+          <% crousel_items_to_create = @pages.size/4%>
+          <% if @pages.size%4==0%>
+            <%crousel_items_to_create = crousel_items_to_create - 1%>
+          <%end%>
+          <% (1..crousel_items_to_create).each do |currentLoop| %>
+            <div class="item" style="background-color=#AAAAAA;">
+              <ul class="thumbnails" style="background-color:#AAAAAA">
+                <li class="span1"></li>     
+                  <% (0..3).each do |i| %>
+                    <li class="span1">
+                      <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
+                        <a class="x-button" onclick="deletePage('<%= @pages.fetch(i + currentLoop*4,nil).id %>')" href=#><div>x</div></a>
+                        <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>','<%= @pages.fetch(i + currentLoop*4,nil).html %>')" id="@pages.fetch(i + currentLoop*4,nil).id">
+                          <img src="/assets/emptyPage.jpg" alt="">
+                        </div>
+                        <p><%= @pages.fetch(i + currentLoop*4,nil).page_name %></p>
+                      <% end %>
+                    </li>
+                  <% end %>       
+                <li class="span1"></li>
+              </ul>
+            </div>
+          <% end %>
+        <% end %>   
+      </div>
+      <!-- the carousel sliding arrows -->
+      <a data-slide="prev" href="#myCarousel" class="left carousel-control" style="background:none; border:none">‹</a>
+      <a data-slide="next" href="#myCarousel" class="right carousel-control" style="background:none; border:none">›</a>
+    </div>
+  </div>
+</div>

@@ -49,6 +49,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   devise_for :designers
 
   #at start up page goes to the home controller and the index action
+
   root to: "home#index"
 
 
@@ -83,9 +84,14 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
-
   get 'cardsorts/new'
 
+
+  get "pages/designer"
+  get "projects/index"
+  post "projects/upload_media"
+
+  resources :projects
 
   resources :pages do
     resources :comments
@@ -121,7 +127,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
   get "/log/:id" => 'task_results#index'
-
+  get 'projects/design/:project_id' => 'projects#design'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -131,7 +137,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -173,6 +178,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # See how all your routes lay out with "rake routes"
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+  root :to => 'tasks#index'
 
   # See how all your routes lay out with "rake routes"
 

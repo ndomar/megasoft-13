@@ -19,13 +19,6 @@ function show(id,html){
 	designPage.setAttribute("data-pageid", id);
 }
 
-// function fill(id,html){
-// 	var div = document.getElementById(id);
-// 	html=html.replace( "onclick", "onclickevent");
-// 	html=html.replace( "onmouseover", "onhoverevent");
-// 	div.innerHTML=html;
-// }
-
 function saveProjectProgress(){
 	store();
 }
@@ -46,6 +39,7 @@ function store(){
 																										store();
 																									}
 																									designPage.innerHTML="";
+																									//call malatawy's new function
 																									designPage.innerHTML=htmlToDisplay;
 																									designPage.setAttribute("data-pageid", pageId);
 																								};
@@ -115,34 +109,34 @@ function addPage(project_id){
   } 
 }
 
-function display(){
-	// this function is used to slide the carousel up and down
-	var displayValue =  document.getElementById('myCarousel').getAttribute("data-display");
-	if(displayValue==0){	
-		//if data-display ==0 then the carousel is visible
-		$('#myCarousel').slideUp('slow', function() {
-			document.getElementById('myCarousel').setAttribute("data-display","1");
-			document.getElementById('carouselImage').setAttribute("src","/assets/upArrow.jpg");
-		});
-	}
-	else
-	{	//if data-display ==1 then the carousel is hidden
-		$('#myCarousel').slideDown('slow', function() {
-			document.getElementById('myCarousel').setAttribute("data-display","0");
-			document.getElementById('carouselImage').setAttribute("src","/assets/downArrow.jpg");
-		});
-	}
-}
+// function display(){
+// 	// this function is used to slide the carousel up and down
+// 	var displayValue =  document.getElementById('myCarousel').getAttribute("data-display");
+// 	if(displayValue==0){	
+// 		//if data-display ==0 then the carousel is visible
+// 		$('#myCarousel').slideUp('slow', function() {
+// 			document.getElementById('myCarousel').setAttribute("data-display","1");
+// 			document.getElementById('carouselImage').setAttribute("src","/assets/upArrow.jpg");
+// 		});
+// 	}
+// 	else
+// 	{	//if data-display ==1 then the carousel is hidden
+// 		$('#myCarousel').slideDown('slow', function() {
+// 			document.getElementById('myCarousel').setAttribute("data-display","0");
+// 			document.getElementById('carouselImage').setAttribute("src","/assets/downArrow.jpg");
+// 		});
+// 	}
+// }
 
-$(document).ready(function() {
-	//this is to make the user see that it is available and hide it at the begining of the designing
-	$('#myCarousel').slideUp('slow', function() {
-			document.getElementById('myCarousel').setAttribute("data-display","1");
-			//to hide it as soon as the page loads
-		});
-	$('#myCarousel').carousel({interval: false});
-	//to prevent the carousel from automatically sliding
-});
+// $(document).ready(function() {
+// 	//this is to make the user see that it is available and hide it at the begining of the designing
+// 	$('#myCarousel').slideUp('slow', function() {
+// 			document.getElementById('myCarousel').setAttribute("data-display","1");
+// 			//to hide it as soon as the page loads
+// 		});
+// 	$('#myCarousel').carousel({interval: false});
+// 	//to prevent the carousel from automatically sliding
+// });
 
 function replace(){
 	html=prompt("اHTML","");
