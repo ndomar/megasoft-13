@@ -1,12 +1,45 @@
 $(document).ready(function (){
 
-	$(function() {
-    	$( "#accordion" ).accordion({
-      		collapsible: true,
-      		active:false,
-      		header: "h4"
-    	});
-  	});
+	$("#designpage").gridBuilder({
+    	color:          '#eee',    // color of the primary gridlines
+    	secondaryColor: '#f9f9f9', // color of the secondary gridlines
+    	vertical:       20,        // height of the vertical rhythm
+    	horizontal:     20,       // width of horizontal strokes
+    	gutter:         0        // width of the gutter between strokes
+	  });
+	// .width($("#content").width());
+
+/*
+	$(".properties").blur(function () {
+		$(".properties").css("visibility","hidden");
+	});
+
+	$('#content').click(function(e){
+       if( e.target.className == 'toolboxelement')
+          { $('.properties').css("visibility","visible"); }
+       else
+          { $('.properties').css("visibility","hidden"); }
+
+ 	});
+*/
+	$( "#accordion" ).accordion({
+  		collapsible: true,
+  		active:false,
+  		header: "p"
+	})
+	.removeClass("ui-helper-reset")
+	.css({
+		"display": "block",
+		"padding": "0px",
+		"border": "0px",
+		"outline": "0px",
+		"line-height": "1.3px",
+		"text-decoration": "none",
+		"list-style": "none",
+		"width": "210px",
+		"margin-top": "10px",
+		"margin-right": "10px"
+	});
 
 	$(".image-panel").css("right","20.2833px");
 
@@ -129,47 +162,6 @@ $(document).ready(function (){
         	applyChangedProperty($(this));
     	}
 	});
-
-	function applyChangedProperty(element){
-		if (element.attr("property")=="text"){
-			$("#"+$("#eid_inp").val()).children().first().text(element.val());
-		}
-		else{
-			if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
-				$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val());
-			}
-		}
-		$("#"+$("#eid_inp").val()).click();
-	}
-
-	function exceedsWidth(element,val,left_pos){ //checks if the element exceeded the designpage width
-		return element.outerWidth(true)+val>$("#designpage").width();
-	}
-
-	function exceedsHeight(element,val,top_pos){ //checks if the element exceeded the designpage height
-		return element.outerHeight(true)+val>$("#designpage").height();
-	}
-
-	function insideDesignPage(element,property,val){ //applies the property with the new value to the component then checks if the element still resides in the designpage
-		try{
-			var pp = element.css(property);
-			element.css(property,val);
-			var pos = element.offset();
-			pos.left-=$("#designpage").offset().left;
-			pos.top-=$("#designpage").offset().top;
-			if (pos.left>=0 && pos.left<=$("#designpage").width() && pos.top>=0 && pos.top<=$("#designpage").height() && pos.left+element.width()<=$("#designpage").width() && pos.top+element.height()<=$("#designpage").height() && element.outerWidth(true)<=$("#designpage").width() && element.outerHeight(true)<=$("#designpage").height() && parseInt(val)>=0){
-				element.css(property,pp);
-				return true;
-			}
-			else{
-				element.css(property,pp);
-				return false;
-			}
-		}
-		catch(err){
-			return false;
-		}
-	}
 
 	counter = 0; //Counts number of elements in the Design Page
 
@@ -310,6 +302,47 @@ $(document).ready(function (){
 		}
 	});
 });
+
+function applyChangedProperty(element){
+	if (element.attr("property")=="text"){
+		$("#"+$("#eid_inp").val()).children().first().text(element.val());
+	}
+	else{
+		if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
+			$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val());
+		}
+	}
+	$("#"+$("#eid_inp").val()).click();
+}
+
+function exceedsWidth(element,val,left_pos){ //checks if the element exceeded the designpage width
+	return element.outerWidth(true)+val>$("#designpage").width();
+}
+
+function exceedsHeight(element,val,top_pos){ //checks if the element exceeded the designpage height
+	return element.outerHeight(true)+val>$("#designpage").height();
+}
+
+function insideDesignPage(element,property,val){ //applies the property with the new value to the component then checks if the element still resides in the designpage
+	try{
+		var pp = element.css(property);
+		element.css(property,val);
+		var pos = element.offset();
+		pos.left-=$("#designpage").offset().left;
+		pos.top-=$("#designpage").offset().top;
+		if (pos.left>=0 && pos.left<=$("#designpage").width() && pos.top>=0 && pos.top<=$("#designpage").height() && pos.left+element.width()<=$("#designpage").width() && pos.top+element.height()<=$("#designpage").height() && element.outerWidth(true)<=$("#designpage").width() && element.outerHeight(true)<=$("#designpage").height() && parseInt(val)>=0){
+			element.css(property,pp);
+			return true;
+		}
+		else{
+			element.css(property,pp);
+			return false;
+		}
+	}
+	catch(err){
+		return false;
+	}
+}
 
 function initDragAndDrop() {
 	var dragArea = document.getElementById("drop-area");
