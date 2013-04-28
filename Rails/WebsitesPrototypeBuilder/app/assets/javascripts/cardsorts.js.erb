@@ -1,0 +1,102 @@
+var cardsView;
+var groupsView;
+var cardsContent;
+var groupsContent;
+var imageTiled;
+var imageGrid;
+var shownCards = false;
+var shownGroups = false;
+var cardsThumbnail;
+var groupsThumbnail;
+var cardsList;
+var groupsList;
+
+function init() {
+	initParams();
+	initCardsView();
+	initGroupsView();
+	initButtons();
+	
+	
+}
+
+function initCardsView() {
+	$('#cards-view').draggable({
+		handle: '#cards-tag',
+		axis: 'x',
+		drag: function() {
+				var difference = cardsView.offsetLeft - groupsView.offsetLeft;
+				var left = parseInt($(cardsView).css('left'));
+				if (difference < 24)
+					$(groupsView).css('left', left - 24);
+				width = wrapper.offsetWidth - cardsView.offsetLeft;
+				$(cardsContent).css('width', width-80);
+				width = cardsView.offsetLeft - groupsView.offsetLeft;
+					$(groupsContent).css('width', width-80);
+			}
+
+	});
+	width = wrapper.offsetWidth - cardsView.offsetLeft;
+	$(cardsContent).css('width', width-80);
+}
+
+function initGroupsView() {
+	$('#groups-view').draggable({
+		handle: '#groups-tag',
+		axis: 'x',
+		drag: function() {
+				var difference =cardsView.offsetLeft - groupsView.offsetLeft;
+				var left = parseInt($(groupsView).css('left'));
+				if (difference < 24)
+					$(cardsView).css('left', left + 23);
+					width = cardsView.offsetLeft - groupsView.offsetLeft;
+						$(groupsContent).css('width', width-80);
+			}
+	});
+	width = wrapper.offsetWidth - groupsView.offsetLeft;
+	$(groupsContent).css('width', width-80);
+}
+
+function initParams() {
+	cardsView = $('#cards-view')[0];
+	groupsView = $('#groups-view')[0];
+	cardsContent = $('#cards-content')[0];
+	groupsContent = $('#groups-content')[0];
+	cardsList = $('#cards-list')[0];
+	cardsThumbnail = $('#cards-thumbnail')[0];
+	groupsList = $('#groups-list')[0];
+	groupsThumbnail = $('#groups-thumbnail')[0];
+	wrapper = $('#wrapper')[0];
+}
+
+function initButtons() {
+	imageTiled = new Image(100,100);
+	imageTiled.src = '<%= asset_path "View_button.png" %>';
+	imageGrid = new Image(100,100);
+	imageGrid.src = '<%= asset_path "grid_View_button.png" %>';
+	$(cardsView).find('.view-button').click(function() {
+		if (!shownCards){
+			$(this).children('img').attr('src', imageTiled.src);
+			$(cardsThumbnail).hide();
+			$(cardsList).show();
+		}	else {
+			$(this).children('img').attr('src', imageGrid.src);
+			$(cardsList).hide();
+			$(cardsThumbnail).show();
+		}
+		shownCards = !shownCards;
+	});
+	$(groupsView).find('.view-button').click(function() {
+		if (!shownGroups){
+			$(this).children('img').attr('src', imageTiled.src);
+			$(groupsThumbnail).hide();
+			$(groupsList).show();
+		}	else {
+			$(this).children('img').attr('src', imageGrid.src);
+			$(groupsList).hide();
+			$(groupsThumbnail).show();
+		}
+		shownGroups = !shownGroups;
+	});
+
+}
