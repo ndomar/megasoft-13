@@ -51,14 +51,7 @@
   <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "Settings"%></h3>
   </div>
   <hr>
-  <!-- show each project name -->
- 
-  
-
-  <!-- <div id="arrow" style="background-color: #3790e8">
-    <i id="arrowsymbol" class="icon-chevron-right" style="margin-top: 2px;" ></i>
-  </div> -->
-</div>
+  </div>
 </div>
 
 <div class='popup-darkbackground' >
@@ -79,15 +72,12 @@
         <%= f.label :Name, "اسم المشروع" %> 
         <%= f.text_field :project_name %> <br/>  
       </p>
-      <br>
       <p class = "field">
         <%= f.label :Type, "النوع" %>
-        <br>
         <%= f.select :project_type, ['تعليمي','ترفيهي','عملي','أخرى'] %> <br/>
       </p>
       <p>
         <%= f.label :Description, "وصف المشروع" %>
-        <br>
         <%= f.text_area :description, :cols => "30", :rows => "5" %> <br/>
       </p>
       <%= f.hidden_field :designer_id, :value => current_designer.id %>
@@ -98,8 +88,5 @@
       </p>
     </div>
     <%end%>
-
-
-
 </div>
 </div>

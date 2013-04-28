@@ -30,10 +30,10 @@
 .popup-createProject{
   margin: auto;
   width: 400px;
-  height: 520px;
-  margin-top: 70px;
-  position: absolute;
-  top: -10px;
+  height: 460px;
+  margin-top: 60px;
+  position: fixed;
+  top: 50px;
   left: 455px;
   color:black;
   background-color:white;
@@ -57,8 +57,8 @@
 }
 
 .save{
-  right:300px;
-  top: 480px;
+  right:320px;
+  top: 420px;
   background-color: blue;
   position: absolute;
 }
@@ -88,7 +88,7 @@
 }
 
 #wrapper{
-  padding: 0px;
+  padding: 0;
 }
 
 #projects{

@@ -1,6 +1,7 @@
 function showpopup() {
   $(".popup-darkbackground").fadeIn(400);
   $(".popup-createProject").fadeIn(400);
+
 }
 
 function hidepopup() {
@@ -52,12 +53,21 @@ $(document).ready(function(){
     $ ("#projectName").text(projectname);
     $("#Task").attr("href","tasks/index/" + projectid);
   });
-  $('#content').on('click', function ()
-  {
-    var side_width=$('#sidebar').width();
-    if(side_width>0)
-      $('#slidebutton').click();
-  });
+    $("#wrapper").click(function(e){
+       if (e.target === this){
+         var side_width= $('#sidebar').width();
+        if(side_width > 0)
+           $('#slidebutton').click();
+     }
+    });
+       $(".thumbnails").click(function(e){
+       if (e.target === this){
+         var side_width= $('#sidebar').width();
+        if(side_width > 0)
+           $('#slidebutton').click();
+     }
+    });
+    
 
   $(".project-div").dblclick(function(){
       var projectid = $(this).attr("ProjectId");
@@ -72,4 +82,4 @@ function deleteProject (id){
   $.ajax({
     url: '/projects/destroy?' + params,
   });
-}
+} 
