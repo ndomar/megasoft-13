@@ -1,18 +1,27 @@
 <% if (@page.valid?) %>
 	if($('#carousel-inner').children().length>0){
+
 		if($('#carousel-inner').children().last().children().children().last().prev().children().length>0){
-			$('#carousel-inner').append('<div class="item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');
-		}else{
+			//I need to have a new item
+			$('#carousel-inner').append('<div class="item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1" id="adding"><img style"margin-bottom: 0px;" onclick="addPage(\'<%= @page.project_id %>\')" id="addImage"  width="100" height="100" src="/assets/add-button.png"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');
+	}else{
+			//there is a place in the last item
 			var spans = $('#carousel-inner').children().last().children().children().last().prev();	
+			//spans is the span just before the carousel slider
 			var backSpans=0;
-			while(spans.prev().children().length==0 && backSpans<3){
+			while(spans.prev().children().length==0 && backSpans<4){
 				spans=spans.prev();
 				backSpans++;
 			}
-			spans.append('<a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p>');		
+			//now I am at the span just after the add button
+			spans.append(spans.prev().html());
+			spans.prev().empty();
+			spans.prev().append('<a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p>');		
 		}
+
 	}else{
-	$('#carousel-inner').append('<div class="active item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');
+		//never going to reach it
+	$('#carousel-inner').append('<div class="active item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1" id="adding"><img style"margin-bottom: 0px;" onclick="addPage(\'<%= @page.project_id %>\')" id="addImage"  width="100" height="100" src="/assets/add-button.png"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');
 	}
 <% else %>
 	alert("الرجاء التأكد من أن اسم الصفحة فريد من نوعه");
