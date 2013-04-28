@@ -18,11 +18,12 @@ post 'steps/update'
   resources :tasks do
     resources :steps
   end
+ post 'cardsorts/:cardsort_id/delete_card/:card_id' => 'cardsorts#delete_card'
+ post 'cardsorts/:cardsort_id/delete_group/:group_id' => 'cardsorts#delete_group'
  get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
  get 'cardsorts/new'
- get 'cardsorts/edit'
- get 'cardsorts/create_card'
- get 'cardsorts/create_group'
+ post 'cardsorts/:cardsort_id/create_card' => 'cardsorts#create_card'
+ post 'cardsorts/:cardsort_id/create_group' => 'cardsorts#create_group'
 
   #at start up page goes to the home controller and the index action
 

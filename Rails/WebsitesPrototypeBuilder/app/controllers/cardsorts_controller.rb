@@ -31,9 +31,8 @@ class CardsortsController < ApplicationController
   # - void
   #
 	def create_card
-		@card = Card.new(title: params[:title],
-			description: params[:desc])
-		@card.cardsort_id = session[:cardsort_id]
+		@card = Card.new(params[:card])
+		@card.cardsort_id = params[:cardsort_id]
 		respond_to do |format|
 			if (@card.save)
 				format.js {render "new_card", :status => :created}
@@ -51,15 +50,31 @@ class CardsortsController < ApplicationController
   # - void
   #
 	def create_group
-		@group = Group.new(title: params[:title],
-			description: params[:desc])
-		@group.cardsort_id = session[:cardsort_id]
+		@group = Group.new(params[:group])
+		@group.cardsort_id = params[:cardsort_id]
 		respond_to do |format|
 			if (@group.save)
 				format.js {render "new_group", :status => :created}
 			else
 				format.js {render "new_group", :status => :ok}
 			end
+		end
+	end
+
+	def delete_card
+		@card = Cardsort.find(params[:cardsort_id]).cards.find(params[:card_id]);
+		@card.destroy
+		respond_to do |format|
+			format.js { render :nothing => true}
+		end
+	end
+
+	
+	def delete_group
+		@group = Cardsort.find(params[:cardsort_id]).groups.find(params[:group_id]);
+		@group.destroy
+		respond_to do |format|
+			format.js { render :nothing => true}
 		end
 	end
 end

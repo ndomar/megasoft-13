@@ -1,12 +1,18 @@
+<% randomNumber = rand(20) %>
 <% if index%3 == 0 %>
-	<div class='card card-blue' style='	-webkit-transform: rotate(<%= 10 - rand(20) %>deg); transform: rotate(<%= 10 - rand(20) %>deg);'>
-	</div>
+	<li class='card card-blue' style='-webkit-transform: rotate(<%= 10 - randomNumber %>deg); transform: rotate(<%= 10 - randomNumber %>deg);' id='<%= id %>'>
 <% else %>
 	<% if index%3 == 1 %>
-		<div class='card card-red'  style='	-webkit-transform: rotate(<%= 10 - rand(20) %>deg); transform: rotate(<%= 10 - rand(20) %>deg);' />
-		</div>
+		<li class='card card-red'  style='-webkit-transform: rotate(<%= 10 - randomNumber %>deg); transform: rotate(<%= 10 - randomNumber %>deg);' id='<%= id %>'>
 	<% else %>
-		<div class='card card-yellow'  style='	-webkit-transform: rotate(<%= 10 - rand(20) %>deg); transform: rotate(<%= 10 - rand(20) %>deg);'/>
-		</div>
+			<li class='card card-yellow'  style='-webkit-transform: rotate(<%= 10 - randomNumber %>deg); transform: rotate(<%= 10 - randomNumber %>deg);' id='<%= id %>'>
 	<% end %>
 <% end %>
+		<label class='card-label'>
+			<%= name %>
+		</label>
+		<p class='card-p'>
+			<%= desc %>
+		</p>
+	</li>
+	

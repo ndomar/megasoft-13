@@ -16,12 +16,17 @@ function init() {
 	initCardsView();
 	initGroupsView();
 	initButtons();
+	initTrash();
 	
 	
 }
 
 function initCardsView() {
-	$('#cards-view').draggable({
+	$(cardsThumbnail).sortable({
+		revert: 'invalid',
+		items: ".card"
+	});
+	$(cardsView).draggable({
 		handle: '#cards-tag',
 		axis: 'x',
 		drag: function() {
@@ -33,15 +38,19 @@ function initCardsView() {
 				$(cardsContent).css('width', width-80);
 				width = cardsView.offsetLeft - groupsView.offsetLeft;
 					$(groupsContent).css('width', width-80);
-			}
-
+			},
+		containment: [144,100,cardsView.offsetLeft+100,100000]
 	});
 	width = wrapper.offsetWidth - cardsView.offsetLeft;
 	$(cardsContent).css('width', width-80);
 }
 
 function initGroupsView() {
-	$('#groups-view').draggable({
+	$(groupsThumbnail).sortable({
+		revert: 'invalid',
+		items: ".group"
+	});
+	$(groupsView).draggable({
 		handle: '#groups-tag',
 		axis: 'x',
 		drag: function() {
@@ -51,7 +60,8 @@ function initGroupsView() {
 					$(cardsView).css('left', left + 23);
 					width = cardsView.offsetLeft - groupsView.offsetLeft;
 						$(groupsContent).css('width', width-80);
-			}
+			},
+		containment: [120,100,groupsView.offsetLeft+100,100000]
 	});
 	width = wrapper.offsetWidth - groupsView.offsetLeft;
 	$(groupsContent).css('width', width-80);
@@ -99,4 +109,50 @@ function initButtons() {
 		shownGroups = !shownGroups;
 	});
 
+	$(cardsView).find('.add-button').click(function() {
+		$('#main-group').hide(200, function(){
+			$('#main-card').show(200);
+		});
+	});
+	$(groupsView).find('.add-button').click(function() {
+		$('#main-card').hide(200, function(){
+			$('#main-group').show(200);
+		});
+	});
+}
+
+var tempClass;
+
+function initTrash() {
+	$('#trash').droppable({
+		accept: "li",
+		over: function(event, ui) {
+			tempClass = $(ui).attr('class');
+			$(ui.helper).addClass('crumpled');
+			$(ui.helper).children().hide();
+		},
+		revert: 'invalid',
+		out: function(event, ui) {
+			$(ui.helper).addClass(tempClass);
+			$(ui.helper).removeClass('crumpled');
+			$(ui.helper).children().show();
+		},
+		drop: function( event, ui ) {
+			deleteThmb(ui);
+		}
+	});
+}
+
+function deleteThmb(ui) {
+	var url;
+	if ($(ui.helper).hasClass('card')){
+		url = '/cardsorts/' + id  + '/delete_card/' + $(ui.helper).attr('id');
+	} else {
+		url = '/cardsorts/' + id + '/delete_group/' + $(ui.helper).attr('id');
+	}
+	$.ajax({
+		'url': url,
+		method: 'post'
+	});
+	$(ui.helper).fadeOut();
 }
