@@ -13,14 +13,9 @@ class LogsController < ApplicationController
     @log.action=params[:change_action]
     @log.time=params[:change_action_time]
     @log.component_involved=params[:change_component_involved]
+    @log.element_id=params[:change_element_id]
     @log.save
-    if Time.parse(@task_result.time) <= Time.parse("0:"+@task.time_limit.to_s+":0")
-      respond_to do |format|
-        format.js { render :template => "tasks/task_reviewer_error" }
-      end
-    else
-      render :nothing => true
-    end
+    render :nothing => true
   end
 
   def update

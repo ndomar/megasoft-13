@@ -14,11 +14,11 @@
 </div>
 <div id = "coloured">
 </div>
-<div class="desc"> 
-   <p id='description_paragraph'></p>
-</div>
 <div class="goal">
   <p> <%= @task.description%></p>
+</div>
+<div class="desc"> 
+   <p id='description_paragraph'></p>
 </div>
 <div id="page">
 <br>
@@ -27,7 +27,7 @@
 <div id="time_out"> <p>لقد أتممت المهمة بنجاح! شكراً  </p> </div>
 </div>
 
-<!--A form that update the values of success, step_id. starting time and total time taken in the database -->
+<!--A hidden form that update the values of success, step_id. starting time and total time taken in the database -->
 <%= form_for [@project,@task,@step] ,remote: true, html: {:id => "steps_form"} do %>  
   <%= hidden_field_tag "change_success", 'false' %>
   <%= hidden_field_tag "change_id", '1' %>
@@ -36,12 +36,15 @@
   <%= hidden_field_tag "total_time_taken", '0' %>
 <% end %>
 
+<!--A hidden form that creates a new instance of log in the database to store the actions taken by the user -->
 <%= form_for :log ,remote: true , :html => {:id => "log_form"} , :url => { :controller => 'logs', :action => 'new'} do |l| %>
 <%= hidden_field_tag "change_action", ' ' %>
 <%= hidden_field_tag "change_action_time", '0' %>
 <%= hidden_field_tag "change_component_involved", ' ' %>
+<%= hidden_field_tag "change_element_id", '0' %>
 <% end %>
 
+<!-- A hidden form that updates the task_result by the total_time_taken, clicks count and the success -->
 <%= form_for [@project,@task,@task_result], remote: true , :html => {:id => "task_result_form"} do %>
   <%= hidden_field_tag "change_clicks_count", '0' %>
   <%= hidden_field_tag "change_time_taken", '1' %>
@@ -55,7 +58,7 @@ var step_answer_success ='true';
 var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
 
 var desc_height = $('.desc').height();
-$('#page').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
+$('#page').css({'margin-top':desc_height+'20px'}); //keep the description pinned above the elements
 
 ////////////////////////////////// new storyyy/////////
 var steps_ids_array; //array that contains all the ids of all the steps
@@ -87,27 +90,34 @@ $(window).load(function(){
    $(function(){ $('.desc').show(500)});
     document.getElementById('description_paragraph').innerHTML=steps_description_array[0]
   }
+  var time_parsed= <%= @task.time_limit %>
+  var time_out = setTimeout('times_up()',time_parsed*60*10*10*10);
 
 });
 
 var clicks_counter=0;
 var total_time=0;
 var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for the task
-var time_parsed= <%= @task.time_limit %>
-var time_out = setTimeout('times_up()',time_parsed*60*10*10*10);
+
 
 //keeps track user clicked where and when
 var current_click_time= new Date();
 $("input").on('click',function(event){
-  update(event.target,'click');
-  var current_element_id= event.target.id;
-  var current_element_value = document.getElementById(event.target.id).value;
-  current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ; //time at which the action is triggered
-  $("#change_action").val("The user clicked on: ");
-  $("#change_component_involved").val(current_element_value);
-  $("#change_action_time").val(current_click_time);
-  $(function() { $("#log_form").submit(); });
+  if(event.target.type !='text' && event.target.type !='password'){
+
+    var current_element_id= event.target.id;
+    var current_element_value = document.getElementById(event.target.id).value;
+    current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ; //time at which the action is triggered
+    $("#change_action").val("The user clicked on: ");
+    $("#change_component_involved").val(current_element_value);
+    $("#change_action_time").val(current_click_time);
+    $("#change_element_id").val(current_element_id);
+    $(function() { $("#log_form").submit(); });
  document.getElementById("description_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
+   update(event.target,'click');
+  }
+
+
  if (current_element_id== 'submit_form_button'){
   hide_form();
  }
@@ -121,11 +131,13 @@ $("input").on('keyup', function(event){
 
 $("input").on('change', function(event){
   update(event.target,'change');
+  current_element_id= event.target.id;
   var current_change_time = new Date().getHours()+ " :" + new Date().getMinutes()
   var current_element_value = document.getElementById(event.target.id).value;
   $("#change_action").val("The user entered: ");
   $("#change_component_involved").val(current_element_value);
   $("#change_action_time").val(current_change_time);
+  $("#change_element_id").val(current_element_id);
   $(function() { $("#log_form").submit(); });
   document.getElementById("description_paragraph").innerHTML= "The use entered "+ document.getElementById(event.target.id).value + " at time " + current_change_time;
   });
