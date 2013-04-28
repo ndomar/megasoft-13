@@ -29,8 +29,8 @@ function hide_form(){
   document.getElementById("page").style.color='white';
   document.getElementById("page").style.textShadow='none';
 }
- function update(cmp,event){
-  var curr_element_id= cmp.id;
+ function update_steps(element,event){
+  var curr_element_id= element.id;
   clicks_counter=clicks_counter+1;
   var current_hours = new Date().getHours();
   var current_minutes= new Date().getMinutes();
@@ -49,7 +49,6 @@ function hide_form(){
   if( minutes_taken >= task_time){
     alert("Time's up!" + minutes_taken);
   } 
-  //alert(steps_ids_array[0]);
   if (event == steps_events_array[0] && curr_element_id==steps_components_array[0]) {
     //STEPS MODE
     steps_events_array.splice(0,1);
@@ -94,8 +93,19 @@ function times_up(){
   $('#goal').fadeOut(500);
 }
 
- function update_log(){
+ function update_log(element,event_triggered){
+  if(element.type !='text' && element.type !='password' || event_triggered=='change'){
 
+    var current_element_id= element.id;
+    var current_element_value = document.getElementById(current_element_id).value;
+    var current_click_time = new Date().getHours()+ ":" + new Date().getMinutes()+ ":" + new Date().getSeconds() ; //time at which the action is triggered
+    $("#change_action").val(event_triggered);
+    $("#change_component_involved").val(current_element_value);
+    $("#change_action_time").val(current_click_time);
+    $("#change_element_id").val(current_element_id);
+    $(function() { $("#log_form").submit(); });
+ document.getElementById("description_paragraph").innerHTML="The user "+ event_triggered + document.getElementById(event.target.id).value + " at time " + current_click_time;
+  }
  }
 
 

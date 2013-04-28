@@ -13,11 +13,11 @@ class TasksController < ApplicationController
 # - the current task, current step, step_answer for the current_task and task_result for the current task
 #
   def task_reviewer
-    if Project.all.last.id.to_f >= params[:project_id].to_f
+    if Project.all.last.id.to_f >= params[:project_id].to_f && Project.all.first.id <= params[:project_id].to_f
       @project=Project.find(params[:project_id])
       @reviewer= Reviewer.find(params[:reviewer_id])
 
-      if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f
+      if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f && @project.tasks.first.id <= params[:task_id].to_f
         @task= @project.tasks.find(params[:task_id])
         @page= Page.find(1)
         #if @task.steps.nil? == 'false'
