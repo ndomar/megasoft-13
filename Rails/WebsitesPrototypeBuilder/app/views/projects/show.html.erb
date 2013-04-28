@@ -3,7 +3,7 @@
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
 
-<button onclick="replace()">dasdasdad</button>
+<button onclick="getMe()">dasdasdad</button>
 
 <body>
   <!-- main div containing toolbox and design page -->
@@ -166,7 +166,7 @@ are stated. -->
               <li class="span1"></li>
               <% @pages.each_with_index do |page, index| %>
                 <li class="span1">
-                  <a class="x-button" onclick="deletePage('<%= page.id %>')" href=#><div>x</div></a>
+                  <a class="x-button" onclick="deletePage('<%= page.id %>')" href='#'><div>x</div></a>
                   <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick='show("<%= page.id %>","<%= page.html %>")' id="<%= page.id %>" width="50px">
                     <img src="/assets/emptyPage.jpg" alt="">
                   </div>
@@ -185,7 +185,7 @@ are stated. -->
               <li class="span1"></li>
               <% (1..4).each do |i| %>
                 <li class="span1">
-                  <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href=#><div>x</div></a>
+                  <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href='#'><div>x</div></a>
                   <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')" id="@pages.fetch(i,nil).id">
                     <img src="/assets/emptyPage.jpg" alt="">
                   </div>

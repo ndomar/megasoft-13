@@ -35,17 +35,23 @@ function store(){
 	var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
 	if(response==true){
 		var html = document.getElementById('designpage').innerHTML;											//this gets the html from the designpage pane and stores it in the variable html
+		alert("THERE");
+		alert(html);
 		var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
 		//reseting the ondbclick show event
+		var htmlToDisplay=html;
 		document.getElementById(pageId).ondblclick= function () {
 																			          	var designPage = document.getElementById('designpage');
 																			          	if(designPage.getAttribute("data-pageid")!=0 && designPage.getAttribute("data-pageid")!=pageId){	//&& hasDesigned
 																										store();
 																									}
 																									designPage.innerHTML="";
-																									designPage.innerHTML=html;
+																									designPage.innerHTML=htmlToDisplay;
 																									designPage.setAttribute("data-pageid", pageId);
 																								};
+
+
+
 		// html=html.replace( 	"&", "&amp;" , 'g');
 		// html=html.replace( "<" , "&lt;"  , 'g');
 		// html=html.replace( 	">", "&gt;"  , 'g');
@@ -60,14 +66,17 @@ function store(){
 	  //   "/": '&#x2F;'
 		html=html.replace( "onclickevent", "onclick" , 'g');
 		html=html.replace( "onhoverevent", "onmouseover" , 'g');
-		html=html.replace( "'", "\'");
-		html=html.replace( '"', '\"');
+		html=html.replace( "'", '&#39;' ,'g');
+		html=html.replace( '"', '&quot;','g');
+		html=html.replace( "'", '&#39;' );
+		html=html.replace( '"', '&quot;');
+		html=html+'';
 		var params = $.param({
 			pageid: pageId,
 			"html": html
 		});
 		$.ajax("/projects/savePage?" + params);
-		//this is the ajax request to update and save the updated page
+		//this is the ajax request to update and, save the updated page
 	}
 }
 
@@ -139,4 +148,8 @@ function replace(){
 	html = html.replace(/"/g, '\\\\"');
 	html = html.replace(/'/g, "\\\\'");
 	alert(html);
+}
+
+function getMe(){
+	alert(document.getElementById('designpage').innerHTML);
 }
