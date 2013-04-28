@@ -87,7 +87,7 @@ $(window).load(function(){
     //If the steps mode is used it will highlight the 1st step's component
     currstep_element_id=steps_components_array[0];  //update the variable to get curr_element_Value
     highlight(currstep_element_id); //highlight the current step's component
-   $(function(){ $('.desc').show(500)});
+   $(function(){ $('.desc').fadeIn(100)});
     document.getElementById('description_paragraph').innerHTML=steps_description_array[0]
   }
   var time_parsed= <%= @task.time_limit %>
@@ -101,45 +101,25 @@ var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for
 
 
 //keeps track user clicked where and when
-var current_click_time= new Date();
+//var current_click_time= new Date();
 $("input").on('click',function(event){
-  if(event.target.type !='text' && event.target.type !='password'){
-
-    var current_element_id= event.target.id;
-    var current_element_value = document.getElementById(event.target.id).value;
-    current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ; //time at which the action is triggered
-    $("#change_action").val("The user clicked on: ");
-    $("#change_component_involved").val(current_element_value);
-    $("#change_action_time").val(current_click_time);
-    $("#change_element_id").val(current_element_id);
-    $(function() { $("#log_form").submit(); });
- document.getElementById("description_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
-   update(event.target,'click');
-  }
-
-
- if (current_element_id== 'submit_form_button'){
+  update_log(event.target,'click');
+  update_steps(event.target,'click');
+ if (event.target.id == 'submit_form_button'){
   hide_form();
  }
 });
 
 $("input").on('keyup', function(event){
+  update_log(event.target,'keyup');
 //update(event.target,'keyup');
 });
 
 
 
 $("input").on('change', function(event){
-  update(event.target,'change');
-  current_element_id= event.target.id;
-  var current_change_time = new Date().getHours()+ " :" + new Date().getMinutes()
-  var current_element_value = document.getElementById(event.target.id).value;
-  $("#change_action").val("The user entered: ");
-  $("#change_component_involved").val(current_element_value);
-  $("#change_action_time").val(current_change_time);
-  $("#change_element_id").val(current_element_id);
-  $(function() { $("#log_form").submit(); });
-  document.getElementById("description_paragraph").innerHTML= "The use entered "+ document.getElementById(event.target.id).value + " at time " + current_change_time;
+  update_log(event.target,'change');
+  update_steps(event.target,'change');
   });
 
 

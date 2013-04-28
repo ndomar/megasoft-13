@@ -43,25 +43,28 @@ class Task<ActiveRecord::Base
   def update_taskResults(params,task_result_id)
     if params[:change_id].to_f <= self.steps.last.id.to_f
       @step=self.steps.find(params[:change_id])
-      @pre_step = self.steps.find(params[:change_id].to_f-1)
-      @step_answer=@pre_step.step_answers.new
-      @step_answer.successful= params[:change_success]
-      @step_answer.time_from_start= params[:start_time]
-      @step_answer.task_result_id=task_result_id
-      @step_answer.save
 
       @task_result= self.task_results.find(task_result_id)
       @task_result.clicks= params[:change_clicks]
       @task_result.time=params[:total_time_taken]
       @task_result.save
 
-      @step_answer.reviewer_id=@task_result.reviewer_id
-      @step_answer.save
-      
-      @page= Page.find(1)
-      hash = Hash.new
-      hash = {:step => @step, :page => @page, :step_answer => @step_answer , :task_result => @task_result}
-    end  
+    else
+      @task_result=self.task_results.find(task_result_id)
+      @task_result.success='true'
+      @task_result.save  
+    end 
+    @pre_step = self.steps.find(params[:change_id].to_f-1)
+    @step_answer=@pre_step.step_answers.new
+    @step_answer.successful= params[:change_success]
+    @step_answer.time_from_start= params[:start_time]
+    @step_answer.task_result_id=task_result_id    
+    @step_answer.reviewer_id=@task_result.reviewer_id
+    @step_answer.save 
+
+    @page= Page.find(1)
+    hash = Hash.new
+    hash = {:step => @step, :page => @page, :task_result => @task_result}
   end
 end
 

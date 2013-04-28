@@ -20,13 +20,13 @@ class TasksController < ApplicationController
       if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f && @project.tasks.first.id <= params[:task_id].to_f
         @task= @project.tasks.find(params[:task_id])
         @page= Page.find(1)
-        #if @task.steps.nil? == 'false'
         @step=@task.steps.first
         @step_answer=@step.step_answers.new
         @step_answer.save
-        #end
         @task_result=@task.task_results.new
         @task_result.reviewer_id=@reviewer.id
+        @task_result.success='false'
+        @task_result.clicks= 0
         @task_result.save
         session[:task_result_id]= @task_result.id
       else

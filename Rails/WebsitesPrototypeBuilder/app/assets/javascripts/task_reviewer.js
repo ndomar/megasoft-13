@@ -46,9 +46,6 @@ function hide_form(){
     seconds_taken= seconds_taken+60; 
   }
   total_time= hours_taken + ":" + minutes_taken + ":" + seconds_taken;  
-  if( minutes_taken >= task_time){
-    alert("Time's up!" + minutes_taken);
-  } 
   if (event == steps_events_array[0] && curr_element_id==steps_components_array[0]) {
     //STEPS MODE
     steps_events_array.splice(0,1);
@@ -57,29 +54,38 @@ function hide_form(){
     steps_description_array.splice(0,1);
 
     if (steps_ids_array.length ==0){
-      //alert(parseInt(deleted_step_id)+1);
-      $("#change_id").val(parseInt(deleted_step_id)+1); //to increment the value of the curr step
+   //this check handles the case of the last step -> success
+      $("#change_id").val(parseInt(deleted_step_id)+1); //to increment the value of the curr step 
+
+      $("#change_time_taken").val(total_time); //sets the value of  the time taken
+      $("#change_clicks_count").val(clicks_counter); //update clicks_count in DB
+      $(function() { $("#task_result_form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken 
     } 
     else {
       $("#change_id").val(steps_ids_array[0]); //to increment the value of the curr step
+    }
       $("#start_time").val(curr_time); //set the time_from_start
       $("#change_success").val(step_answer_success); //set successful = true for step_answer
       $("#total_time_taken").val(total_time); //sets the value of  the time taken
       $("#change_clicks").val(clicks_counter); //update clicks_count in DB
-    }   
     dehighlight(deleted_component);
 
+    if(steps_ids_array.length==1){
+      $(".desc").fadeOut(500); //description of last step is no longer shown.
+    }
     if(steps_components_array.length!=0) {
-      document.getElementById("description_paragraph").innerHTML=steps_description_array[0];
+      //this check handles the last step
+      if(steps_description_array.length>1){
+        document.getElementById("description_paragraph").innerHTML=steps_description_array[0];
+      }
       highlight(steps_components_array[0]); 
-    }    
+    }
+
+
     $(function() { $("#steps_form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
   } else {
     //NO STEPS MODE
 
-  $("#change_time_taken").val(total_time); //sets the value of  the time taken
-  $("#change_clicks_count").val(clicks_counter); //update clicks_count in DB
-  $(function() { $("#task_result_form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken 
 
   }
 
@@ -107,5 +113,7 @@ function times_up(){
  document.getElementById("description_paragraph").innerHTML="The user "+ event_triggered + document.getElementById(event.target.id).value + " at time " + current_click_time;
   }
  }
+
+
 
 

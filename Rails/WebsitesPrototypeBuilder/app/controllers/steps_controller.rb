@@ -16,9 +16,9 @@ class StepsController < ApplicationController
     if params[:change_id].to_f <= @task.steps.last.id.to_f
       @step = returnHash[:step]
       @page = returnHash[:page]
-      @step_answer=returnHash[:step_answer]
-      @task_result=returnHash[:task_result]     
+     # @step_answer=returnHash[:step_answer]
     end
+    @task_result=returnHash[:task_result] 
     respond_to do |format|
       if params[:change_id].to_s <= @task.steps.last.id.to_s && Time.parse(@task_result.time) <= Time.parse("0:"+@task.time_limit.to_s+":0")
         format.html { render :template => "tasks/task_reviewer" }
