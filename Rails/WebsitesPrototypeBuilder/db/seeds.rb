@@ -41,6 +41,7 @@ end
 (0..50).each do
 	Page.create(page_name: ('a'..'z').to_a.shuffle[0,20].join,
 		html: ('a'..'z').to_a.shuffle[0,20].join,
+    thumbnail: ('a'..'z').to_a.shuffle[0,20].join,
     project_id: rand(0..5))
 end
 
