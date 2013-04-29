@@ -126,7 +126,7 @@ body{
 	position: relative;
 	height: 100%;
 	overflow: hidden;
-	min-height: 674px;
+	min-height: 600px;
 }
 
 div#content{
