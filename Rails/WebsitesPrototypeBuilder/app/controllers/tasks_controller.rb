@@ -120,6 +120,7 @@ class TasksController < ApplicationController
   #   -
   def invite_user
     puts(params[:email])
+    puts(params[:task_id])
     puts('bkbdvjkdbfjkvdbjhvkbsjkbvjkfsbvkjsfbvkjdsbcjkvdsbjvcscsda')
     @Reviewer = Reviewer.find_by_email(params[:email])
     if @Reviewer == nil
