@@ -5,6 +5,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get 'projects/deletePage'
 
 
+  get "tests/test_image"
+
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 

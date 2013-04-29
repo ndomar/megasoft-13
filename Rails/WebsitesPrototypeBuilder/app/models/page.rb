@@ -17,4 +17,9 @@ class Page < ActiveRecord::Base
   #checks that page name is present and is unique
   validates :page_name, :presence => {:message => "  إسم  صفحه موجود"}
   validates :page_name, :uniqueness => {:message => "فريد صفحه إسم"}
+  def take_screenshot(url)
+  `phantomjs /app/assets/javascripts/rasterize.js #{url} ll #{page_name}`
+  `convert app/assets/images/page_ll.jpg -resize 200x300 app/assets/images/page_ll.jpg`
+  end
+  handle_asynchronously :take_screenshot
 end
