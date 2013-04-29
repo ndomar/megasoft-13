@@ -49,13 +49,13 @@ end
 (0..50).each do
 	Questionnaire.create(project_id: rand(0..5),
 	  title: ('a'..'z').to_a.shuffle[0,20].join,
-    qquestions_attributes: [{body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 1},
-     {body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 2},
-     {body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 3,
-     choices_attributes: [body: ('a'..'z').to_a.shuffle[0,20].join]}, 
-     {body: ('a'..'z').to_a.shuffle[0,20].join, qtype: 4, 
-     choices_attributes: [{body: ('a'..'z').to_a.shuffle[0,20].join}, 
-     {body: ('a'..'z').to_a.shuffle[0,20].join}]}])
+    qquestions_attributes: [{body: "Question A", qtype: 1},
+     {body: "Question B", qtype: 2},
+     {body: "Question C", qtype: 3,
+     choices_attributes: [body: "Choice A"]}, 
+     {body: "Question D", qtype: 4, 
+     choices_attributes: [{body: "Choice A"}, 
+     {body: "Choice B"}]}])
 end
 
 # AnswerQuestionnaire

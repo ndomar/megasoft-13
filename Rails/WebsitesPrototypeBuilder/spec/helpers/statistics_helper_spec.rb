@@ -105,7 +105,8 @@ describe StatisticsHelper do
       reviewer4 = @task.reviewers.create(FactoryGirl.attributes_for(:reviewer))
       reviewer4.create_reviewer_info(:age => 84, :gender => true, :country => "Libya")
       reviewersinfos = helper.getReviewerInfos(@task)
-      expect(reviewersinfos).to eq([[['age < 20', 'age < 40', 'age < 60', 'age > 60'], [1,1,1,1]], [["Egypt", "Libya"], [2, 2]], [['ذكر', 'أنثى'], [2,2]]])
+      expect(reviewersinfos).to eq([[['السن أقل من 20', 'السن أقل من 40', 'السن أقل من 60', 'السن أكثر من 60'], 
+        [1,1,1,1]], [["Egypt", "Libya"], [2, 2]], [['ذكر', 'أنثى'], [2,2]]])
     end
   end
 
@@ -141,5 +142,12 @@ describe StatisticsHelper do
       expect(genderchart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
       expect(countrychart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
     end
+  end
+
+  it "getQuestionResults(question) returns a chart" do
+    project = FactoryGirl.create(:project)
+    questionnaire = project.questionnaires.create(FactoryGirl.attributes_for(:questionnaire))
+    chart = helper.getQuestionResults(questionnaire.qquestions[0])
+    expect(chart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
   end
 end
