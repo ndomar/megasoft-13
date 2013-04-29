@@ -41,7 +41,7 @@
 			// button in the last.prev place and the page in the last.prev.prev
 			$(item.children().children().last().prev().prev()).replaceWith(item.children().children().last().prev());
 			$(item.children().children().last().remove());
-			item.children().append('<li class="span1" id="adding"><img style"margin-bottom: 0px;" onclick="addPage(\'<%= @page.project_id %>\')" id="addImage"  width="100" height="100" src="/assets/add-button.png"></li>');
+			item.children().append('<li class="span1" id="adding"><img style="margin-top: 40px;" onclick="addPage(\'<%= @page.project_id %>\')" id="addImage"  width="50"  src="/assets/addPage3.jpg"></li>');
 			item.children().append('<li class="span1"></li>');
 			item = item.next();
 			item.children().append('<div class="span1"></div>');
