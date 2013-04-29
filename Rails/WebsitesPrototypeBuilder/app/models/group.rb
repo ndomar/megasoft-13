@@ -11,6 +11,7 @@ class Group < ActiveRecord::Base
   attr_accessible :cardsort_id, :description, :title
 
   belongs_to :cardsort
+  has_and_belongs_to_many :cards
 
   validates :title, :presence => true,
   									:uniqueness => {:scope => :cardsort_id}
