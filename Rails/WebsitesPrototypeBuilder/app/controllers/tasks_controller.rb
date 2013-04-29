@@ -194,7 +194,7 @@ before_filter :authenticate_designer!, :except => :task_reviewer
     @allowed = true
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
-    @pages = Project.pages
+    @pages = @project.pages
   end
 
 

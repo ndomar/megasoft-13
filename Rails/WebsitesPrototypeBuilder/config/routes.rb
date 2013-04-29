@@ -11,6 +11,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
 	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
   get "projects/:project_id/tasks/:id/save_start_page/" => "tasks#save_start_page"
+  get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page"
 	get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
 	post 'steps/update'
 	get "tasks/invite/:id" => "tasks#invite"
