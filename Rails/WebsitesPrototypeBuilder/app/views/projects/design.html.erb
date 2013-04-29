@@ -1,6 +1,5 @@
 <%= stylesheet_link_tag "colorpicker"%>
 <%= javascript_include_tag "colorpicker"%>
-<%= stylesheet_link_tag "sen"%>
 <%= javascript_include_tag "gridBuilder"%>
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
@@ -42,7 +41,7 @@
 								<tr class="trc">
 									<td class="tbldevs" align="center">
 										<p>Buttons</p>
-										<div width="210px" height="50px" style="padding-bottom: 10px;padding-top: 10px;overflow:visible;">
+										<div width="210px" height="70px" class="accordiondiv">
 										<div id="buttondiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
 											<button class="toolboxelement btn" onclick="return false;">??</button>
 										</div>
@@ -52,7 +51,7 @@
 								<tr class="trc">
 									<td class="tbldevs" align="center">
 										<p>Images</p>
-										<div width="210px" height="50px" style="padding-bottom: 10px;padding-top: 10px;overflow:visible;">
+										<div width="210px" height="70px"  class="accordiondiv">
 										<div id="imagediv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
 											<img src="/assets/gimg.jpg" width="20px" hight="20px" class="toolboxelement">
 										</div>
@@ -62,30 +61,34 @@
 								<tr class="trc">
 									<td class="tbldevs" align="center">
 										<p>Labels</p>
-										<div width="210px" height="50px" style="padding-bottom: 10px;padding-top: 10px;overflow:visible;">
+										<div width="210px" height="70px" class="accordiondiv">
 										<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
 											<label class="toolboxelement">????</label>
+										</div>
+										<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="border: solid;border-size: 1px;">
+											<a href="#" class="toolboxelement" onclick="return false;">????</a>
+										</div>
+										<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="margin-top:20px;">
+											<textarea class = "toolboxelement"style="resize: none;width:35px;height:35px;"> ???????</textarea>
 										</div>
 										</div>
 									</td>
 								</tr>
 								<tr class="trc">
 									<td class="tbldevs" align="center">
-										<p>Hyperlinks</p>
-										<div width="210px" height="50px" style="padding-bottom: 10px;padding-top: 10px;overflow:visible;">
-										<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="border: solid">
-											<a href="#" class="toolboxelement" onclick="return false;">????</a>
-										</div>
+										<p>Containers</p>
+										<div width="210px" height="70px" class="accordiondiv">
+											<div id="formdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#"  style="border: solid;">
+												<form class="toolboxelement">Form</form>
+											</div>
 										</div>
 									</td>
 								</tr>
 								<tr class="trc">
 									<td class="tbldevs" align="center">
 										<p>Text Areas</p>
-										<div width="210px" height="50px" style="padding-bottom: 10px;padding-top: 10px;overflow:visible;">
-										<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-											<textarea class = "toolboxelement"style="resize: none;width:35px;height:35px;"> ???????</textarea>
-										</div>
+										<div width="210px" height="70px" class="accordiondiv">
+										
 										</div>
 									</td>
 								</tr>
@@ -108,11 +111,11 @@
 						      </div>
 						      <div>
 						      	<label id = "left" class="p_prop">الموقع من اليسار </label>
-						      	<input id = "left_inp" class="inp" property="left" type = "number" min="0">
+						      	<input id = "left_inp" class="inp" property="left" type = "number" min="0" step="0.1">
 						      </div>
 						      <div>
 						      	<label id = "top" class="p_prop">الموقع من فوق </label>
-						      	<input id = "top_inp" class="inp" property="top" min="0">
+						      	<input id = "top_inp" class="inp" property="top" type = "number" min="0" step="0.1">
 						      </div>
 						      <div>
 						      	<label id = "text" class="p_prop">الكتابة </label>
@@ -120,31 +123,31 @@
 						      </div>
 						     	<div>
 						     		<label id = "width" class="p_prop">العرض </label>
-						     		<input id = "width_inp" class="inp" property="width">
+						     		<input id = "width_inp" class="inp" property="width" type = "number" min="0" step="0.1">
 						     	</div>
 						  		<div>
 						  			<label id = "height" class="p_prop">الطول </label>
-						  			<input id = "height_inp" class="inp" property="height">
+						  			<input id = "height_inp" class="inp" property="height" type = "number" min="0" step="0.1">
 						  		</div>
 						      <div>
 						      	<label id = "margin_left" class="p_prop">الحد من اليسار </label>
-						      	<input id = "margin_left_inp" class="inp" property="margin-left">
+						      	<input id = "margin_left_inp" class="inp" property="margin-left" type = "number" min="0" step="0.1">
 						      </div>
 						      <div>
 						      	<label id = "margin_right" class="p_prop">الحد من اليمين </label>
-						      	<input id = "margin_right_inp" class="inp" property="margin-right">
+						      	<input id = "margin_right_inp" class="inp" property="margin-right" type = "number" min="0" step="0.1">
 						   		</div>
 				      		<div>
 				      			<label id = "margin_top" class="p_prop">الحد من فوق </label>
-				      			<input id = "margin_top_inp" class="inp" property="margin-top">
+				      			<input id = "margin_top_inp" class="inp" property="margin-top" type = "number" min="0" step="0.1">
 				      		</div>
 				      		<div>
 				      			<label id = "margin_bottom" class="p_prop">الحد من تحت </label>
-				      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom">
+				      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom" type = "number" min="0" step="0.1">
 				      		</div>
 				      		<div>
 				      			<label id = "font_size" class="p_prop">حجم الخط </label>
-				      			<input id = "font_size_inp" class="inp" property="font-size">
+				      			<input id = "font_size_inp" class="inp" property="font-size" type = "number" min="0" step="1">
 				      		</div>
 				      		<div>
 				      			<label id = "font_color" class="p_prop"class="p_prop">لون الخط </label>
@@ -158,21 +161,21 @@
 						    </div>
 							    	<!-- division containing the event controls of the components -->
 							  <div class="tab-pane properties" id="events">
-							    <label>نوع الحدث</label>
-									<select id = "event_selector" style="width: 180px">
+							    <label style="text-align: right;margin-right: 20px;">نوع الحدث</label>
+									<select id = "event_selector" style="width: 180px; margin-right:10px;">
 										<option value="onClick">عند الضغط</option>
 										<option value="onHover">عند التحليق</option>
 									</select>
-							    <label>ردة الفعل</label>
-									<select id = "action_selector" style="width: 180px">
+							    <label style="text-align: right;margin-right: 20px;">ردة الفعل</label>
+									<select id = "action_selector" style="width: 180px; margin-right:10px;">
 										<option value="url">رابط</option>
 										<option value="message">رسالة</option>
 									</select>
-									<label>حدد الرسالة أو الرابط</label>
-							    <input id = "action_value" style="width: 175px;border-radius: 5px;"></input>
+									<label style="text-align: right;margin-right: 20px;">حدد الرسالة أو الرابط</label>
+							    <input id = "action_value" style="width: 175px;text-align: right; margin-right:10px;"></input>
 							    <br>
 							    <br>
-							    <button style="margin-left: 50px;border-radius: 5px;" id="save_event">حفظ الحدث</button>
+							    <button style="margin-right: 70px;border-radius: 2px;" id="save_event">حفظ الحدث</button>
 					    	</div>
 					  	</div>
 						</div>

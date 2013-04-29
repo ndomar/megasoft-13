@@ -22,6 +22,8 @@ $(document).ready(function (){
 
  	});
 */
+
+
 	$( "#accordion" ).accordion({
   		collapsible: true,
   		active:false,
@@ -37,7 +39,7 @@ $(document).ready(function (){
 		"text-decoration": "none",
 		"list-style": "none",
 		"width": "210px",
-		"margin-top": "10px",
+		"margin-top": "30px",
 		"margin-right": "10px"
 	});
 

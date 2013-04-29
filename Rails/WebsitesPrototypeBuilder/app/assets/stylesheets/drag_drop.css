@@ -76,6 +76,8 @@ body {
 	border-radius: 5px;
 	height: 50px;
 	text-align: center;
+	display: inline-block;
+	vertical-align: center;
 }
 
 
@@ -93,12 +95,13 @@ body {
 }
 
 .properties{
-	width: 229px;
+	width: 219px;
 	background-color: transparent;
 	height: 220px;
 	overflow-y: scroll;
-	text-align: left;
+	text-align: right;
 	visibility: hidden;
+	margin-right: 10px;
 }
 
 .prop_panel{
@@ -111,18 +114,17 @@ body {
 	/*visibility: hidden;*/
 	border-radius: 5px;
 	text-align: center;
-	float: right;
+	/*float: left;*/
 	/*margin-left: 10%;*/
-	/*display: inline-block;*/
+	display: inline-block;
 }
 
 .p_prop{
 	/*float: left;*/
 	/*visibility: hidden;*/
-	/*display: inline-block;*/
+	display: inline-block;
 	width: 90px;
 	text-align: right;
-	right: 0px;
 }
 
 .trc{
@@ -220,4 +222,5 @@ progress{
 	padding-bottom: 10px;
 	padding-top: 10px;
 	overflow:visible;
+	height: 70px;
 }
