@@ -13,7 +13,7 @@
 			<%show = false%>
 			</br>
 			<%= f.fields_for :answer_questionnaires do |builder| %>
-      <!-- Rendering the answer fields -->
+      	<!-- Rendering the answer fields -->
       	<%@c_all = ""%>
       	<%if builder.object.id == question.id && show ==false%>
 					<!-- checking question type to give the correct form -->
