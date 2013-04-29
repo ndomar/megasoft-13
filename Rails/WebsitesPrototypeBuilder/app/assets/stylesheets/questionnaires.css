@@ -1,26 +1,10 @@
+/*<!-- author ahmed jihad -->*/
 textarea {
 	resize: none;
 }
-body
-{
-	background: -webkit-gradient(linear, center top, center bottom, from(#F0F0F0 ), to(#ffffff));
-	background: -webkit-linear-gradient(#F0F0F0  , #ffffff);
-	background: -moz-linear-gradient(#F0F0F0  , #ffffff);
-	background: -o-linear-gradient(#F0F0F0  , #ffffff);
-	background: -ms-linear-gradient(#F0F0F0  , #ffffff);
-	background: linear-gradient(#F0F0F0  , #ffffff);
-}
 #main_form
 {
-	border-radius:10px;
-	padding-top: 10pt;
-	padding-bottom: 10pt;
-  padding-right: 15pt;
-  padding-left: 5pt;
-  -moz-box-shadow:    inset 0 0 50px #989898;
-  -webkit-box-shadow: inset 0 0 50px #989898;
-  box-shadow: 0 0 8px 1px #989898;
-  background: white;
+text-align: right;
 }
 
 .submit {
@@ -43,4 +27,31 @@ body
 .submit:hover {
 	background-color:#e9e9e9;
 }
-
+.question
+{
+	color:#545454;
+}
+.container
+{
+	top:10%;
+	left: 25%;
+	position: absolute;
+	background: -webkit-gradient(linear, center top, center bottom, from(#e9e9e9 ), to(#f6f6f6));
+	background: -webkit-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: -moz-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: -o-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: -ms-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: linear-gradient(#e9e9e9  , #f6f6f6);
+	border-radius:5px;
+	opacity: 0.85;
+	overflow-y:auto; 
+}
+.please{
+	color: black;
+}
+legend{
+	border-bottom-color:black;
+}
+hr{
+	border-bottom-color: #a8a8a8;
+}

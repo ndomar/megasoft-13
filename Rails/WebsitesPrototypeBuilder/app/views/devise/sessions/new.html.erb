@@ -1,31 +1,103 @@
-<html>
-<body dir="rtl">
-<h2>ﺗﺴﺠﻴﻞ اﻟﺪﺧﻮﻝ</h2>
+<%= stylesheet_link_tag "homepage"%>
+<%= javascript_include_tag "homepage"%>
+<!-- author ahmed jihad -->
+<body>
+  <div id="" class = "navbar-fixed-top" >
+<!-- the ribbon body -->
+  <div class="rectangle bar_top">
+  <!-- the navigation links -->
+    <ul id="navigation">
+      <li><div id= "p_three" class="tabBar page3" ><a>لمحة عن الموقع</div></a></li>
+      <li><div id = "p_two" class="tabBar page2" ><a>من نحن ؟</div></a></li>
+      <li><div id = "p_one" class="tabBar active page1" ><a>شاركنا</div></a></li>    
+    </ul>
+    <a href="#"><div width="44px" height="51px" class="logo"></div></a>
+  </div>
+</div>
+  <%# Link to sign in with facebook and the login button %>
+  <div id = "icons">
+    <table class = "icons" align="left">
+      <tr>
+        <th><%= link_to_rpx image_tag("/images/facebook_icon.png" , :class=>"facebook_icon" ), designer_session_url%></th>
+        <th><img src="/images/login-icon.png" class ="login_image" onclick= "sliding_form()"/></th>
+      </tr>
+    </table>
+  </div>
+  <!-- login form -->
+  <div class="login_form span2" dir = "rtl">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <p>
+        <i class="icon-user icon-large"></i>
+        <%= f.email_field :email, :placeholder=> "اﻟﺒﺮﻳﺪ اﻹﻟﻜﺘﺮﻭﻧﻲ", :required =>true %>
+      </p>
+      <p>
+        <i class="icon-lock icon-large"></i>
+        <%= f.password_field :password,:placeholder=> "ﻛﻠﻤﺔ اﻟﺴﺮ", :required =>true %>
+      </p>
+      <!-- links for remember password and remmeber me -->        
+      <% if devise_mapping.rememberable? -%>
+        <div>ﺗﺬﻛﺮﻧﻲ <%= f.check_box :remember_me %></div> <!-- remember me-->
+        <p class = "forgot_password"><%= render "devise/shared/links" %></p>
+        <div align="left"><%= f.submit "ﺩﺧﻮﻝ", options = {:class => "btn btn-info"} %></div>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- background image -->
+  <div class ="pattern">
+    <img src="/images/pattern.png"/>
+  </div>
+  <!-- carousel for the slideshow -->
+  <div>
+    <div id="slide" class="carousel slide">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="image_background active item">
+          <img class = "slide_images" src="/images/1.jpg"/>
+        </div>
+        <div class="image_background item">
+          <img class = "slide_images" src="/images/2.jpg"/>
+        </div>
+        <div class="image_background item">
+          <img class = "slide_images" src="/images/3.jpg"/>
+        </div>
+      </div>
+      <!-- Carousel nav -->
+      <a class="slide_control_left carousel-control" href="#slide" data-slide="prev"><img src="/images/left_arrow.png"/></a>
+      <div class="slide_control_right">
+      <a class="slide_control_right carousel-control" href="#slide" data-slide="next"><img class = "slide_r_img" src="/images/right_arrow.png"/></a>
+      </div>
+    </div>
+  </div>
+  <!-- register button -->
+  <div class = "register">
+  <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to image_tag("/images/sign_up.png" , :class=>"sign_up") , new_registration_path(resource_name) %> <!-- sign up -->
+  <% end%>
+  </div>
+  <!-- who are we div 2nd page -->
+  <div id = "who_are_we">
+    <div align = "center" class = "info">
+    <img src="/images/arability_info.png"/>
+    </div>
+  </div>
+  <!-- glimpse div 3rd page -->
+  <div id = "glimpse">
+    <img class="under" src="/images/under_construction.png"/>
+  </div>
+  <!-- navigation bar for pages -->
+  <footer>
 
-<img src="/images/login-icon.png"/>
-<br /><br />
-
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-
-  <div><label>اﻟﺒﺮﻳﺪ اﻹﻟﻜﺘﺮﻭﻧﻲ</label><br /> <!-- :email -->
-  <%= f.email_field :email, :autofocus => true %></div>
-  <br />
-
-  <div><label>ﻛﻠﻤﺔ اﻟﺴﺮ</label><br />  <!--:password-->
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div>ﺗﺬﻛﺮﻧﻲ <%= f.check_box :remember_me %></div> <!-- remember me-->
-  <% end %>
-  <br />
-  <div><%= f.submit "ﺗﺴﺠﻴﻞ ﺩﺧﻮﻝ", options = {:class => "btn btn-info"} %></div>
-
-  <br />  
-  <%# Link to sign in with facebook %>
-  <h4><%= link_to_rpx image_tag("/images/facebook_login_button_arabic.png"), designer_session_url %></h4>
-  <br />
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <div class="navbar navbar-fixed-bottom">
+      <div class="navbar-inner foot">
+        <a href="https://twitter.com/3arability"><img  class = "twitter" src="/images/twitter.png"/></a>
+        <ul class="nav">
+          
+          <li class = "left"><a id = "left_link" >لمحة عن الموقع</a></li>
+          <li class = "center"><a id = "center_link">من نحن ؟</a></li>
+          <li class = "right"><a id = "right_link">شاركنا</a></li>
+        </ul>
+          <a class ="copy">&copy;2013 ﺃﺭاﺑﻠﻴﺘﻲ</a>
+      </div>
+    </div>
+  </footer>
 </body>
-</html>

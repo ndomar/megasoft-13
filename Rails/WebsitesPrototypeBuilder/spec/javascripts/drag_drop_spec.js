@@ -6,3 +6,4 @@ describe("DragDrop", function() {
     expect($('<div id="toolbox">')).toExist();
   });
 });
+

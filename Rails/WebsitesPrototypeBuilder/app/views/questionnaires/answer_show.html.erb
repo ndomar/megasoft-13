@@ -1,14 +1,15 @@
+<!-- author ahmed jihad -->
 <!-- the answer form for the reviewer to answer -->
 <%= stylesheet_link_tag "questionnaires"%>
-<div dir = "rtl" align = "right" class = "container span11">
+<div dir = "rtl" align = "right">
 	<%= nested_form_for (@questionnaire) do |f| %>
 	<legend align="right"><%=@questionnaire.title%></legend>
 	<div id = 'main_form' >
-		<label align="right">الرجاء الإجابة على الأسئلة التالية</label>
+		<label align="right" class = "please">الرجاء الإجابة على الأسئلة التالية</label>
 		<hr>
 		<hr>
 		<% @questionnaire.qquestions.each do |question| %>
-			<strong><%=question.body %></strong>
+			<strong class ="question"><%=question.body %></strong>
 			<%show = false%>
 			</br>
 			<%= f.fields_for :answer_questionnaires do |builder| %>
