@@ -221,9 +221,9 @@
 	width: 100px;
 	height: 100px;
 	background-size: contain;
-	overflow: hidden;
 	background-repeat: no-repeat;
 	background-image: url(/assets/crumpled.png);
+	background-color: transparent;
 }
 
 .main-wrapper{
@@ -300,6 +300,26 @@
 	-webkit-transform: skewY(8deg);
 	color: white;
 	text-align: right;
+}
+
+.error-box{
+	background-color: #F9EDBE;
+    border-radius: 2px 2px 2px 2px;
+    color: black;
+    left: 40%;
+    margin: -24px;
+    padding: 2px;
+    position: absolute;
+    text-align: center;
+    top: 10%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #f0c36d;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    display: none;
 }
 
 img{

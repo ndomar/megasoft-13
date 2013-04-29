@@ -1,3 +1,5 @@
+# encoding: utf-8 
+
 ##
 # represents a card in the card sortign system 
 # in the card sorting system
@@ -10,8 +12,8 @@
 class Card < ActiveRecord::Base
   attr_accessible :cardsort_id, :description, :group_id, :title
 
-  validates :title, :presence => true,
-  					:uniqueness => {:scope => :cardsort_id}
+  validates :title, :presence =>  { :message => "اسم البطاقة لا يمكن ان يكون خاليا"},
+ 					:uniqueness => {:scope => :cardsort_id, :message => "%{value} موجود بالفعل"} 
   validates :cardsort_id, :presence => true
 
   belongs_to :cardsort

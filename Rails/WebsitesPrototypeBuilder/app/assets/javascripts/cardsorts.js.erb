@@ -26,6 +26,10 @@ function initCardsView() {
 		revert: 'invalid',
 		items: ".card"
 	});
+		$(cardsList).sortable({
+		revert: 'invalid',
+		items: "tr"
+	});
 	$(cardsView).draggable({
 		handle: '#cards-tag',
 		axis: 'x',
@@ -49,6 +53,10 @@ function initGroupsView() {
 	$(groupsThumbnail).sortable({
 		revert: 'invalid',
 		items: ".group"
+	});
+	$(groupsList).sortable({
+		revert: 'invalid',
+		items: "tr"
 	});
 	$(groupsView).draggable({
 		handle: '#groups-tag',
@@ -125,7 +133,7 @@ var tempClass;
 
 function initTrash() {
 	$('#trash').droppable({
-		accept: "li",
+		accept: "li,tr",
 		over: function(event, ui) {
 			tempClass = $(ui).attr('class');
 			$(ui.helper).addClass('crumpled');

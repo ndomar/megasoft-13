@@ -65,7 +65,7 @@ class CardsortsController < ApplicationController
 		@card = Cardsort.find(params[:cardsort_id]).cards.find(params[:card_id]);
 		@card.destroy
 		respond_to do |format|
-			format.js { render :nothing => true}
+			format.js { render "delete_card"}
 		end
 	end
 
@@ -74,7 +74,7 @@ class CardsortsController < ApplicationController
 		@group = Cardsort.find(params[:cardsort_id]).groups.find(params[:group_id]);
 		@group.destroy
 		respond_to do |format|
-			format.js { render :nothing => true}
+			format.js { render "delete_group"}
 		end
 	end
 end
