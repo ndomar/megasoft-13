@@ -47,7 +47,7 @@ var top_padding = 0;
 var bottom_limit = $('footer').offset();
 var box_height = $('#side_content').height();
 $(window).scroll(function(){
-var top_window = $(window).scrollTop();
+  var top_window = $(window).scrollTop();
 	if (top_window > starting_position.top && top_window < bottom_limit.top - box_height){
 		$('#side_content').stop().animate({top: top_window - starting_position.top + top_padding}, 400);
 	} else if (top_window > bottom_limit.top - starting_position.top - box_height){
@@ -55,4 +55,11 @@ var top_window = $(window).scrollTop();
 	} else {
 		$('#side_content').stop().animate({top: 0 }, 400);
 	}});
+
+$("#change a").each(function(){
+    //$(this).attr('href','');
+});
+
+$('#co').load('/4/agao.html');
+
 });

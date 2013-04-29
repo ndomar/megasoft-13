@@ -342,3 +342,7 @@ input[type="color"],
 #sidebar::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(69, 162, 224,0.4); 
 }
+
+#da{
+	display: none;
+}

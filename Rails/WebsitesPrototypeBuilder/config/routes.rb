@@ -37,6 +37,8 @@ post 'steps/update'
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
+  get "pages/download"
+  get "pages/download_project"
   get "questionnaires/answer_show"
   get "questionnaires/index"
 
