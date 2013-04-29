@@ -127,7 +127,7 @@ class TasksController < ApplicationController
       @Reviewer.save
     end
      
-    @inv = Task.find(params[:id]).send_invitation(@Reviewer, params[:invitation_message],
+    @inv = Task.find(params[:task_id]).send_invitation(@Reviewer, params[:invitation_message],
      "http://localhost:3000/projects/#{params[:project_id]}/tasks/#{params[:task_id]}/reviewers/#{@Reviewer.id}") 
     respond_to do |format|
       format.js {render 'invite_user', :status => :ok}

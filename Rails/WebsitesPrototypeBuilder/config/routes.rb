@@ -36,7 +36,7 @@ end
 #end
   
   
-  get "/projects/:project_id/tasks/:task_id/reviewers:reviewer_id" => 'tasks#makesure'
+  get "/projects/:project_id/tasks/:task_id/reviewers:reviewer_id" => 'tasks#task_reviewer'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
   get "tasks/invite_user" => "tasks#invite_user"
