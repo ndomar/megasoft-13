@@ -68,75 +68,57 @@ describe TasksController do
     response.should render_template("edit_steps")
   end
 
-  describe "GET index" do
+  describe "CRUD actions test" do 
+    before(:each) do
+      controller.class.skip_before_filter :authenticate_designer!
+      controller.class.skip_before_filter :checkDesigner
+      designer = FactoryGirl.create(:designer)
+      @project = FactoryGirl.create(:project)
+      @task = @project.tasks.create(FactoryGirl.attributes_for(:task))
+    end
+  
     it "renders index view" do
-      project = FactoryGirl.create(:project)
-      get :index, :project_id => project
+      get :index, :project_id => @project
       response.should render_template('index')
     end
-  end
-
-  describe "Click button create new task" do
+    
     it "redirects to new view" do
-      project = FactoryGirl.create(:project)
-      get :new, :project_id => project
+      get :new, :project_id => @project
       response.should render_template('new')
     end
-  end
-
-  describe "Create new Task" do
+    
     it "creates instance task that belongs to project id and has name field" do 
-      project = FactoryGirl.create(:project)
-      get :create, :project_id => project, :task => FactoryGirl.attributes_for(:task)
+      get :create, :project_id => @project, :task => @task.attributes
       response.should redirect_to project_tasks_path
     end
 
     it "renders new view if name field is missing" do
-      project = FactoryGirl.create(:project)
-      get :create, :project_id => project, :task => {:name => ""}
+      get :create, :project_id => @project, :task => {:name => ""}
       response.should render_template 'new'
     end
-  end
 
-  describe "Click button edit task" do
     it "redirects to edit view" do
-      project = FactoryGirl.create(:project)
-      task = project.tasks.create(FactoryGirl.attributes_for(:task))
-      get :edit, :project_id => project, :id => task
+      get :edit, :project_id => @project, :id => @task
       response.should render_template('edit')
     end
-  end  
-
-  describe "Update a certain task" do
+    
     it "redirects to index after updating the parameters" do
-      project = FactoryGirl.create(:project)
-      task = project.tasks.create(FactoryGirl.attributes_for(:task))
-      get :update, :project_id => project, :id => task, :task => {:name => "Edited Test"}
+      get :update, :project_id => @project, :id => @task, :task => {:name => "Edited Test"}
       response.should redirect_to project_tasks_path
     end
 
     it "renders edit view if name field is missing" do
-      project = FactoryGirl.create(:project)
-      task = project.tasks.create(FactoryGirl.attributes_for(:task))
-      get :update, :project_id => project, :id => task, :task => {:name => ""}
+      get :update, :project_id => @project, :id => @task, :task => {:name => ""}
       response.should render_template 'edit'
     end
-  end
-
-  describe "delete a certain task" do
+    
     it "deletes the task and redirect_to the tasks index" do
-      project = FactoryGirl.create(:project)
-      task = project.tasks.create(FactoryGirl.attributes_for(:task))
-      get :destroy, :project_id => project, :id => task
+      get :destroy, :project_id => @project, :id => @task
       response.should redirect_to project_tasks_path
     end
-  end
 
-  describe "show statistics page of one task" do
     it "renders the show view of the task" do
-      project = FactoryGirl.create(:project)
-      task = project.tasks.create(FactoryGirl.attributes_for(:task))
-      get :show, :project_id => project, :id => task
+      get :show, :project_id => @project, :id => @task
       response.should render_template 'show'
     end
   end

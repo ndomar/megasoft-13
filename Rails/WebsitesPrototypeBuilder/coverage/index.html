@@ -14,27 +14,27 @@
       <img src="./assets/0.7.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2013-04-27T21:27:23+02:00">2013-04-27T21:27:23+02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2013-04-29T18:57:52+02:00">2013-04-29T18:57:52+02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">51.71%</span></span>
+    (<span class="covered_percent"><span class="red">59.92%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.88
+         0.89
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>43</b> files in total.
-    <b>497</b> relevant lines. 
-    <span class="green"><b>257</b> lines covered</span> and
-    <span class="red"><b>240</b> lines missed </span>
+    <b>484</b> relevant lines. 
+    <span class="green"><b>290</b> lines covered</span> and
+    <span class="red"><b>194</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -62,12 +62,12 @@
       
       <tr>
         <td class="strong"><a href="#d8d2eb09cd377204cffb9d3da826c464eeb911c0" class="src_link" title="app/controllers/tasks_controller.rb">app/controllers/tasks_controller.rb</a></td>
-        <td class="red strong">16.67 %</td>
-        <td>265</td>
-        <td>102</td>
-        <td>17</td>
-        <td>85</td>
-        <td>0.2</td>
+        <td class="red strong">56.18 %</td>
+        <td>245</td>
+        <td>89</td>
+        <td>50</td>
+        <td>39</td>
+        <td>0.7</td>
       </tr>
       
       <tr>
@@ -535,11 +535,11 @@
         <div class="source_table" id="d8d2eb09cd377204cffb9d3da826c464eeb911c0">
   <div class="header">
     <h3>app/controllers/tasks_controller.rb</h3>
-    <h4><span class="red">16.67 %</span> covered</h4>
+    <h4><span class="red">56.18 %</span> covered</h4>
     <div>
-      <b>102</b> relevant lines. 
-      <span class="green"><b>17</b> lines covered</span> and
-      <span class="red"><b>85</b> lines missed.</span>
+      <b>89</b> relevant lines. 
+      <span class="green"><b>50</b> lines covered</span> and
+      <span class="red"><b>39</b> lines missed.</span>
     </div>
   </div>
   
@@ -570,886 +570,886 @@
           <code class="ruby">before_filter :authenticate_designer!</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">before_filter :checkDesigner</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="6">
           
           
-          <code class="ruby">## </code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="7">
           
           
-          <code class="ruby">#finds the current task, it's page, creates a new instance of step_answer and task_result</code>
+          <code class="ruby">## </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="8">
           
           
-          <code class="ruby"># * *Args*    :</code>
+          <code class="ruby">#finds the current task, it's page, creates a new instance of step_answer and task_result</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="9">
           
           
-          <code class="ruby">#   -+@task+ -&gt; the current task</code>
+          <code class="ruby"># * *Args*    :</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="10">
           
           
-          <code class="ruby">#   -+@page+ -&gt; the current task's page</code>
+          <code class="ruby">#   -+@task+ -&gt; the current task</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
           
           
-          <code class="ruby">#   -+@step+ -&gt; the first step of the current task</code>
+          <code class="ruby">#   -+@page+ -&gt; the current task's page</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="12">
           
           
-          <code class="ruby">#   -+@step_answer+ -&gt; a new instance of step_answer contains the info of the current step</code>
+          <code class="ruby">#   -+@step+ -&gt; the first step of the current task</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="13">
           
           
-          <code class="ruby">#   -+@task_result+ -&gt; a new instance of task_result contains the info about the current task's results</code>
+          <code class="ruby">#   -+@step_answer+ -&gt; a new instance of step_answer contains the info of the current step</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="14">
           
           
-          <code class="ruby"># * *Returns*    :</code>
+          <code class="ruby">#   -+@task_result+ -&gt; a new instance of task_result contains the info about the current task's results</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="15">
           
           
-          <code class="ruby"># - the current task, current step, step_answer for the current_task and task_result for the current task</code>
+          <code class="ruby"># * *Returns*    :</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="16">
           
           
+          <code class="ruby"># - the current task, current step, step_answer for the current_task and task_result for the current task</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="17">
+          
+          
           <code class="ruby">#</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="17">
+        <li class="covered" data-hits="1" data-linenumber="18">
           <span class="hits">1</span>
           
           <code class="ruby">  def task_reviewer</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="18">
+        <li class="missed" data-hits="0" data-linenumber="19">
           
           
           <code class="ruby">    if Project.all.last.id &lt;= params[:project_id].to_f</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="never" data-hits="" data-linenumber="20">
           
           
           <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="20">
-          
-          
-          <code class="ruby">      @project=Project.find(params[:project_id])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="21">
           
           
-          <code class="ruby">      @reviewer= Reviewer.find(params[:reviewer_id])</code>
+          <code class="ruby">      @project=Project.find(params[:project_id])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="22">
           
           
-          <code class="ruby">      @task= @project.tasks.find(params[:task_id])</code>
+          <code class="ruby">      @reviewer= Reviewer.find(params[:reviewer_id])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="23">
           
           
-          <code class="ruby">      @page= Page.find(1)</code>
+          <code class="ruby">      @task= @project.tasks.find(params[:task_id])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="24">
           
           
-          <code class="ruby">      @step=@task.steps.find(params[:step_id])</code>
+          <code class="ruby">      @page= Page.find(1)</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="25">
           
           
-          <code class="ruby">      @step_answer=@step.step_answers.new</code>
+          <code class="ruby">      @step=@task.steps.find(params[:step_id])</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="26">
           
           
-          <code class="ruby">      @step_answer.save</code>
+          <code class="ruby">      @step_answer=@step.step_answers.new</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="27">
           
           
-          <code class="ruby">      @task_result=@task.task_results.new</code>
+          <code class="ruby">      @step_answer.save</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="28">
           
           
-          <code class="ruby">      @task_result.save</code>
+          <code class="ruby">      @task_result=@task.task_results.new</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="29">
           
           
+          <code class="ruby">      @task_result.save</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="30">
+          
+          
           <code class="ruby">      session[:task_result_id]= @task_result.id </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="30">
+        <li class="never" data-hits="" data-linenumber="31">
           
           
           <code class="ruby">    else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="31">
+        <li class="missed" data-hits="0" data-linenumber="32">
           
           
           <code class="ruby">      format.html { render :template =&gt; &quot;tasks/task_reviewer_error&quot; }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
         <li class="never" data-hits="" data-linenumber="33">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="34">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="35">
           
           
-          <code class="ruby">  ## </code>
+          <code class="ruby">  </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="36">
           
           
-          <code class="ruby">  # passes the list of tasks that belongs to the project to the index view</code>
+          <code class="ruby">  ## </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="37">
           
           
-          <code class="ruby">  # * *Args*    :</code>
+          <code class="ruby">  # passes the list of tasks that belongs to the project to the index view</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="38">
           
           
-          <code class="ruby">  #   -+project_id+-&gt;: id of current project</code>
+          <code class="ruby">  # * *Args*    :</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="39">
           
           
-          <code class="ruby">  # * *Returns* :</code>
+          <code class="ruby">  #   -+project_id+-&gt;: id of current project</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="40">
           
           
-          <code class="ruby">  #   - list of tasks that belongs to project_id</code>
+          <code class="ruby">  # * *Returns* :</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="41">
           
           
+          <code class="ruby">  #   - list of tasks that belongs to project_id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="42">
+          
+          
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="42">
+        <li class="covered" data-hits="1" data-linenumber="43">
           <span class="hits">1</span>
           
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="43">
+        <li class="covered" data-hits="1" data-linenumber="44">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    if checkDesigner</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="44">
-          
-          
-          <code class="ruby">      return</code>
+          <code class="ruby">    @tasks = Project.find(params[:project_id]).tasks.all</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="45">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="46">
-          
-          
-          <code class="ruby">    @tasks = Project.find(params[:project_id]).tasks.all</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="47">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="48">
-          
+        <li class="covered" data-hits="1" data-linenumber="46">
+          <span class="hits">1</span>
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="49">
-          
+        <li class="covered" data-hits="1" data-linenumber="47">
+          <span class="hits">1</span>
           
           <code class="ruby">      format.html # index.html.erb</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="50">
-          
+        <li class="covered" data-hits="1" data-linenumber="48">
+          <span class="hits">1</span>
           
           <code class="ruby">      format.json { render json: @tasks }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="51">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby">  </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="52">
           
           
-          <code class="ruby">  end</code>
+          <code class="ruby">  ## </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="53">
           
           
-          <code class="ruby">  </code>
+          <code class="ruby">  # Make a new instance of task and render new view that has the form</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="54">
           
           
-          <code class="ruby">  ## </code>
+          <code class="ruby">  # * *Args*    :</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="55">
           
           
-          <code class="ruby">  # Make a new instance of task and render new view that has the form</code>
+          <code class="ruby">  #   -+project_id+-&gt;: id of current project</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="56">
           
           
-          <code class="ruby">  # * *Args*    :</code>
+          <code class="ruby">  # * *Returns* :</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="57">
           
           
-          <code class="ruby">  #   -+project_id+-&gt;: id of current project</code>
+          <code class="ruby">  #   -renders form to create new task</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="58">
           
           
-          <code class="ruby">  # * *Returns* :</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="59">
-          
-          
-          <code class="ruby">  #   -renders form to create new task</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="60">
-          
-          
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="61">
+        <li class="covered" data-hits="1" data-linenumber="59">
           <span class="hits">1</span>
           
           <code class="ruby">  def new</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="62">
-          
-          
-          <code class="ruby">    if checkDesigner</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="63">
-          
-          
-          <code class="ruby">      return</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="64">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="65">
-          
+        <li class="covered" data-hits="1" data-linenumber="60">
+          <span class="hits">1</span>
           
           <code class="ruby">    @task = Task.new</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="66">
+        <li class="never" data-hits="" data-linenumber="61">
           
           
           <code class="ruby">    </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="67">
-          
+        <li class="covered" data-hits="1" data-linenumber="62">
+          <span class="hits">1</span>
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="68">
-          
+        <li class="covered" data-hits="1" data-linenumber="63">
+          <span class="hits">1</span>
           
           <code class="ruby">      format.html # new.html.erb</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="69">
-          
+        <li class="covered" data-hits="1" data-linenumber="64">
+          <span class="hits">1</span>
           
           <code class="ruby">      format.json { render json: @task }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="70">
+        <li class="never" data-hits="" data-linenumber="65">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="71">
+        <li class="never" data-hits="" data-linenumber="66">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="72">
+        <li class="never" data-hits="" data-linenumber="67">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="73">
+        <li class="never" data-hits="" data-linenumber="68">
           
           
           <code class="ruby">  ##</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
+        <li class="never" data-hits="" data-linenumber="69">
           
           
           <code class="ruby">  # show a specific task by searchinng for its id</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="75">
+        <li class="never" data-hits="" data-linenumber="70">
           
           
           <code class="ruby">  #* *Args*    :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="never" data-hits="" data-linenumber="71">
           
           
           <code class="ruby">  #   -+Task+-&gt;: an instance of the class task</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="never" data-hits="" data-linenumber="72">
           
           
           <code class="ruby">  #* *Returns*    :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="78">
+        <li class="never" data-hits="" data-linenumber="73">
           
           
           <code class="ruby">  #   -the details of this task and renders itas an html</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="79">
+        <li class="never" data-hits="" data-linenumber="74">
           
           
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="80">
+        <li class="covered" data-hits="1" data-linenumber="75">
           <span class="hits">1</span>
           
           <code class="ruby">  def show</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="81">
+        <li class="covered" data-hits="1" data-linenumber="76">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby">    if checkDesigner</code>
+          <code class="ruby">    @task = Task.find(params[:id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="82">
+        <li class="never" data-hits="" data-linenumber="77">
           
           
-          <code class="ruby">      return</code>
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="78">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    respond_to do |format|</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="79">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      format.html # show.html.erb</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="80">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      format.json { render :json =&gt; @task }</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="81">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="82">
+          
+          
+          <code class="ruby">  end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="83">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="84">
+        <li class="never" data-hits="" data-linenumber="84">
           
           
-          <code class="ruby">    @task = Task.find(params[:id])</code>
+          <code class="ruby">  ## </code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="85">
           
           
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="86">
-          
-          
-          <code class="ruby">    respond_to do |format|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="87">
-          
-          
-          <code class="ruby">      format.html # show.html.erb</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="88">
-          
-          
-          <code class="ruby">      format.json { render :json =&gt; @task }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="89">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="90">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="91">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="92">
-          
-          
-          <code class="ruby">  ## </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="93">
-          
-          
           <code class="ruby">  # Find the task with the project_id and render edit view that has the form to edit the task</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="94">
+        <li class="never" data-hits="" data-linenumber="86">
           
           
           <code class="ruby">  # * *Args*    :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="95">
+        <li class="never" data-hits="" data-linenumber="87">
           
           
           <code class="ruby">  #   -+project_id+-&gt;: id of current project</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="96">
+        <li class="never" data-hits="" data-linenumber="88">
           
           
           <code class="ruby">  #   -+id+-&gt;: id of current task</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="never" data-hits="" data-linenumber="89">
           
           
           <code class="ruby">  # * *Returns* :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="98">
+        <li class="never" data-hits="" data-linenumber="90">
           
           
           <code class="ruby">  #   -returns the task to be edited and renders the edit form</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="99">
+        <li class="never" data-hits="" data-linenumber="91">
           
           
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="100">
+        <li class="covered" data-hits="1" data-linenumber="92">
           <span class="hits">1</span>
           
           <code class="ruby">  def edit</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="101">
-          
-          
-          <code class="ruby">    if checkDesigner</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="102">
-          
-          
-          <code class="ruby">      return</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="103">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="104">
-          
+        <li class="covered" data-hits="1" data-linenumber="93">
+          <span class="hits">1</span>
           
           <code class="ruby">    @task = Project.find(params[:project_id]).tasks.find(params[:id])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="105">
+        <li class="never" data-hits="" data-linenumber="94">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="106">
+        <li class="never" data-hits="" data-linenumber="95">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="107">
+        <li class="never" data-hits="" data-linenumber="96">
           
           
           <code class="ruby">  ## </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="108">
+        <li class="never" data-hits="" data-linenumber="97">
           
           
           <code class="ruby">  # Use the :task parameter to create an instance of tasks related to current project</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="109">
+        <li class="never" data-hits="" data-linenumber="98">
           
           
           <code class="ruby">  # * *Args*    :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="110">
+        <li class="never" data-hits="" data-linenumber="99">
           
           
           <code class="ruby">  #   -+project_id+-&gt;: id of current project </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="111">
+        <li class="never" data-hits="" data-linenumber="100">
           
           
           <code class="ruby">  # * *Returns* :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="112">
+        <li class="never" data-hits="" data-linenumber="101">
           
           
           <code class="ruby">  #   - calls the new action if task.save is true, otherwise redirects to index page</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="113">
+        <li class="never" data-hits="" data-linenumber="102">
           
           
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="114">
+        <li class="covered" data-hits="1" data-linenumber="103">
           <span class="hits">1</span>
           
           <code class="ruby">  def create</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="115">
-          
-          
-          <code class="ruby">    if checkDesigner</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="116">
-          
-          
-          <code class="ruby">      return</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="117">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="118">
-          
+        <li class="covered" data-hits="2" data-linenumber="104">
+          <span class="hits">2</span>
           
           <code class="ruby">    @task = Project.find(params[:project_id]).tasks.new(params[:task])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="119">
-          
+        <li class="covered" data-hits="2" data-linenumber="105">
+          <span class="hits">2</span>
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="120">
-          
+        <li class="covered" data-hits="2" data-linenumber="106">
+          <span class="hits">2</span>
           
           <code class="ruby">      if @task.save</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="121">
-          
+        <li class="covered" data-hits="2" data-linenumber="107">
+          <span class="hits">2</span>
           
           <code class="ruby">        format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="122">
-          
+        <li class="covered" data-hits="1" data-linenumber="108">
+          <span class="hits">1</span>
           
           <code class="ruby">        format.json { render json: @task, status: :created, location: @task }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="123">
+        <li class="never" data-hits="" data-linenumber="109">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="124">
-          
+        <li class="covered" data-hits="2" data-linenumber="110">
+          <span class="hits">2</span>
           
           <code class="ruby">        format.html { render action: &quot;new&quot; }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="125">
-          
+        <li class="covered" data-hits="1" data-linenumber="111">
+          <span class="hits">1</span>
           
           <code class="ruby">        format.json { render json: @task.errors, status: :unprocessable_entity }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="126">
+        <li class="never" data-hits="" data-linenumber="112">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="127">
+        <li class="never" data-hits="" data-linenumber="113">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="128">
+        <li class="never" data-hits="" data-linenumber="114">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="129">
+        <li class="never" data-hits="" data-linenumber="115">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="130">
+        <li class="never" data-hits="" data-linenumber="116">
           
           
           <code class="ruby">  ## </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="131">
+        <li class="never" data-hits="" data-linenumber="117">
           
           
           <code class="ruby">  # get the new parameters and update the database</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="132">
+        <li class="never" data-hits="" data-linenumber="118">
           
           
           <code class="ruby">  # * *Args*    :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="133">
+        <li class="never" data-hits="" data-linenumber="119">
           
           
           <code class="ruby">  #   -+project_id+-&gt;: id of current project</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="134">
+        <li class="never" data-hits="" data-linenumber="120">
           
           
           <code class="ruby">  #   -+id+-&gt;: id of task to be edited</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="135">
+        <li class="never" data-hits="" data-linenumber="121">
           
           
           <code class="ruby">  # * *Returns* :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="136">
+        <li class="never" data-hits="" data-linenumber="122">
           
           
           <code class="ruby">  #   - if attributes are updated redirects to index page, otherwise renders edit form</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="137">
+        <li class="never" data-hits="" data-linenumber="123">
           
           
           <code class="ruby">  #</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="138">
+        <li class="covered" data-hits="1" data-linenumber="124">
           <span class="hits">1</span>
           
           <code class="ruby">  def update</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="139">
-          
-          
-          <code class="ruby">    if checkDesigner</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="140">
-          
-          
-          <code class="ruby">      return</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="141">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="142">
-          
+        <li class="covered" data-hits="2" data-linenumber="125">
+          <span class="hits">2</span>
           
           <code class="ruby">    @task = Task.find(params[:id])</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="143">
+        <li class="never" data-hits="" data-linenumber="126">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="144">
-          
+        <li class="covered" data-hits="2" data-linenumber="127">
+          <span class="hits">2</span>
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="145">
-          
+        <li class="covered" data-hits="2" data-linenumber="128">
+          <span class="hits">2</span>
           
           <code class="ruby">      if @task.update_attributes(params[:task])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="146">
-          
+        <li class="covered" data-hits="2" data-linenumber="129">
+          <span class="hits">2</span>
           
           <code class="ruby">        format.html { redirect_to project_tasks_path, notice: 'تم تحديث المهمة' }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="147">
-          
+        <li class="covered" data-hits="1" data-linenumber="130">
+          <span class="hits">1</span>
           
           <code class="ruby">        format.json { head :no_content }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="148">
+        <li class="never" data-hits="" data-linenumber="131">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="149">
-          
+        <li class="covered" data-hits="2" data-linenumber="132">
+          <span class="hits">2</span>
           
           <code class="ruby">        format.html { render action: &quot;edit&quot; }</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="150">
-          
+        <li class="covered" data-hits="1" data-linenumber="133">
+          <span class="hits">1</span>
           
           <code class="ruby">        format.json { render json: @task.errors, status: :unprocessable_entity }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="151">
+        <li class="never" data-hits="" data-linenumber="134">
           
           
           <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="135">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="136">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="137">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="138">
+          
+          
+          <code class="ruby">  ## </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="139">
+          
+          
+          <code class="ruby">  # destroy the task with :id</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="140">
+          
+          
+          <code class="ruby">  # * *Args*    :</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="141">
+          
+          
+          <code class="ruby">  #   -+id+-&gt;: id of task </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="142">
+          
+          
+          <code class="ruby">  # * *Returns* :</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="143">
+          
+          
+          <code class="ruby">  #   - redirects to index of tasks</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="144">
+          
+          
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="145">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def destroy</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="146">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @task = Task.find(params[:id])</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="147">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    @task.destroy</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="148">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="149">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    respond_to do |format|</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="150">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      format.html { redirect_to project_tasks_path }</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="151">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      format.json { head :no_content }</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="152">
@@ -1467,85 +1467,85 @@
         <li class="never" data-hits="" data-linenumber="154">
           
           
-          <code class="ruby"></code>
+          <code class="ruby">  </code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="155">
-          
-          
-          <code class="ruby">  ## </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="156">
-          
-          
-          <code class="ruby">  # destroy the task with :id</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="157">
-          
-          
-          <code class="ruby">  # * *Args*    :</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="158">
-          
-          
-          <code class="ruby">  #   -+id+-&gt;: id of task </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="159">
-          
-          
-          <code class="ruby">  # * *Returns* :</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="160">
-          
-          
-          <code class="ruby">  #   - redirects to index of tasks</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="161">
-          
-          
-          <code class="ruby">  #</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="162">
+        <li class="covered" data-hits="1" data-linenumber="155">
           <span class="hits">1</span>
           
-          <code class="ruby">  def destroy</code>
+          <code class="ruby">  def invite </code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="163">
-          
-          
-          <code class="ruby">    if checkDesigner</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="164">
-          
-          
-          <code class="ruby">      return</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="165">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="166">
+        <li class="missed" data-hits="0" data-linenumber="156">
           
           
           <code class="ruby">    @task = Task.find(params[:id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="167">
+        <li class="never" data-hits="" data-linenumber="157">
           
           
-          <code class="ruby">    @task.destroy</code>
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="158">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="159">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def invite_user</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="160">
+          
+          
+          <code class="ruby">    </code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="161">
+          
+          
+          <code class="ruby">    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], &quot;taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="162">
+          
+          
+          <code class="ruby">  </code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="163">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="164">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def makesure</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="165">
+          
+          
+          <code class="ruby">    puts(params[:task_id] , params[:reviewer_id])</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="166">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="167">
+          
+          
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="168">
@@ -1554,346 +1554,346 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="169">
-          
-          
-          <code class="ruby">    respond_to do |format|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="170">
-          
-          
-          <code class="ruby">      format.html { redirect_to project_tasks_path }</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="171">
-          
-          
-          <code class="ruby">      format.json { head :no_content }</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="172">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="173">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="174">
-          
-          
-          <code class="ruby">  </code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="175">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def invite </code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="176">
-          
-          
-          <code class="ruby">    @task = Task.find(params[:id])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="177">
-          
-          
-          <code class="ruby">    </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="178">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="179">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def invite_user</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="180">
-          
-          
-          <code class="ruby">    </code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="181">
-          
-          
-          <code class="ruby">    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], &quot;taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="182">
-          
-          
-          <code class="ruby">  </code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="183">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="184">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def makesure</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="185">
-          
-          
-          <code class="ruby">    puts(params[:task_id] , params[:reviewer_id])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="186">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="187">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="188">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="189">
+        <li class="never" data-hits="" data-linenumber="169">
           
           
           <code class="ruby">  ##</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="190">
+        <li class="never" data-hits="" data-linenumber="170">
           
           
           <code class="ruby">  # Displays a task and its current steps to allow the designer to edit the steps.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="191">
+        <li class="never" data-hits="" data-linenumber="171">
           
           
           <code class="ruby">  # * *Args*    :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="192">
+        <li class="never" data-hits="" data-linenumber="172">
           
           
           <code class="ruby">  #   - +id+ -&gt;: The id of the task for which the steps will be edited.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="193">
+        <li class="never" data-hits="" data-linenumber="173">
           
           
           <code class="ruby">  # * *Returns*  :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="194">
+        <li class="never" data-hits="" data-linenumber="174">
           
           
           <code class="ruby">  #   -The page this task is associated with, and the steps added to the task.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="195">
+        <li class="never" data-hits="" data-linenumber="175">
           
           
           <code class="ruby">  #</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="196">
+        <li class="never" data-hits="" data-linenumber="176">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="197">
+        <li class="covered" data-hits="1" data-linenumber="177">
           <span class="hits">1</span>
           
           <code class="ruby">  def edit_steps</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="198">
+        <li class="missed" data-hits="0" data-linenumber="178">
           
           
           <code class="ruby">    @project = Project.find(params[:project_id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="199">
+        <li class="missed" data-hits="0" data-linenumber="179">
           
           
           <code class="ruby">    @task = Task.find(params[:id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="200">
+        <li class="missed" data-hits="0" data-linenumber="180">
           
           
           <code class="ruby">    @steps = @task.steps</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="201">
+        <li class="missed" data-hits="0" data-linenumber="181">
           
           
           <code class="ruby">    @page = @task.page</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="202">
+        <li class="never" data-hits="" data-linenumber="182">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="203">
+        <li class="never" data-hits="" data-linenumber="183">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="204">
+        <li class="never" data-hits="" data-linenumber="184">
           
           
           <code class="ruby">  ##</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="205">
+        <li class="never" data-hits="" data-linenumber="185">
           
           
           <code class="ruby">  # Adds a new step to the task.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="206">
+        <li class="never" data-hits="" data-linenumber="186">
           
           
           <code class="ruby">  # * *Args*    :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="207">
+        <li class="never" data-hits="" data-linenumber="187">
           
           
           <code class="ruby">  #   - +task+ -&gt;: The id of the task for which the step will be added.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="208">
+        <li class="never" data-hits="" data-linenumber="188">
           
           
           <code class="ruby">  #   - +event+ -&gt;: The event associated with the step.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="209">
+        <li class="never" data-hits="" data-linenumber="189">
           
           
           <code class="ruby">  #   - +component+ -&gt;: The component associated with the step.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="210">
+        <li class="never" data-hits="" data-linenumber="190">
           
           
           <code class="ruby">  #   - +description+ -&gt;: The description for the step.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="211">
+        <li class="never" data-hits="" data-linenumber="191">
           
           
           <code class="ruby">  # * *Returns*  :</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="212">
+        <li class="never" data-hits="" data-linenumber="192">
           
           
           <code class="ruby">  #   -The list of new steps if the step was successfully added, or an error if the step could not be saved.</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="213">
+        <li class="never" data-hits="" data-linenumber="193">
           
           
           <code class="ruby">  #</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="214">
+        <li class="never" data-hits="" data-linenumber="194">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="215">
+        <li class="covered" data-hits="1" data-linenumber="195">
           <span class="hits">1</span>
           
           <code class="ruby">  def new_step</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="216">
+        <li class="missed" data-hits="0" data-linenumber="196">
           
           
           <code class="ruby">    @step = Step.new(:task_id =&gt; params[:id], :event =&gt; params[:event], :component =&gt; params[:component], :description =&gt; params[:description])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="217">
+        <li class="missed" data-hits="0" data-linenumber="197">
           
           
           <code class="ruby">    @created = @step.save</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="218">
+        <li class="missed" data-hits="0" data-linenumber="198">
           
           
           <code class="ruby">    @task = Task.find_by_id(params[:id])</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="219">
+        <li class="missed" data-hits="0" data-linenumber="199">
           
           
           <code class="ruby">    @steps = @task.steps</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="220">
+        <li class="missed" data-hits="0" data-linenumber="200">
           
           
           <code class="ruby">    respond_to do |format|</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="221">
+        <li class="missed" data-hits="0" data-linenumber="201">
           
           
           <code class="ruby">      if @created</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="222">
+        <li class="missed" data-hits="0" data-linenumber="202">
           
           
           <code class="ruby">        format.js {render &quot;step_list&quot;}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="223">
+        <li class="never" data-hits="" data-linenumber="203">
           
           
           <code class="ruby">      else</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="224">
+        <li class="missed" data-hits="0" data-linenumber="204">
           
           
           <code class="ruby">        format.js {render &quot;error&quot;}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="225">
+        <li class="never" data-hits="" data-linenumber="205">
           
           
           <code class="ruby">      end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="206">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="207">
+          
+          
+          <code class="ruby">  end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="208">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="209">
+          
+          
+          <code class="ruby">  ##</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="210">
+          
+          
+          <code class="ruby">  # Deletes a step from a task.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="211">
+          
+          
+          <code class="ruby">  # * *Args*    :</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="212">
+          
+          
+          <code class="ruby">  #   - +id+ -&gt;: The id of the step to be deleted.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="213">
+          
+          
+          <code class="ruby">  #   - +task+ -&gt;: The id of the task from which the step is to be deleted.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="214">
+          
+          
+          <code class="ruby">  # * *Returns*  :</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="215">
+          
+          
+          <code class="ruby">  #   -The new list of steps after deletion.</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="216">
+          
+          
+          <code class="ruby">  #</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="217">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="218">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  def delete_step</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="219">
+          
+          
+          <code class="ruby">    @task = Task.find_by_id(params[:task])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="220">
+          
+          
+          <code class="ruby">    @step = Step.find(params[:id])</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="221">
+          
+          
+          <code class="ruby">    @step.destroy</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="222">
+          
+          
+          <code class="ruby">    @steps = @task.steps</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="223">
+          
+          
+          <code class="ruby">    respond_to do |format|</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="224">
+          
+          
+          <code class="ruby">      format.html {render :nothing =&gt; true}</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="225">
+          
+          
+          <code class="ruby">      format.js {render &quot;step_list&quot;}</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="226">
@@ -1923,7 +1923,7 @@
         <li class="never" data-hits="" data-linenumber="230">
           
           
-          <code class="ruby">  # Deletes a step from a task.</code>
+          <code class="ruby">  # Checks if the project belongs to the designer</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="231">
@@ -1935,13 +1935,13 @@
         <li class="never" data-hits="" data-linenumber="232">
           
           
-          <code class="ruby">  #   - +id+ -&gt;: The id of the step to be deleted.</code>
+          <code class="ruby">  #   - +project_id+ -&gt;: The id of the project</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="233">
           
           
-          <code class="ruby">  #   - +task+ -&gt;: The id of the task from which the step is to be deleted.</code>
+          <code class="ruby">  #   - +current_designer+ -&gt;: The designer currently logged in</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="234">
@@ -1953,7 +1953,7 @@
         <li class="never" data-hits="" data-linenumber="235">
           
           
-          <code class="ruby">  #   -The new list of steps after deletion.</code>
+          <code class="ruby">  #   -True if project belongs to designer and false otherwise</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="236">
@@ -1962,175 +1962,55 @@
           <code class="ruby">  #</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="237">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="238">
-          <span class="hits">1</span>
-          
-          <code class="ruby">  def delete_step</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="239">
-          
-          
-          <code class="ruby">    @task = Task.find_by_id(params[:task])</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="240">
-          
-          
-          <code class="ruby">    @step = Step.find(params[:id])</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="241">
-          
-          
-          <code class="ruby">    @step.destroy</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="242">
-          
-          
-          <code class="ruby">    @steps = @task.steps</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="243">
-          
-          
-          <code class="ruby">    respond_to do |format|</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="244">
-          
-          
-          <code class="ruby">      format.html {render :nothing =&gt; true}</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="245">
-          
-          
-          <code class="ruby">      format.js {render &quot;step_list&quot;}</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="246">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="247">
-          
-          
-          <code class="ruby">  end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="248">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="249">
-          
-          
-          <code class="ruby">  ##</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="250">
-          
-          
-          <code class="ruby">  # Checks if the project belongs to the designer</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="251">
-          
-          
-          <code class="ruby">  # * *Args*    :</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="252">
-          
-          
-          <code class="ruby">  #   - +project_id+ -&gt;: The id of the project</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="253">
-          
-          
-          <code class="ruby">  #   - +current_designer+ -&gt;: The designer currently logged in</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="254">
-          
-          
-          <code class="ruby">  # * *Returns*  :</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="255">
-          
-          
-          <code class="ruby">  #   -True if project belongs to designer and false otherwise</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="256">
-          
-          
-          <code class="ruby">  #</code>
-        </li>
-      
-        <li class="covered" data-hits="1" data-linenumber="257">
+        <li class="covered" data-hits="1" data-linenumber="237">
           <span class="hits">1</span>
           
           <code class="ruby">  def checkDesigner()</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="258">
+        <li class="missed" data-hits="0" data-linenumber="238">
           
           
           <code class="ruby">    designer = Designer.find(current_designer.id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="259">
+        <li class="missed" data-hits="0" data-linenumber="239">
           
           
           <code class="ruby">    if(designer.id != Project.find(params[:project_id]).designer_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="260">
+        <li class="missed" data-hits="0" data-linenumber="240">
           
           
           <code class="ruby">      render 'unauthorized'</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="261">
+        <li class="missed" data-hits="0" data-linenumber="241">
           
           
           <code class="ruby">      return true</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="262">
+        <li class="never" data-hits="" data-linenumber="242">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="263">
+        <li class="missed" data-hits="0" data-linenumber="243">
           
           
           <code class="ruby">    return false</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="264">
+        <li class="never" data-hits="" data-linenumber="244">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="265">
+        <li class="never" data-hits="" data-linenumber="245">
           
           
           <code class="ruby">end</code>

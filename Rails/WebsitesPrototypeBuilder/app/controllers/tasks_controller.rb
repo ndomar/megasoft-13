@@ -2,6 +2,7 @@
 class TasksController < ApplicationController
 
 before_filter :authenticate_designer!
+before_filter :checkDesigner
 
 ## 
 #finds the current task, it's page, creates a new instance of step_answer and task_result
@@ -40,9 +41,6 @@ before_filter :authenticate_designer!
   #   - list of tasks that belongs to project_id
   #
   def index
-    if checkDesigner
-      return
-    end
     @tasks = Project.find(params[:project_id]).tasks.all
 
     respond_to do |format|
@@ -59,9 +57,6 @@ before_filter :authenticate_designer!
   #   -renders form to create new task
   #
   def new
-    if checkDesigner
-      return
-    end
     @task = Task.new
     
     respond_to do |format|
@@ -78,9 +73,6 @@ before_filter :authenticate_designer!
   #   -the details of this task and renders itas an html
   #
   def show
-    if checkDesigner
-      return
-    end
     @task = Task.find(params[:id])
 
     respond_to do |format|
@@ -98,9 +90,6 @@ before_filter :authenticate_designer!
   #   -returns the task to be edited and renders the edit form
   #
   def edit
-    if checkDesigner
-      return
-    end
     @task = Project.find(params[:project_id]).tasks.find(params[:id])
   end
 
@@ -112,9 +101,6 @@ before_filter :authenticate_designer!
   #   - calls the new action if task.save is true, otherwise redirects to index page
   #
   def create
-    if checkDesigner
-      return
-    end
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
     respond_to do |format|
       if @task.save
@@ -136,9 +122,6 @@ before_filter :authenticate_designer!
   #   - if attributes are updated redirects to index page, otherwise renders edit form
   #
   def update
-    if checkDesigner
-      return
-    end
     @task = Task.find(params[:id])
 
     respond_to do |format|
@@ -160,9 +143,6 @@ before_filter :authenticate_designer!
   #   - redirects to index of tasks
   #
   def destroy
-    if checkDesigner
-      return
-    end
     @task = Task.find(params[:id])
     @task.destroy
 
