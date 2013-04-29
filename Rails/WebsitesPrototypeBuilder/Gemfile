@@ -29,6 +29,12 @@ gem "nested_form"
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
+#simplecov
+gem 'simplecov', :require => false, :group => :test
+
+#googlevisualr
+gem "google_visualr", ">= 2.1"
+
 gem "nested_form"
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
