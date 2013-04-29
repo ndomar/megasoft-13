@@ -59,11 +59,16 @@ class ProjectsController < ApplicationController
         if(!Dir.exists? path)
           Dir.mkdir(path)
         end
-        if(!Dir.exists? path+"/images")
-          Dir.mkdir(paht +"/images")
+        images_path = path + "/images"
+        if(!Dir.exists? images_path)
+          Dir.mkdir(images_path)
         end
 
+        puts "ana hena aho"
+
         repo = Rugged::Repository.init_at(path, false)
+
+        puts "3amalt repo"
 
         index = repo.index
 
