@@ -33,6 +33,10 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	get "answers/destroy"
 	get "pages/reviewer"
 	get "pages/designer"
+  get "questionnaires/answer_show"
+  get "questionnaires/index"
+
+  get "answer_questionnaires/create"
 
   resources :projects do
     resources :statistics
@@ -46,7 +50,12 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 		resources :steps
 	end
 
-	resources :questionnaires
+  resources :questionnaires do
+    resources :qquestions do
+      resources :choice_qquestions
+      resources :answer_questionnaires
+    end
+  end
 
 	resources :pages do
 		resources :comments
@@ -54,6 +63,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 			resources :answers
 		end
 	end
+
+  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
+  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 		
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
@@ -107,4 +119,5 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	# This is a legacy wild controller route that's not recommended for RESTful applications.
 	# Note: This route will make all actions in every controller accessible via GET requests.
 	# match ':controller(/:action(/:id))(.:format)'
+
 end
