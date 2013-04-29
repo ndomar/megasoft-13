@@ -48,6 +48,35 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if (@project.save)
         format.js {render "create", :status => :created }
+
+        #create a new repo for the new project
+        path = "#{Rails.public_path}/projects"
+
+        if(!Dir.exists? path)
+          Dir.mkdir(path)
+        end
+        path += "/#{@project.id}"
+        if(!Dir.exists? path)
+          Dir.mkdir(path)
+        end
+        if(!Dir.exists? path+"/images")
+          Dir.mkdir(paht +"/images")
+        end
+
+        repo = Rugged::Repository.init_at(path, false)
+
+        index = repo.index
+
+        options = {}
+        options[:tree] = index.write_tree
+        options[:author] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+        options[:committer] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+        options[:message] = "Initial Commit"
+        options[:parents] = []
+        options[:update_ref] = 'HEAD'
+
+        Rugged::Commit.create(repo, options)
+
       else
         format.js {render "create", :status => :ok}
       end

@@ -165,6 +165,7 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     rubyzip (0.9.9)
+    rugged (0.18.0.b1)
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -221,6 +222,7 @@ DEPENDENCIES
   nested_form
   rails (= 3.2.13)
   rspec-rails (>= 2.12.2)
+  rugged (~> 0.18.0.b1)
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
