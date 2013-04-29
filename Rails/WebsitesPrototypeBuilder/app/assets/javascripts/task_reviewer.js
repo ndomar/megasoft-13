@@ -1,5 +1,4 @@
-function highlight(id)
-{
+function highlight(id){
 // A function that highlights a certain component given it's id
 var element= document.getElementById(id);
 element.style.border='none';
@@ -29,9 +28,8 @@ function hide_form(){
   document.getElementById("page").style.color='white';
   document.getElementById("page").style.textShadow='none';
 }
- function update_steps(element,event){
-  var curr_element_id= element.id;
-  clicks_counter=clicks_counter+1;
+
+function update_total_time(){
   var current_hours = new Date().getHours();
   var current_minutes= new Date().getMinutes();
   var current_seconds = new Date().getSeconds();
@@ -45,13 +43,45 @@ function hide_form(){
   if (seconds_taken < 0) {
     seconds_taken= seconds_taken+60; 
   }
-  total_time= hours_taken + ":" + minutes_taken + ":" + seconds_taken;  
+  total_time= hours_taken + ":" + minutes_taken + ":" + seconds_taken; 
+}
+
+
+ function update_steps(element,event){
+  var curr_element_id= element.id;
+  if(event=='click'){
+    clicks_counter=clicks_counter+1;    
+  }
+
+  update_total_time();
+
   if (event == steps_events_array[0] && curr_element_id==steps_components_array[0]) {
     //STEPS MODE
     steps_events_array.splice(0,1);
     var deleted_component= steps_components_array.splice(0,1);
     var deleted_step_id=steps_ids_array.splice(0,1);
     steps_description_array.splice(0,1);
+
+    //alert($(page_html).filter('input').get());
+    //alert($(page_html.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#x27;/g,'"')));
+    //$('#page').text(page_html);
+    //document.getElementById('page').innerHTML=page_html.replace('"', '');
+    //$('#page').parseHTML(page_htmls_array[index]);
+    // if(page_htmls_array.length >0) {
+    //   //handles redirecting to different pages
+    //   var removed_id = step_page_id_array.splice(0,1); //the id of the current step page
+    //   var index= page_ids_array.indexOf(step_page_id_array[0]); //the index of the next page
+    //   //alert(step_page_id_array[0] + " "+index+" "+removed_id +"b4 condition");
+    //   if(index >=0 && index<page_htmls_array.length && removed_id!=step_page_id_array[0]){
+    //     //alert(step_page_id_array[0] + " "+index+" "+removed_id);
+    //     var page_html= page_htmls_array[index];
+    //     //alert(page_htmls_array.length);
+    //     $('#page').html($(page_html.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#x27;/g,'"')));
+
+    //   }
+    //}
+   
+    //document.getElementById('page').innerHTML=page_html.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#x27;/g,'"');
 
     if (steps_ids_array.length ==0){
    //this check handles the case of the last step -> success
@@ -68,25 +98,25 @@ function hide_form(){
       $("#change_success").val(step_answer_success); //set successful = true for step_answer
       $("#total_time_taken").val(total_time); //sets the value of  the time taken
       $("#change_clicks").val(clicks_counter); //update clicks_count in DB
-    dehighlight(deleted_component);
+
+        //check if the page was change there wont be an element to highlight
+         dehighlight(deleted_component); 
 
     if(steps_ids_array.length==1){
       $(".desc").fadeOut(500); //description of last step is no longer shown.
     }
     if(steps_components_array.length!=0) {
       //this check handles the last step
+            //alert(steps_components_array[0]);
       if(steps_description_array.length>1){
         document.getElementById("description_paragraph").innerHTML=steps_description_array[0];
       }
-      highlight(steps_components_array[0]); 
+        highlight(steps_components_array[0]); 
     }
-
 
     $(function() { $("#steps_form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
   } else {
     //NO STEPS MODE
-
-
   }
 
 }
@@ -111,9 +141,6 @@ function times_up(){
     $("#change_element_id").val(current_element_id);
     $(function() { $("#log_form").submit(); });
  document.getElementById("description_paragraph").innerHTML="The user "+ event_triggered + document.getElementById(event.target.id).value + " at time " + current_click_time;
-  }
+  }  
  }
-
-
-
-
+ 
