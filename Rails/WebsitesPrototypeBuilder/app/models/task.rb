@@ -54,7 +54,7 @@ class Task<ActiveRecord::Base
       @task_result.success='true'
       @task_result.save  
     end 
-    @pre_step = self.steps.find(params[:change_id].to_f-1)
+    @pre_step = self.steps.find(Integer(params[:change_id])-1)
     @step_answer=@pre_step.step_answers.new
     @step_answer.successful= params[:change_success]
     @step_answer.time_from_start= params[:start_time]

@@ -1,30 +1,9 @@
-<%= stylesheet_link_tag 'cardsorts' %>
-<%= javascript_include_tag 'cardsorts' %>
 
-<% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
-<h2><%= p.project_name %></h2> <!-- show each project name -->
-<%= link_to "DesignPage", :controller => :projects, :action => :design, :project_id => p.id %>
-<br/>
-<%= link_to_function "create new cardsort", "showPopup('" +p.id.to_s+ "')"  %>
-<br/>
-<%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => p.id %> 
-<hr/>
-<%end%>
+<% @projects.each do |project| %>
+    <h2><%= link_to project.project_name,project %></h2>
+    <p><%= time_ago_in_words project.created_at %> ago</p>
+    <p><%= project.id %></p>
+    <p><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <%end%>
 
-<div class='popup-darkscreen'>
-  <div class='popup-window'>
-    <h3 class='title'>New Cardsort</h3>
-    <%= form_for :cardsort, :url => {:controller => :cardsorts, :action => :create_cardsort} do |form| %>
-      <%= form.text_field :title, :placeholder => "title" %>
-      <%= form.text_field :description, :placeholder => "description" %>
-      <%= form.hidden_field :project_id, :id => 'project_id_field' %>
-      <label class="radio">Open<%= form.radio_button :open, true, :checked => true, :style => "float: none;margin-left: 10px;" %></label>
-      <label class="radio">Closed<%= form.radio_button :open, false, :style => "float: none;margin-left: 10px" %></label>
-      <%= form.submit "Create cardsort", :onclick => "return valid()" %>
-      <%= button_to_function "cancel", "hidePopup()" %>
-     <% end %>
-  </div>
-</div>
-
-</body>
-</html>
+<%= link_to "New project", new_project_path%>

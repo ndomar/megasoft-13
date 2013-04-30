@@ -20,9 +20,11 @@
 <div class="desc"> 
    <p id='description_paragraph'></p>
 </div>
-<div id="page">
+<div id="page" >
+<%=  @page.html.html_safe %>
 <br>
-<%= @page.html.html_safe %>
+<!-- If you want to activate the preview mode -->
+
 </div>
 <div id="time_out"> <p>لقد أتممت المهمة بنجاح! شكراً  </p> </div>
 </div>
@@ -92,7 +94,8 @@ $(window).load(function(){
   if (steps_ids_array.length >1) {
     //If the steps mode is used it will highlight the 1st step's component
     currstep_element_id=steps_components_array[0];  //update the variable to get curr_element_Value
-    highlight(currstep_element_id); //highlight the current step's component
+    //window.frames[0].highlight('cmp'); //highlight the current step's component
+    highlight(currstep_element_id);
    $(function(){ $('.desc').fadeIn(100)});
     document.getElementById('description_paragraph').innerHTML=steps_description_array[0]
   }
@@ -105,9 +108,6 @@ var clicks_counter=0;
 var total_time=0;
 var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for the task
 
-
-//keeps track user clicked where and when
-//var current_click_time= new Date();
 $("input").on('click',function(event){
   //alert(event.target.id);
   update_log(event.target,'click');
@@ -115,13 +115,12 @@ $("input").on('click',function(event){
  if (event.target.id == 'submit_form_button'){
   hide_form();
  }
-});
+}); 
 
 $("input").on('keyup', function(event){
   update_log(event.target,'keyup');
 //update(event.target,'keyup');
 });
-
 
 
 $("input").on('change', function(event){

@@ -19,7 +19,7 @@ class TasksController < ApplicationController
 
       if !@project.tasks.empty? && Integer(@project.tasks.last.id) >= Integer(params[:task_id]) && @project.tasks.first.id <= Integer(params[:task_id])
         @task= @project.tasks.find(params[:task_id])
-        @page= @project.pages.find(@task.steps.first.page_id)
+        @page= @project.pages.first
         @step=@task.steps.first
         @step_answer=@step.step_answers.new
         @step_answer.save

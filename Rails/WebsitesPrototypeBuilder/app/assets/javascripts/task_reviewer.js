@@ -1,10 +1,34 @@
-function highlight(id){
-// A function that highlights a certain component given it's id
-var element= document.getElementById(id);
-element.style.border='none';
-element.style.boxShadow="0px 0px 6px 5px orange";
-}
+$('<iframe id="preview_mode"/>').load(function(){
+
+
  
+ //A function that de-highlight's a certain component given its id
+ function dehighlight(id){
+  var element = document.getElementById(id);
+  element.style.boxShadow= 'none';
+  element.style.borderStyle='solid';
+  element.style.borderWidth='1px';
+  element.style.borderColor='#CCCCCC';
+ } 
+ 
+ //keeps track user clicked where and when
+//var current_click_time= new Date();
+$("input").on('click',function(event){
+  //alert(event.target.id);
+  update_log(event.target,'click');
+  update_steps(event.target,'click');
+ if (event.target.id == 'submit_form_button'){
+  hide_form();
+ }
+}); 
+  // Write your iframe javascript here
+  $('#preview_mode').contents().find('body').append('function selectItem () {var element = document.getElementById("drag_resize");var isVisible = element.offsetWidth > 0 || element.offsetHeight > 0;if(isVisible){var offset = $("#drag_resize").offset();var posY =offset.top + ($("#drag_resize").height()/2) -51 ;var posX =offset.left+ ($("#drag_resize").width()/2);window.frames[0].OnMouseMove(posX,posY);}}');
+  
+}).appendTo("body");
+
+function highlight(id){
+  var element=document.getElementById(id);element.style.border="none";element.style.boxShadow="0px 0px 6px 5px orange";}
+
  //A function that de-highlight's a certain component given its id
  function dehighlight(id){
   var element = document.getElementById(id);

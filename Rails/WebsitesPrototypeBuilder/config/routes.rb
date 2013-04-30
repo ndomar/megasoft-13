@@ -48,14 +48,18 @@ end
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
+  get "pages/download"
+  get "pages/download_project"
   get "questionnaires/answer_show"
   get "questionnaires/index"
+
+  get "answer_questionnaires/create"
 
    resources :questionnaires do
     resources :qquestions do
       resources :choice_qquestions
       resources :answer_questionnaires
-    end
+    end 
   end
 
   resources :pages do

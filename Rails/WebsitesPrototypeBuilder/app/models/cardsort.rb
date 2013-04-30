@@ -13,4 +13,5 @@ class Cardsort < ActiveRecord::Base
   has_many :cards
   has_many :groups
   belongs_to :project
+  has_many :cardsort_results
 end
