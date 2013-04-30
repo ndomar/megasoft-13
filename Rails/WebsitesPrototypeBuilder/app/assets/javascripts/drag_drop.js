@@ -1,5 +1,13 @@
 $(document).ready(function (){
 
+	$(".up_images").draggable({
+			helper: 'clone',
+			start: function (event, ui){
+				ui.helper.css("z-index","10000000");
+				ui.helper.children().css("z-index","10000000");
+			}
+	});
+
 	$("#designpage").gridBuilder({
     	color:          '#eee',    // color of the primary gridlines
     	secondaryColor: '#f9f9f9', // color of the secondary gridlines
@@ -59,7 +67,23 @@ $(document).ready(function (){
 		$('#font_color_inp').css('backgroundColor', '#' + hex);
 		$("#"+$("#eid_inp").val()).children().first().css("color",'#' + hex);
 	}
-});
+	});
+
+	$('#border_color_inp').ColorPicker({
+	color: '#0000ff',
+	onShow: function (colpkr) {
+		$(colpkr).fadeIn(200);
+		return false;
+	},
+	onHide: function (colpkr) {
+		$(colpkr).fadeOut(200);
+		return false;
+	},
+	onChange: function (hsb, hex, rgb) {
+		$('#border_color_inp').css('backgroundColor', '#' + hex);
+		$("#"+$("#eid_inp").val()).children().first().css("border-color",'#' + hex);
+	}
+	});
 
 	$(".toolboxelement").hover(function (e){
 		$(this).animate({
@@ -178,12 +202,7 @@ $(document).ready(function (){
 			// $("#designpage").css("z-index","-1");
 		},
 		drag: function (event,ui){
-			if (ui.helper.parent().attr("id")=="designpage"){
-				ui.helper.css("color","black");
-			}
-			else{
-				ui.helper.css("color","white");
-			}
+			ui.helper.css("border-color","black");
 		},
 		stop: function(event, ui){
 			var pos = $(ui.helper).offset();
@@ -256,7 +275,7 @@ $(document).ready(function (){
 
 					drag: function(event, ui){ //update the properties "left" and "right" as the element is being moved
 						$("#left_inp").val(ui.position.left+"px");
-				   	$("#top_inp").val(ui.position.top+"px");
+				   		$("#top_inp").val(ui.position.top+"px");
 					}
 
 				})
@@ -266,14 +285,14 @@ $(document).ready(function (){
 					var eid = $(this).attr("id");
 					$("#eid_inp").val(eid);
 					$("#text_inp").val($(this).children().first().text());
-					$("#width_inp").val($(this).width());
-					$("#height_inp").val($(this).height());
-					$("#margin_left_inp").val($(this).css("margin-left"));
-					$("#margin_right_inp").val($(this).css("margin-right"));
-					$("#margin_top_inp").val($(this).css("margin-top"));
-					$("#margin_bottom_inp").val($(this).css("margin-bottom"));
-					$("#top_inp").val($(this).position().top+"px");
-					$("#left_inp").val($(this).position().left+"px");
+					$("#width_inp").val(parseInt($(this).width()));
+					$("#height_inp").val(parseInt($(this).height()));
+					$("#margin_left_inp").val(parseInt($(this).css("margin-left")));
+					$("#margin_right_inp").val(parseInt($(this).css("margin-right")));
+					$("#margin_top_inp").val(parseInt($(this).css("margin-top")));
+					$("#margin_bottom_inp").val(parseInt($(this).css("margin-bottom")));
+					$("#top_inp").val(parseInt($(this).position().top+"px"));
+					$("#left_inp").val(parseInt($(this).position().left+"px"));
 					$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
 				})
 				.hover(function(){
@@ -287,6 +306,16 @@ $(document).ready(function (){
 					$(this).children().first().attr("contenteditable","true");
 				});
 
+				if ($(name).hasClass("img_ph")){
+					$(name).droppable({
+						accept: ".up_images",
+						drop: function(event, ui){
+							// alert(ui.draggable.children().first().attr("src"));
+							$(name).children().first().attr("src",ui.draggable.children().first().attr("src"));
+						}
+					});
+				}
+
 				$(name).click();		
 			}
 		}
@@ -295,7 +324,7 @@ $(document).ready(function (){
 	$("#designpage").droppable({
 		tolerance: 'fit',
 		drop: function(event, ui){
-			if (ui.draggable.attr('id').search(/element([0-9])/)==-1){ // if it is not an already dragged element
+			if (typeof ui.draggable.attr('id') != "undefined" && ui.draggable.attr('id').search(/element([0-9])/)==-1){ // if it is not an already dragged element
 				var element = $(ui.draggable).clone(); // clone the dragged element
 				element.attr("id","element"+counter); // change its id
 				element.addClass("appended"); // give it class appended
@@ -310,8 +339,23 @@ function applyChangedProperty(element){
 		$("#"+$("#eid_inp").val()).children().first().text(element.val());
 	}
 	else{
-		if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
-			$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val());
+		switch (element.attr("id")){
+			case "width_inp":
+			case "height_inp":
+			case "top_inp":
+			case "left_inp":
+			case "margin_left_inp":
+			case "margin_right_inp":
+			case "margin_top_inp":
+			case "margin_bottom_inp": 
+				if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val()+"px")){
+					$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val()+"px");
+				}
+				break;
+			default: 
+				if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
+					$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val());
+				}
 		}
 	}
 	$("#"+$("#eid_inp").val()).click();
@@ -379,10 +423,16 @@ function dropHandler(evt){
 function showImage(file){
 	var reader = new FileReader();
 	reader.onload = function(evt) {
-		var code = "<div class='thumbnail'>" + 
+		var code = "<div class='thumbnail up_images'>" + 
 							 "<img  src='" + evt.target.result + "' />" + 
 							 "</div>";
 		$(code).prependTo("#image-panel");
+		$(".up_images").draggable({
+			helper: 'clone',
+			start: function (event, ui){
+				ui.helper.css("z-index","1000000");
+			}
+		});
 	}
 	reader.readAsDataURL(file);
 }

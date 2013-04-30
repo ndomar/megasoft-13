@@ -20,7 +20,7 @@
 			</div>
 			<div id='image-panel'>
 				<% @medias.each do |media| %>
-				<div class='thumbnail'>
+				<div class='thumbnail up_images'>
 					<img  src='<%= "/assets/project_#{@project.id}/#{media.url}" %>' />
 				</div>
 				<%end%>
@@ -43,7 +43,7 @@
 										<p>Buttons</p>
 										<div width="210px" height="70px" class="accordiondiv">
 										<div id="buttondiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-											<button class="toolboxelement btn" onclick="return false;">??</button>
+											<button class="toolboxelement btn" onclick="return false;">زر</button>
 										</div>
 										</div>
 									</td>
@@ -52,7 +52,7 @@
 									<td class="tbldevs" align="center">
 										<p>Images</p>
 										<div width="210px" height="70px"  class="accordiondiv">
-										<div id="imagediv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
+										<div id="imagediv" class="drag toolboxelement img_ph" onclickevent="#" onhoverevent= "#">
 											<img src="/assets/gimg.jpg" width="20px" hight="20px" class="toolboxelement">
 										</div>
 										</div>
@@ -63,13 +63,13 @@
 										<p>Labels</p>
 										<div width="210px" height="70px" class="accordiondiv">
 										<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
-											<label class="toolboxelement">????</label>
+											<label class="toolboxelement">ملصق</label>
 										</div>
-										<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="border: solid;border-size: 1px;">
-											<a href="#" class="toolboxelement" onclick="return false;">????</a>
+										<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="border: solid;border-width: 1px;">
+											<a href="#" class="toolboxelement" onclick="return false;">رابط</a>
 										</div>
 										<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="margin-top:20px;">
-											<textarea class = "toolboxelement"style="resize: none;width:35px;height:35px;"> ???????</textarea>
+											<textarea class = "toolboxelement" style="resize: none;width:35px;height:35px;">كتابة</textarea>
 										</div>
 										</div>
 									</td>
@@ -78,8 +78,8 @@
 									<td class="tbldevs" align="center">
 										<p>Containers</p>
 										<div width="210px" height="70px" class="accordiondiv">
-											<div id="formdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#"  style="border: solid;">
-												<form class="toolboxelement">Form</form>
+											<div id="formdiv" class="drag toolboxelement forma" onclickevent="#" onhoverevent= "#"  style="border: solid;">
+												<h6>Div</h6>
 											</div>
 										</div>
 									</td>
@@ -99,66 +99,87 @@
 					<tr>
 						<div id = "properties_panel" class="tabbable prop_cont"> <!-- Only required for left/right tabs -->
 							<ul class="nav nav-tabs">
-						    <li class="active prop_panel" style="margin-right: -2px; float: right;"><a href="#properties" data-toggle="tab">الخصائص</a></li>
-						    <li class="prop_panel" style="float: right;"><a href="#events" data-toggle="tab">الأحداث</a></li>
+						    	<li class="active prop_panel" style="margin-right: -2px; float: right;"><a href="#properties" data-toggle="tab">الخصائص</a></li>
+						    	<li class="prop_panel" style="float: right;"><a href="#events" data-toggle="tab">الأحداث</a></li>
 							</ul>
 							<!-- tabbed panel containing properties of the components. It is originally hidden -->
 							<div class="tab-content">
-						    <div class="tab-pane active properties" id="properties">
-						      <div>
-						      	<label id = "eid" class="p_prop">التعريف </label>
-						      	<input id = "eid_inp" class="inp" property="id" readonly>
-						      </div>
-						      <div>
-						      	<label id = "left" class="p_prop">الموقع من اليسار </label>
-						      	<input id = "left_inp" class="inp" property="left" type = "number" min="0" step="0.1">
-						      </div>
-						      <div>
-						      	<label id = "top" class="p_prop">الموقع من فوق </label>
-						      	<input id = "top_inp" class="inp" property="top" type = "number" min="0" step="0.1">
-						      </div>
-						      <div>
-						      	<label id = "text" class="p_prop">الكتابة </label>
-						      	<input id = "text_inp" class="inp" property="text">
-						      </div>
-						     	<div>
-						     		<label id = "width" class="p_prop">العرض </label>
-						     		<input id = "width_inp" class="inp" property="width" type = "number" min="0" step="0.1">
-						     	</div>
-						  		<div>
-						  			<label id = "height" class="p_prop">الطول </label>
-						  			<input id = "height_inp" class="inp" property="height" type = "number" min="0" step="0.1">
-						  		</div>
-						      <div>
-						      	<label id = "margin_left" class="p_prop">الحد من اليسار </label>
-						      	<input id = "margin_left_inp" class="inp" property="margin-left" type = "number" min="0" step="0.1">
-						      </div>
-						      <div>
-						      	<label id = "margin_right" class="p_prop">الحد من اليمين </label>
-						      	<input id = "margin_right_inp" class="inp" property="margin-right" type = "number" min="0" step="0.1">
-						   		</div>
-				      		<div>
-				      			<label id = "margin_top" class="p_prop">الحد من فوق </label>
-				      			<input id = "margin_top_inp" class="inp" property="margin-top" type = "number" min="0" step="0.1">
-				      		</div>
-				      		<div>
-				      			<label id = "margin_bottom" class="p_prop">الحد من تحت </label>
-				      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom" type = "number" min="0" step="0.1">
-				      		</div>
-				      		<div>
-				      			<label id = "font_size" class="p_prop">حجم الخط </label>
-				      			<input id = "font_size_inp" class="inp" property="font-size" type = "number" min="0" step="1">
-				      		</div>
-				      		<div>
-				      			<label id = "font_color" class="p_prop"class="p_prop">لون الخط </label>
-				      			<div id = "font_color_inp" class="inp colordiv" property="color">
-				      			</div>
-				      		</div>
-				      		<div>
-				      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
-				      			<input id = "text_align_inp" class="inp" property="text-align">
-				      		</div>
-						    </div>
+							    <div class="tab-pane active properties" id="properties">
+							      	<div>
+							      		<label id = "eid" class="p_prop">التعريف </label>
+							      		<input id = "eid_inp" class="inp" property="id" readonly>
+							      	</div>
+							      	<div>
+							      		<label id = "left" class="p_prop">الموقع من اليسار </label>
+							      		<input id = "left_inp" class="inp" property="left" type = "number" min="0" step="0.1">
+							      	</div>
+							      	<div>
+							      		<label id = "top" class="p_prop">الموقع من فوق </label>
+							      		<input id = "top_inp" class="inp" property="top" type = "number" min="0" step="0.1">
+							      	</div>
+							      	<div>
+							      		<label id = "text" class="p_prop">الكتابة </label>
+							      		<input id = "text_inp" class="inp" property="text">
+							      	</div>
+							     	<div>
+							     		<label id = "width" class="p_prop">العرض </label>
+							     		<input id = "width_inp" class="inp" property="width" type = "number" min="0" step="0.1">
+							     	</div>
+							  		<div>
+							  			<label id = "height" class="p_prop">الطول </label>
+							  			<input id = "height_inp" class="inp" property="height" type = "number" min="0" step="0.1">
+							  		</div>
+							      	<div>
+							      		<label id = "margin_left" class="p_prop">الحد من اليسار </label>
+							      		<input id = "margin_left_inp" class="inp" property="margin-left" type = "number" min="0" step="0.1">
+							      	</div>
+							      	<div>
+							      		<label id = "margin_right" class="p_prop">الحد من اليمين </label>
+							      		<input id = "margin_right_inp" class="inp" property="margin-right" type = "number" min="0" step="0.1">
+							   		</div>
+						      		<div>
+						      			<label id = "margin_top" class="p_prop">الحد من فوق </label>
+						      			<input id = "margin_top_inp" class="inp" property="margin-top" type = "number" min="0" step="0.1">
+						      		</div>
+						      		<div>
+						      			<label id = "margin_bottom" class="p_prop">الحد من تحت </label>
+						      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom" type = "number" min="0" step="0.1">
+						      		</div>
+						      		<div>
+						      			<label id = "font_size" class="p_prop">حجم الخط </label>
+						      			<input id = "font_size_inp" class="inp" property="font-size" type = "number" min="0" step="1">
+						      		</div>
+						      		<div>
+						      			<label id = "font_color" class="p_prop">لون الخط </label>
+						      			<div id = "font_color_inp" class="inp colordiv" property="color">
+						      			</div>
+						      		</div>
+						      		<div>
+						      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
+						      			<input id = "text_align_inp" class="inp" property="text-align">
+						      		</div>
+						      		<div>
+						      			<label id = "border" class="p_prop">الحد </label>
+						      			<input id = "border_inp" class="inp" property="border">
+						      		</div>
+						      		<div>
+						      			<label id = "border_radius" class="p_prop">دوران الحد </label>
+						      			<input id = "border_radius_inp" class="inp" property="border-radius">
+						      		</div>
+						      		<div>
+						      			<label id = "border_width" class="p_prop">عرض الحد </label>
+						      			<input id = "border_width_inp" class="inp" property="border-width">
+						      		</div>
+						      		<div>
+						      			<label id = "border_color" class="p_prop">لون الحد </label>
+						      			<div id = "border_color_inp" class="inp colordiv" property="border-color">
+						      			</div>
+						      		</div>
+						      		<div>
+						      			<label id = "src" class="p_prop">عرض الحد </label>
+						      			<input id = "border_width_inp" class="inp" property="border-width">
+						      		</div>
+							    </div>
 							    	<!-- division containing the event controls of the components -->
 							  <div class="tab-pane properties" id="events">
 							    <label style="text-align: right;margin-right: 20px;">نوع الحدث</label>
