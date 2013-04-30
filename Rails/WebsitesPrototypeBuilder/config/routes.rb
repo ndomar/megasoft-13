@@ -42,11 +42,13 @@ post 'steps/update'
   get "questionnaires/answer_show"
   get "questionnaires/index"
 
+  get "answer_questionnaires/create"
+
    resources :questionnaires do
     resources :qquestions do
       resources :choice_qquestions
       resources :answer_questionnaires
-    end
+    end 
   end
 
   resources :pages do

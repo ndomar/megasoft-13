@@ -1,10 +1,11 @@
 ##
 # the answer a user is entering
 # * *Attribute*    :
-#   - +answer+ -> the reviewer entered his string of answers to be saved
+#   - +body+ -> the reviewer entered his string of answer to be saved
 # * *Relations*    :
-#   - has foreign key to the project,questionnaire, and qquestion
-#   - related to one page and one question
+#   - has foreign key to the questionnaire 
+# 	- has foreign key to the qquestion
+#   - related to one questionnaire
 class AnswerQuestionnaire < ActiveRecord::Base
   belongs_to :questionnaire
   belongs_to :qquestion

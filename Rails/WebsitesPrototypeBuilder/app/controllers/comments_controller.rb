@@ -6,9 +6,8 @@ class CommentsController < ApplicationController
   # - +@project+ -> the current project
   # - +@project_name+ -> name of the current project
   # - +@comment+ -> the comment written in the notepaper
-  # - +@reviewer_email+ -> reviewer's email
   # - +@email+ -> page designer's email
-  # - +@designer+ -> the page designer
+  # - +@designer+ -> the page owner(designer)
   # - +@timestamp+ -> time when comment was submitted
   # * *Returns* :
   # - page refreshed and comment added to db and email sent to designer
@@ -19,14 +18,13 @@ class CommentsController < ApplicationController
     @page_name = @page.page_name
     @project = Project.find(@page.project_id)
     @comment = @page.comments.build(params[:comment])
-    @reviewer_email = "Derwy" #Comment.find(@comment.reviewer_id).email
     @designer = Designer.find(@project.designer_id)
     @email = @designer.email
     @timestamp = Time.now
     respond_to do |format|
     if @comment.save
       # send a notification email to the designer if comment was saved in the database including theses attributes
-      SendNotification.send_notification(@email, @comment, @reviewer_email, @timestamp, @page_name).deliver();
+      SendNotification.send_notification(@email, @comment, @timestamp, @page_name).deliver();
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Comment was successfully created.' }
   	  # alert("Comment was successfully created")

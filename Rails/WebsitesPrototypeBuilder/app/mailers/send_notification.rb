@@ -10,12 +10,11 @@
     # * *Returns* :
     # - a mail object to be sent
     #
-  def send_notification(email, comment, reviewer_email, timestamp, page_name)
+  def send_notification(email, comment, timestamp, page_name)
     @page_name  = page_name
     @comment = comment
     @timestamp = timestamp
-    @reviewer_email = reviewer_email
-    mail(to: email, subject: "Someone has commented on your page!")
+        mail(to: email, subject: "Someone has commented on your page!")
   end
 
 end

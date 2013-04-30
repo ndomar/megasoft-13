@@ -6,7 +6,7 @@ describe SendNotification do
  
     #ensure that the subject is correct
     it 'renders the subject' do
-      mail.subject.should == 'notification'
+      mail.subject.should == 'Someone has commented on your page!'
     end
  
     #ensure that the receiver is correct
@@ -14,12 +14,7 @@ describe SendNotification do
       mail.to.should == [user.email]
     end
  
-    #ensure that the sender is correct
-    it 'renders the sender email' do
-      mail.from.should == ['prototyper.v1@gmail.com']
-    end
- 
-    #ensure that the @name variable appears in the email body
+    #ensure that the @comment variable appears in the email body
     it 'assigns @comment' do
       mail.body.encoded.should match(user.comment)
     end
