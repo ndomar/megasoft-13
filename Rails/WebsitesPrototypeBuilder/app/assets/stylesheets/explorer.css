@@ -18,6 +18,10 @@
 	z-index: 20;
 }
 
+.p{
+	text-align: right;
+}
+
 #carousel-control {
   position: absolute;
   top: 60%;
