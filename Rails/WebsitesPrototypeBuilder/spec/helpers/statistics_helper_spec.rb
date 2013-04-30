@@ -145,9 +145,8 @@ describe StatisticsHelper do
   end
 
   it "getQuestionResults(question) returns a chart" do
-    project = FactoryGirl.create(:project)
-    questionnaire = project.questionnaires.create(FactoryGirl.attributes_for(:questionnaire))
-    chart = helper.getQuestionResults(questionnaire.qquestions[0])
+    question = Qquestion.create(:body => "TEST", :qtype => 3, :choices_attributes => [:body => "ChoiceA"])
+    chart = helper.getQuestionResults(question, 3)
     expect(chart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
   end
 end

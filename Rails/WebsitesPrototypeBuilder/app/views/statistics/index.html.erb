@@ -117,8 +117,11 @@
           <% else %>
             <div style="float:left; margin-left:20px; width:500px; height:200px;"> 
               <div id=<%=question.id.to_s%> style="float:right; margin-right:20px;"></div>
-              <% questionresults = getQuestionResults(question) %>
-              <%= render_chart(getQuestionResults(question), question.id.to_s) %> 
+              <% if question.qtype == 3 %>
+                <%= render_chart(getQuestionResults(question, 3), question.id.to_s) %> 
+              <% else %>
+                <%= render_chart(getQuestionResults(question, 4), question.id.to_s) %>
+              <%end%>
             </div>
             <br>
           <% end %>
