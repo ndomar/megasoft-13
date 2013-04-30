@@ -33,6 +33,9 @@ gem 'simplecov', :require => false, :group => :test
 gem "google_visualr", ">= 2.1"
 
 gem "nested_form"
+# gem for page screenshot
+gem 'delayed_job_active_record'
+
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
 gem 'devise_rpx_connectable', :git => 'https://github.com/ahmadsoliman/devise_rpx_connectable.git'
