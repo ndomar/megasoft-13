@@ -30,11 +30,14 @@ text-align: right;
 .question
 {
 	color:#545454;
+	opacity: 1;
 }
 .container
 {
 	top:10%;
 	left: 25%;
+	width: 55%;
+	height: 85%;
 	position: absolute;
 	background: -webkit-gradient(linear, center top, center bottom, from(#e9e9e9 ), to(#f6f6f6));
 	background: -webkit-linear-gradient(#e9e9e9  , #f6f6f6);
@@ -46,8 +49,9 @@ text-align: right;
 	opacity: 0.85;
 	overflow-y:auto; 
 }
-.please{
+.dark{
 	color: black;
+	opacity: 1;
 }
 legend{
 	border-bottom-color:black;
