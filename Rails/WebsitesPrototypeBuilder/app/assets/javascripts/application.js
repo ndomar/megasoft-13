@@ -60,4 +60,6 @@ $(document).ready(function() {
     $('#preview_mode').contents().find('body').append('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"><\/script>').end().appendTo("body");
   });
 
+
 });
+
