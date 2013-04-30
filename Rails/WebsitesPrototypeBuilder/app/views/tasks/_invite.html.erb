@@ -1,20 +1,19 @@
 <%= javascript_include_tag "share_facebook" %>
 
 <h3> Send New Invitation </h3>
-<%=t.id %>
 <%= form_tag(:task_id => t.id) do %>
-  <p> Email: </br> <%= text_field_tag :email, nil,:placeholder => "Email", :required => true,:pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}'%> </p>
-  <p> Invitation Message: </br> <%= text_field_tag :invitation_message, nil, :placeholder => "invitation message" %> </p> 
-  <%= button_to_function 'Invite', 'invite()' %> 
+  <p> Email: </br> <%= text_field_tag :email, nil,:placeholder => "Email", :required => true,:pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :id => "email" + t.id.to_s %> </p>
+  <p> Invitation Message: </br> <%= text_field_tag :invitation_message, nil, :placeholder => "invitation message" , :id => "invitation_message" + t.id.to_s%> </p> 
+  <%= button_to_function 'Invite', 'invite'+t.id.to_s+'()' %> 
 <% end %>  
 
 
 
 <script type="text/javascript">
-function invite(){
+function invite<%=t.id%>(){
   var params = $.param({
-    email: $('#email').val(),
-    invitation_message: $('#invitation_message').val(),
+    email: $('#email<%=t.id%>').val(),
+    invitation_message: $('#invitation_message<%=t.id%>').val(),
     task_id: '<%= t.id %>',
     project_id: '<%= params[:project_id] %>'
   });

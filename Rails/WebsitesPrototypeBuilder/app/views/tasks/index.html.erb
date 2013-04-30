@@ -21,16 +21,15 @@
         <td><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
         <td><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></td>
         <td><%= link_to 'الغاء', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'هل تريد الغاء المهمة' } %></td>
-                <td><%= task.description %></td>
+        <td><%= task.description %></td>
         <td><%= task.name %></td>
-        <td><a data-toggle="modal" href="#example">invite  <%= task.id %> hello</a>
+        <td><a data-toggle="modal" href="#<%=task.id%>">invite</a>
           <div class="container">   
-            <div id="example" class="modal hide fade in" style="display: none; ">  
+            <div id="<%= task.id%>" class="modal hide fade in" style="display: none; ">  
               <div class="modal-header">  
-                <a class="close" data-dismiss="modal">×</a>  
-                <h3>This is a Modal Heading</h3>  
+                <a class="close" data-dismiss="modal">×</a>    
               </div>  
-              <div class="modal-body"> hello <%= task.id %> hello
+              <div class="modal-body">
                 <%= render :partial => 'invite', :locals => {:t => task}%> 
               </div>
             </div>    
