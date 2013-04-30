@@ -1,4 +1,4 @@
-# encoding: utf-8
+ # encoding: utf-8
 class TasksController < ApplicationController
 
 ## 
@@ -13,20 +13,31 @@ class TasksController < ApplicationController
 # - the current task, current step, step_answer for the current_task and task_result for the current task
 #
   def task_reviewer
-    if Project.all.last.id <= params[:project_id].to_f
-
+    if Project.all.last.id.to_f >= params[:project_id].to_f
       @project=Project.find(params[:project_id])
       @reviewer= Reviewer.find(params[:reviewer_id])
-      @task= @project.tasks.find(params[:task_id])
-      @page= Page.find(1)
-      @step=@task.steps.find(params[:step_id])
-      @step_answer=@step.step_answers.new
-      @step_answer.save
-      @task_result=@task.task_results.new
-      @task_result.save
-      session[:task_result_id]= @task_result.id 
+
+      if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f
+        @task= @project.tasks.find(params[:task_id])
+        @page= Page.find(1)
+        #if @task.steps.nil? == 'false'
+        @step=@task.steps.first
+        @step_answer=@step.step_answers.new
+        @step_answer.save
+        #end
+        @task_result=@task.task_results.new
+        @task_result.reviewer_id=@reviewer.id
+        @task_result.save
+        session[:task_result_id]= @task_result.id
+      else
+        respond_to do |format|
+          format.html { render :template => "tasks/task_reviewer_error" }
+        end
+      end
     else
-      format.html { render :template => "tasks/task_reviewer_error" }
+      respond_to do |format|
+        format.html { render :template => "tasks/task_reviewer_error" }
+      end
     end
   end
   ## 

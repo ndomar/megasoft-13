@@ -3,8 +3,10 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
-get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+get "projects/:project_id/tasks/:task_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
 post 'steps/update'
+
+get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
 
   resources :projects do
     resources :statistics
@@ -13,6 +15,15 @@ post 'steps/update'
       resources :task_results
     end
   end
+
+resources :logs
+post 'logs/new'
+
+
+post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
+resources :reviewers do
+  resources :reviewer_infos
+end
 
 
   resources :tasks do
