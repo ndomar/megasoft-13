@@ -136,6 +136,9 @@ class ProjectsController < ApplicationController
     @page.html = params[:html]      # I am updating the page's html
     @page.save                      # I am saving the page after updating it
     @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@page.project_id}")
+
+    
+
     respond_to do |format|
       format.html { render :nothing => true }
       format.js { render :layout => false }
