@@ -13,7 +13,7 @@ class Card < ActiveRecord::Base
   validates :title, :presence => true,
   					:uniqueness => {:scope => :cardsort_id}
   validates :cardsort_id, :presence => true
-
+  has_many :cardsort_results
   belongs_to :cardsort
   has_and_belongs_to_many :groups
 
