@@ -15,7 +15,7 @@ class Card < ActiveRecord::Base
   validates :title, :presence =>  { :message => "اسم البطاقة لا يمكن ان يكون خاليا"},
  					:uniqueness => {:scope => :cardsort_id, :message => "%{value} موجود بالفعل"} 
   validates :cardsort_id, :presence => true
-
+  has_many :cardsort_results
   belongs_to :cardsort
   has_and_belongs_to_many :groups
 

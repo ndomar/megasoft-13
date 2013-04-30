@@ -14,8 +14,7 @@ class Group < ActiveRecord::Base
 
   belongs_to :cardsort
   has_and_belongs_to_many :cards
+  has_many :cardsort_results
 
-  validates :title, :presence => { :message => "اسم المجموعة لا يمكن ان يكون خاليا"},
-  					:uniqueness => {:scope => :cardsort_id, :message => "%{value} موجود بالفعل"} 
   validates :cardsort_id, :presence => true
 end
