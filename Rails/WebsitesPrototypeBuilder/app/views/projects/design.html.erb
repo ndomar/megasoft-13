@@ -6,7 +6,6 @@
 <%= javascript_include_tag "explorer.js"%>  
 
 
-<button onclick="getMe()">SHOW</button>
 <!-- <html dir="rtl"> -->
 <body>
 	<!-- main div containing toolbox and design page -->
@@ -29,8 +28,7 @@
 				</div>
 				<%end%>
 			</div>
-		</div>
-	
+		</div>	
 		<div id="sidebar" class="row-fluid">
 				<!-- table with all the available toolbox elements -->
 				<div id='toolbox-tag' class='sidebar-tag'>
@@ -177,16 +175,20 @@
   </div>  
   <script type="text/javascript">
   	initDragAndDrop();
+  	// loadToDesign('<%= @originalPageHTML %>','<%= @originalPageID %>');
   </script>   
 </body>
 
+<div>
+
+</div>
 
 <!-- this is the carousel implementation, It loops through the project's pages and displays them in a series of thumbnails each with an x icon over it to be used for deletion. A Carousel has to consist of at least an active 
 item which has to be the first item in the carousel, it can also contain as many items as required. After filling 
 the active item, the carousel can be filled by as many items as required.Also all the actions to be done on them 
 are stated. -->
 <div class="navbar navbar-fixed-bottom navbar-inverse span12" style="width:100%; text-align:center" >
-  <div class="span5"></div>
+  <div class="span3"></div>
   <div class="span7" style="background-color:#FFFFFF;opacity:0.4;">
     <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
     <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
@@ -199,8 +201,12 @@ are stated. -->
               <% @pages.each_with_index do |page, index| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= page.id %>')" href='#'><div>x</div></a>
-                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick='show("<%= page.id %>","<%= page.html %>")' id="<%= page.id %>" width="50px">
-                    <img src="/assets/emptyPage.jpg" width="50" alt="">
+                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>','<%= page.html %>')" width="50px">
+                  	<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
+                    	<img src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" width="50" alt="">
+                    <% else %>
+                    	<img src="/assets/emptyPage.jpg" width="50" alt="">
+                    <% end %>
                   </div>
                   <p><%= page.page_name %></p>
                 </li>
@@ -221,8 +227,8 @@ are stated. -->
               <% (1..4).each do |i| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href='#'><div>x</div></a>
-                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')" id="@pages.fetch(i,nil).id">
-                    <img src="/assets/emptyPage.jpg" alt="">
+                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')">
+                    <img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i,nil).page_name %>.png" width="50" alt="">
                   </div>
                   <p><%= @pages.fetch(i,nil).page_name %></p>
                 </li>
@@ -246,8 +252,8 @@ are stated. -->
                     <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
               				<li class="span1">
                       <a class="x-button" onclick="deletePage('<%= @pages.fetch(i + currentLoop*4,nil).id %>')" href='#'><div>x</div></a>
-                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>','<%= @pages.fetch(i + currentLoop*4,nil).html %>')" id="@pages.fetch(i + currentLoop*4,nil).id">
-                        <img src="/assets/emptyPage.jpg" alt="">
+                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>','<%= @pages.fetch(i + currentLoop*4,nil).html %>')">
+                        <img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i + currentLoop*4,nil).page_name %>.png" width="50" alt="">
                       </div>
                       <p><%= @pages.fetch(i + currentLoop*4,nil).page_name %></p>
                       </li>

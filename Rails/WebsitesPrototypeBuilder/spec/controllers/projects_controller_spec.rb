@@ -32,11 +32,5 @@ describe ProjectsController	do
 		get :deletePage, {:pageid => page.id}
 		controller.should render_template(:status => 'ok',:format => 'js')
 	end
-	
-	it "should create a new media record" do
-		count_before = Media.all.count
-		post "upload_media"
-		count_after = Media.all.count
-		count_before.should be < count_after
-	end	
+
 end

@@ -33,7 +33,6 @@ gem 'jasmine-rails'
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
-<<<<<<< HEAD
 #simplecov
 gem 'simplecov', :require => false, :group => :test
 

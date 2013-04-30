@@ -1,15 +1,12 @@
 //these functions are used in the package explorer
 
 function show(id,html){
-	alert("SHOWING");
 	var designPage = document.getElementById('designpage');
 	if(designpage.getAttribute("data-pageid")!=0 && designpage.getAttribute("data-pageid")!=id)  { //&&hasDesigned
 		store();
 	}
 	html=html.replace( "onclick", "onclickevent" , 'g');
 	html=html.replace( "onmouseover", "onhoverevent" , 'g');
-	html=html.replace( '&#39;', "'" ,'g');
-	html=html.replace( '&quot;', '"','g');	
 	designPage.innerHTML="";
 	designPage.innerHTML=html;
 	designPage.setAttribute("data-pageid", id);
@@ -23,10 +20,9 @@ function store(){
 	//i need something to notify me not to show this alert
 	var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
 	if(response==true){
-		var html = document.getElementById('designpage').innerHTML;											//this gets the html from the designpage pane and stores it in the variable html
+		var html = document.getElementById('designpage').innerHTML; 	//this gets the html from the designpage pane and stores it in the variable html
+		// alert(document.getElementById('designpage').innerHTML.toString());
 		html = html.replace(/\s+/g, ' ');
-		// alert("THERE");
-		// alert(html);
 		var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
 		//reseting the ondbclick show event
 		var htmlToDisplay=html;
@@ -54,10 +50,7 @@ function store(){
 	  //   "/": '&#x2F;'
 		html=html.replace( "onclickevent", "onclick" , 'g');
 		html=html.replace( "onhoverevent", "onmouseover" , 'g');
-		html=html.replace( "'", '&#39;' ,'g');
-		html=html.replace( '"', '&quot;','g');
-		// alert("HTML TO SAVE");
-		// alert(html);
+
 		var params = $.param({
 			pageid: pageId,
 			"html": html
@@ -75,16 +68,16 @@ function deletePage(pageId){
 	//this function is used to delete a page by the designer
 	var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
 	if(response){
-			var pageid = document.getElementById('designpage').getAttribute("data-pageid");	
-			if(pageid==pageId){
-				var designPage = document.getElementById('designpage');
-				designpage.innerHTML="<p>صمم صفحتك هنا</p>";
-				designPage.setAttribute("data-pageid", 0);
-			}
-			var params = $.param({
-				pageid: pageId
-			});
-			$.ajax("/projects/deletePage?" + params);
+		var pageid = document.getElementById('designpage').getAttribute("data-pageid");	
+		if(pageid==pageId){
+			var designPage = document.getElementById('designpage');
+			designpage.innerHTML="<p>صمم صفحتك هنا</p>";
+			designPage.setAttribute("data-pageid", 0);
+		}
+		var params = $.param({
+			pageid: pageId
+		});
+		$.ajax("/projects/deletePage?" + params);
 	}
 }
 
@@ -145,4 +138,15 @@ function getMe(){
 	// var html ="asdasd";
 	// var designPage = document.getElementById('designpage');
 	// designPage.innerHTML=html;
+}
+
+function loadToDesign(originalPageHTML,originalPageId){
+	if(originalPageHTML!=null && originalPageHTML!=""){
+		originalPageHTML=originalPageHTML.replace( "onclick", "onclickevent" , 'g');
+		originalPageHTML=originalPageHTML.replace( "onmouseover", "onhoverevent" , 'g');
+		var designPage = document.getElementById('designpage');
+		designPage.innerHTML="";
+		designPage.innerHTML=originalPageHTML;
+		designPage.setAttribute("data-pageid", originalPageId);
+	}
 }

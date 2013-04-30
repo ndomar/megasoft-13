@@ -22,12 +22,11 @@ class ProjectsController < ApplicationController
   end
   
   def create_page
-     Page.create!(:project_id => id)
+    Page.create!(:project_id => id)
   end
 
   def update
     @project = Project.find(params[:id])
-
     respond_to do |format|
       if @project.update_attributes(params[:project])
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -42,7 +41,6 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-
     respond_to do |format|
       format.html { redirect_to projects_url }
       format.json { head :no_content }
@@ -71,6 +69,7 @@ class ProjectsController < ApplicationController
     @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
     @page.html = params[:html]      # I am updating the page's html
     @page.save                      # I am saving the page after updating it
+    @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@page.project_id}")
     respond_to do |format|
       format.html { render :nothing => true }
       format.js { render :layout => false }
@@ -127,7 +126,6 @@ class ProjectsController < ApplicationController
     data = request.raw_post
     @media = Media.new(url: name, project_id: project_id)
     @media.store_media(name, data, project_id)
-
     respond_to do |format|
       if @media.save
         format.html { render :nothing => true, :status => :created }
@@ -138,15 +136,23 @@ class ProjectsController < ApplicationController
   end
 
 	def design
-    @project = Project.find(params[:project_id]);
-    @medias = @project.medias
-    @id = @project.id                                     #I am sending the project id explicitly to the design page
-    @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
-    respond_to do |format|
-      format.html 
-      format.json { render json: @project }
+    begin
+    @originalPageId = params[:page_id]
+    @originalPageHTML = Page.find(params[:page_id]).html.html_safe
+    rescue
+      @originalPageHTML = nil
+    ensure
+      @project = Project.find(params[:project_id]);
+      @medias = @project.medias
+      @id = @project.id                                     #I am sending the project id explicitly to the design page
+      @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
+      respond_to do |format|
+        format.html 
+        format.json { render json: @project }
+      end
     end
 	end
+
   #before_filter :authenticate_designer! 
   ##
   #The index method is used, to preview all the projects created by the logged in designer

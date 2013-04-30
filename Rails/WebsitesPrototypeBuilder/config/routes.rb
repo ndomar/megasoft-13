@@ -1,11 +1,10 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+  get "tests/test_scan"
+
   post 'projects/savePage'
   get 'projects/savePage'
   get 'projects/createPage'
   get 'projects/deletePage'
-
-
-  get "tests/test_image"
 
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
@@ -117,10 +116,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
-
-
-
-  
   get 'cardsorts/create'
 
   # get 'projects/design/:project_id' => 'projects#design' 
