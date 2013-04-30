@@ -117,3 +117,62 @@ function dehighlight(id){
  } 
 
 
+function cli(selected){
+  var point=$(selected).text();
+  callChild(point);
+  return false;
+}
+
+function updateHtml() {
+  updateH();
+  disableLinks();
+  enableImages();
+}
+
+function callChild(name){
+var iframe_doc = document.getElementById("preview_mode").contentDocument;
+var all_anchors = iframe_doc.getElementsByTagName("a");
+
+for(var i=0;i<all_anchors.length;i++){
+  anchors_string=all_anchors[i]+"";
+  anchors_array= anchors_string.split("/");
+  var value= anchors_array[anchors_array.length-1];
+  var name_low= name.toLowerCase();
+  if(value.indexOf(name_low)==0){
+    all_anchors[i].click();
+    updateHtml();
+   return;}
+  }
+}
+
+$(document).ready(function(){
+  $("#embedded").find('a').click(function(event){
+    //alert("sfsfcffffrgdfg");
+    // window.setTimeout("updateHtml()",1);
+  });   
+ });
+
+
+
+
+function updateH() {
+  //var frameHtml = window.frames['preview_mode'].document.documentElement.innerHTML;
+  var frameHtml = document.getElementById("preview_mode").contentDocument.documentElement.innerHTML;
+  document.getElementById('embedded').innerHTML=frameHtml;
+}
+
+function disableLinks(){
+  $("#embedded a").each(function(){
+    $(this).attr('href','#');
+    $(this).attr('onclick','return cli(this);');  
+  });
+}
+
+function enableImages(){
+  //alert(projectid);
+  $("#embedded img").each(function(){
+    $(this).attr('src',"/"+projectid+"/images/myimage.jpg"); 
+  });
+}
+
+

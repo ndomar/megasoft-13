@@ -228,9 +228,13 @@ maged = Designer.create(:fullname => "Maged Shalaby",
       :credit_card_number => 1234567891234567,
       :cvv2 => 123)
 magedProject = Project.create(:project_name => "Maged's Project", :designer_id => maged.id)
-magedHtml1 = "<label id = 'testLabel1'> Name </label> <br/>
-<input type ='text' id = 'testinput1'> </input> <br/>
-<label id = 'testLabel2'> Location </label> <br/>
-<input type ='text' id = 'testinput2'> </input> <br/> 
-<button id = 'testButton'> Enter </button>"
-magedPage1 = Page.create(:page_name => "Maged's Page",:project_id => magedProject.id, :html => magedHtml1)
+page1 = " '<html><head><title>Home</title></head><bodydata-id='1'style='background-color:white'><h1>Home</h1><imgsrc='images/myimage.jpg'><br>' +
+'<a href='home.html'>Home</a>'+
+'<a href='second.html'>Second</a>'+
+'<ahref='third.html'>third</a>'+
+'</body>'+
+'</html>'"
+magedPage1 = Page.create(:page_name => "home",:project_id => magedProject.id, :html => page1)
+
+page2 = "<html><head><title>Home</title></head><body data-id='2' style='background-color:white'><h1> Secojnbd </h1><img src='images/myimage.jpg'><br><a href='home.html'>Home</a><a href='second.html'>Second</a><a href='third.html'>third</a></body></html>"
+magedPage2 = Page.create(:page_name => "second",:project_id => magedProject.id, :html => page2)

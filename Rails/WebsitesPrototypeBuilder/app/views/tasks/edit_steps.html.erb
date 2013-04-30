@@ -11,6 +11,14 @@
   }
 </style>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    projectid= <%= @page.project_id %>;
+    window.setTimeout("updateHtml()",1);
+  });
+</script>
+
+<h2 onclick="updateHtml();">Cool</h2>
 <div id ="wrapper" >
 
   <!-- This is the slider button -->
@@ -53,7 +61,11 @@
     <br/>
 
     <div id ="embedded">
-      <%= @page.html.html_safe %>
+      <!-- <%= @page.html.html_safe %> -->
+    </div>
+
+    <div id='page'> 
+      <iframe id="preview_mode" src= <%="/#{@page.project_id}/#{@page.page_name}.html" %>  > </iframe>
     </div>
 
     <button id = "dehighlight" style = "display:none"></button>
