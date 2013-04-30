@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
@@ -22,6 +23,13 @@ gem "jasmine"
 
 #gem for nested forms
 gem "nested_form"
+
+# gems for uploading image
+# gem 'rmagick'
+gem 'carrierwave'
+
+# gem for making behavioural testing
+gem 'jasmine-rails'
 
 # gem for using bootstrap
 gem 'bootstrap-sass'
