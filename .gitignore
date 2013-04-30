@@ -3,4 +3,5 @@ Rails/WebsitesPrototypeBuilder/Gemfile.lock
 *.log
 *.sqlite3
 Rails/WebsitesPrototypeBuilder/tmp
+Rails/WebsitesPrototypeBuilder/public/projects
 Rails/WebsitesPrototypeBuilder/log

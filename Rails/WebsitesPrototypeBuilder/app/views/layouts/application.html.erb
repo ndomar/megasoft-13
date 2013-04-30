@@ -5,6 +5,7 @@
   <title>Arability</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+
   <%= csrf_meta_tags %>
 </head>
 
@@ -21,24 +22,14 @@
   <!-- the navigation links -->
     <ul id="navigation">
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
-    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
+    <li><%= link_to_function "مشروع جديد" ,  "showpopup()" %><div class="tabBar" ></div></li>
     <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
     </ul>
+
     <a href="#"><div width="44px" height="51px" class="logo"></div></a>
   <!-- end navigation links -->
     <div id="designer_nav" align="right">
       <!-- if he's signed in show that he's signed in else show sign in and sign out buttons -->
-      <% if designer_signed_in? %>
-        <% if current_designer.fullname.eql?nil %>
-          <%= current_designer.email %>
-        <% else %>
-          <%= current_designer.fullname %>
-        <% end %>
-        ﻣﺴﺠﻞ ﺑﺈﺳﻢ<br /> ﻟﻴﺲ ﺃﻧﺖ؟
-        <%= link_to "ﺧﺮﻭﺝ", destroy_designer_session_path, :method => :delete %>
-        <br />
-        <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
-      <% end %>
     </div>
   </div>
 <!-- end container -->

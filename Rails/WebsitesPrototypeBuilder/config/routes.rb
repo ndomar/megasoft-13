@@ -9,6 +9,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
+  get 'projects/destroy'
   get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
   post 'steps/update'
 
@@ -22,22 +23,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :pages  
   end
 
-  resources :tasks do
-    resources :steps
-  end
+  resources :statistics
 
   resources :projects do
-
-  resources :statistics
     resources :tasks do
       resources :steps
       resources :task_results
     end
-  end
-
-
-  resources :tasks do
-    resources :steps
   end
 
   get 'cardsorts/new'

@@ -12,6 +12,7 @@ class Cardsort < ActiveRecord::Base
   attr_accessible :description, :open, :project_id, :title
   has_many :cards
   has_many :groups
+
   belongs_to :project
   has_many :cardsort_results
 end
