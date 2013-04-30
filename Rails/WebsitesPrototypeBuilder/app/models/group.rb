@@ -12,7 +12,7 @@ class Group < ActiveRecord::Base
 
   belongs_to :cardsort
   has_and_belongs_to_many :cards
-
+  has_and_belongs_to_many :cardsort_results
   validates :title, :presence => true,
   									:uniqueness => {:scope => :cardsort_id}
   validates :cardsort_id, :presence => true
