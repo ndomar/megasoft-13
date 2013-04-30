@@ -165,6 +165,7 @@ body {
 	right: 1.5%;
 	bottom: 0;
 	word-wrap:break-word;
+	overflow: visible;
 }
 
 .sidebar-tag{
@@ -225,3 +226,4 @@ progress{
 	overflow:visible;
 	height: 70px;
 }
+

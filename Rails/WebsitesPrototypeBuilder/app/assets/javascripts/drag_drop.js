@@ -1,12 +1,13 @@
 $(document).ready(function (){
 
 	$(".up_images").draggable({
-			helper: 'clone',
-			start: function (event, ui){
-				ui.helper.css("z-index","10000000");
-				ui.helper.children().css("z-index","10000000");
-			}
-	});
+			appendTo: $("#designpage"),
+			helper: function( event ) {
+        				return $( "<div class='ui-widget-header' style='position: relative;z-index: 10000000;'><img src='/assets/image_icon.png' width='50' height='50' style='position: relative; z-index: 10000000;' /></div>" );
+      				},
+      		zIndex: 10000000,
+      		cursorAt: {left: 0, top: 20}
+		});
 
 	$("#designpage").gridBuilder({
     	color:          '#eee',    // color of the primary gridlines
@@ -428,10 +429,10 @@ function showImage(file){
 							 "</div>";
 		$(code).prependTo("#image-panel");
 		$(".up_images").draggable({
-			helper: 'clone',
-			start: function (event, ui){
-				ui.helper.css("z-index","1000000");
-			}
+			helper: function( event ) {
+        				return $( "<div class='ui-widget-header' style='display: inline-block'><img src='/assets/image_icon.png' width='50' height='50' style='display: inline-block' /></div>" );
+      				},
+      		zIndex: 10000000
 		});
 	}
 	reader.readAsDataURL(file);
