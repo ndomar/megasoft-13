@@ -11,7 +11,7 @@ class Page < ActiveRecord::Base
   has_many :comments,:dependent => :destroy
   # set it to contain many questions, when deleted delete all related questions
   has_many :questions,:dependent => :destroy
-  has_many :tasks
+  has_many :steps
   has_many :answers,:dependent => :destroy
   belongs_to :project
   #checks that page name is present and is unique

@@ -40,20 +40,17 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :steps
   end
 
- get 'cardsorts/new'
- get 'cardsorts/edit'
- get 'cardsorts/create_card'
- get 'cardsorts/create_group'
-
-
-
+  get 'cardsorts/new'
+  get 'cardsorts/edit'
+  get 'cardsorts/create_card'
+  get 'cardsorts/create_group'
+  get 'cardsorts/create'
 
   devise_for :designers
 
   #at start up page goes to the home controller and the index action
 
   root to: "home#index"
-
 
   get "comments/create"
   get "comments/destroy"
@@ -69,6 +66,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "projects/createPage/" => "projects#createPage" #, :as => :page_save 
   get "questionnaires/answer_show"
   get "questionnaires/index"
+  post "projects/upload_media"
 
   resources :projects
  
@@ -76,6 +74,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "questionnaires/answer_show"
   get "questionnaires/index"
+
+  get "answer_questionnaires/create"
 
    resources :questionnaires do
 
@@ -86,15 +86,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
-  get 'cardsorts/new'
-
-
-  get "pages/designer"
-  get "projects/index"
-  post "projects/upload_media"
-
-  resources :projects
-
   resources :pages do
     resources :comments
     resources :questions do
@@ -103,7 +94,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   end
  
   get "/log/:id" => 'task_results#index'
-
   get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
   get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
   get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
@@ -116,12 +106,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
-  get 'cardsorts/create'
-
   # get 'projects/design/:project_id' => 'projects#design' 
   
-
-
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
   get "/log/:id" => 'task_results#index'
@@ -176,8 +162,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # See how all your routes lay out with "rake routes"
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-
-  root :to => 'tasks#index'
 
   # See how all your routes lay out with "rake routes"
 
