@@ -8,16 +8,17 @@
   }
 </style>
 <%= javascript_include_tag "edit_steps" %>
+<h2> إختر صفحة البداية للمهمة </h2>
 
 
     <% for @page in @pages do %>
       <%= link_to @page.page_name, :action => 'save_start_page', :page_id => @page %> 
     <%end%>
   <div class = "span10">
-  <div >
-    <div class="bottom carousel slide" id="myCarousel">
+    <div class = "span1"> </div>
+    <div class="bottom carousel slide span8" id="myCarousel">
       <div id="carousel-inner" class="carousel-inner">
-        <% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
+        <% if @pages.size < 8 %>  <!-- the case when we have max of 4 pages -->
           <div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
               <li class="span1"></li>
@@ -28,10 +29,10 @@
                      width="50px">
                     <img src="/assets/card.png" width="50" alt="">
                   </div>
-                  <p><%= page.page_name %></p>
+                  <%= link_to page.page_name , save_start_page_path(params[:project_id], @task.id,page.id) %>
                 </li>
               <% end %>              
-              <% (1..4-@pages.size).each do |i| %>
+              <% (1..8-@pages.size).each do |i| %>
                 <li class="span1"></li>  
               <% end %>
               <li class="span1"></li>
@@ -41,20 +42,20 @@
           <div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
               <li class="span1"></li>
-              <% (1..4).each do |i| %>
+              <% (1..8).each do |i| %>
                 <li class="span1">
                   <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" 
-                    ondblclick= show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>') >
+                    ondblclick= saveStartPage('<%= @pages.fetch(i,nil).id %>') >
                     <img src="/assets/card.png" alt="">
                   </div>
-                  <p><%= @pages.fetch(i,nil).page_name %></p>
+                  <%= link_to @pages.fetch(i,nill).page_name , save_start_page_path(params[:project_id], @task.id,page.id) %>
                 </li>
               <% end %>
               <li class="span1"></li>
             </ul>
           </div> 
           <% crousel_items_to_create = @pages.size/4%>
-          <% if @pages.size%4==0%>
+          <% if @pages.size%8==0%>
             <%crousel_items_to_create = crousel_items_to_create - 1%>
           <%end%>
           <% (1..crousel_items_to_create).each do |currentLoop| %>
@@ -62,14 +63,14 @@
               <div class="item" style="background-color=#AAAAAA;">
                 <ul class="thumbnails" style="background-color:#AAAAAA">      
                   <li class="span1"></li>     
-                  <% (0..3).each do |i| %> 
-                    <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
+                  <% (0..7).each do |i| %> 
+                    <% if @pages.fetch(i + currentLoop*8,nil) != nil%> 
                       <li class="span1">
-                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" 
-                        ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>','<%= @pages.fetch(i + currentLoop*4,nil).html %>')">
+                      <div id="<%= @pages.fetch(i + currentLoop*8,nil).id %>" class="thumbnail" style="border:none" 
+                        ondblclick="show('<%= @pages.fetch(i + currentLoop*8,nil).id %>','<%= @pages.fetch(i + currentLoop*8,nil).html %>')">
                         <img src="/assets/card.png" alt="">
                       </div>
-                      <p><%= @pages.fetch(i + currentLoop*4,nil).page_name %></p>
+                      <%= link_to @pages.fetch(i + currentLoop*8,nil).page_name , save_start_page_path(params[:project_id], @task.id,page.id) %>
                       </li>
                     <% else %>
                       <li class="span1"></li>
@@ -85,5 +86,6 @@
       <a data-slide="prev" href="#myCarousel" class="left carousel-control" style="background:none; border:none">‹</a>
       <a data-slide="next" href="#myCarousel" class="right carousel-control" style="background:none; border:none">›</a>
     </div>
+    <div class = "span1"> </div>
   </div>
 </div>

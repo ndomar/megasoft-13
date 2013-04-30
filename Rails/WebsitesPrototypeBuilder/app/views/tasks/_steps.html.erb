@@ -2,7 +2,7 @@
     <p> لم يتم إضافة أية خطوات حتى الآن. </p>
     <p id ="notice"> لإضافة خطوة: إنقر على صورة المؤشر، و إختر أي جزء من الصفحة على اليمين. </p>
 <%else%>
-  <table dir ="rtl" align = "center">
+  <table id="stepList" dir ="rtl" align = "center">
     <col width="50">
     <col width="50">
     <col width="100">
@@ -11,10 +11,13 @@
       <td align = "center"> الجزء</td>
       <td align = "center"> الحدث</td>
       <td align = "center"> الوصف </td>
+      <td> </td>
     </tr>
     <% @steps.each do |step| %>
-      <tr id = "<%="step_#{step.id}"%>" >
-        <td align = "center"><%= step.component %> </td>
+      <tr id = "<%="step_#{step.id}"%>" class ="rows" 
+        onmouseover = stepHighlight('<%= step.component %>') 
+        onmouseout = stepDeHighlight('<%= step.component %>') >
+        <td align = "center"><%= step.component %> </td> 
         <td align = "center"><%= step.event %> </td>
         <td align = "center"><%= step.description %> </td>
         <td align = "center">
