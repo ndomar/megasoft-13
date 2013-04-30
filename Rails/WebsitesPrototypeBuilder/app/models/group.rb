@@ -13,6 +13,7 @@ class Group < ActiveRecord::Base
   attr_accessible :cardsort_id, :description, :title
 
   belongs_to :cardsort
+  has_and_belongs_to_many :cards
 
   validates :title, :presence => { :message => "اسم المجموعة لا يمكن ان يكون خاليا"},
   					:uniqueness => {:scope => :cardsort_id, :message => "%{value} موجود بالفعل"} 
