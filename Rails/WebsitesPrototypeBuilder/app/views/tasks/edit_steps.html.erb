@@ -18,13 +18,15 @@
 
   <div id ="sidebar">
     <div id="side_content">
-      <button id="cursorSwitch"> Switch Cursor </button>
+      <button id="cursorSwitch"> <img src ="/assets/crosshair_cursor.png"></button>
+      <br/><br/><br><br>
       <div id="add_step" style ="display:none; text-align:left">
         <h2 style = "text-algin:center"> أضف خطوة جديدة </h2>
         
-        <div id = "general_events" >
-          <input type ="radio" name = "events_list" value = "click" checked = "checked"> onclick <br/> </input>
-          <input type ="radio" name = "events_list" value = "mouseover"> onhover <br/> </input>
+        <div id = "general_events" style="text-align:center" >
+          <input type ="radio" name = "events_list" value = "click" checked = "checked"> On Click <br/> </input>
+          <input type ="radio" name = "events_list" value = "mouseover"> On Hover <br/> </input>
+          <input type ="radio" name = "events_list" value = "mouseleave"> On Mouse Leave <br/> </input>
           <br/>
           <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
           <br/> <br/>
@@ -38,6 +40,8 @@
       <div id = "steps_list">
         <%= render "steps" %>
       </div>
+      <br/> <br/>
+      <p> آخر خطوة هي الهدف النهائي للمهمة. </p>
 
     </div>
   </div>
