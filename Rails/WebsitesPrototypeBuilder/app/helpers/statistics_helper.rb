@@ -1,6 +1,18 @@
 # encoding: utf-8
 module StatisticsHelper
 
+  def getGroups(results)
+    groups = []
+    results.each do |result|
+      results.groups.each_with_index do |index, group|
+        if !groups.include?(group)
+          groups[index] = group.title
+        end
+      end
+    end
+    return groups
+  end
+
   ## 
   # uses googlechartsvisualr to make a pie chart of the questionnaire results
   # * *Args*    :

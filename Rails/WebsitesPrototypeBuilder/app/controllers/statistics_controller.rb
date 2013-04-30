@@ -16,11 +16,16 @@ class StatisticsController < ApplicationController
     @tasks = Project.find(params[:project_id]).tasks
     @chosentasks = []
     @chosenquestionnaire
+    @chosencardsort
+    @cardsorts = Project.find(params[:project_id]).cardsorts
     if params[:task] != nil
       @chosentasks[@chosentasks.length] = Task.find(params[:task][:id])
     end
     if params[:questionnaire] != nil
       @chosenquestionnaire = Questionnaire.find(params[:questionnaire][:id])
+    end
+    if params[:cardsort] != nil
+      @chosencardsort = Cardsort.find(params[:cardsort][:id])
     end
     respond_to do |format|
       format.html 
