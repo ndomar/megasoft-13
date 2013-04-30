@@ -25,6 +25,7 @@
 		}
 	}
 	changedItem.children().append('<div class="span1"></div>');
+	$("#myCarousel").carousel('prev');
 	//now the item that has a deleted page has an empty span at its end and that is for sure
 	var totalItems = $('#carousel-inner').children().length;
 	var item = $('#first-item');
