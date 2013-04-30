@@ -31,11 +31,10 @@ end
 
 #cardsortresults
 (0..50).each do
-  CardsortResult.create(cardsort_id: rand(0..5),
-    reviewer_id: rand(0..5),
-    groups: << [Group.find(1), Group.find(2), Group.find(3), Group.find(4), Group.find(5),
-     Group.find(6), Group.find(7), Group.find(8), Group.find(9), Group.find(10)]
-    )
+  CardsortResult.create(cardsort_id: rand(1..5),
+    reviewer_id: rand(1..5),
+    group_id: rand(1..5),
+    card_id: rand(1..5))
 end
 
 # comments

@@ -151,16 +151,23 @@
         <p style="color:red;"> لا توجد نتائج </p>
       <%else%>
         <table class="table table-condensed" style="float:left; width:500px; display:inline-block;">
-          <% groups = getGroups(results) %>
-          <% if groups.length == 0 %>
-            <p><%=groups.to_s%></p>
-          <%end%>
+          <% groupsnadcards = getGroupsAndCards(results) %>
+          <% cards = groupsnadcards[1] %>
+          <% groups = groupsnadcards[0] %>
           <tr>
-            <th></th>
             <% groups.each do |group| %> 
-              <th><% group.title %></th>
+              <th><%= group.title %></th>
             <%end%>
+            <th></th>
           </tr>
+          <% cards.each do |card| %>
+            <tr>
+              <% groups.each do |group| %>
+                <td><%= getOccurrences(card, group, @chosencardsort)%></td>
+              <%end%>
+              <td><%= card.title %></td>
+            </tr>
+          <%end%>
         </table>
       <%end%>
     </div>

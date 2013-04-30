@@ -1,16 +1,44 @@
 # encoding: utf-8
 module StatisticsHelper
 
-  def getGroups(results)
-    groups = []
-    results.each do |result|
-      result.groups.each_with_index do |group, index|
-        if !groups.include?(group)
-          groups[index] = group
-        end
+  ## 
+  # returns the occurences of the card in the group
+  # * *Args*    :
+  #   -+card+->: card instance
+  #   -+group+->: group instance
+  # * *Returns* :
+  #   - number of ocurrences of card in group
+  #  
+  def getOccurrences(card, group, cardsort)
+    count = 0
+    group.cardsort_results.each do |result|
+      if (result.card == card && result.cardsort == cardsort)
+        count += 1
       end
     end
-    return groups
+    return count
+  end
+
+  ## 
+  # returns list of groups and cards
+  # * *Args*    :
+  #   -+reviewer_infos+->: an array of reviewer infos
+  #   -+type+->: type of the chart
+  # * *Returns* :
+  #   - an array of 2 arrays of the cards and groups with no duplicates
+  #  
+  def getGroupsAndCards(results)
+    groups = []
+    cards = []
+    results.each do |result|
+      if !groups.include?(result.group)
+        groups[groups.length] = result.group
+      end
+      if !cards.include?(result.card)
+        cards[cards.length] = result.card
+      end
+    end
+    return [groups, cards]
   end
 
   ## 
