@@ -79,7 +79,9 @@ function deleteProject (id){
   var params = $.param({
     'id': id
   });
+  if (confirm("هل أنت متأكد من انك تريد مسح هذا المشروع ؟")){
   $.ajax({
     url: '/projects/destroy?' + params,
   });
+}
 } 
