@@ -17,11 +17,25 @@ end
 		cardsort_id: rand(0..5));
 end
 
+#cards_groups
+(0..50).each do
+  Card.find(rand(1..5)).groups << Group.find(rand(1..5))
+end
+
 # cardsorts
 (0..50).each do
 	Cardsort.create(title: ('a'..'z').to_a.shuffle[0,20].join,
 		description: ('a'..'z').to_a.shuffle[0,20].join,
 		project_id: rand(0..5));
+end
+
+#cardsortresults
+(0..50).each do
+  CardsortResult.create(cardsort_id: rand(0..5),
+    reviewer_id: rand(0..5),
+    groups: << [Group.find(1), Group.find(2), Group.find(3), Group.find(4), Group.find(5),
+     Group.find(6), Group.find(7), Group.find(8), Group.find(9), Group.find(10)]
+    )
 end
 
 # comments

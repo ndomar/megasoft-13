@@ -128,28 +128,41 @@
   <% end %> 
 </div>
 <div style="float:right; margin-right:20px; width:900px; display:block;">
-  <legend style = "text-align:right; margin-right:20px; color:white;">احصائيات النتائج</legend>
+  <legend style = "text-align:right; margin-right:20px; color:white;">نتائج ترتيب الكروت</legend>
   <table class="table table-condensed" style="float:right; width:300px; display:inline-block;">
+    <tr>
+      <th></th>
+      <th>قائمة ترتيب الكروت</th>
+    </tr>
+    <% @cardsorts.each do |cardsort| %>
       <tr>
-        <th></th>
-        <th>قائمة ترتيب الكروت</th>
+        <%= form_for :cardsort, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+          <%= hidden_field_tag 'cardsort[id]', cardsort.id %>
+          <td><%= f.submit "النتائج"%></td>
+        <% end %>
+        <td><%= cardsort.title %></td>
       </tr>
-      <% @cardsorts.each do |cardsort| %>
-        <tr>
-          <%= form_for :cardsort, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
-            <%= hidden_field_tag 'cardsort[id]', cardsort.id %>
-            <td><%= f.submit "النتائج"%></td>
-          <% end %>
-          <td><%= cardsort.title %></td>
-        </tr>
-      <%end%>
-    </table>
-    <% @cardsort != nil %>
-      <% results = @cardsort.cardsort_results %>
-      <% if results == nil %>
-        <p style="color:red;">لا توجد نتاءج</p>
-      <%else%>
-      
-      <%end%>
     <%end%>
+  </table>
+  <% if @chosencardsort != nil %>
+    <% results = @chosencardsort.cardsort_results %>
+    <div style="float:left; width:500px; display:inline-block;">
+      <% if results.length == 0 %>
+        <p style="color:red;"> لا توجد نتائج </p>
+      <%else%>
+        <table class="table table-condensed" style="float:left; width:500px; display:inline-block;">
+          <% groups = getGroups(results) %>
+          <% if groups.length == 0 %>
+            <p><%=groups.to_s%></p>
+          <%end%>
+          <tr>
+            <th></th>
+            <% groups.each do |group| %> 
+              <th><% group.title %></th>
+            <%end%>
+          </tr>
+        </table>
+      <%end%>
+    </div>
+  <%end%>
 </div>

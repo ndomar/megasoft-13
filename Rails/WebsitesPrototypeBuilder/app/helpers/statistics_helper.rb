@@ -4,9 +4,9 @@ module StatisticsHelper
   def getGroups(results)
     groups = []
     results.each do |result|
-      results.groups.each_with_index do |index, group|
+      result.groups.each_with_index do |group, index|
         if !groups.include?(group)
-          groups[index] = group.title
+          groups[index] = group
         end
       end
     end
