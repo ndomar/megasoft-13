@@ -77,7 +77,7 @@ class TasksController < ApplicationController
   #   -the details of this task and renders itas an html
   #
   def show
-    @task = Task.find(params[:id])
+    @task = Project.find(params[:project_id]).tasks.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
