@@ -18,6 +18,35 @@ $(function(){
 });
 
 $(function(){
+  $("#embedded").click(function(event){
+    var cursor = $('#cursorSwitch');
+    if(cursor.hasClass("cursorPressed")){
+      var allow = { "A":1, "IMG":1, "INPUT":1, "BUTTON":1 }; 
+      if(allow[event.target.tagName]){
+        var id = event.target.id;
+        select(id);
+      }
+      else{
+        dehighlight($("#component_id").val());
+      }
+    }
+  });
+});
+
+$(function(){
+  $("#stepList").find('tr').not(':first').hover(function(event){
+    var cursor = $('#cursorSwitch');
+    if(!cursor.hasClass("cursorPressed")){
+      var id = event.target.id;
+      var element = $("#"+event.target.id);
+      if(element!=null){
+        highlight(element.id);
+      }
+    }
+  });
+});
+
+/*$(function(){
   $("#embedded").find('input').click(function(event){
     var cursor = $('#cursorSwitch');
     if(cursor.hasClass("cursorPressed")){
@@ -26,36 +55,27 @@ $(function(){
     }
   });
 });
+*/
 
-$(function(){
-  $("#embedded").find('button').click(function(event){
-    var cursor = $('#cursorSwitch');
-    if(cursor.hasClass("cursorPressed")){
-      var id = event.target.id;
-      select(id);
+function stepHighlight(id){
+  var cursor = $('#cursorSwitch');
+  if(!cursor.hasClass("cursorPressed")){
+    var element = $("#"+id);
+    if(element!=null){
+      highlight(id);
     }
-  });
-});
+  }
+}
 
-$(function(){
-  $("#embedded").find('img').click(function(event){
-    var cursor = $('#cursorSwitch');
-    if(cursor.hasClass("cursorPressed")){
-      var id = event.target.id;
-      select(id);
+function stepDeHighlight(id){
+  var cursor = $('#cursorSwitch');
+  if(!cursor.hasClass("cursorPressed")){
+    var element = $("#"+id);
+    if(element!=null){
+      dehighlight(id);
     }
-  });
-});
-
-$(function(){
-  $("#embedded").find('a').click(function(event){
-    var cursor = $('#cursorSwitch');
-    if(cursor.hasClass("cursorPressed")){
-      var id = event.target.id;
-      select(id);
-    }
-  });
-});
+  }
+}
 
 function select(id){
   dehighlight($("#component_id").val());
@@ -79,15 +99,21 @@ function save(task_id, page_id){
 }
 
 function highlight(id){
-  var element= document.getElementById(id);
-  element.style.border='none';
-  element.style.boxShadow="0px 0px 6px 2px orange";
+  //var element= document.getElementById(id);
+  var selected = $('#'+id);
+  if(selected != null && !selected.hasClass("highlighting")){
+    selected.toggleClass("highlighting");
+  }
+
 }
  
 function dehighlight(id){
-  var element = document.getElementById(id);
-  element.style.boxShadow= 'none';
-  element.style.border=1;
+  var selected = $('#'+id);
+  if(selected != null && selected.hasClass("highlighting")){
+    selected.toggleClass("highlighting");
+  }
+  //element.style.boxShadow= 'none';
+  //element.style.border=1;
  } 
 
 

@@ -18,7 +18,36 @@
   border-style:inset;
 }
 
+td { /*border: 1px solid #000; padding: 5px;*/ 
+  max-width: 150px; 
+  text-overflow: ellipsis; 
+  white-space: nowrap; 
+  overflow: hidden;
+}
+
+#embedded{
+  padding-right: 25pt;
+}
+
+#cursorSwitch{
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-top: 10px;
+  background-size: 100% !important;
+}
+
+
+
 h2{
   font-size:200%;
   text-align:center;
+}
+
+.rows:last-child{
+  color: red;
+}
+
+.highlighting{
+  box-shadow: 0px 0px 6px 2px orange !important;
 }
