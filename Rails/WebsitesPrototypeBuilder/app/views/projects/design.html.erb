@@ -224,7 +224,7 @@ are stated. -->
           <div id="first-item" class="item active" style="background-color:#AAAAAA">
             <ul class="thumbnails" style="background-color:#AAAAAA">
               <li class="span1"></li>
-              <% (1..4).each do |i| %>
+              <% (0..3).each do |i| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href='#'><div>x</div></a>
                   <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')">      
