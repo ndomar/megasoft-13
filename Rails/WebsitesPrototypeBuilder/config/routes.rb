@@ -24,8 +24,8 @@ post 'steps/update'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
 
-  #at start up page goes to the home controller and the index action
-  root to: "home#index"
+  #at start up page goes to the project controller and the index action
+  root to: "projects#index"
 
   resources :projects
 
@@ -40,11 +40,13 @@ post 'steps/update'
   get "questionnaires/answer_show"
   get "questionnaires/index"
 
+  get "answer_questionnaires/create"
+
    resources :questionnaires do
     resources :qquestions do
       resources :choice_qquestions
       resources :answer_questionnaires
-    end
+    end 
   end
 
   resources :pages do
