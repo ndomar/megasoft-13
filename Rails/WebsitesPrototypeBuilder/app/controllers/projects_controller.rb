@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     @designer= Designer.find_by_email(current_designer.email) #Getting the logged in designer
     @projects = Project.find(:all, :conditions => {:designer_id => @designer.id}) #Getting all the projects done by the logged in designer
   end
-
+ 
   ##
   #The show method is used, to show a certain project.
   # * *Instance*    :
@@ -58,6 +58,11 @@ end
     @project = Project.new(params[:project])
     respond_to do |format|
       if (@project.save)
+        @page = Page.new()
+        @page.project_id= @project.id
+        @page.page_name= "index"
+        @page.save
+        @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@project.id}/?page_id=#{@page.id}")
         format.js {render "create", :status => :created }
       else
         format.js {render "create", :status => :ok}

@@ -19,4 +19,14 @@ class Project < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
   belongs_to :designer
+
+  def get_thumbnail
+    # begin
+      puts "id:", id
+      if File.exists?("app/assets/images/project_#{id}/page_index.png")
+        "/assets/project_#{id}/page_index.png"
+      else
+       "/assets/default.jpg"
+      end
+  end
 end
