@@ -1,3 +1,5 @@
+<%= javascript_include_tag "share_facebook" %>
+
 <h1>قائمة المهام</h1>
 
 <% if Project.find(params[:project_id]).pages.empty? %>
@@ -15,9 +17,11 @@
       <th>توصيف المهمة</th>
       <th>اسم المهمة</th>
     </tr>
-
+    <script src = 'http://connect.facebook.net/en_US/all.js'></SCRIPT>
+    <script> FB.init({appId: "346985668734261", status: true, cookie: true}); </script>
     <% @tasks.each do |task| %>
       <tr>
+        <td><button onclick = 'postToFeed("fvbfjvgkjfsbvg","google.com")'>share 3al face</button></td>
         <td><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
         <td><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></td>
         <td><%= link_to 'الغاء', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'هل تريد الغاء المهمة' } %></td>
