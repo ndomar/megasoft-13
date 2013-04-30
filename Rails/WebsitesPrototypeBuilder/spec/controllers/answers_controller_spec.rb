@@ -6,7 +6,6 @@ describe AnswersController do
     before(:each) do
     	page = Page.create(:html => "<div><button> Hi </button></div>" ,:page_name =>"test page")
     	question =Question.create(:body => "what do you think test ?",:assigned_part =>"1", :page_id =>1)
-    	@attr = {:answer => "answer test", :question_id => 1, :page_id =>1}
     end
     #Testing valid attributes as a params
     context "with valid attributes" do
@@ -36,5 +35,19 @@ describe AnswersController do
         response.should redirect_to ("/pages/reviewer?id=1&notice=Answer+could+not+be+saved.")
       end
     end 
+  end
+  describe 'DELETE destroy' do
+    # Creating a answer and a page and question before each method call
+    before :each do
+      @page = Page.create(:html => "<div><button> Hi </button></div>" ,:page_name =>"test page")
+      @question =Question.create(:body => "what do you think test ?",:assigned_part =>"1", :page_id =>1)
+      @answer = Answer.create(:answer => "answer test", :question_id => 1, :page_id =>1)
+    end
+      #Testing that the answer is removed from the database
+    it "deletes the answer" do
+      expect{
+      delete :destroy, id: @answer ,page_id: @page, question_id: @question       
+      }.to change(Answer,:count).by(-1)
+    end
   end
 end

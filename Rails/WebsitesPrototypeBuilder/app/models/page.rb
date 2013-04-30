@@ -11,6 +11,7 @@ class Page < ActiveRecord::Base
   # set it to contain many questions, when deleted delete all related questions
   has_many :questions,:dependent => :destroy
   has_many :tasks
+  has_many :steps
   has_many :answers,:dependent => :destroy
   belongs_to :project
 end
