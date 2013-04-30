@@ -86,7 +86,8 @@ end
   get "/log/:id" => 'task_results#index'
 
   get 'projects/design/:project_id' => 'projects#design'
-  
+
+  get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

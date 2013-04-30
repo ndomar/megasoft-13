@@ -25,6 +25,7 @@
       	  <td><%= result.time %></td>
       	  <td><%= result.success %> % </td>
       	  <td><%= result.clicks %><td>
+          <td><%= link_to 'التفاصيل',:controller=> :tasks, :action =>  :log, :project_id =>params[:project_id], :task_id => @task.id, :result_id => result.id %></td>
         </tr>       
       </table>
     <% end %>

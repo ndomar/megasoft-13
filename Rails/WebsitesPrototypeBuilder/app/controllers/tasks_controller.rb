@@ -240,4 +240,7 @@ class TasksController < ApplicationController
       format.js {render "step_list"}
     end
   end
+  def log
+    @task_result = Project.find_by_id(params[:project_id]).tasks.find(params[:task_id]).task_results.find_by_id(params[:result_id])
+  end
 end

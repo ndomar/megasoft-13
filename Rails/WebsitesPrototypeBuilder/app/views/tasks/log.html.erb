@@ -1,0 +1,14 @@
+<h1>LOG</h1>
+
+
+<table>
+  <% @task_result.logs.each do |log| %>
+    <tr>The User <%= log.action%> on <%=log.component_involved%> at <%= log.time %> </tr>
+  <% end %>
+  <% if @task_result.step_answers.length < 0%>
+    <tr>Steps Success</tr>
+    <tr> <%= render "create_bars", :x => @task_result %> </tr>
+  <% else %>
+    <tr>لا توجد خطوات لهذه المهمة</tr>
+  <% end %>
+</table>
