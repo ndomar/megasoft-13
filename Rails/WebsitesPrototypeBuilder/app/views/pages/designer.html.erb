@@ -10,12 +10,12 @@
 	<!-- The SideBar -->
 	<div id="sidebar">
 		<div id="side_content">
+		<div onclick="$('#comments').toggle();$('#questions').toggle()" class="sw"></div>
 			<!-- Notice to see the errors -->
 			<p id="notice"><%= notice %></p>
-			<h4>التعليقلت</h4>
+			
 			<!-- Fetching comments from the database,just for testing -->
 			<%= render :partial => 'comments/comments' %>
-			<h4>الاسئلة</h4>
 			<%= render :partial => 'questions/questions' %>
 			<!-- The + buttom on clicking draw the circle -->
 			<div class="add_comment" onclick="draw_circle();">+</div>

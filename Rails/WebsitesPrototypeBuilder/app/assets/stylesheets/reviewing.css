@@ -85,6 +85,7 @@ textarea.message_area {
 }
 
 .add_comment{
+	display: inline-block;
 	font-size: 20px;
 	display: table-cell;
 	height: 35px;

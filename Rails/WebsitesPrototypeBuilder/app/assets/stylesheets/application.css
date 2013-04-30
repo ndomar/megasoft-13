@@ -11,6 +11,49 @@
  *= require jquery.ui.all
  *= require_self
  */
+.coms{
+	cursor:pointer;
+
+}
+.hideans{
+	cursor:pointer;
+}
+ .lilbuttonc{
+ 	display: inline-block;
+    background-image:url('\lilbutton.png');
+    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	width:53px;
+	height:53px;
+	float: left;
+	margin-right: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor:pointer;
+}
+.lilbuttonq{
+	display: inline-block;
+    background-image:url('\lill.png');
+    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	width:53px;
+	height:53px;
+	float: left;
+	margin-right: 0px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor:pointer;
+}
+.sw{
+
+    background-image:url('\switcher.png');
+	width:180px;
+	height:53px;
+	float: left;
+	margin-right: 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 html,body{ 
 	width:100%; 

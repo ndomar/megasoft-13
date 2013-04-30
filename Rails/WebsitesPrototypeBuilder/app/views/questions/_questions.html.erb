@@ -1,12 +1,48 @@
 <!-- Fetching questions from the database,just for testing -->
-<div id="questions">
-	<% @page.questions.each do |question| %>
-		<div>
-			<!-- Getting the question -->
-			<p><%= question.body %></p>
-			<!-- The deleting method uses AJAX destroy.js.erb -->
-			<p><%= link_to "امسح", [@page,question], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_question" %>
-			<hr>
-		</div>
-	<%end%>
-</div>
+<div id="questions" style="display:none">
+				<h4>الاسئلة</h4>
+                     <% ansarray = Array.new %>       
+					 <% @page.questions.each do |question| %>
+					 <% ansarray << question.assigned_part %>
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),1);" id="qshows" class="lilbuttonq">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+				    
+
+            <!-- show and hide answers -->
+			<p onclick="$('.answers2').toggle();" class="pointer">  (&#1592;&#1607;&#1608;&#1585; / &#1573;&#1582;&#1601;&#1575;&#1569;) &#1575;&#1604;&#1573;&#1580;&#1575;&#1576;&#1575;&#1578; </p>
+
+
+				<%@page.questions.each do |question|%>
+					<div id="<%=question.assigned_part%>">
+						<p onClick="lastm(this);" class="pointer"  style="color:red"><%= question.body %></p>
+						 <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p>
+					<h5>:اجابتك </h5>
+					<% question.answers.each do |ans| %>
+					<% if(question.body!="jhhsicn comment") then %>  <!-- to be used when session variables are added -->
+						<div class="answers2" style="display:none">
+						<p><%= ans.answer %></p>
+						<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
+						<hr>
+						</div>			
+					<%end%>
+					<%end%>
+					
+					<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
+					<hr>
+					
+					<% if !(question.answers.find(:all).empty?) %>
+							
+					<%end%>
+					<div class = "form_message">
+							<%= form_for [@page,question,question.answers.build] do |f| %>
+							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :required=> true %>
+								<div align:"left">
+								<%= f.submit "+", :class => "add_comment blue_circle", :align => 'left'%>
+								</div>
+							<%end%>
+					</div>
+					<hr>
+					</div>
+				<%end%>
+			</div>
