@@ -10,6 +10,7 @@
   #   -has a many to many relationship with reviewers
 class Task<ActiveRecord::Base
 
+
   attr_accessible :description, :name, :page_id, :time_limit, :requires_reviewer_info, :project_id, :final_step
 
 

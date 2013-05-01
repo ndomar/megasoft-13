@@ -179,7 +179,6 @@ class TasksController < ApplicationController
   #
 
   def edit_steps
-    @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @steps = @task.steps
     @page = @task.page

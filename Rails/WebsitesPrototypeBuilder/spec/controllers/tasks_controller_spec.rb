@@ -5,7 +5,6 @@ describe TasksController do
   it "should find task & step. create new step_answer & task_result" do
     p=Project.new
     p.id=1
-    p.project_name='project1'
     p.save
     t=Task.new
     t.id=1
@@ -18,9 +17,6 @@ describe TasksController do
     s=Step.new
     s.id=1
     s.task_id=1
-    s.description='x'
-    s.event='click'
-    s.component='cmp'
     s.save
     r=Reviewer.new
     r.id=1

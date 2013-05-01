@@ -11,10 +11,6 @@ class CardsortsController < ApplicationController
   # - void
   #
 	def new
-		@cardsort = Cardsort.new
-	end
-
-	def create_cardsort
 		@cardsort = Cardsort.new(params[:cardsort])
 		@cardsort.save
 		@cards = @cardsort.cards
@@ -22,8 +18,6 @@ class CardsortsController < ApplicationController
 		@card = Card.new
 		@group = Group.new
 		session[:cardsort_id] = @cardsort.id
-		@other_cardsorts = @cardsort.project.cardsorts
-		render "new"
 	end
 
 	##
@@ -34,9 +28,7 @@ class CardsortsController < ApplicationController
   # - void
   #
 	def edit
-		@cardsort = Cardsort.find(params[:crdsrt])
-		@other_cardsorts = @cardsort.project.cardsorts
-		session[:cardsort_id] = @cardsort.id
+		@cardsort = Cardsort.find(params[:cardsort_id])
 		@cards = @cardsort.cards
 		@groups = @cardsort.groups
 		@card = Card.new
@@ -51,6 +43,7 @@ class CardsortsController < ApplicationController
   # * *Returns* :
   # - void
   #
+
 	def create_card
 		@card = Card.new(title: params[:title],
 			description: params[:desc])
