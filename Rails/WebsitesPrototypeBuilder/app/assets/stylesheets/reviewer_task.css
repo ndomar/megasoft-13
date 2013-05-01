@@ -123,3 +123,12 @@ min-height:40px;
   color:white;
   font-weight: bold;
 }
+
+
+#page{
+  background: white;
+}
+
+#preview_mode {
+  display: none;
+}

@@ -1,30 +1,13 @@
-$('<iframe id="preview_mode"/>').load(function(){
+
+//var highlight_script='<script>function highlight(id){var element=document.getElementById(id);element.style.border="none";element.style.boxShadow="0px 0px 6px 5px orange";}</script>';
+//var dehighlight_script="<script>function dehighlight(id){var element =document.getElementById(id);element.style.boxShadow='none';element.style.borderStyle='solid';element.style.borderWidth='1px';element.style.borderColor='#CCCCCC';}</script>";
+//var on_click_script="<script>$('input').on('click',function(event){parent.update_log(event.target,'click');parent.update_steps(event.target,'click');if (event.target.id == 'submit_form_button'){hide_form();}});</script>";
+//var on_change_script="<script>$(document).ready(function(){$('input').on('change',parent.pp(event.target.id,event.target.value,'change'));});</script>";
 
 
- 
- //A function that de-highlight's a certain component given its id
- function dehighlight(id){
-  var element = document.getElementById(id);
-  element.style.boxShadow= 'none';
-  element.style.borderStyle='solid';
-  element.style.borderWidth='1px';
-  element.style.borderColor='#CCCCCC';
- } 
- 
- //keeps track user clicked where and when
-//var current_click_time= new Date();
-$("input").on('click',function(event){
-  //alert(event.target.id);
-  update_log(event.target,'click');
-  update_steps(event.target,'click');
- if (event.target.id == 'submit_form_button'){
-  hide_form();
- }
-}); 
-  // Write your iframe javascript here
-  $('#preview_mode').contents().find('body').append('function selectItem () {var element = document.getElementById("drag_resize");var isVisible = element.offsetWidth > 0 || element.offsetHeight > 0;if(isVisible){var offset = $("#drag_resize").offset();var posY =offset.top + ($("#drag_resize").height()/2) -51 ;var posX =offset.left+ ($("#drag_resize").width()/2);window.frames[0].OnMouseMove(posX,posY);}}');
-  
-}).appendTo("body");
+//$('<iframe id="preview_mode"/>').load(function(){
+ // $('#preview_mode').contents().find('body').append('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"><\/script>').end().appendTo("body");
+//});
 
 function highlight(id){
   var element=document.getElementById(id);element.style.border="none";element.style.boxShadow="0px 0px 6px 5px orange";}
@@ -36,7 +19,8 @@ function highlight(id){
   element.style.borderStyle='solid';
   element.style.borderWidth='1px';
   element.style.borderColor='#CCCCCC';
- } 
+ }
+
 
 function display_form(){
   $("#coloured").show(500);
@@ -151,20 +135,93 @@ function times_up(){
   $('#page').fadeOut(500);
   $('.desc').fadeOut(500);
   $('#goal').fadeOut(500);
+  $('#sarah').fadeOut(500);
 }
 
  function update_log(element,event_triggered){
+
   if(element.type !='text' && element.type !='password' || event_triggered=='change'){
 
     var current_element_id= element.id;
-    var current_element_value = document.getElementById(current_element_id).value;
-    var current_click_time = new Date().getHours()+ ":" + new Date().getMinutes()+ ":" + new Date().getSeconds() ; //time at which the action is triggered
+    var current_element_value = $('#'+current_element_id).value;
+    var current_click_time = new Date().getHours()+ ":" + new Date().getMinutes()+ ":" + new Date().getSeconds() ; //time at which the action is triggered\
+
     $("#change_action").val(event_triggered);
     $("#change_component_involved").val(current_element_value);
     $("#change_action_time").val(current_click_time);
     $("#change_element_id").val(current_element_id);
     $(function() { $("#log_form").submit(); });
- document.getElementById("description_paragraph").innerHTML="The user "+ event_triggered + document.getElementById(event.target.id).value + " at time " + current_click_time;
+            alert(element.type + event_triggered);
+
+ //document.getElementById("description_paragraph").innerHTML="The user "+ event_triggered + document.getElementById(event.target.id).value + " at time " + current_click_time;
   }  
  }
+
+function cli(selected){
+  var point=$(selected).text();
+  alert(selected);
+  callChild(point);
+  return false;
+}
+
+function updateHtml() {
+  updateH();
+  disableLinks();
+  enableImages();
+}
+
+function callChild(name){
+
+var iframe_doc = document.getElementById("preview_mode").contentDocument;
+var all_anchors = iframe_doc.getElementsByTagName("a");
+
+for(var i=0;i<all_anchors.length;i++){
+  anchors_string=all_anchors[i]+"";
+  anchors_array= anchors_string.split("/");
+  var value= anchors_array[anchors_array.length-1];
+  var name_low= name.toLowerCase();
+  if(value.indexOf(name_low)==0){
+    all_anchors[i].click();
+    setTimeout('updateHtml()',500);
+   return;}
+}
+}
+
+function all_updates(){
+  $("input").each(function(){
+    $(this).attr('onclick','log_steps(this,"click")');
+    $(this).attr('onchange','log_steps(this,"change")');
+  });
+}
+
+function log_steps(element,event_triggered){
+  update_log(element,event_triggered);
+  update_steps(element,event_triggered);
+  alert(element.id);
+ if (element.id == 'submit_form_button'){
+  hide_form();
+ }
+}
+function updateH() {
+  var frameHtml = window.frames['preview_mode'].document.documentElement.innerHTML;
+  document.getElementById('sarah').innerHTML=frameHtml;
+    all_updates();
+}
+
+function disableLinks(){
+  $("#sarah a").each(function(){
+    $(this).attr('href','#');
+    $(this).attr('onclick','return cli(this);');  
+  });
+}
+
+function enableImages(){
+  //alert(projectid);
+  $("#sarah img").each(function(){
+    $(this).attr('src',"/"+projectid+"/images/myimage.jpg"); 
+  });
+}
+
+
+
  
