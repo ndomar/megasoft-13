@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
       format.json { render json: @project }
     end
   end
-  
+
   ##
   # called to update a page in the database
   # finds the page with the given id and updates its html
@@ -125,7 +125,7 @@ class ProjectsController < ApplicationController
   # 
   def showPage
     @page = Page.find(params[:pageId]) 
-    @html = @page.html.html_safe
+    @html =@page.html
     @id=@page.id
     respond_to do |format|
       format.js {render "show_page", :status => :ok}
@@ -172,8 +172,7 @@ class ProjectsController < ApplicationController
       end
     end
 	end
-
-  #before_filter :authenticate_designer! 
+ 
   ##
   #The index method is used, to preview all the projects created by the logged in designer
   # * *Instance*    :
