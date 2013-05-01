@@ -1,6 +1,8 @@
 //these functions are used in the package explorer
 
 function show(id){
+	var designPage = document.getElementById('designpage');
+	designPage.setAttribute("data-pageid", id);
 	var params = $.param({
 		pageId: id
 	});
@@ -45,7 +47,6 @@ function store(){
 	  //   "/": '&#x2F;'
 		html=html.replace( "onclickevent", "onclick" , 'g');
 		html=html.replace( "onhoverevent", "onmouseover" , 'g');
-
 		var params = $.param({
 			pageid: pageId,
 			"html": html
