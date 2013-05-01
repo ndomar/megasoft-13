@@ -56,7 +56,8 @@ class ProjectsController < ApplicationController
       format.json { render json: @project }
     end
   end
-
+  
+  ##
   # called to update a page in the database
   # finds the page with the given id and updates its html
   # * *Args* :
@@ -76,6 +77,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  ##
   # called to delete a page in the database
   # finds the page with the given id
   # * *Args* :
@@ -91,6 +93,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  ##
   # called to create a page in the database
   # create a page with the given name in the given project in the database
   # * *Args* :
@@ -112,6 +115,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  ##
   # called to show a page in the design pane
   # shows a page in the design pane
   # * *Args* :
