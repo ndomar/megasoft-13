@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
@@ -23,6 +24,14 @@ gem "jasmine"
 #gem for nested forms
 gem "nested_form"
 
+
+# gems for uploading image
+# gem 'rmagick'
+gem 'carrierwave'
+
+# gem for making behavioural testing
+gem 'jasmine-rails'
+
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
@@ -32,7 +41,7 @@ gem 'simplecov', :require => false, :group => :test
 #googlevisualr
 gem "google_visualr", ">= 2.1"
 
-gem "nested_form"
+
 # gem for page screenshot
 gem 'delayed_job_active_record'
 
@@ -71,4 +80,6 @@ gem 'jquery-ui-rails'
 # gem 'capistrano'
 
 # To use debugger
+
 # gem 'debugger'
+

@@ -18,6 +18,8 @@ class Project < ActiveRecord::Base
 
   has_many :tasks, :dependent => :destroy
   has_many :pages, :dependent => :destroy
+  has_many :medias
+  has_many :cardsorts, :dependent => :destroy
   belongs_to :designer
 
   def get_thumbnail
@@ -29,4 +31,8 @@ class Project < ActiveRecord::Base
        "/assets/default.jpg"
       end
   end
+
 end
+
+
+

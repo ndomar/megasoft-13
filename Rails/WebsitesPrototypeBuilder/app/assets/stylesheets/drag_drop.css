@@ -2,6 +2,17 @@ body {
 	  text-align: center;
 }
 
+.container{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#wrapper{
+	padding-right: 280px;
+}
+
 #toolbox{
 	width: 210px;
 	height:750px;
@@ -10,7 +21,7 @@ body {
 	border: solid;
 	border-left: none;
 	border-width: 1px;
-	position: absolute;
+	position: relative;
 	background-color: lightgray;
 	/*border-radius: 20px;*/
 	border-top-right-radius: 10px;
@@ -19,23 +30,39 @@ body {
 	padding-bottom: 20px;
 }
 
+#sidebar{
+	border: solid;
+	border-color: black;
+	border-width: 2px;
+	overflow: visible;
+	width: 210px;
+	z-index: 3;	
+	min-height: 0%;
+	min-width: 0%;
+	height: 700px;
+}
+
 #main{
 	text-align: left;
 	 width: 1000px;
 }
 
 #designpage{
-	width:950px;
-	height:750px;
+	width:100%;
+	height:694px;
 	text-align: center;
 	background-repeat: repeat-y;
-    background-position: 0 0;
-   	border:1px solid black;
-   	float:right;
-   	position: relative;
-   	padding: 10px;
-   	box-shadow: 0px 0px 10px 10px lightgray inset;
-   	border-radius: 10px;
+  background-position: 0 0;
+  border:1px solid black;
+	float:right;
+ 	position: relative;
+ 	padding: 10px;
+ 	box-shadow: 0px 0px 10px 10px lightgray inset;
+ 	/*border-radius: 10px;*/
+}
+
+#content{
+	margin-left: 20px;
 }
 
 .appended{
@@ -43,10 +70,13 @@ body {
 }
 
 .toolboxelement{
-	z-index: 100;
-	width: 160px;
+	z-index: 1000;
+	width: 50px;
 	border-radius: 5px;
+	height: 50px;
+	text-align: center;
 }
+
 
 .tblhdr{
 	background-color: black;
@@ -54,14 +84,15 @@ body {
 }
 
 .tbldevs{
-	padding-top: 10px;
-	padding-left: 20px;
+	height: 70px;
+	width: 80px;
 	/*width: 100%;*/
 }
 
 .properties{
+	width: 210px;
 	background-color: transparent;
-	height: 250px;
+	height: 300px;
 	overflow-y: scroll;
 	text-align: left;
 	visibility: hidden;
@@ -72,7 +103,7 @@ body {
 }
 
 .inp{
-	width: 80px;
+	width: 70px;
 	height: 15px;
 	/*visibility: hidden;*/
 	border-radius: 5px;
@@ -85,4 +116,94 @@ body {
 	/*visibility: hidden;*/
 	display: inline-block;
 	width: 90px;
+}
+
+.trc{
+	width: 80px;
+	display: inline-block;
+}
+
+.arrow{
+	background-color: #3790e8;
+	width: 18px;
+	border-radius: 3px;
+	left: 0px;
+	top: 288px;
+	position: absolute;
+}
+
+.colordiv{
+	z-index: 10000;
+	display: inline-block;
+	padding:2px;
+	margin-top: 5px;
+	border: solid;
+	border-width: 2px;
+	border-color: grey;
+}
+
+.image-panel{
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	color: #fafafa;
+	width: 210px;
+	background:#1b1b1b;
+	position: absolute;
+	top: 1%;
+	height: 703px;
+	right: 1.5%;
+	bottom: 0;
+	word-wrap:break-word;
+}
+
+.sidebar-tag{
+	background-color: #759eb2;
+  background:-moz-linear-gradient(80% 66% 270deg, #759eb2, #1b1b1b 90%);
+  box-shadow: 0px 0px 4px 4px #1b1b1b;
+	position: absolute;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px; 
+	width: 40px;
+	height: 30px;
+	transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+}
+
+#image-panel-tag{
+	top: 5%;
+	left: -15%;
+}
+
+#toolbox-tag{
+	top: 4%;
+	left: -15%;
+}
+
+#image-panel{
+	overflow-y: scroll;
+	position: absolute;
+	height: 520px;
+	width: 210px;
+}
+
+#drop-area{
+	border-style: dashed;
+	border-width: 2px;
+	border-color: white;
+	padding: 40px;
+	margin: 30px;
+}
+
+.thumbnail{
+	margin-bottom: 10px;
+	margin-left: 20px;
+	width: 70%;
+}
+
+progress{
+	width: 70px;
+	height: 5px;
 }

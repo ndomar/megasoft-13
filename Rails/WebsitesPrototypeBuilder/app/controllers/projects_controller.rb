@@ -2,9 +2,41 @@ class ProjectsController < ApplicationController
   #To make sure that the designer is logged in
   before_filter :authenticate_designer!
 
-  def design
+
+  def create_page
+     Page.create!(:project_id => id)
   end
-   ##
+
+  ##
+  # upload media (image/video) to the server under a specific
+  # folder for the project
+  # * *Args* :
+  # - none
+  # * *Returns* :
+  # - void
+  #
+  def upload_media
+    name = request.headers["HTTP_X_FILENAME"]
+    project_id = request.headers["HTTP_PROJECT_ID"]
+    data = request.raw_post
+    @media = Media.new(url: name, project_id: project_id)
+    @media.store_media(name, data, project_id)
+
+    respond_to do |format|
+      if @media.save
+        format.html { render :nothing => true, :status => :created }
+      else
+        format.html { render :nothing => true, :status => 406 }
+      end
+    end
+  end
+
+	def design
+    @project = Project.find(params[:project_id]);
+    @medias = @project.medias
+	end
+
+  ##
   #The index method is used, to preview all the projects created by the logged in designer
   # * *Instance*    :
   #   - +designer+-> is the logged in designer 
@@ -32,20 +64,6 @@ class ProjectsController < ApplicationController
     @project = Project.new()
   end
 
-def update
-  @project = Project.find(params[:id])
- 
-    if @project.update_attributes(params[:project])
-      redirect_to projects_path
-    else
-      render "try again"      
-    end
-end
-
-
-  def edit 
-    @project = Project.find(params[:id])
-  end
 
   ##
   #The create method in project controller class creates a new project with a given parameter and then
@@ -84,4 +102,5 @@ end
       format.js { render "project_deleted", :status => :ok}
     end
   end
+
 end
