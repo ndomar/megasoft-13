@@ -14,11 +14,13 @@
 <script type="text/javascript">
   $(document).ready(function(){
     projectid= <%= @page.project_id %>;
-    window.setTimeout("updateHtml()",1);
-  });
+    updateHtml();
+});
+
+
 </script>
 
-<h2 onclick="updateHtml();">Cool</h2>
+<h2>Click once to acitvte link</h2>
 <div id ="wrapper" >
 
   <!-- This is the slider button -->
@@ -38,7 +40,7 @@
           <br/>
           <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
           <br/> <br/>
-          <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>', '<%= @page.id%>')"> إضافة الخطوة </button>
+          <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>')"> إضافة الخطوة </button>
         </div>
 
       </div>
@@ -65,7 +67,7 @@
     </div>
 
     <div id='page'> 
-      <iframe id="preview_mode" src= <%="/#{@page.project_id}/#{@page.page_name}.html" %>  > </iframe>
+      <iframe id="preview_mode" src= <%="/#{@page.project_id}/#{@page.page_name}.html" %> name="preview"> </iframe>
     </div>
 
     <button id = "dehighlight" style = "display:none"></button>

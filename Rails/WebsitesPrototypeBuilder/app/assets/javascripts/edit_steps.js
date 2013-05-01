@@ -5,17 +5,26 @@ $(function(){
     if(cursor.hasClass("cursorPressed")){
       $("#add_step").hide();
       dehighlight($("#component_id").val());
+      enableClick();
+    } else{
+      disableClick();
     }
     $('#cursorSwitch').toggleClass('cursorPressed');
     $('#embedded').toggleClass('embeddedDiv');
   });
 });
 
-$(function(){
+function disableClick(){
   $('#embedded').find('a').each(function () {
-    $(this).bind('click',false);
+    $(this).attr('onclick','');
   });
-});
+}
+
+function enableClick(){
+  $('#embedded').find('a').each(function () {
+    $(this).attr('onclick','return cli(this);');
+  });
+}
 
 $(function(){
   $("#embedded").click(function(event){
@@ -85,10 +94,14 @@ function select(id){
   $("#component_id").val(id);
 }
 
-function save(task_id, page_id){
+function save(task_id){
+  //alert($("#preview_mode").contentWindow.body.data("id"));
+  var iframe_body = window.preview.document.getElementsByTagName('body')[0];
+  //alert(document.getElementById("preview_mode").contentWindow.document.body.dataset.id);
   var params = $.param({
     id: task_id,
-    page_id:  page_id,
+    //page_id:  $("#preview_mode").body.data('id'),
+    page_id: document.getElementById("preview_mode").contentWindow.document.body.dataset.id,
     component: $("#component_id").val(),
     "event" : $("input:radio[name=events_list]:checked").val(),
     description: $("#step_description").val()
@@ -140,19 +153,10 @@ for(var i=0;i<all_anchors.length;i++){
   var name_low= name.toLowerCase();
   if(value.indexOf(name_low)==0){
     all_anchors[i].click();
-    updateHtml();
+    window.setTimeout("updateHtml()",200);
    return;}
   }
 }
-
-$(document).ready(function(){
-  $("#embedded").find('a').click(function(event){
-    //alert("sfsfcffffrgdfg");
-    // window.setTimeout("updateHtml()",1);
-  });   
- });
-
-
 
 
 function updateH() {
