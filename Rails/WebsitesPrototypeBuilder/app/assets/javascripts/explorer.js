@@ -39,12 +39,6 @@ function store(){
 		// html=html.replace(  '"' , '\"', 'g');
 		// html=html.replace( 	"'", "\'" , 'g');
 		// html=html.replace( "/" , '&#x2F;', 'g');
-		//	 "&": "&amp;",
-	  //   "<": "&lt;",
-	  //   ">": "&gt;",
-	  //   '"': '&quot;',
-	  //   "'": '&#39;',
-	  //   "/": '&#x2F;'
 		html=html.replace( "onclickevent", "onclick" , 'g');
 		html=html.replace( "onhoverevent", "onmouseover" , 'g');
 		var params = $.param({

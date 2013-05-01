@@ -125,7 +125,10 @@ class ProjectsController < ApplicationController
   # 
   def showPage
     @page = Page.find(params[:pageId]) 
-    @html =@page.html
+    @html = ""
+    if @page.html != nil 
+      @html =@page.html.html_safe
+    end
     @id=@page.id
     respond_to do |format|
       format.js {render "show_page", :status => :ok}
