@@ -1,0 +1,29 @@
+<%= javascript_include_tag "image_upload" %>
+<%= stylesheet_link_tag "upload_image" %>
+<!-- <div id="wrapper"> -->
+	
+	<div id="sidebar">
+	
+		<div id="drop-area">
+			<label>Drop image to upload</label>
+		<div/>
+				<form name='project' >
+					<input type=hidden name='project_id' value='<%= @project.id %>' />
+				<form/>
+				<div id='images'>
+			<% @pictures.each do |picture| %>
+			<div class='thumbnail'>
+				<img  src='<%= "/assets/project_#{@project.id}/#{picture.image}" %>' />
+			</div>
+				<%end%>
+			</div>
+		<%= link_to 'Edit', edit_project_path(@project) %> |
+		<%= link_to 'Back', projects_path %>
+	</div>
+	<div id="content">
+			
+	</div>
+<!-- </div> -->
+<script type="text/javascript">
+	initDragAndDrop();
+</script>

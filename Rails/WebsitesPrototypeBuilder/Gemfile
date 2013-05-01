@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 gem 'bcrypt-ruby'
 gem 'sqlite3'
 gem 'devise'
+gem 'execjs'
 
 # gems neeeded for testing
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
@@ -17,12 +18,31 @@ gem "cucumber-rails", ">= 1.3.0", :group => :test, :require => false
 gem "launchy", ">= 2.1.2", :group => :test
 gem "capybara", ">= 2.0.2", :group => :test
 gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
+gem "jasmine"
+
+#gem for nested forms
+gem "nested_form"
+
+# gems for uploading image
+# gem 'rmagick'
+gem 'carrierwave'
+
+# gem for making behavioural testing
+gem 'jasmine-rails'
 
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
 # gem for sending mails
 gem 'mail'
+
+#simplecov
+gem 'simplecov', :require => false, :group => :test
+
+#googlevisualr
+gem "google_visualr", ">= 2.1"
+
+gem "nested_form"
 
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
@@ -56,4 +76,5 @@ gem 'jquery-ui-rails'
 # gem 'capistrano'
 
 # To use debugger
+
 # gem 'debugger'

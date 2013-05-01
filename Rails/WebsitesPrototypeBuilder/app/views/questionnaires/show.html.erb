@@ -1,0 +1,24 @@
+<p>
+  <b>Title:</b>
+  <%= @questionnaire.title %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @questionnaire.project %>
+</p>
+
+<ul>
+	<% for qquestion in @questionnaire.qquestions %>
+		<li><h4><%= qquestion.body %></h4></li>
+		<li><h1><%= qquestion.qtype %></h1></li>
+	<ul>
+		<% for choice in qquestion.choices %>
+			<li><%=h choice.body %></li>
+		<%end%>
+	</ul>
+	<%end%>
+</ul>
+
+<%= link_to 'Edit', edit_questionnaire_path(@questionnaire) %> |
+<%= link_to 'Back', questionnaires_path %>

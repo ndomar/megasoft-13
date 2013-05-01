@@ -1,4 +1,34 @@
-<h1>Cardsorts#create_cardsort</h1>
-<p>Find me in app/views/cardsorts/create_cardsort.html.erb</p>
+<%= stylesheet_link_tag "cardsorts" %>
+<%= javascript_include_tag "cardsorts" %>
 
-<%= @cardsort.open %>
+<div id='wrapper'>
+	<div id='sidebar' >
+		<h4> Jump to </h4>
+		<% @other_cardsorts.each do |cardsort| %>
+		<%= link_to cardsort.title, "edit", :crdsrt => cardsort.id %>
+		</br>
+		<% end %>
+	</div>
+	<div id='content'>
+
+		<H3 style="border-bottom:solid;border-width:1px"><%= @cardsort.title %></h3>
+
+		<ul class="nav nav-tabs">
+			<li class='active'>
+				<a id='cards-tab' href="#">Cards</a>
+			</li>
+			<li>
+				<a id='groups-tab' href="#">Groups</a>
+			</li>
+			<li>
+				<a href="#">Settings</a>
+			</li>
+		</ul>
+
+		<%= render "cards_view" %>
+		<%= render "groups_view" %>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(init);
+</script>

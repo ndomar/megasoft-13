@@ -14,6 +14,19 @@ iframe {
 	-ms-transform:rotate(0deg);
 }
 
+.form_message
+{
+	display: none;
+}
+
+.pressed{
+	margin-left: 24px;
+}
+
+.pressed:hover{
+	cursor:pointer;
+}
+
 .note {
 	position:absolute;
 	top: 0px;
@@ -32,6 +45,13 @@ iframe {
 	-o-transform:rotate(0.6deg);
 	-webkit-transform:rotate(0.6deg);
 	-moz-transform:rotate(0.6deg);
+}
+
+textarea.message_area {
+  width: 100%;
+  height: 50px;
+  color:#ffffff;
+  overflow: auto;
 }
 
 .textarea{
@@ -53,6 +73,11 @@ iframe {
 #submit_comment:hover{
 	background-color: rgb(90, 80, 60);
 	cursor:pointer;
+	width: 20px; 
+}
+
+#submit_comment{
+	width: 20px; 
 }
 
 #delete_comment:hover{
@@ -78,6 +103,14 @@ iframe {
 	border: 0px;
 }
 
+.blue_circle{
+	background-color: rgb(48, 156, 184);
+	color: white;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	border-width: 0px;
+}
 .note a{
 	color:#000000;
 	text-decoration: none;
@@ -174,8 +207,4 @@ textarea{
 	padding: 0;
 	margin: 0;
 	display:none;
-}
-
-hr{
-	margin: 0px;
 }

@@ -3,23 +3,25 @@
 
 <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
 <h2><%= p.project_name %></h2> <!-- show each project name -->
-<%= button_to_function "create new cardsort", "showPopup()" %>
+<%= link_to "DesignPage", :controller => :projects, :action => :design, :project_id => p.id %>
+<br/>
+<%= link_to_function "create new cardsort", "showPopup('" +p.id.to_s+ "')"  %>
+<br/>
+<%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => p.id %> 
 <hr/>
 <%end%>
 
 <div class='popup-darkscreen'>
   <div class='popup-window'>
     <h3 class='title'>New Cardsort</h3>
-    <%= form_for :cardsort, :url => {:controller => :cardsorts, :action => :new}, :method => :get do |form| %>
+    <%= form_for :cardsort, :url => {:controller => :cardsorts, :action => :create_cardsort} do |form| %>
       <%= form.text_field :title, :placeholder => "title" %>
       <%= form.text_field :description, :placeholder => "description" %>
-      <label class="radio"><%= form.radio_button :open, true, :checked => true %>Open</label>
-      <label class="radio">Closed<%= form.radio_button :open, false %></label>
-      <%= form.submit "Create cardsort" %>
+      <%= form.hidden_field :project_id, :id => 'project_id_field' %>
+      <label class="radio">Open<%= form.radio_button :open, true, :checked => true, :style => "float: none;margin-left: 10px;" %></label>
+      <label class="radio">Closed<%= form.radio_button :open, false, :style => "float: none;margin-left: 10px" %></label>
+      <%= form.submit "Create cardsort", :onclick => "return valid()" %>
       <%= button_to_function "cancel", "hidePopup()" %>
      <% end %>
   </div>
 </div>
-
-</body>
-</html>

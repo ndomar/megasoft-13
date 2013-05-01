@@ -1,6 +1,10 @@
 <%= stylesheet_link_tag    "application", :media => "all" %>
 <p id="notice"><%= notice %></p>
 
+<h2 align="right">تعديل الخطوات</h2>
+<%= link_to 'الذهاب إلى الصفحة', edit_steps_path(params[:project_id], @task) %>
+
+<br/>
 
 <h2 align="right">نتائج المهام</h2>
 
@@ -17,15 +21,15 @@
       <% render "calculate_success", :f => result %> 
       <%if result.reviewer %>
         <tr>
-     	  <td><%= result.reviewer.email %></td>
-     	  <td><%= result.time %></td>
-     	  <td><%= result.success %> % </td>
-          <td><%= result.clicks %><td>
+      	  <td><%= result.reviewer.email %></td>
+      	  <td><%= result.time %></td>
+      	  <td><%= result.success %> % </td>
+      	  <td><%= result.clicks %><td>
         </tr>
-	<tr>
-	  <td>
-	    <%= render "create_bars", :x => result %>
-	  </td>
+        <tr>
+          <td>
+            <%= render "create_bars", :x => result %>
+          </td>
         </tr>
       <% end %>
     <% end %> 
@@ -36,5 +40,3 @@
     <strong>عذراً!</strong> لا توجد نتائج 
   </div>
 <% end %>
-
-<%= link_to 'Back', tasks_path %>
