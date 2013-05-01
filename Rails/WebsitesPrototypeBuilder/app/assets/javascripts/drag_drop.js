@@ -71,6 +71,38 @@ $(document).ready(function (){
 			$(".image-panel").animate({
 				right: "-150px"
 			},200,"linear");
+			/*$("#designpage").animate({
+				width: "+=170",
+				left: "+=170"
+			},200,"linear");
+			$("#designpage").children().animate({
+				left: "+=170"
+			},200,"linear");
+			*/
+		}
+		else {
+			$(".image-panel").animate({
+				right: "20.2833px"
+			},200,"linear");
+			/*$("#designpage").animate({
+				width: "-=170",
+				left: "-=170"
+			},200,"linear");
+			$("#designpage").children().animate({
+				left: "-=170"
+			},200,"linear");*/
+		}
+	});
+
+	$("#versions-panel-tag").click(function(){
+		if ($("#sidebar").css("right")=='0px'){
+			$("#toolbox-tag").click();
+			return;
+		}
+		if (parseFloat($(".versions-panel").css('right') )> 20||$(".versions-panel").css('right') == '1.5%'){
+			$(".versions-panel").animate({
+				right: "-150px"
+			},200,"linear");
 			$("#designpage").animate({
 				width: "+=170",
 				left: "+=170"
@@ -80,7 +112,7 @@ $(document).ready(function (){
 			},200,"linear");
 		}
 		else {
-			$(".image-panel").animate({
+			$(".versions-panel").animate({
 				right: "20.2833px"
 			},200,"linear");
 			$("#designpage").animate({

@@ -135,9 +135,35 @@ class ProjectsController < ApplicationController
     @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
     @page.html = params[:html]      # I am updating the page's html
     @page.save                      # I am saving the page after updating it
-    @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@page.project_id}")
 
-    
+    # save to file, and commit the changes
+    # getting the repo from its folder
+    path = "#{Rails.public_path}/projects/#{@page.project_id}"
+    repo = Rugged::Repository.new(path)
+
+    # create a new file to add in the repo, skip if file already exists
+    path += "/"+@page.page_name
+    new_file = !File.exists?(path)
+    File.open(path, "w") do |f|
+      f.write(params[:html])   
+    end
+
+    # add the file to the list of files to commited
+    index = repo.index
+    index.add(@page.page_name)
+
+    # commiting after adding all files
+    options = {}
+    options[:tree] = index.write_tree
+    options[:author] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+    options[:committer] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+    options[:message] = ((new_file)? "Adding" : "Saving") + " page \"#{@page.page_name}\""
+    options[:parents] = repo.empty? ? [] : [ repo.head.target ].compact
+    options[:update_ref] = 'HEAD'
+
+    Rugged::Commit.create(repo, options)
+
+    @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@page.project_id}")
 
     respond_to do |format|
       format.html { render :nothing => true }

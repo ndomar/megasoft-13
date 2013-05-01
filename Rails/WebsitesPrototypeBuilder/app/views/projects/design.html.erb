@@ -11,6 +11,25 @@
 	<!-- main div containing toolbox and design page -->
 	<div id="wrapper" class="container-fluid">
 		<!-- toolbox containing elements to add to the design page -->
+
+		<div class="versions-panel">
+			<div id='versions-panel-tag' class='sidebar-tag'>
+				النسخ
+			</div>
+			<thead class="brand"><h4 style="text-align: center">النسخ السابقة</h4></thead>
+			</br> 
+			<% repo = Rugged::Repository.new("#{Rails.public_path}/projects/#{@project.id}") %>
+			<% walker = Rugged::Walker.new(repo) %>
+			<% walker.push(Rugged::Branch.lookup(repo, "master").tip.oid) %>
+			<% walker.sorting(Rugged::SORT_TOPO) %>
+			<div id="versions-scroll">
+				<% walker.each do |c| %>
+					<a href="<%= c.oid %>"><%= c.message %></a></br><%= c.time.asctime %>
+					</br></br>
+				<% end %>
+			</div>
+		</div>
+
 		<div class='image-panel'>
 			<form name='project' >
 				<input type=hidden name='project_id' value='<%= @project.id %>' />
