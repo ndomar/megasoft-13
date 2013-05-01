@@ -28,6 +28,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get 'cardsorts/create_group'
 
   #at start up page goes to the home controller and the index action
+
   root to: "home#index"
 
   resources :projects
@@ -52,6 +53,12 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end 
   end
 
+  get "pages/designer"
+  get "projects/index"
+  post "projects/upload_media"
+
+  resources :projects
+
   resources :pages do
     resources :comments
     resources :questions do
@@ -71,5 +78,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
-  get 'projects/design/:project_id' => 'projects#design'  
+  get "/log/:id" => 'task_results#index'
+  get 'projects/design/:project_id' => 'projects#design'
 end

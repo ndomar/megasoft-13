@@ -17,6 +17,11 @@ end
 		cardsort_id: rand(0..5));
 end
 
+#cards_groups
+(0..50).each do
+  Card.find(rand(1..5)).groups << Group.find(rand(1..5))
+end
+
 # cardsorts
 (0..50).each do
 	Cardsort.create(title: ('a'..'z').to_a.shuffle[0,20].join,
@@ -24,10 +29,12 @@ end
 		project_id: rand(0..5));
 end
 
-# choices
+#cardsortresults
 (0..50).each do
-	Choice.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		qquestion_id: rand(0..5))
+  CardsortResult.create(cardsort_id: rand(1..5),
+    reviewer_id: rand(1..5),
+    group_id: rand(1..5),
+    card_id: rand(1..5))
 end
 
 # comments
@@ -40,9 +47,7 @@ end
 # pages
 (0..50).each do
 	Page.create(page_name: ('a'..'z').to_a.shuffle[0,20].join,
-		html: ('a'..'z').to_a.shuffle[0,20].join,
-    thumbnail: ('a'..'z').to_a.shuffle[0,20].join,
-    project_id: rand(0..5))
+		html: ('a'..'z').to_a.shuffle[0,20].join)
 end
 
 # projects
@@ -53,16 +58,30 @@ end
 		designer_id: rand(0..5))
 end
 
-# qquestions
-(0..50).each do
-	Qquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		qtype: rand(0..5))
-end
-
-# Questionaire
+# Questionaire with Qquestions and choices where necessary
 (0..50).each do
 	Questionnaire.create(project_id: rand(0..5),
-	  title: ('a'..'z').to_a.shuffle[0,20].join)
+	  title: ('a'..'z').to_a.shuffle[0,20].join,
+    qquestions_attributes: [{body: "Question A", qtype: 1},
+     {body: "Question B", qtype: 2},
+     {body: "Question C", qtype: 3,
+     choices_attributes: [body: "Choice A"]}, 
+     {body: "Question D", qtype: 4, 
+     choices_attributes: [{body: "Choice A"}, 
+     {body: "Choice B"}]}])
+end
+
+# AnswerQuestionnaire
+(0..200).each do
+  randomquestion = Qquestion.find(rand(1..200))
+  if randomquestion.qtype == 1 || randomquestion.qtype == 2
+    body = ('a'..'z').to_a.shuffle[0,20].join
+  else
+    body = rand(0..randomquestion.choices.length-1)
+  end
+  AnswerQuestionnaire.create(body: body, 
+    qquestion_id: randomquestion.id,
+    questionnaire_id: randomquestion.questionnaire_id)
 end
 
 # Reviewer_infos
@@ -112,9 +131,7 @@ end
 	Task.create(name: ('a'..'z').to_a.shuffle[0,20],
 		description: ('a'..'z').to_a.shuffle[0,20],
 		project_id: rand(0..5),
-		page_id: rand(0..5),
-    time_limit: rand(0..5),
-    requires_reviewer_info: true)
+		page_id: rand(0..5))
 end
 
 # Designers
