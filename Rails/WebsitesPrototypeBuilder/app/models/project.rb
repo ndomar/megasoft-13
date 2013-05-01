@@ -2,7 +2,6 @@
 class Project < ActiveRecord::Base
 
   ##
-  # Attributes:
   # This is the project model 
   # * *Attributes*    :
   #   - +Project_name+-> This is the name of the project
@@ -10,6 +9,9 @@ class Project < ActiveRecord::Base
   # * *Relations  :
   #   -A project belongs to one designer
   #   -A project has many tasks 
+  #   -A project has many medias
+  #   -A project has many pages 
+  #   -A project has many cardsorts
 
   attr_accessible :description, :project_name, :project_type, :designer_id
   validates :designer_id, :presence => true
@@ -22,14 +24,20 @@ class Project < ActiveRecord::Base
   has_many :cardsorts, :dependent => :destroy
   belongs_to :designer
 
+  ## 
+  # get_thumbnail, The project view consists of screenshots of each of the specified designer's projects. A default image is shown if they have no pages yet
+  # * *Args*    :
+  #   - +id+ -> This is the id of a certain project.
+  # * *Returns* :
+  #   - the image for the project.
+
   def get_thumbnail
-    # begin
-      puts "id:", id
-      if File.exists?("app/assets/images/project_#{id}/page_index.png")
-        "/assets/project_#{id}/page_index.png"
-      else
-       "/assets/default.jpg"
-      end
+    puts "id:", id
+    if File.exists?("app/assets/images/project_#{id}/page_index.png")
+      "/assets/project_#{id}/page_index.png"
+    else
+      "/assets/default.jpg"
+    end
   end
 
 end
