@@ -240,6 +240,17 @@ class TasksController < ApplicationController
       format.js {render "step_list"}
     end
   end
+
+  ##
+  # Gets a certain task result from the database
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the current project.
+  #   - +task_id+ ->: The id of the current task.
+  #   - +result_id+ ->: The id of the task result to be sent to 
+  # * *Returns*  :
+  #   -Renders an html view to view the log of the task reult
+  #
+
   def log
     @task_result = Project.find_by_id(params[:project_id]).tasks.find(params[:task_id]).task_results.find_by_id(params[:result_id])
   end
