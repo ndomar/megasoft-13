@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
   def new
     @project = Project.new
     respond_to do |format|
@@ -175,8 +174,7 @@ class ProjectsController < ApplicationController
       end
     end
 	end
-
-  #before_filter :authenticate_designer! 
+ 
   ##
   #The index method is used, to preview all the projects created by the logged in designer
   # * *Instance*    :

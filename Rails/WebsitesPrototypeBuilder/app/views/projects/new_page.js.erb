@@ -1,26 +1,5 @@
 <% if (@page.valid?) %>
-	if($('#carousel-inner').children().length>0){
-		if($('#carousel-inner').children().last().children().children().last().prev().children().length>0){
-			//I need to have a new item
-			$('#carousel-inner').append('<div class="item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1" id="adding"><img style="margin-top: 40px;" onclick="addPage(\'<%= @page.project_id %>\')" id="addImage"  width="50" src="/assets/addPage3.jpg"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');
-	}else{
-			//there is a place in the last item
-			var spans = $('#carousel-inner').children().last().children().children().last().prev();	
-			//spans is the span just before the carousel slider
-			var backSpans=0;
-			while(spans.prev().children().length==0 && backSpans<4){
-				spans=spans.prev();
-				backSpans++;
-			}
-			//now I am at the span just after the add button
-			spans.append(spans.prev().html());
-			spans.prev().empty();
-			spans.prev().append('<a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p>');		
-		}
-	}else{
-	// never going to reach it
-	$('#carousel-inner').append('<div class="active item" style="background-color=#AAAAAA;"><ul class="thumbnails" style="background-color:#AAAAAA"><li class="span1"></li><li class="span1"><a class="x-button" href="#" onclick="deletePage(\'<%= @page.id %>\')"><div>x</div></a><div id="<%= @page.id %>" class="thumbnail" ondblclick="show(\'<%= @page.id %>\',\'<%= @page.html %>\')" style="border:none"><img alt="" src="/assets/emptyPage.jpg"></div><p><%= @page.page_name %></p></li><li class="span1" id="adding"><img style="margin-top: 40px;" onclick="addPage(\'<%= @page.project_id %>\')" id="addImage"  width="50" src="/assets/addPage3.jpg"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li><li class="span1"></li></ul></div>');
-	}
+	$('#myCarousel').append('<div class="cloudcarousel" id="<%= @page.id %>"><a class="x-button" onclick="deletePage(\'<%= @page.id %>\')" ><div>x</div></a><img src="/assets/emptyPage.jpg" width="" alt="" title="<%= @page.page_name %>" style="position: block; left: 11.521739130434781px; top: 32px; z-index: -20; width: 40px; height: 60px" ondblclick="show(\'<%= @page.id %>\')"></div>');
 <% else %>
 	alert("الرجاء التأكد من أن اسم الصفحة فريد من نوعه");
 <% end %>

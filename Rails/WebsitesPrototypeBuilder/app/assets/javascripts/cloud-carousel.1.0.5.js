@@ -157,7 +157,6 @@
                     if (Math.abs(diff) > images.length / 2) {
                         diff += (diff > 0 ? -images.length : images.length);
                     }
-                    
 					event.data.rotate(-diff);
 				}
 			}
