@@ -69,7 +69,7 @@ function initGroupsView() {
 					width = cardsView.offsetLeft - groupsView.offsetLeft;
 						$(groupsContent).css('width', width-80);
 			},
-		containment: [120,100,groupsView.offsetLeft+100,100000]
+		containment: [120,100,groupsView.offsetLeft,100000]
 	});
 	width = wrapper.offsetWidth - groupsView.offsetLeft;
 	$(groupsContent).css('width', width-80);
@@ -164,3 +164,4 @@ function deleteThmb(ui) {
 	});
 	$(ui.helper).fadeOut();
 }
+

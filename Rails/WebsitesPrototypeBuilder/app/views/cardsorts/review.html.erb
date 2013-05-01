@@ -1,34 +1,30 @@
 <%= javascript_tag "var id = #{@cardsort.id};" %>
-<%= javascript_include_tag "cardsorts" %>
+<%= javascript_include_tag "cardsorts_reviewer" %>
 <%= stylesheet_link_tag "cardsorts" %>
 
 <div id='wrapper'>
 
-	<div class='sidebar' id='groups-view'>
-		<div id='groups-tag' class='sidebar-tag'>
+	<div class='sidebar' id='review-groups-view'>
+		<div id='review-group-tag'>
 			المجموعات
 		</div>
-		<div id='groups-content'>
+		<div id='review-groups-content'>
 			<div class='view-button'>
 				<img src='/assets/grid_View_button.png'>
 			</div>
-			<ul id='groups-thumbnail'>
+			<ul id='review-groups-thumbnail'>
 				<% @groups.each_with_index do |group, index| %>
-					<%= render "group_thumbnail", :index => index, :cssClass => "group",
+					<%= render "group_thumbnail", :index => index, :cssClass => "review-group",
 					 :name => group.title, :desc => group.description, :id => group.id %>
 				<% end %>
-				<div class='add-button'>
-				</div>
 			</ul>
-			<div id='groups-list'>
+			<div id='review-groups-list'>
 				<table>
 					<% @groups.each_with_index do |group, index| %>
-						<%= render "group_list", :index => index, :cssClass => "group",
+						<%= render "group_list", :index => index, :cssClass => "review-group",
 						 :name => group.title, :desc => group.description, :id => group.id %>
 					<% end %>
 				</table>
-				<div class='add-button'>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -45,8 +41,6 @@
 				<% @cards.each_with_index do |card, index| %>
 					<%= render "card_thumbnail", :index => index, :name => card.title, :desc => card.description, :id => card.id %>
 				<% end %>
-				<div class='add-button'>
-				</div>
 			</ul>
 			<div id='cards-list'>
 				<table>
@@ -54,8 +48,6 @@
 						<%= render "card_list", :index => index, :name => card.title, :desc => card.description, :id => card.id%>
 					<% end %>
 				</table>
-				<div class='add-button'>
-				</div>
 			</div>
 		</div>
 	</div>

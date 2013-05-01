@@ -3,6 +3,7 @@
     # 
 
 class CardsortsController < ApplicationController
+	require 'bcrypt'
 	##
 	# create new cardsort from sent parameters
 	# * *Args* :
@@ -76,5 +77,16 @@ class CardsortsController < ApplicationController
 		respond_to do |format|
 			format.js { render "delete_group"}
 		end
+	end
+
+	def review
+		@reviewer = Reviewer.find(params[:reviewer_id])
+		@cardsort = Cardsort.find(params[:cardsort_id])
+		cardsort_results = (@reviewer.cardsort_results & @cardsort.cardsort_results)
+		if (!cardsort_results.empty?)
+			redirect_to "cardsort_taken"
+		end
+		@cards = @cardsort.cards
+		@groups = @cardsort.groups
 	end
 end

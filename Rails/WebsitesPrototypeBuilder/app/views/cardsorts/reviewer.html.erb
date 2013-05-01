@@ -1,6 +1,4 @@
 <%= javascript_tag "var id = #{@cardsort.id};" %>
-<%= javascript_include_tag "cardsorts" %>
-<%= stylesheet_link_tag "cardsorts" %>
 
 <div id='wrapper'>
 
@@ -14,8 +12,7 @@
 			</div>
 			<ul id='groups-thumbnail'>
 				<% @groups.each_with_index do |group, index| %>
-					<%= render "group_thumbnail", :index => index, :cssClass => "group",
-					 :name => group.title, :desc => group.description, :id => group.id %>
+					<%= render "group_thumbnail", :index => index, :name => group.title, :desc => group.description, :id => group.id %>
 				<% end %>
 				<div class='add-button'>
 				</div>
@@ -23,8 +20,7 @@
 			<div id='groups-list'>
 				<table>
 					<% @groups.each_with_index do |group, index| %>
-						<%= render "group_list", :index => index, :cssClass => "group",
-						 :name => group.title, :desc => group.description, :id => group.id %>
+						<%= render "group_list", :index => index, :name => group.title, :desc => group.description, :id => group.id %>
 					<% end %>
 				</table>
 				<div class='add-button'>

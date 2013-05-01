@@ -1,0 +1,154 @@
+// =========================================================
+
+function Card(name, desc){
+	this.name = name;
+	this.desc = desc;
+}
+
+// =========================================================
+
+function Group(name, desc){
+	this.name = name;
+	this.desc = desc;
+	this.cards = new array();
+}
+
+Group.prototype.addCard(card){
+	this.cards.push(card);
+}
+
+// ==========================================================
+
+var cards = [];
+var groups = [];
+
+
+var cardsView;
+var cardsThumbnail;
+var cardsList;
+var shownCards = false;
+var imageTiled;
+var imageGrid;
+
+function init(){
+	initParams();
+	initCardsView();
+	initGroupsView();
+	initDragAndDrop();
+	initButtons();
+	initBackend();
+}
+
+function initCardsView() {
+	$(cardsThumbnail).sortable({
+		revert: 'invalid',
+		items: ".card"
+	});
+		$(cardsList).sortable({
+		revert: 'invalid',
+		items: "tr"
+	});
+	$(cardsView).draggable({
+		handle: '#cards-tag',
+		axis: 'x',
+		drag: function() {
+			var difference = cardsView.offsetLeft - groupsView.offsetLeft-groupsView.offsetWidth;
+				var left = parseInt($(groupsView).css('left'));
+				if (difference < 100)
+					$(groupsView).css('left', left - 100 + difference);
+			width = wrapper.offsetWidth - cardsView.offsetLeft;
+			$(cardsContent).css('width', width-80);				
+			},
+		containment: [144,100,cardsView.offsetLeft,100000]
+	});
+	width = wrapper.offsetWidth - cardsView.offsetLeft;
+	$(cardsContent).css('width', width-80);
+}
+
+function initGroupsView() {
+	$(groupsThumbnail).sortable({
+		revert: 'invalid',
+		items: ".group"
+	});
+	$(groupsList).sortable({
+		revert: 'invalid',
+		items: "tr"
+	});
+	$(groupsView).draggable({
+		handle: '#review-group-tag',
+		axis: 'x',
+		drag: function() {
+				var difference = cardsView.offsetLeft - groupsView.offsetLeft-groupsView.offsetWidth;
+				var left = parseInt($(cardsView).css('left'));
+				if (difference < 100)
+					$(cardsView).css('left', left + 100 - difference);
+				width = groupsView.offsetLeft+groupsView.offsetWidth;
+				$(groupsContent).css('width', width);
+			},
+		containment: [groupsView.offsetLeft,100,cardsView.offsetLeft-100,100000]
+	});
+	width = groupsView.offsetLeft+groupsView.offsetWidth;
+	$(groupsContent).css('width', width);
+}
+
+function initParams() {
+	cardsView = $('#cards-view')[0];
+	groupsView = $('#review-groups-view')[0];
+	cardsContent = $('#cards-content')[0];
+	groupsContent = $('#review-groups-content')[0];
+	cardsList = $('#cards-list')[0];
+	cardsThumbnail = $('#cards-thumbnail')[0];
+	groupsList = $('#groups-list')[0];
+	groupsThumbnail = $('#groups-thumbnail')[0];
+	wrapper = $('#wrapper')[0];
+}
+
+function initButtons() {
+	imageTiled = new Image(100,100);
+	imageTiled.src = '<%= asset_path "View_button.png" %>';
+	imageGrid = new Image(100,100);
+	imageGrid.src = '<%= asset_path "grid_View_button.png" %>';
+	$(cardsView).find('.view-button').click(function() {
+		if (!shownCards){
+			$(this).children('img').attr('src', imageTiled.src);
+			$(cardsThumbnail).hide();
+			$(cardsList).show();
+		}	else {
+			$(this).children('img').attr('src', imageGrid.src);
+			$(cardsList).hide();
+			$(cardsThumbnail).show();
+		}
+		shownCards = !shownCards;
+	});
+}
+
+function initDragAndDrop(){
+	$('.review-group').droppable({
+		accept: ".card,tr",
+		revert: 'invalid',
+		drop: function( event, ui ) {
+			addCardToGroup(this, ui);
+		}
+	});
+}
+
+function addCardToGroup(group, ui){
+	$(group).addClass("filled-group");
+	$(ui.helper).fadeOut();
+}
+
+function initBackend(){
+	$('.card').each(function (){
+		var name = $(this).children('label').text();
+		var desc = $(this).children('p').text();
+		var card = new Card(name, desc);
+		cards.push(card);
+	})
+
+	$('.review-group').each(function (){
+		var name = $(this).children('label').text();
+		var desc = $(this).children('p').text();
+		var group = new Group(name, desc);
+		groups.push(group);
+	})
+}
