@@ -7,7 +7,7 @@ $(document).ready(function (){
       				},
       		zIndex: 10000000,
       		cursorAt: {left: 0, top: 20}
-		});
+	});
 
 	$("#designpage").gridBuilder({
     	color:          '#eee',    // color of the primary gridlines
@@ -22,15 +22,12 @@ $(document).ready(function (){
 	$(".properties").blur(function () {
 		$(".properties").css("visibility","hidden");
 	});
-
+*/
 	$('#content').click(function(e){
-       if( e.target.className == 'toolboxelement')
-          { $('.properties').css("visibility","visible"); }
-       else
-          { $('.properties').css("visibility","hidden"); }
+	    $('.properties').css("visibility","hidden");
 
  	});
-*/
+
 
 
 	$( "#accordion" ).accordion({
@@ -161,7 +158,8 @@ $(document).ready(function (){
 		}
 	});
 
-	$("#save_event").click(function(){ //attach event to the element when the "Save Event" button is clicked
+	$("#save_event").click(function(event){ //attach event to the element when the "Save Event" button is clicked
+		event.stopPropagation();
 		if ($("#event_selector").val()=="onClick"){
 			if ($("#action_selector").val()=="url"){
 				$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
@@ -275,13 +273,13 @@ $(document).ready(function (){
 					},
 
 					drag: function(event, ui){ //update the properties "left" and "right" as the element is being moved
-						$("#left_inp").val(ui.position.left+"px");
-				   		$("#top_inp").val(ui.position.top+"px");
+						$("#left_inp").val(ui.position.left);
+				   		$("#top_inp").val(ui.position.top);
 					}
 
 				})
-				.click(function() {	//click function to show the properties of the element in the properties panel
-
+				.click(function(event) {	//click function to show the properties of the element in the properties panel
+					event.stopPropagation();
 					$(".properties").css("visibility","visible");
 					var eid = $(this).attr("id");
 					$("#eid_inp").val(eid);
@@ -308,9 +306,16 @@ $(document).ready(function (){
 				});
 
 				if ($(name).hasClass("img_ph")){
+					$(name)[0].addEventListener("dragover", noopHandler, false);
+					$(name)[0].addEventListener("dragenter", noopHandler, false);
+					$(name)[0].addEventListener("dragleave", noopHandler, false);
+					$(name)[0].addEventListener("drop", dragOutsideImage, false);
 					$(name).droppable({
 						accept: ".up_images",
+						greedy: true,
 						drop: function(event, ui){
+							// alert(ui.draggable.children().first().attr("src"));
+							// $(this).children().first().attr("src",event.data.value);
 							// alert(ui.draggable.children().first().attr("src"));
 							$(name).children().first().attr("src",ui.draggable.children().first().attr("src"));
 						}
@@ -429,10 +434,12 @@ function showImage(file){
 							 "</div>";
 		$(code).prependTo("#image-panel");
 		$(".up_images").draggable({
+			appendTo: $("#designpage"),
 			helper: function( event ) {
-        				return $( "<div class='ui-widget-header' style='display: inline-block'><img src='/assets/image_icon.png' width='50' height='50' style='display: inline-block' /></div>" );
+        				return $( "<div class='ui-widget-header' style='position: relative;z-index: 10000000;'><img src='/assets/image_icon.png' width='50' height='50' style='position: relative; z-index: 10000000;' /></div>" );
       				},
-      		zIndex: 10000000
+      		zIndex: 10000000,
+      		cursorAt: {left: 0, top: 20}
 		});
 	}
 	reader.readAsDataURL(file);
@@ -469,4 +476,123 @@ function uploadFile(file){
 	xhr.setRequestHeader("X_FILENAME", file.name);
 	xhr.setRequestHeader("PROJECT_ID", project_id);
 	xhr.send(file);
+}
+
+function applyInterfaces(){
+	$("#designpage").children().applyInterfacesHelper();
+}
+
+function applyInterfacesHelper(){
+	$(this).append('<i id = "close" class="icon-remove" style="top: 0px; right: 0px; position: absolute;"></i>');
+	$(this).children("#close").click(function(){
+		$(this).remove();
+	});
+	$(this).children(".toolboxelement").resizable({ //define resizable action for the new element
+		containment: 'parent',
+		alsoResize: $(this).children(".toolboxelement"),
+	    cancel: false,
+        start: function(event, ui){
+	    		ui.element.children(".toolboxelement").css({
+  				"width": "100%" ,
+   				"height": "100%"
+	        	});
+        	ui.element.click();
+      	},
+	    resize: function(event, ui){
+        	ui.element.children(".toolboxelement").css({
+   	  		"width": "100%" ,
+      		"height": "100%"
+       		});
+       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
+        	if (exceedsWidth(ui.element,0,ui.position.left)){
+        		$(this).resizable('widget').trigger('mouseup');
+        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
+        	}
+        	else if (exceedsHeight(ui.element,0,ui.position.top)){
+        		$(this).resizable('widget').trigger('mouseup');
+        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
+        	}
+        	//update the properties "width" and "height" as the element is being resized
+		    $("#width_inp").val(ui.size.width);
+		    $("#height_inp").val(ui.size.height);
+	    },
+        stop: function(event, ui){
+		      ui.element.children(".toolboxelement").css({
+         	  "width": "100%" ,
+     	      "height": "100%"
+	        });
+        }
+	})
+	.draggable({ //new draggable to avoid cloning elements that are moved within the design page
+		containment: 'parent',
+		cancel:false,
+
+		start: function(event, ui){
+			ui.helper.click();
+		},
+
+		drag: function(event, ui){ //update the properties "left" and "right" as the element is being moved
+			$("#left_inp").val(ui.position.left);
+	   		$("#top_inp").val(ui.position.top);
+		}
+
+	})
+	.click(function(event) {	//click function to show the properties of the element in the properties panel
+		event.stopPropagation();
+		$(".properties").css("visibility","visible");
+		var eid = $(this).attr("id");
+		$("#eid_inp").val(eid);
+		$("#text_inp").val($(this).children().first().text());
+		$("#width_inp").val(parseInt($(this).width()));
+		$("#height_inp").val(parseInt($(this).height()));
+		$("#margin_left_inp").val(parseInt($(this).css("margin-left")));
+		$("#margin_right_inp").val(parseInt($(this).css("margin-right")));
+		$("#margin_top_inp").val(parseInt($(this).css("margin-top")));
+		$("#margin_bottom_inp").val(parseInt($(this).css("margin-bottom")));
+		$("#top_inp").val(parseInt($(this).position().top+"px"));
+		$("#left_inp").val(parseInt($(this).position().left+"px"));
+		$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
+	})
+	.hover(function(){
+		var close = $(this).children("#close");
+		close.css("visibility","visible");
+	}, function(){
+		var close = $(this).children("#close");
+		close.css("visibility","hidden");
+	})
+	.dblclick(function() {
+		$(this).children().first().attr("contenteditable","true");
+	});
+
+	if ($(name).hasClass("img_ph")){
+		$(name)[0].addEventListener("dragover", noopHandler, false);
+		$(name)[0].addEventListener("dragenter", noopHandler, false);
+		$(name)[0].addEventListener("dragleave", noopHandler, false);
+		$(name)[0].addEventListener("drop", dragOutsideImage, false);
+		$(name).droppable({
+			accept: ".up_images",
+			greedy: true,
+			drop: function(event, ui){
+				// alert(ui.draggable.children().first().attr("src"));
+				// $(this).children().first().attr("src",event.data.value);
+				// alert(ui.draggable.children().first().attr("src"));
+				$(name).children().first().attr("src",ui.draggable.children().first().attr("src"));
+			}
+		});
+	}
+
+	$(this).click();
+}
+
+
+function dragOutsideImage(event){
+	noopHandler(event);
+	var str = event.dataTransfer.getData("URL");
+	if (str.match(/.jpg$/)||str.match(/.jpeg$/)||str.match(/.png$/)||str.match(/.svg$/)||str.match(/.gif$/)){
+		$(this).children().first().attr("src", str);
+	}
+	else{
+		alert(str);
+		alert("Only images of type jpg, jpeg, png, svg or gif are are allowed");
+	}
 }
