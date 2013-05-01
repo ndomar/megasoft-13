@@ -112,6 +112,22 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # called to show a page in the design pane
+  # shows a page in the design pane
+  # * *Args* :
+  # - +pageId+ -> the page's id
+  # * *Returns* :
+  # - void
+  # 
+  def showPage
+    @page = Page.find(params[:pageId]) 
+    @html = @page.html.html_safe
+    @id=@page.id
+    respond_to do |format|
+      format.js {render "show_page", :status => :ok}
+    end
+  end
+
   ##
   # upload media (image/video) to the server under a specific
   # folder for the project

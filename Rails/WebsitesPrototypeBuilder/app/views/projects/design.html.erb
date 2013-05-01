@@ -189,7 +189,7 @@ the active item, the carousel can be filled by as many items as required.Also al
 are stated. -->
 <div class="navbar navbar-fixed-bottom navbar-inverse span12" style="width:100%; text-align:center" >
   <div class="span3"></div>
-  <div class="span7" style="background-color:#FFFFFF;opacity:0.4;">
+  <div height="100px" class="span7" style="background-color:#FFFFFF;opacity:0.4;">
     <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
     <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
     <div class="bottom carousel slide" id="myCarousel" style="margin-bottom: -20px;">
@@ -201,7 +201,7 @@ are stated. -->
               <% @pages.each_with_index do |page, index| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= page.id %>')" href='#'><div>x</div></a>
-                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>','<%= page.html %>')" width="50px">
+                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>')" width="50px">
                   	<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
                     	<img src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" width="" alt="">
                     <% else %>
@@ -227,7 +227,7 @@ are stated. -->
               <% (0..3).each do |i| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href='#'><div>x</div></a>
-                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>','<%= @pages.fetch(i,nil).html %>')">      
+                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>')">      
                     <% if @pages.fetch(i,nil).file_dir_exists? ("app/assets/images/project_#{@id}/page_#{@pages.fetch(i,nil).page_name}.png") %>
                     	<img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i,nil).page_name %>.png">
                     <% else %>
@@ -256,7 +256,7 @@ are stated. -->
                     <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
               				<li class="span1">
                       <a class="x-button" onclick="deletePage('<%= @pages.fetch(i + currentLoop*4,nil).id %>')" href='#'><div>x</div></a>
-                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>','<%= @pages.fetch(i + currentLoop*4,nil).html %>')">
+                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>')">
                         <% if @pages.fetch(i + currentLoop*4,nil).file_dir_exists? ("app/assets/images/project_#{@id}/page_#{@pages.fetch(i + currentLoop*4,nil).page_name}.png") %>
 		                    	<img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i + currentLoop*4,nil).page_name %>.png">
 		                    <% else %>
