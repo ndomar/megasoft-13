@@ -123,6 +123,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  ##
   # called to update a page in the database
   # finds the page with the given id and updates its html
   # * *Args* :
@@ -175,6 +176,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  ##
   # called to delete a page in the database
   # finds the page with the given id
   # * *Args* :
@@ -219,6 +221,7 @@ class ProjectsController < ApplicationController
     end
   end
 
+  ##
   # called to create a page in the database
   # create a page with the given name in the given project in the database
   # * *Args* :
@@ -237,6 +240,26 @@ class ProjectsController < ApplicationController
       else
         format.js {render "new_page", :status => :ok}
       end
+    end
+  end
+
+  ##
+  # called to show a page in the design pane
+  # shows a page in the design pane
+  # * *Args* :
+  # - +pageId+ -> the page's id
+  # * *Returns* :
+  # - void
+  # 
+  def showPage
+    @page = Page.find(params[:pageId]) 
+    @html = ""
+    if @page.html != nil 
+      @html =@page.html.html_safe
+    end
+    @id=@page.id
+    respond_to do |format|
+      format.js {render "show_page", :status => :ok}
     end
   end
 

@@ -1,0 +1,13 @@
+<% if (@page.valid?) %>
+	var designPage = document.getElementById('designpage');
+	var html = "<%= @page.html %>";
+	var id = <%= @page.id %>
+	
+	designPage.innerHTML="";
+	$('<%= escape_javascript(render "showPage")%>').appendTo('#designpage')
+	// html = designPage.innerHTML
+	html=html.replace( "onclick", "onclickevent" , 'g');
+	html=html.replace( "onmouseover", "onhoverevent" , 'g');
+	designPage.setAttribute("data-pageid", id);
+<% else %>
+<% end %>
