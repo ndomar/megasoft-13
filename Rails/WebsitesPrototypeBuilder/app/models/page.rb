@@ -12,6 +12,7 @@ class Page < ActiveRecord::Base
   has_many :questions,:dependent => :destroy
   has_many :steps
   has_many :tasks
+  has_many :steps
   has_many :answers,:dependent => :destroy
   belongs_to :project
 end

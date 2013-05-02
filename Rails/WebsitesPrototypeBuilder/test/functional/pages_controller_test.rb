@@ -46,8 +46,4 @@ class PagesControllerTest < ActionController::TestCase
 
     assert_redirected_to pages_path
   end
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> f72e5371672b36989e9b6880588ad5f8ed471d99
