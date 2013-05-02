@@ -26,7 +26,7 @@ post 'steps/update'
 
   #at start up page goes to the home controller and the index action
 
-  root to: "home#index"
+  root to: "projects#index"
 
   resources :projects
 
