@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class PagesController < ApplicationController
 
   before_filter :removeHtml, except: [:index, :new,:update, :destroy, :create]
