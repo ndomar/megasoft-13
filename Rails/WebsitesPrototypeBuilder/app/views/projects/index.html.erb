@@ -1,27 +1,89 @@
-<%= stylesheet_link_tag 'cardsorts' %>
-<%= javascript_include_tag 'cardsorts' %>
+<%= stylesheet_link_tag 'projects' %>
+<%= javascript_include_tag 'projects' %>
 
-<% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
-<h2><%= p.project_name %></h2> <!-- show each project name -->
-<%= link_to "DesignPage", :controller => :projects, :action => :design, :project_id => p.id %>
-<br/>
-<%= link_to_function "create new cardsort", "showPopup('" +p.id.to_s+ "')"  %>
-<br/>
-<%= link_to "Tasks", :controller => :tasks, :action => :index, :project_id => p.id %> 
-<hr/>
-<%end%>
+<div id='wrapper' class='container-fluid'>
+  <div id = "content">
+    <div id='projects'>
+      <ul class="thumbnails">
+        <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
+          <li ProjectId = "<%= p.id %>" class="span4">
+            <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
+            <div class="project-div" title=".اضغط مرتين لتذهب لصفحة التصميم" style="background-image: url(<%= p.get_thumbnail %>); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
+              <div class='x-button'>
+                <%= link_to_function nil,"deleteProject('#{p.id}')" , :class => "ui-icon ui-icon-close"%>    
+              </div>
+            </div>
+          </li>
+        <%end%>
+        <div class="span4 add_button"><img src = "/assets/AddProject_button.png"></img></div>
+      </ul>
+    </div>
+  </div>
 
-<div class='popup-darkscreen'>
-  <div class='popup-window'>
-    <h3 class='title'>New Cardsort</h3>
-    <%= form_for :cardsort, :url => {:controller => :cardsorts, :action => :create_cardsort} do |form| %>
-      <%= form.text_field :title, :placeholder => "title" %>
-      <%= form.text_field :description, :placeholder => "description" %>
-      <%= form.hidden_field :project_id, :id => 'project_id_field' %>
-      <label class="radio">Open<%= form.radio_button :open, true, :checked => true, :style => "float: none;margin-left: 10px;" %></label>
-      <label class="radio">Closed<%= form.radio_button :open, false, :style => "float: none;margin-left: 10px" %></label>
-      <%= form.submit "Create cardsort", :onclick => "return valid()" %>
-      <%= button_to_function "cancel", "hidePopup()" %>
-     <% end %>
+
+  <div style="float: right;"><img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px"></div>
+  <div id="sidebar">
+    <div id="side_content">
+      <h3 id = "projectName" style ="text-align: center;"> </h3>
+      <div class = "options" style = "height :90px">
+        <hr>
+        <img class = "side-image" src="/assets/Adds-Add-folder-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "المهام", :controller => :tasks, :action => :index, :project_id => "-1" %></h3>
+      </div>
+      <div class = "options" style = "height :90px">
+        <hr>
+        <img class = "side-image" src="/assets/Adds-Add-list-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "استطلاع"%></h3>
+      </div>
+      <div class = "options" style = "height :90px">
+        <hr>
+        <img class = "side-image" src="/assets/Charts-Mind-map-icon.png" width="60" height="60"><%= link_to_function "", "showPopup()" %>
+        <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showPopup()" %></h3>
+      </div>
+      <div class = "options" style = "height :90px">
+        <hr>
+        <img class = "side-image" src="/assets/Charts-Combo-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "إحصائيات" %></h3>
+      </div>
+      <div class = "options" style = "height :90px">
+        <hr>
+        <img class = "side-image" src="/assets/DIY-Drill-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list" style ="text-align: center;"><%= link_to "إعدادات", "" %></h3>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+  <div class='popup-darkbackground'></div>
+  <div class = 'popup-createProject'> 
+    <%= form_for :project, :url => {:controller => :projects, :action => :create}, :remote => true do |f| %>
+      <div class = "pattern_form_up">
+        <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>
+        <h5>أضف مشروع</h5>
+      </div>
+      <div class = "form_content">
+        <div id='error_project' class='error'></div>
+        <br>
+        <br>
+        <p>
+          <%= f.label :Name, "اسم المشروع" %> 
+          <%= f.text_field :project_name , :id => "field"%> <br/>  
+        </p>
+        <p>
+          <%= f.label :Type, "النوع" %>
+          <%= f.select :project_type, ['تعليمي','ترفيهي','عملي','أخرى'] , :id => "field" %> <br/>
+        </p>
+        <p>
+          <%= f.label :Description, "وصف المشروع" %>
+          <%= f.text_area :description, :cols => "100", :rows => "5" , :id => "field" %> <br/>
+        </p>
+        <%= f.hidden_field :designer_id, :value => current_designer.id %>
+      </div>
+      <div class = "pattern_form_down">
+        <p class = "save">
+          <%= f.submit "حفظ",:class =>"btn btn-primary" %>
+        </p>
+      </div>
+    <%end%>
   </div>
 </div>
