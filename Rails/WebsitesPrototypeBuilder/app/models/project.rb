@@ -27,9 +27,9 @@ class Project < ActiveRecord::Base
   ## 
   # get_thumbnail, The project view consists of screenshots of each of the specified designer's projects. A default image is shown if they have no pages yet
   # * *Args*    :
-  #   - +id+ -> This is the id of a certain project.
+  #   - void
   # * *Returns* :
-  #   - the image for the project.
+  #   - void.
 
   def get_thumbnail
     puts "id:", id
