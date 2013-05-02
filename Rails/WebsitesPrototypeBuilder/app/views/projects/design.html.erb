@@ -18,16 +18,9 @@
 			</div>
 			<thead class="brand"><h4 style="text-align: center">النسخ السابقة</h4></thead>
 			</br> 
-			<% repo = Rugged::Repository.new("#{Rails.public_path}/projects/#{@project.id}") %>
-			<% walker = Rugged::Walker.new(repo) %>
-			<% walker.push(Rugged::Branch.lookup(repo, "master").tip.oid) %>
-			<% walker.sorting(Rugged::SORT_TOPO) %>
+
 			<div id="versions-scroll">
-				<% walker.each do |c| %>
-					<a href="<%= c.oid %>"><%= c.message %></a></br><%= c.time.asctime %>
-					</br></br>
-				<% end %>
-			<%#= "a "+repo.blob_at("376cbbd43eef47c8910f6441ead1772669d2c55b", "wa7ed").read_raw.data %>
+				اختر  صفحة لرؤية النسخ الخاصة بها
 			</div>
 
 		</div>
@@ -222,7 +215,7 @@ are stated. -->
               <% @pages.each_with_index do |page, index| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= page.id %>')" href='#'><div>x</div></a>
-                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>')" width="50px">
+                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>', '-1')" width="50px">
                   	<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
                     	<img src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" width="" alt="">
                     <% else %>
@@ -248,7 +241,7 @@ are stated. -->
               <% (0..3).each do |i| %>
                 <li class="span1">
                   <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href='#'><div>x</div></a>
-                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>')">      
+                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>', '-1')">      
                     <% if @pages.fetch(i,nil).file_dir_exists? ("app/assets/images/project_#{@id}/page_#{@pages.fetch(i,nil).page_name}.png") %>
                     	<img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i,nil).page_name %>.png">
                     <% else %>
@@ -277,7 +270,7 @@ are stated. -->
                     <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
               				<li class="span1">
                       <a class="x-button" onclick="deletePage('<%= @pages.fetch(i + currentLoop*4,nil).id %>')" href='#'><div>x</div></a>
-                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>')">
+                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>', '-1')">
                         <% if @pages.fetch(i + currentLoop*4,nil).file_dir_exists? ("app/assets/images/project_#{@id}/page_#{@pages.fetch(i + currentLoop*4,nil).page_name}.png") %>
 		                    	<img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i + currentLoop*4,nil).page_name %>.png">
 		                    <% else %>

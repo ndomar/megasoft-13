@@ -9,5 +9,8 @@
 	html=html.replace( "onclick", "onclickevent" , 'g');
 	html=html.replace( "onmouseover", "onhoverevent" , 'g');
 	designPage.setAttribute("data-pageid", id);
+
+	$('#versions-scroll').empty();
+	$('<%= escape_javascript(render "show_versions")%>').appendTo('#versions-scroll');
 <% else %>
 <% end %>

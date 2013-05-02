@@ -254,9 +254,33 @@ class ProjectsController < ApplicationController
   def showPage
     @page = Page.find(params[:pageId]) 
     @html = ""
-    if @page.html != nil 
+    repo = Rugged::Repository.new("#{Rails.public_path}/projects/#{@page.project_id}")
+    if @page.html != nil and params[:commit] == "-1"
       @html =@page.html.html_safe
+    else if params[:commit] != "-1"
+        @html = repo.blob_at(params[:commit], @page.page_name).read_raw.data.to_s.html_safe
+        @html.force_encoding('UTF-8')
+      end
     end
+
+    @walker = Rugged::Walker.new(repo)
+    @walker.push(Rugged::Branch.lookup(repo, "master").tip.oid)
+    @walker.sorting(Rugged::SORT_TOPO)
+
+    @versions = []
+    @walker.each do |c|
+      file_found = false
+      c.tree.each do |file|
+        if file[:name] == @page.page_name
+          file_found = true
+          break
+        end
+      end 
+      if file_found
+        @versions.push(c) 
+      end
+    end
+      
     @id=@page.id
     respond_to do |format|
       format.js {render "show_page", :status => :ok}

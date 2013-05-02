@@ -1,10 +1,11 @@
 //these functions are used in the package explorer
 
-function show(id){
+function show(id, commit){
 	var designPage = document.getElementById('designpage');
 	designPage.setAttribute("data-pageid", id);
 	var params = $.param({
-		pageId: id
+		pageId: id,
+		commit: commit
 	});
 	$.ajax("/projects/showPage?" + params);
 }
