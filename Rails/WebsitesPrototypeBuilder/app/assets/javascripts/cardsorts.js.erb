@@ -43,7 +43,7 @@ function initCardsView() {
 				width = cardsView.offsetLeft - groupsView.offsetLeft;
 					$(groupsContent).css('width', width-80);
 			},
-		containment: [144,100,cardsView.offsetLeft+100,100000]
+		containment: [144,100,cardsView.offsetLeft,100000]
 	});
 	width = wrapper.offsetWidth - cardsView.offsetLeft;
 	$(cardsContent).css('width', width-80);

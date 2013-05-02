@@ -171,9 +171,10 @@
 	margin-top: -15px;
 	text-align: center;
 	width: 50%;
-	margin: 17% 55% auto 10% ;
+	margin: 17% 0% auto 10% ;
 	transform: skewY(8deg);
 	-webkit-transform: skewY(8deg);
+	float: left;
 }
 
 .add-button{
@@ -217,15 +218,6 @@
 	background-size: contain;
 	padding: 10px;
 	margin-left: 20px;
-}
-
-.crumpled{
-	width: 100px;
-	height: 100px;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-image: url(/assets/crumpled.png);
-	background-color: transparent;
 }
 
 .main-wrapper{
@@ -426,5 +418,67 @@ td{
 
 .filled-group{
 	background-image: url(/assets/group_filled.png);
-	margin-right: 150px;
+	margin-right: 75px;
+}
+
+.card-name{
+	margin-left: 1px;
+	margin-right: 1px;
+}	
+
+.added-cards{
+	margin-right: -50px;
+	height: 100%;
+	float: right;
+	width: 80px;
+}
+
+#submit{
+	height: 19px;
+    line-height: 15px;
+    position: absolute;
+    text-align: center;
+    top: 85%;
+    width: 65px;
+}
+
+#review-trash{
+float: right;
+	position: absolute;
+	width: 55px;
+	height: 67px;
+	background-size: contain;
+	padding: 10px;
+	right: -110px;
+	bottom: 6%;
+}
+
+.crumpled{
+	width: 100px;
+	height: 100px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url(/assets/crumpled.png);
+	background-color: transparent;
+}
+
+.review-add-button{
+	float: right;
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 164px;
+	height: 188px;
+	background-size: 60px 60px;
+	background-repeat: no-repeat;
+	background-position: left;
+	background-color: transparent;
+	background-image: url(/assets/Add_button.png);
+}
+
+.review-add-button:hover{
+	background-size: 70px 70px;
+}
+
+.review-add-button:active{
+	background-size: 50px 50px;
 }

@@ -19,6 +19,8 @@ post 'steps/update'
 		resources :steps
 	end
 
+ post 'cardsorts/:cardsort_id/reviewer_create_group' => 'cardsorts#reviewer_create_group'
+ post 'cardsorts/submit/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#submit'
  get 'cardsorts/review/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#review'
  post 'cardsorts/:cardsort_id/delete_card/:card_id' => 'cardsorts#delete_card'
  post 'cardsorts/:cardsort_id/delete_group/:group_id' => 'cardsorts#delete_group'

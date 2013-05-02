@@ -33,7 +33,7 @@ end
 
 # cards
 (0..50).each do
-	Card.create(title: ('a'..'z').to_a.shuffle[0,10].join,
+	Card.create(title: ('a'..'z').titleo_a.shuffle[0,10].join,
 		description: ('a'..'z').to_a.shuffle[0,20].join,
 		cardsort_id: rand(0..5));
 end

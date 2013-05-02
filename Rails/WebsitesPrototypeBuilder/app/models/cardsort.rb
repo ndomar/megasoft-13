@@ -14,4 +14,19 @@ class Cardsort < ActiveRecord::Base
   has_many :groups
   belongs_to :project
   has_many :cardsort_results
+  has_and_belongs_to_many :reviewers
+
+  def self.save_results(ids, cards, cardsort, reviewer)
+    ids.each_with_index do |id, index|
+      next if cards["#{index}"] == nil
+  		cards["#{index}"].each do |card|
+  			cardsort_result = CardsortResult.new
+  			cardsort_result.reviewer_id = reviewer
+  			cardsort_result.cardsort_id = cardsort
+  			cardsort_result.card_id = card
+  			cardsort_result.group_id = group
+  			cardsort_result.save
+  		end
+  	end
+  end
 end

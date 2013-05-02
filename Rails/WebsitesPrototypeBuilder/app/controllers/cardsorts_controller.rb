@@ -84,9 +84,30 @@ class CardsortsController < ApplicationController
 		@cardsort = Cardsort.find(params[:cardsort_id])
 		cardsort_results = (@reviewer.cardsort_results & @cardsort.cardsort_results)
 		if (!cardsort_results.empty?)
-			redirect_to "cardsort_taken"
+			redirect_to "404" and return
 		end
+		# begin
+		# 	@cardsort.reviewers.find(@reviewer.id)
+		# rescue
+		# 	redirect_to "505" and return
+		# end
 		@cards = @cardsort.cards
 		@groups = @cardsort.groups
+	end
+
+	def submit
+		Cardsort.save_results(params[:id], params[:cards], params[:cardsort_id], params[:reviewer_id])
+		respond_to do |form|
+			form.js {}
+		end
+	end
+
+	def reviewer_create_group
+		@group = Group.new(params[:group])
+		@group.cardsort_id = nil
+		@group.save
+		respond_to do |form|
+			form.js {render "reviewer_new_group"}
+		end
 	end
 end
