@@ -174,15 +174,12 @@ class TasksController < ApplicationController
   #* *Returns*    :
   #   -
   def invite_user
-    puts(params[:email])
-    puts(params[:task_id])
-    puts('bkbdvjkdbfjkvdbjhvkbsjkbvjkfsbvkjsfbvkjdsbcjkvdsbjvcscsda')
+
     @Reviewer = Reviewer.find_by_email(params[:email])
     if @Reviewer == nil
       @Reviewer = Reviewer.create(:email => params[:email])
       @Reviewer.save
     end
-     
     @inv = Task.find(params[:task_id]).send_invitation(@Reviewer, params[:invitation_message],
      "http://localhost:3000/projects/#{params[:project_id]}/tasks/#{params[:task_id]}/reviewers/#{@Reviewer.id}") 
     respond_to do |format|

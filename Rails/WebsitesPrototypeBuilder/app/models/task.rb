@@ -18,9 +18,7 @@ class Task<ActiveRecord::Base
   has_many :steps
   has_many :task_results
   has_and_belongs_to_many :reviewers
-
   validates :name, :presence => true
- args to the task mailer
   validates :project, :presence => true
 
   ##

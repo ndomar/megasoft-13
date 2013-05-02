@@ -76,16 +76,12 @@ end
   get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
   get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   get "tasks/invite/:id" => "tasks#invite"
-  
-#resources :tasks do
-#resources :task_results
-#end
     
   get "/projects/:project_id/tasks/:task_id/reviewers:reviewer_id" => 'tasks#task_reviewer'
 
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
-  get "tasks/invite_user" => "tasks#invite_user"
+  match "tasks/invite_user" => "tasks#invite_user"
 
   get "/log/:id" => 'task_results#index'
   get 'projects/design/:project_id' => 'projects#design'

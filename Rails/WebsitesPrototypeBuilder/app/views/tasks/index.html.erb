@@ -7,7 +7,7 @@
 <% else %>
   <%= link_to 'مهمة جديدة', new_project_task_path %>
 
-  <table class="table table-striped table-bordered">
+  <table align="right" class="table table-striped table-bordered">
     <tr>
       <th></th>
       <th></th>
@@ -21,13 +21,10 @@
     <script> FB.init({appId: "346985668734261", status: true, cookie: true}); </script>
     <% @tasks.each do |task| %>
       <tr>
-        <td><button onclick = 'postToFeed("fvbfjvgkjfsbvg","google.com")'>share 3al face</button></td>
         <td><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
         <td><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></td>
         <td><%= link_to 'الغاء', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'هل تريد الغاء المهمة' } %></td>
-        <td><%= task.description %></td>
-        <td><%= task.name %></td>
-        <td><a data-toggle="modal" href="#<%=task.id%>">invite</a>
+        <td><a data-toggle="modal" href="#<%=task.id%>">ارسل دعوة</a>
           <div class="container">   
             <div id="<%= task.id%>" class="modal hide fade in" style="display: none; ">  
               <div class="modal-header">  
@@ -39,6 +36,8 @@
             </div>    
           </div>  
         </td>
+        <td><%= task.description %></td>
+        <td><%= task.name %></td>
       </tr>
     <% end %>
   </table>

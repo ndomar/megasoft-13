@@ -6,6 +6,7 @@
   <p> Email: </br> <%= text_field_tag :email, nil,:placeholder => "Email", :required => true,:pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :id => "email" + t.id.to_s %> </p>
   <p> Invitation Message: </br> <%= text_field_tag :invitation_message, nil, :placeholder => "invitation message" , :id => "invitation_message" + t.id.to_s%> </p> 
   <%= button_to_function 'Invite', 'invite'+t.id.to_s+'()', :id=> "form_button" %> 
+  <button onclick = 'postToFeed("fvbfjvgkjfsbvg","google.com")'>share 3al face</button>
 <% end %>  
 
 
