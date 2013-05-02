@@ -30,11 +30,12 @@ class Cardsort < ActiveRecord::Base
   	end
   end
 
-  def send_invitation(email, msg, url)
-    @reviewer = Reviewer.find_by_email(email)
-    if @reviewer == nil
-      @reviewer = self.reviewers.create(:email => email) 
-    end
-    ReviewerInviter.task_invitation(email, msg, url).deliver()
+  def invite(email, msg)
+	reviewer = Reviewer.find_by_email(email)
+	if (reviewer == nil)
+		reviewer = Reviewer.create(:email => email)
+  	end
+  	self.reviewers << reviewer
+  	ReviewerInviter.cardsort_invitation(email, msg, "http://localhost:3000/cardsorts/review/#{self.id}/reviewer/#{reviewer.id}").deliver()
   end
 end

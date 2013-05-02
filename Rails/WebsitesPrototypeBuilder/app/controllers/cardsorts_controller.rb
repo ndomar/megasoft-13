@@ -109,10 +109,12 @@ class CardsortsController < ApplicationController
 		respond_to do |form|
 			form.js {render "reviewer_new_group"}
 		end
+	end
 	def invite_reviewer
 		@email = params[:email]
 		@msg = params[:msg]
-		invite(email,msg)
+		@cardsort = Cardsort.find(params[:cardsort_id])
+		@cardsort.invite(@email,@msg)
 		respond_to do |format|
 			format.js{}
 		end
