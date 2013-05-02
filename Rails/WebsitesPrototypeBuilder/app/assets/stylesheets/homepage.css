@@ -295,7 +295,7 @@ html,body{
   z-index: 3;
 }
 .last_table{
-	height: 80%;
+	height: 79%;
 	width: 100%;
 	z-index: 2;
 	position: relative;
@@ -304,7 +304,7 @@ html,body{
 }
 .screenshot{
 	width: 60%;
-	height: 80%;
+	height: 85%;
 	padding-right:10%;
 	z-index: 2; 
 	position: absolute;
@@ -314,6 +314,19 @@ html,body{
 	margin-right: 20px;
 	color: white;
 	font-size: 20px;
+	padding: 10px;
+	padding-bottom: 5px;
+	position: absolute;
+	z-index: 2;
+	background-color: #222222;
+	opacity:0.8;
+}
+.wordTitle{
+	bottom: 8%;
+	margin-right: 20px;
+	color: white;
+	font-size: 25px;
+	font-weight: bold;
 	padding: 10px;
 	padding-bottom: 5px;
 	position: absolute;
@@ -338,5 +351,5 @@ html,body{
 	position: absolute;
 	top: 0;
 	z-index: 1;
-	opacity: 0.3;
+	opacity: 0.2;
 }
