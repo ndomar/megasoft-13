@@ -47,7 +47,8 @@ end
 # pages
 (0..50).each do
 	Page.create(page_name: ('a'..'z').to_a.shuffle[0,20].join,
-		html: ('a'..'z').to_a.shuffle[0,20].join)
+		html: ('a'..'z').to_a.shuffle[0,20].join,
+    project_id: rand(1..5))
 end
 
 # projects
@@ -55,7 +56,7 @@ end
 	Project.create(project_name: ('a'..'z').to_a.shuffle[0,20].join,
 		project_type: ('a'..'z').to_a.shuffle[0,20].join,
 		description: ('a'..'z').to_a.shuffle[0,20].join,
-		designer_id: rand(0..5))
+		designer_id: rand(1..5))
 end
 
 # Questionaire with Qquestions and choices where necessary
@@ -130,8 +131,9 @@ end
 (0..50).each do
 	Task.create(name: ('a'..'z').to_a.shuffle[0,20],
 		description: ('a'..'z').to_a.shuffle[0,20],
-		project_id: rand(0..5),
-		page_id: rand(0..5))
+		project_id: rand(1..5),
+		page_id: rand(1..5),
+    time_limit: rand(1..5))
 end
 
 # Designers
