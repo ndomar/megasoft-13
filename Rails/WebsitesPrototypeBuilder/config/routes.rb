@@ -81,7 +81,7 @@ end
 
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
-  match "tasks/invite_user" => "tasks#invite_user"
+  post "tasks/invite_user" => "tasks#invite_user"
 
   get "/log/:id" => 'task_results#index'
   get 'projects/design/:project_id' => 'projects#design'

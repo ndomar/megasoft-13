@@ -20,7 +20,7 @@ function invite<%=t.id%>(){
     task_id: '<%= t.id %>',
     project_id: '<%= params[:project_id] %>'
   });
-  $.ajax("/tasks/invite_user?"+params);
+  $.ajax({url: "/tasks/invite_user?"+params, method: "post"});
 }
 
 </script>
