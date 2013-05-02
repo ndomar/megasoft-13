@@ -39,11 +39,11 @@ else {
         return dim;     
       });
 
-    window.setTimeout(function () {
-      page.clipRect = {top: pizza[0], left:pizza[1], width:pizza[2]+20, height:pizza[3]+20};
-      page.render("app/assets/images/project_"+id+"/" +output);
-      phantom.exit();
-      }, 4000);
+      window.setTimeout(function () {
+        page.clipRect = {top: pizza[0], left:pizza[1], width:pizza[2]+20, height:pizza[3]+20};
+        page.render("app/assets/images/project_"+id+"/" +output);
+        phantom.exit();
+        }, 4000);
     }
   });
 }
