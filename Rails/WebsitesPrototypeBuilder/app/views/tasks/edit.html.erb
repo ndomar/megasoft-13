@@ -2,10 +2,10 @@
 
 <%= form_for @task, :url => {:action=>"update", :controller=>"tasks"}, :html => {:class => "nifty_form"} do |f| %>
   <% if @task.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" style="display:block; width:900px; float:right; margin-right:20px;">
       <h2>: عذرا لم نستطع استكمال طلبك</h2>
 
-      <ul>
+      <ul style="direction:rtl;">
         <% @task.errors.full_messages.each do |msg| %>
           <li style="color:red;"><%= msg %></li>
         <% end %>
