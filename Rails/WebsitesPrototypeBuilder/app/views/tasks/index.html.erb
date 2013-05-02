@@ -17,8 +17,6 @@
       <td><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
       <td><%= link_to 'Edit', edit_project_task_path(params[:project_id], task) %></td>
       <td><%= link_to 'Destroy', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-      <td><%= link_to 'invite',:controller=> :tasks, :action =>	 :invite, :id => task.id  %></td>
-      
     </tr>
     
   <% end %>

@@ -1,14 +1,22 @@
-<h1>LOG</h1>
-
-
-<table>
-  <% @task_result.logs.each do |log| %>
-    <tr>The User <%= log.action%> on <%=log.component_involved%> at <%= log.time %> </tr>
+<h2><%= @task_result.task.name %></h2>
+</br>
+<h3><%= @task_result.task.description%></h3>
+</br>
+<% @task_result.logs.each do |log| %>
+  <% if log.action =="click"%>
+    <div class="progress progress-info" style="margin-top: 0px; margin-bottom: 2px;  border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px"><%= log.time %> عند <%=log.component_involved%>  ضغط المستخدم على زر</div>
+    </div>
+  <% elsif log.action == "change" %> 
+    <div class="progress progress-warning" style="margin-top: 0px; margin-bottom: 2px; border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px" ><%= log.time %> عند "<%=log.component_involved%>"  ادخل المستخدم</div>
+    </div>
   <% end %>
-  <% if @task_result.step_answers.length < 0%>
-    <tr>Steps Success</tr>
-    <tr> <%= render "create_bars", :x => @task_result %> </tr>
-  <% else %>
-    <tr>لا توجد خطوات لهذه المهمة</tr>
-  <% end %>
-</table>
+<% end %>
+</br>
+<% if @task_result.step_answers.length > 0%>
+  <h5>نجاح الخطوات</h5>
+  <p> <%= render "create_bars", :x => @task_result %> </p>
+<% else %>
+  <h5>لا توجد خطوات لهذه المهمة</h5>
+<% end %>
