@@ -8,6 +8,7 @@ function show(id,commit){
 		"commit": commit
 	});
 	$.ajax("/projects/showPage?" + params);
+	$("html, body").animate({ scrollTop: 0 }, 600);
 }
 
 function saveProjectProgress(){

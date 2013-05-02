@@ -19,10 +19,6 @@ class ProjectsController < ApplicationController
       end
     end
   end
-  
-  def create_page
-    Page.create!(:project_id => id)
-  end
 
   def update
     @project = Project.find(params[:id])
@@ -46,17 +42,8 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show   
-    @project = Project.find(params[:id])   #I am sending the project to the design page
-    @id = @project.id                                     #I am sending the project id explicitly to the design page
-    @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
-    respond_to do |format|
-      format.html 
-      format.json { render json: @project }
-    end
-  end
-
   ##
+  # Author Hossam
   # called to update a page in the database
   # finds the page with the given id and updates its html
   # * *Args* :
@@ -77,6 +64,7 @@ class ProjectsController < ApplicationController
   end
 
   ##
+  # Author Hossam
   # called to delete a page in the database
   # finds the page with the given id
   # * *Args* :
@@ -94,6 +82,7 @@ class ProjectsController < ApplicationController
   end
 
   ##
+  # Author Hossam
   # called to create a page in the database
   # create a page with the given name in the given project in the database
   # * *Args* :
@@ -117,6 +106,7 @@ class ProjectsController < ApplicationController
   end
 
   ##
+  # Author Hossam
   # called to show a page in the design pane
   # shows a page in the design pane
   # * *Args* :
@@ -172,7 +162,7 @@ class ProjectsController < ApplicationController
       @pages = Page.find(:all, :conditions => {:project_id => @id}) #I am sending the project pages to the design page    
       respond_to do |format|
         format.html 
-        format.json { render json: @project }
+        format.json { render json: @project, :status => :ok}
       end
     end
 	end
