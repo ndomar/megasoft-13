@@ -69,16 +69,19 @@ end
      choices_attributes: [body: "Choice A"]}, 
      {body: "Question D", qtype: 4, 
      choices_attributes: [{body: "Choice A"}, 
-     {body: "Choice B"}]}])
+     {body: "Choice B"}, {body: "Choice C"}]}])
 end
 
 # AnswerQuestionnaire
 (0..200).each do
   randomquestion = Qquestion.find(rand(1..200))
+  length = randomquestion.choices.length
   if randomquestion.qtype == 1 || randomquestion.qtype == 2
     body = ('a'..'z').to_a.shuffle[0,20].join
+  elsif randomquestion.qtype == 3
+    body = randomquestion.choices[rand(0..length-1)].body
   else
-    body = rand(0..randomquestion.choices.length-1)
+    body = randomquestion.choices[0].body + "," + randomquestion.choices[2].body
   end
   AnswerQuestionnaire.create(body: body, 
     qquestion_id: randomquestion.id,
