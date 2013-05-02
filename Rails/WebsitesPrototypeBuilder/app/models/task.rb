@@ -1,3 +1,4 @@
+#encoding: utf-8
   ##
   # each instance of this model represents a task that belongs to one project
   #* *Attributes*    :
@@ -18,7 +19,9 @@ class Task<ActiveRecord::Base
   has_many :steps
   has_many :task_results
   has_and_belongs_to_many :reviewers
-  validates :name, :presence => true
+
+  validates :name, :time_limit, :description, :presence => true
+  validates :time_limit, :numericality => true
   validates :project, :presence => true
 
   ##

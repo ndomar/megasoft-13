@@ -42,7 +42,9 @@ gem 'simplecov', :require => false, :group => :test
 #googlevisualr
 gem "google_visualr", ">= 2.1"
 
-gem "nested_form"
+
+# gem for page screenshot
+gem 'delayed_job_active_record'
 
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
@@ -76,5 +78,4 @@ gem 'jquery-ui-rails'
 # gem 'capistrano'
 
 # To use debugger
-
 # gem 'debugger'
