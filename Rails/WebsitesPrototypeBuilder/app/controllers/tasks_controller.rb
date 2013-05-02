@@ -2,12 +2,12 @@
 class TasksController < ApplicationController
 
 ## 
+#Author:Sarah
 #finds the current task, it's page, creates a new instance of step_answer and task_result
 # * *Args*    :
 #   -+@task+ -> the current task
 #   -+@page+ -> the current task's page
 #   -+@step+ -> the first step of the current task
-#   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
 #   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
 # * *Returns*    :
 # - the current task, current step, step_answer for the current_task and task_result for the current task
@@ -21,8 +21,6 @@ class TasksController < ApplicationController
         @task= @project.tasks.find(params[:task_id])
         @page= @project.pages.find(@task.page_id)
         @step=@task.steps.first
-        @step_answer=@step.step_answers.new
-        @step_answer.save
         @task_result=@task.task_results.new
         @task_result.reviewer_id=@reviewer.id
         @task_result.success='false'

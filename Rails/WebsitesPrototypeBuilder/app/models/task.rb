@@ -40,8 +40,18 @@ class Task<ActiveRecord::Base
     ReviewerInviter.task_invitation(email, msg, url).deliver()
   end
 
+ ##Author :Sarah
+  # Updates the step_id,task_result and creates a new step_answer
+  # * *Args* :
+  # - +step+ -> the current step
+  # - +task_result+ -> the current task_result
+  # - +previous_step+ -> the previous step
+  # - +step_answer+ -> the current step_answer
+  # * *Returns* :
+  # - void
+  #
   def update_taskResults(params,task_result_id)
-    if params[:change_id].to_f <= self.steps.last.id.to_f
+    if Integer(params[:change_id]) <= self.steps.last.id
       @step=self.steps.find(params[:change_id])
 
       @task_result= self.task_results.find(task_result_id)
@@ -54,15 +64,14 @@ class Task<ActiveRecord::Base
       @task_result.success='true'
       @task_result.save  
     end 
-    @pre_step = self.steps.find(Integer(params[:change_id])-1)
-    @step_answer=@pre_step.step_answers.new
+    @previous_step = self.steps.find(Integer(params[:change_id])-1)
+    @step_answer=@previous_step.step_answers.new
     @step_answer.successful= params[:change_success]
     @step_answer.time_from_start= params[:start_time]
     @step_answer.task_result_id=task_result_id    
     @step_answer.reviewer_id=@task_result.reviewer_id
     @step_answer.save 
 
-    @page= Page.find(1)
     hash = Hash.new
     hash = {:step => @step, :page => @page, :task_result => @task_result}
   end

@@ -1,14 +1,3 @@
-
-//var highlight_script='<script>function highlight(id){var element=document.getElementById(id);element.style.border="none";element.style.boxShadow="0px 0px 6px 5px orange";}</script>';
-//var dehighlight_script="<script>function dehighlight(id){var element =document.getElementById(id);element.style.boxShadow='none';element.style.borderStyle='solid';element.style.borderWidth='1px';element.style.borderColor='#CCCCCC';}</script>";
-//var on_click_script="<script>$('input').on('click',function(event){parent.update_log(event.target,'click');parent.update_steps(event.target,'click');if (event.target.id == 'submit_form_button'){hide_form();}});</script>";
-//var on_change_script="<script>$(document).ready(function(){$('input').on('change',parent.pp(event.target.id,event.target.value,'change'));});</script>";
-
-
-//$('<iframe id="preview_mode"/>').load(function(){
- // $('#preview_mode').contents().find('body').append('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"><\/script>').end().appendTo("body");
-//});
-
 function highlight(id){
   var element=document.getElementById(id);element.style.border="none";element.style.boxShadow="0px 0px 6px 5px orange";}
 
@@ -54,7 +43,6 @@ function update_total_time(){
   total_time= hours_taken + ":" + minutes_taken + ":" + seconds_taken; 
 }
 
-
  function update_steps(element,event){
   var curr_element_id= element.id;
   if(event=='click'){
@@ -69,27 +57,6 @@ function update_total_time(){
     var deleted_component= steps_components_array.splice(0,1);
     var deleted_step_id=steps_ids_array.splice(0,1);
     steps_description_array.splice(0,1);
-
-    //alert($(page_html).filter('input').get());
-    //alert($(page_html.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#x27;/g,'"')));
-    //$('#page').text(page_html);
-    //document.getElementById('page').innerHTML=page_html.replace('"', '');
-    //$('#page').parseHTML(page_htmls_array[index]);
-    // if(page_htmls_array.length >0) {
-    //   //handles redirecting to different pages
-    //   var removed_id = step_page_id_array.splice(0,1); //the id of the current step page
-    //   var index= page_ids_array.indexOf(step_page_id_array[0]); //the index of the next page
-    //   //alert(step_page_id_array[0] + " "+index+" "+removed_id +"b4 condition");
-    //   if(index >=0 && index<page_htmls_array.length && removed_id!=step_page_id_array[0]){
-    //     //alert(step_page_id_array[0] + " "+index+" "+removed_id);
-    //     var page_html= page_htmls_array[index];
-    //     //alert(page_htmls_array.length);
-    //     $('#page').html($(page_html.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#x27;/g,'"')));
-
-    //   }
-    //}
-   
-    //document.getElementById('page').innerHTML=page_html.replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&#x27;/g,'"');
 
     if (steps_ids_array.length ==0){
    //this check handles the case of the last step -> success
@@ -108,25 +75,25 @@ function update_total_time(){
       $("#change_clicks").val(clicks_counter); //update clicks_count in DB
 
         //check if the page was change there wont be an element to highlight
+        if(deleted_component != null){
          dehighlight(deleted_component); 
+        }
 
     if(steps_ids_array.length==1){
       $(".desc").fadeOut(500); //description of last step is no longer shown.
     }
     if(steps_components_array.length!=0) {
       //this check handles the last step
-            //alert(steps_components_array[0]);
       if(steps_description_array.length>1){
         document.getElementById("description_paragraph").innerHTML=steps_description_array[0];
       }
-        highlight(steps_components_array[0]); 
+        if($("#"+steps_components_array[0]).length > 0){
+          highlight(steps_components_array[0]);   
+        }        
     }
 
     $(function() { $("#steps_form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
-  } else {
-    //NO STEPS MODE
-  }
-
+  } 
 }
 
 function times_up(){
@@ -138,10 +105,8 @@ function times_up(){
   $('#sarah').fadeOut(500);
 }
 
- function update_log(element,event_triggered){
-
-  if(element.type !='text' && element.type !='password' || event_triggered=='change'){
-
+ function update_log(element,event_triggered){ 
+  if(element.type !='text' && element.type !='password' && element.type !='textarea'|| event_triggered=='change'){
     var current_element_id= element.id;
     var current_element_value = $('#'+current_element_id).value;
     var current_click_time = new Date().getHours()+ ":" + new Date().getMinutes()+ ":" + new Date().getSeconds() ; //time at which the action is triggered\
@@ -151,15 +116,12 @@ function times_up(){
     $("#change_action_time").val(current_click_time);
     $("#change_element_id").val(current_element_id);
     $(function() { $("#log_form").submit(); });
-            alert(element.type + event_triggered);
-
  //document.getElementById("description_paragraph").innerHTML="The user "+ event_triggered + document.getElementById(event.target.id).value + " at time " + current_click_time;
   }  
  }
 
 function cli(selected){
   var point=$(selected).text();
-  alert(selected);
   callChild(point);
   return false;
 }
@@ -191,14 +153,33 @@ function all_updates(){
   $("input").each(function(){
     $(this).attr('onclick','log_steps(this,"click")');
     $(this).attr('onchange','log_steps(this,"change")');
+    $(this).attr('onmouseover','log_steps(this,"mouseover")');
+    $(this).attr('onmouseout','log_steps(this,"mouseout")');
+    //alert('mouse');
   });
+  $("textarea").each(function(){
+    $(this).attr('onclick','log_steps(this,"click")');
+    $(this).attr('onchange','log_steps(this,"change")');
+    $(this).attr('onmouseover','log_steps(this,"mouseover")');
+    $(this).attr('onmouseout','log_steps(this,"mouseout")');
+  });
+
+  $("img").each(function(){
+    $(this).attr('onclick','log_steps(this,"click")');
+    $(this).attr('onchange','log_steps(this,"change")');
+    $(this).attr('onmouseover','log_steps(this,"mouseover")');
+    $(this).attr('onmouseout','log_steps(this,"mouseout")');
+  });
+
+  if(steps_components_array[0]!=null){
+    highlight(steps_components_array[0]);
+  }
 }
 
 function log_steps(element,event_triggered){
   update_log(element,event_triggered);
   update_steps(element,event_triggered);
-  alert(element.id);
- if (element.id == 'submit_form_button'){
+ if (element.id == 'submit_form_button' && event_triggered== 'click'){
   hide_form();
  }
 }

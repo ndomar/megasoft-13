@@ -15,7 +15,6 @@ var starting_seconds;
 var projectid;
 $(document).ready(function(){
   var frame_timeout=setTimeout('updateHtml()',0.1);
-  //salert(frame_timeout);
   // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
   steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(','); //array of all steps ids
   steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(','); //array of components ids
@@ -33,7 +32,7 @@ $(document).ready(function(){
 
   if (steps_ids_array.length >1) {
     //If the steps mode is used it will highlight the 1st step's component
-    setTimeout('highlight(steps_components_array[0])',2);    //highlight the current step's component
+    //setTimeout('highlight(steps_components_array[0])',2);    //highlight the current step's component
    $(function(){ $('.desc').fadeIn(100)});
     document.getElementById('description_paragraph').innerHTML=steps_description_array[0];
   } 
@@ -57,9 +56,9 @@ $("input").on('keyup', function(event){
 //update(event.target,'keyup');
 });
 
-  $(document).ready(function(){
-    projectid= <%= @page.project_id %>;
-  });
+$(document).ready(function(){
+  projectid= <%= @page.project_id %>;
+});
 </script>
 <div id='content'>
 <div id= "info_form" >
