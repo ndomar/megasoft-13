@@ -33,7 +33,7 @@ end
 
 # cards
 (0..50).each do
-	Card.create(title: ('a'..'z').to_a.shuffle[0,20].join,
+	Card.create(title: ('a'..'z').titleo_a.shuffle[0,10].join,
 		description: ('a'..'z').to_a.shuffle[0,20].join,
 		cardsort_id: rand(0..5));
 end
@@ -50,13 +50,6 @@ end
 	Cardsort.create(title: ('a'..'z').to_a.shuffle[0,20].join,
 		description: ('a'..'z').to_a.shuffle[0,20].join,
 		project_id: rand(0..5));
-end
-
-# choice_questions
-(0..50).each do
-	ChoiceQquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		number: rand(0..5), questionnaire_id: rand(0..5),
-		project_id: rand(0..5), qquestion_id: rand(0..5))
 end
 
 # choices

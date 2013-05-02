@@ -1,0 +1,9 @@
+<% randomNumber = rand(20) %>
+<% if index%3 == 0 %>
+<li class='card card-blue' style='-webkit-transform: rotate(<%= 10 - randomNumber %>deg); transform: rotate(<%= 10 - randomNumber %>deg);' id='<%= id %>'><label class='card-label'><%= name %></label><p class='card-p'><%= desc %></p></li>
+<% else %>
+	<% if index%3 == 1 %>
+<li class='card card-red'  style='-webkit-transform: rotate(<%= 10 - randomNumber %>deg); transform: rotate(<%= 10 - randomNumber %>deg);' id='<%= id %>'><label class='card-label'><%= name %></label><p class='card-p'><%= desc %></p></li>
+	<% else %><li class='card card-yellow'  style='-webkit-transform: rotate(<%= 10 - randomNumber %>deg); transform: rotate(<%= 10 - randomNumber %>deg);' id='<%= id %>'><label class='card-label'><%= name %></label><p class='card-p'><%= desc %></p></li>
+	<% end %>
+<% end %>

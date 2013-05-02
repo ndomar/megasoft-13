@@ -1,3 +1,5 @@
+# encoding: utf-8 
+
 ##
 # reperesents a group that should be filled with cards 
 # in the card sorting system
@@ -13,7 +15,9 @@ class Group < ActiveRecord::Base
   belongs_to :cardsort
   has_and_belongs_to_many :cards
   has_many :cardsort_results
-  validates :title, :presence => true,
-  									:uniqueness => {:scope => :cardsort_id}
-  validates :cardsort_id, :presence => true
+
+  
+  validates :title, :presence =>  { :message => "اسم البطاقة لا يمكن ان يكون خاليا"},
+ 					:uniqueness => {:scope => :cardsort_id, :message => "%{value} موجود بالفعل"} 
+  
 end

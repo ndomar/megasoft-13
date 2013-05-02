@@ -1,0 +1,83 @@
+<%= javascript_tag "var cardsort_id = #{@cardsort.id}; var reviewerID = #{params[:reviewer_id]};" %>
+<%= javascript_tag "var isOpen = #{@cardsort.open};"%>
+<%= javascript_include_tag "cardsorts_reviewer" %>
+<%= stylesheet_link_tag "cardsorts" %>
+
+<div id='wrapper'>
+
+	<div class='sidebar' id='review-groups-view'>
+		<div id='review-group-tag'>
+			المجموعات
+		</div>
+		<div id='review-groups-content'>
+			
+			<ul id='review-groups-thumbnail'>
+				<% if (@cardsort.open) %>
+				<div class='review-add-button'>
+				</div>
+				<% end %>
+				<% @groups.each_with_index do |group, index| %>
+					<%= render "group_thumbnail", :index => index, :cssClass => "review-group",
+					 :name => group.title, :desc => group.description, :id => group.id %>
+				<% end %>
+			</ul>
+			<div id='review-groups-list'>
+				<table>
+					<% @groups.each_with_index do |group, index| %>
+						<%= render "group_list", :index => index, :cssClass => "review-group",
+						 :name => group.title, :desc => group.description, :id => group.id %>
+					<% end %>
+				</table>
+			</div>
+			
+		</div>
+		<% if @cardsort.open %>
+			<div id="review-trash" class='btn btn-primary'>
+				<img src='/assets/trash.png'>
+			</div>
+			<% end %>
+	</div>
+
+	<div class='sidebar' id='cards-view'>
+		<div id='cards-tag' class='sidebar-tag'>
+			البطاقات
+		</div>
+		<div id='cards-content'>
+			
+			<ul id='cards-thumbnail'>
+				<% @cards.each_with_index do |card, index| %>
+					<%= render "card_thumbnail", :index => index, :name => card.title, :desc => card.description, :id => card.id %>
+				<% end %>
+			</ul>
+			<div id='cards-list'>
+				<table>
+					<% @cards.each_with_index do |card, index| %>
+						<%= render "card_list", :index => index, :name => card.title, :desc => card.description, :id => card.id%>
+					<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div id='content'>
+			<div class='error-box'>
+				asd
+			</div>
+			<% if @cardsort.open %>
+			<div id='main-group' class='main-wrapper'>
+				<%= form_for :group, :remote => true, :url => "/cardsorts/#{@cardsort.id}/reviewer_create_group", :html => {:id => "group-form"} do |form| %>
+					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title"%>
+					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc"%>
+				<% end %>
+			</div>
+			<% end %>
+			<div id='submit' class='btn btn-primary' onclick='done()'>
+				انتهيت
+			</div>
+	</div>
+
+</div>
+	
+<script type="text/javascript">
+	init();
+</script>

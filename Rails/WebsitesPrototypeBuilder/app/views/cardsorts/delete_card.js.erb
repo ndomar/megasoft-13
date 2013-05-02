@@ -1,0 +1,5 @@
+var thumb = $('.card[id=<%=@card.id%>]');
+if (!thumb.hasClass('crumpled'))
+	thumb.remove();
+else
+	$(cardsView).find('tr[id=<%=@card.id%>]').remove();
