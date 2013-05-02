@@ -7,11 +7,14 @@ en:
       task:
         name: "اسم المهمة"
         time_limit: "الحد الأقصى للوقت"
+        description: "توصيف المهمة"
     errors:
       models:
         task:
           attributes:
             name:
+              blank: "مطلوب"
+            description:
               blank: "مطلوب"
             time_limit:
               blank: "مطلوب"
