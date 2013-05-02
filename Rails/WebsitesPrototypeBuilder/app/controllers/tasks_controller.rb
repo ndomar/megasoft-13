@@ -56,7 +56,8 @@ before_filter :authenticate_designer!, :except => :task_reviewer
   #   -renders form to create new task
   #
   def new
-    @pages = Project.find(params[:project_id]).pages
+    @project = Project.find(params[:project_id])
+    @pages = @project.pages
     @task = Task.new
 
     @pageslist = []
@@ -111,7 +112,9 @@ before_filter :authenticate_designer!, :except => :task_reviewer
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
+        @project = Project.find(params[:project_id])
+        @pages = @project.pages
+        format.html { redirect_to select_start_page_path(@project, @task), notice: 'تم عمل المهمة بنجاح' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -172,12 +175,30 @@ before_filter :authenticate_designer!, :except => :task_reviewer
     puts(params[:task_id] , params[:reviewer_id])
   end
 
+  
   ##
-  # Displays a task and its current steps to allow the designer to edit the steps.
+  # Disp
   # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
   #   - +id+ ->: The id of the task for which the steps will be edited.
   # * *Returns*  :
   #   -The page this task is associated with, and the steps added to the task.
+  #
+
+  def select_start_page
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+    @pages = @project.pages
+  end
+
+  ##
+  # Displays a task and its current steps to allow the designer to edit the steps.
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
+  #   - +id+ ->: The id of the task.
+  #   - +page_id+ ->: The id of the page which should be the start page of the task.
+  # * *Returns*  :
+  #   -Saves the start page, and renders the edit steps view.
   #
 
   def save_start_page
@@ -187,23 +208,20 @@ before_filter :authenticate_designer!, :except => :task_reviewer
     @project = Project.find(params[:project_id])
     @steps = @task.steps
     @page = Page.find(@task.page_id)
-    render :action => :edit_steps
-  end
-
-  def select_start_page
-    @allowed = true
-    @project = Project.find(params[:project_id])
-    @task = Task.find(params[:id])
-    @pages = @project.pages
+    #render :action => :edit_steps
+    respond_to do |format|
+      format.js{}
+    end
   end
 
 
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
   # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
   #   - +id+ ->: The id of the task for which the steps will be edited.
   # * *Returns*  :
-  #   -The page this task is associated with, and the steps added to the task.
+  #   -The view to edit the steps for this task, or an error page if the designer shouldn't be allowed to edit the steps.
   #
 
   def edit_steps
@@ -217,6 +235,9 @@ before_filter :authenticate_designer!, :except => :task_reviewer
     respond_to do |format|
       if @error == nil
         format.html {render "edit_steps"}
+      elsif @error == 'start_page_not_defined'
+        @pages = @project.pages
+        format.html {render "select_start_page"}
       else
         format.html {render "error_page"}
       end

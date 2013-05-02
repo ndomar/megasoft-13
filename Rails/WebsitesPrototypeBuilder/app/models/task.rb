@@ -59,6 +59,15 @@ class Task<ActiveRecord::Base
     end  
   end
 
+  ##
+  # Checks whether a designer is allowed to view the edit_steps page
+  # * *Args*    :
+  #   - +page+ ->: The starting page of the task.
+  #   - +designer+ ->: The designer trying to acces the edit_steps page.
+  # * *Returns*  :
+  #   -The error (if any) trying to access the page.
+  #
+
   def allow_designer(page, designer, project)
     @error = nil
 
@@ -69,12 +78,12 @@ class Task<ActiveRecord::Base
       @designer_allowed = false
     end
 
-    if @task_already_taken
-      @error = 'task_already_taken'
+    if !page || page == nil
+      @error = 'start_page_not_defined'
     end
 
-    if !page
-      @error = 'start_page_not_defined'
+    if @task_already_taken
+      @error = 'task_already_taken'
     end
 
     if !@designer_allowed 
