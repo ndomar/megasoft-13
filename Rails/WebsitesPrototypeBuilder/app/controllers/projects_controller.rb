@@ -116,7 +116,7 @@ class ProjectsController < ApplicationController
   end
 
 	def design
-    @project = Project.find(params[:project_id]);
+    @project = Project.find(params[:project_id])
     @medias = @project.medias
 	end
 

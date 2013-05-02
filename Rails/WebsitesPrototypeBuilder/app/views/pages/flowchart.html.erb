@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "flowchart"%>
+<%= javascript_include_tag "flowchart"%>
+
+<h1>FlowChart</h1>
+
+<% @foundpages.each do |page| %>
+  <div class="page_values">
+    <p class="page_content" onclick="addContent(this,'<%= page.page_name%>');"><%= page.html %></p>
+    <div class="read"></div>
+    <h2><%= page.page_name%></h2>
+    <div class="links"></div>
+  </div>
+<%end%>
