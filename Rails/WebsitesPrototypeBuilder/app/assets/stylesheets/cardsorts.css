@@ -101,6 +101,10 @@
 	float: left;
 }
 
+.sidbar-tag:hover{
+	cursor: hand; cursor: pointer; 
+}
+
 #groups-tag{
 	 margin-left: -46px;
 }

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 6e50d2f525a799f23b03c7d6dfb12868c00f97a8
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
