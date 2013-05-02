@@ -1,94 +1,11 @@
 class ProjectsController < ApplicationController
   
-  #before_filter :authenticate_designer! 
-  ##
-  #The index method is used, to preview all the projects created by the logged in designer
-  # * *Instance*    :
-  #   - +designer+-> is the logged in designer 
-  #   - +projects+-> are all the projects done by the logged in designer
-  # * *Returns*  :
-  #   - Returns all the projects of the logged in designer as string      
-  def index
-    #@designer= Designer.find_by_email(current_designer.email) #Getting the logged in designer
-    #@projects = Project.find(:all, :conditions => {:designer_id => @designer.id}) #Getting all the projects done by the logged in designer
-    @projects = Project.all  
-  end
+  #To make sure that the designer is logged in
+  before_filter :authenticate_designer!
 
-  ##
-  #The show method is used, to show a certain project.
-  # * *Instance*    :
-  #   - +project+-> is the selected project 
-  # * *Returns*  :
-  #   - Returns the selected project design page       
-  def show
-    @project = Project.find(params[:id])
-  end
 
-  def new
-    @project = Project.new
-
-    respond_to do |format|
-      format.html
-      format.json { render json: @project }
-    end
-  end
-  
   def create_page
      Page.create!(:project_id => id)
-  end
-
-  ##
-  # Create project and it's folder with images folder
-  # * *Args* :
-  #   - + @project +-> new project with passed paramter
-  # * *Returns* :
-  # - void
-  #
-  def create
-    @project = Project.new(params[:project])
-    respond_to do |format|
-      if @project.save
-        format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
-        if !File.directory?("#{Rails.public_path}/#{@project.id}")
-          Dir.mkdir("#{Rails.public_path}/#{@project.id}")
-        end
-        if !File.directory?("#{Rails.public_path}/#{@project.id}/images")
-          Dir.mkdir("#{Rails.public_path}/#{@project.id}/images")
-        end
-      else
-        format.html { render action: "new" }
-      end
-    end
-  end
-
-  def update
-    @project = Project.find(params[:id])
-
-    respond_to do |format|
-      if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  ##
-  # Delete project and it's folder
-  # * *Args* :
-  #   - + @project +-> is the selected project to be deleted
-  # * *Returns* :
-  # - void
-  #
-  def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
-    FileUtils.remove_dir("#{Rails.public_path}/#{@project.id}", :force => true)
-    respond_to do |format|
-      format.html { redirect_to projects_url }
-    end
   end
 
   ##
@@ -115,12 +32,81 @@ class ProjectsController < ApplicationController
     end
   end
 
-	def design
+  def design
     @project = Project.find(params[:project_id]);
     @medias = @project.medias
 	end
 
-end      
-  
+  ##
+  #The index method is used, to preview all the projects created by the logged in designer
+  # * *Instance*    :
+  #   - +designer+-> is the logged in designer 
+  #   - +projects+-> are all the projects done by the logged in designer
+  # * *Returns*  :
+  #   - Returns all the projects of the logged in designer as string      
+  def index()
+    @designer= Designer.find_by_email(current_designer.email) #Getting the logged in designer
+    @projects = Project.find(:all, :conditions => {:designer_id => @designer.id}) #Getting all the projects done by the logged in designer
+  end
+ 
+  ##
+  #The show method is used, to show a certain project.
+  # * *Instance*    :
+  #   - +project+-> is the selected project 
+  # * *Returns*  :
+  #   - Returns the selected project design page       
+
+  ##
+  #The new method is used, to create a new project
+  # * *Instance*    :
+  #   - +project+-> The new created project
+  def new()
+    @project = Project.new()
+  end
 
 
+  ##
+  #The create method in project controller class creates a new project with a given parameter and then
+  # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
+  # * *Instance*    :
+  #   - +projects+-> The new created project with the passed parameters
+  def create()
+    @project = Project.new(params[:project])
+    respond_to do |format|
+      if (@project.save)
+        if !File.directory?("#{Rails.public_path}/#{@project.id}")
+          Dir.mkdir("#{Rails.public_path}/#{@project.id}")
+          File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
+            f.write("")
+          end
+        end
+        if !File.directory?("#{Rails.public_path}/#{@project.id}/images")
+          Dir.mkdir("#{Rails.public_path}/#{@project.id}/images")
+        end
+        @page = Page.new()
+        @page.project_id= @project.id
+        @page.page_name= "index"
+        @page.save
+        @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@project.id}/?page_id=#{@page.id}")
+        format.js {render "create", :status => :created }
+      else
+        format.js {render "create", :status => :ok}
+      end
+    end
+  end
+
+  ##
+  # The destroy method in the project controller is used, to delete any particular project
+  # * *Instances*   :
+  #   - +project+-> is the project to be deleted
+  #   - +task+-> are the tasks assigned to this project
+  def destroy()
+    @project = Project.find(params[:id])
+    @project.destroy
+    FileUtils.remove_dir("#{Rails.public_path}/#{@project.id}", :force => true)
+    respond_to do |format|
+      format.js { render "project_deleted", :status => :ok}
+    end
+  end
+
+end
