@@ -87,6 +87,7 @@ class ProjectsController < ApplicationController
   def deletePage
     @page = Page.find(params[:pageid]) 
     @page.destroy
+    @pages = Page.find(:all, :conditions => {:project_id => @page.project_id})
     respond_to do |format|
       format.js {render "remove_page", :status => :ok}
     end
@@ -104,9 +105,10 @@ class ProjectsController < ApplicationController
   def createPage
     @page = Page.new(params[:page])
     @page.project_id=params[:projectId]
-    @page.page_name=params[:pageName]
+    @page.page_name=params[:pageName] 
     respond_to do |format|
       if (@page.save)
+        @pages = Page.find(:all, :conditions => {:project_id => @page.project_id})
         format.js {render "new_page", :status => :created}
       else
         format.js {render "new_page", :status => :ok}

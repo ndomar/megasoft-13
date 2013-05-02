@@ -1,10 +1,11 @@
 //these functions are used in the package explorer
 
-function show(id){
+function show(id,commit){
 	var designPage = document.getElementById('designpage');
 	designPage.setAttribute("data-pageid", id);
 	var params = $.param({
-		pageId: id
+		pageId: id,
+		"commit": commit
 	});
 	$.ajax("/projects/showPage?" + params);
 }
@@ -54,10 +55,10 @@ function store(){
 	}
 }
 
-function deletePage(pageId){
-	//this function is used to delete a page by the designer
+function deletePage(){
 	var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
 	if(response){
+		var pageId = $("#alt-text").text();	
 		var pageid = document.getElementById('designpage').getAttribute("data-pageid");	
 		if(pageid==pageId){
 			var designPage = document.getElementById('designpage');
@@ -71,7 +72,7 @@ function deletePage(pageId){
 	}
 }
 
-function addPage(project_id){
+function addPage(project_id,event){
 	//this function is used to create new page by the designer
 	var pagename=prompt("الرجاء إدخال اسم الصفحة","");
 	if(pagename!=null ){
@@ -85,6 +86,7 @@ function addPage(project_id){
 	  	alert("الرجاء التأكد من أن اسم الصفحة فريد من نوعه وغير فارغ");
 	  } 
 	}
+	// event.stopDefault();
 }
 
 // function loadToDesign(originalPageHTML,originalPageId){

@@ -143,7 +143,7 @@
 		
 			if ( text !== undefined && text !== null )
 			{
-					
+	
 				clearTimeout(event.data.showFrontTextTimer);			
 				$(options.altBox).html( ($(event.target).attr('alt') ));
 				$(options.titleBox).html( ($(event.target).attr('title') ));							
@@ -178,7 +178,7 @@
 		});
 		container.onselectstart = function () { return false; };		// For IE.
 
-		this.innerWrapper = $(container).wrapInner('<div style="position:absolute;width:100%;height:100%;"/>').children()[0];
+		this.innerWrapper = $(container).wrapInner('<div style="position:fix;width:100%;height:100%;margin-left:100px"/>').children()[0];
 	
 		// Shows the text from the front most item.
 		this.showFrontText = function()
@@ -347,7 +347,7 @@
 							   autoRotateDelay: 1500,
 							   speed:0.2,
 							   mouseWheel: false,
-								 bringToFront: false
+								 bringToFront: true
 			},options );									
 			// Create a Controller for each carousel.		
 			$(this).data('cloudcarousel', new Controller( this, $('.cloudcarousel',$(this)), options) );

@@ -182,8 +182,8 @@
 <script>
 	$(document).ready(function(){					   
 		// This initialises carousels on the container elements specified, in this case, carousel1.
-		$("#carousel").CloudCarousel({			
-			xPos: 150,
+		$("#myCarousel").CloudCarousel({			
+			xPos: 350,
 			yPos: 32,
 			buttonLeft: $("#left-but"),
 			buttonRight: $("#right-but"),
@@ -193,22 +193,21 @@
 	});
 </script>
 
-<!-- <img class="cloudcarousel" src="/assets/card.png" alt="Flag 1 Description" title="Flag 1 Title" style="position: absolute; left: 84px; top: 53.33333333333333px; z-index: 100;" >
-  <img class="cloudcarousel" src="/assets/addPage3.jpg" alt="Flag 2 Description" title="Flag 2 Title" style="position: absolute; left: 11.521739130434781px; top: 32px; z-index: 75;" width="66" height="64">
-  <img class="cloudcarousel" src="/assets/addPage.jpg" alt="Flag 3 Description" title="Flag 3 Title" style="position: absolute; left: 105.99999999999999px; top: 21.333333333333336px; z-index: 50;" width="44" height="43">
-  <img class="cloudcarousel" src="/assets/add-button.png" alt="Flag 4 Description" title="Flag 4 Title" style="position: absolute; left: 178.47826086956522px; top: 31.999999999999996px; z-index: 75;" width="66" height="64"> -->
-
-<div id="myCarousel" style="position: absolute; width:300px;height:200px;margin-left:20%;margin-right:20%; display: block;position: absolute;background-color: rgb(0, 0, 0);"> 
-	<img  class="cloudcarousel" src="/assets/addButton.jpeg" style="position: absolute; left: 106.00000000000213px; top: 21.333333333333336px; z-index: 50; width: 40px; height: 60px" >
-	<img  class="cloudcarousel" src="/assets/addButton.jpeg" style="position: absolute; left: 106.00000000000213px; top: 21.333333333333336px; z-index: 50; width: 40px; height: 60px" >
-	<img  class="cloudcarousel" src="/assets/addButton.jpeg" style="position: absolute; left: 106.00000000000213px; top: 21.333333333333336px; z-index: 50; width: 40px; height: 60px" >
-	<img  class="cloudcarousel" src="/assets/addButton.jpeg" style="position: absolute; left: 106.00000000000213px; top: 21.333333333333336px; z-index: 50; width: 40px; height: 60px"  >
-
-
+<div id="myCarousel" style="position: absolute; width:700px;height:250px;margin-left:20%; display: block;position: absolute;"> 
+	<% @pages.each do |page| %>
+		<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
+    	<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show('<%= page.id %>')" alt="<%= page.id %>">
+	  <% else %>
+    	<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/emptyPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show('<%= page.id %>',-1)" alt="<%= page.id %>">
+	  <% end %>
+	<% end %>
 </div>
 <input  id="left-but"  type="button" value="<"/>
 <input  id="right-but" type="button" value=">"/>
-<button onclick="addPage(<%= @id %>)">Add</button>
-<button onclick="store()">Save</button>
+
 <p id="title-text"></p>
-<p id="alt-text"></p>
+<p style="visibility: hidden;" id="alt-text"></p>
+
+<button onclick="addPage(<%= @id %>);return false;">Add</button>
+<button onclick="store();return false;">Save</button>
+<button onclick="deletePage();return false;">Delete</button>
