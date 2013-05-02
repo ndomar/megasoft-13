@@ -30,6 +30,8 @@ var sidebar_width =320;
 $(document).ready(function() {
   $("#slidebutton").click(function(){
     if(state){
+      $('#myiframe').contents().find('.nom').hide();
+      $('#drag_resize').css({"display":"none"});
     	$("#wrapper").animate({'padding-right' : 0}, 400);
       $("#sidebar").animate({'width':'0'},600);
       $('#slidebutton').animate({'margin-left' : '-40px'},{
@@ -40,6 +42,8 @@ $(document).ready(function() {
       });
 			state=false;
 		}else{
+      $('#myiframe').contents().find('.nom').hide();
+      $('#drag_resize').css({"display":"none"});
       $("#wrapper").animate({'padding-right' : sidebar_width+'px'}, 400);
       $("#sidebar").animate({'width':sidebar_width+'px'},600);
       $('#slidebutton').animate({'margin-left' : '-10px'},{

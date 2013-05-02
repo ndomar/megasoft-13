@@ -87,8 +87,7 @@ textarea.message_area {
 .add_comment{
 	display: inline-block;
 	font-size: 20px;
-	display: table-cell;
-	height: 35px;
+	height: 29px;
 	width: 35px;
 	text-align: center;
 	vertical-align: middle;
@@ -98,7 +97,7 @@ textarea.message_area {
 
 .add_comment:hover{
 	background-color: rgb(50, 124, 173);
-	cursor:pointer
+	cursor:pointer;
 }
 
 #delete_comment:hover{

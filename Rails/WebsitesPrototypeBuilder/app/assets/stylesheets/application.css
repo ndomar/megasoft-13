@@ -23,26 +23,34 @@
     background-image:url('\lilbutton.png');
     font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
 	text-align: center;
+	vertical-align: middle;
 	width:53px;
-	height:53px;
+	height:32px;
 	float: left;
+	left: 213px;
+	top: 0px;
+	position: absolute;
 	margin-right: 0px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor:pointer;
+ 	background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
 }
 .lilbuttonq{
-	display: inline-block;
+    display: inline-block;
     background-image:url('\lill.png');
     font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
 	text-align: center;
+	vertical-align: middle;
 	width:53px;
-	height:53px;
+	height:32px;
 	float: left;
+	left: 213px;
+	top: 0px;
+	position: absolute;
 	margin-right: 0px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor:pointer;
+ 	background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
 }
 .sw{
 
@@ -53,6 +61,7 @@
 	margin-right: 0px;
     background-size: contain;
     background-repeat: no-repeat;
+    cursor:pointer;
 }
 
 html,body{ 

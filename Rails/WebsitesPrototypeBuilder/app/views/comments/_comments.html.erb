@@ -1,18 +1,11 @@
 <!-- Fetching comments from the database,just for testing -->
 <div id="comments">
 		                   <!-- title of the side bar-->
- 					 <h4>التعليقلت</h4>    
- 					 <% array = Array.new %>                 <!-- create new array to store in all comments' divs locations-->
-					 <% @page.comments.each do |comment| %>  <!-- loop on all comments -->
-					 <% array << comment.assigned_part %>    <!-- insert the assigned part in the array-->
-					 <%end%>
-					 <p onClick="places(($(this).next('.no').text()),0);" id="shows" class="lilbuttonc">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
-					 <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=array%></p>
-					 
-               
+ 					
+					  <h4>التعليقلت</h4>   
+         
 			<% @page.comments.each do |comment| %>
-			<% if(comment.body!="jhhsicn comment") then %> <!-- to be used when session variables are added -->
-				<div id="<%=comment.assigned_part%>">
+				<div id="<%=comment.assigned_part%>" class="comments">
 					<!-- Getting the comment -->
 					<p onClick="lastm(this);" class="pointer"><%= comment.body %></p>
                     <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=comment.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
@@ -20,7 +13,7 @@
 					<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
 					<hr>
 				</div>
-			<%end%>
+		
 			<%end%>
 
 </div>

@@ -1,12 +1,7 @@
 <!-- Fetching questions from the database,just for testing -->
-<div id="questions" style="display:none">
+<div id="questions" style="display:none;">
 				<h4>الاسئلة</h4>
-                     <% ansarray = Array.new %>       
-					 <% @page.questions.each do |question| %>
-					 <% ansarray << question.assigned_part %>
-					 <%end%>
-					 <p onClick="places(($(this).next('.no').text()),1);" id="qshows" class="lilbuttonq">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
-				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+                    
 				    
 
             <!-- show and hide answers -->

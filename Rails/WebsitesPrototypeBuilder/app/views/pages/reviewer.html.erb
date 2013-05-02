@@ -10,11 +10,26 @@
 	<!-- The SideBar -->
 	<div id="sidebar">
 		<div id="side_content">
-		<div onclick="$('#comments').toggle();$('#questions').toggle()" class="sw"></div>
+		<div onclick="$('#comments').toggle();$('#questions').toggle();$('#shows').toggle();$('#qshows').toggle()" class="sw"></div>
 			
 			<!-- The + buttom on clicking draw the circle -->
+			<div>
 			<div class="add_comment" onclick="draw_circle();">+</div>
-		
+		     
+ 					 <% array = Array.new %>                 <!-- create new array to store in all comments' divs locations-->
+					 <% @page.comments.each do |comment| %>  <!-- loop on all comments -->
+					 <% array << comment.assigned_part %>    <!-- insert the assigned part in the array-->
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),0);" id="shows" class="lilbuttonc">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+					 <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=array%></p>
+
+					 <% ansarray = Array.new %>       
+					 <% @page.questions.each do |question| %>
+					 <% ansarray << question.assigned_part %>
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),1);" id="qshows" style="display:none" class="lilbuttonq">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+			 </div>
 			<!-- Notice to see the errors -->
 			<p id="notice"><%= notice %></p>
 			<%= render :partial => 'comments/comments' %>
@@ -23,12 +38,7 @@
 			
 
   				
-                     <% ansarray = Array.new %>       
-					 <% @page.questions.each do |question| %>
-					 <% ansarray << question.assigned_part %>
-					 <%end%>
-					 <p onClick="places(($(this).next('.no').text()),1);" id="qshows" class="lilbuttonq">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
-				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+                
 				    <h4>الاسئلة</h4>
 
             <!-- show and hide answers -->
