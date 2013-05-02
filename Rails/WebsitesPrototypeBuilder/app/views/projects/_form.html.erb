@@ -13,7 +13,15 @@
 
   <div class="field">
     <%= f.label :project_name %><br />
-    <%= f.text_area :project_name %>
+    <%= f.text_field :project_name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :project_type %><br />
+    <%= f.text_field :project_type %>
   </div>
   <div class="actions">
     <%= f.submit %>

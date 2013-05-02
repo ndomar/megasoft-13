@@ -23,6 +23,13 @@ gem "jasmine"
 #gem for nested forms
 gem "nested_form"
 
+# gems for uploading image
+# gem 'rmagick'
+gem 'carrierwave'
+
+# gem for making behavioural testing
+gem 'jasmine-rails'
+
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
@@ -32,7 +39,6 @@ gem 'simplecov', :require => false, :group => :test
 #googlevisualr
 gem "google_visualr", ">= 2.1"
 
-gem "nested_form"
 #which enables connecting facebook login with devise
 #gem 'devise_rpx_connectable'
 gem 'devise_rpx_connectable', :git => 'https://github.com/ahmadsoliman/devise_rpx_connectable.git'

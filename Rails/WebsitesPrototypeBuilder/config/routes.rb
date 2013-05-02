@@ -25,6 +25,7 @@ post 'steps/update'
  get 'cardsorts/create_group'
 
   #at start up page goes to the home controller and the index action
+
   root to: "home#index"
 
   resources :projects
@@ -51,6 +52,12 @@ post 'steps/update'
     end 
   end
 
+  get "pages/designer"
+  get "projects/index"
+  post "projects/upload_media"
+
+  resources :projects
+
   resources :pages do
     resources :comments
     resources :questions do
@@ -75,9 +82,9 @@ post 'steps/update'
   post "tasks/invite_user/:id" => "tasks#invite_user"
 
   get "/log/:id" => 'task_results#index'
-
   get 'projects/design/:project_id' => 'projects#design'
   
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -86,7 +93,6 @@ post 'steps/update'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -127,6 +133,11 @@ post 'steps/update'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+  root :to => 'tasks#index'
+
+  # See how all your routes lay out with "rake routes"
+
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
