@@ -97,4 +97,13 @@ describe PagesController do
     end
   end
 
+
+  describe 'flowchart' do
+    it "get all pages related to this project" do
+      post :create, :page => {:page_name=> "test_page",:html => "<html></html>",:project_id => 1}
+      get :allpages, id: 1
+      response.should render_template("flowchart")
+    end
+  end
+
 end

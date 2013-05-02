@@ -23,6 +23,8 @@ gem "jasmine"
 #gem for nested forms
 gem "nested_form"
 
+#gem for arbor library(flowchart)
+gem "arbor-rails"
 # gems for uploading image
 # gem 'rmagick'
 gem 'carrierwave'

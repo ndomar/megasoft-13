@@ -1,7 +1,5 @@
 class PagesController < ApplicationController
 
-  before_filter :removeHtml, except: [:index, :new,:update, :destroy, :create]
-
   ## 
   #View all pages
   # * *Args*    :
@@ -27,7 +25,7 @@ class PagesController < ApplicationController
   #
   def show
     @page = Page.find(params[:id])
-    data = File.read("#{@page.html}")
+    data = File.read("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
     @page.update_attribute(:html , data)
     respond_to do |format|
       format.html # show.html.erb
@@ -60,7 +58,7 @@ class PagesController < ApplicationController
   #
   def edit
     @page = Page.find(params[:id])
-    data = File.read("#{@page.html}")
+    data = File.read("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
     @page.update_attribute(:html , data)
   end
 
@@ -84,7 +82,6 @@ class PagesController < ApplicationController
           Dir.mkdir("#{Rails.public_path}/#{@page.project_id}")
           Dir.mkdir("#{Rails.public_path}/#{@page.project_id}/images")
         end
-        @page.update_attribute(:html , target)
         File.open(target, "w+") do |f|
           f.write(html)
         end
@@ -112,7 +109,6 @@ class PagesController < ApplicationController
         File.open(target, "w") do |f|
           f.write(@page.html)
         end
-        @page.update_attribute(:html , target)
       else
         format.html { render action: "edit" }
         format.json { render json: @page.errors, status: :unprocessable_entity }
@@ -147,7 +143,7 @@ class PagesController < ApplicationController
   #
   def reviewer
     @page = Page.find(params[:id])
-    data = File.read("#{@page.html}")
+    data = File.read("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
     @page.update_attribute(:html , data)
     render 'reviewer'
   end
@@ -162,9 +158,24 @@ class PagesController < ApplicationController
   #
   def designer
     @page = Page.find(params[:id])
-    data = File.read("#{@page.html}")
+    data = File.read("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
     @page.update_attribute(:html , data)
     render 'designer'
+  end
+
+
+  ##
+  # get all pages related to this project
+  # * *Args* :
+  #   -+@prject+ -> get selected project
+  # * *Returns* :
+  # - void
+  #
+  def allpages
+    @page = Page.find(params[:id])
+    data = File.read("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
+    @foundpages = Page.find(:all, :conditions => { :project_id => @page.project_id })
+    render 'flowchart'
   end
 
   ## 
