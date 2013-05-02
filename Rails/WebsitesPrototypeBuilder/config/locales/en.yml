@@ -7,7 +7,7 @@ en:
       task:
         name: "اسم المهمة"
         time_limit: "الحد الأقصى للوقت"
-        description: "توصيف المهمة"
+        description: "وصف المهمة"
     errors:
       models:
         task:
