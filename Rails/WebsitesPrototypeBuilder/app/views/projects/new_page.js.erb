@@ -1,13 +1,10 @@
 <% if (@page.valid?) %>
 	$('#myCarousel').children().first().empty();
 	<% @pages.each do |page| %>
-		<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
-    	// document.getElementById('myCarousel').innerHTML=document.getElementById('myCarousel').innerHTML+'<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>';
-    	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');
+		<% if page.file_dir_exists? ("app/assets/images/project_#{page.project_id}/page_#{page.page_name}.png") %>
+    	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/project_<%= page.project_id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px; border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');
 	  <% else %>
-    	// document.getElementById('myCarousel').innerHTML=document.getElementById('myCarousel').innerHTML+'<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/emptyPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>';
-    	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/emptyPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');
-	 
+    	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/newPage.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');	 
 	  <% end %>
 	<% end %>
 	$("#myCarousel").CloudCarousel({			

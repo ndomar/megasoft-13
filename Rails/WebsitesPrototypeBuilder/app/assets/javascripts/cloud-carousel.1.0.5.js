@@ -344,7 +344,7 @@
 							   titleBox:null,
 							   FPS: 30,
 							   autoRotate: 'no',
-							   autoRotateDelay: 1500,
+							   autoRotateDelay: 500,
 							   speed:0.2,
 							   mouseWheel: false,
 								 bringToFront: true

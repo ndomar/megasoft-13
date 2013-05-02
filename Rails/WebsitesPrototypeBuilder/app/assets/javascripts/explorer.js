@@ -99,3 +99,28 @@ function addPage(project_id,event){
 // 		designPage.setAttribute("data-pageid", originalPageId);
 // 	}
 // }
+
+
+$(document).ready(function() {
+	$('#myCarousel').slideUp('slow', function() {
+		document.getElementById('title-text').setAttribute("style","display:none");
+	});
+	$('#navbar').mouseenter(function(){
+		$('#myCarousel').slideDown('slow', function() {
+			document.getElementById('title-text').setAttribute("style","visibility:visible");
+			$('#title-text').attr( 'style',"display: block");
+		});
+	});
+	$('#designpage').mouseenter(function() {
+		$('#myCarousel').slideUp('slow', function() {
+			document.getElementById('title-text').setAttribute("style","visibility:hidden");
+			$('#title-text').attr( 'style',"display: none");
+		});
+	});	
+	$('#sidebar').mouseenter(function() {
+		$('#myCarousel').slideUp('slow', function() {
+			document.getElementById('title-text').setAttribute("style","visibility:hidden");
+			$('#title-text').attr('style',"display: none");
+		});
+	});
+});
