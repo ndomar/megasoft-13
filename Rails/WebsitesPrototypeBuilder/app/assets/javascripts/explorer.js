@@ -20,7 +20,6 @@ function store(){
 	var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
 	if(response==true){
 		var html = document.getElementById('designpage').innerHTML; 	//this gets the html from the designpage pane and stores it in the variable html
-		// alert(document.getElementById('designpage').innerHTML.toString());
 		html = html.replace(/\s+/g, ' ');
 		var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
 		//reseting the ondbclick show event
@@ -35,12 +34,6 @@ function store(){
 																									designPage.innerHTML=htmlToDisplay;
 																									designPage.setAttribute("data-pageid", pageId);
 																								};
-		// html=html.replace( 	"&", "&amp;" , 'g');
-		// html=html.replace( "<" , "&lt;"  , 'g');
-		// html=html.replace( 	">", "&gt;"  , 'g');
-		// html=html.replace(  '"' , '\"', 'g');
-		// html=html.replace( 	"'", "\'" , 'g');
-		// html=html.replace( "/" , '&#x2F;', 'g');
 		html=html.replace( "onclickevent", "onclick" , 'g');
 		html=html.replace( "onhoverevent", "onmouseover" , 'g');
 		var params = $.param({
@@ -89,18 +82,6 @@ function addPage(project_id,event){
 	}
 	// event.stopDefault();
 }
-
-// function loadToDesign(originalPageHTML,originalPageId){
-// 	if(originalPageHTML!=null && originalPageHTML!=""){
-// 		originalPageHTML=originalPageHTML.replace( "onclick", "onclickevent" , 'g');
-// 		originalPageHTML=originalPageHTML.replace( "onmouseover", "onhoverevent" , 'g');
-// 		var designPage = document.getElementById('designpage');
-// 		designPage.innerHTML="";
-// 		designPage.innerHTML=originalPageHTML;
-// 		designPage.setAttribute("data-pageid", originalPageId);
-// 	}
-// }
-
 
 $(document).ready(function() {
 	$('#myCarousel').slideUp('slow', function() {
