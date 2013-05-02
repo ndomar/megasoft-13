@@ -14,8 +14,7 @@ iframe {
 	-ms-transform:rotate(0deg);
 }
 
-.form_message
-{
+.form_message{
 	display: none;
 }
 
@@ -27,7 +26,8 @@ iframe {
 	cursor:pointer;
 }
 
-.note {
+.note {	
+	direction: rtl;
 	position:absolute;
 	top: 0px;
 	left: 0px;
@@ -38,20 +38,24 @@ iframe {
 	color: black;
 	padding: 5px;
 	z-index: 1000;
-	font-size: 15px;
+	font-size: 18px;
 	-moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
 	-webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
 	box-shadow: 5px 5px 7px rgba(33,33,33,.7);
-	-o-transform:rotate(0.6deg);
-	-webkit-transform:rotate(0.6deg);
-	-moz-transform:rotate(0.6deg);
+	-o-transform:rotate(0.4deg);
+	-webkit-transform:rotate(0.4deg);
+	-moz-transform:rotate(0.4deg);
 }
 
 textarea.message_area {
-  width: 100%;
+  width: 90%;
   height: 50px;
-  color:#ffffff;
+  color:#FFEFD5;
   overflow: auto;
+  background: rgba(255,255,255,0);
+  resize: none;
+ 	border-color: #151515;
+  
 }
 
 .textarea{
@@ -80,6 +84,22 @@ textarea.message_area {
 	width: 20px; 
 }
 
+.add_comment{
+	font-size: 20px;
+	display: table-cell;
+	height: 35px;
+	width: 35px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: rgb(69, 162, 224);
+	color:white;
+}
+
+.add_comment:hover{
+	background-color: rgb(50, 124, 173);
+	cursor:pointer
+}
+
 #delete_comment:hover{
 	background-color: rgb(90, 80, 60);
 	cursor:pointer;
@@ -88,32 +108,33 @@ textarea.message_area {
 .circle_button{
 	margin-top: -10px;
 	border-radius: 50%;
-	color: #8f8f8f;
+	color: #dfdfdf;
 	display: inline-block;
 	height: 20px;
 	width: 20px;
+	font-size: 14px;
 	text-align: center;
 	vertical-align: middle;
 	background-color: rgb(190, 170, 120);
 	cursor:pointer;
-	position: fixed;
-	right: 8px;
-	left :10px;
+	position: absolute;
+	float: left;
+	border: none;
 	bottom: 8px;
-	border: 0px;
+	left: 8px;
 }
 
 .blue_circle{
 	background-color: rgb(48, 156, 184);
 	color: white;
-	height: 20px;
-	width: 20px;
+	height: 23px;
 	border-radius: 50%;
 	border-width: 0px;
 }
 .note a{
 	color:#000000;
 	text-decoration: none;
+	text-align: center;
 }
 
 .note_controls {
@@ -149,12 +170,12 @@ textarea.message_area {
 }
 
 #drag_resize{
-	/*background-image:url('circle.png');*/
 	width: 200px; 
 	height: 200px; 
 	position:absolute; 
 	z-index:1000;
 	display:none;
+	cursor:move
 }
 
 .ui-resizable-helper {
@@ -162,7 +183,7 @@ textarea.message_area {
 }
 		
 .circle_settings{
-	color: #8f8f8f;
+	color: #dfdfdf;
 	display: table-cell;
 	height: 10px;
 	width: 20px;
@@ -186,15 +207,29 @@ textarea.message_area {
 	background-color: rgb(100, 100, 100);
 }
 
-textarea{ 
+.hide textarea{ 
+	font-size: 18px;
 	font-family: arabi-light,"BebasNeueRegular", Helvetica, sans-serif;
 	text-align: right;
 	height: 150px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	width:100%;
 	background-color: transparent;
-	border: 0px;
+	border: none;
 	resize: none;
+	padding: 0;
+	margin: 0;
+	outline: none;
+	-moz-appearance:none;
+}
+
+.hide textarea:focus{	
+	direction: rtl;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	border: none;
+	outline:none;
 }
 
 #html_content{

@@ -1,0 +1,12 @@
+<!-- Fetching comments from the database,just for testing -->
+<div id="comments">
+	<% @page.comments.each do |comment| %>
+		<div>
+			<!-- Getting the comment -->
+			<p><%= comment.body %></p>
+			<!-- The deleting method uses AJAX destroy.js.erb -->
+			<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_comment" %>
+			<hr>
+		</div>
+	<%end%>
+</div>

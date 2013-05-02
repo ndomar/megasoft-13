@@ -1,7 +1,6 @@
 <h1>Welcome to Commenter</h1>
 
 <% @pages.each do |page| %>
-    <!--<h2><%= link_to page.html,page %></h2>-->
     <h2><%= link_to page.page_name,page %></h2>
     <p><%= time_ago_in_words page.created_at %> ago</p>
     <p><%= truncate page.html %></p>
