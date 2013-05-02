@@ -8,7 +8,7 @@ describe TasksController do
     @task = FactoryGirl.create(:task)
     sign_in(@designer)
   end
-/
+
   it "should find task & step. create new step_answer & task_result" do
     p=Project.new
     p.id=1
@@ -42,7 +42,7 @@ describe TasksController do
     assigns (:task_result).should_not be_nil
 
  end
-/ 
+
   describe "Steps Related tasks" do
     it "Refuses to add new step with no parameters" do
       get :new_step, project_id: @project, id: @task
@@ -98,7 +98,7 @@ describe TasksController do
     end
 
   end
-/
+
   describe "GET index" do
     it "renders index view" do
       project = FactoryGirl.create(:project)
@@ -171,5 +171,5 @@ describe TasksController do
       response.should render_template 'show'
     end
   end
-  /
+  
 end
