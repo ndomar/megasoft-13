@@ -83,4 +83,16 @@ class CardsortsController < ApplicationController
 			end
 		end
 	end
+	def invite_reviewer
+		@email = params[:email]
+		@msg = params[:msg]
+		invite(email,msg)
+		respond_to do |format|
+			format.js{}
+		end
+	end
+	def invitations
+		@cardsort=Cardsort.find(params[:cardsort_id])
+		@reviewers=@cardsort.reviewers
+	end
 end

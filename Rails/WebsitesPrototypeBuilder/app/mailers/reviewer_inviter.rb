@@ -23,4 +23,9 @@ class ReviewerInviter < ActionMailer::Base
     @url = url
     mail(:to => email, :subject => "Prototyper task invitation")
   end
+  def cardsort_invitation(email, msg, url)
+    @msg = msg
+    @url = url
+    mail(:to => email, :subject =>"Prototyper cardsort invitation")
+  end
 end

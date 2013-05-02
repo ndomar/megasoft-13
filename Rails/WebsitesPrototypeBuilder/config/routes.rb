@@ -23,6 +23,7 @@ post 'steps/update'
  get 'cardsorts/edit'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
+ get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
 
   #at start up page goes to the home controller and the index action
 

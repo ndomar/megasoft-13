@@ -14,4 +14,14 @@ class Cardsort < ActiveRecord::Base
   has_many :groups
   belongs_to :project
   has_many :cardsort_results
+
+  def invite(email, msg)
+  	begin
+  		reviewer = Reviewer.find_by_email(email)
+  	rescue
+  		reviewer = Reviewer.create(:email => email)
+  	end
+  	self.reviewers << reviewer
+  	ReviewerInviter.cardsort_invitation(email, msg, "http://localhost:3000/cardsorts/review/#{self.id}/reviewer/#{reviewer.id}").deliver()
+  end
 end
