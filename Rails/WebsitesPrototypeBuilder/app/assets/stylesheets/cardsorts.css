@@ -99,10 +99,8 @@
 	margin-left: -44px;
 	display: inline-block;
 	float: left;
-}
-
-.sidbar-tag:hover{
-	cursor: hand; cursor: pointer; 
+	cursor: hand; 
+	cursor: w-resize; 
 }
 
 #groups-tag{
