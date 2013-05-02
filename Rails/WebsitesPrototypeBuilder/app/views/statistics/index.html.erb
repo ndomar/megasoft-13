@@ -171,5 +171,61 @@
         </table>
       <%end%>
     </div>
+    <% reviewers = [] %>
+    <% results.each do |result| %>
+      <% if !reviewers.include?(result.reviewer) %>
+        <% reviewers[reviewers.length] = result.reviewer %>
+      <% end %>
+    <% end %>
+    <% if reviewers.length != 0 %>
+      <div style="float:right; margin-right:20px; width:900px; display:block;">
+        <legend style = "text-align:right; margin-right:20px; color:white;">
+          اختر احد المراجعين لاظهار نتائج ترتيب الكروت الخاصه به
+        </legend>
+        <table class="table table-condensed" style="float:right; width:300px; display:inline-block;">
+          <tr>
+            <th></th>
+            <th>قائمة المراجعين</th>
+          </tr>
+          <% reviewers.each do |reviewer| %>
+            <tr>
+              <%= form_for :reviewer, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+                <%= hidden_field_tag 'reviewer[id]', reviewer.id %>
+                <%= hidden_field_tag 'reviewer[cardsort]', @chosencardsort.id %>
+                <td><%= f.submit "النتائج"%></td>
+              <% end %>
+              <td><%= reviewer.email %></td>
+            </tr>
+          <%end%>
+        </table>
+        <% if @reviewer != nil %>
+          <% reviewer_results = [] %>
+          <% results.each do |result| %>
+            <% if result.reviewer == @reviewer %>
+              <% reviewer_results[reviewer_results.length] = result %>
+            <% end %>
+          <% end %>
+          <table class="table table-condensed" style="float:left; width:500px; display:inline-block;">
+            <% groupsnadcards = getGroupsAndCards(reviewer_results) %>
+            <% cards = groupsnadcards[1] %>
+            <% groups = groupsnadcards[0] %>
+            <tr>
+              <% groups.each do |group| %> 
+                <th><%= group.title %></th>
+              <%end%>
+              <th></th>
+            </tr>
+            <% cards.each do |card| %>
+              <tr>
+                <% groups.each do |group| %>
+                  <td><%= getOccurrences(card, group, @chosencardsort)%></td>
+                <%end%>
+                <td><%= card.title %></td>
+              </tr>
+            <%end%>
+          </table>
+        <% end %>
+      </div>
+    <% end %>
   <%end%>
 </div>

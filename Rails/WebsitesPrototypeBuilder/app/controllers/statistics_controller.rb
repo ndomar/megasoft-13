@@ -27,6 +27,10 @@ class StatisticsController < ApplicationController
     if params[:cardsort] != nil
       @chosencardsort = Cardsort.find(params[:cardsort][:id])
     end
+    if params[:reviewer] != nil
+      @reviewer = Reviewer.find(params[:reviewer][:id])
+      @chosencardsort = Cardsort.find(params[:reviewer][:cardsort])
+    end
     respond_to do |format|
       format.html 
       format.json { render json: @tasks }
