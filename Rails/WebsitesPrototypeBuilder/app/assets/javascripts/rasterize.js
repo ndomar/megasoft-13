@@ -1,6 +1,6 @@
 var page = require('webpage').create(),
-  system = require('system'),
-  address, output, size, id;
+system = require('system'),
+address, output, size, id;
 
 var pizza;
 
@@ -17,7 +17,7 @@ else {
     size = system.args[4].split('*');
     page.paperSize = size.length === 2 ? { width: size[0], height: size[1], margin: '0px' }
                                            : { format: system.args[3], orientation: 'portrait', margin: '1cm' };
-    }
+  }
   if (system.args.length > 4) {
     page.zoomFactor = system.args[4];
   }
@@ -26,8 +26,8 @@ else {
     if (status !== 'success') {
       console.log('Unable to load the address!');
       phantom.exit();
-   }
-   else {
+    }
+    else {
       var pizza = page.evaluate(function() { 
         var $element = $('#designpage');
         var offset = $element.offset();
@@ -37,7 +37,7 @@ else {
         dim.push($element.width());
         dim.push($element.height());
         return dim;     
-    });
+      });
 
     window.setTimeout(function () {
       page.clipRect = {top: pizza[0], left:pizza[1], width:pizza[2]+20, height:pizza[3]+20};
