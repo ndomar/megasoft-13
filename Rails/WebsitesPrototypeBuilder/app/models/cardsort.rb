@@ -38,4 +38,8 @@ class Cardsort < ActiveRecord::Base
   	self.reviewers << reviewer
   	ReviewerInviter.cardsort_invitation(email, msg, "http://localhost:3000/cardsorts/review/#{self.id}/reviewer/#{reviewer.id}").deliver()
   end
+
+  def get_status(id)
+  	CardsortResult.find_by_cardsort_id(self.id) & CardsortResult.find_by_reviewer_id(id)
+  end
 end

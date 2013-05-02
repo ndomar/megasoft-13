@@ -122,5 +122,8 @@ class CardsortsController < ApplicationController
 	def invitations
 		@cardsort=Cardsort.find(params[:cardsort_id])
 		@reviewers=@cardsort.reviewers
+		@statuses=@reviewers.map do |reviewer|
+			@cardsort.get_status(reviewer.id)
+		end
 	end
 end

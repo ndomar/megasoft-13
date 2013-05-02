@@ -321,16 +321,6 @@ img{
 	width: 100%;
 }
 
-table{
-	margin-top: 20px;
-	width: 100%;
-	height: 100%;
-}
-
-td{
-	padding: 10px;
-}
-
 .btn{
 	margin-right: 129px;
   margin-top: 25px;
@@ -481,4 +471,20 @@ float: right;
 
 .review-add-button:active{
 	background-size: 50px 50px;
+}
+
+.pending{
+	width: 20ox;
+	height: 20px;
+	background-image: url(/assets/pending.png);
+	padding: 10px;
+	margin: 5px;
+}
+
+.done{
+	width: 20px;
+	height: 20px;
+	background-image: url(/assets/done.png);
+	padding: 10px;
+	marign: 5px;
 }
