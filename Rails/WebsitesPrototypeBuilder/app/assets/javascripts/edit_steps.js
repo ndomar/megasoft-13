@@ -30,7 +30,7 @@ $(function(){
   $("#embedded").click(function(event){
     var cursor = $('#cursorSwitch');
     if(cursor.hasClass("cursorPressed")){
-      var allow = { "A":1, "IMG":1, "INPUT":1, "BUTTON":1 }; 
+      var allow = { "A":1, "IMG":1, "INPUT":1, "BUTTON":1, "TEXTAREA":1 }; 
       if(allow[event.target.tagName]){
         var id = event.target.id;
         select(id);
