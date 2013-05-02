@@ -1,7 +1,7 @@
 <html>
 
 <% @versions.each do |c| %>
-	<a href = "#" onclick="show(document.getElementById('designpage').getAttribute('data-pageid'), '<%= c.oid %>')"><%= c.message %></a></br><%= c.time.asctime %>
+	<a href = "#" onclick="show(document.getElementById('designpage').getAttribute('data-pageid'), '<%= c.oid %>')"><%= c.message %></a></br><%= c.time %>
 	</br></br>
 <% end %>
 

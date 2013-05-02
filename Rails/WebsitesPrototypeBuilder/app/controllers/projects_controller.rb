@@ -162,7 +162,7 @@ class ProjectsController < ApplicationController
     options[:tree] = index.write_tree
     options[:author] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
     options[:committer] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
-    options[:message] = ((new_file)? "Adding" : "Saving") + " page \"#{@page.page_name}\""
+    options[:message] = ((new_file)? "إضافة" : "حفظ") + " صفحة \"#{@page.page_name}\""
     options[:parents] = repo.empty? ? [] : [ repo.head.target ].compact
     options[:update_ref] = 'HEAD'
 
@@ -210,7 +210,7 @@ class ProjectsController < ApplicationController
     options[:tree] = index.write_tree
     options[:author] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
     options[:committer] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
-    options[:message] = "Deleting page \"#{@page.page_name}\""
+    options[:message] = "مسح صفحة \"#{@page.page_name}\""
     options[:parents] = repo.empty? ? [] : [ repo.head.target ].compact
     options[:update_ref] = 'HEAD'
 
