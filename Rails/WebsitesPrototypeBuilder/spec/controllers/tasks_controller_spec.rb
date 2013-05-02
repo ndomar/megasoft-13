@@ -140,4 +140,17 @@ describe TasksController do
       response.should render_template 'show'
     end
   end
+  describe "post invite use" do
+    it "gets the email from prams [:email]" do
+      project = FactoryGirl.create(:project)
+      task = project.tasks.create(FactoryGirl.attributes_for(:task))
+      email = "ahmed.osama.saad@gmail.com"
+      msg = "hello"
+      post :invite_user, :email => email, :invitation_message => msg, :task_id => task.id, :project_id => project.id
+      assigns(:email).should eq(email)
+      assigns(:invitation_message).should eq(msg)
+      assigns(:task_id).should eq(task.id.to_s)
+      assigns(:project_id).should eq(project.id.to_s)
+    end
+  end
 end

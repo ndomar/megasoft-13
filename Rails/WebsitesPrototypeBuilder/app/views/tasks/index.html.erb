@@ -26,9 +26,11 @@
         <td><%= link_to 'الغاء', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'هل تريد الغاء المهمة' } %></td>
         <td><a data-toggle="modal" href="#<%=task.id%>">ارسل دعوة</a>
           <div class="container">   
-            <div id="<%= task.id%>" class="modal hide fade in" style="display: none; ">  
+            <div id="<%= task.id%>" class="modal hide fade in" style="display: none; background-color: #000000">  
               <div class="modal-header">  
-                <a class="close" data-dismiss="modal">×</a>    
+                <a class="close" data-dismiss="modal" >×</a>
+              </br>
+                <h3 align=right>أرسال دعوة</h3>    
               </div>  
               <div class="modal-body">
                 <%= render :partial => 'invite', :locals => {:t => task}%> 

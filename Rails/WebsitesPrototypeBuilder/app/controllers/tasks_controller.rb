@@ -174,7 +174,10 @@ class TasksController < ApplicationController
   #* *Returns*    :
   #   -
   def invite_user
-
+    @email = params[:email]
+    @project_id = params[:project_id]
+    @invitation_message = params[:invitation_message]
+    @task_id = params[:task_id]
     @Reviewer = Reviewer.find_by_email(params[:email])
     if @Reviewer == nil
       @Reviewer = Reviewer.create(:email => params[:email])
