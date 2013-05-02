@@ -13,7 +13,7 @@ class Project < ActiveRecord::Base
   attr_accessible :description, :project_name, :project_type, :designer_id
 
   validates :project_name, :presence => {:message => ".برجاء ادخال اسم المشروع"}
-  validates :project_name, :uniqueness => {:message => ".يوجد مشروع بهذا الاسم, برجاء ادخال اسم مشروع آخر"}
+  validates :project_name, :uniqueness => {:message => ".يوجد مشروع بهذا الاسم, برجاء ادخال اسم مشروع آخر",:scope => :designer_id}
 
   belongs_to :designer
   has_many :questionnaires,:dependent => :destroy

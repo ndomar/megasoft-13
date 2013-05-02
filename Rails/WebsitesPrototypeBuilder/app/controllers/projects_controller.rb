@@ -30,14 +30,17 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
-
   def create
     @project = Project.new(params[:project])
     respond_to do |format|
       if @project.save
-        format.html {redirect_to projects_url, notice: 'Project was successfully created.' }
-        Dir.mkdir("#{Rails.public_path}/#{@project.id}")
-        Dir.mkdir("#{Rails.public_path}/#{@project.id}/images")
+        format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
+        if !File.directory?("#{Rails.public_path}/#{@project.id}")
+          Dir.mkdir("#{Rails.public_path}/#{@project.id}")
+        end
+        if !File.directory?("#{Rails.public_path}/#{@project.id}/images")
+          Dir.mkdir("#{Rails.public_path}/#{@project.id}/images")
+        end
       else
         format.html { render action: "new" }
       end

@@ -64,6 +64,11 @@ function selectItem () {
 	}
 }
 
+function test_site(url){
+	var win=window.open(url, '_blank');
+  win.focus();
+}
+
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {
 	//Load the html from the database through the hidden div with id "html_content"

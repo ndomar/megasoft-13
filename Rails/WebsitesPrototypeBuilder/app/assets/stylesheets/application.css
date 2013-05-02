@@ -195,8 +195,10 @@ div#content{
 
 footer{
 	color: #656565;
-	margin:0px 240px 0px 240px;
+	padding:0px 240px 0px 240px;
 	padding-bottom: 20px;
+	background-color: #ffffff;
+	bottom: 0px;
 }
 		
 hr {

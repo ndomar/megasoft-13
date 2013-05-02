@@ -16,9 +16,11 @@
 //= require jquery_nested_form
 //= require bootstrap
 
+//The state of the side-bar(collapsed or opened)
 var state=true;
 var sidebar_width =320;
 $(document).ready(function() {
+  // USed to slide the side-bar
   $("#slidebutton").click(function(){
     if(state){
     	$("#wrapper").animate({'padding-right' : 0}, 400);
@@ -42,6 +44,7 @@ $(document).ready(function() {
 		state=true;
 	}});
 
+  // Used to make the sidebar content fixed
   var starting_position = $('#navigation_container').offset();
   var top_padding = 0;
   var bottom_limit = $('footer').offset();
@@ -55,8 +58,6 @@ $(document).ready(function() {
   	} else {
   		$('#side_content').stop().animate({top: 0 }, 400);
   	}});
-
-
 
 });
 

@@ -15,6 +15,8 @@
 		<h4>التعليقلت</h4>
 		<!-- The + buttom on clicking draw the circle -->
 		<div class="add_comment" onclick="draw_circle();">+</div>
+		<!-- The T button to test the site -->
+		<div class="add_comment" style="border-right:1px solid #fafafa" onclick="test_site('<%="../#{@page.project_id}/#{@page.page_name}.html"%>');">T</div>
 		<hr>
 		<!-- Fetching comments from the database,just for testing -->
 		<div id="comments">
