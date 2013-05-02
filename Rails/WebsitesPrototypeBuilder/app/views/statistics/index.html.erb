@@ -98,7 +98,7 @@
       <h3><%= @chosenquestionnaire.title %> : اسم الاستطلاع</h3>
       <% @chosenquestionnaire.qquestions.each do |question| %>
         <% if question.answer_questionnaires.length == 0 %>
-          <div style="float:left; margin-left:20px; width:500px; height:50px;"> 
+          <div style="float:left; margin-left:20px; width:500px; height:100px;"> 
             <h4><%= question.body %> : السؤال</h4> 
             <p style="color:red;">لم يجب أحد عن هذا السؤال</p>
           </div>
