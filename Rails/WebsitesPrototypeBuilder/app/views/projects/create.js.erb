@@ -1,8 +1,8 @@
 <% if (!@project.valid?) %>
   var errorDiv = $('#error_project').text("");
-    <% @project.errors.each do |attr,msg| %>
-      $(errorDiv).append("<%= msg %>" )
-    <% end %>
+  <% @project.errors.each do |attr,msg| %>
+    $(errorDiv).append("<%= msg %>" )
+  <% end %>
 <% else %>
   window.location.href = "/projects/design/<%= @project.id %>";
 <% end %>
