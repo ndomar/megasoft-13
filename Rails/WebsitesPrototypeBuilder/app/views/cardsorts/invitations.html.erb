@@ -1,0 +1,7 @@
+<h2>ارسل دعوة </h2>
+<%= form_tag('/cardsorts/invite_reviewer', :method => "post", :remote => true) do %>
+<p>:البريد الالكتروني</br> <%= text_field_tag(:email) %></p>
+<%= hidden_field_tag(:cardsort_id, @cardsort.id) %>
+<p> :الرسالة</br> <%= text_area_tag :msg %> </p>
+<%= submit_tag("ادعو", :class => 'btn btn-info') %>
+<% end %>
