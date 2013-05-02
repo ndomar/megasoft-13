@@ -13,4 +13,8 @@ class Page < ActiveRecord::Base
   has_many :steps
   has_many :answers,:dependent => :destroy
   belongs_to :project
+
+  def file_dir_exists?(path_to_file)
+    File.exist?(path_to_file)
+  end
 end
