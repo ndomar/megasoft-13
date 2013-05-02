@@ -9,7 +9,16 @@
     </div>
   <% elsif log.action == "change" %> 
     <div class="progress progress-warning" style="margin-top: 0px; margin-bottom: 2px; border-radius:0px; width: 100"%>
-      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px" ><%= log.time %> عند "<%=log.component_involved%>"  ادخل المستخدم</div>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px" ><%= log.time %> عند "<%=log.component_involved%>"  ادخل المستخدم
+      </div>
+    </div>
+  <% elsif log.action == "mouseleave" %>
+    <div class="progress progress-success" style="margin-top: 0px; margin-bottom: 2px;  border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px"><%= log.time %> عند <%=log.component_involved%>  اخرج المستخدم الفأرة من على</div>
+    </div>
+  <% elsif log.action == "mouseover" %>
+    <div class="progress progress-danger" style="margin-top: 0px; margin-bottom: 2px;  border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px"><%= log.time %> عند <%=log.component_involved%> حلق المستخدم علي</div>
     </div>
   <% end %>
 <% end %>
