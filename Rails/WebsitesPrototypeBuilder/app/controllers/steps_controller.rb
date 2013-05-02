@@ -11,7 +11,6 @@ class StepsController < ApplicationController
 #
   def update
     @task =Task.find_by_id(params[:task_id])
-    @task.update_taskResults(params,session[:task_result_id])
     returnHash = @task.update_taskResults(params,session[:task_result_id])
     if Integer(params[:change_id]) <= Integer(@task.steps.last.id)
       @step = returnHash[:step]
