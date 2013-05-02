@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<%= javascript_include_tag :defaults %>
 <head>
   <title>Arability</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -42,6 +43,7 @@
   </div>
 <!-- end container -->
 </div>
+
 <div class="the_body">
   <div class="container max-height no-overflow"><%= yield %></div>
 </div>
@@ -50,7 +52,6 @@
     <%= yield %>
   </div>
 <% end %>
-
 
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
