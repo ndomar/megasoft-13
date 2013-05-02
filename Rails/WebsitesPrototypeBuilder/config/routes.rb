@@ -1,8 +1,11 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
+  get "tests/test_image"
+
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
+  post "/projects/destroy"
   get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
   post 'steps/update'
 
@@ -29,7 +32,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   #at start up page goes to the home controller and the index action
 
-  root to: "home#index"
+  root to: "projects#index"
 
   resources :projects
 
