@@ -7,12 +7,12 @@
     <%= render_chart(drawBarchart(@tasks), 'all_tasks_results') %>
     <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
       <tr>
+        <th style="text-align:right;">قائمة المهام</th>
         <th></th>
-        <th>قائمة المهام</th>
       </tr>
       <% @tasks.each do |task| %>
       <tr>
-        <td><%= task.name %></td>
+        <td style="text-align:right;"><%= task.name %></td>
         <%= form_for :task, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
           <%= hidden_field_tag 'task[id]', task.id %>
           <td><%= image_submit_tag("eye.png") %></td>
@@ -83,12 +83,12 @@
   <% else %>
     <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
       <tr>
+        <th style="text-align:right;">قائمة الاستطلاعات</th>
         <th></th>
-        <th>قائمة الاستطلاعات</th>
       </tr>
       <% @questionnaires.each do |questionnaire| %>
         <tr>
-          <td><%= questionnaire.title %></td>
+          <td style="text-align:right;"><%= questionnaire.title %></td>
           <%= form_for :questionnaire, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
             <%= hidden_field_tag 'questionnaire[id]', questionnaire.id %>
             <td><%= image_submit_tag("eye.png") %></td>
@@ -138,12 +138,12 @@
   <legend style = "text-align:right; margin-right:20px; color:white;">نتائج ترتيب الكروت</legend>
   <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
     <tr>
+      <th style="text-align:right;">قائمة ترتيب الكروت</th>
       <th></th>
-      <th>قائمة ترتيب الكروت</th>
     </tr>
     <% @cardsorts.each do |cardsort| %>
       <tr>
-        <td><%= cardsort.title %></td>
+        <td style="text-align:right;"><%= cardsort.title %></td>
         <%= form_for :cardsort, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
           <%= hidden_field_tag 'cardsort[id]', cardsort.id %>
           <td><%= image_submit_tag("eye.png") %></td>
@@ -164,15 +164,24 @@
           <tr>
             <th></th>
             <% groups.each do |group| %> 
-              <th><%= group.title %></th>
+              <th style="text-align:right;"><%= group.title %></th>
             <%end%>
           </tr>
           <% cards.each do |card| %>
             <tr>
-              <td><%= card.title %></td>
+              <td style="text-align:right;"><%= card.title %></td>
+              <% occurrences = []%>
               <% groups.each do |group| %>
-                <td style="text-align:center;"><%= getOccurrences(card, group, @chosencardsort)%></td>
+                <% occurrences[occurrences.length] = getOccurrences(card, group, @chosencardsort, nil) %>
               <%end%>
+              <% max_index = occurrences.index(occurrences.max) %>
+              <% occurrences.each_with_index do |occurrence, index| %>
+                <% if index == max_index %>
+                  <td style="text-align:center; background-color: darkblue;"><%= occurrence %></td>
+                <% else %>
+                  <td style="text-align:center;"><%= occurrence %></td>
+                <% end %>
+              <% end %>
             </tr>
           <%end%>
         </table>
@@ -191,12 +200,12 @@
         </legend>
         <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
           <tr>
+            <th style="text-align:right;">قائمة المراجعين</th>
             <th></th>
-            <th>قائمة المراجعين</th>
           </tr>
           <% reviewers.each do |reviewer| %>
             <tr>
-              <td><%= reviewer.email %></td>
+              <td style="text-align:right;"><%= reviewer.email %></td>
               <%= form_for :reviewer, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
                 <%= hidden_field_tag 'reviewer[id]', reviewer.id %>
                 <%= hidden_field_tag 'reviewer[cardsort]', @chosencardsort.id %>
@@ -219,17 +228,26 @@
             <tr>
               <th></th>
               <% groups.each do |group| %> 
-                <th><%= group.title %></th>
+                <th style="text-align:right;"><%= group.title %></th>
               <%end%>
             </tr>
             <% cards.each do |card| %>
-              <tr>
-                <td><%= card.title %></td>
-                <% groups.each do |group| %>
-                  <td><%= getOccurrences(card, group, @chosencardsort)%></td>
-                <%end%>
-              </tr>
-            <%end%>
+            <tr>
+              <td style="text-align:right;"><%= card.title %></td>
+              <% occurrences = []%>
+              <% groups.each do |group| %>
+                <% occurrences[occurrences.length] = getOccurrences(card, group, @chosencardsort, @reviewer) %>
+              <%end%>
+              <% max_index = occurrences.index(occurrences.max) %>
+              <% occurrences.each_with_index do |occurrence, index| %>
+                <% if index == max_index %>
+                  <td style="text-align:center; background-color: darkblue;"><%= occurrence %></td>
+                <% else %>
+                  <td style="text-align:center;"><%= occurrence %></td>
+                <% end %>
+              <% end %>
+            </tr>
+          <%end%>
           </table>
         <% end %>
       </div>

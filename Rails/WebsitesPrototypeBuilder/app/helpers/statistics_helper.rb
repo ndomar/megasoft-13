@@ -9,11 +9,17 @@ module StatisticsHelper
   # * *Returns* :
   #   - number of ocurrences of card in group
   #  
-  def getOccurrences(card, group, cardsort)
+  def getOccurrences(card, group, cardsort, reviewer)
     count = 0
     group.cardsort_results.each do |result|
-      if (result.card == card && result.cardsort == cardsort)
-        count += 1
+      if reviewer == nil
+        if (result.card == card && result.cardsort == cardsort)
+          count += 1
+        end
+      else
+        if (result.card == card && result.cardsort == cardsort && result.reviewer == reviewer)
+          count += 1
+        end
       end
     end
     return count
