@@ -1,4 +1,8 @@
 $('<iframe id="preview_mode"/>').load(function(){
+ 	$('#preview_mode').contents().find('body').append('<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"><\/script>').end().appendTo("body");
+});
+
+$('<iframe id="preview_mode"/>').load(function(){
 	// Write your iframe javascript here
   $('#preview_mode').contents().find('body').append('<script>$(document).ready(function() {alert("call paerent");parent.test();});<\/script>');
   

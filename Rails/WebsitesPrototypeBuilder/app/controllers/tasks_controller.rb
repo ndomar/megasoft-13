@@ -74,6 +74,8 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
   #   -renders form to create new task
   #
   def new
+    @project = Project.find(params[:project_id])
+    @pages = @project.pages
     @task = Task.new
     
     respond_to do |format|
@@ -90,7 +92,7 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
   #   -the details of this task and renders itas an html
   #
   def show
-    @task = Task.find(params[:id])
+    @task = Project.find(params[:project_id]).tasks.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -121,7 +123,9 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
+        @project = Project.find(params[:project_id])
+        @pages = @project.pages
+        format.html { redirect_to select_start_page_path(@project, @task), notice: 'تم عمل المهمة بنجاح' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -182,13 +186,53 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
     puts(params[:task_id] , params[:reviewer_id])
   end
 
+  
+  ##
+  # Disp
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
+  #   - +id+ ->: The id of the task for which the steps will be edited.
+  # * *Returns*  :
+  #   -The page this task is associated with, and the steps added to the task.
+  #
+
+  def select_start_page
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+    @pages = @project.pages
+  end
 
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
   # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
+  #   - +id+ ->: The id of the task.
+  #   - +page_id+ ->: The id of the page which should be the start page of the task.
+  # * *Returns*  :
+  #   -Saves the start page, and renders the edit steps view.
+  #
+
+  def save_start_page
+    @task = Task.find(params[:id])
+    @task.page_id = params[:page_id]
+    @created = @task.save
+    @project = Project.find(params[:project_id])
+    @steps = @task.steps
+    @page = Page.find(@task.page_id)
+    #render :action => :edit_steps
+    respond_to do |format|
+      format.js{}
+    end
+  end
+
+
+  ##
+  # Displays a task and its current steps to allow the designer to edit the steps.
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
   #   - +id+ ->: The id of the task for which the steps will be edited.
   # * *Returns*  :
-  #   -The page this task is associated with, and the steps added to the task.
+  #   -The view to edit the steps for this task, or an error page if the designer shouldn't be allowed to edit the steps.
   #
 
   def edit_steps
@@ -196,6 +240,19 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
     @task = Task.find(params[:id])
     @steps = @task.steps
     @page = @task.page
+    @designer = current_designer
+    @error = @task.allow_designer(@page, @designer, @project)
+
+    respond_to do |format|
+      if @error == 'start_page_not_defined'
+        @pages = @project.pages
+        format.html {render "select_start_page"}
+      elsif @error == 'task_already_taken'
+        format.html {render "error_page"}
+      else
+        format.html {render "edit_steps"}
+      end
+    end
   end
 
   ##
@@ -210,7 +267,8 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
   #
 
   def new_step
-    @step = Step.new(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
+    @step = Step.new(:task_id => params[:id], :page_id => params[:page_id],
+     :event => params[:event], :component => params[:component], :description => params[:description])
     @created = @step.save
     @task = Task.find_by_id(params[:id])
     @steps = @task.steps
@@ -258,5 +316,19 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
       return true
     end
     return false
+  end
+  
+  ##
+  # Gets a certain task result from the database
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the current project.
+  #   - +task_id+ ->: The id of the current task.
+  #   - +result_id+ ->: The id of the task result to be sent to 
+  # * *Returns*  :
+  #   -Renders an html view to view the log of the task reult
+  #
+
+  def log
+    @task_result = Project.find_by_id(params[:project_id]).tasks.find(params[:task_id]).task_results.find_by_id(params[:result_id])
   end
 end

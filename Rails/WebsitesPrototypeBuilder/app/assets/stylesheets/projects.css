@@ -103,8 +103,10 @@
 #sidebar{
   width: 0px;
 }
+
 #slidebutton{
   visibility: hidden;
+  margin-left: -40px;
 }
 .add_button{
   width: 300px;
@@ -170,4 +172,9 @@ select {
   border: 1px solid #cccccc;
   background-color: white;
   direction: rtl;
+}
+
+#popup-cardsort{
+  height: 500px;
+  margin-top: 20px;
 }
