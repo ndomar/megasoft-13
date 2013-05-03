@@ -118,7 +118,7 @@ describe StatisticsHelper do
     reviewer = FactoryGirl.create(:reviewer)
     cardsortresult = CardsortResult.create(:cardsort_id => cardsort.id, :card_id => card.id,
      :group_id => group.id, :reviewer_id => reviewer.id)
-    o = helper.getOccurrences(cardsortresult.card, cardsortresult.group, cardsort)
+    o = helper.getOccurrences(cardsortresult.card, cardsortresult.group, cardsort, nil)
     expect(o).to eq(1)
     expect(getGroupsAndCards([cardsortresult])).to eq([[group], [card]])
   end

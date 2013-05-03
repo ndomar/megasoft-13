@@ -136,21 +136,25 @@
 </div>
 <div style="float:right; margin-right:20px; width:900px; display:block;">
   <legend style = "text-align:right; margin-right:20px; color:white;">نتائج ترتيب الكروت</legend>
-  <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
-    <tr>
-      <th style="text-align:right;">قائمة ترتيب الكروت</th>
-      <th></th>
-    </tr>
-    <% @cardsorts.each do |cardsort| %>
+  <% if @cardsorts.length == 0 %>
+    <p style="color:red;"> لا توجد مهام ترتيب كروت في هذا المشروع </p>
+  <% else %>
+    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
       <tr>
-        <td style="text-align:right;"><%= cardsort.title %></td>
-        <%= form_for :cardsort, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
-          <%= hidden_field_tag 'cardsort[id]', cardsort.id %>
-          <td><%= image_submit_tag("eye.png") %></td>
-        <% end %>
+        <th style="text-align:right;">قائمة ترتيب الكروت</th>
+        <th></th>
       </tr>
-    <%end%>
-  </table>
+      <% @cardsorts.each do |cardsort| %>
+        <tr>
+          <td style="text-align:right;"><%= cardsort.title %></td>
+          <%= form_for :cardsort, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+            <%= hidden_field_tag 'cardsort[id]', cardsort.id %>
+            <td><%= image_submit_tag("eye.png") %></td>
+          <% end %>
+        </tr>
+      <%end%>
+    </table>
+  <% end %>
   <% if @chosencardsort != nil %>
     <% results = @chosencardsort.cardsort_results %>
     <div style="float:left; width:500px; display:inline-block;">
@@ -232,22 +236,22 @@
               <%end%>
             </tr>
             <% cards.each do |card| %>
-            <tr>
-              <td style="text-align:right;"><%= card.title %></td>
-              <% occurrences = []%>
-              <% groups.each do |group| %>
-                <% occurrences[occurrences.length] = getOccurrences(card, group, @chosencardsort, @reviewer) %>
-              <%end%>
-              <% max_index = occurrences.index(occurrences.max) %>
-              <% occurrences.each_with_index do |occurrence, index| %>
-                <% if index == max_index %>
-                  <td style="text-align:center; background-color: darkblue;"><%= occurrence %></td>
-                <% else %>
-                  <td style="text-align:center;"><%= occurrence %></td>
+              <tr>
+                <td style="text-align:right;"><%= card.title %></td>
+                <% occurrences = []%>
+                <% groups.each do |group| %>
+                  <% occurrences[occurrences.length] = getOccurrences(card, group, @chosencardsort, @reviewer) %>
+                <%end%>
+                <% max_index = occurrences.index(occurrences.max) %>
+                <% occurrences.each_with_index do |occurrence, index| %>
+                  <% if index == max_index %>
+                    <td style="text-align:center; background-color: darkblue;"><%= occurrence %></td>
+                  <% else %>
+                    <td style="text-align:center;"><%= occurrence %></td>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </tr>
-          <%end%>
+              </tr>
+            <%end%>
           </table>
         <% end %>
       </div>

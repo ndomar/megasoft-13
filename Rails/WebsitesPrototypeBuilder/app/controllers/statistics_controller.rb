@@ -1,5 +1,8 @@
 class StatisticsController < ApplicationController
 
+  before_filter :authenticate_designer!
+  before_filter :checkDesigner
+
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
@@ -35,5 +38,22 @@ class StatisticsController < ApplicationController
       format.html 
       format.json { render json: @tasks }
     end
+  end
+
+  ##
+  # Checks if the project belongs to the designer
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project
+  #   - +current_designer+ ->: The designer currently logged in
+  # * *Returns*  :
+  #   -True if project belongs to designer and false otherwise
+  #
+  def checkDesigner()
+    designer = Designer.find(current_designer.id)
+    if(designer.id != Project.find(params[:project_id]).designer_id)
+      render 'unauthorized'
+      return true
+    end
+    return false
   end
 end
