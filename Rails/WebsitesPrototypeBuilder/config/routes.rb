@@ -9,6 +9,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	devise_for :designers, :controllers => { :registrations => "registrations" }
 
 	get 'projects/design/:project_id' => 'projects#design'
+	get 'projects/:project_id/design/:project_id' => 'projects#design'
  	post "/projects/destroy"
 	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
 	post 'steps/update'
