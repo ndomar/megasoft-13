@@ -139,7 +139,7 @@ div#content{
 #sidebar{
 	direction: rtl;
 	color: #fafafa;
-	width: 320px;
+	width: 17%;
 	background:#1b1b1b;
 	position: absolute;
 	top: 0;
@@ -148,15 +148,16 @@ div#content{
   min-height:100%;
 	overflow-y: auto;
 	word-wrap:break-word;
-  height: 200px;
+  height: 100%;
 }
 
 #side_content{
 	position: absolute;
 	display: block;
 	word-wrap:break-word;
-	width: 290px;
-	margin: 0px 10px 0px 10px;
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
 }
 #sidebar h4{
 	text-align: center;

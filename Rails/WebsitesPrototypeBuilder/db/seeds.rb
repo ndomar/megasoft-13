@@ -1,31 +1,3 @@
-# A project that has no tasks
-project1 = Project.create(:project_name => "Test Project 1")
-# A project with a task and no reviewers or task results
-project2 = Project.create(:project_name => "Test Project 2")
-task1 = project2.tasks.create(:name => "Task 1")
-task2 = project2.tasks.create(:name => "Task 2")
-# A project with tasks + reviewers + task results + reviewer infos
-project3 = Project.create(:project_name => "Test Project 3")
-task3 = project3.tasks.create(:name => "Task 3")
-task4 = project3.tasks.create(:name => "Task 4")
-task5 = project3.tasks.create(:name => "Task 5")
-reviewer1 = task3.reviewers.create(:email => "test@test.com")
-reviewer2 = task3.reviewers.create(:email => "test@test.com")
-reviewer1.create_reviewer_info(:age => 19, :gender => false, :country => "Egypt")
-reviewer2.create_reviewer_info(:age => 25, :gender => true, :country => "Libya")
-task3.task_results.create(:success => true, :time => 5)
-task3.task_results.create(:success => true, :time => 3)
-reviewer3 = task4.reviewers.create(:email => "test@test.com")
-reviewer4 = task4.reviewers.create(:email => "test@test.com")
-reviewer3.create_reviewer_info(:age => 19, :gender => false, :country => "Egypt")
-reviewer4.create_reviewer_info(:age => 25, :gender => true, :country => "Libya")
-task4.task_results.create(:success => true, :time => 7)
-task4.task_results.create(:success => true, :time => 4)
-reviewer5 = task5.reviewers.create(:email => "test@test.com")
-reviewer6 = task5.reviewers.create(:email => "test@test.com")
-reviewer5.create_reviewer_info(:age => 19, :gender => false)
-reviewer6.create_reviewer_info(:age => 25, :gender => true)
-
 # Answers
 (0..50).each do
 	Answer.create(answer: ('a'..'z').to_a.shuffle[0,20].join, question_id: rand(0..5), page_id: rand(0..5));
@@ -45,6 +17,11 @@ end
 		cardsort_id: rand(0..5));
 end
 
+#cards_groups
+(0..50).each do
+  Card.find(rand(1..5)).groups << Group.find(rand(1..5))
+end
+
 # cardsorts
 (0..50).each do
 	Cardsort.create(title: ('a'..'z').to_a.shuffle[0,20].join,
@@ -52,10 +29,19 @@ end
 		project_id: rand(0..5));
 end
 
+<<<<<<< HEAD
 # choices
 (0..50).each do
 	Choice.create(body: ('a'..'z').to_a.shuffle[0,20].join,
 		qquestion_id: rand(0..5))
+=======
+#cardsortresults
+(0..50).each do
+  CardsortResult.create(cardsort_id: rand(1..5),
+    reviewer_id: rand(1..5),
+    group_id: rand(1..5),
+    card_id: rand(1..5))
+>>>>>>> d38b4730931443c824b1fd1c14557e9b5c38ed12
 end
 
 # comments
@@ -69,7 +55,7 @@ end
 (0..50).each do
 	Page.create(page_name: ('a'..'z').to_a.shuffle[0,20].join,
 		html: ('a'..'z').to_a.shuffle[0,20].join,
-		thumbnail: ('a'..'z').to_a.shuffle[0,20].join)
+    project_id: rand(1..5))
 end
 
 # projects
@@ -77,19 +63,36 @@ end
 	Project.create(project_name: ('a'..'z').to_a.shuffle[0,20].join,
 		project_type: ('a'..'z').to_a.shuffle[0,20].join,
 		description: ('a'..'z').to_a.shuffle[0,20].join,
-		designer_id: rand(0..5))
+		designer_id: rand(1..5))
 end
 
-# qquestions
-(0..50).each do
-	Qquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		qtype: rand(0..5))
-end
-
-# Questionaire
+# Questionaire with Qquestions and choices where necessary
 (0..50).each do
 	Questionnaire.create(project_id: rand(0..5),
-	  title: ('a'..'z').to_a.shuffle[0,20].join)
+	  title: ('a'..'z').to_a.shuffle[0,20].join,
+    qquestions_attributes: [{body: "Question A", qtype: 1},
+     {body: "Question B", qtype: 2},
+     {body: "Question C", qtype: 3,
+     choices_attributes: [body: "Choice A"]}, 
+     {body: "Question D", qtype: 4, 
+     choices_attributes: [{body: "Choice A"}, 
+     {body: "Choice B"}, {body: "Choice C"}]}])
+end
+
+# AnswerQuestionnaire
+(0..200).each do
+  randomquestion = Qquestion.find(rand(1..200))
+  length = randomquestion.choices.length
+  if randomquestion.qtype == 1 || randomquestion.qtype == 2
+    body = ('a'..'z').to_a.shuffle[0,20].join
+  elsif randomquestion.qtype == 3
+    body = randomquestion.choices[rand(0..length-1)].body
+  else
+    body = randomquestion.choices[0].body + "," + randomquestion.choices[2].body
+  end
+  AnswerQuestionnaire.create(body: body, 
+    qquestion_id: randomquestion.id,
+    questionnaire_id: randomquestion.questionnaire_id)
 end
 
 # Reviewer_infos
@@ -138,8 +141,9 @@ end
 (0..50).each do
 	Task.create(name: ('a'..'z').to_a.shuffle[0,20],
 		description: ('a'..'z').to_a.shuffle[0,20],
-		project_id: rand(0..5),
-		page_id: rand(0..5))
+		project_id: rand(1..5),
+		page_id: rand(1..5),
+    time_limit: rand(1..5))
 end
 
 # Designers
