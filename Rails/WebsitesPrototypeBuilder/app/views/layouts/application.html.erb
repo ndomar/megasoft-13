@@ -6,12 +6,14 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="/images/favicon.ico"/>
 </head>
 
 <style>
 </style>
 
 <body>
+  <% if designer_signed_in? %>
 <!-- layout stuff for the home page -->
 <!-- container for positioning the banner -->
 <div id="navigation_container">
@@ -19,9 +21,9 @@
   <div class="rectangle">
   <!-- the navigation links -->
     <ul id="navigation">
-    <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar active" ></div></a></li>
     <li><a href="#">ﺧﻂ ﻋﺮﺑﻲ<div class="tabBar" ></div></a></li>
-    <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar"></div></a></li>    
+    <li><%= link_to_function "مشروع جديد" ,  "showpopup()" %><div class="tabBar" ></div></li>
+    <li><a <%= link_to "الصفحة الرئيسية" , projects_path %> <div class="tabBar active"></div></a></li>    
     </ul>
     <a href="#"><div width="44px" height="51px" class="logo"></div></a>
   <!-- end navigation links -->
@@ -46,12 +48,11 @@
 <div class="the_body">
   <div class="container max-height no-overflow"><%= yield %></div>
 </div>
-<!--
-< else >
+<% else %>
   <div>
-    <= yield >
+    <%= yield %>
   </div>
-< end >-->
+<% end %>
 
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
