@@ -5,6 +5,15 @@ class LogsController < ApplicationController
   def create
   end
 
+## 
+#Author:Sarah
+#Creates a new instance of the log
+# * *Args*    :
+#   -+@task+ -> the current task
+#   -+@log+ -> the new instance of the log
+# * *Returns*    :
+# - nothing
+#
   def new
     @task_result=TaskResult.find(session[:task_result_id])
     @task= Task.find(@task_result.task_id)  

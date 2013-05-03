@@ -4,7 +4,6 @@
 # - +from+ -> the sender email added to the header
 #* *Relations* :
 # - none
-#
 class ReviewerInviter < ActionMailer::Base
   default :from => "Prototyper"
 
@@ -17,7 +16,6 @@ class ReviewerInviter < ActionMailer::Base
     # - +url+ -> url for the task to be taken
     # * *Returns* :
     # - a mail object to be sent
-    #
   def task_invitation(email, msg, url)
     @msg = msg
     @url = url
