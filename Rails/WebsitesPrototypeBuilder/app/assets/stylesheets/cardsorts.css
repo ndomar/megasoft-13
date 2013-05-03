@@ -99,9 +99,8 @@
 	margin-left: -44px;
 	display: inline-block;
 	float: left;
+	cursor: hand; cursor: pointer; 
 }
-
-
 
 #groups-tag{
 	 margin-left: -46px;

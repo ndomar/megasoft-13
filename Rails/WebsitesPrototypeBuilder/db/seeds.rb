@@ -29,19 +29,18 @@ end
 		project_id: rand(0..5));
 end
 
-<<<<<<< HEAD
 # choices
 (0..50).each do
 	Choice.create(body: ('a'..'z').to_a.shuffle[0,20].join,
 		qquestion_id: rand(0..5))
-=======
+end
+
 #cardsortresults
 (0..50).each do
   CardsortResult.create(cardsort_id: rand(1..5),
     reviewer_id: rand(1..5),
     group_id: rand(1..5),
     card_id: rand(1..5))
->>>>>>> d38b4730931443c824b1fd1c14557e9b5c38ed12
 end
 
 # comments
