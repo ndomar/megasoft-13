@@ -92,14 +92,12 @@ function places(af,t) {
 	}
 	else
 	{
-		
-		    
-		    $('#myiframe').contents().find('.nom').hide();
-		    unfiltercomments();
-		    unfilterquestions();
-		    
-		   
-		
+	 $('#myiframe').contents().find('.nom').hide();
+		if(t==1){
+			unfilterquestions();}
+    else{
+    	unfiltercomments();
+    }
 		
 
 	}
