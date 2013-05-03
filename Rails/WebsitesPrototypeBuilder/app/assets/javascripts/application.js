@@ -63,10 +63,10 @@ $(document).ready(function() {
   	if (top_window > starting_position.top && top_window < bottom_limit.top - box_height){
   		$('#side_content').stop().animate({top: top_window - starting_position.top + top_padding}, 400);
   	} else if (top_window > bottom_limit.top - starting_position.top - box_height){
-  		$('#side_content').stop().animate({top: bottom_limit.top - starting_position.top - box_height }, 400);
-      $('#side_content').height(box_height -starting_position.top);
+  		$('#side_contentt').stop().animate({top: bottom_limit.top - starting_position.top - box_height }, 400);
+      $('#side_contentt').height(box_height -starting_position.top);
   	} else {
-  		$('#side_content').stop().animate({top: 0 }, 400);
+  		$('#side_contentt').stop().animate({top: 0 }, 400);
   	}
   });
 
