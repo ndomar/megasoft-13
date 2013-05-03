@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-
   ##
   #The show method is used, to show a certain project.
   # * *Instance*    :
@@ -94,6 +93,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  #To make sure that the designer is logged in
+  before_filter :authenticate_designer!
+
+  def create_page
+    Page.create!(:project_id => id)
+  end
+
   ##
   # Author Hossam
   # called to show a page in the design pane
@@ -178,16 +184,28 @@ class ProjectsController < ApplicationController
   #   - Returns the selected project design page       
 
   ##
+
+
+
+  ##
   #The create method in project controller class creates a new project with a given parameter and then
   # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
   # * *Instance*    :
   #   - +projects+-> The new created project with the passed parameters
-    
-
   def create()
     @project = Project.new(params[:project])
     respond_to do |format|
       if (@project.save)
+        format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
+        if !File.directory?("#{Rails.public_path}/#{@project.id}")
+          Dir.mkdir("#{Rails.public_path}/#{@project.id}")
+        File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
+          f.write("")
+          end
+        end
+        if !File.directory?("#{Rails.public_path}/#{@project.id}/images")
+          Dir.mkdir("#{Rails.public_path}/#{@project.id}/images")
+        end
         @page = Page.new()
         @page.project_id= @project.id
         @page.page_name= "index"
@@ -201,16 +219,18 @@ class ProjectsController < ApplicationController
   end
 
   ##
-  # The destroy method in the project controller is used, to delete any particular project
-  # * *Instances*   :
-  #   - +project+-> is the project to be deleted
-  #   - +task+-> are the tasks assigned to this project
-
+  # Delete project and it's folder
+  # * *Args* :
+  #   - + @project +-> is the selected project to be deleted
+  # * *Returns* :
+  # - void
+  #
   def destroy()
     @project = Project.find(params[:id])
     @project.destroy
+    FileUtils.remove_dir("#{Rails.public_path}/#{@project.id}", :force => true)
     respond_to do |format|
-      format.js { render "project_deleted", :status => :ok}
+      format.html { redirect_to projects_url }
     end
   end
 

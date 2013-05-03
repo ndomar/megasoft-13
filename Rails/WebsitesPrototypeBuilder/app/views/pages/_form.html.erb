@@ -1,7 +1,8 @@
-<%= form_for(@page,:remote =>true) do |f| %>
+<%= form_for(@page) do |f| %>
   <% if @page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
       <ul>
       <% @page.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,7 +13,13 @@
 
   <div class="field">
     <%= f.label :page_name %><br />
-    <%= f.text_field :page_name %>
+    <%= f.text_area :page_name %>
+    <%= f.label :project_id %><br />
+    <%= f.text_area :project_id %>
+    <%= f.label :html %><br />
+    <%= f.text_area :html %>
   </div>
-
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>

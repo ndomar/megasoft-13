@@ -98,7 +98,6 @@ body{
 	background-image:url('pattern.png');
 	background-repeat:repeat;
 	min-height: 100%;
-  height: auto !important;
   height: 100%; 
 }
 
@@ -216,17 +215,14 @@ div#content{
 	right: 0px;
 	display: block;
 	width: 280;
-	word-wrap:break-word;
-
 	padding: 0px 20px 0px 20px;
 	height: 100%;
 	overflow-y: auto;
-
 	width: 95%;
 	margin-right: auto;
 	margin-left: auto;
-
 }
+
 #sidebar h4{
 	text-align: center;
 }
@@ -248,8 +244,9 @@ div#content{
 
 footer{
 	color: #656565;
-	margin:0px 240px 0px 240px;
+	padding:0px 240px 0px 240px;
 	padding-bottom: 20px;
+	background-color: #ffffff;
 }
 		
 hr {
@@ -398,10 +395,14 @@ input[type="color"],
 	background: rgba(69, 162, 224,0.4); 
 }
 
+#da{
+	display: none;
+}
+
 .modal{
 	border-radius: 2px;
 }
- 
+
 .modal-footer{
 	text-align: left;
 }
