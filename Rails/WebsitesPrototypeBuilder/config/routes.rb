@@ -12,40 +12,38 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	get 'projects/:project_id/design/:project_id' => 'projects#design'
  	post "/projects/destroy"
 	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
-	post 'steps/update'
-
-	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
 	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
   get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
   get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
+	post 'steps/update'
+
+	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
 	get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
 	get "tasks/invite/:id" => "tasks#invite"
 	post "tasks/invite_user/:id" => "tasks#invite_user"
-	get "/log/:id" => 'task_results#index'
   get "answer_questionnaires/create"
   post "tasks/invite_user/:id" => "tasks#invite_user"
   get "tasks/invite/:id" => "tasks#invite"
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
-  get "/log/:id" => 'task_results#index'
   get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
 
-	post 'cardsorts/invite_reviewer'
-	get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
-	post 'cardsorts/:cardsort_id/reviewer_create_group' => 'cardsorts#reviewer_create_group'
-	post 'cardsorts/submit/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#submit'
-	get 'cardsorts/review/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#review'
-	post 'cardsorts/:cardsort_id/delete_card/:card_id' => 'cardsorts#delete_card'
-	post 'cardsorts/:cardsort_id/delete_group/:group_id' => 'cardsorts#delete_group'
-	post 'cardsorts/:cardsort_id/create_card' => 'cardsorts#create_card'
-	post 'cardsorts/:cardsort_id/create_group' => 'cardsorts#create_group'
-	post 'cardsorts/create_cardsort'
-	get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
-	get 'cardsorts/new'
-	get 'cardsorts/edit'
-	get 'cardsorts/create_card'
-	get 'cardsorts/create_group'
-	get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
+ post 'cardsorts/invite_reviewer'
+ get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
+ post 'cardsorts/:cardsort_id/reviewer_create_group' => 'cardsorts#reviewer_create_group'
+ post 'cardsorts/submit/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#submit'
+ get 'cardsorts/review/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#review'
+ post 'cardsorts/:cardsort_id/delete_card/:card_id' => 'cardsorts#delete_card'
+ post 'cardsorts/:cardsort_id/delete_group/:group_id' => 'cardsorts#delete_group'
+ post 'cardsorts/:cardsort_id/create_card' => 'cardsorts#create_card'
+ post 'cardsorts/:cardsort_id/create_group' => 'cardsorts#create_group'
+ post 'cardsorts/create_cardsort'
+ get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
+ get 'cardsorts/new'
+  get 'cardsorts/edit'
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+ get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
 
   get "comments/create"
   get "comments/destroy"
@@ -67,13 +65,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "projects/index"
   post "projects/upload_media"
 
-  resources :projects do
-    resources :statistics
-    resources :tasks do
-      resources :steps
-      resources :task_results
-    end
-  end
 
 
 	resources :logs
@@ -93,7 +84,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
  
   #at start up page goes to the home controller and the index action
 
-  resources :projects
 
   get "answer_questionnaires/create"
 
@@ -114,5 +104,10 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 			resources :answers
 		end
 	end
+
+  resources :projects do
+    resources :tasks do
+    end
+  end
 
 end
