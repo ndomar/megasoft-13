@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "colorpicker"%>
 <%= javascript_include_tag "colorpicker"%>
+<%= javascript_include_tag "gridBuilder"%>
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
 <%= stylesheet_link_tag "explorer"%>
@@ -15,171 +16,227 @@
 			<div id='versions-panel-tag' class='sidebar-tag'>
 				النسخ
 			</div>
+			<div id="versions-scroll">
+				اختر  صفحة لرؤية النسخ الخاصة بها
+
+			</div>
+			</div>
+			<div id='image-panel'>
+				<% @medias.each do |media| %>
+				<div class='thumbnail up_images'>
+					<img  src='<%= "#{@project_id}/images/#{media.url}" %>' />
+				</div>
+				<%end%>
+
 			<thead class="brand"><h4 style="text-align: center">النسخ السابقة</h4></thead>
 			</br> 
 
-			<div id="versions-scroll">
-				اختر  صفحة لرؤية النسخ الخاصة بها
+	
+		<div id="sidebar" class="row-fluid">
+				<!-- table with all the available toolbox elements -->
+			<div id='toolbox-tag' class='sidebar-tag'>
+				الادوات
 			</div>
+			<div id = "designcontainer">
+				<table>
+					<tr>
+						<table>
+							<thead class="brand"><h3 style="text-align: center">صندوق الأدوات</h3></thead>
+							<tbody id = "accordion">
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<h6>أزرار</h6>
+										<div width="210px" height="70px" class="accordiondiv">
+										<div id="buttondiv" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
+											<button class="toolboxelement btn childelement" onclick="return false;">زر</button>
+										</div>
+										<div id="buttondiv1" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
+											<button class="toolboxelement btn btn-success childelement" onclick="return false;">نجاح</button>
+										</div>
+										<div id="buttondiv2" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
+											<button class="toolboxelement btn btn-warning childelement" onclick="return false;">إحذر</button>
+										</div>
+										<div id="buttondiv3" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
+											<button class="toolboxelement btn btn-danger childelement" onclick="return false;">خطر</button>
+										</div>
+										<div id="buttondiv4" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
+											<button class="toolboxelement btn btn-info childelement" onclick="return false;">إعلم</button>
+										</div>
+										</div>
+									</td>
+								</tr>
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<h6>صور</h6>
+										<div width="210px" height="70px"  class="accordiondiv">
+										<div id="imagediv" class="drag toolboxelement img_ph" onclickevent="#" onhoverevent= "#">
+											<img width="20px" hight="20px" class="toolboxelement childelement" alt="Drop Here" style="font-size:8px; border: solid; border-width: 1px;">
+										</div>
+										</div>
+									</td>
+								</tr>
+								<tr class="trc">
+									<td class="tbldevs" align="center">
+										<h6>كتابة</h6>
+										<div width="210px" class="accordiondiv" style="height: 130px;">
+										<div id="pdiv" width="20" class="drag toolboxelement text bordiv" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
+											<p class="toolboxelement childelement">فقرة</p>
+										</div>
+										<div id="hyperlinkdiv" class="drag toolboxelement text bordiv hyper" onclickevent="#" onhoverevent= "#" style="border: solid;border-width: 1px;">
+											<a href="#" class="toolboxelement childelement" onclick="return false;">رابط</a>
+										</div>
+										<div id="textareadiv" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#" style="margin-top:20px;">
+											<textarea class = "toolboxelement ta" style="resize: none;">كتابة</textarea>
+										</div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</tr>
+					<hr size="3">
+					<tr>
+						<div id = "properties_panel" class="tabbable prop_cont"> <!-- Only required for left/right tabs -->
+							<ul class="nav nav-tabs">
+						    	<li class="active prop_panel" style="margin-right: -2px; float: right;"><a href="#properties" data-toggle="tab">الخصائص</a></li>
+						    	<li class="prop_panel" style="float: right;"><a href="#events" data-toggle="tab">الأحداث</a></li>
+							</ul>
+							<!-- tabbed panel containing properties of the components. It is originally hidden -->
+							<div class="tab-content">
+							    <div class="tab-pane active properties" id="properties">
+							      	<div>
+							      		<label id = "eid" class="p_prop">التعريف </label>
+							      		<input id = "eid_inp" class="inp" property="id" readonly>
+							      	</div>
+							      	<div>
+							      		<label id = "left" class="p_prop">الموقع من اليسار </label>
+							      		<input id = "left_inp" class="inp" property="left" type = "number" min="0" step="0.1">
+							      	</div>
+							      	<div>
+							      		<label id = "top" class="p_prop">الموقع من فوق </label>
+							      		<input id = "top_inp" class="inp" property="top" type = "number" min="0" step="0.1">
+							      	</div>
+							     	<div>
+							     		<label id = "width" class="p_prop">العرض </label>
+							     		<input id = "width_inp" class="inp" property="width" type = "number" min="0" step="0.1">
+							     	</div>
+							  		<div>
+							  			<label id = "height" class="p_prop">الطول </label>
+							  			<input id = "height_inp" class="inp" property="height" type = "number" min="0" step="0.1">
+							  		</div>
+							      	<div>
+							      		<label id = "margin_left" class="p_prop">الحد من اليسار </label>
+							      		<input id = "margin_left_inp" class="inp" property="margin-left" type = "number" min="0" step="0.1">
+							      	</div>
+							      	<div>
+							      		<label id = "margin_right" class="p_prop">الحد من اليمين </label>
+							      		<input id = "margin_right_inp" class="inp" property="margin-right" type = "number" min="0" step="0.1">
+							   		</div>
+						      		<div>
+						      			<label id = "margin_top" class="p_prop">الحد من فوق </label>
+						      			<input id = "margin_top_inp" class="inp" property="margin-top" type = "number" min="0" step="0.1">
+						      		</div>
+						      		<div>
+						      			<label id = "margin_bottom" class="p_prop">الحد من تحت </label>
+						      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom" type = "number" min="0" step="0.1">
+						      		</div>
+						      		<div>
+						      			<label id = "border" class="p_prop">الحد </label>
+						      			<select id = "border_inp" class="inp dropdown" property="border">
+						      				<option value="none">غير ظاهر</option>
+						      				<option value="solid">بارز</option>
+						      				<option value="dotted">منقط</option>
+						      				<option value="dashed">مخطط</option>
+						      				<option value="double">مضعف</option>
+										</select>
+						      		</div>
+						      		<div>
+						      			<label id = "border_radius" class="p_prop">دوران الحد </label>
+						      			<input id = "border_radius_inp" class="inp" property="border-radius" type = "number" min="0" step="0.1">
+						      		</div>
+						      		<div>
+						      			<label id = "border_width" class="p_prop">عرض الحد </label>
+						      			<input id = "border_width_inp" class="inp" property="border-width" type = "number" min="0" step="0.1">
+						      		</div>
+						      		<div>
+						      			<label id = "border_color" class="p_prop">لون الحد </label>
+						      			<div id = "border_color_inp" class="inp colordiv" property="border-color">
+						      			</div>
+						      		</div>
+						      		<div class="text_prop">
+							      		<label id = "text" class="p_prop">الكتابة </label>
+							      		<input id = "text_inp" class="inp" property="text">
+							      	</div>
+						      		<div class="text_prop">
+						      			<label id = "font_size" class="p_prop">حجم الخط </label>
+						      			<input id = "font_size_inp" class="inp" property="font-size" type = "number" min="0" step="1">
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_color" class="p_prop">لون الخط </label>
+						      			<div id = "font_color_inp" class="inp colordiv" property="color">
+						      			</div>
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
+						      			<select id = "text_align_inp" class="inp dropdown" property="text-align">
+						      				<option value="left">يسار</option>
+						      				<option value="right">يمين</option>
+						      				<option value="center">الوسط</option>
+						      				<option value="justify">إملئ المساحة</option>
+						      			</select>
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_family" class="p_prop">الخط </label>
+						      			<select id = "font_family_inp" class="inp dropdown" property="font-family">
+						      				<option value="arabi-bold" style="font-family: arabi-bold !important;">عربى سميك</option>
+						      				<option value="arabi-light" style="font-family: arabi-light !important;">عربى رفيع</option>
+						      				<option value="amiri" style="font-family: amiri !important;">أميرى</option>
+						      				<option value="dyana" style="font-family: dyana !important;">ديانا</option>
+						      				<option value="kufi" style="font-family: kufi !important;">كوفى</option>
+						      				<option value="naskh" style="font-family: naskh !important;">نسخ</option>
+						      				<option value="lateef" style="font-family: lateef !important;">لطيف</option>
+						      			</select>
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_weight" class="p_prop">سميك </label>
+						      			<input id = "font_weight_inp" class="inp" property="font-weight" type="checkbox">
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_style" class="p_prop">مائل </label>
+						      			<input id = "font_style_inp" class="inp" property="font-style" type="checkbox">
+						      		</div>
+						      		<div class="hyper_prop">
+						      			<label id = "href" class="p_prop">رابط </label>
+						      			<input id = "href_inp" class="inp" property="href">
+						      		</div>
+							    </div>
+							    	<!-- division containing the event controls of the components -->
+							  <div class="tab-pane properties" id="events">
+							    <label style="text-align: right;margin-right: 20px;">نوع الحدث</label>
+									<select id = "event_selector" style="width: 180px; margin-right:10px;">
+										<option value="onClick">عند الضغط</option>
+										<option value="onHover">عند التحليق</option>
+									</select>
+							    <label style="text-align: right;margin-right: 20px;">ردة الفعل</label>
+									<select id = "action_selector" style="width: 180px; margin-right:10px;">
+										<option value="url">رابط</option>
+										<option value="message">رسالة</option>
+										<!-- <option value="animation">حركة</option> -->
+									</select>
+									<label style="text-align: right;margin-right: 20px;">حدد الرسالة أو الرابط</label>
+							    <input id = "action_value" style="width: 175px;text-align: right; margin-right:10px;"></input>
+							    <br>
+							    <br>
+							    <button style="margin-right: 70px;border-radius: 2px;" id="save_event">حفظ الحدث</button>
+					    	</div>
+					  	</div>
+						</div>
+					</tr>
+				</table>
+			</div>
+		</div>	
+    <!-- empty design page -->            
 
-		</div>
-
-<div class='image-panel'>
-<form name='project' >
-<input type=hidden name='project_id' value='<%= @project.id %>' />
-<form/>
-<div id='image-panel-tag' class='sidebar-tag'>
-الصور
-</div>
-<div id="drop-area">
-ارمى صورة هنا لرفعها
-</div>
-<div id='image-panel'>
-<% @medias.each do |media| %>
-<div class='thumbnail'>
-<img src='<%= "/assets/project_#{@project.id}/#{media.url}" %>' />
-</div>
-<%end%>
-</div>
-</div>	
-<div id="sidebar" class="row-fluid">
-<!-- table with all the available toolbox elements -->
-<div id='toolbox-tag' class='sidebar-tag'>
-الادوات
-</div>
-<div id = "designcontainer">
-<table>
-<tr>
-<table>
-<thead class="brand"><h3 style="text-align: center">صندوق الأدوات</h3></thead>
-<tbody>
-<tr class="trc">
-<td class="tbldevs" align="center">
-<div id="buttondiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-<button class="toolboxelement btn">زر</button>
-</div>
-</td>
-</tr>
-<tr class="trc">
-<td class="tbldevs" align="center">
-<div id="imagediv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-<img src="/assets/gimg.jpg" width="20px" hight="20px" class="toolboxelement">
-</div>
-</td>
-</tr>
-<tr class="trc">
-<td class="tbldevs" align="center">
-<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
-<label class="toolboxelement">ملصق</label>
-</div>
-</td>
-</tr>
-<tr class="trc">
-<td class="tbldevs" align="center">
-<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="border: solid">
-<a href="#" class="toolboxelement">رابط</a>
-</div>
-</td>
-</tr>
-<tr class="trc">
-<td class="tbldevs" align="center">
-<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-<textarea class = "toolboxelement"style="resize: none;width:35px;height:35px;"> الكتابة</textarea>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</tr>
-<hr size="3">
-<tr>
-<div class="tabbable prop_cont"> <!-- Only required for left/right tabs -->
-<ul class="nav nav-tabs">
-<li class="active prop_panel" style="margin-right: -2px; float: right;"><a href="#properties" data-toggle="tab">الخصائص</a></li>
-<li class="prop_panel" style="float: right;"><a href="#events" data-toggle="tab">الأحداث</a></li>
-</ul>
-<!-- tabbed panel containing properties of the components. It is originally hidden -->
-<div class="tab-content">
-<div class="tab-pane active properties" id="properties">
-<div>
-<label id = "eid" class="p_prop">التعريف </label>
-<input id = "eid_inp" class="inp" property="id" readonly>
-</div>
-<div>
-<label id = "left" class="p_prop">الموقع من اليسار </label>
-<input id = "left_inp" class="inp" property="left" min="0">
-</div>
-<div>
-<label id = "top" class="p_prop">الموقع من فوق </label>
-<input id = "top_inp" class="inp" property="top" min="0">
-</div>
-<div>
-<label id = "text" class="p_prop">الكتابة </label>
-<input id = "text_inp" class="inp" property="text">
-</div>
-<div>
-<label id = "width" class="p_prop">العرض </label>
-<input id = "width_inp" class="inp" property="width">
-</div>
-<div>
-<label id = "height" class="p_prop">الطول </label>
-<input id = "height_inp" class="inp" property="height">
-</div>
-<div>
-<label id = "margin_left" class="p_prop">الحد من اليسار </label>
-<input id = "margin_left_inp" class="inp" property="margin-left">
-</div>
-<div>
-<label id = "margin_right" class="p_prop">الحد من اليمين </label>
-<input id = "margin_right_inp" class="inp" property="margin-right">
-</div>
-<div>
-<label id = "margin_top" class="p_prop">الحد من فوق </label>
-<input id = "margin_top_inp" class="inp" property="margin-top">
-</div>
-<div>
-<label id = "margin_bottom" class="p_prop">الحد من تحت </label>
-<input id = "margin_bottom_inp" class="inp" property="margin-bottom">
-</div>
-<div>
-<label id = "font_size" class="p_prop">حجم الخط </label>
-<input id = "font_size_inp" class="inp" property="font-size">
-</div>
-<div>
-<label id = "font_color" class="p_prop"class="p_prop">لون الخط </label>
-<div id = "font_color_inp" class="inp colordiv" property="color">
-</div>
-</div>
-<div>
-<label id = "text_align" class="p_prop">تحديد الكتابة </label>
-<input id = "text_align_inp" class="inp" property="text-align">
-</div>
-</div>
-<!-- division containing the event controls of the components -->
-<div class="tab-pane properties" id="events">
-<label>نوع الحدث</label>
-<select id = "event_selector" style="width: 180px">
-<option value="onClick">عند الضغط</option>
-<option value="onHover">عند التحليق</option>
-</select>
-<label>ردة الفعل</label>
-<select id = "action_selector" style="width: 180px">
-<option value="url">رابط</option>
-<option value="message">رسالة</option>
-</select>
-<label>حدد الرسالة أو الرابط</label>
-<input id = "action_value" style="width: 175px;border-radius: 5px;"></input>
-<br>
-<br>
-<button style="margin-left: 50px;border-radius: 5px;" id="save_event">حفظ الحدث</button>
-</div>
-</div>
-</div>
-</tr>
-</table>
-</div>
-</div>	
-    <!-- empty design page -->
     <div id="content">
 <div id="designpage" class="ui-widget-content row-fluid designpage" data-pageid="0">
 <p>صمم صفحتك هنا</p>
