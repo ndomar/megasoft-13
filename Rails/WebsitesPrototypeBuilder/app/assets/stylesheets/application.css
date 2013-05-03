@@ -11,6 +11,58 @@
  *= require jquery.ui.all
  *= require_self
  */
+.coms{
+	cursor:pointer;
+
+}
+.hideans{
+	cursor:pointer;
+}
+ .lilbuttonc{
+ 	display: inline-block;
+    background-image:url('\lilbutton.png');
+    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	width:53px;
+	height:32px;
+	float: left;
+	left: 237px;
+	top: 0px;
+	position: absolute;
+	margin-right: 0px;
+ 	background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
+.lilbuttonq{
+    display: inline-block;
+    background-image:url('\lill.png');
+    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	width:53px;
+	height:32px;
+	float: left;
+	left: 237px;
+	top: 0px;
+	position: absolute;
+	margin-right: 0px;
+ 	background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
+.sw{
+
+    background-image:url('\switcher.png');
+	width:180px;
+	height:53px;
+	float: left;
+	margin-right: 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
 
 html,body{ 
 	width:100%; 
@@ -162,13 +214,12 @@ div#content{
 	right: 0px;
 	display: block;
 	width: 280;
-	word-wrap:break-word;
-	width: 95%;
-	margin-right: auto;
-	margin-left: auto;
 	padding: 0px 20px 0px 20px;
 	height: 100%;
 	overflow-y: auto;
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 #sidebar h4{

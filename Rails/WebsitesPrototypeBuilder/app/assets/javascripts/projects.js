@@ -46,7 +46,7 @@ $(document).ready(function(){
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
     $("#Task").attr("href","tasks/index/" + projectid);
-    $("#Questionnaire").attr("href","/questionnaires/index?id=" + projectid);
+    $("#Questionnaire").attr("href","/questionnaires/index?project_id=" + projectid);
 
   });
   $("#wrapper").click(function(e){
