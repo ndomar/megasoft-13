@@ -3,15 +3,27 @@
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
 <%= stylesheet_link_tag "explorer"%>
-<%= javascript_include_tag "explorer"%>
-<%= javascript_include_tag "cloud-carousel.1.0.5"%>
-<%= csrf_meta_tag %>
-
+<%= javascript_include_tag "explorer"%>  
+<%= javascript_include_tag "cloud-carousel.1.0.5"%>  
+	
 <!-- <html dir="rtl"> -->
 <body>
 <!-- main div containing toolbox and design page -->
 <div id="wrapper" class="container-fluid">
 <!-- toolbox containing elements to add to the design page -->
+<div class="versions-panel">
+			<div id='versions-panel-tag' class='sidebar-tag'>
+				النسخ
+			</div>
+			<thead class="brand"><h4 style="text-align: center">النسخ السابقة</h4></thead>
+			</br> 
+
+			<div id="versions-scroll">
+				اختر  صفحة لرؤية النسخ الخاصة بها
+			</div>
+
+		</div>
+
 <div class='image-panel'>
 <form name='project' >
 <input type=hidden name='project_id' value='<%= @project.id %>' />

@@ -26,17 +26,17 @@ $(document).ready(function() {
     if(state){
       $('#myiframe').contents().find('.nom').hide();
       $('#drag_resize').css({"display":"none"});
-     $("#wrapper").animate({'padding-right' : 0}, 600);
+      $("#wrapper").animate({'padding-right' : 0}, 600);
       $("#sidebar").animate({'width':'0'},600);
       $("#side_content").slideUp("fast");
       $('#slidebutton').animate({'margin-left' : '-40px'},{
         duration:600,
         step: function(now, fx) {
-         $('#slidebutton').css('transform','scaleX(-1)');
+          $('#slidebutton').css('transform','scaleX(-1)');
         }
       });
-state=false;
-}else{
+      state=false;
+    }else{
       $('#myiframe').contents().find('.nom').hide();
       $('#drag_resize').css({"display":"none"});
       $("#wrapper").animate({'padding-right' : sidebar_width+'px'}, 600);
@@ -45,11 +45,11 @@ state=false;
       $('#slidebutton').animate({'margin-left' : '-9px'},{
         duration:600,
         step: function(now, fx) {
-         $('#slidebutton').css('transform','scaleX(1)');
+          $('#slidebutton').css('transform','scaleX(1)');
         }
       });
-state=true;
-}});
+    state=true;
+  }});
 
 
 });

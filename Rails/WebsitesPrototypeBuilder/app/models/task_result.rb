@@ -13,4 +13,5 @@ class TaskResult < ActiveRecord::Base
   has_many :step_answers
   has_many :logs
   attr_accessible :clicks, :success, :time, :task_id, :reviewer_id
+
 end

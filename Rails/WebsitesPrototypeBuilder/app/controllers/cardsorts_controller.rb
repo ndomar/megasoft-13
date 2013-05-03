@@ -21,6 +21,33 @@ class CardsortsController < ApplicationController
 	##
 	# create new cardsort from sent parameters
 	# * *Args* :
+  # - none
+  # * *Returns* :
+  # - void
+  #
+	def new
+		@cardsort = Cardsort.new(params[:cardsort])
+		@cardsort.save
+		@cards = @cardsort.cards
+		@groups = @cardsort.groups
+		@card = Card.new
+		@group = Group.new
+		session[:cardsort_id] = @cardsort.id
+	end
+
+  # - none
+  # * *Returns* :
+  # - void
+  #
+	def edit
+		@cardsort = Cardsort.find(params[:cardsort_id])
+		@cards = @cardsort.cards
+		@groups = @cardsort.groups
+		@card = Card.new
+		@group = Group.new
+		render "new"
+	end
+
 	#   - none
 	# * *Returns* :
 	#   - void
