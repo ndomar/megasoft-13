@@ -51,23 +51,4 @@ $(document).ready(function() {
 		state=true;
 	}});
 
-  // Used to make the sidebar content fixed
-  var starting_position = $('#navigation_container').offset();
-  var top_padding = 0;
-  var bottom_limit = $('footer').offset();
-  var box_offset = $('#side_content').offset();
-  var box_height = $('#side_content').height();
-
-  $(window).scroll(function(){
-    var top_window = $(window).scrollTop();
-  	if (top_window > starting_position.top && top_window < bottom_limit.top - box_height){
-  		$('#side_content').stop().animate({top: top_window - starting_position.top + top_padding}, 400);
-  	} else if (top_window > bottom_limit.top - starting_position.top - box_height){
-  		$('#side_contentt').stop().animate({top: bottom_limit.top - starting_position.top - box_height }, 400);
-      $('#side_contentt').height(box_height -starting_position.top);
-  	} else {
-  		$('#side_contentt').stop().animate({top: 0 }, 400);
-  	}
-  });
-
 });

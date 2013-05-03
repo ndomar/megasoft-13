@@ -218,6 +218,15 @@ function lastm(x)
     myIframe.contentWindow.document.body.appendChild(script25);
 }
 
+
+function removecomment(slected){
+	$(slected).closest('div .comments').slideUp("slow");
+}
+
+function removequestion(slected){
+	$(slected).closest('div .thequestion').slideUp("slow");
+}
+
 //sliding down the form to insert an answer
 $(document).ready(function sliding_form(){
 
@@ -289,6 +298,7 @@ function selectItem () {
 	}
 }
 
+
 function test_site(url){
 	var win=window.open(url, '_blank');
   win.focus();
@@ -328,4 +338,15 @@ $(document).ready(function() {
 			containment: "#content",
 			scroll: false
 		});
+
+		var pressed=false;
+  $(".sw").click(function(){
+		if(pressed){
+			$('.sw').css({"background-image":"url('/assets/switcher.png')"});
+			pressed=false;
+		}else{
+			$('.sw').css({"background-image":"url('/assets/tab2.png')"});
+			pressed=true;
+		}
+	});
 });

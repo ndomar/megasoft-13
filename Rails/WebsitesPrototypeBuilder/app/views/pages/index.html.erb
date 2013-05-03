@@ -1,19 +1,14 @@
-<%= stylesheet_link_tag "flowchart"%>
-<%= javascript_include_tag "flowchart"%>
+<%= stylesheet_link_tag "pages_view"%>
 
-<h1>Welcome to Commenter</h1>
+<div class="titleS">
+	<div id="tit">الصفحات</div><div id="tb"></div>
+</div>
 
 <% @pages.each do |page| %>
-    <h2><%= link_to page.page_name,page %></h2>
-    <p><%= time_ago_in_words page.created_at %> ago</p>
-    <p><%= truncate page.html %></p>
-    <p><%= link_to 'Edit', edit_page_path(page) %></p>
-    <p><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-    <p><%= link_to 'Reviewer',:controller => :pages, :action => :reviewer, :id => page %></p>
-    <p><%= link_to 'Designer',:controller => :pages, :action => :designer, :id => page %></p>
-    <p><%= link_to 'Download',:controller => :pages, :action => :download, :id => page %></p>
-    <p><%= link_to 'Download Project',:controller => :pages, :action => :download_project, :id => page %></p>
-
-  <%end%>
-
-<%= link_to "New Page", new_page_path%>
+<div class="span4">
+	<img src="/assets/page.png" width="200px" >
+	<p><%= page.page_name %></p>
+  <p class ="opt"><%= link_to 'دعوة لمراجعة',:controller => :pages, :action => :reviewer, :id => page %></p>
+  <p class ="opt"><%= link_to 'إضافة أسئلة',:controller => :pages, :action => :designer, :id => page %></p>
+</div>
+<%end%>
