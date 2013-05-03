@@ -153,9 +153,7 @@ Designer.create(:fullname => "Test Designer0",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 Designer.create(:fullname => "Test Designer1",
       :email => "designer1@gmail.com",
       :password => "pass1234",
@@ -164,9 +162,7 @@ Designer.create(:fullname => "Test Designer1",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 Designer.create(:fullname => "Test Designer2",
       :email => "designer2@gmail.com",
@@ -176,9 +172,7 @@ Designer.create(:fullname => "Test Designer2",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 Designer.create(:fullname => "Test Designer3",
       :email => "designer3@gmail.com",
@@ -188,9 +182,7 @@ Designer.create(:fullname => "Test Designer3",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 Designer.create(:fullname => "Test Designer4",
       :email => "designer4@gmail.com",
@@ -200,9 +192,7 @@ Designer.create(:fullname => "Test Designer4",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 # Reviewer_Task
 (0..10).each do |i|
@@ -211,3 +201,4 @@ end
 
 (0..10).each do |i|
   Cardsort.find((i%3)+1).reviewers << Reviewer.find((i%3)+1)
+end
