@@ -2,10 +2,10 @@ require "spec_helper"
 
 describe TasksController do 
 
-  it "should find task & step. create new step_answer & task_result" do
+  it "should find task & step. create new step_answer & task_result", sarah: true do
     controller.class.skip_before_filter :authenticate_designer!
     controller.class.skip_before_filter :checkDesigner
-    project=Project.create(:id => 1 , :project_name => 'project1')
+    project=Project.create(:id => 1 , :project_name => 'project1',:designer_id => '1')
     task=Task.create(:id => 1 ,:name => 'task1' , :project_id => 1)
     page=Page.create(:id => 1 , :project_id => 1)
     step= Step.create(:id => 1, :task_id => 1, :description => 'x', :component => 'cmp')
@@ -22,7 +22,9 @@ describe TasksController do
  end
 
  it "Should render error if the project is not found" do
-    project=Project.create(:id => 1 , :project_name => 'project1')
+    controller.class.skip_before_filter :authenticate_designer!
+    controller.class.skip_before_filter :checkDesigner
+    project=Project.create(:id => 1 , :project_name => 'project1',:designer_id => '1')
     task=Task.create(:id => 1 ,:name => 'task1' , :project_id => 1)
     page=Page.create(:id => 1 , :project_id => 1)
     step= Step.create(:id => 1, :task_id => 1, :description => 'x', :component => 'cmp')
@@ -31,8 +33,10 @@ describe TasksController do
   response.should render_template('task_reviewer_error')
 end
 
- it "Should render error if the task is not found" do
-    project=Project.create(:id => 1 , :project_name => 'project1')
+ it "Should render error if the task is not found" do  
+    controller.class.skip_before_filter :authenticate_designer!
+    controller.class.skip_before_filter :checkDesigner
+    project=Project.create(:id => 1 , :project_name => 'project1',:designer_id => '1')
     task=Task.create(:id => 1 ,:name => 'task1' , :project_id => 1)
     page=Page.create(:id => 1 , :project_id => 1)
     step= Step.create(:id => 1, :task_id => 1, :description => 'x', :component => 'cmp')
