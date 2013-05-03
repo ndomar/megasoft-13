@@ -55,8 +55,6 @@ class ProjectsController < ApplicationController
   #   - +project+-> is the selected project 
   # * *Returns*  :
   #   - Returns the selected project design page       
-
-<<<<<<< HEAD
   def show
     @project = Project.find(params[:id])
   end
