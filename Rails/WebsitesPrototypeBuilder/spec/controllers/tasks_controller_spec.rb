@@ -123,7 +123,9 @@ describe TasksController do
     end
   end
   describe "post invite use" do
-    it "gets the email from prams [:email]" do
+    it "gets parameters correctly" do
+      controller.class.skip_before_filter :authenticate_designer!
+      controller.class.skip_before_filter :checkDesigner
       project = FactoryGirl.create(:project)
       task = project.tasks.create(FactoryGirl.attributes_for(:task))
       email = "ahmed.osama.saad@gmail.com"

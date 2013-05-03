@@ -83,7 +83,8 @@ end
   get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   get "tasks/invite/:id" => "tasks#invite"
  
-  get "/projects/:project_id/tasks/:task_id/reviewers:reviewer_id" => 'tasks#task_reviewer'
+  get "/taketask/:project_id/:task_id/:reviewer_id" => 'tasks#task_reviewer'
+  get "/taketask/:project_id/:task_id/" => 'tasks#task_reviewer'
 
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
