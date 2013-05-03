@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(params[:project])
     respond_to do |format|
       if (@project.save)
-        format.js {render "create", :status => :created }
+        format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
 
         #create a new repo for the new project
         path = "#{Rails.public_path}"
@@ -51,9 +51,18 @@ class ProjectsController < ApplicationController
           Dir.mkdir(images_path)
         end
 
+        File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
+          f.write("")
+        end
+        @page = Page.new()
+        @page.project_id= @project.id
+        @page.page_name= "index"
+        @page.save
+
         repo = Rugged::Repository.init_at(path, false)
 
         index = repo.index
+        index.add("index.html")
 
         options = {}
         options[:tree] = index.write_tree
@@ -65,12 +74,14 @@ class ProjectsController < ApplicationController
 
         Rugged::Commit.create(repo, options)
 
+        @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@project.id}/?page_id=#{@page.id}")
+        format.js {render "create", :status => :created }
       else
         format.js {render "create", :status => :ok}
       end
     end
   end
-
+  
   def update
     @project = Project.find(params[:id])
     respond_to do |format|
@@ -315,48 +326,6 @@ class ProjectsController < ApplicationController
   def index()
     @designer= Designer.find_by_email(current_designer.email) #Getting the logged in designer
     @projects = Project.find(:all, :conditions => {:designer_id => @designer.id}) #Getting all the projects done by the logged in designer
-  end
- 
-  ##
-  #The show method is used, to show a certain project.
-  # * *Instance*    :
-  #   - +project+-> is the selected project 
-  # * *Returns*  :
-  #   - Returns the selected project design page       
-
-  ##
-
-
-
-  ##
-  #The create method in project controller class creates a new project with a given parameter and then
-  # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
-  # * *Instance*    :
-  #   - +projects+-> The new created project with the passed parameters
-  def create()
-    @project = Project.new(params[:project])
-    respond_to do |format|
-      if (@project.save)
-        format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
-        if !File.directory?("#{Rails.public_path}/#{@project.id}")
-          Dir.mkdir("#{Rails.public_path}/#{@project.id}")
-        File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
-          f.write("")
-          end
-        end
-        if !File.directory?("#{Rails.public_path}/#{@project.id}/images")
-          Dir.mkdir("#{Rails.public_path}/#{@project.id}/images")
-        end
-        @page = Page.new()
-        @page.project_id= @project.id
-        @page.page_name= "index"
-        @page.save
-        @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@project.id}/?page_id=#{@page.id}")
-        format.js {render "create", :status => :created }
-      else
-        format.js {render "create", :status => :ok}
-      end
-    end
   end
 
   ##
