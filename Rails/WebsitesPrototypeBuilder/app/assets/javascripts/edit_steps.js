@@ -125,19 +125,19 @@ function updateHtml() {
 }
 
 function callChild(name){
-var iframe_doc = document.getElementById("preview_mode").contentDocument;
-var all_anchors = iframe_doc.getElementsByTagName("a");
+  var iframe_doc = document.getElementById("preview_mode").contentDocument;
+  var all_anchors = iframe_doc.getElementsByTagName("a");
 
-for(var i=0;i<all_anchors.length;i++){
-  anchors_string=all_anchors[i]+"";
-  anchors_array= anchors_string.split("/");
-  var value= anchors_array[anchors_array.length-1];
-  var name_low= name.toLowerCase();
-  if(value.indexOf(name_low)==0){
-    all_anchors[i].click();
-    window.setTimeout("updateHtml()",200);
-   return;}
-  }
+  for(var i=0;i<all_anchors.length;i++){
+    anchors_string=all_anchors[i]+"";
+    anchors_array= anchors_string.split("/");
+    var value= anchors_array[anchors_array.length-1];
+    var name_low= name.toLowerCase();
+    if(value.indexOf(name_low)==0){
+      all_anchors[i].click();
+      window.setTimeout("updateHtml()",200);
+     return;}
+    }
 }
 
 

@@ -29,14 +29,6 @@ end
 		project_id: rand(0..5));
 end
 
-<<<<<<< HEAD
-# choice_questions
-#(0..50).each do
-	#ChoiceQquestion.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		#number: rand(0..5), questionnaire_id: rand(0..5),
-	#	project_id: rand(0..5), qquestion_id: rand(0..5))
-#end
-
 # choices
 (0..50).each do
 	Choice.create(body: ('a'..'z').to_a.shuffle[0,20].join,
