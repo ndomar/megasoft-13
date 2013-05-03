@@ -97,7 +97,6 @@ function update_total_time(){
 }
 
 function times_up(){
-  alert("Time's up!!!");
   $('#time_out').show();
   $('#page').fadeOut(500);
   $('.desc').fadeOut(500);
@@ -155,7 +154,6 @@ function all_updates(){
     $(this).attr('onchange','log_steps(this,"change")');
     $(this).attr('onmouseover','log_steps(this,"mouseover")');
     $(this).attr('onmouseout','log_steps(this,"mouseout")');
-    //alert('mouse');
   });
   $("textarea").each(function(){
     $(this).attr('onclick','log_steps(this,"click")');
@@ -172,7 +170,6 @@ function all_updates(){
   });
 
   $("a").each(function(){
-    //$(this).attr('onclick','log_steps(this,"click")');
     $(this).attr('onmouseover','log_steps(this,"mouseover")');
     $(this).attr('onmouseout','log_steps(this,"mouseout")');
 
@@ -205,7 +202,6 @@ function disableLinks(){
 }
 
 function enableImages(){
-  //alert(projectid);
   $("#sarah img").each(function(){
     $(this).attr('src',"/"+projectid+"/images/myimage.jpg"); 
   });
