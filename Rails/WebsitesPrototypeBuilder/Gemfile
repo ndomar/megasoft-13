@@ -33,6 +33,9 @@ gem 'jasmine-rails'
 # gem for using bootstrap
 gem 'bootstrap-sass'
 
+#gem for changing confirmation boxes styles
+gem 'twitter-bootstrap-rails-confirm'
+
 #simplecov
 gem 'simplecov', :require => false, :group => :test
 
@@ -40,6 +43,7 @@ gem 'simplecov', :require => false, :group => :test
 gem "google_visualr", ">= 2.1"
 
 gem "nested_form"
+
 # gem for page screenshot
 gem 'delayed_job_active_record'
 

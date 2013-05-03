@@ -11,8 +11,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
-  get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
-  post 'steps/update'
+
 
     resources :projects do
       resources :tasks do
@@ -28,6 +27,11 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :steps
   end
 
+  post "/projects/destroy"
+  get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+  post 'steps/update'
+
+
   resources :projects do
 
   resources :statistics
@@ -37,6 +41,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
+  resources :tasks do
+    resources :task_results
+  end
 
   resources :tasks do
     resources :steps
@@ -48,11 +55,9 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get 'cardsorts/create_group'
   get 'cardsorts/create'
 
-  devise_for :designers
-
   #at start up page goes to the home controller and the index action
 
-  root to: "home#index"
+  root to: "projects#index"
 
   get "comments/create"
   get "comments/destroy"
@@ -101,10 +106,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
   get "tasks/invite/:id" => "tasks#invite"
   
-  resources :tasks do
-    resources :task_results
-  end
-  
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
@@ -114,60 +115,4 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "/log/:id" => 'task_results#index'
   get 'projects/design/:project_id' => 'projects#design'
-  
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # See how all your routes lay out with "rake routes"
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

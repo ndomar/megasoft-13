@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-  # called to create a new comment in the database
-  # finds the selected page
+  # called to create a new comment in the database finds the selected page
   # * *Args* :
   # - +@page+ -> the current page
   # - +@comment+ -> the comment written in the notepaper
@@ -15,9 +14,11 @@ class CommentsController < ApplicationController
     if @comment.save
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page,:notice => 'Comment was successfully created.' }
-  	else
+      format.js {}
+    else
       # if Succedeed notify the user, and redirect to the reviewing page
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Comment could not be saved. Please fill in all fields' }
+      format.js  { render "comments_error" }
       end
     end
   end
@@ -37,7 +38,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Comment was successfully deleted.' }
       # Use AJAX for deletion
-      format.js   { render :layout => false }
+      format.js   {}
     end
   end
 end
