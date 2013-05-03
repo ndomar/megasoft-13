@@ -192,7 +192,7 @@ div#content{
 #sidebar{
 	direction: rtl;
 	color: #fafafa;
-	width: 320px;
+	width: 17%;
 	background:#1b1b1b;
 	position: absolute;
 	top: 0;
@@ -215,9 +215,15 @@ div#content{
 	display: block;
 	width: 280;
 	word-wrap:break-word;
+
 	padding: 0px 20px 0px 20px;
 	height: 100%;
 	overflow-y: auto;
+
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
+
 }
 #sidebar h4{
 	text-align: center;

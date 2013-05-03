@@ -19,16 +19,18 @@ class QuestionnairesController < ApplicationController
       format.json { render json: @questionnaire }
     end
   end
+  # author ahmed jihad
   ## 
   # called to show answer view for questionnaires
   # finds the selected questionnaire
-  # * *Args* :
+  # * *Args*    :
   # - +@questionnaire+ -> the id of the questionnaire he wants to answer
   # * *Returns* :
   # - doesnt return anything just renders the answer_show view
   #
   def answer_show
     @questionnaire = Questionnaire.find(params[:id])
+    answer = @questionnaire.answer_questionnaires.build
     render 'answer_show'
   end
 
@@ -65,14 +67,22 @@ class QuestionnairesController < ApplicationController
     end
   end
 
-  # PUT /questionnaires/1
-  # PUT /questionnaires/1.json
+  # author ahmed jihad
+  ## 
+  # called to update questionnaire questions or answers
+  # finds the selected questionnaire
+  # * *Args*    :
+  # - +@questionnaire+ -> the id of the questionnaire he wants to answer
+  # * *Returns* :
+  # - doesnt return anything just renders the questionnaire list
+  #
   def update
     @questionnaire = Questionnaire.find(params[:id])
 
     respond_to do |format|
       if @questionnaire.update_attributes(params[:questionnaire])
-        format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully updated.' }
+        flash[:message] = "Questionnaire updated successfully"
+        format.html { redirect_to :action=> :index, notice: 'Questionnaire was successfully updated.' }
         format.json { head :no_content }
         format.js { render "redirect" }
       else

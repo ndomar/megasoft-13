@@ -35,7 +35,7 @@ $(document).ready(function() {
     	$("#wrapper").animate({'padding-right' : 0}, 400);
       $("#sidebar").animate({'width':'0'},600);
       $('#slidebutton').animate({'margin-left' : '-40px'},{
-        duration:400,
+        duration:200,
         step: function(now, fx) {
         	$('#slidebutton').css('transform','scaleX(-1)');
         }
