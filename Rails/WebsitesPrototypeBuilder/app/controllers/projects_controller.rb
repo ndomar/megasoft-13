@@ -3,7 +3,6 @@ class ProjectsController < ApplicationController
   #To make sure that the designer is logged in
   before_filter :authenticate_designer!
 
-
   def create_page
      Page.create!(:project_id => id)
   end

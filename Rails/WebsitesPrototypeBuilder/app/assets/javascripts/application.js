@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 //= require jquery_nested_form
 //= require bootstrap
+//= require twitter/bootstrap/rails/confirm
 
 //The state of the side-bar(collapsed or opened)
 var state=true;
