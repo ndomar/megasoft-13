@@ -10,7 +10,7 @@
             <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
             <div class="project-div" title=".اضغط مرتين لتذهب لصفحة التصميم" style="background-image: url(<%= p.get_thumbnail %>); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
               <div class='x-button'>
-                <%= link_to_function nil,"deleteProject('#{p.id}')" , :class => "ui-icon ui-icon-close"%>    
+                <%= link_to_function nil,"deleteProject('#{p.id}')" , :class => "ui-icon ui-icon-close"%>
               </div>
             </div>
           </li>
@@ -27,28 +27,28 @@
       <h3 id = "projectName" style ="text-align: center;"> </h3>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/Adds-Add-folder-icon.png" width="50" height="50">
-        <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to "المهام", :controller => :tasks, :action => :index, :project_id => "-1" %></h3>
+        <img class = "side-image" src="/assets/Adds-Add-list-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list"  style ="text-align: center;"><a id ="Task">المهام</a></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/Adds-Add-list-icon.png" width="50" height="50">
-        <h3 id = "sidebar-list"  style ="text-align: center;"><a id ="Questionnaire">استطلاع</a></h3>
+        <img class = "side-image" src="/assets/Adds-Add-list-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list" style ="text-align: center;"><a id ="Questionnaire">استطلاع</a></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/card-sort-icon.png" width="50" height="50"><%= link_to_function "", "showPopup()" %>
-        <h3 id = "sidebar-list"  style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showPopup()" %></h3>
+        <img class = "side-image" src="/assets/card-sort-icon.png" width="60" height="60"><%= link_to_function "", "showPopup()" %>
+        <h3 id = "sidebar-list" style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showPopup()" %></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/review-icon.png" width="50" height="50">
-        <h3 id = "sidebar-list"  style ="text-align: center;"><a id ="Review">مراجعة</a></h3>
+        <img class = "side-image" src="/assets/review-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list" style ="text-align: center;"><a id ="Review">مراجعة</a></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/Charts-Mind-map-icon.png" width="50" height="50">
-        <h3 id = "sidebar-list"  style ="text-align: center;"><a id ="Flowchart">المخطط الانسيابي</a></h3>
+        <img class = "side-image" src="/assets/Charts-Mind-map-icon.png" width="60" height="60">
+        <h3 id = "sidebar-list" style ="text-align: center;"><a id ="Flowchart">المخطط الانسيابي</a></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
@@ -57,8 +57,9 @@
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/download.png" width="50" height="50">
-        <h3 id = "sidebar-list"  style ="text-align: center;"><a id ="Download">تحميل</a></h3>
+
+        <img class = "side-image" src="/assets/download.png" width="60" height="60">
+        <h3 id = "sidebar-list" style ="text-align: center;"><a id ="Download">تحميل</a></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
@@ -70,7 +71,7 @@
   </div>
 
   <div class='popup-darkbackground' id='popup-projectbck'></div>
-  <div class = 'popup-createProject' id='popup-project'> 
+  <div class = 'popup-createProject' id='popup-project'>
     <%= form_for :project, :url => {:controller => :projects, :action => :create}, :remote => true do |f| %>
       <div class = "pattern_form_up">
         <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>
@@ -81,8 +82,8 @@
         <br>
         <br>
         <p>
-          <%= f.label :Name, "اسم المشروع" %> 
-          <%= f.text_field :project_name , :id => "field"%> <br/>  
+          <%= f.label :Name, "اسم المشروع" %>
+          <%= f.text_field :project_name , :id => "field"%> <br/>
         </p>
         <p>
           <%= f.label :Type, "النوع" %>
@@ -104,7 +105,7 @@
 </div>
 
  <div class='popup-darkbackground' id='popup-cardsortbck'></div>
-  <div class = 'popup-createProject' id='popup-cardsort'> 
+  <div class = 'popup-createProject' id='popup-cardsort'>
     <%= form_for :cardsort, :url => "/cardsorts/create_cardsort", :remote => true do |f| %>
       <div class = "pattern_form_up">
         <%= link_to_function "", "hideCardsortForm()", :class => "icon-remove", :id => "Close" %>
@@ -115,8 +116,8 @@
         <br>
         <br>
         <p>
-          <%= f.label :Title, "إسم ترتيب الأوراق" %> 
-          <%= f.text_field :title , :id => "field"%> <br/>  
+          <%= f.label :Title, "إسم ترتيب الأوراق" %>
+          <%= f.text_field :title , :id => "field"%> <br/>
         </p>
         <p>
           <%= f.label :Open, "النوع" %>

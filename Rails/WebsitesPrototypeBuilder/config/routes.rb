@@ -1,7 +1,10 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-
+  get 'projects/savePage'
+  get 'projects/createPage'
+  get 'projects/deletePage'
+  get 'projects/showPage'
+  get 'projects/design'
   get "tests/test_image"
-
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
@@ -23,16 +26,16 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
 resources :logs
 post 'logs/new'
-	#at start up page goes to the home controller and the index action
+#at start up page goes to the home controller and the index action
   root to: "projects#index"
 
-	# set devise for Designer, and set the registerations controller to the custom one
-	devise_for :designers, :controllers => { :registrations => "registrations" }
+# set devise for Designer, and set the registerations controller to the custom one
+devise_for :designers, :controllers => { :registrations => "registrations" }
 
-	get 'projects/design/:project_id' => 'projects#design'
-	get 'projects/:project_id/design/:project_id' => 'projects#design'
- 	post "/projects/destroy"
-	post 'steps/update'
+get 'projects/design/:project_id' => 'projects#design'
+get 'projects/:project_id/design/:project_id' => 'projects#design'
+  post "/projects/destroy"
+post 'steps/update'
 
   resources :tasks do
     resources :task_results
@@ -42,10 +45,10 @@ post 'logs/new'
     resources :steps
   end
 
-	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
-	get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
-	get "tasks/invite/:id" => "tasks#invite"
-	post "tasks/invite_user/:id" => "tasks#invite_user"
+get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
+get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
+get "tasks/invite/:id" => "tasks#invite"
+post "tasks/invite_user/:id" => "tasks#invite_user"
   get "answer_questionnaires/create"
   post "tasks/invite_user/:id" => "tasks#invite_user"
   get "tasks/invite/:id" => "tasks#invite"
@@ -98,10 +101,10 @@ end
   post "projects/upload_media"
 
 
-	post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
-	resources :reviewers do
-	  resources :reviewer_infos
-	end
+post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
+resources :reviewers do
+resources :reviewer_infos
+end
 
 
   resources :tasks do
@@ -122,12 +125,12 @@ end
   end
 
 
-	resources :pages do
-		resources :comments
-		resources :questions do
-			resources :answers
-		end
-	end
+resources :pages do
+resources :comments
+resources :questions do
+resources :answers
+end
+end
 
   resources :projects do
     resources :statistics
@@ -136,8 +139,8 @@ end
   end
 
 
-	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
-	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
+get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
   get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
   get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
   get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
