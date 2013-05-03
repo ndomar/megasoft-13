@@ -27,11 +27,7 @@
 	text-align: center;
 	vertical-align: middle;
 	width:53px;
-	height:32px;
-	float: left;
-	left: 237px;
-	top: 0px;
-	position: absolute;
+	height:35px;
 	margin-right: 0px;
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -45,11 +41,7 @@
 	text-align: center;
 	vertical-align: middle;
 	width:53px;
-	height:32px;
-	float: left;
-	left: 237px;
-	top: 0px;
-	position: absolute;
+	height:35px;
 	margin-right: 0px;
 	background-size: contain;
   background-repeat: no-repeat;
@@ -202,7 +194,6 @@ body{
 #wrapper {
 	margin:0;
 	padding-right:320px;
-	padding-bottom: 72px;
 	position: relative;
 	height: 100%;
 	overflow: hidden;

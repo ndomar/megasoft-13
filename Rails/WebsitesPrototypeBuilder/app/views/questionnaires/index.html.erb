@@ -1,24 +1,18 @@
-<label class = "alert-success">
-  <%=flash[:message]%>
-</label>
-<p>
-<h1>Listing questionnaires</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Project</th>
-  </tr>
+<%= stylesheet_link_tag "pages_view"%>
+
+<div class="titleS">
+  <div id="tit">الاستبيانات</div><div id="tb"></div>
+</div>
+
   <% @questionnaires.each do |questionnaire| %>
-    <tr>
-      <td><%= questionnaire.title %></td>
-      <td><%= questionnaire.project %></td>
-      <td><%= link_to 'Show', questionnaire %></td>
-      <td><%= link_to 'Edit', edit_questionnaire_path(questionnaire) %></td>
-      <td><%= link_to 'Destroy', questionnaire, method: :delete, data: { confirm: "هل انت متأكد !" } %></td>
-      <td><%= link_to 'اجب', :controller => :questionnaires, :action => :answer_show, :id => questionnaire %></td>
-    </tr>
+    <div class="span4">
+      <img src="/assets/questionnaire.png" width="200px" >
+      <p><%= questionnaire.title %></p>
+      <p class ="opt"><%= link_to 'Show', questionnaire %></p>
+      <p class ="opt"><%= link_to 'Destroy', questionnaire, method: :delete, data: { confirm: "هل انت متأكد !" } %></p>
+      <p class ="opt"><%= link_to 'اجب', :controller => :questionnaires, :action => :answer_show, :id => questionnaire %></p>
+    </div>
   <% end %>
-</table>
 <br/>
 
-<%= link_to 'New Questionnaire', :controller => :questionnaires, :action => :new, :project_id => @project  %>
+<p class="addq"><%= link_to 'استبيان جديد', :controller => :questionnaires, :action => :new, :project_id => @project %></p>

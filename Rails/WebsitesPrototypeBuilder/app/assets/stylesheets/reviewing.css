@@ -47,6 +47,10 @@ iframe {
 	-moz-transform:rotate(0.4deg);
 }
 
+#comments{
+	height: 100%;
+}
+
 textarea.message_area {
   width: 90%;
   height: 50px;
@@ -242,4 +246,20 @@ textarea.message_area {
 	padding: 0;
 	margin: 0;
 	display:none;
+}
+
+.delete_button{
+	background-color: transparent;
+	border: none;
+	color: gray;
+	font-size: 12px;
+	font-family: arabi-light;
+}
+
+.lilbuttonc,.add_comment{
+	display: table-cell;
+}
+
+.pointer{
+	cursor: pointer;
 }

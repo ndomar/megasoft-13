@@ -12,8 +12,25 @@ body{
 	font-family: arabi-light;
 }
 
-.read,.page_content,.links,.read{
-	display: none;
+.span4{
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	font-family: arabi-light;
+	background-color: rgba(65,65,65,0.4);
+}
+
+.span4 img{
+	padding-bottom: 10px;
+}
+
+.span4 p{
+	font-family: arabi-light;
+	font-size: 18px;
+}
+
+.opt{
+	width: 100%;
+	background-color: rgba(80,80,80,0.5);
 }
 
 #tit{
@@ -31,23 +48,10 @@ body{
 	width: 100%;
 }
 
-canvas{
-	outline: 1px solid rgba(65,65,65,0.4);
-}
-
 .titleS{
 	padding: 10px 10px 10px 10px;
 }
 
-#navigation_container{
-	margin-top: -10px;
-}
-		
-.titleS hr {
-	border: 0;
-	border-top: 1px solid #eeeeee;
-	border-bottom: 1px solid #ffffff;
-	margin-top: 0px;
-	bottom: 0px;
-	position: absolute;
+.addq{
+	color: white;
 }

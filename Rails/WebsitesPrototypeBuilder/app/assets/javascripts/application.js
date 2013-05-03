@@ -51,5 +51,4 @@ $(document).ready(function() {
     state=true;
   }});
 
-
 });
