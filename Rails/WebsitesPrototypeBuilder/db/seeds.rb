@@ -29,6 +29,13 @@ end
 		project_id: rand(0..5));
 end
 
+
+# choices
+(0..50).each do
+	Choice.create(body: ('a'..'z').to_a.shuffle[0,20].join,
+		qquestion_id: rand(0..5))
+end
+
 #cardsortresults
 (0..50).each do
   CardsortResult.create(cardsort_id: rand(1..5),

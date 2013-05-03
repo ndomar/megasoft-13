@@ -1,0 +1,11 @@
+<!-- Error detection and printing -->
+<% if @questionnaire.errors.any? %>
+  <div id="error_explanation">
+    <h2>يحظر هذا الاستبيان من يتم حفظ</h2>
+    <ul>
+      <% @questionnaire.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
