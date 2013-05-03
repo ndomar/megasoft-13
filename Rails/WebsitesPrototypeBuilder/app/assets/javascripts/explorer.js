@@ -109,3 +109,7 @@ $(document).ready(function() {
 		});
 	});
 });
+function showpopup() {
+  $("#popup-projectbck").fadeIn(400);
+  $("#popup-project").fadeIn(400);
+}

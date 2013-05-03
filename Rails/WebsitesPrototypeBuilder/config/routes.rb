@@ -1,7 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
   get "tests/test_scan"
 
-  post 'projects/savePage'
   get 'projects/savePage'
   get 'projects/createPage'
   get 'projects/deletePage'

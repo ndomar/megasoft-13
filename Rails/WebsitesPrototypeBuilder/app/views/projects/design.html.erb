@@ -213,9 +213,38 @@
 	</div>
 	<div style="background-color:grey;position: absolute; width:700px;margin-left:20%;align:center;top-margin:-10">
 		<img  id="left-but"  type="button" style="background-color:black"  src="/assets/Left_arrow.png"/>
-		<a onclick="addPage(<%= @id %>);return false;"><img src="/assets/add.png"></a>
+		<a onclick="showpopup();return false;"><img src="/assets/add.png"></a>
 		<a onclick="store();return false;"><img src="/assets/save.png"></a>
 		<a onclick="deletePage();return false;"><img src="/assets/delete.png"></a>
 		<img  id="right-but" type="button" style="background-color:black;-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);"  src="/assets/Left_arrow.png"/>
 	</div>
 </div>
+<div class='popup-darkbackground' id='popup-projectbck'></div>
+  <div class = 'popup-createProject' id='popup-project'>
+    <%= form_for :project, :url => {:controller => :projects, :action => :createPage}, :remote => true do |f| %>
+      <div class = "pattern_form_up">
+        <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>
+        <h5>أضف مشروع</h5>
+      </div>
+      <div class = "form_content">
+        <div id='error_project' class='error'></div>
+        <br>
+        <br>
+        <p>
+          <%= f.label :Name, "اسم المشروع" %>
+          <%= f.text_field :pageName , :id => "field"%> <br/>
+        </p>
+        <p></p>
+        <p>
+          <%= f.label :Type, "النوع" %>
+          <%= f.select :project_type, ['لا شيء','تسجيل','الاشتراك'] , :id => "field" %> <br/>
+        </p>
+        <%= f.hidden_field :project_id, :value => @project.id %>
+      </div>
+      <div class = "pattern_form_down">
+        <p class = "save">
+          <%= f.submit "حفظ",:class =>"btn btn-primary" %>
+        </p>
+      </div>
+    <%end%>
+  </div>
