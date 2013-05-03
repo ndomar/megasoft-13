@@ -2,6 +2,27 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "tests/test_image"
 
+  # set devise for Designer, and set the registerations controller to the custom one
+  devise_for :designers, :controllers => { :registrations => "registrations" }
+
+  get "taketask/:project_id/:task_id/:reviewer_id" =>'tasks#task_reviewer'
+  get "taketask/:project_id/:task_id" => 'tasks#task_reviewer'
+  post 'steps/update'
+
+  post "/projects/destroy"
+
+  get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
+
+  resources :projects do
+    resources :statistics
+    resources :tasks do
+      resources :steps
+      resources :task_results
+    end
+  end
+
+resources :logs
+post 'logs/new'
 	#at start up page goes to the home controller and the index action
   root to: "projects#index"
 
@@ -13,6 +34,14 @@ WebsitesPrototypeBuilder::Application.routes.draw do
  	post "/projects/destroy"
 	post 'steps/update'
 
+  resources :tasks do
+    resources :task_results
+  end
+
+  resources :tasks do
+    resources :steps
+  end
+
 	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
 	get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
 	get "tasks/invite/:id" => "tasks#invite"
@@ -22,6 +51,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "tasks/invite/:id" => "tasks#invite"
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+
 
  post 'cardsorts/invite_reviewer'
  get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
@@ -68,11 +98,6 @@ end
   post "projects/upload_media"
 
 
-
-	resources :logs
-	post 'logs/new'
-
-
 	post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
 	resources :reviewers do
 	  resources :reviewer_infos
@@ -96,9 +121,6 @@ end
     end
   end
 
-	resources :tasks do
-		resources :steps
-	end
 
 	resources :pages do
 		resources :comments
