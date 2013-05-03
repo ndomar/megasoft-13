@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 ##
 # represents a cardsort entity
 # * *Attribute* :
@@ -16,7 +18,10 @@ class Cardsort < ActiveRecord::Base
   has_many :cardsort_results
   has_and_belongs_to_many :reviewers
 
+  validates :title, :presence =>  { :message => "إسم ترتيب الاوراق لا يمكن أن يكون فرغاً"}
+
   def self.save_results(ids, cards, cardsort, reviewer)
+    return if ids == nil
     ids.each_with_index do |id, index|
       next if cards["#{index}"] == nil
   		cards["#{index}"].each do |card|

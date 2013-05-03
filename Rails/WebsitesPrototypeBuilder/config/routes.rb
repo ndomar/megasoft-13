@@ -1,6 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
-
   get "tests/test_image"
 
   # set devise for Designer, and set the registerations controller to the custom one
@@ -10,18 +9,21 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
   post 'steps/update'
 
-	resources :projects do
-		resources :statistics
-		resources :tasks do
-			resources :steps
-			resources :task_results
-		end
-	end
+  resources :projects do
+    resources :statistics
+    resources :tasks do
+      resources :steps
+      resources :task_results
+    end
+  end
 
+  resources :tasks do
+    resources :task_results
+  end
 
-	resources :tasks do
-		resources :steps
-	end
+  resources :tasks do
+    resources :steps
+  end
 
  post 'cardsorts/invite_reviewer'
  get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
@@ -30,13 +32,16 @@ WebsitesPrototypeBuilder::Application.routes.draw do
  get 'cardsorts/review/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#review'
  post 'cardsorts/:cardsort_id/delete_card/:card_id' => 'cardsorts#delete_card'
  post 'cardsorts/:cardsort_id/delete_group/:group_id' => 'cardsorts#delete_group'
+ post 'cardsorts/:cardsort_id/create_card' => 'cardsorts#create_card'
+ post 'cardsorts/:cardsort_id/create_group' => 'cardsorts#create_group'
+ post 'cardsorts/create_cardsort'
  get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
  get 'cardsorts/new'
- get 'cardsorts/edit'
+  get 'cardsorts/edit'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
  get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
-
+ 
   #at start up page goes to the home controller and the index action
 
   root to: "projects#index"
