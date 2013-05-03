@@ -117,6 +117,7 @@
 		$(options.buttonLeft).css('display','inline');
 		$(options.buttonRight).css('display','inline');
 		
+		//	Hossam
 		// Setup the buttons.
 		$(options.buttonLeft).bind('mousedown',this,function(event){
 			event.data.rotate(-1);	
@@ -167,13 +168,12 @@
 		$(container).bind('mouseout',this,function(event){
 				var	context = event.data;				
 				clearTimeout(context.showFrontTextTimer);				
-				context.showFrontTextTimer = setTimeout( function(){context.showFrontText();},1);
+				context.showFrontTextTimer = setTimeout( function(){context.showFrontText();},0);
 				context.autoRotate();	// Start auto rotation.
 		});
 
 		// Prevent items from being selected as mouse is moved and clicked in the container.
 		$(container).bind('mousedown',this,function(event){	
-			
 			event.data.container.focus();
 			return false;
 		});
@@ -185,7 +185,9 @@
 		this.showFrontText = function()
 		{	
 			if ( items[this.frontIndex] === undefined ) { return; }	// Images might not have loaded yet.
-			$(options.titleBox).html( $(items[this.frontIndex].image).attr('title'));
+			if($(options.titleBox).text()!=0){
+				$(options.titleBox).html( $(items[this.frontIndex].image).attr('title'));
+			}
 			$(options.altBox).html( $(items[this.frontIndex].image).attr('alt'));				
 		};
 						
@@ -207,7 +209,7 @@
 		this.rotate = function(direction)
 		{	
 			this.frontIndex -= direction;
-			this.frontIndex %= items.length;					 			
+			this.frontIndex %= items.length;		
 			this.destRotation += ( Math.PI / items.length ) * ( 2*direction );
 			this.showFrontText();
 			this.go();			

@@ -44,6 +44,7 @@ function store(){
 				data: params
 			});
 			//this is the ajax request to update and, save the updated page
+			return;
 		}
 	}
 }
@@ -105,8 +106,6 @@ $(document).ready(function() {
 	});	
 	$('#sidebar').mouseenter(function() {
 		$('#myCarousel').slideUp('slow', function() {
-			document.getElementById('title-text').setAttribute("style","visibility:hidden");
-			$('#title-text').attr('style',"display: none");
 		});
 	});
 });

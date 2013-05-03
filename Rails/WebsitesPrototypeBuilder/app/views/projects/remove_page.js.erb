@@ -16,8 +16,3 @@ $("#myCarousel").CloudCarousel({
 	altBox: $("#alt-text"),
 	titleBox: $("#title-text")
 });
-if($('#myCarousel').children().first().children().size==0){
-	$('#myCarousel').slideDown('slow', function() {
-		document.getElementById('title-text').setAttribute("style","display:none");
-	});
-}
