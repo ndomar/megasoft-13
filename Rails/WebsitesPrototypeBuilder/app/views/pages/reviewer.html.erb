@@ -3,65 +3,82 @@
 
 <div id="wrapper">
 	<!-- Get the HTML Page from the database and put in a div with an ID -->
-	<div id="html_content"><%= @page.html%>
-	</div>
-
-		<div style="float: right;">
+	<div id="html_content"><%= @page.html%></div>
+	<div style="float: right;">
 		<img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px">
-		</div>
+	</div>
 	<!-- The SideBar -->
 	<div id="sidebar">
 		<div id="side_content">
-		<h4>التعليقلت</h4>
-		<!-- The + buttom on clicking draw the circle -->
-		<div class="add_comment" onclick="draw_circle();">+</div>
-		<hr>
-		<!-- Fetching comments from the database,just for testing -->
-		<div id="comments">
-			<% @page.comments.each do |comment| %>
-				<div>
-					<!-- Getting the comment -->
-					<p><%= comment.body %></p>
-					<!-- The deleting method uses AJAX destroy.js.erb -->
-					<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
-					<hr>
-				</div>
-			<%end%>
-		</div>
-		<!-- Fetching questions from the database,just for testing -->
-		<div id="questions">
-			<h4>الاسئلة</h4>
-			<% @page.questions.each do |question| %>
-				<div>
-					<p><%= question.body %></p>
-					<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
-					<hr>
-						<hr>
-					<% if !(question.answers.find(:all).empty?) %>
-						<h5>:اجابتك </h5>
-					<%end%>
-					<% question.answers.each do |ans| %>
-						<div>
-							<p><%= ans.answer %></p>
-								<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
-								<hr>
-						</div>		
-					<%end%>
-					<div class = "form_message">
-						<%= form_for [@page,question,question.answers.build] do |f| %>
-							<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :required=> true %>
-							<div align:"left">
-							<%= f.submit "+", :class => "add_comment blue_circle", :align => 'left'%>
-							</div>
-						<%end%>
-					</div>
-					<hr>
-				</div>
-			<%end%>
-		</div>
+		<div onclick="$('#comments').toggle();$('#questions').toggle();$('#shows').toggle();$('#qshows').toggle()" class="sw"></div>
+			
+			<!-- The + buttom on clicking draw the circle -->
+			<div>
+			<div class="add_comment" onclick="draw_circle();">+</div>
+		     
+ 					 <% array = Array.new %>                 <!-- create new array to store in all comments' divs locations-->
+					 <% @page.comments.each do |comment| %>  <!-- loop on all comments -->
+					 <% array << comment.assigned_part %>    <!-- insert the assigned part in the array-->
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),0);" id="shows" class="lilbuttonc">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+					 <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=array%></p>
 
+					 <% ansarray = Array.new %>       
+					 <% @page.questions.each do |question| %>
+					 <% ansarray << question.assigned_part %>
+					 <%end%>
+					 <p onClick="places(($(this).next('.no').text()),1);" id="qshows" style="display:none" class="lilbuttonq">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
+				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+			 </div>
 			<!-- Notice to see the errors -->
 			<p id="notice"><%= notice %></p>
+			<%= render :partial => 'comments/comments' %>
+			<!-- Fetching questions from the database,just for testing -->
+			<div id="questions" style="display:none">
+			
+
+  				
+                
+				    <h4>الاسئلة</h4>
+
+            <!-- show and hide answers -->
+			<p onclick="$('.answers2').toggle();" class="pointer">  (&#1592;&#1607;&#1608;&#1585; / &#1573;&#1582;&#1601;&#1575;&#1569;) &#1575;&#1604;&#1573;&#1580;&#1575;&#1576;&#1575;&#1578; </p>
+
+
+				<%@page.questions.each do |question|%>
+					<div id="<%=question.assigned_part%>">
+						<p onClick="lastm(this);" class="pointer"  style="color:red"><%= question.body %></p>
+						 <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p>
+					<h5>:اجابتك </h5>
+					<% question.answers.each do |ans| %>
+					<% if(question.body!="jhhsicn comment") then %>  <!-- to be used when session variables are added -->
+						<div class="answers2" style="display:none">
+							<p><%= ans.answer %></p>
+							<p><%= link_to "امسح", [@page,question,ans], :method => :delete, :confirm => "هل انت متأكد !",:remote =>true,:class =>"delete_answer" %>
+							<hr>
+						</div>			
+					<%end%>
+					<%end%>
+					
+						<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
+						<hr>
+					
+						<% if !(question.answers.find(:all).empty?) %>
+							
+						<%end%>
+						<div class = "form_message">
+							<%= form_for [@page,question,question.answers.build] do |f| %>
+								<%= f.text_area :answer,:placeholder => "اكتب اجابتك هنا",:class => "message_area", :required=> true %>
+								<div align:"left">
+								<%= f.submit "+", :class => "add_comment blue_circle", :align => 'left'%>
+								</div>
+							<%end%>
+						</div>
+						<hr>
+					</div>
+				<%end%>
+			</div>
+
 		</div>
 	</div>	
 
@@ -74,16 +91,16 @@
 			<div id="delete_circle" class="circle_settings"  onclick="delete_circle();">-</div>
 		</div>
 		<!-- The iframe to contain the page to be reviewed-->
-		<iframe id="myiframe" scrolling="auto" src="" width="100%" height="1300px"></iframe>
+		<iframe id="myiframe" src="" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
 		<!-- Draw NotePaper -->
 		<div class="note hide">	
-			<%= form_for [@page,@page.comments.build] do |f| %>
+			<%= form_for ([@page,@page.comments.build]),:remote => true do |f| %>
 				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
 				<p class="hide"><%= f.text_area :assigned_part,:id => "assignedpart"%></p>
 				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all();"%>
 			<% end %>
 			<!-- Button to delete the comment -->
-			<div class="circle_button" id="delete_comment" onclick="delete_all();">-</div>
+			<div class="circle_button" id="delete_comment" onclick="delete_all(true);">-</div>
 		</div>
 	</div>
 </div>

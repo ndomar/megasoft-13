@@ -1,25 +1,10 @@
 <!-- The view for creating the questionnaire -->
 <!-- Use nested form to access attributes of childs -->
-<%= nested_form_for (@questionnaire) do |f| %>
-  <!-- Error detection and printing -->
-  <% if @questionnaire.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@questionnaire.errors.count, "خطأ") %> يحظر هذا الاستبيان من يتم حفظ:</h2>
-      <ul>
-        <% @questionnaire.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= nested_form_for (@questionnaire),:remote =>true do |f| %>
 
-
+  <div id="errors"></div>
   <!-- Getting the questionnaire title -->
-  <p>
-    <%= f.label :الاسم %><br />
-    <%= f.text_field :title %></br>
-  </p>
-  
+  <%= f.text_field :title,:required =>"true",:value =>"اسم الاستبيان",:class =>"title" %></br>
   <!-- Using sortable to make it sortable using jquery UI -->
   <div id="sortable">
     <!-- Creating the questions -->
@@ -28,10 +13,10 @@
       <%= render "qquestion_fields", :f => builder %>
     <%end%>
     <!-- A link to add a question -->
-    <%= f.link_to_add "اضف سوال", :qquestions %>
+    <%= f.link_to_add "اضف سوال", :qquestions ,:class=>"submit_button"%>
   </div>
   <!-- Submiting the questionnaire -->
   <div class="actions">
-    <%= f.submit "تصنا"%>
+    <%= f.submit "احفظ",:class =>"submit_button"%>
   </div>
 <% end %>
