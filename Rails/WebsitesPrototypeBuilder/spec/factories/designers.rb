@@ -9,7 +9,6 @@ FactoryGirl.define do
     day_dob 15
     month_dob 10
     year_dob 1990
-    # required if the Devise Confirmable module is used
-    # confirmed_at Time.now
+    confirmed_at Time.now
   end
 end
