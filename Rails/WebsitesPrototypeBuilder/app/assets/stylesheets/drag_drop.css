@@ -179,7 +179,22 @@ body {
 	position: absolute;
 	top: 1%;
 	height: 703px;
-	right: 1.5%;
+	right: 1.4%;
+	bottom: 0;
+	word-wrap:break-word;
+}
+
+.versions-panel{
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	color: #fafafa;
+	width: 210px;
+	background:#1b1b1b;
+	position: absolute;
+	top: 2%;
+	height: 703px;
+	right: 2.8%;
 	bottom: 0;
 	word-wrap:break-word;
 	overflow: visible;
@@ -206,6 +221,11 @@ body {
 	left: -15%;
 }
 
+#versions-panel-tag{
+	top: 5%;
+	left: -16%;
+}
+
 #toolbox-tag{
 	top: 4%;
 	left: -15%;
@@ -216,6 +236,14 @@ body {
 	position: absolute;
 	height: 520px;
 	width: 229px;
+}
+
+#versions-scroll{
+	overflow-y: auto;
+	position: absolute;
+	height: 520px;
+	width: 170px;
+	margin-left: 10px;
 }
 
 #drop-area{
@@ -236,6 +264,7 @@ progress{
 	width: 70px;
 	height: 5px;
 }
+
 
 .accordiondiv{
 	padding-bottom: 10px;

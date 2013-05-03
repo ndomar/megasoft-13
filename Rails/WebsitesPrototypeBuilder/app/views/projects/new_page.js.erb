@@ -1,0 +1,20 @@
+<% if (@page.valid?) %>
+	$('#myCarousel').children().first().empty();
+	<% @pages.each do |page| %>
+		<% if page.file_dir_exists? ("app/assets/images/project_#{page.project_id}/page_#{page.page_name}.png") %>
+    	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/project_<%= page.project_id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px; border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');
+	  <% else %>
+    	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/webPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');	 
+	  <% end %>
+	<% end %>
+	$("#myCarousel").CloudCarousel({			
+		xPos: 350,
+		yPos: 32,
+		buttonLeft: $("#left-but"),
+		buttonRight: $("#right-but"),
+		altBox: $("#alt-text"),
+		titleBox: $("#title-text")
+	});
+<% else %>
+	alert("الرجاء التأكد من أن اسم الصفحة فريد من نوعه");
+<% end %>

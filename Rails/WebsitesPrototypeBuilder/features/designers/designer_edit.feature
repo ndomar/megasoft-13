@@ -1,9 +1,0 @@
-Feature: Edit Designer
-  As a registered designer of the website
-  I want to edit my designer profile
-  so I can change my fullname
-
-    Scenario: I sign in and edit my account
-      Given I am logged in
-      When I edit my account details
-      Then I should see an account edited message

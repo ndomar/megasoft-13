@@ -3,21 +3,23 @@
 <%= javascript_include_tag "gridBuilder"%>
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
-<%= csrf_meta_tag %>
+<%= stylesheet_link_tag "explorer"%>
+<%= javascript_include_tag "explorer"%>  
+<%= javascript_include_tag "cloud-carousel.1.0.5"%>  
+	
 <!-- <html dir="rtl"> -->
 <body>
-	<!-- main div containing toolbox and design page -->
-	<div id="wrapper" class="container-fluid">
-		<!-- toolbox containing elements to add to the design page -->
-		<div class='image-panel'>
-			<form name='project' >
-				<input type=hidden name='project_id' value='<%= @project.id %>' />
-			<form/>
-			<div id='image-panel-tag' class='sidebar-tag'>
-				الصور
+<!-- main div containing toolbox and design page -->
+<div id="wrapper" class="container-fluid">
+<!-- toolbox containing elements to add to the design page -->
+<div class="versions-panel">
+			<div id='versions-panel-tag' class='sidebar-tag'>
+				النسخ
 			</div>
-			<div id="drop-area">
-				ارمى صورة هنا لرفعها
+			<div id="versions-scroll">
+				اختر  صفحة لرؤية النسخ الخاصة بها
+
+			</div>
 			</div>
 			<div id='image-panel'>
 				<% @medias.each do |media| %>
@@ -25,8 +27,10 @@
 					<img  src='<%= "#{@project_id}/images/#{media.url}" %>' />
 				</div>
 				<%end%>
-			</div>
-		</div>
+
+			<thead class="brand"><h4 style="text-align: center">النسخ السابقة</h4></thead>
+			</br> 
+
 	
 		<div id="sidebar" class="row-fluid">
 				<!-- table with all the available toolbox elements -->
@@ -232,14 +236,56 @@
 			</div>
 		</div>	
     <!-- empty design page -->            
+
     <div id="content">
-	   	<div id="designpage" class="ui-widget-content row-fluid designpage">
-	      <p>صمم صفحتك هنا</p>
-		</div>
-	</div>
-  </div>  
+<div id="designpage" class="ui-widget-content row-fluid designpage" data-pageid="0">
+<p>صمم صفحتك هنا</p>
+</div>
+</div>
+  </div>
   <script type="text/javascript">
-  	initDragAndDrop();
-  </script>   
+   initDragAndDrop();
+   // loadToDesign('<%= @originalPageHTML %>','<%= @originalPageID %>');
+  </script>
+
+ 
+</div>
+
 </body>
-<!-- </html> -->
+
+<script>
+	$(document).ready(function(){	
+	// This initialises carousels on the container elements specified, in this case, carousel1.
+	$("#myCarousel").CloudCarousel({	
+	xPos: 350,
+	yPos: 32,
+	buttonLeft: $("#left-but"),
+	buttonRight: $("#right-but"),
+	altBox: $("#alt-text"),
+	titleBox: $("#title-text")
+	});
+	});
+</script>
+<div id="navbar" class="navbar span12" style="width:100%;height:225px; text-align:center;margin-top:75px; " >
+	<div id="myCarousel" style="position: absolute; width:700px;height:180px;margin-left:20%; display: block;background-color:grey">
+	<% @pages.each do |page| %>
+	<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
+		<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px;border-style:solid;" ondblclick="show('<%= page.id %>')" alt="<%= page.id %>">
+	<% else %>
+		<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/webPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px; border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show('<%= page.id %>','-1')" alt="<%= page.id %>">
+	<% end %>
+	<% end %>
+	</div>
+	<div style="background-color:grey;position: absolute; width:700px;margin-left:20%;align:center">
+		<br>
+		<p id="title-text"></p>
+		<p id="alt-text">0</p>
+	</div>
+	<div style="background-color:grey;position: absolute; width:700px;margin-left:20%;align:center;top-margin:-10">
+		<img id="left-but" type="button" style="background-color:black" src="/assets/Left_arrow.png"/>
+		<a onclick="addPage(<%= @id %>);return false;"><img src="/assets/add.png"></a>
+		<a onclick="store();return false;"><img src="/assets/save.png"></a>
+		<a onclick="deletePage();return false;"><img src="/assets/delete.png"></a>
+		<img id="right-but" type="button" style="background-color:black;-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);" src="/assets/Left_arrow.png"/>
+	</div>
+</div>

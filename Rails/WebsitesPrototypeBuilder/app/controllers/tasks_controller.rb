@@ -1,35 +1,40 @@
  # encoding: utf-8
 class TasksController < ApplicationController
+before_filter :authenticate_designer! , :except => [:task_reviewer] 
+before_filter :checkDesigner , :except => [:task_reviewer]
 
-  before_filter :authenticate_designer!, :except => :task_reviewer
-  before_filter :checkDesigner, :except => :task_reviewer
-
-  ## 
-  #finds the current task, it's page, creates a new instance of step_answer and task_result
-  # * *Args*    :
-  #   -+@task+ -> the current task
-  #   -+@page+ -> the current task's page
-  #   -+@step+ -> the first step of the current task
-  #   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
-  #   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
-  # * *Returns*    :
-  # - the current task, current step, step_answer for the current_task and task_result for the current task
-  #
+skip_before_filter :authenticate_designer!, :except => [:task_reviewer]
+skip_before_filter :checkDesigner, :except => [:task_reviewer]
+  
+## 
+#Author:Sarah
+#finds the current task, it's page, creates a new instance of step_answer and task_result
+# * *Args*    :
+#   -+@task+ -> the current task
+#   -+@page+ -> the current task's page
+#   -+@step+ -> the first step of the current task
+#   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
+# * *Returns*    :
+# - the current task, current step, step_answer for the current_task and task_result for the current task
+#
   def task_reviewer
-    if Project.all.last.id.to_f >= params[:project_id].to_f
+    if Integer(Project.all.last.id) >= Integer(params[:project_id]) && Project.all.first.id <= Integer(params[:project_id])
       @project=Project.find(params[:project_id])
-      @reviewer= Reviewer.find(params[:reviewer_id])
+      if params[:reviewer_id]!=nil
+        @reviewer= Reviewer.find(params[:reviewer_id])
+      else
+        @reviewer=Reviewer.new
+        @reviewer.save
+      end
 
-      if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f
+      if !@project.tasks.empty? && Integer(@project.tasks.last.id) >= Integer(params[:task_id]) && @project.tasks.first.id <= Integer(params[:task_id])
         @task= @project.tasks.find(params[:task_id])
-        @page= Page.find(1)
-        #if @task.steps.nil? == 'false'
+        @page= @project.pages.find(@task.page_id)
         @step=@task.steps.first
-        @step_answer=@step.step_answers.new
-        @step_answer.save
-        #end
         @task_result=@task.task_results.new
         @task_result.reviewer_id=@reviewer.id
+        @task_result.success='false'
+        @task_result.clicks= 0
         @task_result.save
         session[:task_result_id]= @task_result.id
       else
@@ -43,7 +48,8 @@ class TasksController < ApplicationController
       end
     end
   end
-  
+
+
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
@@ -167,17 +173,30 @@ class TasksController < ApplicationController
     end
   end
   
-  def invite 
-    @task = Task.find(params[:id])
-    
-  end
+  ##
+  #is invoked when the user submites the form in the invite view
+  #* *Args*    :
+  #   -+Task+->: an instance of the class task
+  #   -+messege+->: from the form in view invite of type string
+  #   -+email+->: from the form in the view invite of type string
+  #* *Returns*    :
+  #   -
+  #author Ahmed Osama
   def invite_user
-    
-    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
-  
-  end
-  def makesure
-    puts(params[:task_id] , params[:reviewer_id])
+    @email = params[:email]
+    @project_id = params[:project_id]
+    @invitation_message = params[:invitation_message]
+    @task_id = params[:task_id]
+    @Reviewer = Reviewer.find_by_email(params[:email])
+    if @Reviewer == nil
+      @Reviewer = Reviewer.create(:email => params[:email])
+      @Reviewer.save
+    end
+    @inv = Task.find(params[:task_id]).send_invitation(@Reviewer, params[:invitation_message],
+     "http://localhost:3000/projects/#{params[:project_id]}/tasks/#{params[:task_id]}/reviewers/#{@Reviewer.id}") 
+    respond_to do |format|
+      format.js {render 'invite_user', :status => :ok}
+    end
   end
 
   
@@ -230,7 +249,6 @@ class TasksController < ApplicationController
   #
 
   def edit_steps
-    @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @steps = @task.steps
     @page = @task.page
@@ -320,7 +338,7 @@ class TasksController < ApplicationController
   #   - +result_id+ ->: The id of the task result to be sent to 
   # * *Returns*  :
   #   -Renders an html view to view the log of the task reult
-  #
+  # author: Ahmed Osama
 
   def log
     @task_result = Project.find_by_id(params[:project_id]).tasks.find(params[:task_id]).task_results.find_by_id(params[:result_id])

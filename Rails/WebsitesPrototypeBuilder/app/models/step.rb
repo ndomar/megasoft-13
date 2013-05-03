@@ -14,6 +14,7 @@ class Step < ActiveRecord::Base
   belongs_to :task
   belongs_to :page
   has_many :step_answers
+
   attr_accessible :component, :description, :event, :task_id, :page_id
 
   validates :description, :presence => true

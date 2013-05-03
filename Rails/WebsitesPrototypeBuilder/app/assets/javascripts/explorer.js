@@ -1,38 +1,116 @@
 //these functions are used in the package explorer
 
-//function to create iframes with their attributes
-function createIframeWithContent(id,html){
-	var frame=document.createElement("iframe");
-	frame.setAttribute("id", id); 
-	document.body.appendChild(frame);
- 	//the second part is done separetly to make sure that iframe was created
-  frame = document.getElementById(id);													//this is the iframe with the provided id
-	var doc=(frame.contentWindow || frame.contentDocument);				//this is to make it compatible with different browsers
-	if (doc.document)doc=doc.document;														//this is to make it compatible with different browsers
-	doc.open();
-	doc.write(html);
-	doc.close();
-	//those 3 steps are to write the html provided into the iframe selected
-	var script = this.contentWindow.document.createElement("script");
-	script.type = "text/javascript";
-	script.text  = 'if (document.all || document.getElementById) {for (i = 0; i < theform.length; i++) {var formElement = theform.elements[i];if (true) {formElement.disabled = true;}}}';
-	// script to deactivate all actions
-	this.contentWindow.document.body.appendChild(script);
+function show(id, commit){
+	var designPage = document.getElementById('designpage');
+	designPage.setAttribute("data-pageid", id);
+	var params = $.param({
+		pageId: id,
+		commit: commit
+	});
+	$.ajax("/projects/showPage?" + params);
+	$("html, body").animate({ scrollTop: 0 }, 600);
 }
 
-//function to alter the iframe with given id and fill it with given html
-function addHtml(id,html){
-	var frame = document.getElementById(id);											//this is the iframe with the provided id
-	var doc=(frame.contentWindow || frame.contentDocument);				//this is to make it compatible with different browsers
-	if (doc.document)doc=doc.document;														//this is to make it compatible with different browsers
-	doc.open();
-	doc.write(html);
-	doc.close();
-	var script = this.contentWindow.document.createElement("script");
-	script.type = "text/javascript";
-	script.text  = 'if (document.all || document.getElementById) {for (i = 0; i < theform.length; i++) {var formElement = theform.elements[i];if (true) {formElement.disabled = true;}}}';
-	//this script is to deactivate all actions within that html
-	this.contentWindow.document.body.appendChild(script);
+function store(){
+	var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
+	if(pageId != 0){
+		//i need something to notify me not to show this alert
+		var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
+		if(response==true){
+			var html = document.getElementById('designpage').innerHTML; 	//this gets the html from the designpage pane and stores it in the variable html
+			html = html.replace(/\s+/g, ' ');
+			//reseting the ondbclick show event
+			var htmlToDisplay=html;
+			document.getElementById(pageId).ondblclick= function () {
+																				          	var designPage = document.getElementById('designpage');
+																				          	designPage.setAttribute("data-pageid", pageId);
+																										designPage.innerHTML="";
+																										var params = $.param({
+																											'pageId': pageId,
+																											"commit": "-1"
+																										});
+																										$.ajax("/projects/showPage?" + params);
+																										$("html, body").animate({ scrollTop: 0 }, 600);
+																									};
+			html=html.replace( "onclickevent", "onclick" , 'g');
+			html=html.replace( "onhoverevent", "onmouseover" , 'g');
+			var params = $.param({
+				pageid: pageId,
+				"html": html
+			});
+			$.ajax({
+				url: "/projects/savePage",
+				method: 'post',
+				data: params
+			});
+			//this is the ajax request to update and, save the updated page
+			return;
+		}
+	}
 }
 
+function deletePage(){
+	var pageId = $("#alt-text").text();
+	if(pageId != 0){
+		var response=confirm("هل أنت متأكد أنك تريد حذف هذه الصفحة؟");
+		if(response){	
+			var pageid = document.getElementById('designpage').getAttribute("data-pageid");	
+			if(pageid==pageId){
+				var designPage = document.getElementById('designpage');
+				designpage.innerHTML="<p>صمم صفحتك هنا</p>";
+				designPage.setAttribute("data-pageid", 0);
+			}
+			var params = $.param({
+				pageid: pageId
+			});
+			$.ajax("/projects/deletePage?" + params);
+		}
+	}
+}
 
+function addPage(project_id){
+	//this function is used to create new page by the designer
+	var pagename=prompt("الرجاء إدخال اسم الصفحة","");
+	if(pagename!=null ){
+		if (pagename!=""){
+	  	var params = $.param({
+				pageName: pagename,
+				projectId: project_id,
+
+			});
+			$.ajax("/projects/createPage?" + params);
+	  }else{
+	  	alert("الرجاء التأكد من أن اسم الصفحة فريد من نوعه وغير فارغ");
+	  } 
+	}
+	// event.stopDefault();
+}
+
+$(document).ready(function() {
+	$('#myCarousel').slideUp('slow', function() {
+		document.getElementById('title-text').setAttribute("style","display:none");
+		$('#alt-text').attr( 'style',"display: none");
+	});
+	$('#navbar').mouseenter(function(){
+		$('#myCarousel').slideDown('slow', function() {
+			document.getElementById('title-text').setAttribute("style","visibility:visible");
+			if($('#myCarousel').children().first().children().size!=0){
+				$('#title-text').attr( 'style',"display: block");
+			}
+		});
+	});
+	$('#designpage').mouseenter(function() {
+		$('#myCarousel').slideUp('slow', function() {
+			document.getElementById('title-text').setAttribute("style","visibility:hidden");
+			$('#title-text').attr( 'style',"display: none");
+		});
+	});	
+	$('#sidebar').mouseenter(function() {
+		$('#myCarousel').slideUp('slow', function() {
+		});
+	});
+});
+function showpopup() {
+  $("#popup-projectbck").fadeIn(400);
+  $("#popup-project").fadeIn(400);
+}

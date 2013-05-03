@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -224,6 +225,7 @@ div#content{
 	top: 0;
 	right: 0;
 	bottom: 0;
+  min-height:100%; 
   min-height:100%;
 	overflow-y: hidden;
 	word-wrap:break-word;
