@@ -58,9 +58,11 @@ class QuestionnairesController < ApplicationController
       if @questionnaire.save
         format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully created.' }
         format.json { render json: @questionnaire, status: :created, location: @questionnaire }
+        format.js { render "redirect" }
       else
         format.html { render action: "new" }
         format.json { render json: @questionnaire.errors, status: :unprocessable_entity }
+        format.js {render "validation_error"}
       end
     end
   end
@@ -82,9 +84,11 @@ class QuestionnairesController < ApplicationController
         flash[:message] = "Questionnaire updated successfully"
         format.html { redirect_to :action=> :index, notice: 'Questionnaire was successfully updated.' }
         format.json { head :no_content }
+        format.js { render "redirect" }
       else
         format.html { render action: "edit" }
         format.json { render json: @questionnaire.errors, status: :unprocessable_entity }
+        format.js {render "validation_error"}
       end
     end
   end
@@ -100,3 +104,4 @@ class QuestionnairesController < ApplicationController
     end
   end
 end
+
