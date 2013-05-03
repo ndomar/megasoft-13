@@ -108,6 +108,7 @@ class ProjectsController < ApplicationController
     FileUtils.remove_dir("#{Rails.public_path}/#{@project.id}", :force => true)
     respond_to do |format|
       format.html { redirect_to projects_url }
+      format.js { render "project_deleted", :status => :ok}
     end
   end
 
