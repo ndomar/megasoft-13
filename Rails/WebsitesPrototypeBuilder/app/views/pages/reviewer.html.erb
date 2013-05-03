@@ -15,6 +15,9 @@
 			<!-- The + buttom on clicking draw the circle -->
 			<div>
 			<div class="add_comment" onclick="draw_circle();">+</div>
+			<!-- The T button to test the site -->
+			<div class="add_comment" style="border-right:1px solid #fafafa" onclick="test_site('<%="../#{@page.project_id}/#{@page.page_name}.html"%>');">T</div>
+			<hr>
 		     
  					 <% array = Array.new %>                 <!-- create new array to store in all comments' divs locations-->
 					 <% @page.comments.each do |comment| %>  <!-- loop on all comments -->

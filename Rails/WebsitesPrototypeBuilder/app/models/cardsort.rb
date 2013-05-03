@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 ##
 # represents a cardsort entity
 # * *Attribute* :
@@ -14,4 +16,35 @@ class Cardsort < ActiveRecord::Base
   has_many :groups
   belongs_to :project
   has_many :cardsort_results
+  has_and_belongs_to_many :reviewers
+
+  validates :title, :presence =>  { :message => "إسم ترتيب الاوراق لا يمكن أن يكون فرغاً"}
+
+  def self.save_results(ids, cards, cardsort, reviewer)
+    return if ids == nil
+    ids.each_with_index do |id, index|
+      next if cards["#{index}"] == nil
+  		cards["#{index}"].each do |card|
+  			cardsort_result = CardsortResult.new
+  			cardsort_result.reviewer_id = reviewer
+  			cardsort_result.cardsort_id = cardsort
+  			cardsort_result.card_id = card
+  			cardsort_result.group_id = group
+  			cardsort_result.save
+  		end
+  	end
+  end
+
+  def invite(email, msg)
+	reviewer = Reviewer.find_by_email(email)
+	if (reviewer == nil)
+		reviewer = Reviewer.create(:email => email)
+  	end
+  	self.reviewers << reviewer
+  	ReviewerInviter.cardsort_invitation(email, msg, "http://localhost:3000/cardsorts/review/#{self.id}/reviewer/#{reviewer.id}").deliver()
+  end
+
+  def get_status(id)
+  	CardsortResult.find_by_cardsort_id(self.id) & CardsortResult.find_by_reviewer_id(id)
+  end
 end

@@ -5,9 +5,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
+
   post "/projects/destroy"
   get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
   post 'steps/update'
+
+
+get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
 
   resources :projects do
     resources :statistics
@@ -17,19 +21,38 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
-  resources :tasks do
-    resources :task_results
-  end
+
+resources :logs
+post 'logs/new'
+
+
+post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
+resources :reviewers do
+  resources :reviewer_infos
+end
+
 
   resources :tasks do
     resources :steps
   end
 
-  get 'cardsorts/new'
+ post 'cardsorts/invite_reviewer'
+ get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
+ post 'cardsorts/:cardsort_id/reviewer_create_group' => 'cardsorts#reviewer_create_group'
+ post 'cardsorts/submit/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#submit'
+ get 'cardsorts/review/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#review'
+ post 'cardsorts/:cardsort_id/delete_card/:card_id' => 'cardsorts#delete_card'
+ post 'cardsorts/:cardsort_id/delete_group/:group_id' => 'cardsorts#delete_group'
+ post 'cardsorts/:cardsort_id/create_card' => 'cardsorts#create_card'
+ post 'cardsorts/:cardsort_id/create_group' => 'cardsorts#create_group'
+ post 'cardsorts/create_cardsort'
+ get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
+ get 'cardsorts/new'
   get 'cardsorts/edit'
-  get 'cardsorts/create_card'
-  get 'cardsorts/create_group'
-
+ get 'cardsorts/create_card'
+ get 'cardsorts/create_group'
+ get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
+ 
   #at start up page goes to the home controller and the index action
 
   root to: "projects#index"
@@ -44,8 +67,11 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
+  get "pages/download"
+  get "pages/download_project"
   get "questionnaires/answer_show"
   get "questionnaires/index"
+  get "pages/flowchart"
 
   get "answer_questionnaires/create"
 
@@ -83,4 +109,5 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "/log/:id" => 'task_results#index'
   get 'projects/design/:project_id' => 'projects#design'
+  get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
 end
