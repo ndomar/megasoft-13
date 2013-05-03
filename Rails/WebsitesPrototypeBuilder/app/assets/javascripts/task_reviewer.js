@@ -115,13 +115,13 @@ function times_up(){
     $("#change_action_time").val(current_click_time);
     $("#change_element_id").val(current_element_id);
     $(function() { $("#log_form").submit(); });
- //document.getElementById("description_paragraph").innerHTML="The user "+ event_triggered + document.getElementById(event.target.id).value + " at time " + current_click_time;
   }  
  }
 
 function cli(selected){
   var point=$(selected).text();
   callChild(point);
+  log_steps(selected,'click');
   return false;
 }
 
@@ -133,19 +133,19 @@ function updateHtml() {
 
 function callChild(name){
 
-var iframe_doc = document.getElementById("preview_mode").contentDocument;
-var all_anchors = iframe_doc.getElementsByTagName("a");
+  var iframe_doc = document.getElementById("preview_mode").contentDocument;
+  var all_anchors = iframe_doc.getElementsByTagName("a");
 
-for(var i=0;i<all_anchors.length;i++){
-  anchors_string=all_anchors[i]+"";
-  anchors_array= anchors_string.split("/");
-  var value= anchors_array[anchors_array.length-1];
-  var name_low= name.toLowerCase();
-  if(value.indexOf(name_low)==0){
-    all_anchors[i].click();
-    setTimeout('updateHtml()',500);
-   return;}
-}
+  for(var i=0;i<all_anchors.length;i++){
+    anchors_string=all_anchors[i]+"";
+    anchors_array= anchors_string.split("/");
+    var value= anchors_array[anchors_array.length-1];
+    var name_low= name.toLowerCase();
+    if(value.indexOf(name_low)==0){
+      all_anchors[i].click();
+      setTimeout('updateHtml()',500);
+      return;}
+  }
 }
 
 function all_updates(){
