@@ -38,11 +38,11 @@ class ProjectsController < ApplicationController
 
   ##
   #The index method is used, to preview all the projects created by the logged in designer
-  # * *Instance*    :
-  #   - +designer+-> is the logged in designer 
-  #   - +projects+-> are all the projects done by the logged in designer
-  # * *Returns*  :
-  #   - Returns all the projects of the logged in designer as string      
+  # * *Instance* :
+  # - +designer+-> is the logged in designer
+  # - +projects+-> are all the projects done by the logged in designer
+  # * *Returns* :
+  # - Returns all the projects of the logged in designer as string
   def index()
     @designer= Designer.find_by_email(current_designer.email) #Getting the logged in designer
     @projects = Project.find(:all, :conditions => {:designer_id => @designer.id}) #Getting all the projects done by the logged in designer
@@ -50,15 +50,15 @@ class ProjectsController < ApplicationController
  
   ##
   #The show method is used, to show a certain project.
-  # * *Instance*    :
-  #   - +project+-> is the selected project 
-  # * *Returns*  :
-  #   - Returns the selected project design page       
+  # * *Instance* :
+  # - +project+-> is the selected project
+  # * *Returns* :
+  # - Returns the selected project design page
 
   ##
   #The new method is used, to create a new project
-  # * *Instance*    :
-  #   - +project+-> The new created project
+  # * *Instance* :
+  # - +project+-> The new created project
   def new()
     @project = Project.new()
   end
@@ -66,9 +66,9 @@ class ProjectsController < ApplicationController
 
   ##
   #The create method in project controller class creates a new project with a given parameter and then
-  # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
-  # * *Instance*    :
-  #   - +projects+-> The new created project with the passed parameters
+  # save it, if it is saved succesfully then redirect to the project created, else render the new view again
+  # * *Instance* :
+  # - +projects+-> The new created project with the passed parameters
   def create()
     @project = Project.new(params[:project])
     respond_to do |format|
@@ -98,7 +98,7 @@ class ProjectsController < ApplicationController
   ##
   # Delete project and it's folder
   # * *Args* :
-  #   - + @project +-> is the selected project to be deleted
+  # - + @project +-> is the selected project to be deleted
   # * *Returns* :
   # - void
   #
