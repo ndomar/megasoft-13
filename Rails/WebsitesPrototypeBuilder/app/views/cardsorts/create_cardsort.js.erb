@@ -1,0 +1,8 @@
+<% if (!@cardsort.valid?) %>
+  var errorDiv = $('.error').text("");
+  <% @cardsort.errors.each do |attr,msg| %>
+    $(errorDiv).append("<%= msg %>" )
+  <% end %>
+<% else %>
+  window.location.href = "/cardsorts/show/<%= @cardsort.id %>";
+<% end %>

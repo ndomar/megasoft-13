@@ -1,6 +1,6 @@
 <% if (@group.valid?) %>
 	var newThumb = $('<%= escape_javascript(render "group_thumbnail",
-	 desc: @group.description, :cssClass => "review-group", name: @group.title, :index => @group.id,
+	 desc: @group.description, :cssClass => "group", name: @group.title, :index => @group.id,
 	 :id => @group.id) %>')
 	 .prependTo("#groups-thumbnail");
 	var newList =  $('<%= escape_javascript(render "group_list",
