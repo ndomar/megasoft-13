@@ -25,11 +25,11 @@ class ProjectsController < ApplicationController
   # Author Hossam
   # called to update a page in the database
   # finds the page with the given id and updates its html
-  # * *Args* :
-  # - +pageid+ -> the page's id
-  # - +html+ -> the updated html
-  # * *Returns* :
-  # - void
+  # * *Args*   :
+  #   - +pageid+ -> the page's id
+  #   - +html+ -> the updated html
+  # * *Returns*  :
+  #   - void
   #
   def savePage
     @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
@@ -46,9 +46,9 @@ class ProjectsController < ApplicationController
   # Author Hossam
   # called to delete a page in the database
   # finds the page with the given id
-  # * *Args* :
+  # * *Args*   :
   # - +pageid+ -> the page's id
-  # * *Returns* :
+  # * *Returns*   :
   # - void
   #
   def deletePage
@@ -67,10 +67,10 @@ class ProjectsController < ApplicationController
   # Author Hossam
   # called to create a page in the database
   # create a page with the given name in the given project in the database
-  # * *Args* :
+  # * *Args*   :
   # - +pageName+ -> the page's name
   # - +projectId+ -> current project's id
-  # * *Returns* :
+  # * *Returns*   :
   # - void
   #	
   def createPage
@@ -91,9 +91,9 @@ class ProjectsController < ApplicationController
   # Author Hossam
   # called to show a page in the design pane
   # shows a page in the design pane
-  # * *Args* :
+  # * *Args*   :
   # - +pageId+ -> the page's id
-  # * *Returns* :
+  # * *Returns*  :
   # - void
   # 
   def showPage
@@ -111,9 +111,9 @@ class ProjectsController < ApplicationController
   ##
   # upload media (image/video) to the server under a specific
   # folder for the project
-  # * *Args* :
+  # * *Args*  :
   # - none
-  # * *Returns* :
+  # * *Returns*   :
   # - void
   #
   def upload_media

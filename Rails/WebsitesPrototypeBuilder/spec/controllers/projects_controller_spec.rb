@@ -27,7 +27,8 @@ describe ProjectsController	do
 	end
 
 	it "Testing Design in projects controller" do
-		project = Project.new(:project_name => "Hossam Testing")
+		@designer = FactoryGirl.create(:designer)
+		project = Project.new(:project_name => "Hossam Testing",:designer_id => @designer.id)
 		project.save
 		pageWithHTML = Page.new(:page_name => "Hossam Testing with HTML", :project_id => project.id, :html => "<p> Testing </p>")
 		pageWithHTML.save
@@ -51,6 +52,7 @@ describe ProjectsController	do
 		get :showPage, {:pageId => pageWithoutHTML.id}
 		controller.should render_template(:status => 'ok',:format => 'js')
 	end
+end
 
 describe ProjectsController do
   before(:each) do
@@ -66,11 +68,9 @@ describe ProjectsController do
     puts @count_after
     count_after.should be > count_before
   end
-
 end
 
 describe ProjectsController do
-
   before(:each) do
     @designer = FactoryGirl.create(:designer)
     sign_in(@designer)
