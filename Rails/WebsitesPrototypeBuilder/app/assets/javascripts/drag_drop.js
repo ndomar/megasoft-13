@@ -24,6 +24,15 @@ $(document).ready(function (){
 		$("#"+$("#eid_inp").val()).children().first().css("text-align",$("#text_align_inp").val());
 	});
 
+	$("#border_inp").change(function(){
+		if ($("#"+$("#eid_inp").val()).hasClass("bordiv")){
+			$("#"+$("#eid_inp").val()).css("border",$("#border_inp").val());
+		}
+		else {
+			$("#"+$("#eid_inp").val()).children().first().css("border",$("#border_inp").val());
+		}
+	});
+
 	$("#font_family_inp").change(function(){
 		$("#"+$("#eid_inp").val()).children().first().css("font-family",$("#font_family_inp").val());
 	});
@@ -54,8 +63,8 @@ $(document).ready(function (){
 	$('#content').click(function(e){
 	    $('.properties').css("visibility","hidden");
 	    $('.text_prop').css("visibility","hidden");
+	    $('.hyper_prop').css("visibility","hidden");
  	});
-
 
 
 	$( "#accordion" ).accordion({
@@ -107,7 +116,12 @@ $(document).ready(function (){
 	},
 	onChange: function (hsb, hex, rgb) {
 		$('#border_color_inp').css('backgroundColor', '#' + hex);
-		$("#"+$("#eid_inp").val()).children().first().css("border-color",'#' + hex);
+		if ($("#"+$("#eid_inp").val()).hasClass("bordiv")){
+			$("#"+$("#eid_inp").val()).css("border-color",'#' + hex);
+		}
+		else{
+			$("#"+$("#eid_inp").val()).children().first().css("border-color",'#' + hex);
+		}
 	}
 	});
 
@@ -203,9 +217,9 @@ $(document).ready(function (){
 			else if ($("#action_selector").val()=="message"){
 				$("#"+$("#eid_inp").val()).attr("onclickevent","alert(\""+$("#action_value").val()+"\");");
 			}
-			else{
-				$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
-			}
+			// else{
+			// 	$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
+			// }
 		}
 		else if ($("#event_selector").val()=="onHover"){
 			if ($("#action_selector").val()=="url"){
@@ -216,6 +230,7 @@ $(document).ready(function (){
 			}
 		}
 		alert("تم حفظ الحدث بنجاح");
+		return false;
 	});
 
 	$(".inp").blur(function(){ //when one of the properties input boxes lose focus, try to apply the new entered value
@@ -263,7 +278,7 @@ $(document).ready(function (){
 			}
 			else{
 				$(name).removeClass("drag");
-				$(name).append('<i id = "close" class="icon-remove" style="top: 0px; right: 0px; position: absolute;"></i>');
+				$(name).append('<i id = "close" class="icon-remove" style="top: 0px; left: 0px; position: absolute;"></i>');
 				$(name).children("#close").click(function(){
 					$(name).remove();
 				});
@@ -320,6 +335,8 @@ $(document).ready(function (){
 				.click(function(event) {	//click function to show the properties of the element in the properties panel
 					event.stopPropagation();
 					$(".properties").css("visibility","visible");
+					$('.text_prop').css("visibility","hidden");
+	    			$('.hyper_prop').css("visibility","hidden");		
 					var eid = $(this).attr("id");
 					$("#eid_inp").val(eid);
 					$("#top_inp").val(parseInt($(this).position().top+"px"));
@@ -330,10 +347,19 @@ $(document).ready(function (){
 					$("#margin_right_inp").val(parseInt($(this).css("margin-right")));
 					$("#margin_top_inp").val(parseInt($(this).css("margin-top")));
 					$("#margin_bottom_inp").val(parseInt($(this).css("margin-bottom")));
-
+					if ($(this).hasClass("bordiv")){
+						$("#border_radius_inp").val(parseInt($(this).css("border-radius")));
+						$("#border_width_inp").val(parseInt($(this).css("border-width")));
+						$("#border_color_inp").css("background-color",$(this).css("border-color"));
+					}
+					else{
+						$("#border_radius_inp").val(parseInt($(this).children().first().css("border-radius")));
+						$("#border_width_inp").val(parseInt($(this).children().first().css("border-width")));
+						$("#border_color_inp").css("background-color",$(this).children().first().css("border-color"));
+					}
 					if ($(this).hasClass("text")) {
 						$(".text_prop").css("visibility","visible");
-						$("#text_inp").val($(this).children().first().val().trim());
+						$("#text_inp").val($(this).children().first().text().trim());
 						$("#font_size_inp").val(parseInt($(this).css("font-size")));
 						$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
 						$("#text_align_inp").val($(this).children().first().css("text-align"));
@@ -351,7 +377,11 @@ $(document).ready(function (){
 						else {
 							$("#font_style_inp").prop('checked', false);
 						}
-					};
+					}
+					if ($(this).hasClass("hyper")){
+						$(".hyper_prop").css("visibility","visible");
+						$("#href_inp").val($(this).children().first().attr("href"));
+					}
 				})
 				.hover(function(){
 					var close = $(this).children("#close");
@@ -379,6 +409,7 @@ $(document).ready(function (){
 				}
 
 				if ($(name).hasClass("text")){
+					$(name).children().first().attr("contenteditable",true);
 					$(name).dblclick(function() {
 						$(this).draggable("disable");
 						$(this).children().first().attr("contenteditable",true);
@@ -387,7 +418,9 @@ $(document).ready(function (){
 					$(name).children().first().focusout(function(){
         				$(this).parent().draggable("enable");
         				$(this).parent().click();
-        				// $(this).attr("contenteditable",false);
+        				if (!$(this).hasClass("btn")){
+        					$(this).attr("contenteditable",false);
+        				}
 					});
 				}
 
@@ -402,6 +435,8 @@ $(document).ready(function (){
 			if (typeof ui.draggable.attr('id') != "undefined" && ui.draggable.attr('id').search(/element([0-9])/)==-1){ // if it is not an already dragged element
 				var element = $(ui.draggable).clone(); // clone the dragged element
 				element.attr("id","element"+counter); // change its id
+				counter++;
+				element.attr("id","element"+counter);
 				element.addClass("appended"); // give it class appended
 				$(this).append(element); // add the element to the design page (writing html code to the div)
 			}
@@ -428,8 +463,20 @@ function applyChangedProperty(element){
 					$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val()+"px");
 				}
 				break;
+			case "border_width_inp":
+			case "border_radius_inp":
+				if ($("#"+$("#eid_inp").val()).hasClass("bordiv")){
+					$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val()+"px");
+				}
+				else{
+					$("#"+$("#eid_inp").val()).children().first().css(element.attr("property"),element.val()+"px");
+				}
+				break;
 			case "font_size_inp":
 				$("#"+$("#eid_inp").val()).children().first().css("font-size",element.val()+"px");
+				break;
+			case "href_inp":
+				$("#"+$("#eid_inp").val()).children().first().attr("href",element.val());
 				break;
 			default: 
 				if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
@@ -487,6 +534,7 @@ var i;
 var dropArea;
 
 function dropHandler(evt){
+	// alert("HEY DROP HANDLE");
 	noopHandler(evt);
 	files = evt.dataTransfer.files;
 	i = 0;
@@ -500,6 +548,7 @@ function dropHandler(evt){
 }
 
 function showImage(file){
+	// alert("SHOW");
 	var reader = new FileReader();
 	reader.onload = function(evt) {
 		var code = "<div class='thumbnail up_images'>" + 
@@ -519,6 +568,7 @@ function showImage(file){
 }
 
 function processFile(){
+	// alert("HEY PROCESS");
 	if (i == files.length){
 		$('#drop-area').text("ارمى صورة هنا لرفعها");
 		return;
@@ -539,9 +589,14 @@ function uploadFile(file){
 	project_id = document.project.elements['project_id'].value;
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(evt) {
+		// alert("HEY UPLOAD");
 		if (xhr.readyState == 4 ){
-			if (xhr.status == 201)
+			// alert("INISE 1");
+			// alert("STATUS: "+xhr.status);
+			if (xhr.status == 201){
 				showImage(files[i-1]);
+				// alert("HEY INSIDE");
+			}
 			processFile();
 		}
 	};
@@ -552,108 +607,161 @@ function uploadFile(file){
 }
 
 function applyInterfaces(){
-	$("#designpage").children().applyInterfacesHelper();
+	applyInterfacesHelper($("#designpage").children());
 }
 
-function applyInterfacesHelper(){
-	$(this).append('<i id = "close" class="icon-remove" style="top: 0px; right: 0px; position: absolute;"></i>');
-	$(this).children("#close").click(function(){
-		$(this).remove();
-	});
-	$(this).children(".toolboxelement").resizable({ //define resizable action for the new element
-		containment: 'parent',
-		alsoResize: $(this).children(".toolboxelement"),
-	    cancel: false,
-        start: function(event, ui){
-	    		ui.element.children(".toolboxelement").css({
-  				"width": "100%" ,
-   				"height": "100%"
-	        	});
-        	ui.element.click();
-      	},
-	    resize: function(event, ui){
-        	ui.element.children(".toolboxelement").css({
-   	  		"width": "100%" ,
-      		"height": "100%"
-       		});
-       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
-        	if (exceedsWidth(ui.element,0,ui.position.left)){
-        		$(this).resizable('widget').trigger('mouseup');
-        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
-        	}
-        	else if (exceedsHeight(ui.element,0,ui.position.top)){
-        		$(this).resizable('widget').trigger('mouseup');
-        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
-        	}
-        	//update the properties "width" and "height" as the element is being resized
-		    $("#width_inp").val(ui.size.width);
-		    $("#height_inp").val(ui.size.height);
-	    },
-        stop: function(event, ui){
-		      ui.element.children(".toolboxelement").css({
-         	  "width": "100%" ,
-     	      "height": "100%"
-	        });
-        }
-	})
-	.draggable({ //new draggable to avoid cloning elements that are moved within the design page
-		containment: 'parent',
-		cancel:false,
+function applyInterfacesHelper(list){
+	
+	for (var i = 0; i<list.length; i++){
+		var ele = list.eq(i);
+		ele.append('<i id = "close" class="icon-remove" style="top: 0px; left: 0px; position: absolute;"></i>');
+				ele.children("#close").click(function(){
+					ele.remove();
+				});
+				ele.resizable({ //define resizable action for the new element
+					containment: 'parent',
+					alsoResize: ele.children(".toolboxelement"),
+				    cancel: false,
+			        start: function(event, ui){
+		  	    		ui.element.children(".toolboxelement").css({
+		      				"width": "100%" ,
+		       				"height": "100%"
+	   		        	});
+		            	ui.element.click();
+			      	},
+				    resize: function(event, ui){
+			        	ui.element.children(".toolboxelement").css({
+		       	  		"width": "100%" ,
+		          		"height": "100%"
+			       		});
+			       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
+			        	if (exceedsWidth(ui.element,0,ui.position.left)){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
+			        	}
+			        	else if (exceedsHeight(ui.element,0,ui.position.top)){
+			        		$(this).resizable('widget').trigger('mouseup');
+			        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
+			        	}
+			        	//update the properties "width" and "height" as the element is being resized
+					    $("#width_inp").val(ui.size.width);
+					    $("#height_inp").val(ui.size.height);
+				    },
+			        stop: function(event, ui){
+					      ui.element.children(".toolboxelement").css({
+			         	  "width": "100%" ,
+			     	      "height": "100%"
+				        });
+			        }
+				})
+				.draggable({ //new draggable to avoid cloning elements that are moved within the design page
+					containment: 'parent',
+					cancel:false,
 
-		start: function(event, ui){
-			ui.helper.click();
-		},
+					start: function(event, ui){
+						ui.helper.click();
+					},
 
-		drag: function(event, ui){ //update the properties "left" and "right" as the element is being moved
-			$("#left_inp").val(ui.position.left);
-	   		$("#top_inp").val(ui.position.top);
-		}
+					drag: function(event, ui){ //update the properties "left" and "right" as the element is being moved
+						$("#left_inp").val(ui.position.left);
+				   		$("#top_inp").val(ui.position.top);
+					}
 
-	})
-	.click(function(event) {	//click function to show the properties of the element in the properties panel
-		event.stopPropagation();
-		$(".properties").css("visibility","visible");
-		var eid = $(this).attr("id");
-		$("#eid_inp").val(eid);
-		$("#text_inp").val($(this).children().first().text());
-		$("#width_inp").val(parseInt($(this).width()));
-		$("#height_inp").val(parseInt($(this).height()));
-		$("#margin_left_inp").val(parseInt($(this).css("margin-left")));
-		$("#margin_right_inp").val(parseInt($(this).css("margin-right")));
-		$("#margin_top_inp").val(parseInt($(this).css("margin-top")));
-		$("#margin_bottom_inp").val(parseInt($(this).css("margin-bottom")));
-		$("#top_inp").val(parseInt($(this).position().top+"px"));
-		$("#left_inp").val(parseInt($(this).position().left+"px"));
-	})
-	.hover(function(){
-		var close = $(this).children("#close");
-		close.css("visibility","visible");
-	}, function(){
-		var close = $(this).children("#close");
-		close.css("visibility","hidden");
-	})
-	.dblclick(function() {
-		$(this).children().first().attr("contenteditable","true");
-	});
+				})
+				.click(function(event) {	//click function to show the properties of the element in the properties panel
+					event.stopPropagation();
+					$(".properties").css("visibility","visible");
+					$('.text_prop').css("visibility","hidden");
+	    			$('.hyper_prop').css("visibility","hidden");		
+					var eid = $(this).attr("id");
+					$("#eid_inp").val(eid);
+					$("#top_inp").val(parseInt($(this).position().top+"px"));
+					$("#left_inp").val(parseInt($(this).position().left+"px"));
+					$("#width_inp").val(parseInt($(this).width()));
+					$("#height_inp").val(parseInt($(this).height()));
+					$("#margin_left_inp").val(parseInt($(this).css("margin-left")));
+					$("#margin_right_inp").val(parseInt($(this).css("margin-right")));
+					$("#margin_top_inp").val(parseInt($(this).css("margin-top")));
+					$("#margin_bottom_inp").val(parseInt($(this).css("margin-bottom")));
+					if ($(this).hasClass("bordiv")){
+						$("#border_radius_inp").val(parseInt($(this).css("border-radius")));
+						$("#border_width_inp").val(parseInt($(this).css("border-width")));
+						$("#border_color_inp").css("background-color",$(this).css("border-color"));
+					}
+					else{
+						$("#border_radius_inp").val(parseInt($(this).children().first().css("border-radius")));
+						$("#border_width_inp").val(parseInt($(this).children().first().css("border-width")));
+						$("#border_color_inp").css("background-color",$(this).children().first().css("border-color"));
+					}
+					if ($(this).hasClass("text")) {
+						$(".text_prop").css("visibility","visible");
+						$("#text_inp").val($(this).children().first().text().trim());
+						$("#font_size_inp").val(parseInt($(this).css("font-size")));
+						$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
+						$("#text_align_inp").val($(this).children().first().css("text-align"));
+						$("#vertical_align_inp").val($(this).children().first().css("vertical-align"));
+						$("#font_family_inp").val($(this).children().first().css("font-family"));
+						if ($(this).children().first().css("font-weight")==700 || $(this).children().first().css("font-weight")=="bold"){
+							$("#font_weight_inp").prop('checked', true);
+						}
+						else {
+							$("#font_weight_inp").prop('checked', false);
+						}
+						if ($(this).children().first().css("font-style")=="italic"){
+							$("#font_style_inp").prop('checked', true);
+						}
+						else {
+							$("#font_style_inp").prop('checked', false);
+						}
+					}
+					if ($(this).hasClass("hyper")){
+						$(".hyper_prop").css("visibility","visible");
+						$("#href_inp").val($(this).children().first().attr("href"));
+					}
+				})
+				.hover(function(){
+					var close = $(this).children("#close");
+					close.css("visibility","visible");
+				}, function(){
+					var close = $(this).children("#close");
+					close.css("visibility","hidden");
+				})
 
-	if ($(name).hasClass("img_ph")){
-		$(name)[0].addEventListener("dragover", noopHandler, false);
-		$(name)[0].addEventListener("dragenter", noopHandler, false);
-		$(name)[0].addEventListener("dragleave", noopHandler, false);
-		$(name)[0].addEventListener("drop", dragOutsideImage, false);
-		$(name).droppable({
-			accept: ".up_images",
-			greedy: true,
-			drop: function(event, ui){
-				// alert(ui.draggable.children().first().attr("src"));
-				// $(this).children().first().attr("src",event.data.value);
-				// alert(ui.draggable.children().first().attr("src"));
-				$(name).children().first().attr("src",ui.draggable.children().first().attr("src"));
-			}
-		});
+				if (ele.hasClass("img_ph")){
+					ele[0].addEventListener("dragover", noopHandler, false);
+					ele[0].addEventListener("dragenter", noopHandler, false);
+					ele[0].addEventListener("dragleave", noopHandler, false);
+					ele[0].addEventListener("drop", dragOutsideImage, false);
+					ele.droppable({
+						accept: ".up_images",
+						greedy: true,
+						drop: function(event, ui){
+							// alert(ui.draggable.children().first().attr("src"));
+							// $(this).children().first().attr("src",event.data.value);
+							// alert(ui.draggable.children().first().attr("src"));
+							ele.children().first().attr("src",ui.draggable.children().first().attr("src"));
+						}
+					});
+				}
+
+				if (ele.hasClass("text")){
+					ele.children().first().attr("contenteditable",true);
+					ele.dblclick(function() {
+						$(this).draggable("disable");
+						$(this).children().first().attr("contenteditable",true);
+						$(this).children().first().focus();
+					});
+					ele.children().first().focusout(function(){
+        				$(this).parent().draggable("enable");
+        				$(this).parent().click();
+        				if (!$(this).hasClass("btn")){
+        					$(this).attr("contenteditable",false);
+        				}
+					});
+				}
+
+				ele.click();
 	}
-
-	$(this).click();
 }
 
 
@@ -664,7 +772,7 @@ function dragOutsideImage(event){
 		$(this).children().first().attr("src", str);
 	}
 	else{
-		alert(str);
+		// alert(str);
 		alert("Only images of type jpg, jpeg, png, svg or gif are are allowed");
 	}
 }
