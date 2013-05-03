@@ -83,6 +83,7 @@ class ProjectsController < ApplicationController
     @page = Page.new(params[:page])
     @page.project_id=params[:projectId]
     @page.page_name=params[:pageName] 
+    @pageType = params[:pageType]
     respond_to do |format|
       if (@page.save)
         @pages = Page.find(:all, :conditions => {:project_id => @page.project_id})

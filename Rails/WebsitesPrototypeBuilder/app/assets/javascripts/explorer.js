@@ -75,7 +75,8 @@ function addPage(project_id,event){
 		if (pagename!=""){
 	  	var params = $.param({
 				pageName: pagename,
-				projectId: project_id
+				projectId: project_id,
+				
 			});
 			$.ajax("/projects/createPage?" + params);
 	  }else{
