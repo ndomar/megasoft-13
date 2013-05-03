@@ -171,8 +171,16 @@ function all_updates(){
     $(this).attr('onmouseout','log_steps(this,"mouseout")');
   });
 
+  $("a").each(function(){
+    //$(this).attr('onclick','log_steps(this,"click")');
+    $(this).attr('onmouseover','log_steps(this,"mouseover")');
+    $(this).attr('onmouseout','log_steps(this,"mouseout")');
+
+  });
+
   if($("#"+steps_components_array[0]).length > 0){
-    highlight(steps_components_array[0]);   
+    if(steps_description_array.length>1)
+      highlight(steps_components_array[0]);   
   } 
 }
 
