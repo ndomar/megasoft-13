@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Someone commented on your page </h1>
+    <p>
+      Someone commented on your page and said :
+      <%= @comment.body %> at <%= @timestamp %>
+    </p>
+    <p>Please find the page screenshot attached to this email</p>
+    <img src="/assets/page_#{@page_name}">
+    <p>Thanks!</p>
+  </body>
+</html>

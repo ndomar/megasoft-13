@@ -10,8 +10,39 @@
 	<!-- The SideBar -->
 	<div id="sidebar">
 		<div id="side_content">
+		<h4>التعليقلت</h4>
+		<!-- The + buttom on clicking draw the circle -->
+		<div class="add_comment" onclick="draw_circle();">+</div>
+		<hr>
+		<!-- Fetching comments from the database,just for testing -->
+		<div id="comments">
+			<% @page.comments.each do |comment| %>
+				<div>
+					<!-- Getting the comment -->
+					<p><%= comment.body %></p>
+					<!-- The deleting method uses AJAX destroy.js.erb -->
+					<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
+					<hr>
+				</div>
+			<%end%>
+		</div>
+		<!-- The + buttom on clicking draw the circle -->
+		<div class="add_comment" onclick="draw_circle();">+</div>
+		<a  id="add_comment" onclick="test_page()" href="#" style="color: #CC0000">تجربة الصفحة</a>
+		<hr>
+		<!-- Fetching questions from the database,just for testing -->
+		<div id="questions">
+			<h4>الاسئلة</h4>
+			<% @page.questions.each do |question| %>
+				<div>
+					<p><%= question.body %></p>
+					<p><%=link_to_function "اجب", "sliding_form()", :class => "pressed"%></p>
+					<hr>
+						<hr>
+					<% if !(question.answers.find(:all).empty?) %>
+						<h5>:اجابتك </h5>
+					<%end%>
 		<div onclick="$('#comments').toggle();$('#questions').toggle();$('#shows').toggle();$('#qshows').toggle()" class="sw"></div>
-			
 			<!-- The + buttom on clicking draw the circle -->
 			<div>
 			<div class="add_comment" onclick="draw_circle();">+</div>
@@ -38,10 +69,6 @@
 			<%= render :partial => 'comments/comments' %>
 			<!-- Fetching questions from the database,just for testing -->
 			<div id="questions" style="display:none">
-			
-
-  				
-                
 				    <h4>الاسئلة</h4>
 
             <!-- show and hide answers -->
