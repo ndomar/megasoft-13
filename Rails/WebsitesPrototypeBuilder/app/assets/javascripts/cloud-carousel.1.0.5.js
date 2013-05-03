@@ -107,7 +107,7 @@
 		// Turn on the infoBox
 		if(options.altBox !== null)
 		{
-			$(options.altBox).css('display','block');	
+			$(options.altBox).css('display','none');	
 			$(options.titleBox).css('display','block');	
 		}
 		// Turn on relative position for container to allow absolutely positioned elements
@@ -118,15 +118,16 @@
 		$(options.buttonRight).css('display','inline');
 		
 		// Setup the buttons.
-		$(options.buttonLeft).bind('mouseup',this,function(event){
+		$(options.buttonLeft).bind('mousedown',this,function(event){
 			event.data.rotate(-1);	
 			return false;
 		});
-		$(options.buttonRight).bind('mouseup',this,function(event){															
+		$(options.buttonRight).bind('mousedown',this,function(event){															
 			event.data.rotate(1);	
 			return false;
 		});
-		
+
+
 		// You will need this plugin for the mousewheel to work: http://plugins.jquery.com/project/mousewheel
 		if (options.mouseWheel)
 		{
@@ -166,7 +167,7 @@
 		$(container).bind('mouseout',this,function(event){
 				var	context = event.data;				
 				clearTimeout(context.showFrontTextTimer);				
-				context.showFrontTextTimer = setTimeout( function(){context.showFrontText();},1000);
+				context.showFrontTextTimer = setTimeout( function(){context.showFrontText();},1);
 				context.autoRotate();	// Start auto rotation.
 		});
 

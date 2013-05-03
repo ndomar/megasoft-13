@@ -1,3 +1,5 @@
+$('#title-text').text("");
+$('#alt-text').text("0");
 $('#myCarousel').children().first().empty();
 <% @pages.each do |page| %>
 	<% if page.file_dir_exists? ("app/assets/images/project_#{page.project_id}/page_#{page.page_name}.png") %>
@@ -14,3 +16,8 @@ $("#myCarousel").CloudCarousel({
 	altBox: $("#alt-text"),
 	titleBox: $("#title-text")
 });
+if($('#myCarousel').children().first().children().size==0){
+	$('#myCarousel').slideDown('slow', function() {
+		document.getElementById('title-text').setAttribute("style","display:none");
+	});
+}
