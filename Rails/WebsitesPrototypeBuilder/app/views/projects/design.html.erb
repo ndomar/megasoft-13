@@ -202,7 +202,7 @@
 			<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
 	    	<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px;border-style:solid;" ondblclick="show('<%= page.id %>')" alt="<%= page.id %>">
 		  <% else %>
-	    	<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/webPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px; border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show('<%= page.id %>',-1)" alt="<%= page.id %>">
+	    	<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/webPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px; border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show('<%= page.id %>','-1')" alt="<%= page.id %>">
 		  <% end %>
 		<% end %>
 	</div>

@@ -12,7 +12,6 @@ function show(id,commit){
 }
 
 function store(){
-
 	var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
 	if(pageId != 0){
 		//i need something to notify me not to show this alert
@@ -24,13 +23,14 @@ function store(){
 			var htmlToDisplay=html;
 			document.getElementById(pageId).ondblclick= function () {
 																				          	var designPage = document.getElementById('designpage');
-																				          	if(designPage.getAttribute("data-pageid")!=0 && designPage.getAttribute("data-pageid")!=pageId){	//&& hasDesigned
-																											store();
-																										}
+																				          	designPage.setAttribute("data-pageid", pageId);
 																										designPage.innerHTML="";
-																										//call malatawy's new function
-																										designPage.innerHTML=htmlToDisplay;
-																										designPage.setAttribute("data-pageid", pageId);
+																										var params = $.param({
+																											'pageId': pageId,
+																											"commit": "-1"
+																										});
+																										$.ajax("/projects/showPage?" + params);
+																										$("html, body").animate({ scrollTop: 0 }, 600);
 																									};
 			html=html.replace( "onclickevent", "onclick" , 'g');
 			html=html.replace( "onhoverevent", "onmouseover" , 'g');
