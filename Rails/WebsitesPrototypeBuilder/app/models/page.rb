@@ -19,6 +19,9 @@ class Page < ActiveRecord::Base
   has_many :answers,:dependent => :destroy
   belongs_to :project
 
+  def file_dir_exists?(path_to_file)
+    File.exist?(path_to_file)
+  end
   def take_screenshot(url)
     `phantomjs /app/assets/javascripts/rasterize.js #{url} ll #{page_name}`
     `convert app/assets/images/page_ll.jpg -resize 200x300 app/assets/images/page_ll.jpg`
@@ -26,3 +29,4 @@ class Page < ActiveRecord::Base
   handle_asynchronously :take_screenshot
   
 end
+

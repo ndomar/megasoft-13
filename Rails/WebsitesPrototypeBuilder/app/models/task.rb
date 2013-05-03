@@ -13,7 +13,6 @@ class Task<ActiveRecord::Base
 
   attr_accessible :description, :name, :page_id, :time_limit, :requires_reviewer_info, :project_id, :final_step
 
-
   belongs_to :project
   belongs_to :page
   has_many :steps
@@ -64,6 +63,40 @@ class Task<ActiveRecord::Base
       hash = Hash.new
       hash = {:step => @step, :page => @page, :step_answer => @step_answer , :task_result => @task_result}
     end  
+  end
+
+  ##
+  # Checks whether a designer is allowed to view the edit_steps page
+  # * *Args*    :
+  #   - +page+ ->: The starting page of the task.
+  #   - +designer+ ->: The designer trying to acces the edit_steps page.
+  # * *Returns*  :
+  #   -The error (if any) trying to access the page.
+  #
+
+  def allow_designer(page, designer, project)
+    @error = nil
+
+    @task_already_taken = self.reviewers.count > 0
+    begin
+      @designer_allowed = designer.projects.find(project)
+    rescue
+      @designer_allowed = false
+    end
+
+    if !page || page == nil
+      @error = 'start_page_not_defined'
+    end
+
+    if @task_already_taken
+      @error = 'task_already_taken'
+    end
+
+    if !@designer_allowed 
+      @error = 'designer_not_allowed'
+    end
+
+    return @error
   end
 end
 
