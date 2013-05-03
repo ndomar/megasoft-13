@@ -55,7 +55,8 @@ $(document).ready(function(){
     var projectid = $(this).attr("ProjectId");
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
-    $("#Task").attr("href","tasks/index/" + projectid);
+    $("#Task").attr("href","projects/" + projectid + "/tasks/");
+    $("#Statistics").attr("href","projects/" + projectid + "/statistics/");
     $("#Questionnaire").attr("href","/questionnaires/index?project_id=" + projectid);
     $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
     $("#Review").attr("href","/pages?project_id=" + projectid);

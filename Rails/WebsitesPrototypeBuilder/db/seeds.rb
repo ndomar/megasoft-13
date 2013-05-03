@@ -201,6 +201,8 @@ end
 
 (0..10).each do |i|
   Cardsort.find((i%3)+1).reviewers << Reviewer.find((i%3)+1)
+end
+
 #Maged's Seeds
 
 maged = Designer.create(:fullname => "Maged Shalaby",
