@@ -1,0 +1,242 @@
+// =========================================================
+
+function Card(id){
+	this.id = id;
+}
+
+function getID(card){
+	return card.id
+}
+
+// =========================================================
+
+function Group(id){
+	this.id = id
+	this.cards = new Array();
+}
+
+Group.prototype.getCards = function(){
+	var cardIds = [];
+	for (var i = 0; i > this.cards.length; i++){
+		cardIds.push(this.cards[i].id)
+	}
+	return cardIds;
+}
+
+function findGroup(id){
+	for (var i = 0; i < groups.length; i++){
+		if (groups[i].id == id)
+			return groups[i];
+	}
+}
+
+function removeCard(id){
+	for (var i = 0; i < groups.length; i++){
+		for (var j = 0; j < groups[i].cards.length; j++){
+			if (groups[i].cards[j] == id)
+				groups[i].cards.splice(j,1);
+		}
+			
+	}
+}
+
+Group.prototype.addCard = function (card){
+	this.cards.push(card);
+}
+// ==========================================================
+
+var cards = [];
+var groups = [];
+
+
+var cardsView;
+var cardsThumbnail;
+var cardsList;
+var shownCards = false;
+var imageTiled;
+var imageGrid;
+
+function init(){
+	initParams();
+	initCardsView();
+	initGroupsView();
+	initDragAndDrop();
+	initBackend();
+	if (isOpen){
+		initTrash();
+		initCreateGroup();
+	}
+}
+
+function initCardsView() {
+	$(cardsThumbnail).sortable({
+		revert: 'invalid',
+		items: ".card"
+	});
+		$(cardsList).sortable({
+		revert: 'invalid',
+		items: "tr"
+	});
+	$(cardsView).draggable({
+		handle: '#cards-tag',
+		axis: 'x',
+		drag: function() {
+			var difference = cardsView.offsetLeft - groupsView.offsetLeft-groupsView.offsetWidth;
+				var left = parseInt($(groupsView).css('left'));
+				if (difference < 130)
+					$(groupsView).css('left', left - 130 + difference);
+			width = wrapper.offsetWidth - cardsView.offsetLeft;
+			$(cardsContent).css('width', width-80);		
+			width = groupsView.offsetLeft+groupsView.offsetWidth;
+			$(groupsContent).css('width', width);
+			$('#submit').css('left', groupsView.offsetLeft + groupsView.offsetWidth + 20);		
+			},
+		containment: [groupsView.offsetLeft+groupsView.offsetWidth+130,100,cardsView.offsetLeft,100000]
+	});
+	width = wrapper.offsetWidth - cardsView.offsetLeft;
+	$(cardsContent).css('width', width-80);
+	$('#submit').css('left', groupsView.offsetLeft + groupsView.offsetWidth + 20);
+}
+
+function initGroupsView() {
+	$(groupsThumbnail).sortable({
+		revert: 'invalid',
+		items: ".review-group"
+	});
+	$(groupsList).sortable({
+		revert: 'invalid',
+		items: "tr"
+	});
+	$(groupsView).draggable({
+		handle: '#review-group-tag',
+		axis: 'x',
+		drag: function() {
+				var difference = cardsView.offsetLeft - groupsView.offsetLeft-groupsView.offsetWidth;
+				var left = parseInt($(cardsView).css('left'));
+				if (difference < 130)
+					$(cardsView).css('left', left + 130 - difference);
+				width = groupsView.offsetLeft+groupsView.offsetWidth;
+				$(groupsContent).css('width', width);
+				$('#submit').css('left', groupsView.offsetLeft + groupsView.offsetWidth + 20);
+			},
+		containment: [groupsView.offsetLeft,100, -groupsView.offsetWidth - groupsView.offsetLeft-250,100000]
+	});
+	width = groupsView.offsetLeft+groupsView.offsetWidth;
+	$(groupsContent).css('width', width);
+	$('#submit').css('left', groupsView.offsetLeft + groupsView.offsetWidth + 20);
+}
+
+function initParams() {
+	cardsView = $('#cards-view')[0];
+	groupsView = $('#review-groups-view')[0];
+	cardsContent = $('#cards-content')[0];
+	groupsContent = $('#review-groups-content')[0];
+	cardsList = $('#cards-list')[0];
+	cardsThumbnail = $('#cards-thumbnail')[0];
+	groupsList = $('#groups-list')[0];
+	groupsThumbnail = $('#review-groups-thumbnail')[0];
+	wrapper = $('#wrapper')[0];
+}
+
+function initDragAndDrop(){
+	$('.review-group').droppable({
+		accept: ".card-name,.card,tr",
+		revert: 'invalid',
+		drop: function( event, ui ) {
+			addCardToGroup(this, ui);
+		}
+	});
+}
+
+function addCardToGroup(group, ui){
+	$(group).addClass("filled-group");
+	$(ui.helper).fadeOut();
+	$(ui.draggable).remove();
+	var tempGroup = findGroup($(group).attr('id'));
+	if ($(ui.helper).hasClass('card-name'))
+		removeCard($(ui.helper).attr('id'));
+	tempGroup.addCard($(ui.helper).attr('id'));
+	if ($(group).children('.added-cards').length == 0)
+		$(group).append("<div class='added-cards'></div>");
+	var text;
+	if ($(ui.helper).hasClass('card'))
+		text = $(ui.helper).children('label').text();
+	else
+		text = $(ui.helper).text();
+	$(group).children('.added-cards').append("<li id='"+$(ui.helper).attr('id')+"' class='label label-info card-name'>"+text+"</li>");
+	$('.added-cards').sortable();
+	$('.review-group').each(function(){
+		if ($(this).find('.card-name:visible').length == 0)
+			$(this).removeClass('filled-group');
+		});
+	}
+
+
+
+function done(){
+	if ($(cardsView).find(".card:visible").length){
+		alert("some cards are not assigned to groups");
+		return false;
+	}
+	var ids = [];
+	var gCards = [];
+	for (var i = 0; i < groups.length; i++){
+		ids.push(groups[i].id);
+		var cardIds = groups[i].cards;
+		gCards.push(cardIds);
+	}
+
+	var params=$.param({
+		id: ids,
+		cards: gCards
+	});
+
+	$.ajax({
+		url: "/cardsorts/submit/"+cardsort_id+"/reviewer/"+reviewerID,
+		method: "post",
+		data: params
+	});
+
+	alert('your cardsort has been submited successfully! Thank you for taking part.');
+}
+
+var tempClass;
+
+function initTrash() {
+	$('#review-trash').droppable({
+		accept: ".review-group",
+		over: function(event, ui) {
+			tempClass = $(ui).attr('class');
+			$(ui.helper).addClass('crumpled');
+			$(ui.helper).children().hide();
+		},
+		revert: 'invalid',
+		out: function(event, ui) {
+			$(ui.helper).addClass(tempClass);
+			$(ui.helper).removeClass('crumpled');
+			$(ui.helper).children().show();
+		},
+		drop: function( event, ui ) {
+			$(ui.helper).fadeOut();
+		}
+	});
+}
+
+function initCreateGroup(){
+	var mainGroup = $('#main-group').show();
+	mainGroup.css('margin-left', '55%');
+	$(groupsView).find('.review-add-button').click(function() {
+		$('#group-form').submit();
+	});
+}
+
+
+function initBackend(){
+	$('.card').each(function (){
+		cards.push(new Card($(this).attr('id')));
+	})
+
+	$('.review-group').each(function (){
+		groups.push(new Group($(this).attr('id')));
+	})
+}

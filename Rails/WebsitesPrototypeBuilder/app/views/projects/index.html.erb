@@ -69,8 +69,8 @@
     </div>
   </div>
 
-  <div class='popup-darkbackground'></div>
-  <div class = 'popup-createProject'> 
+  <div class='popup-darkbackground' id='popup-projectbck'></div>
+  <div class = 'popup-createProject' id='popup-project'> 
     <%= form_for :project, :url => {:controller => :projects, :action => :create}, :remote => true do |f| %>
       <div class = "pattern_form_up">
         <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>
@@ -93,6 +93,42 @@
           <%= f.text_area :description, :cols => "100", :rows => "5" , :id => "field" %> <br/>
         </p>
         <%= f.hidden_field :designer_id, :value => current_designer.id %>
+      </div>
+      <div class = "pattern_form_down">
+        <p class = "save">
+          <%= f.submit "حفظ",:class =>"btn btn-primary" %>
+        </p>
+      </div>
+    <%end%>
+  </div>
+
+</div>
+
+ <div class='popup-darkbackground' id='popup-cardsortbck'></div>
+  <div class = 'popup-createProject' id='popup-cardsort'> 
+    <%= form_for :cardsort, :url => "/cardsorts/create_cardsort", :remote => true do |f| %>
+      <div class = "pattern_form_up">
+        <%= link_to_function "", "hideCardsortForm()", :class => "icon-remove", :id => "Close" %>
+        <h5>أضف مشروع</h5>
+      </div>
+      <div class = "form_content">
+        <div id='error_project' class='error'></div>
+        <br>
+        <br>
+        <p>
+          <%= f.label :Title, "إسم ترتيب الأوراق" %> 
+          <%= f.text_field :title , :id => "field"%> <br/>  
+        </p>
+        <p>
+          <%= f.label :Open, "النوع" %>
+          <%= f.radio_button :open, true, :checked => true, :style=>"float:right; margin-left:5px;" %><label for="cardsort_open_true">مفتوح</label>
+          <%= f.radio_button :open, false, :style=>"float:right; margin-left:5px;" %><label for="cardsort_open_true">مغلق</label>
+        </p>
+        <p>
+          <%= f.label :Description, "وصف ترتيب الأوراق" %>
+          <%= f.text_area :description, :cols => "100", :rows => "5" , :id => "field" %> <br/>
+        </p>
+        <%= f.hidden_field :project_id, :id => 'cardsort-project_id' %>
       </div>
       <div class = "pattern_form_down">
         <p class = "save">

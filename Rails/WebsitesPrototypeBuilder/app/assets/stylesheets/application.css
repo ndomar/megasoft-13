@@ -97,7 +97,6 @@ body{
 	background-image:url('pattern.png');
 	background-repeat:repeat;
 	min-height: 100%;
-  height: auto !important;
   height: 100%; 
 }
 
@@ -246,7 +245,6 @@ footer{
 	padding:0px 240px 0px 240px;
 	padding-bottom: 20px;
 	background-color: #ffffff;
-	bottom: 0px;
 }
 		
 hr {

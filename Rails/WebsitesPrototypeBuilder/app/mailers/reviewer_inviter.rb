@@ -40,6 +40,10 @@ class ReviewerInviter < ActionMailer::Base
     mail(:to => email, :subject => "Review My Site")
   end
 
-
+  def cardsort_invitation(email, msg, url)
+    @msg = msg
+    @url = url
+    mail(:to => email, :subject =>"Prototyper cardsort invitation")
+  end
 
 end
