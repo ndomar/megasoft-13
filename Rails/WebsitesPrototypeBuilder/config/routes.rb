@@ -5,7 +5,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
-  get "projects/:project_id/tasks/:task_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+  get "taketask/:project_id/:task_id/:reviewer_id" =>'tasks#task_reviewer'
+  get "taketask/:project_id/:task_id" => 'tasks#task_reviewer'
   post 'steps/update'
 
   post "/projects/destroy"
