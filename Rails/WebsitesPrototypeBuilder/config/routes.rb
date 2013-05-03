@@ -1,5 +1,7 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
 
+  get "tests/test_image"
+
 	#at start up page goes to the home controller and the index action
 	root to: "home#index"
 
@@ -7,18 +9,25 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	devise_for :designers, :controllers => { :registrations => "registrations" }
 
 	get 'projects/design/:project_id' => 'projects#design'
+ 	post "/projects/destroy"
+	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+	post 'steps/update'
+
+
 
 	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
 	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
   get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
   get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
 	get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
-	post 'steps/update'
 	get "tasks/invite/:id" => "tasks#invite"
 	post "tasks/invite_user/:id" => "tasks#invite_user"
-	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
 	get "/log/:id" => 'task_results#index'
-
+  get "answer_questionnaires/create"
+  post "tasks/invite_user/:id" => "tasks#invite_user"
+  get "tasks/invite/:id" => "tasks#invite"
+  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
+  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
 	post 'cardsorts/create_cardsort'
 	get 'cardsorts/new'
@@ -39,6 +48,10 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "answer_questionnaires/create"
 
+  get "pages/designer"
+  get "projects/index"
+  post "projects/upload_media"
+
   resources :projects do
     resources :statistics
     resources :tasks do
@@ -47,9 +60,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
-	resources :tasks do
-		resources :steps
-	end
+  resources :tasks do
+    resources :task_results
+  end
+
+  resources :tasks do
+    resources :steps
+  end
 
   resources :questionnaires do
     resources :qquestions do
@@ -58,67 +75,16 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
+	resources :tasks do
+		resources :steps
+	end
+
 	resources :pages do
 		resources :comments
 		resources :questions do
 			resources :answers
 		end
 	end
-
-  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
-  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 		
-	# The priority is based upon order of creation:
-	# first created -> highest priority.
-
-	# Sample of regular route:
-	#   match 'products/:id' => 'catalog#view'
-	# Keep in mind you can assign values other than :controller and :action
-
-	# Sample of named route:
-	#   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-	# This route can be invoked with purchase_url(:id => product.id)
-
-	# Sample resource route (maps HTTP verbs to controller actions automatically):
-	#   resources :products
-
-	# Sample resource route with options:
-	#   resources :products do
-	#     member do
-	#       get 'short'
-	#       post 'toggle'
-	#     end
-	#
-	#     collection do
-	#       get 'sold'
-	#     end
-	#   end
-
-	# Sample resource route with sub-resources:
-	#   resources :products do
-	#     resources :comments, :sales
-	#     resource :seller
-	#   end
-
-	# Sample resource route with more complex sub-resources
-	#   resources :products do
-	#     resources :comments
-	#     resources :sales do
-	#       get 'recent', :on => :collection
-	#     end
-	#   end
-
-	# Sample resource route within a namespace:
-	#   namespace :admin do
-	#     # Directs /admin/products/* to Admin::ProductsController
-	#     # (app/controllers/admin/products_controller.rb)
-	#     resources :products
-	#   end
-
-	# You can have the root of your site routed with "root"
-	# just remember to delete public/index.html.
-	# This is a legacy wild controller route that's not recommended for RESTful applications.
-	# Note: This route will make all actions in every controller accessible via GET requests.
-	# match ':controller(/:action(/:id))(.:format)'
-
 end
+
