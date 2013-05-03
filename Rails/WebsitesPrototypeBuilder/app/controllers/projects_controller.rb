@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
         format.js {render "create", :status => :created }
 
         #create a new repo for the new project
-        path = "#{Rails.public_path}/projects"
+        path = "#{Rails.public_path}"
 
         if(!Dir.exists? path)
           Dir.mkdir(path)
@@ -62,11 +62,7 @@ class ProjectsController < ApplicationController
           Dir.mkdir(images_path)
         end
 
-        puts "ana hena aho"
-
         repo = Rugged::Repository.init_at(path, false)
-
-        puts "3amalt repo"
 
         index = repo.index
 
@@ -139,7 +135,7 @@ class ProjectsController < ApplicationController
 
     # save to file, and commit the changes
     # getting the repo from its folder
-    path = "#{Rails.public_path}/projects/#{@page.project_id}"
+    path = "#{Rails.public_path}/#{@page.project_id}"
     repo = Rugged::Repository.new(path)
 
     # create a new file to add in the repo, skip if file already exists
@@ -176,7 +172,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  ##
+  ## => 
   # called to delete a page in the database
   # finds the page with the given id
   # * *Args* :
@@ -190,7 +186,7 @@ class ProjectsController < ApplicationController
 
     # save to file, and commit the changes
     # getting the repo from its folder
-    path = "#{Rails.public_path}/projects/#{@page.project_id}"
+    path = "#{Rails.public_path}/#{@page.project_id}"
     repo = Rugged::Repository.new(path)
 
     # delete file
@@ -254,7 +250,7 @@ class ProjectsController < ApplicationController
   def showPage
     @page = Page.find(params[:pageId]) 
     @html = ""
-    repo = Rugged::Repository.new("#{Rails.public_path}/projects/#{@page.project_id}")
+    repo = Rugged::Repository.new("#{Rails.public_path}/#{@page.project_id}")
     if @page.html != nil and params[:commit] == "-1"
       @html =@page.html.html_safe
     else if params[:commit] != "-1"
