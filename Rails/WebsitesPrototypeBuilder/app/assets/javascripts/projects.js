@@ -39,6 +39,7 @@ $(document).ready(function(){
   {
     $(this).css("cursor","pointer");
     $(this).css("background-color","#6699FF");
+    $(this).css("color","#FFFFFF");
   }, function()
   {
     $(this).css("cursor","pointer");
@@ -55,6 +56,11 @@ $(document).ready(function(){
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
     $("#Task").attr("href","tasks/index/" + projectid);
+    $("#Questionnaire").attr("href","/questionnaires/index?project_id=" + projectid);
+    $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
+    $("#Review").attr("href","/pages?project_id=" + projectid);
+    $("#Download").attr("href","/pages/download_project?project_id=" + projectid);
+
   });
   $("#wrapper").click(function(e){
     if (e.target === this){
