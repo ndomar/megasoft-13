@@ -17,6 +17,7 @@ class Cardsort < ActiveRecord::Base
   has_and_belongs_to_many :reviewers
 
   def self.save_results(ids, cards, cardsort, reviewer)
+    return if ids == nil
     ids.each_with_index do |id, index|
       next if cards["#{index}"] == nil
   		cards["#{index}"].each do |card|

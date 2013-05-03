@@ -25,7 +25,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	resources :tasks do
 		resources :steps
 	end
-
+	
  post 'cardsorts/:cardsort_id/reviewer_create_group' => 'cardsorts#reviewer_create_group'
  post 'cardsorts/submit/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#submit'
  get 'cardsorts/review/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#review'
@@ -151,3 +151,4 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	# This is a legacy wild controller route that's not recommended for RESTful applications.
 	# Note: This route will make all actions in every controller accessible via GET requests.
 	# match ':controller(/:action(/:id))(.:format)'
+end
