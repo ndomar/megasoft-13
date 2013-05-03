@@ -95,8 +95,15 @@ function places(af,t) {
 		
 		    
 		    $('#myiframe').contents().find('.nom').hide();
+		    if(t==1)
+		    {
+		    	unfilterquestions();
+		    }
+		    else
+		    {
 		    unfiltercomments();
-		    unfilterquestions();
+			}
+		    
 		    
 		   
 		
