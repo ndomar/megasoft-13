@@ -12,8 +12,6 @@ describe RegistrationsController do
       :day_dob => 15,
       :month_dob => 10,
       :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123
     }
   end
 
