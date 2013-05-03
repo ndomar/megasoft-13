@@ -32,7 +32,7 @@
     <% reviewer_infos = getReviewerInfos(@chosentasks[0]) %>
     <% if reviewer_infos.kind_of? String%>
       <p style="color:red;"><%=reviewer_infos%></p>
-    <%else%>  
+    <%else%>
       <div id='age' style="float:left; width:300px; display:inline-block;"></div>
       <% if reviewer_infos[0].kind_of? String%>
         <p style="color:red;"><%=reviewer_infos[0]%></p>
@@ -102,14 +102,14 @@
       <h3><%= @chosenquestionnaire.title %> : اسم الاستطلاع</h3>
       <% @chosenquestionnaire.qquestions.each do |question| %>
         <% if question.answer_questionnaires.length == 0 %>
-          <div style="float:left; margin-left:20px; width:500px; height:100px;"> 
-            <h4><%= question.body %> : السؤال</h4> 
+          <div style="float:left; margin-left:20px; width:500px; height:100px;">
+            <h4><%= question.body %> : السؤال</h4>
             <p style="color:red;">لم يجب أحد عن هذا السؤال</p>
           </div>
         <% else %>
           <% if question.qtype == 1 || question.qtype == 2 %>
-            <div style="float:left; margin-left:20px; width:500px; height:200px; overflow:scroll;"> 
-              <h4><%= question.body %> : السؤال</h4>  
+            <div style="float:left; margin-left:20px; width:500px; height:200px; overflow:scroll;">
+              <h4><%= question.body %> : السؤال</h4>
               <h5>: الأجوبة</h5>
               <ol style="float:right; direction:rtl; margin-right:20px;">
                 <% question.answer_questionnaires.each do |answer| %>
@@ -119,10 +119,10 @@
             </div>
             <br>
           <% else %>
-            <div style="float:left; margin-left:20px; width:500px; height:200px;"> 
+            <div style="float:left; margin-left:20px; width:500px; height:200px;">
               <div id=<%=question.id.to_s%> style="float:right; margin-right:20px;"></div>
               <% if question.qtype == 3 %>
-                <%= render_chart(getQuestionResults(question, 3), question.id.to_s) %> 
+                <%= render_chart(getQuestionResults(question, 3), question.id.to_s) %>
               <% else %>
                 <%= render_chart(getQuestionResults(question, 4), question.id.to_s) %>
               <%end%>
@@ -132,7 +132,7 @@
         <% end %>
       <%end%>
     </div>
-  <% end %> 
+  <% end %>
 </div>
 <div style="float:right; margin-right:20px; width:900px; display:block;">
   <legend style = "text-align:right; margin-right:20px; color:white;">نتائج ترتيب الكروت</legend>
@@ -167,7 +167,7 @@
           <% groups = groupsnadcards[0] %>
           <tr>
             <th></th>
-            <% groups.each do |group| %> 
+            <% groups.each do |group| %>
               <th style="text-align:right;"><%= group.title %></th>
             <%end%>
           </tr>
@@ -231,7 +231,7 @@
             <% groups = groupsnadcards[0] %>
             <tr>
               <th></th>
-              <% groups.each do |group| %> 
+              <% groups.each do |group| %>
                 <th style="text-align:right;"><%= group.title %></th>
               <%end%>
             </tr>
