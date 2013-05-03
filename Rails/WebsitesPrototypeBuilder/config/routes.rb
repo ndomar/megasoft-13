@@ -11,10 +11,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	get 'projects/design/:project_id' => 'projects#design'
 	get 'projects/:project_id/design/:project_id' => 'projects#design'
  	post "/projects/destroy"
-	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
-	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
-  get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
-  get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
 	post 'steps/update'
 
 	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
@@ -26,7 +22,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "tasks/invite/:id" => "tasks#invite"
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
-  get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
 
  post 'cardsorts/invite_reviewer'
  get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
@@ -109,5 +104,13 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     resources :tasks do
     end
   end
+
+
+	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
+  get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
+  get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
+  get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
+
 
 end

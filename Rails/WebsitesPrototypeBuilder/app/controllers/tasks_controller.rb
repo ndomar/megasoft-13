@@ -238,13 +238,11 @@ class TasksController < ApplicationController
     @error = @task.allow_designer(@page, @designer, @project)
 
     respond_to do |format|
-      if @error == nil
+      if @error != 'start_page_not_defined'
         format.html {render "edit_steps"}
-      elsif @error == 'start_page_not_defined'
+      else
         @pages = @project.pages
         format.html {render "select_start_page"}
-      else
-        format.html {render "error_page"}
       end
     end
   end
