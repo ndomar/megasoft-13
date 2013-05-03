@@ -11,7 +11,59 @@
  *= require jquery.ui.all
  *= require_self
  */
- 
+.coms{
+	cursor:pointer;
+
+}
+.hideans{
+	cursor:pointer;
+}
+ .lilbuttonc{
+ 	display: inline-block;
+    background-image:url('\lilbutton.png');
+    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	width:53px;
+	height:32px;
+	float: left;
+	left: 237px;
+	top: 0px;
+	position: absolute;
+	margin-right: 0px;
+ 	background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
+.lilbuttonq{
+    display: inline-block;
+    background-image:url('\lill.png');
+    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	width:53px;
+	height:32px;
+	float: left;
+	left: 237px;
+	top: 0px;
+	position: absolute;
+	margin-right: 0px;
+ 	background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
+.sw{
+
+    background-image:url('\switcher.png');
+	width:180px;
+	height:53px;
+	float: left;
+	margin-right: 0px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
+
 html,body{ 
 	width:100%; 
 	min-width: 800px;
@@ -45,7 +97,6 @@ body{
 	background-image:url('pattern.png');
 	background-repeat:repeat;
 	min-height: 100%;
-  height: auto !important;
   height: 100%; 
 }
 
@@ -147,18 +198,31 @@ div#content{
 	right: 0;
 	bottom: 0;
   min-height:100%;
-	overflow-y: auto;
+	overflow-y: hidden;
 	word-wrap:break-word;
   height: 100%;
 }
 
 #side_content{
+	max-height: 100%;
+	overflow: auto;
 	position: absolute;
+	bottom: 0px;
+	top: 54px;
+	left: 0px;
+	right: 0px;
 	display: block;
+	width: 280;
 	word-wrap:break-word;
+
+	padding: 0px 20px 0px 20px;
+	height: 100%;
+	overflow-y: auto;
+
 	width: 95%;
 	margin-right: auto;
 	margin-left: auto;
+
 }
 #sidebar h4{
 	text-align: center;
@@ -179,25 +243,11 @@ div#content{
 	text-align: left;
 }
 
-.add_comment{
-	left: 20px;
-	display: table-cell;
-	height: 35px;
-	width: 35px;
-	text-align: center;
-	vertical-align: middle;
-	background-color: rgb(69, 162, 224);
-	color:white;
-}
-.add_comment:hover{
-	background-color: rgb(50, 124, 173);
-	cursor:pointer
-}
-
 footer{
 	color: #656565;
-	margin:0px 240px 0px 240px;
+	padding:0px 240px 0px 240px;
 	padding-bottom: 20px;
+	background-color: white;
 }
 		
 hr {
@@ -241,26 +291,26 @@ iframe {
 	outline: none;
 }
 
-.social_bookmarks .facebook a {
-background: transparent url('sprite-icons.png') 0 0 no-repeat;
+.social_bookmarks .google a {
+	background: transparent url('sprite-icons.png') 0 0 no-repeat;
 }
 
-.social_bookmarks .twitter a {
-background: transparent url('sprite-icons.png') -22px 0 no-repeat;
+.social_bookmarks .facebook a {
+	background: transparent url('sprite-icons.png') -22px 0 no-repeat;
 }
-.social_bookmarks .google a {
-background: transparent url('sprite-icons.png') -44px 0 no-repeat;
+.social_bookmarks .twitter a {
+	background: transparent url('sprite-icons.png') -44px 0 no-repeat;
+}
+
+.social_bookmarks .google a:hover {
+	background: transparent url('sprite-icons.png') 0 -22px no-repeat;
 }
 
 .social_bookmarks .facebook a:hover {
-background: transparent url('sprite-icons.png') 0 -22px no-repeat;
+	background: transparent url('sprite-icons.png') -22px -22px no-repeat;
 }
-
 .social_bookmarks .twitter a:hover {
-background: transparent url('sprite-icons.png') -22px -22px no-repeat;
-}
-.social_bookmarks .google a:hover {
-background: transparent url('sprite-icons.png') -44px -22px no-repeat;
+	background: transparent url('sprite-icons.png') -44px -22px no-repeat;
 }
 
 select, 
@@ -292,8 +342,8 @@ input[type="color"],
 	padding: 0px 20px 0px 20px;
 }
 
-
 #slidebutton{
+	cursor: pointer;
 	position: fixed;
 	top: 50%;
 	margin-left: -10px;
@@ -319,27 +369,46 @@ input[type="color"],
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background: rgba(69, 69, 69,0.9);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
+
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(69, 69, 69,0.4); 
 }
 
-#sidebar::-webkit-scrollbar {
-	width:  2px;
+#side_content::-webkit-scrollbar {
+	width:  4px;
 }
  
-#sidebar::-webkit-scrollbar-track {
+#side_content::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
 }
  
-#sidebar::-webkit-scrollbar-thumb {
+#side_content::-webkit-scrollbar-thumb {
   background: rgba(69, 162, 224,0.9);
   -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
-#sidebar::-webkit-scrollbar-thumb:window-inactive {
+
+#side_content::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(69, 162, 224,0.4); 
+}
+
+.modal{
+	border-radius: 2px;
+}
+ 
+.modal-footer{
+	text-align: left;
+}
+
+.modal-backdrop, .modal-backdrop.fade.in {
+	opacity: 0.4;
+	filter: alpha(opacity=40);
+}
+
+.close{
+	float: left;
 }
