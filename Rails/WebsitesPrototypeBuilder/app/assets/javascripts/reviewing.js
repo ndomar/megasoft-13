@@ -218,6 +218,15 @@ script25.text = 'var x = document.getElementById(parent.e);var y=x.offsetTop;var
     myIframe.contentWindow.document.body.appendChild(script25);
 }
 
+
+function removecomment(slected){
+	$(slected).closest('div .comments').slideUp("slow");
+}
+
+function removequestion(slected){
+	$(slected).closest('div .thequestion').slideUp("slow");
+}
+
 //sliding down the form to insert an answer
 $(document).ready(function sliding_form(){
 
@@ -289,6 +298,7 @@ window.frames[0].OnMouseMove(posX,posY);
 }
 }
 
+
 function test_site(url){
 var win=window.open(url, '_blank');
   win.focus();
@@ -299,33 +309,45 @@ function resizeIframe(newHeight){
 }
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {
-//Load the html from the database through the hidden div with id "html_content"
-var designed_html= $('#html_content').text();
-var doc = document.getElementById('myiframe').contentWindow.document;
-doc.open();
-// Write the fetched html to the iframe with id "myiframe"
-doc.write(designed_html);
-doc.close();
+	//Load the html from the database through the hidden div with id "html_content"
+	var designed_html= $('#html_content').text();
+	var doc = document.getElementById('myiframe').contentWindow.document;
+	doc.open();
+	// Write the fetched html to the iframe with id "myiframe"
+	doc.write(designed_html);
+	doc.close();
 
-//selecting the iframe and appeding the script for selecting thr item behind the circle and draw the border around the selected item.
-var myIframe = document.getElementById("myiframe");
-var script = myIframe.contentWindow.document.createElement("script");
-script.type = "text/javascript";
-script.text = 'var selElem = null;var origBorder = "";parent.resizeIframe(document.body.scrollHeight);function removeoutline(){selElem.style.outline="0px";};window.onload = function() {var anchors =document.getElementsByTagName("a");for (var i = 0; i < anchors.length; i++) {anchors[i].onclick = function() {return(false);};}};function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode; }if (selElem) {if (selElem == overElem) {return;}selElem.style.outline = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem; origBorder = overElem.style.outline;overElem.style.outline = "1px dashed gray";}parent.getSelectedItem(overElem.id,overElem);}';
-myIframe.contentWindow.document.body.appendChild(script);
-// Make the selecting circle resizable and draggable
-$("#drag_resize").resizable({
-maxHeight: 350,
-maxWidth: 350,
-minHeight: 60,
-minWidth: 100,
-animate: true,
-iframe: true,
-modal : true
-}).draggable({
-iframe: true,
-modal : true,
-containment: "#content",
-scroll: false
-});
+	//selecting the iframe and appeding the script for selecting thr item behind the circle and draw the border around the selected item.
+	var myIframe = document.getElementById("myiframe");
+	var script = myIframe.contentWindow.document.createElement("script");
+	script.type = "text/javascript";
+	script.text  = 'var selElem = null;var origBorder = "";parent.resizeIframe(document.body.scrollHeight);function removeoutline(){selElem.style.outline="0px";};window.onload = function() {var anchors =document.getElementsByTagName("a");for (var i = 0; i < anchors.length; i++) {anchors[i].onclick = function() {return(false);};}};function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.outline = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.outline;overElem.style.outline = "1px dashed gray";}parent.getSelectedItem(overElem.id,overElem);}';
+	myIframe.contentWindow.document.body.appendChild(script);
+	// Make the selecting circle resizable and draggable
+	$("#drag_resize").resizable({
+			maxHeight: 350,
+			maxWidth: 350,
+			minHeight: 60,
+			minWidth: 100,
+			animate: true,
+			iframe: true,
+			modal : true
+		}).draggable({
+			iframe: true,
+			modal : true,
+			containment: "#content",
+			scroll: false
+		});
+
+		var pressed=false;
+  $(".sw").click(function(){
+		if(pressed){
+			$('.sw').css({"background-image":"url('/assets/switcher.png')"});
+			pressed=false;
+		}else{
+			$('.sw').css({"background-image":"url('/assets/tab2.png')"});
+			pressed=true;
+		}
+	});
+
 });
