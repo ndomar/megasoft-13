@@ -1,5 +1,8 @@
-# encoding: utf-8
+ # encoding: utf-8
 class TasksController < ApplicationController
+
+before_filter :authenticate_designer!
+before_filter :checkDesigner
 
 ## 
 #finds the current task, it's page, creates a new instance of step_answer and task_result
@@ -13,22 +16,34 @@ class TasksController < ApplicationController
 # - the current task, current step, step_answer for the current_task and task_result for the current task
 #
   def task_reviewer
-    if Project.all.last.id <= params[:project_id].to_f
-
+    if Project.all.last.id.to_f >= params[:project_id].to_f
       @project=Project.find(params[:project_id])
       @reviewer= Reviewer.find(params[:reviewer_id])
-      @task= @project.tasks.find(params[:task_id])
-      @page= Page.find(1)
-      @step=@task.steps.find(params[:step_id])
-      @step_answer=@step.step_answers.new
-      @step_answer.save
-      @task_result=@task.task_results.new
-      @task_result.save
-      session[:task_result_id]= @task_result.id 
+
+      if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f
+        @task= @project.tasks.find(params[:task_id])
+        @page= Page.find(1)
+        #if @task.steps.nil? == 'false'
+        @step=@task.steps.first
+        @step_answer=@step.step_answers.new
+        @step_answer.save
+        #end
+        @task_result=@task.task_results.new
+        @task_result.reviewer_id=@reviewer.id
+        @task_result.save
+        session[:task_result_id]= @task_result.id
+      else
+        respond_to do |format|
+          format.html { render :template => "tasks/task_reviewer_error" }
+        end
+      end
     else
-      format.html { render :template => "tasks/task_reviewer_error" }
+      respond_to do |format|
+        format.html { render :template => "tasks/task_reviewer_error" }
+      end
     end
   end
+  
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
@@ -53,16 +68,8 @@ class TasksController < ApplicationController
   #   -renders form to create new task
   #
   def new
-    @pages = Project.find(params[:project_id]).pages
     @task = Task.new
-
-    @pageslist = []
-
-    @pages.each do |p|
-      a = @pageslist.length
-      @pageslist[a] = [p.page_name, p.id]
-    end
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
@@ -77,7 +84,7 @@ class TasksController < ApplicationController
   #   -the details of this task and renders itas an html
   #
   def show
-    @task = Task.find(params[:id])
+    @task = Project.find(params[:project_id]).tasks.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -227,5 +234,36 @@ class TasksController < ApplicationController
       format.html {render :nothing => true}
       format.js {render "step_list"}
     end
+  end
+
+  ##
+  # Checks if the project belongs to the designer
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project
+  #   - +current_designer+ ->: The designer currently logged in
+  # * *Returns*  :
+  #   -True if project belongs to designer and false otherwise
+  #
+  def checkDesigner()
+    designer = Designer.find(current_designer.id)
+    if(designer.id != Project.find(params[:project_id]).designer_id)
+      render 'unauthorized'
+      return true
+    end
+    return false
+  end
+  
+  ##
+  # Gets a certain task result from the database
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the current project.
+  #   - +task_id+ ->: The id of the current task.
+  #   - +result_id+ ->: The id of the task result to be sent to 
+  # * *Returns*  :
+  #   -Renders an html view to view the log of the task reult
+  #
+
+  def log
+    @task_result = Project.find_by_id(params[:project_id]).tasks.find(params[:task_id]).task_results.find_by_id(params[:result_id])
   end
 end

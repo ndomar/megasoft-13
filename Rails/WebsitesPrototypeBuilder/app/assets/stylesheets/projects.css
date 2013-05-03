@@ -17,12 +17,15 @@
   background-color: rgb(72, 72, 72);
   opacity: 0.7;
   display: none;
+  z-index: 2000;
 }
 
 .thumbnails {
   margin-left: 25px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
   width: 960px;
   padding-right: 20px;
 }
@@ -30,13 +33,14 @@
 .popup-createProject{
   margin: auto;
   width: 400px;
-  height: 520px;
-  margin-top: 70px;
-  position: absolute;
-  top: -10px;
-  left: 455px;
+  height: 460px;
+  margin-top: 60px;
+  position: fixed;
+  top: 50px;
+  left: 440px;
   color:black;
   background-color:white;
+  z-index: 3000;
   display: none;
 }
 
@@ -49,7 +53,6 @@
   display: none;
 }
 
-
 #Close{
   top:0px;
   float: left;
@@ -57,8 +60,8 @@
 }
 
 .save{
-  right:300px;
-  top: 480px;
+  right:320px;
+  top: 420px;
   background-color: blue;
   position: absolute;
 }
@@ -83,12 +86,12 @@
 }
 
 .project-div:hover{
-    border-style: solid;
+  border-style: solid;
   border-width: 1px;
 }
-
 #wrapper{
-  padding: 0px;
+  padding: 0;
+  min-height: 674px;
 }
 
 #projects{
@@ -111,11 +114,9 @@
 #sidebar-list{
   height: 60px;
 }
-
 #sidebar{
   width: 0px;
 }
-
 #slidebutton{
   visibility: hidden;
 }
@@ -126,11 +127,6 @@
   text-align: center;
   vertical-align: middle;
   display: inline-block;
-
-}
-
-.thumbnails {
-  margin-top: auto;
 }
 
 .thumbnails > li {
@@ -152,9 +148,11 @@
   margin-bottom: 10px;
 }
 
-.x-button a{
+.x-button {
   border:none;
   background-color: #fdfdfd;
+  width: 15px;
+  display: none;
 }
 
 .x-button a:hover{
@@ -177,14 +175,26 @@
   padding-left:20px;
   padding-right:20px;
   padding-bottom: 60px
-
 }
 .form_content{
   left: 20px;
   padding-left: 20px;
   padding-right: 20px;
  } 
-.field {
+
+#field{
+  width: 250px;
+  resize:none;
+  direction: rtl;
+}
+select {
+  width: 260px;
+  border: 1px solid #cccccc;
+  background-color: white;
   direction: rtl;
 }
 
+#popup-cardsort{
+  height: 500px;
+  margin-top: 20px;
+}

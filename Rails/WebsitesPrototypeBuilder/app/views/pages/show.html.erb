@@ -1,7 +1,11 @@
+
 <h2> Title </h2>
 <div><%= @page.page_name%></div>
 <h4> Html </h4>
 <div><%= @page.html%></div>
 <div>Project Id</div>
 <div><%= @page.project_id%></div>
+
+
+<iframe id="preview_mode" src=<%="../#{@page.project_id}/#{@page.page_name}.html"%> width="100%" height="100%"></div>
 

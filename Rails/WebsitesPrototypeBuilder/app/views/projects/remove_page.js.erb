@@ -1,63 +1,18 @@
-<% if (@page.valid?) %>
-	var changedItem = $('#<%= @page.id %>').parent().parent().parent();
-	var changedThumbnail = $('#<%= @page.id %>').parent().parent();
-	var span1 = changedThumbnail.children().first().next();
-	var span2 = changedThumbnail.children().first().next().next();
-	var span3 = changedThumbnail.children().first().next().next().next();
-	var span4 = changedThumbnail.children().first().next().next().next().next();
-	var span5 = changedThumbnail.children().first().next().next().next().next().next();
-	//changing the order in the item that contains the destined page
-	if(span1.children().first().next().attr('id')==<%= @page.id %>){
-		//the first span is the destination
-		span1.remove();
-	}else{
-		if(span2.children().first().next().attr('id')==<%= @page.id %>){
-			//the second span is the destination 
-			span2.remove();
-		}else{
-			if(span3.children().first().next().attr('id')==<%= @page.id %>){
-				//the third span is the destination
-				span3.remove();
-			}else{
-				//the forth span is the destination
-				span4.remove();
-			}
-		}
-	}
-	changedItem.children().append('<div class="span1"></div>');
-	if( $('#carousel-inner').children().length>1 && changedItem.children().first().next().next().children() >0){
-		$("#myCarousel").carousel('prev');
-	}
-	//now the item that has a deleted page has an empty span at its end and that is for sure
-	var totalItems = $('#carousel-inner').children().length;
-	var item = $('#first-item');
-	//now I am going to loop through the items to reorder the pages inside them and fill the gap caused by deletion
-	while(totalItems>1)	{
-		//entering the if means that the last span in the item is a gap and needs to be filled
-		if(item.children().children().last().prev().children().length==0)	{
-			// swaping is required
-			// spanToRemove is item.children().children().last().prev();
-			// spanToTake is item.next().children().children().first().next();
-			// now I am going to replace the gap with the first span in the next item
-			$(item.children().children().last().prev()).replaceWith(item.next().children().children().first().next());
-			// now I am going to replace the added page with the add button to have the add 
-			// button in the last.prev place and the page in the last.prev.prev
-			$(item.children().children().last().prev().prev()).replaceWith(item.children().children().last().prev());
-			$(item.children().children().last().remove());
-			item.children().append('<li class="span1" id="adding"><img style="margin-top: 40px;" onclick="addPage(\'<%= @page.project_id %>\')" id="addImage"  width="50"  src="/assets/addPage3.jpg"></li>');
-			item.children().append('<li class="span1"></li>');
-			item = item.next();
-			item.children().append('<div class="span1"></div>');
-			totalItems--;
-		}else{
-			item = item.next();
-			totalItems--;
-		}
-	}
-	if(item.children().children().first().next().next().children().length==0 && $('#carousel-inner').children().length>1){
-		item.remove();
-	}	
-	// this means that the last item contains only the add button 
-	// and before removing it I make sure that there are other items
-<% else %>
+$('#title-text').text("");
+$('#alt-text').text("0");
+$('#myCarousel').children().first().empty();
+<% @pages.each do |page| %>
+	<% if page.file_dir_exists? ("app/assets/images/project_#{page.project_id}/page_#{page.page_name}.png") %>
+  	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/project_<%= page.project_id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px; border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');
+  <% else %>
+  	$('#myCarousel').children().first().append('<img id = \'<%= page.id %>\' class="cloudcarousel" src="/assets/webPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px;border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show(\'<%= page.id %>\',-1)" alt="<%= page.id %>"></img>');	 
+  <% end %>
 <% end %>
+$("#myCarousel").CloudCarousel({			
+	xPos: 350,
+	yPos: 32,
+	buttonLeft: $("#left-but"),
+	buttonRight: $("#right-but"),
+	altBox: $("#alt-text"),
+	titleBox: $("#title-text")
+});

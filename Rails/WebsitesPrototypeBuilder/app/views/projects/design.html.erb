@@ -3,8 +3,8 @@
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
 <%= stylesheet_link_tag "explorer"%>
-<%= javascript_include_tag "explorer.js"%>  
-
+<%= javascript_include_tag "explorer"%>  
+<%= javascript_include_tag "cloud-carousel.1.0.5"%>  
 
 <!-- <html dir="rtl"> -->
 <body>
@@ -191,123 +191,45 @@
   	initDragAndDrop();
   	// loadToDesign('<%= @originalPageHTML %>','<%= @originalPageID %>');
   </script>   
+
+ 
+	</div>
+	
 </body>
 
-<div>
-
-</div>
-
-<!-- this is the carousel implementation, It loops through the project's pages and displays them in a series of thumbnails each with an x icon over it to be used for deletion. A Carousel has to consist of at least an active 
-item which has to be the first item in the carousel, it can also contain as many items as required. After filling 
-the active item, the carousel can be filled by as many items as required.Also all the actions to be done on them 
-are stated. -->
-<div class="navbar navbar-fixed-bottom navbar-inverse span12" style="width:100%; text-align:center" >
-  <div class="span3"></div>
-  <div height="100px" class="span7" style="background-color:#FFFFFF;opacity:0.4;">
-    <img style"margin-bottom: 0px;" onclick="store()" id="saveImage" width="30" height="30" src="/assets/save.jpg">
-    <img style"margin-bottom: 0px;" onclick="display()" id="carouselImage" width="30" height="30" src="/assets/upArrow.jpg">
-    <div class="bottom carousel slide" id="myCarousel" style="margin-bottom: -20px;">
-      <div id="carousel-inner" class="carousel-inner">
-        <% if @pages.size < 5 %>  <!-- the case when we have max of 4 pages -->
-          <div id="first-item" class="item active" style="background-color:#AAAAAA">
-            <ul class="thumbnails" style="background-color:#AAAAAA">
-              <li class="span1"></li>
-              <% @pages.each_with_index do |page, index| %>
-                <li class="span1">
-                  <a class="x-button" onclick="deletePage('<%= page.id %>')" href='#'><div>x</div></a>
-                  <div id="<%= page.id %>" class="thumbnail" style="border:none" ondblclick="show('<%= page.id %>', '-1')" width="50px">
-                  	<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
-                    	<img src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" width="" alt="">
-                    <% else %>
-                    	<img src="/assets/emptyPage.jpg" alt="">
-                    <% end %>
-                  </div>
-                  <p><%= page.page_name %></p>
-                </li>
-              <% end %>              
-              <li class="span1" id="adding">
-              	<img style="margin-top: 40px;" onclick="addPage('<%= @id %>')" id="addImage"  width="50" src="/assets/addPage3.jpg">
-              </li>
-              <% (1..4-@pages.size).each do |i| %>
-                <li class="span1"></li>  
-              <% end %>
-              <li class="span1"></li>
-            </ul>
-          </div>
-        <% else %>  <!-- the case when we have more than 4 pages -->
-          <div id="first-item" class="item active" style="background-color:#AAAAAA">
-            <ul class="thumbnails" style="background-color:#AAAAAA">
-              <li class="span1"></li>
-              <% (0..3).each do |i| %>
-                <li class="span1">
-                  <a class="x-button" onclick="deletePage('<%= @pages.fetch(i,nil).id %>')" href='#'><div>x</div></a>
-                  <div id="<%= @pages.fetch(i,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i,nil).id %>', '-1')">      
-                    <% if @pages.fetch(i,nil).file_dir_exists? ("app/assets/images/project_#{@id}/page_#{@pages.fetch(i,nil).page_name}.png") %>
-                    	<img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i,nil).page_name %>.png">
-                    <% else %>
-                    	<img src="/assets/emptyPage.jpg" alt="">
-                    <% end %>
-                  </div>
-                  <p><%= @pages.fetch(i,nil).page_name %></p>
-                </li>
-              <% end %>
-              <li class="span1" id="adding">
-              	<img style="margin-top: 40px;" onclick="addPage('<%= @id %>')" id="addImage"  width="50" src="/assets/addPage3.jpg">
-              </li>
-              <li class="span1"></li>
-            </ul>
-          </div> 
-          <% crousel_items_to_create = @pages.size/4%>
-          <% if @pages.size%4==0%>
-            <%crousel_items_to_create = crousel_items_to_create - 1%>
-          <%end%>
-          <% (1..crousel_items_to_create).each do |currentLoop| %>
-          	<% isFirstEmpty = true%>
-	            <div class="item" style="background-color=#AAAAAA;">
-	              <ul class="thumbnails" style="background-color:#AAAAAA">      
-	                <li class="span1"></li>     
-                  <% (0..3).each do |i| %> 
-                    <% if @pages.fetch(i + currentLoop*4,nil) != nil%> 
-              				<li class="span1">
-                      <a class="x-button" onclick="deletePage('<%= @pages.fetch(i + currentLoop*4,nil).id %>')" href='#'><div>x</div></a>
-                      <div id="<%= @pages.fetch(i + currentLoop*4,nil).id %>" class="thumbnail" style="border:none" ondblclick="show('<%= @pages.fetch(i + currentLoop*4,nil).id %>', '-1')">
-                        <% if @pages.fetch(i + currentLoop*4,nil).file_dir_exists? ("app/assets/images/project_#{@id}/page_#{@pages.fetch(i + currentLoop*4,nil).page_name}.png") %>
-		                    	<img src="/assets/project_<%= @id %>/page_<%= @pages.fetch(i + currentLoop*4,nil).page_name %>.png">
-		                    <% else %>
-		                    	<img src="/assets/emptyPage.jpg" alt="">
-		                    <% end %>
-                      </div>
-                      <p><%= @pages.fetch(i + currentLoop*4,nil).page_name %></p>
-                      </li>
-                    <% else %>
-                    	<% if isFirstEmpty == true%>
-                    		<li class="span1" id="adding">
-					              	<img style="margin-top: 40px;" onclick="addPage('<%= @id %>')" id="addImage"  width="50" src="/assets/addPage3.jpg">
-					              </li>
-					              <% isFirstEmpty = false %>
-                    	<% else %>
-                    			<li class="span1"></li>
-                    	<% end %>
-                    <% end %>           
-                  <% end %>       
-                	<% if isFirstEmpty == true%>
-                		<li class="span1" id="adding">
-			              	<img style="margin-top: 40px;" onclick="addPage('<%= @id %>')" id="addImage" src="/assets/addPage3.jpg">
-			              </li>
-			              <li class="span1"></li>
-			              <% isFirstEmpty = false %>
-                	<% else %>
-              			<li class="span1"></li>
-              			<li class="span1"></li>
-                	<% end %>
-	              </ul>
-	            </div>
-          <% end %>
-        <% end %>   
-      </div>
-      <!-- the carousel sliding arrows -->
-      <a data-slide="prev" href="#myCarousel" class="left carousel-control" style="background:none; border:none">‹</a>
-      <a data-slide="next" href="#myCarousel" class="right carousel-control" style="background:none; border:none">›</a>
-    </div>
-  </div>
+<script>
+	$(document).ready(function(){					   
+		// This initialises carousels on the container elements specified, in this case, carousel1.
+		$("#myCarousel").CloudCarousel({			
+			xPos: 350,
+			yPos: 32,
+			buttonLeft: $("#left-but"),
+			buttonRight: $("#right-but"),
+			altBox: $("#alt-text"),
+			titleBox: $("#title-text")
+		});
+	});
+</script>
+<div id="navbar" class="navbar span12" style="width:100%;height:225px; text-align:center; " >
+	<div id="myCarousel" style="position: absolute; width:700px;height:180px;margin-left:20%; display: block;background-color:grey"> 
+		<% @pages.each do |page| %>
+			<% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
+	    	<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px;border-style:solid;" ondblclick="show('<%= page.id %>')" alt="<%= page.id %>">
+		  <% else %>
+	    	<img id = '<%= page.id %>' class="cloudcarousel" src="/assets/webPage.jpg" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 100px; height: 100px; border-style:solid; border-width:2px; border-color:#CCCCCC;" ondblclick="show('<%= page.id %>','-1')" alt="<%= page.id %>">
+		  <% end %>
+		<% end %>
+	</div>
+	<div style="background-color:grey;position: absolute; width:700px;margin-left:20%;align:center">
+		<br>
+		<p id="title-text"></p>
+		<p id="alt-text">0</p>
+	</div>
+	<div style="background-color:grey;position: absolute; width:700px;margin-left:20%;align:center;top-margin:-10">
+		<img  id="left-but"  type="button" style="background-color:black"  src="/assets/Left_arrow.png"/>
+		<a onclick="addPage(<%= @id %>);return false;"><img src="/assets/add.png"></a>
+		<a onclick="store();return false;"><img src="/assets/save.png"></a>
+		<a onclick="deletePage();return false;"><img src="/assets/delete.png"></a>
+		<img  id="right-but" type="button" style="background-color:black;-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);"  src="/assets/Left_arrow.png"/>
+	</div>
 </div>

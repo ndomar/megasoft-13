@@ -1,0 +1,5 @@
+var url =document.URL;
+if(url.indexOf('new') !== -1)
+	window.location.replace('index?project_id='+"<%= @project.id %>");
+else
+	window.location.replace('../index?project_id='+"<%= @project.id %>");
