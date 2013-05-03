@@ -94,7 +94,6 @@ describe TasksController do
       @project.save
       get :edit_steps, project_id: @project, id: @task
       response.should_not render_template("edit_steps")
-      response.should render_template("error_page")
     end
 
   end
