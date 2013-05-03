@@ -55,17 +55,6 @@ $(function(){
   });
 });
 
-/*$(function(){
-  $("#embedded").find('input').click(function(event){
-    var cursor = $('#cursorSwitch');
-    if(cursor.hasClass("cursorPressed")){
-      var id = event.target.id;
-      select(id);
-    }
-  });
-});
-*/
-
 function stepHighlight(id){
   var cursor = $('#cursorSwitch');
   if(!cursor.hasClass("cursorPressed")){
@@ -95,12 +84,8 @@ function select(id){
 }
 
 function save(task_id){
-  //alert($("#preview_mode").contentWindow.body.data("id"));
-  var iframe_body = window.preview.document.getElementsByTagName('body')[0];
-  //alert(document.getElementById("preview_mode").contentWindow.document.body.dataset.id);
   var params = $.param({
     id: task_id,
-    //page_id:  $("#preview_mode").body.data('id'),
     page_id: document.getElementById("preview_mode").contentWindow.document.body.dataset.id,
     component: $("#component_id").val(),
     "event" : $("input:radio[name=events_list]:checked").val(),
@@ -112,7 +97,6 @@ function save(task_id){
 }
 
 function highlight(id){
-  //var element= document.getElementById(id);
   var selected = $('#'+id);
   if(selected != null && !selected.hasClass("highlighting")){
     selected.toggleClass("highlighting");
@@ -125,8 +109,6 @@ function dehighlight(id){
   if(selected != null && selected.hasClass("highlighting")){
     selected.toggleClass("highlighting");
   }
-  //element.style.boxShadow= 'none';
-  //element.style.border=1;
  } 
 
 
@@ -160,7 +142,6 @@ for(var i=0;i<all_anchors.length;i++){
 
 
 function updateH() {
-  //var frameHtml = window.frames['preview_mode'].document.documentElement.innerHTML;
   var frameHtml = document.getElementById("preview_mode").contentDocument.documentElement.innerHTML;
   document.getElementById('embedded').innerHTML=frameHtml;
 }
@@ -173,7 +154,6 @@ function disableLinks(){
 }
 
 function enableImages(){
-  //alert(projectid);
   $("#embedded img").each(function(){
     $(this).attr('src',"/"+projectid+"/images/myimage.jpg"); 
   });
