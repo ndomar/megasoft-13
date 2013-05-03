@@ -1,11 +1,11 @@
 //these functions are used in the package explorer
 
-function show(id,commit){
+function show(id, commit){
 	var designPage = document.getElementById('designpage');
 	designPage.setAttribute("data-pageid", id);
 	var params = $.param({
 		pageId: id,
-		"commit": commit
+		commit: commit
 	});
 	$.ajax("/projects/showPage?" + params);
 	$("html, body").animate({ scrollTop: 0 }, 600);

@@ -7,6 +7,6 @@
 #
 class Choice < ActiveRecord::Base
   belongs_to :qquestion
-  attr_accessible :body, :qquestion_id
+  attr_accessible :body
 	validates_presence_of :body
 end

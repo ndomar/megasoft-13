@@ -29,4 +29,9 @@ class Page < ActiveRecord::Base
     `convert app/assets/images/project_#{project_id}/page_#{page_name}.jpg -resize 200x300 app/assets/images/project_#{project_id}/page_#{page_name}.jpg`
   end
   handle_asynchronously :take_screenshot
+
+  def file_dir_exists?(path_to_file)
+    File.exist?(path_to_file)
+  end
+
 end

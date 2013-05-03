@@ -21,6 +21,7 @@ $(document).ready(function(){
   {
     showpopup();
   });
+
  $('.popup-darkbackground').on('click', function ()
   {
     $(".popup-darkbackground").fadeOut(500);
@@ -35,6 +36,7 @@ $(document).ready(function(){
     $(this).css("cursor","pointer");
     $(this).children('.x-button').fadeOut();
   });
+
   $('.options').hover(function()
   {
     $(this).css("cursor","pointer");
@@ -45,6 +47,7 @@ $(document).ready(function(){
     $(this).css("cursor","pointer");
     $(this).css("background-color","#1b1b1b");
   });
+
   state=false;
   $('.project-div').on('click', function ()
   {
