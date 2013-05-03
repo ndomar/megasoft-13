@@ -1,20 +1,20 @@
  # encoding: utf-8
 class TasksController < ApplicationController
 
-before_filter :authenticate_designer!
-before_filter :checkDesigner
+  before_filter :authenticate_designer!, :except => :task_reviewer
+  #before_filter :checkDesigner, :except => :task_reviewer
 
-## 
-#finds the current task, it's page, creates a new instance of step_answer and task_result
-# * *Args*    :
-#   -+@task+ -> the current task
-#   -+@page+ -> the current task's page
-#   -+@step+ -> the first step of the current task
-#   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
-#   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
-# * *Returns*    :
-# - the current task, current step, step_answer for the current_task and task_result for the current task
-#
+  ## 
+  #finds the current task, it's page, creates a new instance of step_answer and task_result
+  # * *Args*    :
+  #   -+@task+ -> the current task
+  #   -+@page+ -> the current task's page
+  #   -+@step+ -> the first step of the current task
+  #   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
+  #   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
+  # * *Returns*    :
+  # - the current task, current step, step_answer for the current_task and task_result for the current task
+  #
   def task_reviewer
     if Project.all.last.id.to_f >= params[:project_id].to_f
       @project=Project.find(params[:project_id])
@@ -68,6 +68,8 @@ before_filter :checkDesigner
   #   -renders form to create new task
   #
   def new
+    @project = Project.find(params[:project_id])
+    @pages = @project.pages
     @task = Task.new
     
     respond_to do |format|
@@ -115,7 +117,9 @@ before_filter :checkDesigner
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
+        @project = Project.find(params[:project_id])
+        @pages = @project.pages
+        format.html { redirect_to select_start_page_path(@project, @task), notice: 'تم عمل المهمة بنجاح' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -176,13 +180,53 @@ before_filter :checkDesigner
     puts(params[:task_id] , params[:reviewer_id])
   end
 
+  
+  ##
+  # Disp
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
+  #   - +id+ ->: The id of the task for which the steps will be edited.
+  # * *Returns*  :
+  #   -The page this task is associated with, and the steps added to the task.
+  #
+
+  def select_start_page
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+    @pages = @project.pages
+  end
 
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
   # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
+  #   - +id+ ->: The id of the task.
+  #   - +page_id+ ->: The id of the page which should be the start page of the task.
+  # * *Returns*  :
+  #   -Saves the start page, and renders the edit steps view.
+  #
+
+  def save_start_page
+    @task = Task.find(params[:id])
+    @task.page_id = params[:page_id]
+    @created = @task.save
+    @project = Project.find(params[:project_id])
+    @steps = @task.steps
+    @page = Page.find(@task.page_id)
+    #render :action => :edit_steps
+    respond_to do |format|
+      format.js{}
+    end
+  end
+
+
+  ##
+  # Displays a task and its current steps to allow the designer to edit the steps.
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
   #   - +id+ ->: The id of the task for which the steps will be edited.
   # * *Returns*  :
-  #   -The page this task is associated with, and the steps added to the task.
+  #   -The view to edit the steps for this task, or an error page if the designer shouldn't be allowed to edit the steps.
   #
 
   def edit_steps
@@ -190,6 +234,19 @@ before_filter :checkDesigner
     @task = Task.find(params[:id])
     @steps = @task.steps
     @page = @task.page
+    @designer = current_designer
+    @error = @task.allow_designer(@page, @designer, @project)
+
+    respond_to do |format|
+      if @error == 'start_page_not_defined'
+        @pages = @project.pages
+        format.html {render "select_start_page"}
+      elsif @error == 'task_already_taken'
+        format.html {render "error_page"}
+      else
+        format.html {render "edit_steps"}
+      end
+    end
   end
 
   ##
@@ -204,7 +261,8 @@ before_filter :checkDesigner
   #
 
   def new_step
-    @step = Step.new(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
+    @step = Step.new(:task_id => params[:id], :page_id => params[:page_id],
+     :event => params[:event], :component => params[:component], :description => params[:description])
     @created = @step.save
     @task = Task.find_by_id(params[:id])
     @steps = @task.steps

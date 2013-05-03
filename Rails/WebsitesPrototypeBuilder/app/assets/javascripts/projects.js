@@ -50,7 +50,7 @@ $(document).ready(function(){
   {
     $('#slidebutton').css({"visibility":"visible"});
     var side_width=$('#sidebar').width();
-    if(side_width<0)
+    if(side_width<=0)
       $('#slidebutton').click();
     var projectid = $(this).attr("ProjectId");
     var projectname = $(this).attr("ProjectName");
@@ -69,7 +69,7 @@ $(document).ready(function(){
         $('#slidebutton').click();
       }
   });
-  $(".thumbnails").click(function(e){
+  $("#content").click(function(e){
     if (e.target === this){
       var side_width= $('#sidebar').width();
       if(side_width > 0)

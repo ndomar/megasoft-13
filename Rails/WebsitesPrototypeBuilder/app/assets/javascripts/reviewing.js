@@ -63,7 +63,7 @@ script30.text = 'var x=document.getElementById(parent.a[parent.g]);parent.topoff
 script30.type = "text/javascript";
 myIframe.contentWindow.document.body.appendChild(script30);
 //$(p[text!=ll]).remove();
-};  
+};	
 };
 //the following two if conditions are only used to insert the last box , which couldn't be done inside the loop and hade to be outside it
 if(placest===0)
@@ -76,7 +76,7 @@ myIframe.contentWindow.document.body.appendChild(script30);
 };
 if(placest===1)
 {
-finishans=a;  
+finishans=a;	
 script30 = myIframe.contentWindow.document.createElement("script");
 script30.text = 'var x=document.getElementById(parent.a[0]);parent.topoffset=x.offsetTop;parent.leftoffset=x.offsetLeft;if(parent.topoffset > 0) { var div = document.getElementById("wrap");div.innerHTML=div.innerHTML+"<div class=nom id=lilbox onClick=parent.finishing('+parent.a[0]+',1); style=display:block;float:left;width:20px;height:20px;color:white;cursor:pointer;left:'+(parent.leftoffset+20)+'px;top:'+parent.topoffset+'px;text-align:center;background-color:rgba(0,0,255,0.5);aria-disabled=false;position:absolute;z-index:1000;>'+parent.b[0]+'</div>";}';
 script30.type = "text/javascript";
@@ -92,14 +92,12 @@ myIframe.contentWindow.document.body.appendChild(script30);
 }
 else
 {
-
-
 $('#myiframe').contents().find('.nom').hide();
-unfiltercomments();
-unfilterquestions();
-
-
-
+if(t==1){
+unfilterquestions();}
+    else{
+     unfiltercomments();
+    }
 
 
 }
@@ -236,7 +234,7 @@ $(document).ready(function sliding_form(){
 //Using jquery-ui to drag and resize the circle
 function draw_circle() {
 var top_window = $(window).scrollTop();
-$('#drag_resize').css({"display":"block" ,'top' : top_window+'px', 'left' : 0+'px'}); 
+$('#drag_resize').css({"display":"block" ,'top' : top_window+'px', 'left' : 0+'px'});	
 $('#drag_resize').draggable("enable");
 $('#choose_area').css({"display":"table-cell"});
 $('#delete_circle').css({"display":"table-cell"});
@@ -262,7 +260,7 @@ window.frames[0].removeoutline();
 }
 
 // delete The selecting circle and the notepaper
-function delete_all(clear) {  
+function delete_all(clear) {	
 $('.note').css({"display":"none"});
 delete_circle();
 if(clear){

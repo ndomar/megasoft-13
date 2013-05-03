@@ -3,6 +3,7 @@ FactoryGirl.define do
     component "testComponent"
     event "onclick"
     description "testDescription"
-    task_id "1"
+    task_id 1
+    page_id 1
   end
 end

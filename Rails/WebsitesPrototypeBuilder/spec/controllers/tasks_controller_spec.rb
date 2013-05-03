@@ -1,6 +1,13 @@
 require "spec_helper"
 
 describe TasksController do 
+  before(:each) do
+    @designer = FactoryGirl.create(:designer)
+    @project = FactoryGirl.create(:project)
+    @page = FactoryGirl.create(:page)
+    @task = FactoryGirl.create(:task)
+    sign_in(@designer)
+  end
 
   it "should find task & step. create new step_answer & task_result" do
     p=Project.new
@@ -36,36 +43,60 @@ describe TasksController do
 
  end
 
-  
-  it "Refuses to add new step with no parameters" do
-    task = FactoryGirl.create(:task)
-    get :new_step, id: task.id
-    assigns(:created).should be_false
+  describe "Steps Related tasks" do
+    it "Refuses to add new step with no parameters" do
+      get :new_step, project_id: @project, id: @task
+      assigns(:created).should be_false
+    end
+
+    it "Adds new step with correct paramters" do
+      xhr :get, :new_step, project_id: @project, id: @task, event: "onclick", component: "test1", description: "test2", page_id: @page
+      assigns(:created).should be_true
+      assigns(:step).task_id.should == @task.id
+      assigns(:step).page_id.should == @page.id
+      assigns(:step).event.should  == "onclick"
+      assigns(:step).component.should == "test1"
+      assigns(:step).description.should == "test2"
+    end
+
+    it "Deletes a step" do
+      step = FactoryGirl.create(:step)
+      countBefore = @task.steps.count
+      get :delete_step, project_id: @project, task: @task, id: step
+      countAfter = @task.steps.count
+      countBefore.should be > countAfter
+    end
   end
 
-  it "Adds new step with correct paramters" do
-    task = FactoryGirl.create(:task)
-    xhr :get, :new_step, id: task, event: "onclick", component: "test1", description: "test2"
-    assigns(:created).should be_true
-    assigns(:step).task_id.should == task.id
-    assigns(:step).event.should  == "onclick"
-    assigns(:step).component.should == "test1"
-    assigns(:step).description.should == "test2"
-  end
+  describe "Edit_Steps" do
 
-  it "Deletes a step" do
-    task = FactoryGirl.create(:task)
-    step = FactoryGirl.create(:step)
-    countBefore = task.steps.count
-    get :delete_step, task: task, id: step
-    countAfter = task.steps.count
-    countBefore.should be > countAfter
-  end
+    it "renders the edit_step view" do
+      get :edit_steps, project_id: @project, id: @task
+      response.should render_template("edit_steps")
+    end
 
-  it "renders the edit_step view" do
-    task = FactoryGirl.create(:task)
-    get :edit_steps, id: task
-    response.should render_template("edit_steps")
+    it "refuses to render view with designer signed out" do
+      sign_out(@designer)
+      get :edit_steps, project_id: @project, id: @task
+      response.should_not render_template("edit_steps")
+    end
+
+    it "refuses to render view with task page not defined" do
+      @task.page_id = nil
+      @task.save
+      get :edit_steps, project_id: @project, id: @task
+      response.should_not render_template("edit_steps")
+      response.should render_template("select_start_page")
+    end
+
+    it "refuses to render view with designer not related to project" do
+      @project.designer_id = 1 + @project.designer_id
+      @project.save
+      get :edit_steps, project_id: @project, id: @task
+      response.should_not render_template("edit_steps")
+      response.should render_template("error_page")
+    end
+
   end
 
   describe "CRUD actions test" do 
@@ -122,6 +153,8 @@ describe TasksController do
       response.should render_template 'show'
     end
   end
+
+  
   describe "show the log page of a task result" do
     it "renders the log view of the task" do
       project = FactoryGirl.create(:project)
