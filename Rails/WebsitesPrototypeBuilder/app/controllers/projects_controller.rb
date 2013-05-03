@@ -1,11 +1,18 @@
 class ProjectsController < ApplicationController
 
-  def new
-    @project = Project.new
-    respond_to do |format|
-      format.html
-      format.json { render json: @project }
-    end
+  ##
+  #The show method is used, to show a certain project.
+  # * *Instance*    :
+  #   - +project+-> is the selected project 
+  # * *Returns*  :
+  #   - Returns the selected project design page       
+
+  ##
+  #The new method is used, to create a new project
+  # * *Instance*    :
+  #   - +project+-> The new created project
+  def new()
+    @project = Project.new()
   end
 
   def update
@@ -152,7 +159,6 @@ class ProjectsController < ApplicationController
 	end
  
   ##
-  #Author :Menna Ashraf
   #The index method is used, to preview all the projects created by the logged in designer
   # * *Instance*    :
   #   - +designer+-> is the logged in designer 
@@ -172,7 +178,6 @@ class ProjectsController < ApplicationController
   #   - Returns the selected project design page       
 
   ##
-  #Author :Menna Ashraf
   #The create method in project controller class creates a new project with a given parameter and then
   # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
   # * *Instance*    :
@@ -196,7 +201,6 @@ class ProjectsController < ApplicationController
   end
 
   ##
-  #Author :Menna Ashraf
   # The destroy method in the project controller is used, to delete any particular project
   # * *Instances*   :
   #   - +project+-> is the project to be deleted
