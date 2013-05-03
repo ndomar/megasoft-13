@@ -1,39 +1,71 @@
 <%= javascript_include_tag "edit_steps" %>
+<%= stylesheet_link_tag "edit_steps"%>
+
+<style type="text/css">
+  /* If you want the view to take the full width of the page if not remove it(.container)*/
+  .container{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+</style>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    projectid= <%= @page.project_id %>;
+    updateHtml();
+});
+
+
+</script>
 
 <div id ="wrapper" >
 
-  <div id ="sidebar">
+  <!-- This is the slider button -->
+  <div style="float: right;"><img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px"></div>
 
-    <div id="add_step" style ="display:none; text-align:left">
-      <h2 style = "text-algin:center"> أضف خطوة جديدة </h2>
-      
-      <div id = "general_events" >
-        <input type ="radio" name = "events_list" value = "click" checked = "checked"> onclick <br/> </input>
-        <input type ="radio" name = "events_list" value = "mouseover"> onhover <br/> </input>
-        <br/>
-        <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
-        <br/> <br/>
-        <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>')"> إضافة الخطوة </button>
+  <div id ="sidebar">
+    <div id="side_content">
+      <button id="cursorSwitch"> <img src ="/assets/crosshair_cursor.png"></button>
+      <br/><br/><br><br>
+      <div id="add_step" style ="display:none; text-align:left">
+        <h2 style = "text-algin:center"> أضف خطوة جديدة </h2>
+        
+        <div id = "general_events" style="text-align:center" >
+          <input type ="radio" name = "events_list" value = "click" checked = "checked"> On Click <br/> </input>
+          <input type ="radio" name = "events_list" value = "mouseover"> On Hover <br/> </input>
+          <input type ="radio" name = "events_list" value = "mouseout"> On Mouse Leave <br/> </input>
+          <br/>
+          <input id = "step_description" placeholder = "أضف وصف للخطوة" > </input>
+          <br/> <br/>
+          <button id ="save_step" style="width: 200px; height:30px;" onclick = "save('<%= @task.id %>')"> إضافة الخطوة </button>
+        </div>
+
       </div>
 
-    </div>
+      <h2 id = "steps"> الخطوات </h2>
 
-    <h2 style = "text-align:center"> الخطوات </h2>
+      <div id = "steps_list">
+        <%= render "steps" %>
+      </div>
+      <br/> <br/>
+      <p> آخر خطوة هي الهدف النهائي للمهمة. </p>
 
-    <div id = "steps_list">
-      <%= render "steps" %>
     </div>
-    
   </div>
 
   <div id="content">
     <div id = "returning_to_home">
-      <%= link_to "العودة إلي صفحة المهمة", project_task_path(params[:project_id], @task) %>
+      <%= link_to "العودة إلي صفحة المهمة", @task %>
     </div>
     <br/>
 
     <div id ="embedded">
-      <%= @page.html.html_safe %>
+    </div>
+
+    <div id='page'> 
+      <iframe id="preview_mode" src= <%="/#{@page.project_id}/#{@page.page_name}.html" %> name="preview"> </iframe>
     </div>
 
     <button id = "dehighlight" style = "display:none"></button>
@@ -42,4 +74,3 @@
 
   </div>
 </div>
-

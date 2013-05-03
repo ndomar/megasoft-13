@@ -7,6 +7,7 @@
   color: #222222;
   font-size: 14px;
 }
+
 .popup-darkbackground{
   height: 100%;
   width: 100%;
@@ -18,6 +19,7 @@
   display: none;
   z-index: 2000;
 }
+
 .thumbnails {
   margin-left: 25px;
   margin-left: auto;
@@ -27,6 +29,7 @@
   width: 960px;
   padding-right: 20px;
 }
+
 .popup-createProject{
   margin: auto;
   width: 400px;
@@ -40,6 +43,7 @@
   z-index: 3000;
   display: none;
 }
+
 .x-button{
   right: 95%;
   top:0%;
@@ -48,17 +52,20 @@
   float: left;
   display: none;
 }
+
 #Close{
   top:0px;
   float: left;
   display: block;
 }
+
 .save{
   right:320px;
   top: 420px;
   background-color: blue;
   position: absolute;
 }
+
 #arrow{
   background-color: #3790e8;
   width: 18px;
@@ -67,14 +74,17 @@
   top: 200px;
   float: right;
 }
+
 #error_project{
   top: 0px;
   float: right;
 }
+
 .project-div{
   height: 100%;
   width: 100%;
 }
+
 .project-div:hover{
   border-style: solid;
   border-width: 1px;
@@ -83,13 +93,16 @@
   padding: 0;
   min-height: 674px;
 }
+
 #projects{
   margin-left: auto;
   margin-right: auto;
 }
+
 .side-image{
   float: right;
 }
+
 .container{
   width: 100%;
   height: 100%;
@@ -97,15 +110,19 @@
   padding: 0px;
   background-color: transparent;
 }
+
 #sidebar-list{
   height: 60px;
 }
 #sidebar{
   width: 0px;
 }
+
 #slidebutton{
   visibility: hidden;
+  margin-left: -40px;
 }
+
 .add_button{
   width: 300px;
   height: 200px;
@@ -113,32 +130,38 @@
   vertical-align: middle;
   display: inline-block;
 }
+
 .thumbnails > li {
   float: left;
   margin-bottom: 30px;
   margin-left: 30px;
 }
+
 .add_button img{
   vertical-align: middle;
   display: inline-block;
   margin-top: 60px;
   cursor: pointer;
 }
+
 .span4{
   width: 260px;
   height: 140px;
   margin-bottom: 10px;
 }
+
 .x-button {
   border:none;
   background-color: #fdfdfd;
   width: 15px;
   display: none;
 }
+
 .x-button a:hover{
   border:none;
   background-color: #888888;
 }
+
 .pattern_form_up
 {
   border-bottom: 1px;
@@ -160,6 +183,7 @@
   padding-left: 20px;
   padding-right: 20px;
  } 
+
 #field{
   width: 250px;
   resize:none;

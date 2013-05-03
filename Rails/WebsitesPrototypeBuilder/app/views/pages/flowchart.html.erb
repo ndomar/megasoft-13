@@ -1,15 +1,16 @@
 <%= stylesheet_link_tag "flowchart"%>
 <%= javascript_include_tag "flowchart"%>
 
-<h1>FlowChart</h1>
+<div class="titleS">
+	<div id="tit">المخطط الانسيابي</div><div id="tb"></div>
+</div>
 
 <% @foundpages.each do |page| %>
   <div class="page_values">
     <p class="page_content" onclick="addContent(this,'<%= page.page_name%>');"><%= page.html %></p>
     <div class="read"></div>
-    <h2><%= page.page_name%></h2>
     <div class="links"></div>
   </div>
 <%end%>
 
-<canvas id="viewport" width="800" height="600"></canvas>
+<canvas id="viewport" width="940" height="800"></canvas>

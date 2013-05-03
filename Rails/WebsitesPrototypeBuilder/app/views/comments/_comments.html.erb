@@ -1,19 +1,17 @@
 <!-- Fetching comments from the database,just for testing -->
 <div id="comments">
-		                   <!-- title of the side bar-->
- 					
-					  <h4>التعليقلت</h4>   
-         
-			<% @page.comments.each do |comment| %>
-				<div id="<%=comment.assigned_part%>" class="comments">
-					<!-- Getting the comment -->
-					<p onClick="lastm(this);" class="pointer"><%= comment.body %></p>
-                    <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=comment.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
-			        <!-- The deleting method uses AJAX destroy.js.erb -->
-					<p><%= link_to "امسح", [@page,comment], :method => :delete, :confirm => "A you sure?",:remote =>true,:class =>"delete_comment" %>
-					<hr>
-				</div>
-		
-			<%end%>
+	<!-- title of the side bar-->		
+	<h4>التعليقلت</h4>   
+	<% @page.comments.each do |comment| %>
+		<div id="<%=comment.assigned_part%>" class="comments">
+			<!-- Getting the comment -->
+			<p onClick="lastm(this);" class="pointer"><%= comment.body %></p>
+        <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=comment.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
+	      <!-- The deleting method uses AJAX destroy.js.erb -->
+			<%= button_to "امسح", [@page,comment], :method=>:delete, :class =>"delete_button",:confirm => "هل انت متأكد !", :remote => true ,:onClick  => "removecomment(this);"%>
+			<hr>
+		</div>
+
+	<%end%>
 
 </div>

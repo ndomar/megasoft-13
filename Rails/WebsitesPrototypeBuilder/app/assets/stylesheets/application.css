@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,55 +14,49 @@
  */
 .coms{
 	cursor:pointer;
-
 }
+
 .hideans{
 	cursor:pointer;
 }
- .lilbuttonc{
- 	display: inline-block;
-    background-image:url('\lilbutton.png');
-    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
-	text-align: center;
-	vertical-align: middle;
-	width:53px;
-	height:32px;
-	float: left;
-	left: 237px;
-	top: 0px;
-	position: absolute;
-	margin-right: 0px;
- 	background-size: contain;
-    background-repeat: no-repeat;
-    cursor:pointer;
-}
-.lilbuttonq{
-    display: inline-block;
-    background-image:url('\lill.png');
-    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
-	text-align: center;
-	vertical-align: middle;
-	width:53px;
-	height:32px;
-	float: left;
-	left: 237px;
-	top: 0px;
-	position: absolute;
-	margin-right: 0px;
- 	background-size: contain;
-    background-repeat: no-repeat;
-    cursor:pointer;
-}
-.sw{
 
-    background-image:url('\switcher.png');
+.lilbuttonc{
+	display: inline-block;
+	background-image:url('\lilbutton.png');
+	font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	width:53px;
+	height:35px;
+	margin-right: 0px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor:pointer;
+}
+
+.lilbuttonq{
+  display: inline-block;
+  background-image:url('\lill.png');
+  font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+	text-align: center;
+	vertical-align: middle;
+	width:53px;
+	height:35px;
+	margin-right: 0px;
+	background-size: contain;
+  background-repeat: no-repeat;
+  cursor:pointer;
+}
+
+.sw{
+  background-image:url('\switcher.png');
 	width:180px;
 	height:53px;
 	float: left;
 	margin-right: 0px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    cursor:pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor:pointer;
 }
 
 html,body{ 
@@ -78,6 +73,31 @@ html,body{
 @font-face { 
 	font-family: arabi-light; src: url('arabi-light.otf');
 	format("opentype"); 
+}
+
+@font-face { 
+	font-family: amiri; src: url('Amiri-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: dyana; src: url('Dhyana-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: kufi; src: url('DroidKufi-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: naskh; src: url('DroidNaskh-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: lateef; src: url('LateefRegOT.ttf');
+	format("truetype"); 
 }
 
 html{
@@ -177,7 +197,6 @@ body{
 	position: relative;
 	height: 100%;
 	overflow: hidden;
-	min-height: 600px;
 }
 
 div#content{
@@ -197,6 +216,7 @@ div#content{
 	top: 0;
 	right: 0;
 	bottom: 0;
+  min-height:100%; 
   min-height:100%;
 	overflow-y: hidden;
 	word-wrap:break-word;
@@ -204,21 +224,11 @@ div#content{
 }
 
 #side_content{
+	padding: 10px 20px 10px 20px;
+	word-wrap:break-word;
+	overflow-y: scroll;
 	max-height: 100%;
-	overflow: auto;
-	position: absolute;
-	bottom: 0px;
-	top: 54px;
-	left: 0px;
-	right: 0px;
-	display: block;
-	width: 280;
-	padding: 0px 20px 0px 20px;
-	height: 100%;
-	overflow-y: auto;
-	width: 95%;
-	margin-right: auto;
-	margin-left: auto;
+	position: static;
 }
 
 #sidebar h4{
@@ -245,6 +255,7 @@ footer{
 	padding:0px 240px 0px 240px;
 	padding-bottom: 20px;
 	background-color: #ffffff;
+	height: 72px;
 }
 		
 hr {
@@ -343,7 +354,7 @@ input[type="color"],
 	cursor: pointer;
 	position: fixed;
 	top: 50%;
-	margin-left: -10px;
+	margin-left: -9px;
 	z-index: 1000;
 	-moz-box-shadow: 3px 3px 4px #000;
 	-webkit-box-shadow: 3px 3px 4px #000;

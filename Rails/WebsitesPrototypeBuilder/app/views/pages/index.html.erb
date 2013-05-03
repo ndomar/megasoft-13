@@ -1,11 +1,18 @@
+<<<<<<< HEAD
 <%= stylesheet_link_tag "flowchart"%>
 <%= stylesheet_link_tag "pages"%>
 
 <%= javascript_include_tag "pages"%>
+=======
+<%= stylesheet_link_tag "pages_view"%>
+>>>>>>> c081ad348d6c5b36832914a2eb4df1c3d934f7a7
 
-<h1>Welcome to Commenter</h1>
+<div class="titleS">
+	<div id="tit">الصفحات</div><div id="tb"></div>
+</div>
 
 <% @pages.each do |page| %>
+<<<<<<< HEAD
     <h2><%= link_to page.page_name,page %></h2>
     <p><%= time_ago_in_words page.created_at %> ago</p>
     <p><%= truncate page.html %></p>
@@ -50,3 +57,12 @@
   <%end%>
 
 <%= link_to "New Page", new_page_path%>
+=======
+<div class="span4">
+	<img src="/assets/page.png" width="200px" >
+	<p><%= page.page_name %></p>
+  <p class ="opt"><%= link_to 'دعوة لمراجعة',:controller => :pages, :action => :reviewer, :id => page %></p>
+  <p class ="opt"><%= link_to 'إضافة أسئلة',:controller => :pages, :action => :designer, :id => page %></p>
+</div>
+<%end%>
+>>>>>>> c081ad348d6c5b36832914a2eb4df1c3d934f7a7

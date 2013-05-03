@@ -1,4 +1,4 @@
-
+#encoding: utf-8
 class Page < ActiveRecord::Base
   ##
   # The Designed Page
@@ -8,21 +8,30 @@ class Page < ActiveRecord::Base
   #
   attr_accessible :html ,:page_name, :project_id, :thumbnail
   validates_presence_of :page_name
-  validates :page_name, :uniqueness => {:scope => :project_id}
+  validates :page_name, :uniqueness => {:scope => :project_id ,:message => "فريد صفحه إسم"}
   # set it to contain many comments, when deleted delete all related comments
   has_many :comments,:dependent => :destroy
   # set it to contain many questions, when deleted delete all related questions
   has_many :questions,:dependent => :destroy
-  has_many :steps
   has_many :tasks
   has_many :steps
   has_many :answers,:dependent => :destroy
   belongs_to :project
+  #checks that page name is present and is unique
+  validates :page_name, :presence => {:message => "  إسم  صفحه موجود"}
 
+
+  def file_dir_exists?(path_to_file)
+    File.exist?(path_to_file)
+  end
   def take_screenshot(url)
-    `phantomjs /app/assets/javascripts/rasterize.js #{url} ll #{page_name}`
-    `convert app/assets/images/page_ll.jpg -resize 200x300 app/assets/images/page_ll.jpg`
+    `phantomjs app/assets/javascripts/rasterize.js #{url}?page_id=#{id} page_#{page_name}.png #{project_id}`
+    `convert app/assets/images/project_#{project_id}/page_#{page_name}.jpg -resize 200x300 app/assets/images/project_#{project_id}/page_#{page_name}.jpg`
   end
   handle_asynchronously :take_screenshot
-  
+
+  def file_dir_exists?(path_to_file)
+    File.exist?(path_to_file)
+  end
+
 end

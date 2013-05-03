@@ -1,5 +1,4 @@
-function showPopup(project_id) {
-	$('#project_id_field').val(project_id)
+function showPopup() {
 	$(".popup-darkscreen").fadeIn(400);
 }
 
@@ -128,14 +127,4 @@ function setRemoteFunc(){
 		});
 		$.ajax("/cardsorts/create_group?" + params);
 	});
-}
-
-function valid(){
-	var title_field = $('#cardsort_title');
-	if ($(title_field).val() == ''){
-		$(title_field).css("color","red");
-		$(title_field).css("border-color", "red");
-		return false;
-	}
-		
 }

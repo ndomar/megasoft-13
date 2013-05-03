@@ -14,7 +14,7 @@ describe CardsortsController do
 
 	it "@cards should not be nill" do
 		get :new
-		assigns(:cards).should_not be_nil
+		assigns(:groups).should_not be_nil
 	end
 
 	it "@groups should not be nill" do
@@ -27,14 +27,11 @@ end
 
 describe CardsortsController do
 	before(:each) do
-		@cardsort = Cardsort.new
-		@cardsort.title = "cardsort"
-		@cardsort.save
 		get :edit, {:cardsort_id => 1}
 	end
 
 	it "@cards should not be nill" do
-		assigns(:cards).should_not be_nil
+		assigns(:groups).should_not be_nil
 	end
 
 	it "@groups should not be nill" do

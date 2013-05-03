@@ -1,5 +1,7 @@
 body {
-	  text-align: center;
+	text-align: center;
+	min-width: 1000px;
+	min-height: 750px;
 }
 
 .container{
@@ -10,13 +12,16 @@ body {
 }
 
 #wrapper{
+	/*position: fixed;*/
 	padding-right: 280px;
+	min-width: 1000px;
+	min-height: 740px;
 }
 
 #toolbox{
-	width: 210px;
+	width: 229px;
 	height:750px;
-	float:left;
+	float: left;
 	left: 0px;
 	border: solid;
 	border-left: none;
@@ -28,6 +33,7 @@ body {
 	border-bottom-right-radius: 10px; 
 	padding-left: 10px;
 	padding-bottom: 20px;
+	display: inline-block;
 }
 
 #sidebar{
@@ -35,7 +41,7 @@ body {
 	border-color: black;
 	border-width: 2px;
 	overflow: visible;
-	width: 210px;
+	width: 229px;
 	z-index: 3;	
 	min-height: 0%;
 	min-width: 0%;
@@ -44,7 +50,7 @@ body {
 
 #main{
 	text-align: left;
-	 width: 1000px;
+	width: 1000px;
 }
 
 #designpage{
@@ -52,17 +58,20 @@ body {
 	height:694px;
 	text-align: center;
 	background-repeat: repeat-y;
-  background-position: 0 0;
-  border:1px solid black;
+  	background-position: 0 0;
+  	border:1px solid black;
 	float:right;
  	position: relative;
  	padding: 10px;
  	box-shadow: 0px 0px 10px 10px lightgray inset;
+ 	/*overflow: scroll;;*/
  	/*border-radius: 10px;*/
 }
 
 #content{
 	margin-left: 20px;
+	min-width: 1000px;
+	min-height: 700px;
 }
 
 .appended{
@@ -75,8 +84,19 @@ body {
 	border-radius: 5px;
 	height: 50px;
 	text-align: center;
+	display: inline-block;
+	vertical-align: middle; 
 }
 
+.childelement{
+	width: 100%;
+	height: 100%;
+}
+
+.ta{
+	width: 70%;
+	height: 70%;
+}
 
 .tblhdr{
 	background-color: black;
@@ -84,18 +104,21 @@ body {
 }
 
 .tbldevs{
-	height: 70px;
-	width: 80px;
+	/*height: 70px;*/
+	width: 210px;
+	height: 10px;
+	border: none;
 	/*width: 100%;*/
 }
 
 .properties{
-	width: 210px;
+	width: 219px;
 	background-color: transparent;
-	height: 300px;
+	height: 220px;
 	overflow-y: scroll;
-	text-align: left;
+	text-align: right;
 	visibility: hidden;
+	margin-right: 10px;
 }
 
 .prop_panel{
@@ -106,9 +129,11 @@ body {
 	width: 70px;
 	height: 15px;
 	/*visibility: hidden;*/
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	text-align: center;
 	/*float: left;*/
+	/*margin-left: 10%;*/
+	display: inline-block;
 }
 
 .p_prop{
@@ -116,11 +141,13 @@ body {
 	/*visibility: hidden;*/
 	display: inline-block;
 	width: 90px;
+	text-align: right;
 }
 
 .trc{
-	width: 80px;
-	display: inline-block;
+	width: 229px;
+	margin-right: 20px;
+	/*display: inline-block;*/
 }
 
 .arrow{
@@ -147,20 +174,37 @@ body {
 	border-width: 2px;
 	border-color: black;
 	color: #fafafa;
-	width: 210px;
+	width: 229px;
 	background:#1b1b1b;
 	position: absolute;
 	top: 1%;
 	height: 703px;
-	right: 1.5%;
+	right: 1.4%;
 	bottom: 0;
 	word-wrap:break-word;
 }
 
+.versions-panel{
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	color: #fafafa;
+	width: 210px;
+	background:#1b1b1b;
+	position: absolute;
+	top: 2%;
+	height: 703px;
+	right: 2.8%;
+	bottom: 0;
+	word-wrap:break-word;
+	overflow: visible;
+}
+
 .sidebar-tag{
 	background-color: #759eb2;
-  background:-moz-linear-gradient(80% 66% 270deg, #759eb2, #1b1b1b 90%);
-  box-shadow: 0px 0px 4px 4px #1b1b1b;
+ 	background:-moz-linear-gradient(80% 66% 270deg, #759eb2, #1b1b1b 90%);
+	background: -webkit-gradient(linear, left top,left bottom, from(#759eb2), to(#1b1b1b));
+  	box-shadow: 0px 0px 4px 4px #1b1b1b;
 	position: absolute;
 	border-left: 20px solid transparent;
 	border-right: 20px solid transparent;
@@ -177,6 +221,11 @@ body {
 	left: -15%;
 }
 
+#versions-panel-tag{
+	top: 5%;
+	left: -16%;
+}
+
 #toolbox-tag{
 	top: 4%;
 	left: -15%;
@@ -186,7 +235,15 @@ body {
 	overflow-y: scroll;
 	position: absolute;
 	height: 520px;
-	width: 210px;
+	width: 229px;
+}
+
+#versions-scroll{
+	overflow-y: auto;
+	position: absolute;
+	height: 520px;
+	width: 170px;
+	margin-left: 10px;
 }
 
 #drop-area{
@@ -206,4 +263,21 @@ body {
 progress{
 	width: 70px;
 	height: 5px;
+}
+
+
+.accordiondiv{
+	padding-bottom: 10px;
+	padding-top: 10px;
+	overflow:visible;
+	height: 70px;
+}
+
+.text_prop{
+	visibility: hidden;
+}
+
+.dropdown{
+	width: 100px;
+	height: 27px;
 }
