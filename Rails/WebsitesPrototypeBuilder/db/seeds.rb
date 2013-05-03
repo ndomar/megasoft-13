@@ -35,11 +35,6 @@ end
 		qquestion_id: rand(0..5))
 end
 
-# choices
-(0..50).each do
-	Choice.create(body: ('a'..'z').to_a.shuffle[0,20].join,
-		qquestion_id: rand(0..5))
-
 #cardsortresults
 (0..50).each do
   CardsortResult.create(cardsort_id: rand(1..5),
@@ -159,9 +154,8 @@ Designer.create(:fullname => "Test Designer0",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
+
 Designer.create(:fullname => "Test Designer1",
       :email => "designer1@gmail.com",
       :password => "pass1234",
@@ -170,9 +164,7 @@ Designer.create(:fullname => "Test Designer1",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 Designer.create(:fullname => "Test Designer2",
       :email => "designer2@gmail.com",
@@ -182,9 +174,7 @@ Designer.create(:fullname => "Test Designer2",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 Designer.create(:fullname => "Test Designer3",
       :email => "designer3@gmail.com",
@@ -194,9 +184,7 @@ Designer.create(:fullname => "Test Designer3",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 Designer.create(:fullname => "Test Designer4",
       :email => "designer4@gmail.com",
@@ -206,9 +194,7 @@ Designer.create(:fullname => "Test Designer4",
       :country => "Egypt",
       :day_dob => 15,
       :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
+      :year_dob => 1990)
 
 # Reviewer_Task
 (0..50).each do
@@ -239,3 +225,4 @@ magedPage1 = Page.create(:page_name => "home",:project_id => magedProject.id, :h
 
 page2 = "<html><head><title>Home</title></head><body data-id='2' style='background-color:white'><h1> Secojnbd </h1><img src='images/myimage.jpg'><br><a href='home.html'>Home</a><a href='second.html'>Second</a><a href='third.html'>third</a></body></html>"
 magedPage2 = Page.create(:page_name => "second",:project_id => magedProject.id, :html => page2)
+
