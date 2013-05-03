@@ -20,10 +20,10 @@
 	cursor:pointer;
 }
 
- .lilbuttonc{
- 	display: inline-block;
-  background-image:url('\lilbutton.png');
-  font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+.lilbuttonc{
+	display: inline-block;
+	background-image:url('\lilbutton.png');
+	font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
 	text-align: center;
 	vertical-align: middle;
 	width:53px;
@@ -33,9 +33,9 @@
 	top: 0px;
 	position: absolute;
 	margin-right: 0px;
- 	background-size: contain;
-  background-repeat: no-repeat;
-  cursor:pointer;
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor:pointer;
 }
 
 .lilbuttonq{
@@ -51,7 +51,7 @@
 	top: 0px;
 	position: absolute;
 	margin-right: 0px;
- 	background-size: contain;
+	background-size: contain;
   background-repeat: no-repeat;
   cursor:pointer;
 }
@@ -81,6 +81,31 @@ html,body{
 @font-face { 
 	font-family: arabi-light; src: url('arabi-light.otf');
 	format("opentype"); 
+}
+
+@font-face { 
+	font-family: amiri; src: url('Amiri-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: dyana; src: url('Dhyana-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: kufi; src: url('DroidKufi-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: naskh; src: url('DroidNaskh-Regular.ttf');
+	format("truetype"); 
+}
+
+@font-face { 
+	font-family: lateef; src: url('LateefRegOT.ttf');
+	format("truetype"); 
 }
 
 html{
@@ -181,7 +206,6 @@ body{
 	position: relative;
 	height: 100%;
 	overflow: hidden;
-	min-height: 600px;
 }
 
 div#content{
