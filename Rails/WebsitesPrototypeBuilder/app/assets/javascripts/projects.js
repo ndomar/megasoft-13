@@ -47,6 +47,9 @@ $(document).ready(function(){
     $ ("#projectName").text(projectname);
     $("#Task").attr("href","tasks/index/" + projectid);
     $("#Questionnaire").attr("href","/questionnaires/index?project_id=" + projectid);
+    $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
+    $("#Review").attr("href","/pages?project_id=" + projectid);
+    $("#Download").attr("href","/pages/download_project?project_id=" + projectid);
 
   });
   $("#wrapper").click(function(e){

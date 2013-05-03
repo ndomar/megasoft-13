@@ -2,7 +2,8 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires
   # GET /questionnaires.json
   def index
-    @questionnaires = Questionnaire.find(:all, :conditions => { :project_id => params[:project_id] })
+    @project = Project.find(params[:project_id])
+    @questionnaires = Questionnaire.find(:all, :conditions => { :project_id => @project })
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @questionnaires }
@@ -37,6 +38,7 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/new
   # GET /questionnaires/new.json
   def new
+    @project = Project.find(params[:project_id])
     @questionnaire = Questionnaire.new
       question = @questionnaire.qquestions.build
     respond_to do |format|
@@ -53,6 +55,7 @@ class QuestionnairesController < ApplicationController
   # POST /questionnaires
   # POST /questionnaires.json
   def create
+    @project = Project.find(params[:questionnaire][:project_id])
     @questionnaire = Questionnaire.new(params[:questionnaire])
     respond_to do |format|
       if @questionnaire.save

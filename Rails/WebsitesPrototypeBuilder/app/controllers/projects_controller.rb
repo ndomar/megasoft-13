@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
   def design
     @project = Project.find(params[:project_id]);
     @medias = @project.medias
-	end
+  end
 
   ##
   #The index method is used, to preview all the projects created by the logged in designer

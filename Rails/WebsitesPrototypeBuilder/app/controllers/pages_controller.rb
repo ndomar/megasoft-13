@@ -8,7 +8,8 @@ class PagesController < ApplicationController
   # - index view containig all pages
   #
   def index
-    @pages = Page.all
+    @project =Project.find(params[:project_id])
+    @pages = Page.find(:all, :conditions => { :project_id => @project })
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @pages }
@@ -163,7 +164,6 @@ class PagesController < ApplicationController
     render 'designer'
   end
 
-
   ##
   # get all pages related to this project
   # * *Args* :
@@ -171,10 +171,9 @@ class PagesController < ApplicationController
   # * *Returns* :
   # - void
   #
-  def allpages
-    @page = Page.find(params[:id])
-    data = File.read("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
-    @foundpages = Page.find(:all, :conditions => { :project_id => @page.project_id })
+  def flowchart
+    @project = Project.find(params[:project_id])
+    @foundpages = Page.find(:all, :conditions => { :project_id => @project.id })
     render 'flowchart'
   end
 
@@ -213,8 +212,7 @@ class PagesController < ApplicationController
   # - downloads the full project after comprsseing it
   #
   def download_project
-    @page = Page.find(params[:id])
-    @project = Project.find(@page.project_id)
+    @project = Project.find(params[:project_id])
     compress("#{Rails.public_path}/#{@project.id}")
     send_file "#{Rails.public_path}/#{@project.id}/#{@project.id}.zip",:type => 'application/zip',:disposition => 'attachment',:filename => @project.project_name
   end

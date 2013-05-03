@@ -21,4 +21,4 @@
 </table>
 <br/>
 
-<%= link_to 'New Questionnaire', new_questionnaire_path %>
+<%= link_to 'New Questionnaire', :controller => :questionnaires, :action => :new, :project_id => @project  %>
