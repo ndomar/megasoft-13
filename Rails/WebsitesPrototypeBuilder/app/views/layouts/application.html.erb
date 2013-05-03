@@ -47,13 +47,6 @@
 <div class="the_body">
   <div class="container max-height no-overflow"><%= yield %></div>
 </div>
-<!--
-< else >
-  <div>
-    <= yield >
-  </div>
-< end >-->
-
 <!-- making a flash for any errors -->
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>

@@ -80,10 +80,10 @@ $(document).ready(function(){
 
 <!--A hidden form that creates a new instance of log in the database to store the actions taken by the user -->
 <%= form_for :log ,remote: true , :html => {:id => "log_form"} , :url => { :controller => 'logs', :action => 'new'} do |l| %>
-<%= hidden_field_tag "change_action", ' ' %>
-<%= hidden_field_tag "change_action_time", '0' %>
-<%= hidden_field_tag "change_component_involved", ' ' %>
-<%= hidden_field_tag "change_element_id", '0' %>
+  <%= hidden_field_tag "change_action", ' ' %>
+  <%= hidden_field_tag "change_action_time", '0' %>
+  <%= hidden_field_tag "change_component_involved", ' ' %>
+  <%= hidden_field_tag "change_element_id", '0' %>
 <% end %>
 
 <!-- A hidden form that updates the task_result by the total_time_taken, clicks count and the success -->

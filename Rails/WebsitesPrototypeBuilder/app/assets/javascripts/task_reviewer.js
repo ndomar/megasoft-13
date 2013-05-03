@@ -194,7 +194,7 @@ function log_steps(element,event_triggered){
 function updateH() {
   var frameHtml = window.frames['preview_mode'].document.documentElement.innerHTML;
   document.getElementById('sarah').innerHTML=frameHtml;
-    all_updates();
+  all_updates();
 }
 
 function disableLinks(){
