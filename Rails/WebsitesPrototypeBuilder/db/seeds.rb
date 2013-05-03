@@ -201,8 +201,6 @@ end
 
 (0..10).each do |i|
   Cardsort.find((i%3)+1).reviewers << Reviewer.find((i%3)+1)
-end
-
 #Maged's Seeds
 
 maged = Designer.create(:fullname => "Maged Shalaby",
@@ -226,4 +224,3 @@ magedPage1 = Page.create(:page_name => "home",:project_id => magedProject.id, :h
 
 page2 = "<html><head><title>Home</title></head><body data-id='2' style='background-color:white'><h1> Secojnbd </h1><img src='images/myimage.jpg'><br><a href='home.html'>Home</a><a href='second.html'>Second</a><a href='third.html'>third</a></body></html>"
 magedPage2 = Page.create(:page_name => "second",:project_id => magedProject.id, :html => page2)
-
