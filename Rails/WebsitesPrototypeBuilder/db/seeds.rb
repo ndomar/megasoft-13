@@ -1,30 +1,3 @@
-### A project that has no tasks
-#project1 = Project.create(:project_name => "Test Project 1")
-## A project with a task and no reviewers or task results
-#project2 = Project.create(:project_name => "Test Project 2")
-#task1 = project2.tasks.create(:name => "Task 1")
-#task2 = project2.tasks.create(:name => "Task 2")
-## A project with tasks + reviewers + task results + reviewer infos
-#project3 = Project.create(:project_name => "Test Project 3")
-#task3 = project3.tasks.create(:name => "Task 3")
-#task4 = project3.tasks.create(:name => "Task 4")
-#task5 = project3.tasks.create(:name => "Task 5")
-#reviewer1 = task3.reviewers.create(:email => "test@test.com")
-#reviewer2 = task3.reviewers.create(:email => "test@test.com")
-#reviewer1.create_reviewer_info(:age => 19, :gender => false, :country => "Egypt")
-#reviewer2.create_reviewer_info(:age => 25, :gender => true, :country => "Libya")
-#task3.task_results.create(:success => true, :time => 5)
-#task3.task_results.create(:success => true, :time => 3)
-#reviewer3 = task4.reviewers.create(:email => "test@test.com")
-#reviewer4 = task4.reviewers.create(:email => "test@test.com")
-#reviewer3.create_reviewer_info(:age => 19, :gender => false, :country => "Egypt")
-#reviewer4.create_reviewer_info(:age => 25, :gender => true, :country => "Libya")
-#task4.task_results.create(:success => true, :time => 7)
-#task4.task_results.create(:success => true, :time => 4)
-#reviewer5 = task5.reviewers.create(:email => "test@test.com")
-#reviewer6 = task5.reviewers.create(:email => "test@test.com")
-#reviewer5.create_reviewer_info(:age => 19, :gender => false)
-#reviewer6.create_reviewer_info(:age => 25, :gender => true)
 
 # Answers
 (0..50).each do
@@ -185,8 +158,6 @@ Designer.create(:fullname => "Test Designer0",
       :day_dob => 15,
       :month_dob => 10,
       :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
 Designer.create(:fullname => "Test Designer1",
       :email => "designer1@gmail.com",
       :password => "pass1234",
