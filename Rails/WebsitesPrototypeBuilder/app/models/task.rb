@@ -49,12 +49,16 @@ class Task<ActiveRecord::Base
       @step_answer=@pre_step.step_answers.new
       @step_answer.successful= params[:change_success]
       @step_answer.time_from_start= params[:start_time]
+      @step_answer.task_result_id=task_result_id
       @step_answer.save
 
       @task_result= self.task_results.find(task_result_id)
       @task_result.clicks= params[:change_clicks]
       @task_result.time=params[:total_time_taken]
       @task_result.save
+
+      @step_answer.reviewer_id=@task_result.reviewer_id
+      @step_answer.save
       
       @page= Page.find(1)
       hash = Hash.new

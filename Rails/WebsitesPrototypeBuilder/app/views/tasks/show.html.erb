@@ -9,29 +9,34 @@
 <h2 align="right">نتائج المهام</h2>
 
 <% if @task.task_results.length !=0 %>
-  <table align="right" class="table table-striped table-bordered">
-    <tr>
-      <th>البريد الالكتروني</th>
-      <th>الوقت</th>
-      <th>نسبة النجاح</th>
-      <th>عدد الضغطات</th>
-      <th>details</td>
-    </tr>
-    <% @task.task_results.each do |result| %>
-      <% render "calculate_success", :f => result %> 
-      <%if result.reviewer %>
+  <% @task.task_results.each do |result| %>
+    <%if result.reviewer %>
+      <table align="right" class="table table-striped table-bordered">
+        <tr>
+          <th style="background-color: #1b1b1b;">البريد الالكتروني</th>
+          <th style="background-color: #1b1b1b;">الوقت</th>
+          <th style="background-color: #1b1b1b;">النجاح</th>
+          <th style="background-color: #1b1b1b;">عدد الضغطات</th>
+          <th style="background-color: #1b1b1b;"></th>
+        </tr>      
         <tr>
       	  <td><%= result.reviewer.email %></td>
       	  <td><%= result.time %></td>
-      	  <td><%= result.success %> % </td>
+      	  <td><%= result.success %></td>
       	  <td><%= result.clicks %><td>
-        </tr>
+          <%= link_to 'التفاصيل',:controller=> :tasks, :action =>  :log, :project_id =>params[:project_id], :task_id => @task.id, :result_id => result.id %>
+        </tr>       
+      </table>
+    <% end %>
+    <%if result.reviewer %>
+      <table align="right" width=100%>
         <tr>
           <td><%= render "create_bars", :x => result %></td>
         </tr>
-      <% end %>
-    <% end %> 
-  </table>
+      </table>
+    <%end%>
+  <% end %> 
+  
 <% else %> 
   <div class="alert">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
