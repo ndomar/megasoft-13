@@ -8,8 +8,6 @@ var badPass = 'ضعيف'
 var goodPass = 'جيد'
 var strongPass = 'قوي'
 
-
-
 function passwordStrength(password,username)
 {
     score = 0 
@@ -56,12 +54,6 @@ function passwordStrength(password,username)
     if (score < 68 )  return goodPass
     return strongPass
 }
-
-
-// checkRepetition(1,'aaaaaaabcbc')   = 'abcbc'
-// checkRepetition(2,'aaaaaaabcbc')   = 'aabc'
-// checkRepetition(2,'aaaaaaabcdbcd') = 'aabcd'
-
 function checkRepetition(pLen,str) {
     res = ""
     for ( i=0; i<str.length ; i++ ) {
