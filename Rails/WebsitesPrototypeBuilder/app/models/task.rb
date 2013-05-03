@@ -52,7 +52,7 @@ class Task<ActiveRecord::Base
   # * *Returns* :
   # - void
   #
-  def update_taskResults(params,task_result_id)
+  def update_task_results(params,task_result_id)
     if Integer(params[:change_id]) <= self.steps.last.id
       @step=self.steps.find(params[:change_id])
 
@@ -72,7 +72,6 @@ class Task<ActiveRecord::Base
     @step_answer.time_from_start= params[:start_time]
     @step_answer.task_result_id=task_result_id    
     @step_answer.reviewer_id=@task_result.reviewer_id
-    puts "aaaaa"
     @step_answer.save 
 
     hash = Hash.new
