@@ -1,6 +1,9 @@
 # encoding: utf-8
 class TasksController < ApplicationController
 
+before_filter :authenticate_designer!
+before_filter :checkDesigner
+
 ## 
 #finds the current task, it's page, creates a new instance of step_answer and task_result
 # * *Args*    :
@@ -29,6 +32,7 @@ class TasksController < ApplicationController
       format.html { render :template => "tasks/task_reviewer_error" }
     end
   end
+  
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
@@ -53,16 +57,8 @@ class TasksController < ApplicationController
   #   -renders form to create new task
   #
   def new
-    @pages = Project.find(params[:project_id]).pages
     @task = Task.new
-
-    @pageslist = []
-
-    @pages.each do |p|
-      a = @pageslist.length
-      @pageslist[a] = [p.page_name, p.id]
-    end
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
@@ -228,5 +224,22 @@ class TasksController < ApplicationController
       format.html {render :nothing => true}
       format.js {render "step_list"}
     end
+  end
+
+  ##
+  # Checks if the project belongs to the designer
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project
+  #   - +current_designer+ ->: The designer currently logged in
+  # * *Returns*  :
+  #   -True if project belongs to designer and false otherwise
+  #
+  def checkDesigner()
+    designer = Designer.find(current_designer.id)
+    if(designer.id != Project.find(params[:project_id]).designer_id)
+      render 'unauthorized'
+      return true
+    end
+    return false
   end
 end

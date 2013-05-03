@@ -1,3 +1,4 @@
+#encoding: utf-8
   ##
   # each instance of this model represents a task that belongs to one project
   #* *Attributes*    :
@@ -9,16 +10,19 @@
   #   -has many task results 
   #   -has a many to many relationship with reviewers
 class Task<ActiveRecord::Base
-  attr_accessible :description, :name, :page_id, :project_id
+
+  attr_accessible :description, :name, :page_id, :time_limit, :requires_reviewer_info, :project_id, :final_step
+
 
   belongs_to :project
   belongs_to :page
   has_many :steps
   has_many :task_results
   has_and_belongs_to_many :reviewers
-  has_many :steps
 
-  validates :name, :presence => true
+  validates :name, :time_limit, :description, :presence => true
+  validates :time_limit, :numericality => true
+  validates :project, :presence => true
 
   ##
   # send a task invitation to specified email

@@ -1,0 +1,7 @@
+$('#comments').prepend('<p class="comment_error">تعذر حفظ التعليق. يرجى ملء جميع الحقول</p>');
+$('#comment_body').val('');
+$('#assignedpart').val('');
+
+setTimeout(function() {
+	$('.comment_error').fadeOut('slow');
+}, 5000);

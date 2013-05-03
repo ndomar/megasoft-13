@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Title:</b>
   <%= @questionnaire.title %>
@@ -13,7 +11,7 @@
 <ul>
 	<% for qquestion in @questionnaire.qquestions %>
 		<li><h4><%= qquestion.body %></h4></li>
-		<li><h1><%= qquestion.qtype %></h1></li>
+		<li><h1><% qquestion.qtype %></h1></li>
 	<ul>
 		<% for choice in qquestion.choices %>
 			<li><%=h choice.body %></li>
