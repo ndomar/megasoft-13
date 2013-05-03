@@ -1,3 +1,4 @@
+<%= javascript_include_tag "drag_drop"%>
 <% if (@page.valid?) %>
 	var designPage = document.getElementById('designpage');
 	var html = "<%= @page.html %>";
@@ -7,8 +8,11 @@
 	html=html.replace( "onclick", "onclickevent" , 'g');
 	html=html.replace( "onmouseover", "onhoverevent" , 'g');
 	designPage.setAttribute("data-pageid", id);
+	applyInterfaces();
+	//this is malatawy's method so that i can continue editing the previous content
 
 	$('#versions-scroll').empty();
 	$('<%= escape_javascript(render "show_versions")%>').appendTo('#versions-scroll');
+
 <% else %>
 <% end %>

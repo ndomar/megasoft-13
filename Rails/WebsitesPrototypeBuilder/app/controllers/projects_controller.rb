@@ -213,6 +213,7 @@ class ProjectsController < ApplicationController
     @page = Page.new(params[:page])
     @page.project_id=params[:projectId]
     @page.page_name=params[:pageName] 
+    @pageType = params[:pageType]
     respond_to do |format|
       if (@page.save)
         @pages = Page.find(:all, :conditions => {:project_id => @page.project_id})
@@ -318,11 +319,11 @@ class ProjectsController < ApplicationController
 
   ##
   #The index method is used, to preview all the projects created by the logged in designer
-  # * *Instance*    :
-  #   - +designer+-> is the logged in designer 
-  #   - +projects+-> are all the projects done by the logged in designer
-  # * *Returns*  :
-  #   - Returns all the projects of the logged in designer as string      
+  # * *Instance* :
+  # - +designer+-> is the logged in designer
+  # - +projects+-> are all the projects done by the logged in designer
+  # * *Returns* :
+  # - Returns all the projects of the logged in designer as string
   def index()
     @designer= Designer.find_by_email(current_designer.email) #Getting the logged in designer
     @projects = Project.find(:all, :conditions => {:designer_id => @designer.id}) #Getting all the projects done by the logged in designer
@@ -331,7 +332,7 @@ class ProjectsController < ApplicationController
   ##
   # Delete project and it's folder
   # * *Args* :
-  #   - + @project +-> is the selected project to be deleted
+  # - + @project +-> is the selected project to be deleted
   # * *Returns* :
   # - void
   #
@@ -341,6 +342,7 @@ class ProjectsController < ApplicationController
     FileUtils.remove_dir("#{Rails.public_path}/#{@project.id}", :force => true)
     respond_to do |format|
       format.html { redirect_to projects_url }
+      format.js { render "project_deleted", :status => :ok}
     end
   end
 

@@ -53,12 +53,13 @@ $(document).ready(function(){
   {
     $('#slidebutton').css({"visibility":"visible"});
     var side_width=$('#sidebar').width();
-    if(side_width<0)
+    if(side_width<=0)
       $('#slidebutton').click();
     var projectid = $(this).attr("ProjectId");
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
-    $("#Task").attr("href","tasks/index/" + projectid);
+    $("#Task").attr("href","projects/" + projectid + "/tasks/");
+    $("#Statistics").attr("href","projects/" + projectid + "/statistics/");
     $("#Questionnaire").attr("href","/questionnaires/index?project_id=" + projectid);
     $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
     $("#Review").attr("href","/pages?project_id=" + projectid);
@@ -72,7 +73,7 @@ $(document).ready(function(){
         $('#slidebutton').click();
       }
   });
-  $(".thumbnails").click(function(e){
+  $("#content").click(function(e){
     if (e.target === this){
       var side_width= $('#sidebar').width();
       if(side_width > 0)

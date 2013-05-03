@@ -1,34 +1,23 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  get "tests/test_scan"
-
-  post 'projects/savePage'
   get 'projects/savePage'
   get 'projects/createPage'
   get 'projects/deletePage'
   get 'projects/showPage'
   get 'projects/design'
-
+  get "tests/test_image"
   # set devise for Designer, and set the registerations controller to the custom one
   devise_for :designers, :controllers => { :registrations => "registrations" }
 
-  get 'projects/destroy'
-  post 'projects/destroy'
-  get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+  get "taketask/:project_id/:task_id/:reviewer_id" =>'tasks#task_reviewer'
+  get "taketask/:project_id/:task_id" => 'tasks#task_reviewer'
   post 'steps/update'
 
-  resources :projects do
-    resources :tasks do
-      resources :steps
-    end
-  end
+  post "/projects/destroy"
+
+  get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
 
   resources :projects do
-    resources :pages  
-  end
-
-  resources :statistics
-
-  resources :projects do
+    resources :statistics
     resources :tasks do
       resources :steps
       resources :task_results
@@ -37,12 +26,35 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
 resources :logs
 post 'logs/new'
+#at start up page goes to the home controller and the index action
+  root to: "projects#index"
 
+# set devise for Designer, and set the registerations controller to the custom one
+devise_for :designers, :controllers => { :registrations => "registrations" }
 
-post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
-resources :reviewers do
-  resources :reviewer_infos
-end
+get 'projects/design/:project_id' => 'projects#design'
+get 'projects/:project_id/design/:project_id' => 'projects#design'
+  post "/projects/destroy"
+post 'steps/update'
+
+  resources :tasks do
+    resources :task_results
+  end
+
+  resources :tasks do
+    resources :steps
+  end
+
+get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
+get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
+get "tasks/invite/:id" => "tasks#invite"
+post "tasks/invite_user/:id" => "tasks#invite_user"
+  get "answer_questionnaires/create"
+  post "tasks/invite_user/:id" => "tasks#invite_user"
+  get "tasks/invite/:id" => "tasks#invite"
+  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
+  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+
 
  post 'cardsorts/invite_reviewer'
  get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
@@ -56,17 +68,17 @@ end
  post 'cardsorts/create_cardsort'
  get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
  get 'cardsorts/new'
- get 'cardsorts/edit'  
- get 'cardsorts/create'
-
-
+  get 'cardsorts/edit'
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
  get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
- 
-  #at start up page goes to the home controller and the index action
 
-  root to: "projects#index"
+resources :projects do
+  resources :tasks do
+    resources :steps
+    resources :task_results
+  end
+end
 
   get "comments/create"
   get "comments/destroy"
@@ -76,18 +88,6 @@ end
   get "answers/destroy"
   get "pages/reviewer"
   get "pages/designer"
-  get "projects/index"
-  get "projects/savePage/" => "projects#savePage" #, :as => :page_save 
-  get "projects/deletePage/" => "projects#deletePage" #, :as => :page_save 
-  get "projects/createPage/" => "projects#createPage" #, :as => :page_save 
-  get "questionnaires/answer_show"
-  get "questionnaires/index"
-  post "projects/upload_media"
-
-  resources :projects
- 
-  resources :questionnaires do
-
   get "pages/download"
   get "pages/download_project"
   get "questionnaires/answer_show"
@@ -96,36 +96,53 @@ end
 
   get "answer_questionnaires/create"
 
-   resources :questionnaires do
+  get "pages/designer"
+  get "projects/index"
+  post "projects/upload_media"
 
+
+post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
+resources :reviewers do
+resources :reviewer_infos
+end
+
+
+  resources :tasks do
+    resources :steps
+  end
+
+ 
+  #at start up page goes to the home controller and the index action
+
+
+  get "answer_questionnaires/create"
+
+  resources :questionnaires do
     resources :qquestions do
       resources :choice_qquestions
       resources :answer_questionnaires
-      end
     end
   end
 
-  resources :pages do
-    resources :comments
-    resources :questions do
-      resources :answers
+
+resources :pages do
+resources :comments
+resources :questions do
+resources :answers
+end
+end
+
+  resources :projects do
+    resources :statistics
+    resources :tasks do
     end
   end
- 
-  get "/log/:id" => 'task_results#index'
-  get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
-  get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
-  get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
-  get "tasks/invite/:id" => "tasks#invite"
-  
-  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
-  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
-  # get 'projects/design/:project_id' => 'projects#design' 
-  
-  post "tasks/invite_user/:id" => "tasks#invite_user"
 
-  get "/log/:id" => 'task_results#index'
-  get 'projects/design/:project_id' => 'projects#design'
+get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
+  get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
+  get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
   get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
+  post "tasks/invite_user" => "tasks#invite_user"
 end

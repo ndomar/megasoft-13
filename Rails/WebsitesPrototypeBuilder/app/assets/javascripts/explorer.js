@@ -68,14 +68,15 @@ function deletePage(){
 	}
 }
 
-function addPage(project_id,event){
+function addPage(project_id){
 	//this function is used to create new page by the designer
 	var pagename=prompt("الرجاء إدخال اسم الصفحة","");
 	if(pagename!=null ){
 		if (pagename!=""){
 	  	var params = $.param({
 				pageName: pagename,
-				projectId: project_id
+				projectId: project_id,
+
 			});
 			$.ajax("/projects/createPage?" + params);
 	  }else{
@@ -109,3 +110,7 @@ $(document).ready(function() {
 		});
 	});
 });
+function showpopup() {
+  $("#popup-projectbck").fadeIn(400);
+  $("#popup-project").fadeIn(400);
+}

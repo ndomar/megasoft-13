@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :designer do
     fullname 'Test Designer'
-    email 'designer@gmail.com'
+    email 'designer99@gmail.com'
     password 'pass1234'
     password_confirmation 'pass1234'
     phone_number "01004509771"
