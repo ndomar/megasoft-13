@@ -1,34 +1,55 @@
-# encoding: utf-8
+ # encoding: utf-8
 class TasksController < ApplicationController
+before_filter :authenticate_designer! , :except => [:task_reviewer] 
+before_filter :checkDesigner , :except => [:task_reviewer]
 
+skip_before_filter :authenticate_designer!, :except => [:task_reviewer]
+skip_before_filter :checkDesigner, :except => [:task_reviewer]
+  
 ## 
+#Author:Sarah
 #finds the current task, it's page, creates a new instance of step_answer and task_result
 # * *Args*    :
 #   -+@task+ -> the current task
 #   -+@page+ -> the current task's page
 #   -+@step+ -> the first step of the current task
-#   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
 #   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
 # * *Returns*    :
 # - the current task, current step, step_answer for the current_task and task_result for the current task
 #
   def task_reviewer
-    if Project.all.last.id <= params[:project_id].to_f
-
+    if Integer(Project.all.last.id) >= Integer(params[:project_id]) && Project.all.first.id <= Integer(params[:project_id])
       @project=Project.find(params[:project_id])
-      @reviewer= Reviewer.find(params[:reviewer_id])
-      @task= @project.tasks.find(params[:task_id])
-      @page= Page.find(1)
-      @step=@task.steps.find(params[:step_id])
-      @step_answer=@step.step_answers.new
-      @step_answer.save
-      @task_result=@task.task_results.new
-      @task_result.save
-      session[:task_result_id]= @task_result.id 
+      if params[:reviewer_id]!=nil
+        @reviewer= Reviewer.find(params[:reviewer_id])
+      else
+        @reviewer=Reviewer.new
+        @reviewer.save
+      end
+
+      if !@project.tasks.empty? && Integer(@project.tasks.last.id) >= Integer(params[:task_id]) && @project.tasks.first.id <= Integer(params[:task_id])
+        @task= @project.tasks.find(params[:task_id])
+        @page= @project.pages.find(@task.page_id)
+        @step=@task.steps.first
+        @task_result=@task.task_results.new
+        @task_result.reviewer_id=@reviewer.id
+        @task_result.success='false'
+        @task_result.clicks= 0
+        @task_result.save
+        session[:task_result_id]= @task_result.id
+      else
+        respond_to do |format|
+          format.html { render :template => "tasks/task_reviewer_error" }
+        end
+      end
     else
-      format.html { render :template => "tasks/task_reviewer_error" }
+      respond_to do |format|
+        format.html { render :template => "tasks/task_reviewer_error" }
+      end
     end
   end
+
+
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
@@ -53,16 +74,10 @@ class TasksController < ApplicationController
   #   -renders form to create new task
   #
   def new
-    @pages = Project.find(params[:project_id]).pages
+    @project = Project.find(params[:project_id])
+    @pages = @project.pages
     @task = Task.new
-
-    @pageslist = []
-
-    @pages.each do |p|
-      a = @pageslist.length
-      @pageslist[a] = [p.page_name, p.id]
-    end
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @task }
@@ -77,7 +92,7 @@ class TasksController < ApplicationController
   #   -the details of this task and renders itas an html
   #
   def show
-    @task = Task.find(params[:id])
+    @task = Project.find(params[:project_id]).tasks.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -108,7 +123,9 @@ class TasksController < ApplicationController
     @task = Project.find(params[:project_id]).tasks.new(params[:task])
     respond_to do |format|
       if @task.save
-        format.html { redirect_to project_tasks_path, notice: 'تم عمل المهمة بنجاح' }
+        @project = Project.find(params[:project_id])
+        @pages = @project.pages
+        format.html { redirect_to select_start_page_path(@project, @task), notice: 'تم عمل المهمة بنجاح' }
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -156,26 +173,79 @@ class TasksController < ApplicationController
     end
   end
   
-  def invite 
-    @task = Task.find(params[:id])
-    
-  end
+  ##
+  #is invoked when the user submites the form in the invite view
+  #* *Args*    :
+  #   -+Task+->: an instance of the class task
+  #   -+messege+->: from the form in view invite of type string
+  #   -+email+->: from the form in the view invite of type string
+  #* *Returns*    :
+  #   -
+  #author Ahmed Osama
   def invite_user
-    
-    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
-  
+    @email = params[:email]
+    @project_id = params[:project_id]
+    @invitation_message = params[:invitation_message]
+    @task_id = params[:task_id]
+    @Reviewer = Reviewer.find_by_email(params[:email])
+    if @Reviewer == nil
+      @Reviewer = Reviewer.create(:email => params[:email])
+      @Reviewer.save
+    end
+    @inv = Task.find(params[:task_id]).send_invitation(@Reviewer, params[:invitation_message],
+     "http://localhost:3000/projects/#{params[:project_id]}/tasks/#{params[:task_id]}/reviewers/#{@Reviewer.id}") 
+    respond_to do |format|
+      format.js {render 'invite_user', :status => :ok}
+    end
   end
-  def makesure
-    puts(params[:task_id] , params[:reviewer_id])
+
+  
+  ##
+  # Disp
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
+  #   - +id+ ->: The id of the task for which the steps will be edited.
+  # * *Returns*  :
+  #   -The page this task is associated with, and the steps added to the task.
+  #
+
+  def select_start_page
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+    @pages = @project.pages
+  end
+
+  ##
+  # Displays a task and its current steps to allow the designer to edit the steps.
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
+  #   - +id+ ->: The id of the task.
+  #   - +page_id+ ->: The id of the page which should be the start page of the task.
+  # * *Returns*  :
+  #   -Saves the start page, and renders the edit steps view.
+  #
+
+  def save_start_page
+    @task = Task.find(params[:id])
+    @task.page_id = params[:page_id]
+    @created = @task.save
+    @project = Project.find(params[:project_id])
+    @steps = @task.steps
+    @page = Page.find(@task.page_id)
+    #render :action => :edit_steps
+    respond_to do |format|
+      format.js{}
+    end
   end
 
 
   ##
   # Displays a task and its current steps to allow the designer to edit the steps.
   # * *Args*    :
+  #   - +project_id+ ->: The id of the project this task is associated with.
   #   - +id+ ->: The id of the task for which the steps will be edited.
   # * *Returns*  :
-  #   -The page this task is associated with, and the steps added to the task.
+  #   -The view to edit the steps for this task, or an error page if the designer shouldn't be allowed to edit the steps.
   #
 
   def edit_steps
@@ -183,6 +253,19 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @steps = @task.steps
     @page = @task.page
+    @designer = current_designer
+    @error = @task.allow_designer(@page, @designer, @project)
+
+    respond_to do |format|
+      if @error == 'start_page_not_defined'
+        @pages = @project.pages
+        format.html {render "select_start_page"}
+      elsif @error == 'task_already_taken'
+        format.html {render "error_page"}
+      else
+        format.html {render "edit_steps"}
+      end
+    end
   end
 
   ##
@@ -197,7 +280,8 @@ class TasksController < ApplicationController
   #
 
   def new_step
-    @step = Step.new(:task_id => params[:id], :event => params[:event], :component => params[:component], :description => params[:description])
+    @step = Step.new(:task_id => params[:id], :page_id => params[:page_id],
+     :event => params[:event], :component => params[:component], :description => params[:description])
     @created = @step.save
     @task = Task.find_by_id(params[:id])
     @steps = @task.steps
@@ -228,5 +312,36 @@ class TasksController < ApplicationController
       format.html {render :nothing => true}
       format.js {render "step_list"}
     end
+  end
+
+  ##
+  # Checks if the project belongs to the designer
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the project
+  #   - +current_designer+ ->: The designer currently logged in
+  # * *Returns*  :
+  #   -True if project belongs to designer and false otherwise
+  #
+  def checkDesigner()
+    designer = Designer.find(current_designer.id)
+    if(designer.id != Project.find(params[:project_id]).designer_id)
+      render 'unauthorized'
+      return true
+    end
+    return false
+  end
+  
+  ##
+  # Gets a certain task result from the database
+  # * *Args*    :
+  #   - +project_id+ ->: The id of the current project.
+  #   - +task_id+ ->: The id of the current task.
+  #   - +result_id+ ->: The id of the task result to be sent to 
+  # * *Returns*  :
+  #   -Renders an html view to view the log of the task reult
+  # author: Ahmed Osama
+
+  def log
+    @task_result = Project.find_by_id(params[:project_id]).tasks.find(params[:task_id]).task_results.find_by_id(params[:result_id])
   end
 end

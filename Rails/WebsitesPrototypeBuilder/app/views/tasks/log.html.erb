@@ -1,0 +1,31 @@
+<h2><%= @task_result.task.name %></h2>
+</br>
+<h3><%= @task_result.task.description%></h3>
+</br>
+<% @task_result.logs.each do |log| %>
+  <% if log.action =="click"%>
+    <div class="progress progress-info" style="margin-top: 0px; margin-bottom: 2px;  border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px"><%= log.time %> عند <%=log.component_involved%>  ضغط المستخدم على زر</div>
+    </div>
+  <% elsif log.action == "change" %> 
+    <div class="progress progress-warning" style="margin-top: 0px; margin-bottom: 2px; border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px" ><%= log.time %> عند "<%=log.component_involved%>"  ادخل المستخدم
+      </div>
+    </div>
+  <% elsif log.action == "mouseout" %>
+    <div class="progress progress-success" style="margin-top: 0px; margin-bottom: 2px;  border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px"><%= log.time %> عند <%=log.component_involved%>  اخرج المستخدم الفأرة من على</div>
+    </div>
+  <% elsif log.action == "mouseover" %>
+    <div class="progress progress-danger" style="margin-top: 0px; margin-bottom: 2px;  border-radius:0px; width: 100"%>
+      <div class="bar" style="text-align: right; border-radius:0px; width: 100%; padding: 3px"><%= log.time %> عند <%=log.component_involved%> حلق المستخدم علي</div>
+    </div>
+  <% end %>
+<% end %>
+</br>
+<% if @task_result.step_answers.length > 0%>
+  <h5>نجاح الخطوات</h5>
+  <p> <%= render "create_bars", :x => @task_result %> </p>
+<% else %>
+  <h5>لا توجد خطوات لهذه المهمة</h5>
+<% end %>

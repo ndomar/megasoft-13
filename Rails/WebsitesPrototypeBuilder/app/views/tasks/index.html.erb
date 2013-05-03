@@ -1,29 +1,47 @@
-<h1>Listing tasks</h1>
+<%= javascript_include_tag "share_facebook" %>
+<script src = 'http://connect.facebook.net/en_US/all.js'></SCRIPT>
+<script> FB.init({appId: "346985668734261", status: true, cookie: true}); </script>
+<h1>قائمة المهام</h1>
 
-<table class="table table-striped table-bordered">
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if Project.find(params[:project_id]).pages.empty? %>
+  <h2>لا تستطيع عمل مهام في مشروع فارغ, توجه الى هذه الصفحة لتبدأ <%= link_to 'التصميم', '../design/' + params[:project_id] %></h2>
+<% else %>
+  <%= link_to 'مهمة جديدة', new_project_task_path %>
 
-  <% @tasks.each do |task| %>
-  
+  <table class="table" align="right">
     <tr>
-      <td><%= task.name %></td>
-      <td><%= link_to 'تعديل الخطوات', edit_steps_path(params[:project_id], task) %> </td>
-      <td><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
-      <td><%= link_to 'Edit', edit_project_task_path(params[:project_id], task) %></td>
-      <td><%= link_to 'Destroy', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-      <td><%= link_to 'invite',:controller=> :tasks, :action =>	 :invite, :id => task.id  %></td>
-      
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th  style="text-align:right;">توصيف المهمة</th>
+      <th  style="text-align:right;">اسم المهمة</th>
     </tr>
-    
-  <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Task', :controller => :tasks, :action => :new, :project_id => params[:project_id] %>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><input type="image" src="/images/facebook_icon.png" onclick = 'postToFeed("Please take this task", "http://localhost:3000/projects/<%= params[:project_id]%>/tasks/<%=task.id%>/", "<%= task.name %>")'></input></td>
+        <td style="text-align:right;"><%= link_to 'تعديل الخطوات', edit_steps_path(params[:project_id], task) %> </td>
+        <td style="text-align:right;"><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
+        <td style="text-align:right;"><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></td>
+        <td style="text-align:right;"><%= link_to 'الغاء', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'هل تريد الغاء المهمة' } %></td>
+        <td><a data-toggle="modal" href="#<%=task.id%>">ارسل دعوة</a>
+          <div class="container">   
+            <div id="<%= task.id%>" class="modal hide fade in" style="display: none; background-color: #000000">  
+              <div class="modal-header">  
+                <a class="close" data-dismiss="modal" >×</a>
+              </br>
+                <h3 align=right>أرسال دعوة</h3>    
+              </div>  
+              <div class="modal-body">
+                <%= render :partial => 'invite', :locals => {:t => task}%> 
+              </div>
+            </div>    
+          </div>  
+        </td>
+        <td style="text-align:right;"><%= task.description %></td>
+        <td style="text-align:right;"><%= task.name %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

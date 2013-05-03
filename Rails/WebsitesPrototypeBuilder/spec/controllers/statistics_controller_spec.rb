@@ -2,12 +2,15 @@ require 'spec_helper'
 
 describe StatisticsController do
   it "renders the index template and sets the tasks variable" do
-    project = FactoryGirl.create(:project)
+    designer = FactoryGirl.create(:designer)
+    sign_in(designer)
+    project = designer.projects.create(FactoryGirl.attributes_for(:project))
     task1 = project.tasks.create(FactoryGirl.attributes_for(:task))
-    task2 = project.tasks.create(FactoryGirl.attributes_for(:task))
-    get :index, :project_id => project, :taskid => {:current_task => task1.id, :task_id => task2.id}
+    questionnaire1 = project.questionnaires.create(FactoryGirl.attributes_for(:questionnaire))
+    get :index, :project_id => project, :task => {:id => task1.id}, :questionnaire => {:id => questionnaire1.id}
     response.should render_template('index')
     assigns(:tasks).should_not be_nil
     assigns(:chosentasks).should_not be_nil
+    assigns(:chosenquestionnaire).should_not be_nil
   end
 end

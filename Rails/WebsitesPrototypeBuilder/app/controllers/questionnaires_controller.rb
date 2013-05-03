@@ -2,7 +2,8 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires
   # GET /questionnaires.json
   def index
-    @questionnaires = Questionnaire.all
+    @project = Project.find(params[:project_id])
+    @questionnaires = Questionnaire.find(:all, :conditions => { :project_id => @project })
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @questionnaires }
@@ -37,6 +38,7 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires/new
   # GET /questionnaires/new.json
   def new
+    @project = Project.find(params[:project_id])
     @questionnaire = Questionnaire.new
       question = @questionnaire.qquestions.build
     respond_to do |format|
@@ -53,14 +55,17 @@ class QuestionnairesController < ApplicationController
   # POST /questionnaires
   # POST /questionnaires.json
   def create
+    @project = Project.find(params[:questionnaire][:project_id])
     @questionnaire = Questionnaire.new(params[:questionnaire])
     respond_to do |format|
       if @questionnaire.save
         format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully created.' }
         format.json { render json: @questionnaire, status: :created, location: @questionnaire }
+        format.js { render "redirect" }
       else
         format.html { render action: "new" }
         format.json { render json: @questionnaire.errors, status: :unprocessable_entity }
+        format.js {render "validation_error"}
       end
     end
   end
@@ -82,9 +87,11 @@ class QuestionnairesController < ApplicationController
         flash[:message] = "Questionnaire updated successfully"
         format.html { redirect_to :action=> :index, notice: 'Questionnaire was successfully updated.' }
         format.json { head :no_content }
+        format.js { render "redirect" }
       else
         format.html { render action: "edit" }
         format.json { render json: @questionnaire.errors, status: :unprocessable_entity }
+        format.js {render "validation_error"}
       end
     end
   end
@@ -100,3 +107,4 @@ class QuestionnairesController < ApplicationController
     end
   end
 end
+

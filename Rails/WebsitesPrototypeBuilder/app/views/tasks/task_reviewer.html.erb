@@ -1,28 +1,76 @@
-<!DOCTYPE html>
 <%= stylesheet_link_tag "reviewer_task" %>
 <%= javascript_include_tag "task_reviewer" %>
-<html>
-<head>
-</head>
+<script type="text/javascript">
+var step_answer_success ='true';
+var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
+/////////////////////new story//////////////////////////
 
-<body>
+var steps_ids_array; //array that contains all the ids of all the steps
+var steps_components_array; //array that contains all the ids of the components of all the steps
+var steps_events_array; //array that contains all the steps' events
+var steps_description_array;// array that contains all the steps' description
+var starting_hours;
+var starting_minutes;
+var starting_seconds;
+var projectid;
+$(document).ready(function(){
+  var frame_timeout=setTimeout('updateHtml()',0.1);
+  // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
+  steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(','); //array of all steps ids
+  steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(','); //array of components ids
+  steps_events_array= "<%= @task.steps.all.map(&:event).join(',')%>".split(','); //array of all steps event
+  steps_description_array= "<%= @task.steps.all.map(&:description).join(',')%>".split(',');//array of all descriptions
 
-<div id="content">
+  starting_hours= new Date().getHours();
+  starting_minutes= new Date().getMinutes();
+  starting_seconds= new Date().getSeconds();
+  starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
   
-<input id="cmp4" type="text" style="left : 150px ; position : absolute ;"/>
+  if ( <%= @task.requires_reviewer_info %>) {
+    display_form(); // a function that blurs page content and displays form
+  }
 
-<input type = "submit" value ="Step 1 cmp" class="btn" id='cmp' style="left : 800px ; position : absolute ;"/>
-<input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2' style= "left : 600px; position : absolute;"/>
-<input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' style ="left : 400px; position : absolute;"/>
+  if (steps_ids_array.length >1) {
+    //If the steps mode is used it will highlight the 1st step's component
+    //setTimeout('highlight(steps_components_array[0])',2);    //highlight the current step's component
+   $(function(){ $('.desc').fadeIn(100)});
+    document.getElementById('description_paragraph').innerHTML=steps_description_array[0];
+  } 
 
+  var time_parsed= <%= @task.time_limit %>;
+  var time_out = setTimeout('times_up()',time_parsed*60*10*10*10); //removes the page contents and renders a msg on time out
+});
+
+var clicks_counter=0;
+var total_time=0;
+var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for the task
+
+$(document).ready(function(){
+  projectid= <%= @page.project_id %>;
+});
+</script>
+<div id='content'>
+<div id= "info_form" >
+  <div id="form_title"><p>:إملأ الاستمارة </p></div>
+ <%= render "reviewer_infos/reviewer_info_form" %>     
+</div>
+<div id = "coloured"></div>
+<div class="goal">
+  <p> <%= @task.description%></p>
+</div>
 <div class="desc"> 
-  "<%=@step.description %>"
+   <p id='description_paragraph'></p>
 </div>
-<%= @page.html.html_safe %>
+<div id ='sarah'></div>
+<div id='page'> 
+      <iframe id="preview_mode" src= <%="/#{@page.project_id}/#{@page.page_name}.html"%>></iframe>
+</div>
+<div id="time_out"> <p>لقد أتممت المهمة بنجاح! شكراً  </p> </div>
 </div>
 
-<!--A form that update the values of success, step_id. starting time and total time taken in the database -->
-<%= form_for [@task,@step] do |f| %>  
+<div id="forms_div">
+<!--A hidden form that update the values of success, step_id. starting time and total time taken in the database -->
+<%= form_for [@project,@task,@step] ,remote: true, html: {:id => "steps_form"} do %>  
   <%= hidden_field_tag "change_success", 'false' %>
   <%= hidden_field_tag "change_id", '1' %>
   <%= hidden_field_tag "start_time", '1' %>
@@ -30,54 +78,17 @@
   <%= hidden_field_tag "total_time_taken", '0' %>
 <% end %>
 
+<!--A hidden form that creates a new instance of log in the database to store the actions taken by the user -->
+<%= form_for :log ,remote: true , :html => {:id => "log_form"} , :url => { :controller => 'logs', :action => 'new'} do |l| %>
+  <%= hidden_field_tag "change_action", ' ' %>
+  <%= hidden_field_tag "change_action_time", '0' %>
+  <%= hidden_field_tag "change_component_involved", ' ' %>
+  <%= hidden_field_tag "change_element_id", '0' %>
+<% end %>
 
-<script type="text/javascript">
-var currstep_element_id= "<%= @step.component %>";
-var count =1;
-var currstep_id= "<%= @step.id %>";
-var step_event = "<%= @step.event %>";
-var step_answer_success ='true';
-var clicks_count = 0;
-var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
-var total_time= 0;
-var temp_time_nw=0;
-var x= new Date(); //the current date and time
-var starting_time= x.getMinutes(); //ge the starting time of the task
-
-var desc_height = $('.desc').height();
-$('#content').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
-
-$("input").on(step_event, function(event) {
-
-var curr_element_id= event.target.id;
-if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event 
-  var d2= new Date(); //used to get the time of the start of this step
- 
-  count=count+1; 
-  currstep_id = <%=@step.id%>+1;
-  clicks_count=<%= @task_result.clicks%>+1;
-  total_time= d2.getMinutes() - starting_time;
-
-  $("#change_id").val(currstep_id); //to increment the value of the curr step
-  $("#start_time").val(curr_time); //set the time_from_start
-  $("#change_clicks").val(clicks_count); //update clicks_count in DB
-  $("#change_success").val(step_answer_success); //set successful = true for step_answer
-  $("#total_time_taken").val(total_time); //sets the value of  the time taken
-
-  dehighlight(currstep_element_id); 
-    
-  $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
-
-  }
-});
-
-$(window).load(function(){ 
-    // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
-currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
-highlight(currstep_element_id); //highlight the current step's component
-clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
-temp_time_nw= "<%=Time.now.strftime("%I:%M:%S")%>" ;
-});
-</script>
-</body>
-</html>
+<!-- A hidden form that updates the task_result by the total_time_taken, clicks count and the success -->
+<%= form_for [@project,@task,@task_result], remote: true , :html => {:id => "task_result_form"} do %>
+  <%= hidden_field_tag "change_clicks_count", '0' %>
+  <%= hidden_field_tag "change_time_taken", '1' %>
+<% end %>
+</div>

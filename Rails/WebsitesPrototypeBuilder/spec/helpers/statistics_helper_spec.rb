@@ -105,8 +105,22 @@ describe StatisticsHelper do
       reviewer4 = @task.reviewers.create(FactoryGirl.attributes_for(:reviewer))
       reviewer4.create_reviewer_info(:age => 84, :gender => true, :country => "Libya")
       reviewersinfos = helper.getReviewerInfos(@task)
-      expect(reviewersinfos).to eq([[['age < 20', 'age < 40', 'age < 60', 'age > 60'], [1,1,1,1]], [["Egypt", "Libya"], [2, 2]], [['ذكر', 'أنثى'], [2,2]]])
+      expect(reviewersinfos).to eq([[['السن أقل من 20', 'السن أقل من 40', 'السن أقل من 60', 'السن أكثر من 60'], 
+        [1,1,1,1]], [["Egypt", "Libya"], [2, 2]], [['ذكر', 'أنثى'], [2,2]]])
     end
+  end
+
+  it "getOccurrences(card, group) returns number of occurrences of card in group" do 
+    project = FactoryGirl.create(:project)
+    cardsort = project.cardsorts.create(:title => "A", :description => "DES", :open => false)
+    group = cardsort.groups.create(:title => "A", :description=> "DES")
+    card = cardsort.cards.create(:title => "A", :description => "DES")
+    reviewer = FactoryGirl.create(:reviewer)
+    cardsortresult = CardsortResult.create(:cardsort_id => cardsort.id, :card_id => card.id,
+     :group_id => group.id, :reviewer_id => reviewer.id)
+    o = helper.getOccurrences(cardsortresult.card, cardsortresult.group, cardsort, nil)
+    expect(o).to eq(1)
+    expect(getGroupsAndCards([cardsortresult])).to eq([[group], [card]])
   end
 
   describe "methods that generate charts should return a chart" do 
@@ -141,5 +155,11 @@ describe StatisticsHelper do
       expect(genderchart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
       expect(countrychart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
     end
+  end
+
+  it "getQuestionResults(question) returns a chart" do
+    question = Qquestion.create(:body => "TEST", :qtype => 3, :choices_attributes => [:body => "ChoiceA"])
+    chart = helper.getQuestionResults(question, 3)
+    expect(chart).to be_kind_of(GoogleVisualr::Interactive::PieChart)
   end
 end

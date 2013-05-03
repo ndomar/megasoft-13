@@ -1,7 +1,133 @@
 .desc {
-position: absolute;
-background-color: #CCCCCC;
-left : 1000px; 
-top :60px;
+  margin-right: auto;
+  margin-left: 70%;
+  margin-top: 2%;
+  border-style: outset;
+  border-color: #3399FF;
+  border-width: 5px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
 }
 
+.goal {
+  background-color: rgba(69, 162, 224,0.9);
+  text-align: center;
+  min-height: 20px;
+  vertical-align: middle;
+  margin-right: auto;
+  margin-left: auto;
+  min-width: 20%;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 2px 2px 2px 2px;
+  margin-top: 2%;
+
+}
+
+#info_form {
+  display: none;
+  position: absolute;
+  left : 30%;
+  z-index: 1000; 
+  background-color: white;
+  color: black;
+  padding-right: 20px;
+  min-width: 30%;
+}
+
+#form_body{
+  padding: 20px;
+  padding-right: 5px;
+}
+#coloured {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  left :0%;
+  top:  0%;
+  right: 0%;
+  z-index: 900;
+  opacity: 0.7;
+  height: 180%;
+  display: none;
+}
+
+#time_out {
+  display: none;
+  position: absolute;
+  left:0px;
+  top:20%;
+  right: 0%;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 40px;
+  font-weight: bold;
+  font-size: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+}
+
+form{
+  margin:0 0 0px;
+
+}
+
+#navigation_container,
+footer
+{
+  display:none;
+}
+
+#form_title{
+  border-bottom: 1px solid;
+  background-color: rgb(230,249,255);
+  padding :10px;
+  min-width: 100%;
+  border-color: #CCC;
+
+}
+
+.form_button{
+  border-top: 1px solid;
+  padding : 10px;
+  border-color: #CCC;
+  background-color: rgb(230,249,255);
+  min-width: 100%;
+  min-height:40px;
+}
+
+#info_form input[type="text"], 
+#info_form input[type="password"],
+#info_form input[type="datetime"],
+#info_form input[type="datetime-local"],
+#info_form input[type="date"], 
+#info_form input[type="month"],
+#info_form input[type="time"], 
+#info_form input[type="week"],
+#info_form input[type="number"], 
+#info_form input[type="email"], 
+#info_form input[type="url"], 
+#info_form input[type="search"],
+#info_form input[type="tel"],
+#info_form input[type="color"], .uneditable-input{
+  width: 90%;
+
+}
+
+#info_form input[type="submit"] {
+  background-color:rgb(69, 162, 224);
+  border: 0px;
+  float:left;
+  color:white;
+  font-weight: bold;
+}
+
+
+#page{
+  background: white;
+}
+
+#preview_mode {
+  display: none;
+}

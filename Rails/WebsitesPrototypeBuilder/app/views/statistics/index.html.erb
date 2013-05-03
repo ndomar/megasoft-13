@@ -1,81 +1,260 @@
 <script src='https://www.google.com/jsapi'></script>
-<div style="background-color:gray; text-align:right;">
-  <h2 style = "margin-right:20px;">احصائيات المهام</h2>
+<div style="float:right; margin-right:20px; width:900px; display:block;">
+  <legend style = "text-align:right; margin-right:20px; color:white;">احصائيات المهام</legend>
+  <br>
+  <% if @tasks.length != 0 %>
+    <div id='all_tasks_results' style="margin-left:-20px; float:left; width:500px; display:inline-block;"></div>
+    <%= render_chart(drawBarchart(@tasks), 'all_tasks_results') %>
+    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+      <tr>
+        <th style="text-align:right;">قائمة المهام</th>
+        <th></th>
+      </tr>
+      <% @tasks.each do |task| %>
+      <tr>
+        <td style="text-align:right;"><%= task.name %></td>
+        <%= form_for :task, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+          <%= hidden_field_tag 'task[id]', task.id %>
+          <td><%= image_submit_tag("eye.png") %></td>
+        <% end %>
+      </tr>
+      <%end%>
+    </table>
+  <% else %>
+    <p style="color:red">لا توجد مهمات في هذا المشروع, توجه الى هذه الصفحة لتبدأ <%=link_to"مهمة جديدة", project_tasks_path%></p>
+  <%end%>
 </div>
-<br>
-<div id='all_tasks_results' style="margin-left:300px"></div>
-<% if @tasks.length != 0 %>
-  <%= render_chart(drawBarchart(@tasks), 'all_tasks_results') %>
-<% else %>
-  <p style="color:red">لا توجد مهمات في هذا المشروع, توجه الى هذه الصفحة لتبدأ <%=link_to"مهمة جديدة", project_tasks_path%></p>
-<%end%>
-<% taskslist = [] %>
-<% @tasks.each do |t| %>
-<% taskslist[@tasks.index(t)] = [t.name, t.id] %>
-<% end %>
-<% if @tasks.length != 0%>
-  <%= form_for :taskid, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
-        <div>
-          <div class = "field">
-          <% if !taskslist.empty? %>
-          <%= f.select :task_id, taskslist%>
-          <% end %>
-          </div>
-          <div class="actions">
-            <%= f.submit "اختر مهمة لاظهار احصائياتها منفرده"%>
-          </div>
-        </div>
-  <% end %>
-<%end%>
+<br><br>
 <% if @chosentasks.length != 0%>
-  <div style="background-color:gray; text-align:right;">
-    <h2 style = "margin-right:20px;">معلومات عن المراجعين</h2>
-  </div>
-  <% reviewer_infos = getReviewerInfos(@chosentasks[0]) %>
-  <% if reviewer_infos.kind_of? String%>
-    <p style="color:red;"><%=reviewer_infos%></p>
-  <%else%>  
-    <div style="display:block; width:900px;">
+  <div style="display:block; float:right; margin-right:20px; width:900px; height:200;">
+    <legend style = "text-align:right; margin-right:20px; color:white;">معلومات عن المراجعين</legend>
+    <br>
+    <% reviewer_infos = getReviewerInfos(@chosentasks[0]) %>
+    <% if reviewer_infos.kind_of? String%>
+      <p style="color:red;"><%=reviewer_infos%></p>
+    <%else%>  
       <div id='age' style="float:left; width:300px; display:inline-block;"></div>
       <% if reviewer_infos[0].kind_of? String%>
         <p style="color:red;"><%=reviewer_infos[0]%></p>
       <%else%>
         <%= render_chart(drawPiechart(reviewer_infos[0], 'السن'), 'age') %>
       <%end%>
-      <div id='country' style="float:right; width:300px; display:inline-block;"></div>
-      <% if reviewer_infos[1].kind_of? String%>
-        <p style="color:red;"><%=reviewer_infos[1]%></p>
-      <%else%>
-        <%= render_chart(drawPiechart(reviewer_infos[1], 'البلد'), 'country') %>
-      <%end%>
-      <div id='gender' style="margin: 0 auto; width:300px; display:inline-block;"></div>
+      <div id='gender' style="float:right; width:300px; display:inline-block;"></div>
       <% if reviewer_infos[2].kind_of? String%>
         <p style="color:red;"><%=reviewer_infos[2]%></p>
       <%else%>
         <%= render_chart(drawPiechart(reviewer_infos[2], 'النوع'), 'gender') %>
       <%end%>
-    </div>
-  <%end%>
-  <div style="background-color:gray; text-align:right;">
-    <h2 style = "margin-right:20px;">احصائيات مهمه واحده</h2>
+      <div id="country" style="display:inline-block; width:300px;"></div>
+      <% if reviewer_infos[1].kind_of? String%>
+        <p style="color:red;"><%=reviewer_infos[1]%></p>
+      <%else%>
+        <%= render_chart(drawPiechart(reviewer_infos[1], 'البلد'), 'country') %>
+      <%end%>
+    <%end%>
   </div>
-  <% resultsSummary = calculateResultsSummary(@chosentasks) %>
-  <% if resultsSummary.kind_of? String%>
-    <p style="color:red;"><%=resultsSummary%></p>
-  <%else%>
-    <% timeresults = resultsSummary[0] %>
-    <% successresults = resultsSummary[1] %>
-    <div id='single_task_time_results' style="float:left;"></div>
-    <% if (timeresults.kind_of? String) %>
-      <p style="color:red;"><%=timeresults%></p>
+  <div style="float:right; margin-right:20px; width:900px; display:block;">
+    <legend style = "text-align:right; margin-right:20px; color:white;">احصائيات النتائج</legend>
+    <% resultsSummary = calculateResultsSummary(@chosentasks) %>
+    <% if resultsSummary.kind_of? String%>
+      <p style="color:red;"><%=resultsSummary%></p>
     <%else%>
-      <%= render_chart(drawLinechart(timeresults, @chosentasks, 'الوقت'), 'single_task_time_results') %>
+      <% timeresults = resultsSummary[0] %>
+      <% successresults = resultsSummary[1] %>
+      <div id='single_task_time_results' style="float:left;"></div>
+      <% if (timeresults.kind_of? String) %>
+        <p style="color:red;"><%=timeresults%></p>
+      <%else%>
+        <%= render_chart(drawLinechart(timeresults, @chosentasks, 'الوقت'), 'single_task_time_results') %>
+      <%end%>
+      <div id='single_task_success_results' style="float:right;"></div>
+      <% if (successresults.kind_of? String) %>
+        <p style="color:red;"><%=successresults%></p>
+      <%else%>
+        <%= render_chart(drawLinechart(successresults, @chosentasks, 'نسبة النجاح'), 'single_task_success_results') %>
+      <%end%>
     <%end%>
-    <div id='single_task_success_results' style="float:right;"></div>
-    <% if (successresults.kind_of? String) %>
-      <p style="color:red;"><%=successresults%></p>
-    <%else%>
-      <%= render_chart(drawLinechart(successresults, @chosentasks, 'نسبة النجاح'), 'single_task_success_results') %>
-    <%end%>
-  <%end%>
+  </div>
 <%end%>
+<div style="float:right; margin-right:20px; width:900px; display:block;">
+  <legend style = "text-align:right; margin-right:20px; color:white;">نتائج الاستطلاعات</legend>
+  <% if @questionnaires.length == 0 %>
+    <p style="color:red;"> لا توجد استطلاعات في هذا المشروع </p>
+  <% else %>
+    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+      <tr>
+        <th style="text-align:right;">قائمة الاستطلاعات</th>
+        <th></th>
+      </tr>
+      <% @questionnaires.each do |questionnaire| %>
+        <tr>
+          <td style="text-align:right;"><%= questionnaire.title %></td>
+          <%= form_for :questionnaire, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+            <%= hidden_field_tag 'questionnaire[id]', questionnaire.id %>
+            <td><%= image_submit_tag("eye.png") %></td>
+          <% end %>
+        </tr>
+      <%end%>
+    </table>
+  <% end %>
+  <% if @chosenquestionnaire != nil %>
+    <div style="float:left; margin-left:20px; width:500px; display:inline-block;">
+      <h3><%= @chosenquestionnaire.title %> : اسم الاستطلاع</h3>
+      <% @chosenquestionnaire.qquestions.each do |question| %>
+        <% if question.answer_questionnaires.length == 0 %>
+          <div style="float:left; margin-left:20px; width:500px; height:100px;"> 
+            <h4><%= question.body %> : السؤال</h4> 
+            <p style="color:red;">لم يجب أحد عن هذا السؤال</p>
+          </div>
+        <% else %>
+          <% if question.qtype == 1 || question.qtype == 2 %>
+            <div style="float:left; margin-left:20px; width:500px; height:200px; overflow:scroll;"> 
+              <h4><%= question.body %> : السؤال</h4>  
+              <h5>: الأجوبة</h5>
+              <ol style="float:right; direction:rtl; margin-right:20px;">
+                <% question.answer_questionnaires.each do |answer| %>
+                  <li style="text-align:right;"> <%= answer.body %></p>
+                <% end %>
+              </ol>
+            </div>
+            <br>
+          <% else %>
+            <div style="float:left; margin-left:20px; width:500px; height:200px;"> 
+              <div id=<%=question.id.to_s%> style="float:right; margin-right:20px;"></div>
+              <% if question.qtype == 3 %>
+                <%= render_chart(getQuestionResults(question, 3), question.id.to_s) %> 
+              <% else %>
+                <%= render_chart(getQuestionResults(question, 4), question.id.to_s) %>
+              <%end%>
+            </div>
+            <br>
+          <% end %>
+        <% end %>
+      <%end%>
+    </div>
+  <% end %> 
+</div>
+<div style="float:right; margin-right:20px; width:900px; display:block;">
+  <legend style = "text-align:right; margin-right:20px; color:white;">نتائج ترتيب الكروت</legend>
+  <% if @cardsorts.length == 0 %>
+    <p style="color:red;"> لا توجد مهام ترتيب كروت في هذا المشروع </p>
+  <% else %>
+    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+      <tr>
+        <th style="text-align:right;">قائمة ترتيب الكروت</th>
+        <th></th>
+      </tr>
+      <% @cardsorts.each do |cardsort| %>
+        <tr>
+          <td style="text-align:right;"><%= cardsort.title %></td>
+          <%= form_for :cardsort, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+            <%= hidden_field_tag 'cardsort[id]', cardsort.id %>
+            <td><%= image_submit_tag("eye.png") %></td>
+          <% end %>
+        </tr>
+      <%end%>
+    </table>
+  <% end %>
+  <% if @chosencardsort != nil %>
+    <% results = @chosencardsort.cardsort_results %>
+    <div style="float:left; width:500px; display:inline-block;">
+      <% if results.length == 0 %>
+        <p style="color:red;"> لا توجد نتائج </p>
+      <%else%>
+        <table class="table table-condensed" style="float:left; width:500px; display:inline-block; direction:rtl; overflow:scroll; height:300px;">
+          <% groupsnadcards = getGroupsAndCards(results) %>
+          <% cards = groupsnadcards[1] %>
+          <% groups = groupsnadcards[0] %>
+          <tr>
+            <th></th>
+            <% groups.each do |group| %> 
+              <th style="text-align:right;"><%= group.title %></th>
+            <%end%>
+          </tr>
+          <% cards.each do |card| %>
+            <tr>
+              <td style="text-align:right;"><%= card.title %></td>
+              <% occurrences = []%>
+              <% groups.each do |group| %>
+                <% occurrences[occurrences.length] = getOccurrences(card, group, @chosencardsort, nil) %>
+              <%end%>
+              <% max_index = occurrences.index(occurrences.max) %>
+              <% occurrences.each_with_index do |occurrence, index| %>
+                <% if index == max_index %>
+                  <td style="text-align:center; background-color: darkblue;"><%= occurrence %></td>
+                <% else %>
+                  <td style="text-align:center;"><%= occurrence %></td>
+                <% end %>
+              <% end %>
+            </tr>
+          <%end%>
+        </table>
+      <%end%>
+    </div>
+    <% reviewers = [] %>
+    <% results.each do |result| %>
+      <% if !reviewers.include?(result.reviewer) %>
+        <% reviewers[reviewers.length] = result.reviewer %>
+      <% end %>
+    <% end %>
+    <% if reviewers.length != 0 %>
+      <div style="float:right; width:900px; display:block;">
+        <legend style = "text-align:right; margin-right:20px; color:white;">
+          اختر احد المراجعين لاظهار نتائج ترتيب الكروت الخاصه به
+        </legend>
+        <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+          <tr>
+            <th style="text-align:right;">قائمة المراجعين</th>
+            <th></th>
+          </tr>
+          <% reviewers.each do |reviewer| %>
+            <tr>
+              <td style="text-align:right;"><%= reviewer.email %></td>
+              <%= form_for :reviewer, :url => {:action=>"index", :controller=>"statistics"}, :html => {:class => "nifty_form", :method => "GET"} do |f| %>
+                <%= hidden_field_tag 'reviewer[id]', reviewer.id %>
+                <%= hidden_field_tag 'reviewer[cardsort]', @chosencardsort.id %>
+                <td><%= image_submit_tag("eye.png") %></td>
+              <% end %>
+            </tr>
+          <%end%>
+        </table>
+        <% if @reviewer != nil %>
+          <% reviewer_results = [] %>
+          <% results.each do |result| %>
+            <% if result.reviewer == @reviewer %>
+              <% reviewer_results[reviewer_results.length] = result %>
+            <% end %>
+          <% end %>
+          <table class="table table-condensed" style="float:left; width:500px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+            <% groupsnadcards = getGroupsAndCards(reviewer_results) %>
+            <% cards = groupsnadcards[1] %>
+            <% groups = groupsnadcards[0] %>
+            <tr>
+              <th></th>
+              <% groups.each do |group| %> 
+                <th style="text-align:right;"><%= group.title %></th>
+              <%end%>
+            </tr>
+            <% cards.each do |card| %>
+              <tr>
+                <td style="text-align:right;"><%= card.title %></td>
+                <% occurrences = []%>
+                <% groups.each do |group| %>
+                  <% occurrences[occurrences.length] = getOccurrences(card, group, @chosencardsort, @reviewer) %>
+                <%end%>
+                <% max_index = occurrences.index(occurrences.max) %>
+                <% occurrences.each_with_index do |occurrence, index| %>
+                  <% if index == max_index %>
+                    <td style="text-align:center; background-color: darkblue;"><%= occurrence %></td>
+                  <% else %>
+                    <td style="text-align:center;"><%= occurrence %></td>
+                  <% end %>
+                <% end %>
+              </tr>
+            <%end%>
+          </table>
+        <% end %>
+      </div>
+    <% end %>
+  <%end%>
+</div>

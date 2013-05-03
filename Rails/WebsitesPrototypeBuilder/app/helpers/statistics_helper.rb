@@ -1,5 +1,109 @@
 # encoding: utf-8
 module StatisticsHelper
+
+  ## 
+  # returns the occurences of the card in the group
+  # * *Args*    :
+  #   -+card+->: card instance
+  #   -+group+->: group instance
+  # * *Returns* :
+  #   - number of ocurrences of card in group
+  #  
+  def getOccurrences(card, group, cardsort, reviewer)
+    count = 0
+    group.cardsort_results.each do |result|
+      if reviewer == nil
+        if (result.card == card && result.cardsort == cardsort)
+          count += 1
+        end
+      else
+        if (result.card == card && result.cardsort == cardsort && result.reviewer == reviewer)
+          count += 1
+        end
+      end
+    end
+    return count
+  end
+
+  ## 
+  # returns list of groups and cards
+  # * *Args*    :
+  #   -+reviewer_infos+->: an array of reviewer infos
+  #   -+type+->: type of the chart
+  # * *Returns* :
+  #   - an array of 2 arrays of the cards and groups with no duplicates
+  #  
+  def getGroupsAndCards(results)
+    groups = []
+    cards = []
+    results.each do |result|
+      if !groups.include?(result.group)
+        groups[groups.length] = result.group
+      end
+      if !cards.include?(result.card)
+        cards[cards.length] = result.card
+      end
+    end
+    return [groups, cards]
+  end
+
+  ## 
+  # uses googlechartsvisualr to make a pie chart of the questionnaire results
+  # * *Args*    :
+  #   -+question+->:an instance of Question
+  # * *Returns* :
+  #   - a pie chart
+  #  
+  def getQuestionResults(question, type)
+    results = []
+    choices = question.choices
+    choices.each_with_index do |choice, index|
+      results[index] = 0
+    end
+    if type == 3
+      question.answer_questionnaires.each do |answer|
+        index= nil
+        choices.each do |choice|
+          if choice.body == answer.body
+            index = choices.index(choice)
+          end
+        end
+        results[index] += 1
+      end
+    else
+      question.answer_questionnaires.each do |answer|
+        index = nil
+        chosenchoices = answer.body.split(',')
+        chosenchoices.each do |chosenchoice|
+          choices.each do |choice|
+            if choice.body == chosenchoice
+              index = choices.index(choice)
+            end
+          end
+          results[index] += 1
+        end
+      end
+    end
+    data_table = GoogleVisualr::DataTable.new
+    data_table.new_column('string', 'choice' )
+    data_table.new_column('number', 'value')
+    results.each_with_index do |result, index|
+      data_table.add_row([choices[index].body, result])
+    end
+    option = { 
+      width: 500, 
+      height: 150, 
+      title: question.body,
+      backgroundColor: "transparent", 
+      titleTextStyle: {color: "white"},
+      legend: {textStyle: {color: 'white'}},
+      colors: ['rgb(80,0,0)', 'rgb(0,0,80)', 'rgb(0,80,0)', '003333', '663366', '333366', '3366CC'],
+      chartArea:{width:"100%",height:"80%"}
+    }
+    chart = GoogleVisualr::Interactive::PieChart.new(data_table, option)
+    return chart
+  end
+
   ## 
   # uses googlechartsvisualr to make a pie chart of the given data
   # * *Args*    :
@@ -15,7 +119,16 @@ module StatisticsHelper
     reviewer_infos[0].each_with_index do |info, index|
       data_table.add_row([reviewer_infos[0][index], reviewer_infos[1][index]])
     end
-    option = { width: 300, height: 240, title: type }
+    option = { 
+      width: 250, 
+      height: 150, 
+      title: type,
+      backgroundColor: "transparent", 
+      titleTextStyle: {color: "white"},
+      legend: {textStyle: {color: 'white'}},
+      colors: ['rgb(80,0,0)', 'rgb(0,0,80)', 'rgb(0,80,0)', '003333', '663366', '333366', '3366CC'],
+      chartArea:{width:"100%",height:"80%"}
+    }
     chart = GoogleVisualr::Interactive::PieChart.new(data_table, option)
     return chart
   end
@@ -38,7 +151,17 @@ module StatisticsHelper
       data_table.add_row([task.name,resultsSummary[0][index], 
         resultsSummary[1][index], resultsSummary[2][index]])
     end
-    option = { width: 400, height: 240, title: 'احصائيات نتائج المهام' }
+    option = { 
+      width: 600, 
+      height: 350, 
+      title: "مقارنة بين المهام",
+      backgroundColor: "transparent", 
+      titlePosition: 'in',
+      titleTextStyle: {color: "white"},
+      legend: {position: 'bottom', textStyle: {color: 'white'}},
+      colors: ['rgb(80,0,0)', 'rgb(0,0,80)', 'rgb(0,80,0)', '003333', '663366', '333366', '3366CC'],
+      hAxis: {textStyle: {color: 'white'}}
+    }
     chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, option)
     return chart
   end
@@ -67,7 +190,16 @@ module StatisticsHelper
         data_table.set_cell(timeindex, index + 1, time) 
       end
     end
-    option = { width: 400, height: 240, title: title }
+    option = { 
+      width: 350, 
+      height: 150, 
+      title: title,
+      backgroundColor: "transparent", 
+      titleTextStyle: {color: "white"},
+      legend: {textStyle: {color: 'white'}},
+      colors: ['rgb(80,0,0)', 'rgb(0,0,80)', 'rgb(0,80,0)', '003333', '663366', '333366', '3366CC'],
+      hAxis: {textStyle: {color: 'white'}}
+    }
     chart = GoogleVisualr::Interactive::LineChart.new(data_table, option)
     return chart
   end
@@ -245,7 +377,7 @@ module StatisticsHelper
     elsif agelessthan20 == 0 && agelessthan40 == 0 && agelessthan60 == 0 && agegreaterthan60 == 0
       return "لم يجب أحد من المراجعين عن سنه"
     else
-      return [['age < 20', 'age < 40', 'age < 60', 'age > 60'], [agelessthan20, agelessthan40, agelessthan60, agegreaterthan60]]
+      return [['السن أقل من 20', 'السن أقل من 40', 'السن أقل من 60', 'السن أكثر من 60'], [agelessthan20, agelessthan40, agelessthan60, agegreaterthan60]]
     end
   end
 
