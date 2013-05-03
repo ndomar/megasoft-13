@@ -2,7 +2,7 @@ class QuestionnairesController < ApplicationController
   # GET /questionnaires
   # GET /questionnaires.json
   def index
-    @questionnaires = Questionnaire.all
+    @questionnaires = Questionnaire.find(:all, :conditions => { :project_id => params[:project_id] })
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @questionnaires }
