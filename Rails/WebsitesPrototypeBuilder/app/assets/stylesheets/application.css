@@ -97,7 +97,6 @@ body{
 	background-image:url('pattern.png');
 	background-repeat:repeat;
 	min-height: 100%;
-  height: auto !important;
   height: 100%; 
 }
 
