@@ -1,35 +1,40 @@
  # encoding: utf-8
 class TasksController < ApplicationController
+before_filter :authenticate_designer! , :except => [:task_reviewer] 
+before_filter :checkDesigner , :except => [:task_reviewer]
 
-  before_filter :authenticate_designer!, :except => :task_reviewer
-  before_filter :checkDesigner, :except => :task_reviewer
-
-  ## 
-  #finds the current task, it's page, creates a new instance of step_answer and task_result
-  # * *Args*    :
-  #   -+@task+ -> the current task
-  #   -+@page+ -> the current task's page
-  #   -+@step+ -> the first step of the current task
-  #   -+@step_answer+ -> a new instance of step_answer contains the info of the current step
-  #   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
-  # * *Returns*    :
-  # - the current task, current step, step_answer for the current_task and task_result for the current task
-  #
+skip_before_filter :authenticate_designer!, :except => [:task_reviewer]
+skip_before_filter :checkDesigner, :except => [:task_reviewer]
+  
+## 
+#Author:Sarah
+#finds the current task, it's page, creates a new instance of step_answer and task_result
+# * *Args*    :
+#   -+@task+ -> the current task
+#   -+@page+ -> the current task's page
+#   -+@step+ -> the first step of the current task
+#   -+@task_result+ -> a new instance of task_result contains the info about the current task's results
+# * *Returns*    :
+# - the current task, current step, step_answer for the current_task and task_result for the current task
+#
   def task_reviewer
-    if Project.all.last.id.to_f >= params[:project_id].to_f
+    if Integer(Project.all.last.id) >= Integer(params[:project_id]) && Project.all.first.id <= Integer(params[:project_id])
       @project=Project.find(params[:project_id])
-      @reviewer= Reviewer.find(params[:reviewer_id])
+      if params[:reviewer_id]!=nil
+        @reviewer= Reviewer.find(params[:reviewer_id])
+      else
+        @reviewer=Reviewer.new
+        @reviewer.save
+      end
 
-      if !@project.tasks.empty? && @project.tasks.last.id.to_f >= params[:task_id].to_f
+      if !@project.tasks.empty? && Integer(@project.tasks.last.id) >= Integer(params[:task_id]) && @project.tasks.first.id <= Integer(params[:task_id])
         @task= @project.tasks.find(params[:task_id])
-        @page= Page.find(1)
-        #if @task.steps.nil? == 'false'
+        @page= @project.pages.find(@task.page_id)
         @step=@task.steps.first
-        @step_answer=@step.step_answers.new
-        @step_answer.save
-        #end
         @task_result=@task.task_results.new
         @task_result.reviewer_id=@reviewer.id
+        @task_result.success='false'
+        @task_result.clicks= 0
         @task_result.save
         session[:task_result_id]= @task_result.id
       else
@@ -43,7 +48,8 @@ class TasksController < ApplicationController
       end
     end
   end
-  
+
+
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
