@@ -40,53 +40,53 @@
 							<tbody id = "accordion">
 								<tr class="trc">
 									<td class="tbldevs" align="center">
-										<p>Buttons</p>
+										<h6>Buttons</h6>
 										<div width="210px" height="70px" class="accordiondiv">
-										<div id="buttondiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#">
-											<button class="toolboxelement btn" onclick="return false;">زر</button>
+										<div id="buttondiv" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
+											<button class="toolboxelement btn childelement" onclick="return false;">زر</button>
 										</div>
 										</div>
 									</td>
 								</tr>
 								<tr class="trc">
 									<td class="tbldevs" align="center">
-										<p>Images</p>
+										<h6>Images</h6>
 										<div width="210px" height="70px"  class="accordiondiv">
 										<div id="imagediv" class="drag toolboxelement img_ph" onclickevent="#" onhoverevent= "#">
-											<img width="20px" hight="20px" class="toolboxelement" alt="Drop Here" style="font-size:8px; border: solid; border-width: 1px;">
+											<img width="20px" hight="20px" class="toolboxelement childelement" alt="Drop Here" style="font-size:8px; border: solid; border-width: 1px;">
 										</div>
 										</div>
 									</td>
 								</tr>
 								<tr class="trc">
 									<td class="tbldevs" align="center">
-										<p>Labels</p>
+										<h6>Labels</h6>
 										<div width="210px" height="70px" class="accordiondiv">
-										<div id="labeldiv" width="20" class="drag toolboxelement" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
-											<label class="toolboxelement">ملصق</label>
+										<div id="pdiv" width="20" class="drag toolboxelement text" style="border: solid; border-width: 1px;" onclickevent="#" onhoverevent= "#">
+											<p class="toolboxelement childelement">فقرة</p>
 										</div>
-										<div id="hyperlinkdiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="border: solid;border-width: 1px;">
-											<a href="#" class="toolboxelement" onclick="return false;">رابط</a>
+										<div id="hyperlinkdiv" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#" style="border: solid;border-width: 1px;">
+											<a href="#" class="toolboxelement childelement" onclick="return false;">رابط</a>
 										</div>
-										<div id="textareadiv" class="drag toolboxelement" onclickevent="#" onhoverevent= "#" style="margin-top:20px;">
-											<textarea class = "toolboxelement" style="resize: none;width:35px;height:35px;">كتابة</textarea>
+										<div id="textareadiv" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#" style="margin-top:20px;">
+											<textarea class = "toolboxelement ta" style="resize: none;">كتابة</textarea>
 										</div>
 										</div>
 									</td>
 								</tr>
 								<tr class="trc">
 									<td class="tbldevs" align="center">
-										<p>Containers</p>
+										<h6>Containers</h6>
 										<div width="210px" height="70px" class="accordiondiv">
-											<div id="formdiv" class="drag toolboxelement forma" onclickevent="#" onhoverevent= "#"  style="border: solid;">
-												<h6>Div</h6>
+											<div id="divdiv" class="drag toolboxelement forma" onclickevent="#" onhoverevent= "#"  style="border: solid;">
+												<p>Div</p>
 											</div>
 										</div>
 									</td>
 								</tr>
 								<tr class="trc">
 									<td class="tbldevs" align="center">
-										<p>Text Areas</p>
+										<h6>Text Areas</h6>
 										<div width="210px" height="70px" class="accordiondiv">
 										
 										</div>
@@ -117,7 +117,7 @@
 							      		<label id = "top" class="p_prop">الموقع من فوق </label>
 							      		<input id = "top_inp" class="inp" property="top" type = "number" min="0" step="0.1">
 							      	</div>
-							      	<div>
+							      	<div class="text_prop">
 							      		<label id = "text" class="p_prop">الكتابة </label>
 							      		<input id = "text_inp" class="inp" property="text">
 							      	</div>
@@ -146,19 +146,6 @@
 						      			<input id = "margin_bottom_inp" class="inp" property="margin-bottom" type = "number" min="0" step="0.1">
 						      		</div>
 						      		<div>
-						      			<label id = "font_size" class="p_prop">حجم الخط </label>
-						      			<input id = "font_size_inp" class="inp" property="font-size" type = "number" min="0" step="1">
-						      		</div>
-						      		<div>
-						      			<label id = "font_color" class="p_prop">لون الخط </label>
-						      			<div id = "font_color_inp" class="inp colordiv" property="color">
-						      			</div>
-						      		</div>
-						      		<div>
-						      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
-						      			<input id = "text_align_inp" class="inp" property="text-align">
-						      		</div>
-						      		<div>
 						      			<label id = "border" class="p_prop">الحد </label>
 						      			<input id = "border_inp" class="inp" property="border">
 						      		</div>
@@ -175,9 +162,38 @@
 						      			<div id = "border_color_inp" class="inp colordiv" property="border-color">
 						      			</div>
 						      		</div>
-						      		<div>
-						      			<label id = "src" class="p_prop">عرض الحد </label>
-						      			<input id = "border_width_inp" class="inp" property="border-width">
+						      		<div class="text_prop">
+						      			<label id = "font_size" class="p_prop">حجم الخط </label>
+						      			<input id = "font_size_inp" class="inp" property="font-size" type = "number" min="0" step="1">
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_color" class="p_prop">لون الخط </label>
+						      			<div id = "font_color_inp" class="inp colordiv" property="color">
+						      			</div>
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "text_align" class="p_prop">تحديد الكتابة </label>
+						      			<select id = "text_align_inp" class="inp dropdown" property="text-align">
+						      				<option value="left">يسار</option>
+						      				<option value="right">يمين</option>
+						      				<option value="center">الوسط</option>
+						      				<option value="justify">إملئ المساحة</option>
+						      			</select>
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_family" class="p_prop">الخط </label>
+						      			<select id = "font_family_inp" class="inp dropdown" property="font-family">
+						      				<option value="arabi-bold" style="font-family: arabi-bold !important;">خط عربى</option>
+						      				<option value="arabi-light" style="font-family: arabi-light !important;">خط عربى</option>
+						      			</select>
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_weight" class="p_prop">سميك </label>
+						      			<input id = "font_weight_inp" class="inp" property="font-weight" type="checkbox">
+						      		</div>
+						      		<div class="text_prop">
+						      			<label id = "font_style" class="p_prop">مائل </label>
+						      			<input id = "font_style_inp" class="inp" property="font-style" type="checkbox">
 						      		</div>
 							    </div>
 							    	<!-- division containing the event controls of the components -->
@@ -191,6 +207,7 @@
 									<select id = "action_selector" style="width: 180px; margin-right:10px;">
 										<option value="url">رابط</option>
 										<option value="message">رسالة</option>
+										<option value="animation">حركة</option>
 									</select>
 									<label style="text-align: right;margin-right: 20px;">حدد الرسالة أو الرابط</label>
 							    <input id = "action_value" style="width: 175px;text-align: right; margin-right:10px;"></input>

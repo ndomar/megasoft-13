@@ -1,5 +1,33 @@
 $(document).ready(function (){
 
+	var enter_leave = false;
+
+	$("#font_weight_inp").change(function(){
+		if ($("#font_weight_inp").prop('checked')==false) {
+			$("#"+$("#eid_inp").val()).children().first().css("font-weight",400);
+		}
+		else{
+			$("#"+$("#eid_inp").val()).children().first().css("font-weight",700);
+		}
+	});
+
+	$("#font_style_inp").change(function(){
+		if ($("#font_style_inp").prop('checked')==false) {
+			$("#"+$("#eid_inp").val()).children().first().css("font-style","normal");
+		}
+		else{
+			$("#"+$("#eid_inp").val()).children().first().css("font-style","italic");
+		}
+	});
+
+	$("#text_align_inp").change(function(){
+		$("#"+$("#eid_inp").val()).children().first().css("text-align",$("#text_align_inp").val());
+	});
+
+	$("#font_family_inp").change(function(){
+		$("#"+$("#eid_inp").val()).children().first().css("font-family",$("#font_family_inp").val());
+	});
+
 	$(".up_images").draggable({
 			appendTo: $("#designpage"),
 			helper: function( event ) {
@@ -25,7 +53,7 @@ $(document).ready(function (){
 */
 	$('#content').click(function(e){
 	    $('.properties').css("visibility","hidden");
-
+	    $('.text_prop').css("visibility","hidden");
  	});
 
 
@@ -33,7 +61,7 @@ $(document).ready(function (){
 	$( "#accordion" ).accordion({
   		collapsible: true,
   		active:false,
-  		header: "p"
+  		header: "h6"
 	})
 	.removeClass("ui-helper-reset")
 	.css({
@@ -83,16 +111,24 @@ $(document).ready(function (){
 	}
 	});
 
-	$(".toolboxelement").hover(function (e){
-		$(this).animate({
-			width: "+=10",
-			height: "+=10"
-		}, 100,"linear");
+	$(".drag").hover(function (e){
+		// alert("entered");
+		if (!enter_leave){
+			$(this).animate({
+				width: "+=10",
+				height: "+=10"
+			}, 100,"linear");
+			enter_leave = true;
+		}
 	}, function(){
-		$(this).animate({
-			width: "-=10",
-			height: "-=10"
-		}, 100,"linear");
+		// alert("left");
+		if (enter_leave){
+			$(this).animate({
+				width: "-=10",
+				height: "-=10"
+			}, 100,"linear");
+			enter_leave = false;
+		}
 	});
 
 	$("#toolbox-tag").click(function(){
@@ -164,15 +200,18 @@ $(document).ready(function (){
 			if ($("#action_selector").val()=="url"){
 				$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
 			}
-			else{
+			else if ($("#action_selector").val()=="message"){
 				$("#"+$("#eid_inp").val()).attr("onclickevent","alert(\""+$("#action_value").val()+"\");");
+			}
+			else{
+				$("#"+$("#eid_inp").val()).attr("onclickevent","window.location = "+$("#action_value").val()+";");
 			}
 		}
 		else if ($("#event_selector").val()=="onHover"){
 			if ($("#action_selector").val()=="url"){
 				$("#"+$("#eid_inp").val()).attr("onhoverevent","window.location = "+$("#action_value").val()+";");
 			}
-			else{
+			else if ($("#action_selector").val()=="message"){
 				$("#"+$("#eid_inp").val()).attr("onhoverevent","alert(\""+$("#action_value").val()+"\");");
 			}
 		}
@@ -283,16 +322,36 @@ $(document).ready(function (){
 					$(".properties").css("visibility","visible");
 					var eid = $(this).attr("id");
 					$("#eid_inp").val(eid);
-					$("#text_inp").val($(this).children().first().text());
+					$("#top_inp").val(parseInt($(this).position().top+"px"));
+					$("#left_inp").val(parseInt($(this).position().left+"px"));
 					$("#width_inp").val(parseInt($(this).width()));
 					$("#height_inp").val(parseInt($(this).height()));
 					$("#margin_left_inp").val(parseInt($(this).css("margin-left")));
 					$("#margin_right_inp").val(parseInt($(this).css("margin-right")));
 					$("#margin_top_inp").val(parseInt($(this).css("margin-top")));
 					$("#margin_bottom_inp").val(parseInt($(this).css("margin-bottom")));
-					$("#top_inp").val(parseInt($(this).position().top+"px"));
-					$("#left_inp").val(parseInt($(this).position().left+"px"));
-					$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
+
+					if ($(this).hasClass("text")) {
+						$(".text_prop").css("visibility","visible");
+						$("#text_inp").val($(this).children().first().val().trim());
+						$("#font_size_inp").val(parseInt($(this).css("font-size")));
+						$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
+						$("#text_align_inp").val($(this).children().first().css("text-align"));
+						$("#vertical_align_inp").val($(this).children().first().css("vertical-align"));
+						$("#font_family_inp").val($(this).children().first().css("font-family"));
+						if ($(this).children().first().css("font-weight")==700 || $(this).children().first().css("font-weight")=="bold"){
+							$("#font_weight_inp").prop('checked', true);
+						}
+						else {
+							$("#font_weight_inp").prop('checked', false);
+						}
+						if ($(this).children().first().css("font-style")=="italic"){
+							$("#font_style_inp").prop('checked', true);
+						}
+						else {
+							$("#font_style_inp").prop('checked', false);
+						}
+					};
 				})
 				.hover(function(){
 					var close = $(this).children("#close");
@@ -301,9 +360,6 @@ $(document).ready(function (){
 					var close = $(this).children("#close");
 					close.css("visibility","hidden");
 				})
-				.dblclick(function() {
-					$(this).children().first().attr("contenteditable","true");
-				});
 
 				if ($(name).hasClass("img_ph")){
 					$(name)[0].addEventListener("dragover", noopHandler, false);
@@ -319,6 +375,19 @@ $(document).ready(function (){
 							// alert(ui.draggable.children().first().attr("src"));
 							$(name).children().first().attr("src",ui.draggable.children().first().attr("src"));
 						}
+					});
+				}
+
+				if ($(name).hasClass("text")){
+					$(name).dblclick(function() {
+						$(this).draggable("disable");
+						$(this).children().first().attr("contenteditable",true);
+						$(this).children().first().focus();
+					});
+					$(name).children().first().focusout(function(){
+        				$(this).parent().draggable("enable");
+        				$(this).parent().click();
+        				// $(this).attr("contenteditable",false);
 					});
 				}
 
@@ -343,6 +412,7 @@ $(document).ready(function (){
 function applyChangedProperty(element){
 	if (element.attr("property")=="text"){
 		$("#"+$("#eid_inp").val()).children().first().text(element.val());
+		$("#"+$("#eid_inp").val()).children().first().val(element.val());
 	}
 	else{
 		switch (element.attr("id")){
@@ -357,6 +427,9 @@ function applyChangedProperty(element){
 				if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val()+"px")){
 					$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val()+"px");
 				}
+				break;
+			case "font_size_inp":
+				$("#"+$("#eid_inp").val()).children().first().css("font-size",element.val()+"px");
 				break;
 			default: 
 				if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
@@ -551,7 +624,6 @@ function applyInterfacesHelper(){
 		$("#margin_bottom_inp").val(parseInt($(this).css("margin-bottom")));
 		$("#top_inp").val(parseInt($(this).position().top+"px"));
 		$("#left_inp").val(parseInt($(this).position().left+"px"));
-		$("#font_color_inp").css("background-color",$(this).children().first().css("color"));
 	})
 	.hover(function(){
 		var close = $(this).children("#close");

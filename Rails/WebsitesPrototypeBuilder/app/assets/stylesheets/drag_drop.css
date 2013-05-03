@@ -85,9 +85,18 @@ body {
 	height: 50px;
 	text-align: center;
 	display: inline-block;
-	vertical-align: center; 
+	vertical-align: middle; 
 }
 
+.childelement{
+	width: 100%;
+	height: 100%;
+}
+
+.ta{
+	width: 70%;
+	height: 70%;
+}
 
 .tblhdr{
 	background-color: black;
@@ -120,7 +129,7 @@ body {
 	width: 70px;
 	height: 15px;
 	/*visibility: hidden;*/
-	border-radius: 5px;
+	/*border-radius: 5px;*/
 	text-align: center;
 	/*float: left;*/
 	/*margin-left: 10%;*/
@@ -233,4 +242,13 @@ progress{
 	padding-top: 10px;
 	overflow:visible;
 	height: 70px;
+}
+
+.text_prop{
+	visibility: hidden;
+}
+
+.dropdown{
+	width: 100px;
+	height: 27px;
 }
