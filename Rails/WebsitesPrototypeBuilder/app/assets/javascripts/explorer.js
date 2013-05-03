@@ -68,7 +68,7 @@ function deletePage(){
 	}
 }
 
-function addPage(project_id,event){
+function addPage(project_id){
 	//this function is used to create new page by the designer
 	var pagename=prompt("الرجاء إدخال اسم الصفحة","");
 	if(pagename!=null ){
@@ -76,7 +76,7 @@ function addPage(project_id,event){
 	  	var params = $.param({
 				pageName: pagename,
 				projectId: project_id,
-				
+
 			});
 			$.ajax("/projects/createPage?" + params);
 	  }else{
