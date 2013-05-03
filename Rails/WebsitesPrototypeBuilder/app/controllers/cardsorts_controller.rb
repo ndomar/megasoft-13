@@ -110,14 +110,14 @@ class CardsortsController < ApplicationController
 		@reviewer = Reviewer.find(params[:reviewer_id])
 		@cardsort = Cardsort.find(params[:cardsort_id])
 		cardsort_results = (@reviewer.cardsort_results & @cardsort.cardsort_results)
-		# if (!cardsort_results.empty?)
-		# 	render "/cardsorts/404" and return
-		# end
-		# begin
-		# 	@cardsort.reviewers.find(@reviewer.id)
-		# rescue
-		# 	render "/cardosrt/506" and return
-		# end
+		if (!cardsort_results.empty?)
+			render "/cardsorts/404" and return
+		end
+		begin
+			@cardsort.reviewers.find(@reviewer.id)
+		rescue
+			render "/cardosrt/506" and return
+		end
 		@cards = @cardsort.cards
 		@groups = @cardsort.groups
 	end
