@@ -48,14 +48,35 @@ module StatisticsHelper
   # * *Returns* :
   #   - a pie chart
   #  
-  def getQuestionResults(question)
+  def getQuestionResults(question, type)
     results = []
     choices = question.choices
     choices.each_with_index do |choice, index|
       results[index] = 0
     end
-    question.answer_questionnaires.each do |answer|
-      results[answer.body.to_i] += 1
+    if type == 3
+      question.answer_questionnaires.each do |answer|
+        index= nil
+        choices.each do |choice|
+          if choice.body == answer.body
+            index = choices.index(choice)
+          end
+        end
+        results[index] += 1
+      end
+    else
+      question.answer_questionnaires.each do |answer|
+        index = nil
+        chosenchoices = answer.body.split(',')
+        chosenchoices.each do |chosenchoice|
+          choices.each do |choice|
+            if choice.body == chosenchoice
+              index = choices.index(choice)
+            end
+          end
+          results[index] += 1
+        end
+      end
     end
     data_table = GoogleVisualr::DataTable.new
     data_table.new_column('string', 'choice' )
@@ -126,11 +147,12 @@ module StatisticsHelper
     end
     option = { 
       width: 600, 
-      height: 150, 
+      height: 350, 
       title: "مقارنة بين المهام",
       backgroundColor: "transparent", 
+      titlePosition: 'in',
       titleTextStyle: {color: "white"},
-      legend: {textStyle: {color: 'white'}},
+      legend: {position: 'bottom', textStyle: {color: 'white'}},
       colors: ['rgb(80,0,0)', 'rgb(0,0,80)', 'rgb(0,80,0)', '003333', '663366', '333366', '3366CC'],
       hAxis: {textStyle: {color: 'white'}}
     }
