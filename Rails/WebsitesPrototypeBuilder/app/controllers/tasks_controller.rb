@@ -20,7 +20,12 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
   def task_reviewer
     if Integer(Project.all.last.id) >= Integer(params[:project_id]) && Project.all.first.id <= Integer(params[:project_id])
       @project=Project.find(params[:project_id])
-      @reviewer= Reviewer.find(params[:reviewer_id])
+      if params[:reviewer_id]!=nil
+        @reviewer= Reviewer.find(params[:reviewer_id])
+      else
+        @reviewer=Reviewer.new
+        @reviewer.save
+      end
 
       if !@project.tasks.empty? && Integer(@project.tasks.last.id) >= Integer(params[:task_id]) && @project.tasks.first.id <= Integer(params[:task_id])
         @task= @project.tasks.find(params[:task_id])

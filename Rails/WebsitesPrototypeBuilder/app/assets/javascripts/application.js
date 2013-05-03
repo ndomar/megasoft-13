@@ -15,15 +15,6 @@
 //= require jquery.ui.all
 //= require jquery_nested_form
 //= require bootstrap
-//= require twitter/bootstrap/rails/confirm
-
-$.fn.twitter_bootstrap_confirmbox.defaults = {
-  fade: true,
-  title: " تأكيد ",
-  cancel: "لا",
-  proceed: "نعم",
-  proceed_class: "btn proceed btn-primary"
-};
 
 var state=true;
 var sidebar_width =320;

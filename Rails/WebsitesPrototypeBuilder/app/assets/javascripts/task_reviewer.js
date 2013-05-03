@@ -106,7 +106,7 @@ function times_up(){
 }
 
  function update_log(element,event_triggered){ 
-  if(element.type !='text' && element.type !='password' && element.type !='textarea'|| event_triggered=='change'){
+  if(event_triggered=='change' || element.type !='text' && element.type !='password' && element.type !='textarea'){
     var current_element_id= element.id;
     var current_element_value = $('#'+current_element_id).value;
     var current_click_time = new Date().getHours()+ ":" + new Date().getMinutes()+ ":" + new Date().getSeconds() ; //time at which the action is triggered\
@@ -179,7 +179,7 @@ function all_updates(){
   });
 
   if($("#"+steps_components_array[0]).length > 0){
-    if(steps_description_array.length>1)
+    if(steps_description_array.length>0)
       highlight(steps_components_array[0]);   
   } 
 }
