@@ -1,13 +1,13 @@
 .desc {
-margin-right: auto;
-margin-left: 70%;
-margin-top: 2%;
-border-style: outset;
-border-color: #3399FF;
-border-width: 5px;
-border-radius: 8px;
-background-color: rgba(0, 0, 0, 0.5);
-display: none;
+  margin-right: auto;
+  margin-left: 70%;
+  margin-top: 2%;
+  border-style: outset;
+  border-color: #3399FF;
+  border-width: 5px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
 }
 
 .goal {
@@ -42,7 +42,7 @@ display: none;
 }
 #coloured {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   left :0%;
   top:  0%;
   right: 0%;
@@ -89,13 +89,12 @@ footer
 }
 
 .form_button{
-border-top: 1px solid;
-padding : 10px;
-border-color: #CCC;
-background-color: rgb(230,249,255);
-min-width: 100%;
-min-height:40px;
-
+  border-top: 1px solid;
+  padding : 10px;
+  border-color: #CCC;
+  background-color: rgb(230,249,255);
+  min-width: 100%;
+  min-height:40px;
 }
 
 #info_form input[type="text"], 
@@ -122,4 +121,13 @@ min-height:40px;
   float:left;
   color:white;
   font-weight: bold;
+}
+
+
+#page{
+  background: white;
+}
+
+#preview_mode {
+  display: none;
 }

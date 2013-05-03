@@ -9,40 +9,54 @@ describe TasksController do
     sign_in(@designer)
   end
 
-  it "should find task & step. create new step_answer & task_result" do
-    p=Project.new
-    p.id=1
-    p.project_name='project1'
-    p.save
-    t=Task.new
-    t.id=1
-    t.name='task'
-    t.project_id=1
-    t.save
-    p=Page.new
-    p.id=1
-    p.save
-    s=Step.new
-    s.id=1
-    s.task_id=1
-    s.description='x'
-    s.event='click'
-    s.component='cmp'
-    s.save
-    r=Reviewer.new
-    r.id=1
-    r.save
+  it "should find task & step. create new step_answer & task_result", sarah: true do
+    controller.class.skip_before_filter :authenticate_designer!
+    controller.class.skip_before_filter :checkDesigner
+    project=Project.create(:id => 1 , :project_name => 'project1',:designer_id => '1')
+    task=Task.create(:id => 1 ,:name => 'task1' , :project_id => 1)
+    page=Page.create(:id => 1 , :project_id => 1)
+    step= Step.create(:id => 1, :task_id => 1, :description => 'x', :component => 'cmp')
+    reviewer=Reviewer.create(:id => 1)
 
     get  :task_reviewer ,{ :project_id => 1 , :task_id => 1, :step_id => 1 ,:reviewer_id => 1}
+    assigns(:project).should_not be_nil
     assigns (:task).should_not be_nil
     assigns (:reviewer).should_not be_nil
     assigns (:step).should_not be_nil
     assigns (:page).should_not be_nil
-    assigns (:step_answer).should_not be_nil
     assigns (:task_result).should_not be_nil
 
  end
 
+ it "Should render error if the project is not found" do
+    controller.class.skip_before_filter :authenticate_designer!
+    controller.class.skip_before_filter :checkDesigner
+    project=Project.create(:id => 1 , :project_name => 'project1',:designer_id => '1')
+    task=Task.create(:id => 1 ,:name => 'task1' , :project_id => 1)
+    page=Page.create(:id => 1 , :project_id => 1)
+    step= Step.create(:id => 1, :task_id => 1, :description => 'x', :component => 'cmp')
+    reviewer=Reviewer.create(:id => 1)
+  get :task_reviewer ,{ :project_id => 100 , :task_id => 1, :step_id => 1 ,:reviewer_id => 1}
+  response.should render_template('task_reviewer_error')
+end
+
+ it "Should render error if the task is not found" do  
+    controller.class.skip_before_filter :authenticate_designer!
+    controller.class.skip_before_filter :checkDesigner
+    project=Project.create(:id => 1 , :project_name => 'project1',:designer_id => '1')
+    task=Task.create(:id => 1 ,:name => 'task1' , :project_id => 1)
+    page=Page.create(:id => 1 , :project_id => 1)
+    step= Step.create(:id => 1, :task_id => 1, :description => 'x', :component => 'cmp')
+    reviewer=Reviewer.create(:id => 1)
+  get :task_reviewer ,{ :project_id => 1, :task_id => 100, :step_id => 1 ,:reviewer_id => 1}
+  response.should render_template('task_reviewer_error')
+end
+  
+  it "Refuses to add new step with no parameters" do
+    task = FactoryGirl.create(:task)
+    get :new_step, id: task.id
+    assigns(:created).should be_false
+  end
   describe "Steps Related tasks" do
     it "Refuses to add new step with no parameters" do
       get :new_step, project_id: @project, id: @task

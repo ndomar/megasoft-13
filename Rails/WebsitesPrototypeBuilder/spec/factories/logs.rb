@@ -5,3 +5,4 @@ FactoryGirl.define do
     time "1.3"
   end
 end
+
