@@ -1,3 +1,63 @@
+# Designers
+Designer.create(:fullname => "Test Designer0",
+      :email => "designer0@gmail.com",
+      :password => "pass1234",
+      :password_confirmation => "pass1234",
+      :phone_number => "01004509771",
+      :country => "Egypt",
+      :day_dob => 15,
+      :month_dob => 10,
+      :year_dob => 1990,
+      :credit_card_number => 1234567891234567,
+      :cvv2 => 123)
+Designer.create(:fullname => "Test Designer1",
+      :email => "designer1@gmail.com",
+      :password => "pass1234",
+      :password_confirmation => "pass1234",
+      :phone_number => "01004509771",
+      :country => "Egypt",
+      :day_dob => 15,
+      :month_dob => 10,
+      :year_dob => 1990,
+      :credit_card_number => 1234567891234567,
+      :cvv2 => 123)
+
+Designer.create(:fullname => "Test Designer2",
+      :email => "designer2@gmail.com",
+      :password => "pass1234",
+      :password_confirmation => "pass1234",
+      :phone_number => "01004509771",
+      :country => "Egypt",
+      :day_dob => 15,
+      :month_dob => 10,
+      :year_dob => 1990,
+      :credit_card_number => 1234567891234567,
+      :cvv2 => 123)
+
+Designer.create(:fullname => "Test Designer3",
+      :email => "designer3@gmail.com",
+      :password => "pass1234",
+      :password_confirmation => "pass1234",
+      :phone_number => "01004509771",
+      :country => "Egypt",
+      :day_dob => 15,
+      :month_dob => 10,
+      :year_dob => 1990,
+      :credit_card_number => 1234567891234567,
+      :cvv2 => 123)
+
+Designer.create(:fullname => "Test Designer4",
+      :email => "designer4@gmail.com",
+      :password => "pass1234",
+      :password_confirmation => "pass1234",
+      :phone_number => "01004509771",
+      :country => "Egypt",
+      :day_dob => 15,
+      :month_dob => 10,
+      :year_dob => 1990,
+      :credit_card_number => 1234567891234567,
+      :cvv2 => 123)
+
 # Answers
 (0..50).each do
 	Answer.create(answer: ('a'..'z').to_a.shuffle[0,20].join, question_id: rand(0..5), page_id: rand(0..5));
@@ -145,66 +205,6 @@ end
 		page_id: rand(1..5),
     time_limit: rand(1..5))
 end
-
-# Designers
-Designer.create(:fullname => "Test Designer0",
-      :email => "designer0@gmail.com",
-      :password => "pass1234",
-      :password_confirmation => "pass1234",
-      :phone_number => "01004509771",
-      :country => "Egypt",
-      :day_dob => 15,
-      :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
-Designer.create(:fullname => "Test Designer1",
-      :email => "designer1@gmail.com",
-      :password => "pass1234",
-      :password_confirmation => "pass1234",
-      :phone_number => "01004509771",
-      :country => "Egypt",
-      :day_dob => 15,
-      :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
-
-Designer.create(:fullname => "Test Designer2",
-      :email => "designer2@gmail.com",
-      :password => "pass1234",
-      :password_confirmation => "pass1234",
-      :phone_number => "01004509771",
-      :country => "Egypt",
-      :day_dob => 15,
-      :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
-
-Designer.create(:fullname => "Test Designer3",
-      :email => "designer3@gmail.com",
-      :password => "pass1234",
-      :password_confirmation => "pass1234",
-      :phone_number => "01004509771",
-      :country => "Egypt",
-      :day_dob => 15,
-      :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
-
-Designer.create(:fullname => "Test Designer4",
-      :email => "designer4@gmail.com",
-      :password => "pass1234",
-      :password_confirmation => "pass1234",
-      :phone_number => "01004509771",
-      :country => "Egypt",
-      :day_dob => 15,
-      :month_dob => 10,
-      :year_dob => 1990,
-      :credit_card_number => 1234567891234567,
-      :cvv2 => 123)
 
 # Reviewer_Task
 (0..50).each do
