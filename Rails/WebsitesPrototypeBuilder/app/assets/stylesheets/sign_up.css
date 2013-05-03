@@ -1,7 +1,15 @@
 .edit_textfields{
 	border-radius: 0px;
 }
-
 .span10,.span10 form{
 	background:#1b1b1b;
+}
+#designer_day_dob{
+	width:7.5%;
+}
+#designer_month_dob{
+	width:7.5%;
+}
+#designer_year_dob{
+	width:12.5%;
 }

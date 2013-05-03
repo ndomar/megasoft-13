@@ -72,12 +72,6 @@ $(document).ready(function() {
 		    && document.getElementById("email").value!='' 
 			&& document.getElementById("box1").value!=''
 			&& document.getElementById("box2").value!=''
-			&& document.getElementById("box3").value!=''
-			&& document.getElementById("box4").value!=''
-			&& document.getElementById("box5").value!=''
-			&& (document.getElementById("box5").value<2012 && document.getElementById("box5").value>1900)
-			&& (document.getElementById("box4").value<13 && document.getElementById("box4").value>0)
-			&& (document.getElementById("box3").value<32 && document.getElementById("box3").value>0)
 			){
 			$('input[type="submit"]').removeAttr('disabled');
 		}else {
@@ -88,21 +82,10 @@ $(document).ready(function() {
 		if($(this).val()!= ''
 		    && document.getElementById("email").value!='' 
 			&& document.getElementById("box1").value!=''
-			&& document.getElementById("box2").value!=''
-			&& document.getElementById("box3").value!=''
-			&& document.getElementById("box4").value!=''
-			&& document.getElementById("box5").value!=''){
+			&& document.getElementById("box2").value!=''){
 			$('input[type="submit"]').removeAttr('disabled');
 		}else {
 			$('input[type="submit"]').attr('disabled','disabled');
 		}
 	});
-	$(document.getElementById("box5").keyup(function(){
-		if($(this).value>1900 || $(this).value<2012){
-			$('input[type="submit"]').removeAttr('disabled');
-		}else {
-			$('input[type="submit"]').attr('disabled','disabled');
-		}
-	}));
-	
 });
