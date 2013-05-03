@@ -2,6 +2,52 @@
 module StatisticsHelper
 
   ## 
+  # returns the occurences of the card in the group
+  # * *Args*    :
+  #   -+card+->: card instance
+  #   -+group+->: group instance
+  # * *Returns* :
+  #   - number of ocurrences of card in group
+  #  
+  def getOccurrences(card, group, cardsort, reviewer)
+    count = 0
+    group.cardsort_results.each do |result|
+      if reviewer == nil
+        if (result.card == card && result.cardsort == cardsort)
+          count += 1
+        end
+      else
+        if (result.card == card && result.cardsort == cardsort && result.reviewer == reviewer)
+          count += 1
+        end
+      end
+    end
+    return count
+  end
+
+  ## 
+  # returns list of groups and cards
+  # * *Args*    :
+  #   -+reviewer_infos+->: an array of reviewer infos
+  #   -+type+->: type of the chart
+  # * *Returns* :
+  #   - an array of 2 arrays of the cards and groups with no duplicates
+  #  
+  def getGroupsAndCards(results)
+    groups = []
+    cards = []
+    results.each do |result|
+      if !groups.include?(result.group)
+        groups[groups.length] = result.group
+      end
+      if !cards.include?(result.card)
+        cards[cards.length] = result.card
+      end
+    end
+    return [groups, cards]
+  end
+
+  ## 
   # uses googlechartsvisualr to make a pie chart of the questionnaire results
   # * *Args*    :
   #   -+question+->:an instance of Question
@@ -107,11 +153,12 @@ module StatisticsHelper
     end
     option = { 
       width: 600, 
-      height: 150, 
+      height: 350, 
       title: "مقارنة بين المهام",
       backgroundColor: "transparent", 
+      titlePosition: 'in',
       titleTextStyle: {color: "white"},
-      legend: {textStyle: {color: 'white'}},
+      legend: {position: 'bottom', textStyle: {color: 'white'}},
       colors: ['rgb(80,0,0)', 'rgb(0,0,80)', 'rgb(0,80,0)', '003333', '663366', '333366', '3366CC'],
       hAxis: {textStyle: {color: 'white'}}
     }

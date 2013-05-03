@@ -101,10 +101,9 @@ describe TasksController do
 
   describe "CRUD actions test" do 
     before(:each) do
-      controller.class.skip_before_filter :authenticate_designer!
-      controller.class.skip_before_filter :checkDesigner
       designer = FactoryGirl.create(:designer)
-      @project = FactoryGirl.create(:project)
+      sign_in(designer)
+      @project = designer.projects.create(FactoryGirl.attributes_for(:project))
       @task = @project.tasks.create(FactoryGirl.attributes_for(:task))
     end
   

@@ -101,6 +101,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 	end
 
   resources :projects do
+    resources :statistics
     resources :tasks do
     end
   end
