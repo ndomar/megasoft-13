@@ -3,7 +3,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "tests/test_image"
 
 	#at start up page goes to the home controller and the index action
-	root to: "home#index"
+  root to: "projects#index"
 
 	# set devise for Designer, and set the registerations controller to the custom one
 	devise_for :designers, :controllers => { :registrations => "registrations" }
@@ -13,8 +13,6 @@ WebsitesPrototypeBuilder::Application.routes.draw do
  	post "/projects/destroy"
 	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
 	post 'steps/update'
-
-
 
 	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
 	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
@@ -29,23 +27,39 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "tasks/invite/:id" => "tasks#invite"
   get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
   match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+  get "/log/:id" => 'task_results#index'
+  get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
 
+	post 'cardsorts/invite_reviewer'
+	get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
+	post 'cardsorts/:cardsort_id/reviewer_create_group' => 'cardsorts#reviewer_create_group'
+	post 'cardsorts/submit/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#submit'
+	get 'cardsorts/review/:cardsort_id/reviewer/:reviewer_id' => 'cardsorts#review'
+	post 'cardsorts/:cardsort_id/delete_card/:card_id' => 'cardsorts#delete_card'
+	post 'cardsorts/:cardsort_id/delete_group/:group_id' => 'cardsorts#delete_group'
+	post 'cardsorts/:cardsort_id/create_card' => 'cardsorts#create_card'
+	post 'cardsorts/:cardsort_id/create_group' => 'cardsorts#create_group'
 	post 'cardsorts/create_cardsort'
+	get 'cardsorts/show/:cardsort_id' => 'cardsorts#show'
 	get 'cardsorts/new'
 	get 'cardsorts/edit'
 	get 'cardsorts/create_card'
 	get 'cardsorts/create_group'
+	get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
 
-	get "comments/create"
-	get "comments/destroy"
-	get "questions/create"
-	get "questions/destroy"
-	get "answers/create"
-	get "answers/destroy"
-	get "pages/reviewer"
-	get "pages/designer"
+  get "comments/create"
+  get "comments/destroy"
+  get "questions/create"
+  get "questions/destroy"
+  get "answers/create"
+  get "answers/destroy"
+  get "pages/reviewer"
+  get "pages/designer"
+  get "pages/download"
+  get "pages/download_project"
   get "questionnaires/answer_show"
   get "questionnaires/index"
+  get "pages/flowchart"
 
   get "answer_questionnaires/create"
 
@@ -61,13 +75,27 @@ WebsitesPrototypeBuilder::Application.routes.draw do
     end
   end
 
-  resources :tasks do
-    resources :task_results
-  end
+
+	resources :logs
+	post 'logs/new'
+
+
+	post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
+	resources :reviewers do
+	  resources :reviewer_infos
+	end
+
 
   resources :tasks do
     resources :steps
   end
+
+ 
+  #at start up page goes to the home controller and the index action
+
+  resources :projects
+
+  get "answer_questionnaires/create"
 
   resources :questionnaires do
     resources :qquestions do
@@ -86,6 +114,5 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 			resources :answers
 		end
 	end
-		
-end
 
+end

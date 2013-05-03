@@ -153,5 +153,16 @@ describe TasksController do
       response.should render_template 'show'
     end
   end
+
   
+  describe "show the log page of a task result" do
+    it "renders the log view of the task" do
+      project = FactoryGirl.create(:project)
+      task = project.tasks.create(FactoryGirl.attributes_for(:task))
+      task_result = task.task_results.create(FactoryGirl.attributes_for(:task_result))
+      log = task_result.logs.create(FactoryGirl.attributes_for(:log))
+      get :log, :project_id => project, :task_id => task, :result_id => task_result, :id => log
+      response.should render_template 'log'
+    end
+  end
 end

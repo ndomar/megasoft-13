@@ -6,23 +6,29 @@
 </head>
 
 <body>
-
 <div id="content">
-  
-<input id="cmp4" type="text" style="left : 150px ; position : absolute ;"/>
-
-<input type = "submit" value ="Step 1 cmp" class="btn" id='cmp' style="left : 800px ; position : absolute ;"/>
-<input type ="button" value = "Step 2 cmp" class= "btn" id= 'cmp2' style= "left : 600px; position : absolute;"/>
-<input type ="button"  value= "Step 3 cmp" class="btn" id='cmp3' style ="left : 400px; position : absolute;"/>
-
-<div class="desc"> 
-  "<%=@step.description %>"
+<div id= "info_form" >
+  <div id="form_title"><p>:إملأ الاستمارة </p></div>
+ <%= render "reviewer_infos/reviewer_info_form" %>  
+   
 </div>
+<div id = "coloured">
+</div>
+<div class="goal">
+  <p> <%= @task.description%></p>
+</div>
+<div class="desc"> 
+   <p id='description_paragraph'></p>
+</div>
+<div id="page">
+<br>
 <%= @page.html.html_safe %>
 </div>
+<div id="time_out"> <p>لقد أتممت المهمة بنجاح! شكراً  </p> </div>
+</div>
 
-<!--A form that update the values of success, step_id. starting time and total time taken in the database -->
-<%= form_for [@task,@step] do |f| %>  
+<!--A hidden form that update the values of success, step_id. starting time and total time taken in the database -->
+<%= form_for [@project,@task,@step] ,remote: true, html: {:id => "steps_form"} do %>  
   <%= hidden_field_tag "change_success", 'false' %>
   <%= hidden_field_tag "change_id", '1' %>
   <%= hidden_field_tag "start_time", '1' %>
@@ -30,54 +36,115 @@
   <%= hidden_field_tag "total_time_taken", '0' %>
 <% end %>
 
+<!--A hidden form that creates a new instance of log in the database to store the actions taken by the user -->
+<%= form_for :log ,remote: true , :html => {:id => "log_form"} , :url => { :controller => 'logs', :action => 'new'} do |l| %>
+<%= hidden_field_tag "change_action", ' ' %>
+<%= hidden_field_tag "change_action_time", '0' %>
+<%= hidden_field_tag "change_component_involved", ' ' %>
+<%= hidden_field_tag "change_element_id", '0' %>
+<% end %>
+
+<!-- A hidden form that updates the task_result by the total_time_taken, clicks count and the success -->
+<%= form_for [@project,@task,@task_result], remote: true , :html => {:id => "task_result_form"} do %>
+  <%= hidden_field_tag "change_clicks_count", '0' %>
+  <%= hidden_field_tag "change_time_taken", '1' %>
+<% end %>
 
 <script type="text/javascript">
 var currstep_element_id= "<%= @step.component %>";
 var count =1;
 var currstep_id= "<%= @step.id %>";
-var step_event = "<%= @step.event %>";
 var step_answer_success ='true';
-var clicks_count = 0;
 var curr_time = "<%=Time.now.strftime("%I:%M:%S")%>"; //used to get the starting time of the task
-var total_time= 0;
-var temp_time_nw=0;
-var x= new Date(); //the current date and time
-var starting_time= x.getMinutes(); //ge the starting time of the task
 
 var desc_height = $('.desc').height();
-$('#content').css({'margin-top':desc_height+20}); //keep the description pinned above the elements
+$('#page').css({'margin-top':desc_height+'20px'}); //keep the description pinned above the elements
 
-$("input").on(step_event, function(event) {
-
-var curr_element_id= event.target.id;
-if (curr_element_id == currstep_element_id) { //check if the correct element triggered the event 
-  var d2= new Date(); //used to get the time of the start of this step
- 
-  count=count+1; 
-  currstep_id = <%=@step.id%>+1;
-  clicks_count=<%= @task_result.clicks%>+1;
-  total_time= d2.getMinutes() - starting_time;
-
-  $("#change_id").val(currstep_id); //to increment the value of the curr step
-  $("#start_time").val(curr_time); //set the time_from_start
-  $("#change_clicks").val(clicks_count); //update clicks_count in DB
-  $("#change_success").val(step_answer_success); //set successful = true for step_answer
-  $("#total_time_taken").val(total_time); //sets the value of  the time taken
-
-  dehighlight(currstep_element_id); 
-    
-  $(function() { $("form").submit(); }); //to update the step_id in the DB, store no. of clicks, success, time_from_Start and time_taken
-
-  }
-});
-
+////////////////////////////////// new storyyy/////////
+var steps_ids_array; //array that contains all the ids of all the steps
+var steps_components_array; //array that contains all the ids of the components of all the steps
+var steps_events_array; //array that contains all the steps' events
+var steps_description_array;// array that contains all the steps' description
+var starting_hours;
+var starting_minutes;
+var starting_seconds
 $(window).load(function(){ 
-    // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
-currstep_element_id= "<%=@step.component%>";  //update the variable to get curr_element_Value
-highlight(currstep_element_id); //highlight the current step's component
-clicks_count= "<%= @task_result.clicks%>"; //update the value of the no. of clicks
-temp_time_nw= "<%=Time.now.strftime("%I:%M:%S")%>" ;
+// initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
+  steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(','); //array of all steps ids
+  steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(','); //array of components ids
+  steps_events_array= "<%= @task.steps.all.map(&:event).join(',')%>".split(','); //array of all steps event
+  steps_description_array= "<%= @task.steps.all.map(&:description).join(',')%>".split(',');//array of all descriptions
+
+  starting_hours= new Date().getHours();
+  starting_minutes= new Date().getMinutes();
+  starting_seconds= new Date().getSeconds();
+  starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
+  if ( <%= @task.requires_reviewer_info %>){
+  display_form(); // a function that blurs page content and displays form
+}
+
+  if (steps_ids_array.length >1) {
+    //If the steps mode is used it will highlight the 1st step's component
+    currstep_element_id=steps_components_array[0];  //update the variable to get curr_element_Value
+    highlight(currstep_element_id); //highlight the current step's component
+   $(function(){ $('.desc').show(500)});
+    document.getElementById('description_paragraph').innerHTML=steps_description_array[0]
+  }
+  var time_parsed= <%= @task.time_limit %>
+  var time_out = setTimeout('times_up()',time_parsed*60*10*10*10);
+
 });
+
+var clicks_counter=0;
+var total_time=0;
+var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for the task
+
+
+//keeps track user clicked where and when
+var current_click_time= new Date();
+$("input").on('click',function(event){
+  if(event.target.type !='text' && event.target.type !='password'){
+
+    var current_element_id= event.target.id;
+    var current_element_value = document.getElementById(event.target.id).value;
+    current_click_time = new Date().getHours()+ " :" + new Date().getMinutes() ; //time at which the action is triggered
+    $("#change_action").val("The user clicked on: ");
+    $("#change_component_involved").val(current_element_value);
+    $("#change_action_time").val(current_click_time);
+    $("#change_element_id").val(current_element_id);
+    $(function() { $("#log_form").submit(); });
+ document.getElementById("description_paragraph").innerHTML="The user clicked on " + document.getElementById(event.target.id).value + " at time " + current_click_time;
+   update(event.target,'click');
+  }
+
+
+ if (current_element_id== 'submit_form_button'){
+  hide_form();
+ }
+});
+
+$("input").on('keyup', function(event){
+//update(event.target,'keyup');
+});
+
+
+
+$("input").on('change', function(event){
+  update(event.target,'change');
+  current_element_id= event.target.id;
+  var current_change_time = new Date().getHours()+ " :" + new Date().getMinutes()
+  var current_element_value = document.getElementById(event.target.id).value;
+  $("#change_action").val("The user entered: ");
+  $("#change_component_involved").val(current_element_value);
+  $("#change_action_time").val(current_change_time);
+  $("#change_element_id").val(current_element_id);
+  $(function() { $("#log_form").submit(); });
+  document.getElementById("description_paragraph").innerHTML= "The use entered "+ document.getElementById(event.target.id).value + " at time " + current_change_time;
+  });
+
+
+
+
 </script>
 </body>
 </html>

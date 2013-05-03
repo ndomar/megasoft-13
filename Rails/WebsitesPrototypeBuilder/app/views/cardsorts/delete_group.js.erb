@@ -1,0 +1,5 @@
+var thumb = $('.group[id=<%=@group.id%>]');
+if (!thumb.hasClass('crumpled'))
+	thumb.remove();
+else
+	$(groupsView).find('tr[id=<%=@group.id%>]').remove();

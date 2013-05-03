@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
+
   #To make sure that the designer is logged in
   before_filter :authenticate_designer!
-
 
   def create_page
      Page.create!(:project_id => id)
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
     @medias = @project.medias
   end
 
-    ##
+  ##
   #The index method is used, to preview all the projects created by the logged in designer
   # * *Instance* :
   # - +designer+-> is the logged in designer
@@ -59,11 +59,16 @@ class ProjectsController < ApplicationController
   #The new method is used, to create a new project
   # * *Instance* :
   # - +project+-> The new created project
-  
   def new()
     @project = Project.new()
   end
 
+
+  ##
+  #The create method in project controller class creates a new project with a given parameter and then
+  # save it, if it is saved succesfully then redirect to the project created, else render the new view again
+  # * *Instance* :
+  # - +projects+-> The new created project with the passed parameters
   def create()
     @project = Project.new(params[:project])
     respond_to do |format|
@@ -71,8 +76,8 @@ class ProjectsController < ApplicationController
         format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
         if !File.directory?("#{Rails.public_path}/#{@project.id}")
           Dir.mkdir("#{Rails.public_path}/#{@project.id}")
-          File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
-            f.write("")
+        File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
+          f.write("")
           end
         end
         if !File.directory?("#{Rails.public_path}/#{@project.id}/images")
