@@ -103,8 +103,10 @@
 #sidebar{
   width: 0px;
 }
+
 #slidebutton{
   visibility: hidden;
+  margin-left: -40px;
 }
 .add_button{
   width: 300px;

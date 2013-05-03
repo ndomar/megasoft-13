@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Comment was successfully deleted.' }
       # Use AJAX for deletion
-      format.js   {}
+      format.js   { render nothing: true }
     end
   end
 end
