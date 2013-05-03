@@ -603,6 +603,7 @@ function uploadFile(file){
 	xhr.open("POST", "/projects/upload_media", true);
 	xhr.setRequestHeader("X_FILENAME", file.name);
 	xhr.setRequestHeader("PROJECT_ID", project_id);
+	xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
 	xhr.send(file);
 }
 

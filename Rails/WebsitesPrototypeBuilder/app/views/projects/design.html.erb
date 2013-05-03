@@ -3,6 +3,7 @@
 <%= javascript_include_tag "gridBuilder"%>
 <%= stylesheet_link_tag "drag_drop"%>
 <%= javascript_include_tag "drag_drop"%>
+<%= csrf_meta_tag %>
 <!-- <html dir="rtl"> -->
 <body>
 	<!-- main div containing toolbox and design page -->
@@ -21,7 +22,7 @@
 			<div id='image-panel'>
 				<% @medias.each do |media| %>
 				<div class='thumbnail up_images'>
-					<img  src='<%= "/assets/project_#{@project.id}/#{media.url}" %>' />
+					<img  src='<%= "#{@project_id}/images/#{media.url}" %>' />
 				</div>
 				<%end%>
 			</div>

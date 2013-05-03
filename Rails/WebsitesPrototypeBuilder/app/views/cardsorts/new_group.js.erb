@@ -1,16 +1,28 @@
 <% if (@group.valid?) %>
-	$('#error-group').text("A new card have been added successfully.");
-
-	var newGroup = $('<%= escape_javascript(render "group",
-		desc: @group.description, title: @group.title) %>')
-		.prependTo("#groups");
-	$(newGroup).click(function (){
-		changeSelected(this, 'group');
-	});
+	var newThumb = $('<%= escape_javascript(render "group_thumbnail",
+	 desc: @group.description, :cssClass => "group", name: @group.title, :index => @group.id,
+	 :id => @group.id) %>')
+	 .prependTo("#groups-thumbnail");
+	var newList =  $('<%= escape_javascript(render "group_list",
+	 desc: @group.description, name: @group.title, :index => @group.id,
+	 :id => @group.id) %>')
+	 .prependTo($("#groups-list").find('table'));
+	 	if($(newList).next().hasClass('alt-row')){
+	 		$(newList).removeClass('alt-row');
+	 	} else {
+	 		$(newList).addClass('alt-row');
+	 	}
+	 	$('#main-group-title').val("");
+	 	$('#main-group-desc').val("");
 <% else %>
-	var errorDiv = $('#error-group').text("");
-	<% @group.errors.full_messages.each do |error| %>
+	var errorDiv = $('.error-box').text("");
+	<% @group.errors.each do |attr, error| %>
 		$(errorDiv).append("<%= error %>");
 	<% end %>
+	$(errorDiv).css('left', ($('#main-card')[0].offsetLeft + $('#main-card').offsetWidth / 2) - $(errorDiv)[0].offsetWidth/2 );
+	$(errorDiv).fadeIn();
+	window.setTimeout(function() {
+		$('.error-box').fadeOut();
+	}, 2000);
 <% end %>
 

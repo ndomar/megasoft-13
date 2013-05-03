@@ -13,11 +13,12 @@
  */
 .coms{
 	cursor:pointer;
-
 }
+
 .hideans{
 	cursor:pointer;
 }
+
 .lilbuttonc{
 	display: inline-block;
 	background-image:url('\lilbutton.png');
@@ -31,14 +32,15 @@
 	top: 0px;
 	position: absolute;
 	margin-right: 0px;
-		background-size: contain;
+	background-size: contain;
 	background-repeat: no-repeat;
 	cursor:pointer;
 }
+
 .lilbuttonq{
-    display: inline-block;
-    background-image:url('\lill.png');
-    font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
+  display: inline-block;
+  background-image:url('\lill.png');
+  font-family: arabi-bold,"BebasNeueRegular", Helvetica, sans-serif;
 	text-align: center;
 	vertical-align: middle;
 	width:53px;
@@ -48,20 +50,20 @@
 	top: 0px;
 	position: absolute;
 	margin-right: 0px;
- 	background-size: contain;
-    background-repeat: no-repeat;
-    cursor:pointer;
+	background-size: contain;
+  background-repeat: no-repeat;
+  cursor:pointer;
 }
-.sw{
 
-    background-image:url('\switcher.png');
+.sw{
+  background-image:url('\switcher.png');
 	width:180px;
 	height:53px;
 	float: left;
 	margin-right: 0px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    cursor:pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor:pointer;
 }
 
 html,body{ 
@@ -122,7 +124,6 @@ body{
 	background-image:url('pattern.png');
 	background-repeat:repeat;
 	min-height: 100%;
-  height: auto !important;
   height: 100%; 
 }
 
@@ -200,6 +201,7 @@ body{
 #wrapper {
 	margin:0;
 	padding-right:320px;
+	padding-bottom: 72px;
 	position: relative;
 	height: 100%;
 	overflow: hidden;
@@ -229,26 +231,13 @@ div#content{
 }
 
 #side_content{
-	max-height: 100%;
-	overflow: auto;
-	position: absolute;
-	bottom: 0px;
-	top: 54px;
-	left: 0px;
-	right: 0px;
-	display: block;
-	width: 280;
+	padding: 10px 20px 10px 20px;
 	word-wrap:break-word;
-
-	padding: 0px 20px 0px 20px;
-	height: 100%;
-	overflow-y: auto;
-
-	width: 95%;
-	margin-right: auto;
-	margin-left: auto;
-
+	overflow-y: scroll;
+	max-height: 100%;
+	position: static;
 }
+
 #sidebar h4{
 	text-align: center;
 }
@@ -270,8 +259,10 @@ div#content{
 
 footer{
 	color: #656565;
-	margin:0px 240px 0px 240px;
+	padding:0px 240px 0px 240px;
 	padding-bottom: 20px;
+	background-color: #ffffff;
+	height: 72px;
 }
 		
 hr {
@@ -370,7 +361,7 @@ input[type="color"],
 	cursor: pointer;
 	position: fixed;
 	top: 50%;
-	margin-left: -10px;
+	margin-left: -9px;
 	z-index: 1000;
 	-moz-box-shadow: 3px 3px 4px #000;
 	-webkit-box-shadow: 3px 3px 4px #000;
@@ -420,10 +411,14 @@ input[type="color"],
 	background: rgba(69, 162, 224,0.4); 
 }
 
+#da{
+	display: none;
+}
+
 .modal{
 	border-radius: 2px;
 }
- 
+
 .modal-footer{
 	text-align: left;
 }

@@ -23,4 +23,27 @@ class ReviewerInviter < ActionMailer::Base
     @url = url
     mail(:to => email, :subject => "Prototyper task invitation")
   end
+
+    ##
+    # sends a mail to the specified email, carrying
+    # a custom invitation to a task
+    # * *Args* :
+    # - +email+ -> the email to send to
+    # - +msg+ -> a custom message for the invitation
+    # - +url+ -> url for the task to be taken
+    # * *Returns* :
+    # - a mail object to be sent
+    #
+  def review_invitation(email, msg, url)
+    @msg = msg
+    @url = url
+    mail(:to => email, :subject => "Review My Site")
+  end
+
+  def cardsort_invitation(email, msg, url)
+    @msg = msg
+    @url = url
+    mail(:to => email, :subject =>"Prototyper cardsort invitation")
+  end
+
 end
