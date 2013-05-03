@@ -76,8 +76,8 @@ class ProjectsController < ApplicationController
         format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
         if !File.directory?("#{Rails.public_path}/#{@project.id}")
           Dir.mkdir("#{Rails.public_path}/#{@project.id}")
-          File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
-            f.write("")
+        File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
+          f.write("")
           end
         end
         if !File.directory?("#{Rails.public_path}/#{@project.id}/images")

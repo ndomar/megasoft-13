@@ -60,7 +60,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "pages/download_project"
   get "questionnaires/answer_show"
   get "questionnaires/index"
-  get "pages/allpages"
+  get "pages/flowchart"
 
   get "answer_questionnaires/create"
 
