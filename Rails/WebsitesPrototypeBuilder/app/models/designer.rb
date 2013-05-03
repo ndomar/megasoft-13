@@ -10,8 +10,6 @@
 # - +day_dob+ -> integer day of date of birth
 # - +month_dob+ -> integer month of date of birth
 # - +year_dob+ -> integer year of date of birth
-# - +credit_card_number+ -> integer
-# - +cvv2+ -> string
 # - +profession+ -> string
 # - +gender+ -> string
 # - +rpx_identifier+ -> string used to log in with facebook
