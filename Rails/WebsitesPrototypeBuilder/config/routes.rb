@@ -12,6 +12,7 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "taketask/:project_id/:task_id" => 'tasks#task_reviewer'
   post 'steps/update'
 
+  match 'pages/sendReview' => 'pages#sendReview', :as => :sendReview_page
   post "/projects/destroy"
 
   get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"

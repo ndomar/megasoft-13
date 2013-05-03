@@ -34,7 +34,28 @@ class PagesController < ApplicationController
     end
   end
 
-  ##
+  ## 
+  #Send to reviewer invitations
+  # * *Args*    :
+  #   -+@email+ -> emails for sending
+  #   -+@page_id+ -> page id to review
+  #   -+description+ -> message description
+  # * *Returns*    :
+  # - view of project pages
+  #
+  def sendReview
+    email=params[:email]
+    emails=email.split(",")
+    description=params[:description]
+    page_id = params[:page_id]
+    emails.each do |one|
+      ReviewerInviter.task_invitation(one, description, "http://localhost:3000/pages/reviewer?id="+page_id).deliver()
+     end
+    respond_to do |format|
+      format.html { redirect_to(:back) } #, flash[:success] = "holder updated")  
+    end
+  end
+  ## 
   #new page
   # * *Args* :
   # -+@page+ -> new page
@@ -43,7 +64,6 @@ class PagesController < ApplicationController
   #
   def new
     @page = Page.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @page }
