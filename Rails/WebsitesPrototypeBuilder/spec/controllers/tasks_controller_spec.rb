@@ -99,12 +99,9 @@ describe TasksController do
   end
 
   describe "CRUD actions test" do 
-    before(:each) do
-      designer = FactoryGirl.create(:designer)
-      sign_in(designer)
-      @project = designer.projects.create(FactoryGirl.attributes_for(:project))
-      @task = @project.tasks.create(FactoryGirl.attributes_for(:task))
-    end
+
+    @project = Project.create(FactoryGirl.attributes_for(:project), :validate => false)
+    @task = @project.tasks.create(FactoryGirl.attributes_for(:task), :validate => false)
   
     it "renders index view" do
       get :index, :project_id => @project
@@ -118,7 +115,7 @@ describe TasksController do
     
     it "creates instance task that belongs to project id and has name field" do 
       get :create, :project_id => @project, :task => @task.attributes
-      response.should redirect_to project_tasks_path
+      response.should redirect_to select_start_page_path(@project, 2)
     end
 
     it "renders new view if name field is missing" do
