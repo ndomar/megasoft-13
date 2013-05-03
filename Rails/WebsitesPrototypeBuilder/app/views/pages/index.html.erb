@@ -1,68 +1,51 @@
-<<<<<<< HEAD
+
 <%= stylesheet_link_tag "flowchart"%>
 <%= stylesheet_link_tag "pages"%>
-
 <%= javascript_include_tag "pages"%>
-=======
 <%= stylesheet_link_tag "pages_view"%>
->>>>>>> c081ad348d6c5b36832914a2eb4df1c3d934f7a7
+
 
 <div class="titleS">
 	<div id="tit">الصفحات</div><div id="tb"></div>
 </div>
 
 <% @pages.each do |page| %>
-<<<<<<< HEAD
-    <h2><%= link_to page.page_name,page %></h2>
-    <p><%= time_ago_in_words page.created_at %> ago</p>
-    <p><%= truncate page.html %></p>
-    <p><%= link_to 'تعديل الصفحة', edit_page_path(page) %></p>
-    <p><%= link_to 'حذف الصفحة', page, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-    <p><%= link_to ' دخول كمعلق',:controller => :pages, :action => :reviewer, :id => page %></p>
-    <p><%= link_to 'دخول كمصمم',:controller => :pages, :action => :designer, :id => page %></p>
-    <p><%= link_to 'تنزيل الصفحة',:controller => :pages, :action => :download, :id => page %></p>
-    <p><%= link_to 'تنزيل المشروع',:controller => :pages, :action => :download_project, :id => page %></p>
-    <label class = "review">دعوة المعلقين</label>
-
     <div class='popup-darkbackground' id='popup-cardsortbck'></div>
-    <div class = 'popup-createProject' id='popup-cardsort'> 
-        <%= form_tag(sendReview_page_path) do %>
-          <div class = "pattern_form_up">
-            <%= link_to_function "", "hideCardsortForm()", :class => "icon-remove close", :id => "close" %>
-            <h5>دعوة المعلقين</h5>
-          </div>
-          <div class = "form_content">
-            <div id='error_project' class='error'></div>
-            <br>
-            <br>
-            <p>
-              <%= label_tag :email, "البريد الإلكتروني" %>
-              <%= text_area_tag :email,"", :cols => "50", :rows => "5" , :class => "emailField", :required =>true, :placeholder=> "يرجى ادخال فاصلة في حالة إرسال لعدة أشخاص" %> <br/>
-            </p>
-            <p>
-              <%= label_tag :description, "الرسالة" %>
-              <%= text_area_tag :description,"", :cols => "50", :rows => "5" , :id => "field", :required =>true%> <br/>
-            </p>
-            <%= hidden_field_tag :page_id, page.id %>
-            <%= hidden_field_tag :project_id, page.id %>
-          </div>
-          <div class = "pattern_form_down">
-            <p class = "save">
-              <%= submit_tag "إرسال",:class =>"btn btn-primary" %>
-            </p>
-        </div>
-    <%end%>
-  </div>
+        <div class = 'popup-createProject' id='popup-cardsort'> 
+            <%= form_tag(sendReview_page_path) do %>
+              <div class = "pattern_form_up">
+                <%= link_to_function "", "hideCardsortForm()", :class => "icon-remove close", :id => "close" %>
+                <h5>دعوة المعلقين</h5>
+              </div>
+              <div class = "form_content">
+                <div id='error_project' class='error'></div>
+                <br>
+                <br>
+                <p>
+                  <%= label_tag :email, "البريد الإلكتروني" %>
+                  <%= text_area_tag :email,"", :cols => "50", :rows => "5" , :class => "emailField", :required =>true, :placeholder=> "يرجى ادخال فاصلة في حالة إرسال لعدة أشخاص" %> <br/>
+                </p>
+                <p>
+                  <%= label_tag :description, "الرسالة" %>
+                  <%= text_area_tag :description,"", :cols => "50", :rows => "5" , :id => "field", :required =>true%> <br/>
+                </p>
+                <%= hidden_field_tag :page_id, page.id %>
+                <%= hidden_field_tag :project_id, page.id %>
+              </div>
+              <div class = "pattern_form_down">
+                <p class = "save">
+                  <%= submit_tag "إرسال",:class =>"btn btn-primary" %>
+                </p>
+            </div>
+        <%end%>
+      </div>
 
-  <%end%>
-
-<%= link_to "New Page", new_page_path%>
-=======
 <div class="span4">
 	<img src="/assets/page.png" width="200px" >
 	<p><%= page.page_name %></p>
-  <p class ="opt"><%= link_to 'دعوة لمراجعة',:controller => :pages, :action => :reviewer, :id => page %></p>
-  <p class ="opt"><%= link_to 'إضافة أسئلة',:controller => :pages, :action => :designer, :id => page %></p>
+  <p class ="opt"><%= link_to 'دعوة لمراجعة',:controller => :pages, :action => :reviewer, :id => page , :class => "opt"%></p>
+  <p class ="opt"><%= link_to 'إضافة أسئلة',:controller => :pages, :action => :designer, :id => page, :class => "opt" %></p>
+  <p class ="opt review">دعوة المعلقين</p>
 </div>
 <%end%>
->>>>>>> c081ad348d6c5b36832914a2eb4df1c3d934f7a7
+

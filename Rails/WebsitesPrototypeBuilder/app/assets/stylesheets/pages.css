@@ -149,13 +149,13 @@
  } 
 #field{
   width: 250px;
-  height: 150px;
+  height: 50px;
   resize:none;
   direction: rtl;
 }
 .emailField{
   width: 250px;
-  height: 150px;
+  height: 50px;
   resize:none;
   direction: ltr;
   text-align: left;
@@ -170,4 +170,8 @@ select {
 #popup-cardsort{
   height: 400px;
   margin-top: 20px;
+}
+.review{
+  cursor: pointer;
+  color: white;
 }
