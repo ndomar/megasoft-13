@@ -1,0 +1,19 @@
+.pending{
+	width: 20ox;
+	height: 2px;
+	background-image: url(/assets/pending.png);
+	padding: 10px;
+	margin: 5px;
+	background-size:contain;
+	background-repeat: no-repeat;
+}
+
+.done{
+	width: 20px;
+	height: 20px;
+	background-image: url(/assets/done.png);
+	padding: 10px;
+	marign: 5px;
+	background-size: contain;
+	background-repeat: no-repeat;
+}

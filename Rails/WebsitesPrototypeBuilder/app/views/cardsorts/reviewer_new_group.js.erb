@@ -2,7 +2,7 @@
 	var newThumb = $('<%= escape_javascript(render "group_thumbnail",
 	 desc: @group.description, :cssClass => "review-group", name: @group.title, :index => @group.id,
 	 :id => @group.id) %>')
-	 .prependTo("#groups-thumbnail");
+	 .prependTo("#review-groups-thumbnail");
 	var newList =  $('<%= escape_javascript(render "group_list",
 	 desc: @group.description, name: @group.title, :index => @group.id,
 	 :id => @group.id) %>')
@@ -18,8 +18,9 @@
 	var errorDiv = $('.error-box').text("");
 	<% @group.errors.each do |attr, error| %>
 		$(errorDiv).append("<%= error %>");
+		$(errorDiv).append("</br>");
 	<% end %>
-	$(errorDiv).css('left', ($('#main-card')[0].offsetLeft + $('#main-card').offsetWidth / 2) - $(errorDiv)[0].offsetWidth/2 );
+	$(errorDiv).css('left', ($('#main-group')[0].offsetLeft + $('#main-group').offsetWidth / 2) - $(errorDiv)[0].offsetWidth/2 );
 	$(errorDiv).fadeIn();
 	window.setTimeout(function() {
 		$('.error-box').fadeOut();

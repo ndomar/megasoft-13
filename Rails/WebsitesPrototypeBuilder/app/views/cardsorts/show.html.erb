@@ -1,0 +1,90 @@
+<%= javascript_tag "var id = #{@cardsort.id};" %>
+<%= javascript_include_tag "cardsorts" %>
+<%= stylesheet_link_tag "cardsorts" %>
+
+<div id='wrapper'>
+
+	<div class='sidebar' id='groups-view'>
+		<div id='groups-tag' class='sidebar-tag'>
+			المجموعات
+		</div>
+		<div id='groups-content'>
+			<div class='view-button'>
+				<img src='/assets/grid_View_button.png'>
+			</div>
+			<ul id='groups-thumbnail'>
+				<% @groups.each_with_index do |group, index| %>
+					<%= render "group_thumbnail", :index => index, :cssClass => "group",
+					 :name => group.title, :desc => group.description, :id => group.id %>
+				<% end %>
+				<div class='add-button'>
+				</div>
+			</ul>
+			<div id='groups-list'>
+				<table>
+					<% @groups.each_with_index do |group, index| %>
+						<%= render "group_list", :index => index, :cssClass => "group",
+						 :name => group.title, :desc => group.description, :id => group.id %>
+					<% end %>
+				</table>
+				<div class='add-button'>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class='sidebar' id='cards-view'>
+		<div id='cards-tag' class='sidebar-tag'>
+			البطاقات
+		</div>
+		<div id='cards-content'>
+			<div class='view-button'>
+				<img src='/assets/grid_View_button.png'>
+			</div>
+			<ul id='cards-thumbnail'>
+				<% @cards.each_with_index do |card, index| %>
+					<%= render "card_thumbnail", :index => index, :name => card.title, :desc => card.description, :id => card.id %>
+				<% end %>
+				<div class='add-button'>
+				</div>
+			</ul>
+			<div id='cards-list'>
+				<table>
+					<% @cards.each_with_index do |card, index| %>
+						<%= render "card_list", :index => index, :name => card.title, :desc => card.description, :id => card.id%>
+					<% end %>
+				</table>
+				<div class='add-button'>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id='content'>
+			<div class='error-box'>
+				asd
+			</div>
+			<div id="trash" class='btn btn-primary'>
+				<img src='/assets/trash.png'>
+			</div>
+			<div id='main-card' class='main-wrapper'>
+				<%= form_for :card, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_card" do |form| %>
+					<%= form.text_field :title, :placeholder => "اسم البطاقة", :id => "main-card-title"%>
+					<%= form.text_area :description, :placeholder => "وصف البطاقة", :id => "main-card-desc"%>
+					<%= form.submit :class => "btn btn-primary"%>
+				<% end %>
+			</div>
+			<div id='main-group' class='main-wrapper'>
+				<%= form_for :group, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_group" do |form| %>
+					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title"%>
+					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc"%>
+					<%= form.submit :class => "btn btn-primary" %>
+				<% end %>
+			</div>
+	</div>
+
+</div>
+	
+<script type="text/javascript">
+	init();
+</script>
