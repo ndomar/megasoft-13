@@ -30,6 +30,8 @@ gem "google_visualr", ">= 2.1"
 #gem for nested forms
 gem "nested_form"
 
+#gem for arbor library(flowchart)
+gem "arbor-rails"
 # gems for uploading image
 gem 'carrierwave'
 
@@ -38,9 +40,6 @@ gem 'jasmine-rails'
 
 # gem for using bootstrap
 gem 'bootstrap-sass'
-
-#gem for changing confirmation boxes styles
-gem 'twitter-bootstrap-rails-confirm'
 
 #simplecov
 gem 'simplecov', :require => false, :group => :test
@@ -72,6 +71,9 @@ gem 'mail'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+
+#gem for changing confirmation boxes styles
+gem 'twitter-bootstrap-rails-confirm-decaf'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

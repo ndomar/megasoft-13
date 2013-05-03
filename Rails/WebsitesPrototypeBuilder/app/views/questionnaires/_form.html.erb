@@ -5,6 +5,7 @@
   <div id="errors"></div>
   <!-- Getting the questionnaire title -->
   <%= f.text_field :title,:required =>"true",:value =>"اسم الاستبيان",:class =>"title" %></br>
+  <%= f.hidden_field :project_id, :value =>  @project.id %>
   <!-- Using sortable to make it sortable using jquery UI -->
   <div id="sortable">
     <!-- Creating the questions -->
