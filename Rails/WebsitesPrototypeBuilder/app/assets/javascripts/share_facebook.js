@@ -1,5 +1,8 @@
-//  FB.init({appId: "346985668734261", status: true, cookie: true});
-      //call this method to share on facebook
+//##
+//#Connects to facebook through API then sends the user's messagage to be shared on their wall
+//# * *Args* : void
+//# * *Returns* : redirects to homepage
+//#
       function postToFeed(message,link) {
         // calling the API ...
         var obj = {
@@ -17,4 +20,5 @@
 
         FB.ui(obj, callback);
       }
-    
+//Add the next link to your page
+//FB.init({appId: "346985668734261", status: true, cookie: true});
