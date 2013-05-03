@@ -26,8 +26,8 @@ $(document).ready(function(){
   starting_seconds= new Date().getSeconds();
   starting_time= starting_hours+ ":"+starting_minutes; //get the starting time of the task
   
-  if ( <%= @task.requires_reviewer_info %>){
-  display_form(); // a function that blurs page content and displays form
+  if ( <%= @task.requires_reviewer_info %>) {
+    display_form(); // a function that blurs page content and displays form
   }
 
   if (steps_ids_array.length >1) {
@@ -44,17 +44,6 @@ $(document).ready(function(){
 var clicks_counter=0;
 var total_time=0;
 var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for the task
-
-
-
-$('#sarah').on('mouseover',function(){
-  alert("divayaa");
-});
-
-$("input").on('keyup', function(event){
-  update_log(event.target,'keyup');
-//update(event.target,'keyup');
-});
 
 $(document).ready(function(){
   projectid= <%= @page.project_id %>;

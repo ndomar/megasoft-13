@@ -110,4 +110,5 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.js { render "project_deleted", :status => :ok}
     end
+  end
 end

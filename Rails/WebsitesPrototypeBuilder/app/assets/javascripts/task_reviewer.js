@@ -171,9 +171,9 @@ function all_updates(){
     $(this).attr('onmouseout','log_steps(this,"mouseout")');
   });
 
-  if(steps_components_array[0]!=null){
-    highlight(steps_components_array[0]);
-  }
+  if($("#"+steps_components_array[0]).length > 0){
+    highlight(steps_components_array[0]);   
+  } 
 }
 
 function log_steps(element,event_triggered){

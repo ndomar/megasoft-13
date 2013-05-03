@@ -1,9 +1,11 @@
  # encoding: utf-8
 class TasksController < ApplicationController
+before_filter :authenticate_designer! , :except => [:task_reviewer] 
+before_filter :checkDesigner , :except => [:task_reviewer]
 
-before_filter :authenticate_designer!
-before_filter :checkDesigner
-
+skip_before_filter :authenticate_designer!, :except => [:task_reviewer]
+skip_before_filter :checkDesigner, :except => [:task_reviewer]
+  
 ## 
 #Author:Sarah
 #finds the current task, it's page, creates a new instance of step_answer and task_result
@@ -41,7 +43,8 @@ before_filter :checkDesigner
       end
     end
   end
-  
+
+
   ## 
   # passes the list of tasks that belongs to the project to the index view
   # * *Args*    :
