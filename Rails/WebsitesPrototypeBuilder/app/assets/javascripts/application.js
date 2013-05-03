@@ -17,26 +17,20 @@
 //= require bootstrap
 //= require twitter/bootstrap/rails/confirm
 
-$.fn.twitter_bootstrap_confirmbox.defaults = {
-  fade: true,
-  title: " تأكيد ",
-  cancel: "لا",
-  proceed: "نعم",
-  proceed_class: "btn proceed btn-primary"
-};
-
-
+//The state of the side-bar(collapsed or opened)
 var state=true;
 var sidebar_width =320;
 $(document).ready(function() {
+  // USed to slide the side-bar
   $("#slidebutton").click(function(){
     if(state){
       $('#myiframe').contents().find('.nom').hide();
       $('#drag_resize').css({"display":"none"});
-    	$("#wrapper").animate({'padding-right' : 0}, 400);
+    	$("#wrapper").animate({'padding-right' : 0}, 600);
       $("#sidebar").animate({'width':'0'},600);
+      $("#side_content").slideUp("fast");
       $('#slidebutton').animate({'margin-left' : '-40px'},{
-        duration:200,
+        duration:600,
         step: function(now, fx) {
         	$('#slidebutton').css('transform','scaleX(-1)');
         }
@@ -45,10 +39,11 @@ $(document).ready(function() {
 		}else{
       $('#myiframe').contents().find('.nom').hide();
       $('#drag_resize').css({"display":"none"});
-      $("#wrapper").animate({'padding-right' : sidebar_width+'px'}, 400);
+      $("#wrapper").animate({'padding-right' : sidebar_width+'px'}, 600);
+      $("#side_content").slideDown("fast");
       $("#sidebar").animate({'width':sidebar_width+'px'},600);
-      $('#slidebutton').animate({'margin-left' : '-10px'},{
-        duration:400,
+      $('#slidebutton').animate({'margin-left' : '-9px'},{
+        duration:600,
         step: function(now, fx) {
         	$('#slidebutton').css('transform','scaleX(1)');
         }
@@ -56,19 +51,23 @@ $(document).ready(function() {
 		state=true;
 	}});
 
-var starting_position = $('#navigation_container').offset();
-var top_padding = 0;
-var bottom_limit = $('footer').offset();
-var box_height = $('#side_content').height()-100;
+  // Used to make the sidebar content fixed
+  var starting_position = $('#navigation_container').offset();
+  var top_padding = 0;
+  var bottom_limit = $('footer').offset();
+  var box_offset = $('#side_content').offset();
+  var box_height = $('#side_content').height();
 
-$(window).scroll(function(){
-  var top_window = $(window).scrollTop();
-	if (top_window > starting_position.top && top_window < bottom_limit.top - box_height){
-		$('#side_content').stop().animate({top: top_window - starting_position.top + top_padding}, 400);
-	} else if (top_window > bottom_limit.top - starting_position.top - box_height){
-		$('#side_content').stop().animate({top: bottom_limit.top - starting_position.top - box_height }, 400);
-	} else {
-		$('#side_content').stop().animate({top: 0 }, 400);
-	}});
+  $(window).scroll(function(){
+    var top_window = $(window).scrollTop();
+  	if (top_window > starting_position.top && top_window < bottom_limit.top - box_height){
+  		$('#side_content').stop().animate({top: top_window - starting_position.top + top_padding}, 400);
+  	} else if (top_window > bottom_limit.top - starting_position.top - box_height){
+  		$('#side_contentt').stop().animate({top: bottom_limit.top - starting_position.top - box_height }, 400);
+      $('#side_contentt').height(box_height -starting_position.top);
+  	} else {
+  		$('#side_contentt').stop().animate({top: 0 }, 400);
+  	}
+  });
 
 });

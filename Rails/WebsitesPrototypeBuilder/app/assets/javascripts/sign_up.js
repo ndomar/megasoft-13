@@ -32,7 +32,20 @@ $(document).ready(function() {
 				break;
 			case "كلمة السر متطابقة":
 				$('#confirmation').css("color","green");
+				$('#password2').css("border-color","green");
+				break;
+		}
+	});
+	$('#password2').keyup(function(){
+		$('#confirmation').html(passwordMatching($('#password').val(),$('#password2').val()));
+		switch($('#confirmation').html()){
+			case "كلمة السر غير متطابقة":
+				$('#confirmation').css("color","red");
 				$('#password2').css("border-color","red");
+				break;
+			case "كلمة السر متطابقة":
+				$('#confirmation').css("color","green");
+				$('#password2').css("border-color","green");
 				break;
 		}
 	});

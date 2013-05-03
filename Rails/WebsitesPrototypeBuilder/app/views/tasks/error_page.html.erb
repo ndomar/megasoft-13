@@ -1,0 +1,9 @@
+<p> Error! </p>
+<% if @error == 'task_already_taken' %>
+  <p> Task already taken! </p>
+  <p> <%= @task_already_taken %> </p>
+<% elsif @error == 'start_page_not_defined'%>
+  <p> Start page not defined </p>
+<% else %>
+ <p> Designer not allowed to view this page </p>
+<% end %>

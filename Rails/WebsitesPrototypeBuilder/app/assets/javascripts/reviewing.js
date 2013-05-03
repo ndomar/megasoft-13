@@ -92,14 +92,12 @@ function places(af,t) {
 	}
 	else
 	{
-		
-		    
-		    $('#myiframe').contents().find('.nom').hide();
-		    unfiltercomments();
-		    unfilterquestions();
-		    
-		   
-		
+	 $('#myiframe').contents().find('.nom').hide();
+		if(t==1){
+			unfilterquestions();}
+    else{
+    	unfiltercomments();
+    }
 		
 
 	}
@@ -290,9 +288,14 @@ function selectItem () {
 		window.frames[0].OnMouseMove(posX,posY);
 	}
 }
-function resizeIframe(newHeight)
-{
-    document.getElementById('myiframe').style.height = parseInt(newHeight,10) + 10 + 'px';
+
+function test_site(url){
+	var win=window.open(url, '_blank');
+  win.focus();
+}
+
+function resizeIframe(newHeight){
+  document.getElementById('myiframe').style.height = parseInt(newHeight,10) + 10 + 'px';
 }
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {

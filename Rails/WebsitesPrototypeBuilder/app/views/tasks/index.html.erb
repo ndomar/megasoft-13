@@ -21,7 +21,7 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><input type="image" src="/images/facebook_icon.png" onclick = 'postToFeed("Please take this task", "http://localhost:3000/projects/<%= params[:project_id]%>/tasks/<%=task.id%>/", "<%= task.name %>")'></input></td>
-        <td style="text-align:right;"><%= link_to 'تعديل الخطوات', edit_steps_path(task) %> </td>
+        <td style="text-align:right;"><%= link_to 'تعديل الخطوات', edit_steps_path(params[:project_id], task) %> </td>
         <td style="text-align:right;"><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
         <td style="text-align:right;"><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></td>
         <td style="text-align:right;"><%= link_to 'الغاء', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'هل تريد الغاء المهمة' } %></td>
