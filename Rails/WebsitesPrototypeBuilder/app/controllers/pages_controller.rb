@@ -1,10 +1,10 @@
 class PagesController < ApplicationController
 
-  ## 
+  ##
   #View all pages
-  # * *Args*    :
-  #   -+@page+ -> get all pages
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get all pages
+  # * *Returns* :
   # - index view containig all pages
   #
   def index
@@ -16,12 +16,12 @@ class PagesController < ApplicationController
     end
   end
 
-  ## 
+  ##
   #View page
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  #   -+data+ -> get relevant file content
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # -+data+ -> get relevant file content
+  # * *Returns* :
   # - view of this page after updating it's content from the it's file
   #
   def show
@@ -34,11 +34,11 @@ class PagesController < ApplicationController
     end
   end
 
-  ## 
+  ##
   #new page
-  # * *Args*    :
-  #   -+@page+ -> new page
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> new page
+  # * *Returns* :
   # - redirects to new.html.erb
   #
   def new
@@ -50,11 +50,11 @@ class PagesController < ApplicationController
     end
   end
 
-  ## 
+  ##
   #Edit page
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # * *Returns* :
   # - redirects to edit.html.erb
   #
   def edit
@@ -63,12 +63,12 @@ class PagesController < ApplicationController
     @page.update_attribute(:html , data)
   end
 
-  ## 
+  ##
   #Create page
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  #   -+html+ -> save the current HTMl file of passed parameter
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # -+html+ -> save the current HTMl file of passed parameter
+  # * *Returns* :
   # - creates a Html file with the passed name and save it in the project folder
   #
   def create
@@ -77,8 +77,8 @@ class PagesController < ApplicationController
     respond_to do |format|
       if @page.save
         format.html { redirect_to @page, notice: 'Page was successfully created.' }
-        format.json { render json: @page, status: :created, location: @page }     
-        target  = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
+        format.json { render json: @page, status: :created, location: @page }
+        target = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
         if !File.directory?("#{Rails.public_path}/#{@page.project_id}")
           Dir.mkdir("#{Rails.public_path}/#{@page.project_id}")
           Dir.mkdir("#{Rails.public_path}/#{@page.project_id}/images")
@@ -93,11 +93,11 @@ class PagesController < ApplicationController
     end
   end
 
-  ## 
+  ##
   #Update page
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # * *Returns* :
   # - Updates the Html file with the passed content
   #
   def update
@@ -106,7 +106,7 @@ class PagesController < ApplicationController
       if @page.update_attributes(params[:page])
         format.html { redirect_to @page, notice: 'Page was successfully updated.' }
         format.json { head :no_content }
-        target  = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
+        target = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
         File.open(target, "w") do |f|
           f.write(@page.html)
         end
@@ -117,11 +117,11 @@ class PagesController < ApplicationController
     end
   end
 
-  ## 
+  ##
   #Destroy page
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # * *Returns* :
   # - Deletes the selected page from database and it's file
   #
   def destroy
@@ -134,12 +134,12 @@ class PagesController < ApplicationController
     end
   end
 
-  ## 
+  ##
   #Reviewer page
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  #   -+data+ -> get relevant file content
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # -+data+ -> get relevant file content
+  # * *Returns* :
   # - renders the reviewing page
   #
   def reviewer
@@ -149,12 +149,12 @@ class PagesController < ApplicationController
     render 'reviewer'
   end
 
-  ## 
+  ##
   #Designer page
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  #   -+data+ -> get relevant file content
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # -+data+ -> get relevant file content
+  # * *Returns* :
   # - renders the designer reviewing page
   #
   def designer
@@ -167,7 +167,7 @@ class PagesController < ApplicationController
   ##
   # get all pages related to this project
   # * *Args* :
-  #   -+@prject+ -> get selected project
+  # -+@prject+ -> get selected project
   # * *Returns* :
   # - void
   #
@@ -177,38 +177,38 @@ class PagesController < ApplicationController
     render 'flowchart'
   end
 
-  ## 
+  ##
   #Remove HTML
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  #   -+target+ -> get relevant file location
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # -+target+ -> get relevant file location
+  # * *Returns* :
   # - saves the location of the file in the database
   #
   def removeHtml
     @page = Page.find(params[:id])
-    target  = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
+    target = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
     @page.update_attribute(:html , target)
   end
 
-  ## 
+  ##
   #Download HTML
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # * *Returns* :
   # - downloads the selected html file
   #
   def download
     @page = Page.find(params[:id])
-    send_file "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html", :type=>"html" 
+    send_file "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html", :type=>"html"
   end
 
-  ## 
+  ##
   #Download HTML
-  # * *Args*    :
-  #   -+@page+ -> get selected page
-  #   -+@project+ -> get the project of this page
-  # * *Returns*    :
+  # * *Args* :
+  # -+@page+ -> get selected page
+  # -+@project+ -> get the project of this page
+  # * *Returns* :
   # - downloads the full project after comprsseing it
   #
   def download_project
@@ -217,11 +217,11 @@ class PagesController < ApplicationController
     send_file "#{Rails.public_path}/#{@project.id}/#{@project.id}.zip",:type => 'application/zip',:disposition => 'attachment',:filename => @project.project_name
   end
 
-  ## 
+  ##
   #Compress project
-  # * *Args*    :
-  #   -+archive+ -> the loctaion of the new zip file
-  # * *Returns*    :
+  # * *Args* :
+  # -+archive+ -> the loctaion of the new zip file
+  # * *Returns* :
   # - it compresses a given path into a zip file
   #
   def compress(path)

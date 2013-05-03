@@ -22,6 +22,7 @@ class Project < ActiveRecord::Base
   has_many :pages, :dependent => :destroy
   has_many :medias
   has_many :cardsorts, :dependent => :destroy
+  has_many :questionnaires, :dependent => :destroy
   belongs_to :designer
 
   ## 

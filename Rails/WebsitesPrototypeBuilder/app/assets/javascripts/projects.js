@@ -21,6 +21,7 @@ $(document).ready(function(){
   {
     showpopup();
   });
+
  $('.popup-darkbackground').on('click', function ()
   {
     $(".popup-darkbackground").fadeOut(500);
@@ -35,6 +36,7 @@ $(document).ready(function(){
     $(this).css("cursor","pointer");
     $(this).children('.x-button').fadeOut();
   });
+
   $('.options').hover(function()
   {
     $(this).css("cursor","pointer");
@@ -45,6 +47,7 @@ $(document).ready(function(){
     $(this).css("cursor","pointer");
     $(this).css("background-color","#1b1b1b");
   });
+
   state=false;
   $('.project-div').on('click', function ()
   {
@@ -55,7 +58,8 @@ $(document).ready(function(){
     var projectid = $(this).attr("ProjectId");
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
-    $("#Task").attr("href","tasks/index/" + projectid);
+    $("#Task").attr("href","projects/" + projectid + "/tasks/");
+    $("#Statistics").attr("href","projects/" + projectid + "/statistics/");
     $("#Questionnaire").attr("href","/questionnaires/index?project_id=" + projectid);
     $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
     $("#Review").attr("href","/pages?project_id=" + projectid);
