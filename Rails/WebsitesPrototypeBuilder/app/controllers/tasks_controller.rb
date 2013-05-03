@@ -2,7 +2,7 @@
 class TasksController < ApplicationController
 
   before_filter :authenticate_designer!, :except => :task_reviewer
-  #before_filter :checkDesigner, :except => :task_reviewer
+  before_filter :checkDesigner, :except => :task_reviewer
 
   ## 
   #finds the current task, it's page, creates a new instance of step_answer and task_result
