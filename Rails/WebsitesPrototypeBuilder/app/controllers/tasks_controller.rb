@@ -1,8 +1,7 @@
  # encoding: utf-8
 class TasksController < ApplicationController
 
-  before_filter :authenticate_designer!, :except => :task_reviewer
-  before_filter :checkDesigner, :except => :task_reviewer
+-  before_filter :checkDesigner, :except => :task_reviewer
 
   ## 
   #finds the current task, it's page, creates a new instance of step_answer and task_result
@@ -241,7 +240,7 @@ class TasksController < ApplicationController
       if @error == 'start_page_not_defined'
         @pages = @project.pages
         format.html {render "select_start_page"}
-      elsif @error == 'task_already_taken'
+      elsif @error
         format.html {render "error_page"}
       else
         format.html {render "edit_steps"}
