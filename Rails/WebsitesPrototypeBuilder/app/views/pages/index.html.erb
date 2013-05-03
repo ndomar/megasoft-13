@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag "flowchart"%>
-<%= javascript_include_tag "flowchart"%>
+<%= stylesheet_link_tag "pages"%>
+
+<%= javascript_include_tag "pages"%>
 
 <h1>Welcome to Commenter</h1>
 
@@ -7,12 +9,43 @@
     <h2><%= link_to page.page_name,page %></h2>
     <p><%= time_ago_in_words page.created_at %> ago</p>
     <p><%= truncate page.html %></p>
-    <p><%= link_to 'Edit', edit_page_path(page) %></p>
-    <p><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-    <p><%= link_to 'Reviewer',:controller => :pages, :action => :reviewer, :id => page %></p>
-    <p><%= link_to 'Designer',:controller => :pages, :action => :designer, :id => page %></p>
-    <p><%= link_to 'Download',:controller => :pages, :action => :download, :id => page %></p>
-    <p><%= link_to 'Download Project',:controller => :pages, :action => :download_project, :id => page %></p>
+    <p><%= link_to 'تعديل الصفحة', edit_page_path(page) %></p>
+    <p><%= link_to 'حذف الصفحة', page, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <p><%= link_to ' دخول كمعلق',:controller => :pages, :action => :reviewer, :id => page %></p>
+    <p><%= link_to 'دخول كمصمم',:controller => :pages, :action => :designer, :id => page %></p>
+    <p><%= link_to 'تنزيل الصفحة',:controller => :pages, :action => :download, :id => page %></p>
+    <p><%= link_to 'تنزيل المشروع',:controller => :pages, :action => :download_project, :id => page %></p>
+    <label class = "review">دعوة المعلقين</label>
+
+    <div class='popup-darkbackground' id='popup-cardsortbck'></div>
+    <div class = 'popup-createProject' id='popup-cardsort'> 
+        <%= form_tag(sendReview_page_path) do %>
+          <div class = "pattern_form_up">
+            <%= link_to_function "", "hideCardsortForm()", :class => "icon-remove close", :id => "close" %>
+            <h5>دعوة المعلقين</h5>
+          </div>
+          <div class = "form_content">
+            <div id='error_project' class='error'></div>
+            <br>
+            <br>
+            <p>
+              <%= label_tag :email, "البريد الإلكتروني" %>
+              <%= text_area_tag :email,"", :cols => "50", :rows => "5" , :class => "emailField", :required =>true, :placeholder=> "يرجى ادخال فاصلة في حالة إرسال لعدة أشخاص" %> <br/>
+            </p>
+            <p>
+              <%= label_tag :description, "الرسالة" %>
+              <%= text_area_tag :description,"", :cols => "50", :rows => "5" , :id => "field", :required =>true%> <br/>
+            </p>
+            <%= hidden_field_tag :page_id, page.id %>
+            <%= hidden_field_tag :project_id, page.id %>
+          </div>
+          <div class = "pattern_form_down">
+            <p class = "save">
+              <%= submit_tag "إرسال",:class =>"btn btn-primary" %>
+            </p>
+        </div>
+    <%end%>
+  </div>
 
   <%end%>
 

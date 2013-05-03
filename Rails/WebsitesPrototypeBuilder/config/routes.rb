@@ -10,8 +10,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
   post 'steps/update'
 
-
-get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
+  match 'pages/sendReview' => 'pages#sendReview', :as => :sendReview_page
+  get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
 
   resources :projects do
     resources :statistics

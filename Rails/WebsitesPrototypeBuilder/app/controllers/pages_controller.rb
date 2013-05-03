@@ -33,7 +33,26 @@ class PagesController < ApplicationController
       format.json { render json: @page }
     end
   end
-
+  ## 
+  #Send to reviewer invitations
+  # * *Args*    :
+  #   -+@page+ -> get selected page
+  #   -+data+ -> get relevant file content
+  # * *Returns*    :
+  # - view of this page after updating it's content from the it's file
+  #
+  def sendReview
+    email=params[:email]
+    emails=email.split(",")
+    description=params[:description]
+    page_id = params[:page_id]
+    emails.each do |one|
+      ReviewerInviter.task_invitation(one, description, "http://localhost:3000/pages/reviewer?id="+page_id).deliver()
+     end
+    respond_to do |format|
+      format.html { redirect_to(:back) } #, flash[:success] = "holder updated")  
+    end
+  end
   ## 
   #new page
   # * *Args*    :
@@ -43,7 +62,6 @@ class PagesController < ApplicationController
   #
   def new
     @page = Page.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @page }
