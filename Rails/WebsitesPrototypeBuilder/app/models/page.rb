@@ -22,5 +22,5 @@ class Page < ActiveRecord::Base
     `convert app/assets/images/page_ll.jpg -resize 200x300 app/assets/images/page_ll.jpg`
   end
   handle_asynchronously :take_screenshot
-
+  
 end

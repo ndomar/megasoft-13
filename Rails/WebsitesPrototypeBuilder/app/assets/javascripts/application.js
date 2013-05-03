@@ -58,6 +58,4 @@ $(document).ready(function() {
   	} else {
   		$('#side_content').stop().animate({top: 0 }, 400);
   	}});
-
 });
-

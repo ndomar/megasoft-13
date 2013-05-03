@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+
   #To make sure that the designer is logged in
   before_filter :authenticate_designer!
 
@@ -59,7 +60,6 @@ class ProjectsController < ApplicationController
   #The new method is used, to create a new project
   # * *Instance*    :
   #   - +project+-> The new created project
-  
   def new()
     @project = Project.new()
   end
@@ -70,8 +70,6 @@ class ProjectsController < ApplicationController
   # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
   # * *Instance*    :
   #   - +projects+-> The new created project with the passed parameters
-    
-
   def create()
     @project = Project.new(params[:project])
     respond_to do |format|
@@ -105,7 +103,7 @@ class ProjectsController < ApplicationController
   # * *Returns* :
   # - void
   #
-  def destroy
+  def destroy()
     @project = Project.find(params[:id])
     @project.destroy
     FileUtils.remove_dir("#{Rails.public_path}/#{@project.id}", :force => true)

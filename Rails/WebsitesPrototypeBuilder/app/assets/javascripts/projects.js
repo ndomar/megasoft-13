@@ -29,6 +29,7 @@ $(document).ready(function(){
   {
     $(this).css("cursor","pointer");
     $(this).css("background-color","#6699FF");
+    $(this).css("color","#FFFFFF");
   }, function()
   {
     $(this).css("cursor","pointer");
