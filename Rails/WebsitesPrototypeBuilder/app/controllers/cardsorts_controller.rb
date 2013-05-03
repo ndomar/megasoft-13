@@ -4,7 +4,7 @@
 
 class CardsortsController < ApplicationController
 	##
-	# create new cardsort from sent parameters
+	# show a cardsort that has been already created
 	# * *Args* :
 	# - none
 	# * *Returns* :
@@ -17,6 +17,13 @@ class CardsortsController < ApplicationController
 		#other_cardsorts = @cardsort.project.cardsorts
 	end
 
+	##
+	# create new cardsort from sent parameters
+	# * *Args* :
+	# - none
+	# * *Returns* :
+	# - void
+	#
 	def create_cardsort
 		@cardsort = Cardsort.new(params[:cardsort])
 		@cardsort.save
