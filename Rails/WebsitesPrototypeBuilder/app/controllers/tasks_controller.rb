@@ -173,17 +173,30 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
     end
   end
   
-  def invite 
-    @task = Task.find(params[:id])
-    
-  end
+  ##
+  #is invoked when the user submites the form in the invite view
+  #* *Args*    :
+  #   -+Task+->: an instance of the class task
+  #   -+messege+->: from the form in view invite of type string
+  #   -+email+->: from the form in the view invite of type string
+  #* *Returns*    :
+  #   -
+  #author Ahmed Osama
   def invite_user
-    
-    @inv = Task.find(params[:id]).send_invitation(params[:email], params[:invitation_message], "taketask/#{params[:id]}/#{Reviewer.find_by_email(params[:email]).id}")
-  
-  end
-  def makesure
-    puts(params[:task_id] , params[:reviewer_id])
+    @email = params[:email]
+    @project_id = params[:project_id]
+    @invitation_message = params[:invitation_message]
+    @task_id = params[:task_id]
+    @Reviewer = Reviewer.find_by_email(params[:email])
+    if @Reviewer == nil
+      @Reviewer = Reviewer.create(:email => params[:email])
+      @Reviewer.save
+    end
+    @inv = Task.find(params[:task_id]).send_invitation(@Reviewer, params[:invitation_message],
+     "http://localhost:3000/projects/#{params[:project_id]}/tasks/#{params[:task_id]}/reviewers/#{@Reviewer.id}") 
+    respond_to do |format|
+      format.js {render 'invite_user', :status => :ok}
+    end
   end
 
   
@@ -326,7 +339,7 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
   #   - +result_id+ ->: The id of the task result to be sent to 
   # * *Returns*  :
   #   -Renders an html view to view the log of the task reult
-  #
+  # author: Ahmed Osama
 
   def log
     @task_result = Project.find_by_id(params[:project_id]).tasks.find(params[:task_id]).task_results.find_by_id(params[:result_id])
