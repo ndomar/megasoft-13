@@ -2,39 +2,26 @@ WebsitesPrototypeBuilder::Application.routes.draw do
 
   get "tests/test_image"
 
-  # set devise for Designer, and set the registerations controller to the custom one
-  devise_for :designers, :controllers => { :registrations => "registrations" }
+	#at start up page goes to the home controller and the index action
+  root to: "projects#index"
 
+	# set devise for Designer, and set the registerations controller to the custom one
+	devise_for :designers, :controllers => { :registrations => "registrations" }
 
-  post "/projects/destroy"
-  get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
-  post 'steps/update'
+	get 'projects/design/:project_id' => 'projects#design'
+	get 'projects/:project_id/design/:project_id' => 'projects#design'
+ 	post "/projects/destroy"
+	post 'steps/update'
 
-
-get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"
-
-  resources :projects do
-    resources :statistics
-    resources :tasks do
-      resources :steps
-      resources :task_results
-    end
-  end
-
-
-resources :logs
-post 'logs/new'
-
-
-post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
-resources :reviewers do
-  resources :reviewer_infos
-end
-
-
-  resources :tasks do
-    resources :steps
-  end
+	get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
+	get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
+	get "tasks/invite/:id" => "tasks#invite"
+	post "tasks/invite_user/:id" => "tasks#invite_user"
+  get "answer_questionnaires/create"
+  post "tasks/invite_user/:id" => "tasks#invite_user"
+  get "tasks/invite/:id" => "tasks#invite"
+  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
+  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
 
  post 'cardsorts/invite_reviewer'
  get 'cardsorts/invitations/:cardsort_id' => 'cardsorts#invitations'
@@ -52,12 +39,6 @@ end
  get 'cardsorts/create_card'
  get 'cardsorts/create_group'
  get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
- 
-  #at start up page goes to the home controller and the index action
-
-  root to: "projects#index"
-
-  resources :projects
 
   get "comments/create"
   get "comments/destroy"
@@ -75,39 +56,61 @@ end
 
   get "answer_questionnaires/create"
 
-   resources :questionnaires do
-    resources :qquestions do
-      resources :choice_qquestions
-      resources :answer_questionnaires
-    end 
-  end
-
   get "pages/designer"
   get "projects/index"
   post "projects/upload_media"
 
-  resources :projects
 
-  resources :pages do
-    resources :comments
-    resources :questions do
-      resources :answers
+
+	resources :logs
+	post 'logs/new'
+
+
+	post 'reviewers/:reviewer_id/reviewer_infos/new' => "reviewer_infos#new"
+	resources :reviewers do
+	  resources :reviewer_infos
+	end
+
+
+  resources :tasks do
+    resources :steps
+  end
+
+ 
+  #at start up page goes to the home controller and the index action
+
+
+  get "answer_questionnaires/create"
+
+  resources :questionnaires do
+    resources :qquestions do
+      resources :choice_qquestions
+      resources :answer_questionnaires
     end
   end
- 
-  get "/log/:id" => 'task_results#index'
 
-  get "/tasks/edit_steps/:id" => "tasks#edit_steps", :as => :edit_steps
-  get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
-  get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
-  get "tasks/invite/:id" => "tasks#invite"
-  
-  get "/taketask/:task_id/:reviewer_id" => 'tasks#makesure'
-  match "/task" => 'task#fill_task' #Try to change this, not regular way of having routes + will match any incorrect url in the task path
+	resources :tasks do
+		resources :steps
+	end
 
-  post "tasks/invite_user/:id" => "tasks#invite_user"
+	resources :pages do
+		resources :comments
+		resources :questions do
+			resources :answers
+		end
+	end
 
-  get "/log/:id" => 'task_results#index'
-  get 'projects/design/:project_id' => 'projects#design'
+  resources :projects do
+    resources :tasks do
+    end
+  end
+
+
+	get "projects/:project_id/tasks/:task_id/steps/:step_id/reviewers/:reviewer_id" =>'tasks#task_reviewer'
+	get "projects/:project_id/tasks/:id/edit_steps/" => "tasks#edit_steps", :as => :edit_steps
+  get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
+  get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
   get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
+
+
 end
