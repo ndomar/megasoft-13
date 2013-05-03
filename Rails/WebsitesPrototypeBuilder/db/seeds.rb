@@ -1,3 +1,4 @@
+
 # Answers
 (0..10).each do |i|
 Answer.create(answer: "answer#{i}", question_id: (i%3), page_id: (i%3));

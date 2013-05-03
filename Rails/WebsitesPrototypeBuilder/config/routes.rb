@@ -70,6 +70,13 @@ post 'logs/new'
  get 'cardsorts/create_group'
  get 'cardsorts/reviewer_invitation/:cardsort_id' => "cardsorts#reviewer_invitation"
 
+resources :projects do
+  resources :tasks do
+    resources :steps
+    resources :task_results
+  end
+end
+
   get "comments/create"
   get "comments/destroy"
   get "questions/create"
@@ -134,6 +141,5 @@ post 'logs/new'
   get "projects/:project_id/tasks/:id/save_start_page/:page_id" => "tasks#save_start_page", :as => :save_start_page
   get "projects/:project_id/tasks/:id/select_start_page/" => "tasks#select_start_page", :as => :select_start_page
   get '/projects/:project_id/tasks/:task_id/result/:result_id' => 'tasks#log'
-
-
+  post "tasks/invite_user" => "tasks#invite_user"
 end
