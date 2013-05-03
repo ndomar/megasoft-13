@@ -84,7 +84,7 @@ class Task<ActiveRecord::Base
       @designer_allowed = false
     end
 
-    if !page || page == nil
+    if !page || page == nil || page.id == 0
       @error = 'start_page_not_defined'
     end
 
