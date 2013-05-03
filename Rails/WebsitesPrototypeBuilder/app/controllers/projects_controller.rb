@@ -109,6 +109,7 @@ class ProjectsController < ApplicationController
   end
 
   ##
+  #Author : samy shihata
   # upload media (image/video) to the server under a specific
   # folder for the project
   # * *Args*    :
@@ -151,6 +152,7 @@ class ProjectsController < ApplicationController
 	end
  
   ##
+  #Author :Menna Ashraf
   #The index method is used, to preview all the projects created by the logged in designer
   # * *Instance*    :
   #   - +designer+-> is the logged in designer 
@@ -170,6 +172,7 @@ class ProjectsController < ApplicationController
   #   - Returns the selected project design page       
 
   ##
+  #Author :Menna Ashraf
   #The create method in project controller class creates a new project with a given parameter and then
   # save it, if it is saved succesfully then redirect to the project created, else render the new view again 
   # * *Instance*    :
@@ -193,6 +196,7 @@ class ProjectsController < ApplicationController
   end
 
   ##
+  #Author :Menna Ashraf
   # The destroy method in the project controller is used, to delete any particular project
   # * *Instances*   :
   #   - +project+-> is the project to be deleted
