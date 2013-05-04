@@ -1,10 +1,11 @@
 //these functions are used in the package explorer
 
-function show(id){
+function show(id, commit){
 	var designPage = document.getElementById('designpage');
 	designPage.setAttribute("data-pageid", id);
 	var params = $.param({
-		pageId: id
+		pageId: id,
+		commit: commit
 	});
 	$.ajax("/projects/showPage?" + params);
 	$("html, body").animate({ scrollTop: 0 }, 600);
@@ -19,15 +20,15 @@ function store(){
 			var html = document.getElementById('designpage').innerHTML; 
 			html = html.replace(/\s+/g, ' ');
 			var htmlToDisplay=html;
-			document.getElementById(pageId).ondblclick= function () {
-																										var designPage = document.getElementById('designpage');
-																										designPage.setAttribute("data-pageid", pageId);
-																										var params = $.param({
-																											'pageId': pageId
-																										});
-																										$.ajax("/projects/showPage?" + params);
-																										$("html, body").animate({ scrollTop: 0 }, 600);
-																									};
+			document.getElementById(pageId).ondblclick = function () {
+				var designPage = document.getElementById('designpage');
+				designPage.setAttribute("data-pageid", pageId);
+				var params = $.param({
+					'pageId': pageId
+			});
+			$.ajax("/projects/showPage?" + params);
+			$("html, body").animate({ scrollTop: 0 }, 600);
+									};
 			html=html.replace( "onclickevent", "onclick" , 'g');
 			html=html.replace( "onhoverevent", "onmouseover" , 'g');
 			html=html.replace( "#", "" , 'g');

@@ -153,7 +153,7 @@ $(document).ready(function (){
 			tabState--;
 			$("#designcontainer").hide();
 			$("#sidebar").animate({
-				right: "-170px"
+				right: "-210px"
 			},200,"linear");
 		}
 		else {
@@ -179,7 +179,7 @@ $(document).ready(function (){
 		if (tabState == nStates-2){
 			tabState--;
 			$(".image-panel").animate({
-				right: "-150px"
+				right: "-190px"
 			},200,"linear");
 		}
 		else {
@@ -206,7 +206,7 @@ $(document).ready(function (){
 			tabState--;
 			$("#versions-scroll").hide();
 			$(".versions-panel").animate({
-				right: "-130px"
+				right: "-170px"
 			},200,"linear");
 			tabsArea(false);
 		}
@@ -256,66 +256,24 @@ $(document).ready(function (){
     	}
 	});
 
-
 	function tabsArea(enable){
 		if(enable){
 	    	$("#designpage").animate({
-	        	width: "-=170",
-	            left: "-=170"
+	        	width: "-=210",
+	            left: "-=210"
 	       	},200,"linear");
 	       	$("#designpage").children().animate({
-	        	left: "-=170"
+	        	left: "-=210"
 	       	},200,"linear");
 	    }else{
 	    	$("#designpage").animate({
-	        	width: "+=170",
-	            left: "+=170"
+	        	width: "+=210",
+	            left: "+=210"
 	       	},200,"linear");
 	       	$("#designpage").children().animate({
-	        	left: "+=170"
+	        	left: "+=210"
 	       	},200,"linear");
 	    }
-	}
-
-	function applyChangedProperty(element){
-		if (element.attr("property")=="text"){
-			$("#"+$("#eid_inp").val()).children().first().text(element.val());
-		}
-		else{
-			if (insideDesignPage($("#"+$("#eid_inp").val()),element.attr("property"),element.val())){
-				$("#"+$("#eid_inp").val()).css(element.attr("property"),element.val());
-			}
-		}
-		$("#"+$("#eid_inp").val()).click();
-	}
-
-	function exceedsWidth(element,val,left_pos){ //checks if the element exceeded the designpage width
-		return element.outerWidth(true)+val>$("#designpage").width();
-	}
-
-	function exceedsHeight(element,val,top_pos){ //checks if the element exceeded the designpage height
-		return element.outerHeight(true)+val>$("#designpage").height();
-	}
-
-	function insideDesignPage(element,property,val){ //applies the property with the new value to the component then checks if the element still resides in the designpage
-		try{
-			var pp = element.css(property);
-			element.css(property,val);
-			var pos = element.offset();
-			pos.left-=$("#designpage").offset().left;
-			pos.top-=$("#designpage").offset().top;
-			if (pos.left>=0 && pos.left<=$("#designpage").width() && pos.top>=0 && pos.top<=$("#designpage").height() && pos.left+element.width()<=$("#designpage").width() && pos.top+element.height()<=$("#designpage").height() && element.outerWidth(true)<=$("#designpage").width() && element.outerHeight(true)<=$("#designpage").height() && parseInt(val)>=0){
-				element.css(property,pp);
-				return true;
-			}
-			else{
-				element.css(property,pp);
-				return false;
-			}
-		}
-		catch(err){
-			return false;
-		}
 	}
 
 	counter = 0; //Counts number of elements in the Design Page
