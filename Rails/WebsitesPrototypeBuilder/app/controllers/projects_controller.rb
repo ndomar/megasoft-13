@@ -39,15 +39,14 @@ class ProjectsController < ApplicationController
   #
   def savePage
     @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
-    @page.html = params[:pagehtml]      # I am updating the page's html
-    @page.save
-    # if @page.save                      # I am saving the page after updating it
-    #   target = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
-    #   File.open(target, "w") do |f|
-    #     f.write(@page.html)
-    #   end
-    # end
-    # @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@page.project_id}")
+    html = params[:pagehtml]      # I am updating the page's html
+    if @page.update_attribute(:html , html)
+      target = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
+      File.open(target, "w") do |f|
+         f.write(@page.html)
+       end
+     end
+    #@page.delay.take_screenshot("http://localhost:3000/projects/design/#{@page.project_id}")
     respond_to do |format|
       format.html { render :nothing => true }
       format.js { render :layout => false }
