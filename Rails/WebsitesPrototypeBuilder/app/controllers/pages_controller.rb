@@ -55,6 +55,8 @@ class PagesController < ApplicationController
       format.html { redirect_to(:back) } #, flash[:success] = "holder updated")  
     end
   end
+
+
   ## 
   #new page
   # * *Args* :
