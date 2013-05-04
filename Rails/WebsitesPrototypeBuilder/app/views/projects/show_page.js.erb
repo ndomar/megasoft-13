@@ -1,14 +1,14 @@
-# <% if (@page.valid?) %>
+<% if (@page.valid?) %>
 var designPage = document.getElementById('designpage');
 var html = "<%= @page.html %>";
 var id = <%= @page.id %>
-
 designPage.innerHTML="";
-$('<%= escape_javascript(render "showPage")%>').appendTo('#designpage')
-// html = designPage.innerHTML
 html=html.replace( "onclick", "onclickevent" , 'g');
 html=html.replace( "onmouseover", "onhoverevent" , 'g');
+// @page.html = html;
+$('<%= escape_javascript(render "showPage")%>').appendTo('#designpage')
 designPage.setAttribute("data-pageid", id);
-alert('done');
+applyInterfaces();
+//this is Malatawy's method to be able to drag and drop after saving
 <% else %>
 <% end %>

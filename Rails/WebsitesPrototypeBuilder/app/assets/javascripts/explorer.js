@@ -30,6 +30,7 @@ function store(){
 																									};
 			html=html.replace( "onclickevent", "onclick" , 'g');
 			html=html.replace( "onhoverevent", "onmouseover" , 'g');
+			html=html.replace( "#", "" , 'g');
 			var params = $.param({
 				pageid: pageId,
 				pagehtml: html
