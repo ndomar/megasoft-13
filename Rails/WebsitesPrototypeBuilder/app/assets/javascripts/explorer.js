@@ -9,10 +9,12 @@ function show(id, commit){
 	});
 	$.ajax("/projects/showPage?" + params);
 	$("html, body").animate({ scrollTop: 0 }, 600);
+	alert("DONE");
 }
 
 function store(){
-	var pageId = document.getElementById('designpage').getAttribute("data-pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
+	var pageId = $('#designpage').data("pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
+	alert(pageId);
 	if(pageId != 0){
 		//i need something to notify me not to show this alert
 		var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
@@ -36,7 +38,7 @@ function store(){
 			html=html.replace( "onhoverevent", "onmouseover" , 'g');
 			var params = $.param({
 				pageid: pageId,
-				"html": html
+				pagehtml: html
 			});
 			$.ajax({
 				url: "/projects/savePage",
@@ -44,7 +46,7 @@ function store(){
 				data: params
 			});
 			//this is the ajax request to update and, save the updated page
-			return;
+			alert(html);
 		}
 	}
 }
