@@ -35,6 +35,28 @@ class QuestionnairesController < ApplicationController
     render 'answer_show'
   end
 
+    ## 
+  #Send to reviewer Questionnaire
+  # * *Args*    :
+  #   -+@email+ -> emails for sending
+  #   -+@page_id+ -> page id to review
+  #   -+description+ -> message description
+  # * *Returns*    :
+  # - view of project pages
+  #
+  def sendQuestionnaire
+    email=params[:email]
+    emails=email.split(",")
+    description=params[:description]
+    questionnaire_id = params[:questionnaire_id]
+    emails.each do |one|
+      ReviewerInviter.task_invitation(one, description, "http://localhost:3000/questionnaires/answer_show?id="+questionnaire_id).deliver()
+     end
+    respond_to do |format|
+      format.html { redirect_to(:back) } #, flash[:success] = "holder updated")  
+    end
+  end 
+
   # GET /questionnaires/new
   # GET /questionnaires/new.json
   def new

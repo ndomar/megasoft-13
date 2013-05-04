@@ -1,5 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  get 'projects/savePage'
+  post 'projects/savePage'
   get 'projects/createPage'
   get 'projects/deletePage'
   get 'projects/showPage'
@@ -13,6 +13,8 @@ WebsitesPrototypeBuilder::Application.routes.draw do
   post 'steps/update'
 
   match 'pages/sendReview' => 'pages#sendReview', :as => :sendReview_page
+  match 'questionnaire/sendQuestionnaire' => 'questionnaires#sendQuestionnaire', :as => :sendQuestionnaire_questionnaire
+
   post "/projects/destroy"
 
   get "tasks/task_reviewer_done" => "tasks#task_reviewer_done"

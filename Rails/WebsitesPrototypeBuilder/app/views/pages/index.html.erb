@@ -1,6 +1,5 @@
-
 <%= stylesheet_link_tag "flowchart"%>
-<%= stylesheet_link_tag "pages"%>
+<%= stylesheet_link_tag "middlevie"%>
 <%= javascript_include_tag "pages"%>
 <%= stylesheet_link_tag "pages_view"%>
 
@@ -30,7 +29,6 @@
                   <%= text_area_tag :description,"", :cols => "50", :rows => "5" , :id => "field", :required =>true%> <br/>
                 </p>
                 <%= hidden_field_tag :page_id, page.id %>
-                <%= hidden_field_tag :project_id, page.id %>
               </div>
               <div class = "pattern_form_down">
                 <p class = "save">
@@ -43,9 +41,8 @@
 <div class="span4">
 	<img src="/assets/page.png" width="200px" >
 	<p><%= page.page_name %></p>
-  <p class ="opt"><%= link_to 'دعوة لمراجعة',:controller => :pages, :action => :reviewer, :id => page , :class => "opt"%></p>
-  <p class ="opt"><%= link_to 'إضافة أسئلة',:controller => :pages, :action => :designer, :id => page, :class => "opt" %></p>
   <p class ="opt review">دعوة المعلقين</p>
+  <p class ="opt"><%= link_to 'إضافة أسئلة',:controller => :pages, :action => :designer, :id => page, :class => "opt" %></p>
 </div>
 <%end%>
 
