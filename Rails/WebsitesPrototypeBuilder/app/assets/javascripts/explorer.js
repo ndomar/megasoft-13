@@ -35,6 +35,7 @@ function store(){
 																									};
 			html=html.replace( "onclickevent", "onclick" , 'g');
 			html=html.replace( "onhoverevent", "onmouseover" , 'g');
+			// alert(pageId);
 			var params = $.param({
 				pageid: pageId,
 				pagehtml: html
@@ -45,7 +46,7 @@ function store(){
 				data: params
 			});
 			//this is the ajax request to update and, save the updated page
-			alert(html);
+			alert(pageId);
 		}
 	}
 }
