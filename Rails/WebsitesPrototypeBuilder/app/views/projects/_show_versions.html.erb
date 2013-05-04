@@ -1,0 +1,12 @@
+_show_versions
+<html>
+
+<% @versions.each do |c| %>
+	<a href = "#" onclick="show(document.getElementById('designpage').getAttribute('data-pageid'), '<%= c.oid %>')"><%= c.message %></a></br><%= c.time %>
+	</br></br>
+<% end %> 
+
+</html>
+
+
+
