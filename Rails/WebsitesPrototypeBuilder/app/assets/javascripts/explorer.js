@@ -9,6 +9,7 @@ function show(id, commit){
 	});
 	$.ajax("/projects/showPage?" + params);
 	$("html, body").animate({ scrollTop: 0 }, 600);
+	alert("DONE");
 }
 
 function store(){
@@ -36,7 +37,7 @@ function store(){
 			html=html.replace( "onhoverevent", "onmouseover" , 'g');
 			var params = $.param({
 				pageid: pageId,
-				"html": html
+				pagehtml: html
 			});
 			$.ajax({
 				url: "/projects/savePage",
@@ -44,7 +45,7 @@ function store(){
 				data: params
 			});
 			//this is the ajax request to update and, save the updated page
-			return;
+			alert(html);
 		}
 	}
 }

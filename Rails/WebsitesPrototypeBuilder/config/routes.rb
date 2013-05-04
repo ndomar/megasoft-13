@@ -1,5 +1,5 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
-  get 'projects/savePage'
+  post 'projects/savePage'
   get 'projects/createPage'
   get 'projects/deletePage'
   get 'projects/showPage'
