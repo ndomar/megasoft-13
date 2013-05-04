@@ -67,7 +67,9 @@ class ProjectsController < ApplicationController
     @page = Page.find(params[:pageid]) 
     @page.destroy
     @pages = Page.find(:all, :conditions => {:project_id => @page.project_id})
-    File.delete("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
+    if @page.file_dir_exists?("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
+      # File.delete(File.expand_path File.dirname("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"))
+    end
     # if @page.file_dir_exists?("app/assets/images/project_#{@page.project_id}/page_#{@page.page_name}")
     #   File.delete(File.expand_path File.dirname("page_#{@page.page_name}"))
     # end

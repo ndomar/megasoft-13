@@ -1,41 +1,35 @@
 //these functions are used in the package explorer
 
-function show(id, commit){
+function show(id){
 	var designPage = document.getElementById('designpage');
 	designPage.setAttribute("data-pageid", id);
 	var params = $.param({
-		pageId: id,
-		commit: commit
+		pageId: id
 	});
 	$.ajax("/projects/showPage?" + params);
 	$("html, body").animate({ scrollTop: 0 }, 600);
 }
 
 function store(){
-	var pageId = $('#designpage').data("pageid");	//this gets the id of the page being designed right now but obtaining it from the attribute data-pageid
+	var pageId = $('#designpage').data("pageid");	
 	alert(pageId);
 	if(pageId != 0){
-		//i need something to notify me not to show this alert
 		var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
 		if(response==true){
-			var html = document.getElementById('designpage').innerHTML; 	//this gets the html from the designpage pane and stores it in the variable html
+			var html = document.getElementById('designpage').innerHTML; 
 			html = html.replace(/\s+/g, ' ');
-			//reseting the ondbclick show event
 			var htmlToDisplay=html;
 			document.getElementById(pageId).ondblclick= function () {
-																				          	var designPage = document.getElementById('designpage');
-																				          	designPage.setAttribute("data-pageid", pageId);
-																										designPage.innerHTML="";
+																										var designPage = document.getElementById('designpage');
+																										designPage.setAttribute("data-pageid", pageId);
 																										var params = $.param({
-																											'pageId': pageId,
-																											"commit": "-1"
+																											'pageId': pageId
 																										});
 																										$.ajax("/projects/showPage?" + params);
 																										$("html, body").animate({ scrollTop: 0 }, 600);
 																									};
 			html=html.replace( "onclickevent", "onclick" , 'g');
 			html=html.replace( "onhoverevent", "onmouseover" , 'g');
-			// alert(pageId);
 			var params = $.param({
 				pageid: pageId,
 				pagehtml: html
@@ -45,7 +39,6 @@ function store(){
 				method: 'post',
 				data: params
 			});
-			//this is the ajax request to update and, save the updated page
 		}
 	}
 }
