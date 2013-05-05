@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ProjectsController < ApplicationController
 
   #To make sure that the designer is logged in

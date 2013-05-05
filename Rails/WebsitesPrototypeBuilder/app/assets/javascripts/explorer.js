@@ -13,7 +13,6 @@ function show(id, commit){
 
 function store(){
 	var pageId = $('#designpage').data("pageid");	
-	alert(pageId);
 	if(pageId != 0){
 		var response=confirm("هل أنت متأكد أنك تريد حفظ؟");
 		if(response==true){

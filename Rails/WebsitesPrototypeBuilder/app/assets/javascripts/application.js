@@ -17,6 +17,14 @@
 //= require bootstrap
 //= require twitter/bootstrap/rails/confirm
 
+$.fn.twitter_bootstrap_confirmbox.defaults = {
+    fade: true,
+    title: "تاكيد", // if title equals null window.top.location.origin is used
+    cancel: "إلغاء",
+    proceed: "حسنا",
+    proceed_class: "btn proceed btn-primary"
+};
+
 //The state of the side-bar(collapsed or opened)
 var state=true;
 var sidebar_width =320;
