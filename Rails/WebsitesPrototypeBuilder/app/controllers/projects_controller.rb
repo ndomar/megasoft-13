@@ -1,4 +1,9 @@
+# encoding: utf-8
 class ProjectsController < ApplicationController
+
+  #To make sure that the designer is logged in
+  before_filter :authenticate_designer!
+
   ##
   #The show method is used, to show a certain project.
   # * *Instance*    :
@@ -41,15 +46,44 @@ class ProjectsController < ApplicationController
     @page = Page.find(params[:pageid])  # I am retrieving the page whose id is the provided id
     html = params[:pagehtml]      # I am updating the page's html
     if @page.update_attribute(:html , html)
-      target = "#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"
-      File.open(target, "w") do |f|
-         f.write(@page.html)
-       end
-     end
+      # save to file, and commit the changes
+      # getting the repo from its folder
+      path = "#{Rails.public_path}/#{@page.project_id}"
+      repo = Rugged::Repository.new(path)
+
+      # create a new file to add in the repo, skip if file already exists
+      file_path = path + "/" + @page.page_name + ".html"
+      new_file = !File.exists?(file_path)
+      File.open(file_path, "w") do |f|
+        f.write(html)   
+      end
+
+      # add the files to the list of files to commited
+      index = repo.index
+
+      Dir.foreach(path) do |item|
+        next if item == '.' or item == '..' or File.directory?(path+"/"+item)
+        index.add(item)
+      end
+
+      # commiting after adding all files
+      options = {}
+      options[:tree] = index.write_tree
+      options[:author] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+      options[:committer] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+      options[:message] = ((new_file)? "إضافة" : "حفظ") + " صفحة \"#{@page.page_name}\""
+      options[:parents] = repo.empty? ? [] : [ repo.head.target ].compact
+      options[:update_ref] = 'HEAD'
+
+      Rugged::Commit.create(repo, options)
+      load_versions(@page.project_id)
+    end
     #@page.delay.take_screenshot("http://localhost:3000/projects/design/#{@page.project_id}")
+    @need_to_show_page = false
     respond_to do |format|
-      format.html { render :nothing => true }
-      format.js { render :layout => false }
+      #format.html { render :nothing => true }
+      #format.js { render :layout => false }
+      format.js {render "show_page", :status => :ok}
     end
   end
 
@@ -67,12 +101,35 @@ class ProjectsController < ApplicationController
     @page = Page.find(params[:pageid]) 
     @page.destroy
     @pages = Page.find(:all, :conditions => {:project_id => @page.project_id})
-    if @page.file_dir_exists?("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
-      # File.delete(File.expand_path File.dirname("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html"))
+    
+    # delete file, and commit the changes
+    # getting the repo from its folder
+    path = "#{Rails.public_path}/#{@page.project_id}"
+    repo = Rugged::Repository.new(path)
+
+    # delete file
+    file_path = path + "/" + @page.page_name + ".html"
+    File.delete(file_path)
+
+    # add the files to the list of files to commited
+    index = repo.index
+
+    Dir.foreach(path) do |item|
+      next if item == '.' or item == '..' or File.directory?(path+"/"+item)
+      index.add(item)
     end
-    # if @page.file_dir_exists?("app/assets/images/project_#{@page.project_id}/page_#{@page.page_name}")
-    #   File.delete(File.expand_path File.dirname("page_#{@page.page_name}"))
-    # end
+
+    # commiting after adding all files
+    options = {}
+    options[:tree] = index.write_tree
+    options[:author] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+    options[:committer] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+    options[:message] = "مسح صفحة \"#{@page.page_name}\""
+    options[:parents] = repo.empty? ? [] : [ repo.head.target ].compact
+    options[:update_ref] = 'HEAD'
+
+    Rugged::Commit.create(repo, options)
+
     respond_to do |format|
       format.js {render "remove_page", :status => :ok}
     end
@@ -111,11 +168,29 @@ class ProjectsController < ApplicationController
     end
   end
 
-  #To make sure that the designer is logged in
-  before_filter :authenticate_designer!
-
   def create_page
     Page.create!(:project_id => id)
+  end
+
+  def load_versions (project_id)
+    repo = Rugged::Repository.new("#{Rails.public_path}/#{project_id}")
+    @walker = Rugged::Walker.new(repo)
+    @walker.push(Rugged::Branch.lookup(repo, "master").tip.oid)
+    @walker.sorting(Rugged::SORT_TOPO)
+
+    @versions = []
+    @walker.each do |c|
+      file_found = false
+      c.tree.each do |file|
+        if file[:name] == @page.page_name + '.html'
+          file_found = true
+          break
+        end
+      end 
+      if file_found
+        @versions.push(c) 
+      end
+    end
   end
 
   ##
@@ -132,10 +207,19 @@ class ProjectsController < ApplicationController
     # data = File.read("#{Rails.public_path}/#{@page.project_id}/#{@page.page_name}.html")
     # @page.update_attribute(:html , params[:html])
     @html = ""
-    if @page.html != nil 
+    
+    repo = Rugged::Repository.new("#{Rails.public_path}/#{@page.project_id}")
+    if @page.html != nil and params[:commit] == "-1"
       @html =@page.html.html_safe
+    else if params[:commit] != "-1"
+        @html = repo.blob_at(params[:commit], @page.page_name + '.html').read_raw.data.to_s.html_safe
+        @html.force_encoding('UTF-8')
+      end
     end
+    load_versions(@page.project_id)
+
     @id=@page.id
+    @need_to_show_page = true
     respond_to do |format|
       format.js {render "show_page", :status => :ok}
     end
@@ -213,20 +297,47 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       if (@project.save)
         format.html {redirect_to projects_url, notice: 'Project was successfully created.'}
-        if !File.directory?("#{Rails.public_path}/#{@project.id}")
-          Dir.mkdir("#{Rails.public_path}/#{@project.id}")
-        File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
-          f.write("")
-          end
+        
+        #create a new repo for the new project
+        path = "#{Rails.public_path}"
+
+        if(!Dir.exists? path)
+          Dir.mkdir(path)
         end
-        if !File.directory?("#{Rails.public_path}/#{@project.id}/images")
-          Dir.mkdir("#{Rails.public_path}/#{@project.id}/images")
+        path += "/#{@project.id}"
+        if(!Dir.exists? path)
+          Dir.mkdir(path)
+        end
+        images_path = path + "/images"
+        if(!Dir.exists? images_path)
+          Dir.mkdir(images_path)
+        end
+
+        File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
+          f.write("<html></html>")
         end
         @page = Page.new()
         @page.project_id= @project.id
         @page.page_name= "index"
         @page.save
+
+        repo = Rugged::Repository.init_at(path, false)
+
+        index = repo.index
+        index.add("index.html")
+
+        options = {}
+        options[:tree] = index.write_tree
+        options[:author] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+        options[:committer] = { :email => "ahmadsoliman@github.com", :name => 'Ahmad Soliman', :time => Time.now }
+        options[:message] = "Initial Commit"
+        options[:parents] = []
+        options[:update_ref] = 'HEAD'
+
+        Rugged::Commit.create(repo, options)
+
         @page.delay.take_screenshot("http://localhost:3000/projects/design/#{@project.id}/?page_id=#{@page.id}")
+        
         format.js {render "create", :status => :created }
       else
         format.js {render "create", :status => :ok}

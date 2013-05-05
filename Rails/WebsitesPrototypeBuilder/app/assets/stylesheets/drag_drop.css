@@ -13,13 +13,13 @@ body {
 
 #wrapper{
 	/*position: fixed;*/
-	padding-right: 280px;
+	padding-right: 302px;
 	min-width: 1000px;
 	min-height: 740px;
 }
 
 #toolbox{
-	width: 229px;
+	width: 239px;
 	height:750px;
 	float: left;
 	left: 0px;
@@ -31,7 +31,7 @@ body {
 	/*border-radius: 20px;*/
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px; 
-	padding-left: 10px;
+	padding-left: 20px;
 	padding-bottom: 20px;
 	display: inline-block;
 }
@@ -189,7 +189,7 @@ body {
 	border-width: 2px;
 	border-color: black;
 	color: #fafafa;
-	width: 210px;
+	width: 229px;
 	background:#1b1b1b;
 	position: absolute;
 	top: 2%;
@@ -242,8 +242,8 @@ body {
 	overflow-y: auto;
 	position: absolute;
 	height: 520px;
-	width: 170px;
-	margin-left: 10px;
+	width: 180px;
+	margin-left: 20px;
 }
 
 #drop-area{
