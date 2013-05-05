@@ -4,9 +4,6 @@
   margin-top: 2%;
   border-style: outset;
   border-color: #3399FF;
-  border-width: 5px;
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.5);
   display: none;
 }
 
@@ -130,4 +127,13 @@ footer
 
 #preview_mode {
   display: none;
+}
+
+#content p {
+padding: 0 10px 10px 10px;
+color: white;
+}
+
+.the_body {
+  overflow: auto;
 }
