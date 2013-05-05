@@ -172,5 +172,8 @@ select {
 }
 .review{
   cursor: pointer;
+  color: black;
+}
+.review:hover{
   color: white;
 }

@@ -33,12 +33,10 @@
         <% if current_designer.fullname.eql?nil %>
           <%= current_designer.email %>
         <% else %>
-          <%= current_designer.fullname %>
+          <strong><%= current_designer.fullname %></strong>
         <% end %>
         ﻣﺴﺠﻞ ﺑﺈﺳﻢ<br /> ﻟﻴﺲ ﺃﻧﺖ؟
         <%= link_to "ﺧﺮﻭﺝ", destroy_designer_session_path, :method => :delete %>
-        <br />
-        <%= link_to "ﺗﻌﺪﻳﻞ اﻟﺒﻴﺎﻧﺎﺕ", edit_designer_registration_path %>
       <% end %>
     </div>
   </div>

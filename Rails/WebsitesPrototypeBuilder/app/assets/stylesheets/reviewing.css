@@ -6,6 +6,8 @@
 	padding: 0px;
 }
 
+
+
 iframe {
 	border: 0px;
 	-moz-transform:rotate(0deg);
@@ -262,4 +264,9 @@ textarea.message_area {
 
 .pointer{
 	cursor: pointer;
+}
+
+
+#content{
+	background-color: white;
 }

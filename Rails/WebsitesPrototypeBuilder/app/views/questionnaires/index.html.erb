@@ -45,5 +45,5 @@
   <% end %>
 
 <div class="span4">
-  <p class="addq"><%= link_to 'استبيان جديد', :controller => :questionnaires, :action => :new, :project_id => @project %></p>
+  <p class="addq"><%= link_to image_tag("/assets/addquestionnaire.png"), {:action => 'new', :controller => 'questionnaires',:project_id => @project }%></p>
 </div>
