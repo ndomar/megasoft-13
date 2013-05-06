@@ -51,8 +51,12 @@
 <% end %>
 
 <!-- making a flash for any errors -->
+
 <% flash.each do |name, msg| %>
+  <div class = "error alert alert-block">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
   <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  </div>
 <% end %>
 
  <!--end navigationbar -->
