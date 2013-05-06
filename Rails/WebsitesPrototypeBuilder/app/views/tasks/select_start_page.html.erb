@@ -1,27 +1,22 @@
+<%= stylesheet_link_tag "flowchart"%>
 <style type="text/css">
-  /* If you want the view to take the full width of the page if not remove it(.container)*/
-  .container{
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-  }
-
   #centering{
     text-align: center;
-    /*width: 50%;
-    margin: 0 auto;*/
     width: 700px;
     height: 100px;
-    margin-left: 20%;
+    margin-left: auto;
+    margin-right:auto;
   }
-
 </style>
 <%= javascript_include_tag "select_start_page" %>
 <%= javascript_include_tag "cloud-carousel.1.0.5"%> 
-<h2 style = "margin-right: 30px"> إختر صفحة البداية للمهمة </h2>
+
+<div class="titleS">
+  <div id="tit"> إختر صفحة البداية للمهمة </div><div id="tb"></div>
+</div>
+
 <div style = "width:100%">
-  <div id="myCarousel" style="position: absolute; width:700px;height:250px;margin-left:20%; margin-bottom:20px; display: block;">
+  <div id="myCarousel" style="position: absolute; width:700px;height:250px;margin-left:auto; margin-right:auto;margin-bottom:20px; display: block;">
   <% @pages.each do |page| %>
   <% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
        <img id = '<%= page.id %>' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" 

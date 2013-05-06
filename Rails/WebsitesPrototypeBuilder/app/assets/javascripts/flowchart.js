@@ -18,7 +18,7 @@ $(document).ready(function(){
         $(this).click();
     });
     // Start arbor
-    var sys = arbor.ParticleSystem(1000, 400,1);
+    var sys = arbor.ParticleSystem(100, 400,1);
     sys.parameters({gravity:true});
     sys.renderer = Renderer("#viewport") ;
     sys.graft(drawdata);
@@ -46,13 +46,13 @@ function listlinks(data,name){
     $(data).siblings('.links').text(pages[name]);
     var x= hh;
     for (var i in pages[name]){
-        if(pages[pages[name][i]]==undefined){
+        if(pages[adjust_name(pages[name][i])]==undefined){
         var json = '{"color":"orange","shape":"dot","label":"test"}',
         obj = JSON.parse(json);
         obj.label=pages[name][i];
         drawdata.nodes[pages[name][i]]=obj;
         }
-        connections= pages[name][i];
+        connections= adjust_name(pages[name][i]);
         x[connections] = h;
    }
     drawdata.edges[name]=x;
@@ -71,7 +71,9 @@ function get_random_color() {
 
 // Remove the extra .html extension
 function adjust_name(name){
-    if(name.indexOf('.html')==0)
-        return name.replace('.html', '');
+    if(name !=undefined){
+        if(name.indexOf('.html')!=-1)
+            return name.replace('.html', '');
+    }
     return name;
 }

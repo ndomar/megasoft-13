@@ -193,7 +193,7 @@ skip_before_filter :checkDesigner, :except => [:task_reviewer]
       @Reviewer.save
     end
     @inv = Task.find(params[:task_id]).send_invitation(@Reviewer, params[:invitation_message],
-     "http://localhost:3000/projects/#{params[:project_id]}/tasks/#{params[:task_id]}/reviewers/#{@Reviewer.id}") 
+     "http://localhost:3000/taketask/#{params[:project_id]}/#{params[:task_id]}/#{@Reviewer.id}") 
     respond_to do |format|
       format.js {render 'invite_user', :status => :ok}
     end

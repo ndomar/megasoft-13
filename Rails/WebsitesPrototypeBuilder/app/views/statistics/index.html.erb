@@ -1,11 +1,14 @@
 <script src='https://www.google.com/jsapi'></script>
+<%= stylesheet_link_tag "flowchart"%>
+
 <div style="float:right; margin-right:20px; width:900px; display:block;">
-  <legend style = "text-align:right; margin-right:20px; color:white;">احصائيات المهام</legend>
-  <br>
+  <div class="titleS">
+    <div id="tit">احصائيات المهام</div><div id="tb"></div>
+  </div>
   <% if @tasks.length != 0 %>
     <div id='all_tasks_results' style="margin-left:-20px; float:left; width:500px; display:inline-block;"></div>
     <%= render_chart(drawBarchart(@tasks), 'all_tasks_results') %>
-    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:auto; direction:rtl; height:300px;">
       <tr>
         <th style="text-align:right;">قائمة المهام</th>
         <th></th>
@@ -77,11 +80,13 @@
   </div>
 <%end%>
 <div style="float:right; margin-right:20px; width:900px; display:block;">
-  <legend style = "text-align:right; margin-right:20px; color:white;">نتائج الاستطلاعات</legend>
+  <div class="titleS">
+    <div id="tit">نتائج الاستطلاعات</div><div id="tb"></div>
+  </div>
   <% if @questionnaires.length == 0 %>
     <p style="color:red;"> لا توجد استطلاعات في هذا المشروع </p>
   <% else %>
-    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:auto; direction:rtl; height:300px;">
       <tr>
         <th style="text-align:right;">قائمة الاستطلاعات</th>
         <th></th>
@@ -108,7 +113,7 @@
           </div>
         <% else %>
           <% if question.qtype == 1 || question.qtype == 2 %>
-            <div style="float:left; margin-left:20px; width:500px; height:200px; overflow:scroll;">
+            <div style="float:left; margin-left:20px; width:500px; height:200px; overflow:auto;">
               <h4><%= question.body %> : السؤال</h4>
               <h5>: الأجوبة</h5>
               <ol style="float:right; direction:rtl; margin-right:20px;">
@@ -135,11 +140,13 @@
   <% end %>
 </div>
 <div style="float:right; margin-right:20px; width:900px; display:block;">
-  <legend style = "text-align:right; margin-right:20px; color:white;">نتائج ترتيب الكروت</legend>
+  <div class="titleS">
+    <div id="tit">نتائج ترتيب الكروت</div><div id="tb"></div>
+  </div>
   <% if @cardsorts.length == 0 %>
     <p style="color:red;"> لا توجد مهام ترتيب كروت في هذا المشروع </p>
   <% else %>
-    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+    <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:auto; direction:rtl; height:300px;">
       <tr>
         <th style="text-align:right;">قائمة ترتيب الكروت</th>
         <th></th>
@@ -161,7 +168,7 @@
       <% if results.length == 0 %>
         <p style="color:red;"> لا توجد نتائج </p>
       <%else%>
-        <table class="table table-condensed" style="float:left; width:500px; display:inline-block; direction:rtl; overflow:scroll; height:300px;">
+        <table class="table table-condensed" style="float:left; width:500px; display:inline-block; direction:rtl; overflow:auto; height:300px;">
           <% groupsnadcards = getGroupsAndCards(results) %>
           <% cards = groupsnadcards[1] %>
           <% groups = groupsnadcards[0] %>
@@ -202,7 +209,7 @@
         <legend style = "text-align:right; margin-right:20px; color:white;">
           اختر احد المراجعين لاظهار نتائج ترتيب الكروت الخاصه به
         </legend>
-        <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+        <table class="table table-condensed" style="float:right; width:300px; display:inline-block; overflow:auto; direction:rtl; height:300px;">
           <tr>
             <th style="text-align:right;">قائمة المراجعين</th>
             <th></th>
@@ -225,7 +232,7 @@
               <% reviewer_results[reviewer_results.length] = result %>
             <% end %>
           <% end %>
-          <table class="table table-condensed" style="float:left; width:500px; display:inline-block; overflow:scroll; direction:rtl; height:300px;">
+          <table class="table table-condensed" style="float:left; width:500px; display:inline-block; overflow:auto; direction:rtl; height:300px;">
             <% groupsnadcards = getGroupsAndCards(reviewer_results) %>
             <% cards = groupsnadcards[1] %>
             <% groups = groupsnadcards[0] %>
