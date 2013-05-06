@@ -46,7 +46,7 @@ var total_time=0;
 var task_time="0:"+<%= @task.time_limit %> + ":0"; //the time fram specified for the task
 
 $(document).ready(function(){
-  projectid= <%= @page.project_id %>;
+  projectid= <%= @project.id %>;
 });
 </script>
 <div id='content'>
@@ -63,7 +63,7 @@ $(document).ready(function(){
 </div>
 <div id ='sarah'></div>
 <div id='page'> 
-      <iframe id="preview_mode" src= <%="/#{@page.project_id}/#{@page.page_name}.html"%>></iframe>
+      <iframe id="preview_mode" src= <%="/#{@project.id}/#{@page.page_name}.html"%>></iframe>
 </div>
 <div id="time_out"> <p>لقد أتممت المهمة بنجاح! شكراً  </p> </div>
 </div>

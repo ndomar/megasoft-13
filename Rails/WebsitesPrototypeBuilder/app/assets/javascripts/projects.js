@@ -64,22 +64,24 @@ $(document).ready(function(){
     $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
     $("#Review").attr("href","/pages?project_id=" + projectid);
     $("#Download").attr("href","/pages/download_project?project_id=" + projectid);
-
   });
-  $("#wrapper").click(function(e){
+
+  $("#projects").click(function(e){
     if (e.target === this){
       var side_width= $('#sidebar').width();
       if(side_width > 0)
         $('#slidebutton').click();
       }
   });
+
   $("#content").click(function(e){
     if (e.target === this){
       var side_width= $('#sidebar').width();
       if(side_width > 0)
         $('#slidebutton').click();
-    }
+      }
   });
+
   $(".project-div").dblclick(function(){
     var projectid = $(this).attr("ProjectId");
     window.location.href = "/projects/design/" + projectid ;
@@ -92,10 +94,20 @@ $(document).ready(function(){
   $(".project-div").click(function(){
     $('#cardsort-project_id').val($(this).attr("ProjectId"));
   });
+
+  var heigh= $('.thumbnails').height();
+  var limi= $('footer').offset();
+  if(heigh>(limi.top-51)){
+    $('.the_body').height("auto");
+  }else{
+    $('.the_body').height("100%");
+  }
 });
+
 function deleteProject (id){
   var params = $.param({'id': id});
   if (confirm("هل أنت متأكد من انك تريد مسح هذا المشروع ؟")){
     $.post('/projects/destroy?' + params);
   }
-} 
+}
+

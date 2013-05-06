@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+
+<%= form_for :reviewer_info ,remote: true, :url => { :controller => 'reviewer_infos', :action => 'new', :reviewer_id => @reviewer.id }  do |f| %>
+<div id='form_body'>
+  <%= f.label :'الاسم'  %>
+  <%= f.text_field :name %><br />
+
+  <%= f.label :السن %>
+  <%= f.text_field :age%><br />
+
+  <%= f.label :البلد %>
+  <%= f.text_field :country%><br />
+
+  <%= f.label :'نوع' %>
+  <%= f.text_field :gender %><br />
+
+  <%= f.label :'يوم الميلاد '%>
+  <%= f.text_field :day_of_birth %><br />
+
+  <%= f.label :'شهر المولد ' %>
+  <%= f.text_field :month_of_birth %><br />
+
+  <%= f.label :'سنة المولد '%>
+  <%= f.text_field :year_of_birth %><br />
+  </div>
+  <div class='form_button'> <%= f.submit  id:'submit_form_button'%></div>
+  
+<% end %>
+</body>
+</html>
