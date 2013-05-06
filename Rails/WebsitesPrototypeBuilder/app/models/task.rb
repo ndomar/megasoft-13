@@ -61,6 +61,8 @@ class Task<ActiveRecord::Base
 
     else
       @task_result=self.task_results.find(task_result_id)
+      @task_result.clicks= params[:change_clicks]
+      @task_result.time=params[:total_time_taken]
       @task_result.success='true'
       @task_result.save  
     end 
