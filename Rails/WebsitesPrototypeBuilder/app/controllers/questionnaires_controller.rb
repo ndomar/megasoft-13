@@ -124,8 +124,9 @@ class QuestionnairesController < ApplicationController
     @questionnaire = Questionnaire.find(params[:id])
     @questionnaire.destroy
     respond_to do |format|
-      format.html { redirect_to questionnaires_url }
+      format.html { redirect_to questionnaires_url(:project_id =>@questionnaire.project_id) }
       format.json { head :no_content }
+      format.js {}
     end
   end
 end

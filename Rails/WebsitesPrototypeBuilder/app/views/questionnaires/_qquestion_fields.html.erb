@@ -4,7 +4,7 @@
 	<div class="qquestion">
 			<%= f.link_to_remove "", :class=>"ui-icon ui-icon-close question_to_delete"%>
 			<span onclick="channgeView(this);" class="ui-icon ui-icon-pencil shadow"></span>
-	  <%= f.text_field :body,:placeholder =>"السوال",:required =>"true" %></br>
+	  <%= f.text_field :body,:placeholder =>"السوال" %></br>
 		<!-- A drop down list to select type of the question with each type having a certain typr -->
 		<%= f.select(:qtype, options_for_select([['نص', 1], ['فقرة', 2], ['خيارات متعددة',3],['مربعات',4]],1),{},{ :onchange => 'check(this,this.value);'}) %></br>
 	  <!-- Render choices for the question -->

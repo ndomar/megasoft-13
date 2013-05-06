@@ -13,10 +13,25 @@ body{
 }
 
 .span4{
-	padding: 10px 10px 10px 10px;
+	margin: 10px 10px 10px 10px;
 	text-align: center;
 	font-family: arabi-light;
-	background-color: rgba(65,65,65,0.4);
+	background-color: rgba(85, 85, 85, 0.08);
+}
+
+.span4{
+  width: 260px;
+  min-height: 320px;
+  height: auto;
+  margin-bottom: 10px;
+  word-wrap:break-word;
+  background: rgba(167, 167, 167, 0.055); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(167, 167, 167, 0.055) 0%, rgba(167, 167, 167, 0.055) 50%, rgba(85, 85, 85, 0.08) 50%, rgba(85, 85, 85, 0.08) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(167, 167, 167, 0.055)), color-stop(50%,rgba(167, 167, 167, 0.055)), color-stop(50%,rgba(85, 85, 85, 0.08)), color-stop(100%,rgba(85, 85, 85, 0.08))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(167, 167, 167, 0.055) 0%,rgba(167, 167, 167, 0.055) 50%,rgba(85, 85, 85, 0.08) 50%,rgba(85, 85, 85, 0.08) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(167, 167, 167, 0.055) 0%,rgba(167, 167, 167, 0.055) 50%,rgba(85, 85, 85, 0.08) 50%,rgba(85, 85, 85, 0.08) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(167, 167, 167, 0.055) 0%,rgba(167, 167, 167, 0.055) 50%,rgba(85, 85, 85, 0.08) 50%,rgba(85, 85, 85, 0.08) 100%); /* IE10+ */
+  background: linear-gradient(top, rgba(167, 167, 167, 0.055) 0%,rgba(167, 167, 167, 0.055) 50%,rgba(85, 85, 85, 0.08) 50%,rgba(85, 85, 85, 0.08) 100%); /* W3C */
 }
 
 .span4 img{
@@ -58,5 +73,5 @@ body{
 }
 
 .addq img{
-	margin-top: 113px;
+	margin-top: 122px;
 }

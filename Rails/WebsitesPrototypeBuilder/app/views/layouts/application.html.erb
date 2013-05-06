@@ -44,12 +44,10 @@
 </div>
 
 <div class="the_body">
-  <div class="container max-height"><%= yield %></div>
+  <div class="container max-height no-overflow"><%= yield %></div>
 </div>
 <% else %>
-  <div>
     <%= yield %>
-  </div>
 <% end %>
 
 <!-- making a flash for any errors -->

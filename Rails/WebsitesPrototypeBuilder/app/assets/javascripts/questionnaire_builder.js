@@ -18,10 +18,8 @@ function channgeView(question){
 		view_Answerarea(question);
 		$(question).removeClass("shadow");
 		$(question).siblings('.add_choice').css({"visibility":"hidden"});
-		$(question).nextAll('input').attr("disabled", true);
 		$(question).closest('.qquestion').find($("input")).each(function() {
 			if($(this)!=null&& $(this).attr('id').indexOf('choices') !== -1){
-				$(this).attr("disabled", true);
 				$(this).siblings('.choice_to_delete').css({"visibility":"hidden"});
 			}
 	  });
@@ -30,10 +28,8 @@ function channgeView(question){
 		$(question).addClass("shadow");
 		$(question).siblings('.add_choice').css({"visibility":"visible"});
 		hide_Answerarea(question);
-		$(question).nextAll('input').attr("disabled", false);
 	$(question).closest('.qquestion').find($("input")).each(function() {
 		if($(this)!=null){
-			$(this).attr("disabled", false);
 			$(this).siblings('.choice_to_delete').css({"visibility":"visible"});
 		}
 		});
