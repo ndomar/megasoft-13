@@ -21,7 +21,7 @@ function dropHandler(evt){
 
 function uploadFile(file){
 	if (file.type.indexOf("image") != 0){
-		alert("Only image files allowed");
+		bootbox.alert("ملفات الصور فقط");
 	}
 	project_id = document.project.elements['project_id'].value;
 	var xhr = new XMLHttpRequest();

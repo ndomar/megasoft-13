@@ -129,7 +129,6 @@ $(document).ready(function (){
 	});
 
 	$(".drag").hover(function (e){
-		// alert("entered");
 		if (!enter_leave){
 			$(this).animate({
 				width: "+=10",
@@ -138,7 +137,6 @@ $(document).ready(function (){
 			enter_leave = true;
 		}
 	}, function(){
-		// alert("left");
 		if (enter_leave){
 			$(this).animate({
 				width: "-=10",
@@ -243,7 +241,7 @@ $(document).ready(function (){
 				$("#"+$("#eid_inp").val()).attr("onhoverevent","alert(\""+$("#action_value").val()+"\");");
 			}
 		}
-		alert("تم حفظ الحدث بنجاح");
+		bootbox.alert("تم حفظ الحدث بنجاح");
 		return false;
 	});
 
@@ -608,7 +606,7 @@ function processFile(){
 		return;
 	}
 	if (files[i].type.indexOf("image") != 0){
-		alert("Only image files allowed");
+		bootbox.alert("Only image files allowed");
 		i++;
 		processFile();
 	}
@@ -808,6 +806,6 @@ function dragOutsideImage(event){
 	}
 	else{
 		// alert(str);
-		alert("Only images of type jpg, jpeg, png, svg or gif are are allowed");
+		bootbox.alert("ويسمح فقط الصور من نوع JPG, JPEG, PNG, SVG أو GIF");
 	}
 }

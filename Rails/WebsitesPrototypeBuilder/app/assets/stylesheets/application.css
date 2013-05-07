@@ -235,7 +235,7 @@ div#content{
 	bottom: 0;
   min-height:100%; 
   min-height:100%;
-	overflow-y: hidden;
+	overflow-y: auto;
 	word-wrap:break-word;
   height: 100%;
 }
@@ -243,7 +243,7 @@ div#content{
 #side_content{
 	padding: 10px 20px 10px 20px;
 	word-wrap:break-word;
-	overflow-y: scroll;
+	overflow-y: auto;
 	max-height: 100%;
 	position: static;
 }

@@ -1,4 +1,4 @@
 // AJAX called on delete it slides(hides) the question
 $('.delete_question').bind('ajax:success', function() {  
-	$(this).closest('div').slideUp("slow");
+	$(this).closest('div .thequestion').slideUp("slow");
 });

@@ -15,15 +15,7 @@
 //= require jquery.ui.all
 //= require jquery_nested_form
 //= require bootstrap
-//= require twitter/bootstrap/rails/confirm
-
-$.fn.twitter_bootstrap_confirmbox.defaults = {
-    fade: true,
-    title: "تاكيد", // if title equals null window.top.location.origin is used
-    cancel: "إلغاء",
-    proceed: "حسنا",
-    proceed_class: "btn proceed btn-primary"
-};
+//= require bootbox
 
 //The state of the side-bar(collapsed or opened)
 var state=true;
@@ -58,5 +50,33 @@ $(document).ready(function() {
       });
     state=true;
   }});
+
+  $.rails.allowAction = function(element) {
+  var message = element.data('confirm'),
+    answer = false, callback;
+  if (!message) { return true; }
+ 
+  if ($.rails.fire(element, 'confirm')) {
+    myCustomConfirmBox(message, function() {
+      callback = $.rails.fire(element,
+        'confirm:complete', [answer]);
+        if(callback) {
+          var oldAllowAction = $.rails.allowAction;
+          $.rails.allowAction = function() { return true; };
+          element.trigger('click');
+          $.rails.allowAction = oldAllowAction;
+        }
+      });
+    }
+    return false;
+  }
+ 
+  function myCustomConfirmBox(message, callback) {
+    bootbox.confirm(message, "إلغاء", "نعم", function(confirmed) {
+      if(confirmed){
+        callback();
+      }
+    });
+  }
 
 });
