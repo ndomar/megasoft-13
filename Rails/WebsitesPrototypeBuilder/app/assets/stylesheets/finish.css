@@ -1,0 +1,30 @@
+.container
+{
+	top:30%;
+	left: 25%;
+	width: 55%;
+	height: 200px;
+	display: inline-block;
+	position: absolute;
+	background: -webkit-gradient(linear, center top, center bottom, from(#e9e9e9 ), to(#f6f6f6));
+	background: -webkit-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: -moz-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: -o-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: -ms-linear-gradient(#e9e9e9  , #f6f6f6);
+	background: linear-gradient(#e9e9e9  , #f6f6f6);
+	border-radius:5px;
+	opacity: 0.85;
+	overflow-y:auto; 
+}
+.words{
+	color: black;
+	font-size: 35px;
+	text-align: center;
+	padding-top: 50px;
+}
+.one{
+
+}
+.two{
+
+}

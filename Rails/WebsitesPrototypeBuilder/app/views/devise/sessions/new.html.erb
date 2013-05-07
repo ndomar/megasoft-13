@@ -3,6 +3,15 @@
 
 <!-- author ahmed jihad -->
 <body>
+  <div dir = "rtl" class = "error">
+<% flash.each do |name, msg| %>
+  <div class = "alert alert-block">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  </div>
+  <% end %>
+  </div>
+
   <div id="" class = "navbar-fixed-top" >
 <!-- the ribbon body -->
   <div class="rectangle bar_top">
