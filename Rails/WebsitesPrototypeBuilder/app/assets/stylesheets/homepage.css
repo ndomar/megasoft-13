@@ -321,6 +321,7 @@ html,body{
 	background-color: #222222;
 	opacity:0.8;
 }
+
 .wordTitle{
 	bottom: 8%;
 	margin-right: 20px;
@@ -351,5 +352,14 @@ html,body{
 	position: absolute;
 	top: 0;
 	z-index: 1;
-	opacity: 0.2;
+	opacity: 0.05;
+}
+.error{
+	opacity: 0.65;
+	position: absolute;
+	width: 30%;
+	text-align: right;
+	top: 10%;
+	left: 35%;
+	z-index: 20;
 }

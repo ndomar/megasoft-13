@@ -37,7 +37,8 @@ text-align: right;
 	top:10%;
 	left: 25%;
 	width: 55%;
-	height: 85%;
+	height: 80%;
+	display: inline-block;
 	position: absolute;
 	background: -webkit-gradient(linear, center top, center bottom, from(#e9e9e9 ), to(#f6f6f6));
 	background: -webkit-linear-gradient(#e9e9e9  , #f6f6f6);
@@ -58,4 +59,8 @@ legend{
 }
 hr{
 	border-bottom-color: #a8a8a8;
+}
+.pleaseAnswer{
+	border-bottom:1px solid black;
+	display:inline;
 }
