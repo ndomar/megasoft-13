@@ -106,12 +106,11 @@ class QuestionnairesController < ApplicationController
 
     respond_to do |format|
       if @questionnaire.update_attributes(params[:questionnaire])
-        flash[:message] = "Questionnaire updated successfully"
-        format.html { redirect_to :action=> :index, notice: 'Questionnaire was successfully updated.' }
+        format.html { redirect_to "http://localhost:3000/questionnaires/finish"}
         format.json { head :no_content }
         format.js { render "redirect" }
       else
-        format.html { render action: "edit" }
+        format.html { render "http://localhost:3000/questionnaires/finish" }
         format.json { render json: @questionnaire.errors, status: :unprocessable_entity }
         format.js {render "validation_error"}
       end
