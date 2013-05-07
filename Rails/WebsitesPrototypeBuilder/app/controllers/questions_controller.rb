@@ -36,7 +36,6 @@ class QuestionsController < ApplicationController
     @page = Page.find(params[:page_id])
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to :controller => :pages, :action => :designer, :id => @page,:notice => 'Question was successfully deleted.' }
       # Use AJAX for deletion
       format.js   {}
     end
