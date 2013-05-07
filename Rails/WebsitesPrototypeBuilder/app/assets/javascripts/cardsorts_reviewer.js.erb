@@ -175,7 +175,7 @@ function addCardToGroup(group, ui){
 
 function done(){
 	if ($(cardsView).find(".card:visible").length){
-		alert("some cards are not assigned to groups");
+		bootbox.alert("لم يتم تعيين بعض البطاقات إلى مجموعات");
 		return false;
 	}
 	var ids = [];
@@ -197,7 +197,7 @@ function done(){
 		data: params
 	});
 
-	alert('your cardsort has been submited successfully! Thank you for taking part.');
+	bootbox.alert('وقد تم تقديم نوع بطاقتك بنجاح! شكرا');
 }
 
 var tempClass;

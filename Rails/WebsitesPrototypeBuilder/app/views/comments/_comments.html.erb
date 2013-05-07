@@ -8,7 +8,7 @@
 			<p onClick="lastm(this);" class="pointer"><%= comment.body %></p>
         <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=comment.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
 	      <!-- The deleting method uses AJAX destroy.js.erb -->
-			<%= button_to "امسح", [@page,comment], :method=>:delete, :class =>"delete_button",:confirm => "هل انت متأكد !", :remote => true ,:onClick  => "removecomment(this);"%>
+			<%= link_to "امسح", [@page,comment], :method=>:delete,:confirm =>"هل انت متأكد !", :class =>"delete_comment",:remote => true %>
 			<hr>
 		</div>
 

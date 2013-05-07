@@ -26,6 +26,11 @@
       <h3 id = "projectName" style ="text-align: center;"> </h3>
       <div class = "options" style = "height :80px">
         <hr>
+        <img class = "side-image" src="/assets/design.png" width="55" height="55">
+        <h3 id = "sidebar-list"  style ="text-align: center;"><a id ="Design">صمم</a></h3>
+      </div>
+      <div class = "options" style = "height :80px">
+        <hr>
         <img class = "side-image" src="/assets/Adds-Add-folder-icon.png" width="55" height="55">
         <h3 id = "sidebar-list"  style ="text-align: center;"><a id ="Task">المهام</a></h3>
       </div>
@@ -102,38 +107,4 @@
     <%end%>
   </div>
 </div>
-
- <div class='popup-darkbackground' id='popup-cardsortbck'></div>
-  <div class = 'popup-createProject' id='popup-cardsort'>
-    <%= form_for :cardsort, :url => "/cardsorts/create_cardsort", :remote => true do |f| %>
-      <div class = "pattern_form_up">
-        <%= link_to_function "", "hideCardsortForm()", :class => "icon-remove", :id => "Close" %>
-        <h5>أضف ترتيب أوراق</h5>
-      </div>
-      <div class = "form_content">
-        <div id='error_project' class='error'></div>
-        <br>
-        <br>
-        <p>
-          <%= f.label :Title, "إسم ترتيب الأوراق" %>
-          <%= f.text_field :title , :id => "field"%> <br/>
-        </p>
-        <p>
-          <%= f.label :Open, "النوع" %>
-          <%= f.radio_button :open, true, :checked => true, :style=>"float:right; margin-left:5px;" %><label for="cardsort_open_true">مفتوح</label>
-          <%= f.radio_button :open, false, :style=>"float:right; margin-left:5px;" %><label for="cardsort_open_true">مغلق</label>
-        </p>
-        <p>
-          <%= f.label :Description, "وصف ترتيب الأوراق" %>
-          <%= f.text_area :description, :cols => "100", :rows => "5" , :id => "field" %> <br/>
-        </p>
-        <%= f.hidden_field :project_id, :id => 'cardsort-project_id' %>
-      </div>
-      <div class = "pattern_form_down">
-        <p class = "save">
-          <%= f.submit "حفظ",:class =>"btn btn-primary" %>
-        </p>
-      </div>
-    <%end%>
-  </div>
 </div>

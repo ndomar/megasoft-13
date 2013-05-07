@@ -40,8 +40,8 @@ b[b.length-1]++;
 }
 prev = array[i];
 }
-var doc = document.getElementById('myiframe').contentWindow.document; // the element is only accessible through iframe
-var myIframe = document.getElementById("myiframe");
+var doc = document.getElementById('preview_mode').contentWindow.document; // the element is only accessible through iframe
+var myIframe = document.getElementById("preview_mode");
 var script30; //= myIframe.contentWindow.document.createElement("script");
 //this for loop will put the colored boxes with number of comments/questions in every div with atlease 1 comment/question
 for(g = a.length - 1; g >= 0; g--)
@@ -87,12 +87,12 @@ myIframe.contentWindow.document.body.appendChild(script30);
     //cssLink.href = "reviewing.css";
 //cssLink.rel = "stylesheet";
 //cssLink.type = "text/css";
-//frames['myiframe'].document.body.appendChild(cssLink);
+//frames['preview_mode'].document.body.appendChild(cssLink);
 
 }
 else
 {
-$('#myiframe').contents().find('.nom').hide();
+$('#preview_mode').contents().find('.nom').hide();
 if(t==1){
 unfilterquestions();}
     else{
@@ -210,21 +210,12 @@ function lastm(x)
 {
 
     e = $(x).next('.koke').text();
-   var doc = document.getElementById('myiframe').contentWindow.document; // the element is only accessible through iframe
-    var myIframe = document.getElementById("myiframe");
+   var doc = document.getElementById('preview_mode').contentWindow.document; // the element is only accessible through iframe
+    var myIframe = document.getElementById("preview_mode");
     var script25 = myIframe.contentWindow.document.createElement("script");
 script25.type = "text/javascript";
 script25.text = 'var x = document.getElementById(parent.e);var y=x.offsetTop;var z=x.offsetLeft;parent.draw_circle2(y-100,z-50);'; // coordinates calculated then circle is drawn around the element.
     myIframe.contentWindow.document.body.appendChild(script25);
-}
-
-
-function removecomment(slected){
-	$(slected).closest('div .comments').slideUp("slow");
-}
-
-function removequestion(slected){
-	$(slected).closest('div .thequestion').slideUp("slow");
 }
 
 //sliding down the form to insert an answer
@@ -305,20 +296,12 @@ var win=window.open(url, '_blank');
 }
 
 function resizeIframe(newHeight){
-  document.getElementById('myiframe').style.height = parseInt(newHeight,10) + 10 + 'px';
+  document.getElementById('preview_mode').style.height = parseInt(newHeight,10) + 10 + 'px';
 }
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {
-	//Load the html from the database through the hidden div with id "html_content"
-	var designed_html= $('#html_content').text();
-	var doc = document.getElementById('myiframe').contentWindow.document;
-	doc.open();
-	// Write the fetched html to the iframe with id "myiframe"
-	doc.write(designed_html);
-	doc.close();
-
 	//selecting the iframe and appeding the script for selecting thr item behind the circle and draw the border around the selected item.
-	var myIframe = document.getElementById("myiframe");
+	var myIframe = document.getElementById("preview_mode");
 	var script = myIframe.contentWindow.document.createElement("script");
 	script.type = "text/javascript";
 	script.text  = 'var selElem = null;var origBorder = "";parent.resizeIframe(document.body.scrollHeight);function removeoutline(){selElem.style.outline="0px";};window.onload = function() {var anchors =document.getElementsByTagName("a");for (var i = 0; i < anchors.length; i++) {anchors[i].onclick = function() {return(false);};}};function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.outline = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.outline;overElem.style.outline = "1px dashed gray";}parent.getSelectedItem(overElem.id,overElem);}';
