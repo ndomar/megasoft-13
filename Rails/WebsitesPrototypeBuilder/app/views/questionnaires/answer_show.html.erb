@@ -4,10 +4,10 @@
 <div dir = "rtl" align = "right">
 	<%= nested_form_for (@questionnaire) do |f| %>
 	<legend align="right"><%=@questionnaire.title%></legend>
+	<br>
 	<div id = 'main_form' >
-		<label align="right" class = "dark">الرجاء الإجابة على الأسئلة التالية</label>
-		<hr>
-		<hr>
+		<label align="right" class = "dark pleaseAnswer">الرجاء الإجابة على الأسئلة التالية</label>
+		<br><br>
 		<% @questionnaire.qquestions.each do |question| %>
 			<strong class ="question"><%=question.body %></strong>
 			<%show = false%>
