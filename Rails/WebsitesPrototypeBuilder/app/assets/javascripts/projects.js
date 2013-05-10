@@ -103,6 +103,13 @@ $(document).ready(function(){
   }else{
     $('.the_body').height("100%");
   }
+
+
+  var confirm_message=$("#flash_notice").text();
+  if(confirm_message=="تم تأكيد حسابك بنجاح، أنت الأن مسجل"){
+    $('#example').popover('show');
+    $('.project-div').popover('show');
+  }
 });
 
 function deleteProject (id){
@@ -113,4 +120,3 @@ function deleteProject (id){
     }
   }); 
 }
-

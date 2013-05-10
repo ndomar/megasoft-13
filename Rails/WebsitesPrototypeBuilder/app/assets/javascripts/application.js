@@ -79,4 +79,11 @@ $(document).ready(function() {
     });
   }
 
+  var projectid=2;
+  $("#tasks_link").attr("href","projects/" + projectid + "/tasks/");
+  $("#design_link").attr("href","projects/design/" + projectid );
+  $("#questionnaire_link").attr("href","/questionnaires/index?project_id=" + projectid);
+  $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
+  $("#review_link").attr("href","/pages?project_id=" + projectid);
+
 });
