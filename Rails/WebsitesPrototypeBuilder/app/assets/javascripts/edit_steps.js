@@ -86,12 +86,13 @@ function select(id){
 function save(task_id){
   var params = $.param({
     id: task_id,
+    project_id: projectid,
     page_id: document.getElementById("preview_mode").contentWindow.document.body.dataset.id,
     component: $("#component_id").val(),
     "event" : $("input:radio[name=events_list]:checked").val(),
     description: $("#step_description").val()
   });
-  $.ajax("/tasks/new_step/?" + params);
+  $.ajax("/edit_tasks/new_step/?" + params);
   $("#add_step").hide();
   dehighlight($("#component_id").val());
 }
@@ -159,4 +160,12 @@ function enableImages(){
   });
 }
 
-
+$(document).ready(function(){
+  var heigh= $('.thumbnails').height();
+  var limi= $('footer').offset();
+  if(heigh>(limi.top-51)){
+    $('.the_body').height("auto");
+  }else{
+    $('.the_body').height("100%");
+  }
+});

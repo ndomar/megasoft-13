@@ -1,3 +1,4 @@
+<%= link_to 'العودة الى قائمة المهام', project_tasks_path %>
 <h1>تعديل المهمة</h1>
 
 <%= form_for @task, :url => {:action=>"update", :controller=>"tasks"}, :html => {:class => "nifty_form"} do |f| %>
@@ -30,7 +31,15 @@
     <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <button><%= link_to 'العودة الى قائمة المهام', project_tasks_path %></button>
-    <%= f.submit "عدل" %>
+    <%= f.submit value:"عدل" ,id:'submit_button' %>
   </div>
 <% end %>
+
+<style type="text/css">
+#submit_button{
+  border: 0px;
+  background-color: rgb(69, 162, 224);
+  color: white;
+  margin-bottom: 20px;
+}
+</style>

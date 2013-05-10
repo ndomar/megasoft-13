@@ -456,3 +456,7 @@ input[type="color"],
 .container{
 	height: 100%;clear: both; 
 }
+
+.options h3{
+	font-size: 12px;
+}
