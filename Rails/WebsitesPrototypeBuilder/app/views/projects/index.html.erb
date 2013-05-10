@@ -8,14 +8,14 @@
         <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
           <li ProjectId = "<%= p.id %>" class="span4">
             <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
-            <div class="project-div" title=".اضغط مرتين لتذهب لصفحة التصميم" style="background-image: url(<%= p.get_thumbnail %>); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
+            <div class="project-div" title=".اضغط مرتين لتذهب لصفحة التصميم" rel="popover" data-content="انقر مرة واحدة لرؤية الأدوات" data-original-title="زر الاضافة" style="background-image: url(<%= p.get_thumbnail %>); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
               <div class='x-button'>
                 <%= link_to_function nil,"deleteProject('#{p.id}')" , :class => "ui-icon ui-icon-close"%>
               </div>
             </div>
           </li>
         <%end%>
-        <div class="span4 add_button"><img src = "/assets/AddProject_button.png"></img></div>
+        <div id="example" class="span4 add_button" rel="popover" data-content="اضغط عليه لإنشاء مشروع جديد" data-original-title="زر الاضافة"><img src = "/assets/AddProject_button.png"></img></div>
       </ul>
     </div>
   </div>
