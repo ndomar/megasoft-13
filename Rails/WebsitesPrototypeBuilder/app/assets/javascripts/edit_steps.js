@@ -84,7 +84,6 @@ function select(id){
 }
 
 function save(task_id){
-     alert(task_id);
   var params = $.param({
     id: task_id,
     project_id: projectid,

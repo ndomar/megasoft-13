@@ -316,6 +316,9 @@ class ProjectsController < ApplicationController
         File.open("#{Rails.public_path}/#{@project.id}/index.html", "w+") do |f|
           f.write("<html></html>")
         end
+        FileUtils.cp "#{Rails.public_path}/bootstrap.css", "#{Rails.public_path}/#{@project.id}/"
+        FileUtils.cp "#{Rails.public_path}/drag_drop.css", "#{Rails.public_path}/#{@project.id}/"
+
         @page = Page.new()
         @page.project_id= @project.id
         @page.page_name= "index"

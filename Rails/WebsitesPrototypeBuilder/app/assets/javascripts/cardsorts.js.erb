@@ -17,8 +17,6 @@ function init() {
 	initGroupsView();
 	initButtons();
 	initTrash();
-	
-	
 }
 
 function initCardsView() {
@@ -168,7 +166,7 @@ function deleteThmb(ui) {
 
 function save(){
 	if ($(cardsView).find('.card:visible').length < 1 || $(groupsView).find('.group:visible').length < 1){
-		alert('Must have at least one group and one card');
+		bootbox.alert('يجب أن لديك مجموعة واحدة على الأقل وبطاقة واحدة');
 		return false;
 	}
 	

@@ -17,7 +17,7 @@ function hideCardsortForm(){
 }
 
 $(document).ready(function(){
-  $('.add_button img').on('click', function ()
+ $('.add_button img').on('click', function ()
   {
     showpopup();
   });
@@ -59,11 +59,13 @@ $(document).ready(function(){
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
     $("#Task").attr("href","projects/" + projectid + "/tasks/");
+    $("#Design").attr("href","projects/design/" + projectid );
     $("#Statistics").attr("href","projects/" + projectid + "/statistics/");
     $("#Questionnaire").attr("href","/questionnaires/index?project_id=" + projectid);
     $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
     $("#Review").attr("href","/pages?project_id=" + projectid);
     $("#Download").attr("href","/pages/download_project?project_id=" + projectid);
+    $("#Settings").attr("href","designers/edit");
   });
 
   $("#projects").click(function(e){
@@ -102,12 +104,16 @@ $(document).ready(function(){
   }else{
     $('.the_body').height("100%");
   }
+
+  $( document ).tooltip();
 });
 
 function deleteProject (id){
   var params = $.param({'id': id});
-  if (confirm("هل أنت متأكد من انك تريد مسح هذا المشروع ؟")){
-    $.post('/projects/destroy?' + params);
-  }
+  bootbox.confirm("هل أنت متأكد من انك تريد مسح هذا المشروع ؟", function(result) {
+    if(result){
+      $.post('/projects/destroy?' + params);
+    }
+  }); 
 }
 

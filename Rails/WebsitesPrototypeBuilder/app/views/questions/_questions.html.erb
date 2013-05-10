@@ -8,7 +8,7 @@
 					<div id="<%=question.assigned_part%>" class ="thequestion">
 						<p onClick="lastm(this);" class="pointer"  style="color:red"><%= question.body %></p>
 						 <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p>
-						  <%= button_to "امسح", [@page,question], :method=>:delete,:confirm => "هل انت متأكد !", :class =>"delete_button", :remote => true ,:onClick  => "removequestion(this);"%>
+						  <%= link_to "امسح", [@page,question], :method=>:delete,:class =>"delete_question",:confirm =>"هل انت متأكد !", :remote => true%>
 					<div id="egabat" style="display:none;">	  	
 					<h5>&#1575;&#1604;&#1573;&#1580;&#1575;&#1576;&#1575;&#1578; </h5>
 					</div>

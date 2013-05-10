@@ -36,7 +36,6 @@ class CommentsController < ApplicationController
     @page = Page.find(params[:page_id])
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to :controller => :pages, :action => :reviewer, :id => @page ,:notice => 'Comment was successfully deleted.' }
       # Use AJAX for deletion
       format.js {}
     end
