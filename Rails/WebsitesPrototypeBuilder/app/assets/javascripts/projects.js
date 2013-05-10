@@ -65,6 +65,7 @@ $(document).ready(function(){
     $("#Flowchart").attr("href","/pages/flowchart?project_id=" + projectid);
     $("#Review").attr("href","/pages?project_id=" + projectid);
     $("#Download").attr("href","/pages/download_project?project_id=" + projectid);
+    $("#Settings").attr("href","designers/edit");
   });
 
   $("#projects").click(function(e){
@@ -103,6 +104,8 @@ $(document).ready(function(){
   }else{
     $('.the_body').height("100%");
   }
+
+  $( document ).tooltip();
 });
 
 function deleteProject (id){

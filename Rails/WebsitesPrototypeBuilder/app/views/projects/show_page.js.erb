@@ -2,7 +2,7 @@
 	<% if (@need_to_show_page) %>
 		var designPage = document.getElementById('designpage');
 		var html = "<%= @page.html %>";
-		var id = <%= @page.id %>
+		var id = <%= @page.id %>;
 		designPage.innerHTML="";
 		html=html.replace( "onclick", "onclickevent" , 'g');
 		html=html.replace( "onmouseover", "onhoverevent" , 'g');

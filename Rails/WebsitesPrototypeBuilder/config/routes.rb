@@ -48,8 +48,8 @@ post 'steps/update'
     resources :steps
   end
 
-get "/tasks/new_step/" => "tasks#new_step",:as => :new_step
-get "/tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
+get "/edit_tasks/new_step/" => "tasks#new_step",:as => :new_step
+get "/edit_tasks/delete_step/" => "tasks#delete_step", :as => :delete_step
 get "tasks/invite/:id" => "tasks#invite"
 post "tasks/invite_user/:id" => "tasks#invite_user"
   get "answer_questionnaires/create"
