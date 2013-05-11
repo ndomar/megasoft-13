@@ -8,8 +8,8 @@ function hidepopup() {
 }
 
 function showCardsortForm(){
+  $("#popup-projectbck").fadeIn(400);
   $("#popup-cardsortbck").fadeIn(400);
-  $("#popup-cardsort").fadeIn(400);
 }
 function hideCardsortForm(){
   $("#popup-cardsortbck").fadeOut(400);

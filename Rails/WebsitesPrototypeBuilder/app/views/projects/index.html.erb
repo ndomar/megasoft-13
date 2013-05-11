@@ -47,8 +47,8 @@
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/card-sort-icon.png" width="55" height="55"><%= link_to_function "", "showPopup()" %>
-        <h3 id = "sidebar-list" style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showPopup()" %></h3>
+        <img class = "side-image" src="/assets/card-sort-icon.png" width="55" height="55"><%= link_to_function "", "showCardsortForm()" %>
+        <h3 id = "sidebar-list" style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showCardsortForm()" %></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
@@ -122,4 +122,45 @@
     <%end%>
   </div>
 </div>
+
+ <div id="popup-cardsortbck" class = 'popup-createProject' id='popup-project'>
+    <%= form_for :cardsort, :url => "cardsorts/create_cardsort", :method => :post, :remote => true do |f| %>
+      <div class = "pattern_form_up">
+        <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>
+        <h5>اضف ترتيب اوراق</h5>
+      </div>
+      <div class = "form_content">
+        <div id='error_project' class='error'></div>
+        <br>
+        <br>
+        <p>
+          <%= f.label :title, "اسم ترتيب الاوراق" %>
+          <%= f.text_field :title , :id => "field"%> <br/>
+        </p>
+        <p>
+          <label class="radio">
+           
+           <%= f.radio_button :open, "true", :checked=>"checked", :style=>"margin-left:10px;float:right;" %> 
+            مفتوح
+           
+          </label>
+          <label class="radio">
+             
+            <%= f.radio_button :open, "false", :style=>"margin-left:10px;float:right;" %>
+           مغلق
+          </label>
+        </p>
+        <p>
+          <%= f.label :description, "وصف ترتيب الوراق" %>
+          <%= f.text_area :description, :cols => "100", :rows => "5" , :id => "field" %> <br/>
+        </p>
+      </div>
+      <div class = "pattern_form_down">
+        <p class = "save">
+          <%= f.submit "حفظ",:class =>"btn btn-primary" %>
+        </p>
+      </div>
+    <%end%>
+  </div>
+  
 </div>

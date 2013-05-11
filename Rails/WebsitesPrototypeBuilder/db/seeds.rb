@@ -145,7 +145,7 @@ page_id: (i%3),
 end
 
 # Designers
-Designer.create(:fullname => "Test Designer0",
+@d = Designer.new(:fullname => "Test Designer0",
       :email => "designer0@gmail.com",
       :password => "pass1234",
       :password_confirmation => "pass1234",
@@ -154,6 +154,8 @@ Designer.create(:fullname => "Test Designer0",
       :day_dob => 15,
       :month_dob => 10,
       :year_dob => 1990)
+@d.confirmed_at = Time.now
+@d.save
 Designer.create(:fullname => "Test Designer1",
       :email => "designer1@gmail.com",
       :password => "pass1234",
