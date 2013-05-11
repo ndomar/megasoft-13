@@ -466,9 +466,9 @@ $(document).ready(function (){
 		drop: function(event, ui){
 			if (typeof ui.draggable.attr('id') != "undefined" && ui.draggable.attr('id').search(/element([0-9])/)==-1){ // if it is not an already dragged element
 				var element = $(ui.draggable).clone(); // clone the dragged element
-				element.attr("id","element"+counter); // change its id
+				element.children().first().attr("id","element"+counter);
 				counter++;
-				element.attr("id","element"+counter);
+				element.attr("id","element"+counter); // change its id
 				element.addClass("appended"); // give it class appended
 				$(this).append(element); // add the element to the design page (writing html code to the div)
 			}
@@ -640,13 +640,16 @@ function uploadFile(file){
 }
 
 function applyInterfaces(){
+	// alert("Apply Interfaces Called");
 	applyInterfacesHelper($("#designpage").children());
 }
 
 function applyInterfacesHelper(list){
 	
 	for (var i = 0; i<list.length; i++){
+
 		var ele = list.eq(i);
+		// alert(ele.attr("id"));
 		ele.append('<i id = "close" class="icon-remove" style="top: 0px; left: 0px; position: absolute;"></i>');
 				ele.children("#close").click(function(){
 					ele.remove();
@@ -669,10 +672,12 @@ function applyInterfacesHelper(list){
 			       		});
 			       		//if the resize exceeds the design page's width and height, stop the resize action (trying to fix the jquery-ui bug)
 			        	if (exceedsWidth(ui.element,0,ui.position.left)){
+			        		alert("up");
 			        		$(this).resizable('widget').trigger('mouseup');
 			        		$(this).width($(this).width()-(ui.element.outerWidth(true)-$("#designpage").width()));
 			        	}
 			        	else if (exceedsHeight(ui.element,0,ui.position.top)){
+			        		alert("up");
 			        		$(this).resizable('widget').trigger('mouseup');
 			        		$(this).height($(this).height()-(ui.element.outerHeight(true)-$("#designpage").height()));
 			        	}

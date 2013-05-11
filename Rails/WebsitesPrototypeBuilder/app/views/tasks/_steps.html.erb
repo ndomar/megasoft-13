@@ -21,7 +21,7 @@
         <td align = "center"><%= step.event %> </td>
         <td align = "center"><%= step.description %> </td>
         <td align = "center">
-            <%= link_to "x", delete_step_path(:id => step.id, :task => @task.id), :remote => true %>
+            <%= link_to "x", delete_step_path(:id => step.id, :task => @task.id , :project_id => @task.project_id), :remote => true %>
         </td>
       </tr>
     <% end %>

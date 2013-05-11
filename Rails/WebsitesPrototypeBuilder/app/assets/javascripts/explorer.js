@@ -1,8 +1,9 @@
 //these functions are used in the package explorer
-
+var the_id = 0;
 function show(id, commit){
 	var designPage = document.getElementById('designpage');
 	designPage.setAttribute("data-pageid", id);
+	the_id = id;
 	var params = $.param({
 		pageId: id,
 		commit: commit
@@ -12,13 +13,21 @@ function show(id, commit){
 }
 
 function store(){
-	var pageId = $('#designpage').data("pageid");	
+	var pageId = the_id;
+	// alert(pageId);
 	if(pageId != 0){
 		bootbox.confirm("هل أنت متأكد أنك تريد حفظ؟", function(result) {
 			if(result){
-				var html = document.getElementById('designpage').innerHTML; 
+				var html = document.getElementById('designpage').innerHTML;
 				html = html.replace(/\s+/g, ' ');
-				html='<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><link rel="stylesheet" type="text/css" href="bootstrap.css" /></head><body data-id="'+pageId+'">'+html+'</body></html>';
+				while(html.indexOf('<i id="close" class="icon-remove" style="top: 0px; left: 0px; position: absolute; visibility: hidden;"></i><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>')!=-1){
+					html = html.replace('<i id="close" class="icon-remove" style="top: 0px; left: 0px; position: absolute; visibility: hidden;"></i><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>','');
+				}
+				var prefix='<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><link rel="stylesheet" type="text/css" href="bootstrap.css" /><link rel="stylesheet" type="text/css" href="drag_drop.css" /></head><body data-id="'+pageId+'">';
+				var suffix='</body></html>';
+				if(html.indexOf(suffix)==-1){
+					html=prefix+html+suffix;
+				}
 				var htmlToDisplay=html;
 				document.getElementById(pageId).ondblclick = function () {
 					var designPage = document.getElementById('designpage');
