@@ -2,8 +2,6 @@
   margin-right: auto;
   margin-left: 70%;
   margin-top: 2%;
-  border-style: outset;
-  border-color: #3399FF;
   display: none;
 }
 
@@ -17,8 +15,9 @@
   min-width: 20%;
   font-size: 20px;
   font-weight: bold;
-  padding: 2px 2px 2px 2px;
+  padding: 20px 2px 2px 2px;
   margin-top: 2%;
+  color: white;
 
 }
 
@@ -50,6 +49,7 @@
 }
 
 #time_out {
+  color: white;
   display: none;
   position: absolute;
   left:0px;
@@ -128,12 +128,16 @@ footer
 #preview_mode {
   display: none;
 }
+#content {
+  background-color: #ffffff; 
+  color: black;
+}
+
+#sarah{
+  height: auto;
+  min-height: 600px;
+}
 
 #content p {
 padding: 0 10px 10px 10px;
-color: white;
-}
-
-.the_body {
-  overflow: auto;
 }

@@ -275,3 +275,8 @@ textarea.message_area {
 	background-color: rgba(60,60,60,0.3);
 }
 
+.thequestion,.comments{
+	cursor: pointer;
+}
+
+

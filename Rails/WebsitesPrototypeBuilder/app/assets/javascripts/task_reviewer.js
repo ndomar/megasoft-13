@@ -106,14 +106,19 @@ function times_up(){
 
  function update_log(element,event_triggered){ 
   if(event_triggered=='change' || element.type !='text' && element.type !='password' && element.type !='textarea'){
+      if(event_triggered=='click'){
+    clicks_counter=clicks_counter+1;    
+  }
     var current_element_id= element.id;
     var current_element_value = $('#'+current_element_id).value;
     var current_click_time = new Date().getHours()+ ":" + new Date().getMinutes()+ ":" + new Date().getSeconds() ; //time at which the action is triggered\
-
+    update_total_time();
     $("#change_action").val(event_triggered);
     $("#change_component_involved").val(current_element_value);
     $("#change_action_time").val(current_click_time);
     $("#change_element_id").val(current_element_id);
+    $("#change_time_taken").val(total_time); //sets the value of  the time taken
+    $("#change_clicks_count").val(clicks_counter); //update clicks_count in DB
     $(function() { $("#log_form").submit(); });
   }  
  }
@@ -175,6 +180,12 @@ function all_updates(){
 
   });
 
+  $("button").each(function(){
+        $(this).attr('onclick','log_steps(this,"click")');
+    $(this).attr('onmouseover','log_steps(this,"mouseover")');
+    $(this).attr('onmouseout','log_steps(this,"mouseout")');
+
+  });
   if($("#"+steps_components_array[0]).length > 0){
     if(steps_description_array.length>0)
       highlight(steps_components_array[0]);   

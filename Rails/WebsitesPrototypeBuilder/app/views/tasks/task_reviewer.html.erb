@@ -14,7 +14,7 @@ var starting_minutes;
 var starting_seconds;
 var projectid;
 $(document).ready(function(){
-  var frame_timeout=setTimeout('updateHtml()',0.1);
+  var frame_timeout=setTimeout('updateHtml()',300);
   // initially loads the 1st cmp higlighted then loads with the nxt step's comp. highlighted
   steps_ids_array="<%=@task.steps.all.map(&:id).join(',')%>".split(','); //array of all steps ids
   steps_components_array="<%= @task.steps.all.map(&:component).join(',')%>".split(','); //array of components ids
@@ -39,6 +39,13 @@ $(document).ready(function(){
 
   var time_parsed= <%= @task.time_limit %>;
   var time_out = setTimeout('times_up()',time_parsed*60*10*10*10); //removes the page contents and renders a msg on time out
+  var heigh= $('.thumbnails').height();
+  var limi= $('footer').offset();
+  if(heigh>(limi.top-51)){
+    $('.the_body').height("auto");
+  }else{
+    $('.the_body').height("100%");
+  }
 });
 
 var clicks_counter=0;
@@ -59,7 +66,7 @@ $(document).ready(function(){
   <p> <%= @task.description%></p>
 </div>
 <div class="desc"> 
-   <p id='description_paragraph'></p>
+   <p id='description_paragraph' class="alert alert-info"></p>
 </div>
 <div id ='sarah'></div>
 <div id='page'> 
@@ -83,7 +90,9 @@ $(document).ready(function(){
   <%= hidden_field_tag "change_action", ' ' %>
   <%= hidden_field_tag "change_action_time", '0' %>
   <%= hidden_field_tag "change_component_involved", ' ' %>
-  <%= hidden_field_tag "change_element_id", '0' %>
+  <%= hidden_field_tag "change_element_id", '0' %>  
+  <%= hidden_field_tag "change_clicks_count", '0' %>
+  <%= hidden_field_tag "change_time_taken", '1' %>
 <% end %>
 
 <!-- A hidden form that updates the task_result by the total_time_taken, clicks count and the success -->

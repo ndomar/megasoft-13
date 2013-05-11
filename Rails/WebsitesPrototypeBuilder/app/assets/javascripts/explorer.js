@@ -19,10 +19,14 @@ function store(){
 		bootbox.confirm("هل أنت متأكد أنك تريد حفظ؟", function(result) {
 			if(result){
 				var html = document.getElementById('designpage').innerHTML;
-				html = html.replace(/\s+/g, ' ');
-				while(html.indexOf('<i id="close" class="icon-remove" style="top: 0px; left: 0px; position: absolute; visibility: hidden;"></i><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>')!=-1){
+				
+				while(html.indexOf('<i id="close" class="icon-remove" style="top: 0px; left: 0px; position: absolute; visibility: hidden;"></i><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>')!=-1 ){
 					html = html.replace('<i id="close" class="icon-remove" style="top: 0px; left: 0px; position: absolute; visibility: hidden;"></i><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>','');
 				}
+				while(html.indexOf('<i id="close" class="icon-remove" style="top: 0px; left: 0px; position: absolute;"></i><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>')!=-1){
+					html = html.replace('<i id="close" class="icon-remove" style="top: 0px; left: 0px; position: absolute;"></i><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>','');
+				}
+				html = html.replace(/\s+/g, ' ');
 				var prefix='<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><link rel="stylesheet" type="text/css" href="bootstrap.css" /><link rel="stylesheet" type="text/css" href="drag_drop.css" /></head><body data-id="'+pageId+'">';
 				var suffix='</body></html>';
 				if(html.indexOf(suffix)==-1){

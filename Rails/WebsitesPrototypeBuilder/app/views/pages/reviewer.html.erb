@@ -21,15 +21,13 @@
 					 <% @page.comments.each do |comment| %>  <!-- loop on all comments -->
 					 <% array << comment.assigned_part %>    <!-- insert the assigned part in the array-->
 					 <%end%>
-					 <p onClick="places(($(this).next('.no').text()),0);" id="shows" class="lilbuttonc">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
-					 <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=array%></p>
+
 
 					 <% ansarray = Array.new %>       
 					 <% @page.questions.each do |question| %>
 					 <% ansarray << question.assigned_part %>
 					 <%end%>
-					 <p onClick="places(($(this).next('.no').text()),1);" id="qshows" style="display:none" class="lilbuttonq">&#1575;&#1604;&#1593;&#1583;&#1583;</p>
-				     <p onClick="places(this.innerHTML,0);" class="no" style="visibility:hidden"><%=ansarray%></p>
+
 			 </div>
 			<!-- Notice to see the errors -->
 			<p id="notice"><%= notice %></p>
@@ -46,9 +44,9 @@
 			<p onclick="$('.answers2').toggle();" class="pointer">  (&#1592;&#1607;&#1608;&#1585; / &#1573;&#1582;&#1601;&#1575;&#1569;) &#1575;&#1604;&#1573;&#1580;&#1575;&#1576;&#1575;&#1578; </p>
 
 
-				<%@page.questions.each do |question|%>
-					<div id="<%=question.assigned_part%>">
-						<p onClick="lastm(this);" class="pointer"  style="color:red"><%= question.body %></p>
+				<%@page.questions.each do |question|%> 
+					<div id="<%=question.assigned_part%>"onClick="outlineMe(<%= question.assigned_part %>,this);" data-toggle="tooltip" title="اضغط لإظهار موقعها"  class ="thequestion">
+						<p class="pointer"  style="color:red"><%= question.body %></p>
 						 <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p>
 					<h5>:اجابتك </h5>
 					<% question.answers.each do |ans| %>

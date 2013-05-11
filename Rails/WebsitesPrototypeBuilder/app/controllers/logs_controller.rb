@@ -16,6 +16,8 @@ class LogsController < ApplicationController
 #
   def new
     @task_result=TaskResult.find(session[:task_result_id])
+    @task_result.clicks= params[:change_clicks_count]
+    @task_result.time=params[:change_time_taken]
     @task= Task.find(@task_result.task_id)  
     @log =Log.new
     @log.task_result_id= session[:task_result_id]

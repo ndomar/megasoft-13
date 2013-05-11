@@ -207,6 +207,12 @@ function draw_circle2(x,y) {
 	$('#choose_area').css({"display":"table-cell"});
 	$('#delete_circle').css({"display":"table-cell"});
 }
+
+function test_site(url){
+var win=window.open(url, '_blank');
+  win.focus();
+}
+
 var e;
 function lastm(x)
 {
@@ -277,7 +283,6 @@ function delete_all(clear) {
 function getSelectedItem(elementId,elementObj){
 	var id=elementId;
 	var theobj=elementObj;
-	console.log(elementId);
 	document.getElementById('assignedpart').value=elementId;
 }
 
@@ -299,14 +304,15 @@ function resizeIframe(newHeight)
 }
 
 var prssd=true;
-function outlineMe(the_id){
+function outlineMe(the_id,th){
 	var g=the_id.id;
 	if(prssd){
 		window.frames[0].drawOutline(g);
-		background-color: rgba(60,60,60,0.3);
+		$(th).css({"background-color":"rgba(50,50,50,0.3)"});
 		prssd=false;
 	}else{
 			window.frames[0].removeMYoutline(g);
+			$(th).css({"background-color":"#1b1b1b"});
 			prssd=true;
 		}
 }
