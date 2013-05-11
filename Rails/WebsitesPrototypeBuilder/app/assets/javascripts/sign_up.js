@@ -64,7 +64,18 @@ $(document).ready(function() {
 	//Disables submit button
 	$('input[type="submit"]').attr('disabled','disabled');
 	//Enables the submit button if all fields are not blank after typing in a textarea
-	$('input[type="text"]').keyup(function(){
+	$(document.getElementById("box1")).keyup(function(){
+		if($(this).val()!= ''
+		    && document.getElementById("email").value!='' 
+			&& document.getElementById("box1").value!=''
+			&& document.getElementById("box2").value!=''
+			){
+			$('input[type="submit"]').removeAttr('disabled');
+		}else {
+			$('input[type="submit"]').attr('disabled','disabled');
+		}
+	});
+	$(document.getElementById("email")).keyup(function(){
 		if($(this).val()!= ''
 		    && document.getElementById("email").value!='' 
 			&& document.getElementById("box1").value!=''
@@ -76,7 +87,7 @@ $(document).ready(function() {
 		}
 	});
 	//Enables the submit button if all fields are not blank after typing in email textarea
-	$(document.getElementById("email")).keyup(function(){
+	$(document.getElementById("box2")).keyup(function(){
 		if($(this).val()!= ''
 		    && document.getElementById("email").value!='' 
 			&& document.getElementById("box1").value!=''
