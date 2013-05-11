@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'projects' %>
 <%= javascript_include_tag 'projects' %>
+<% javascript_include_tag 'alert' %>
 
 <div id='wrapper' class='container-fluid'>
   <div id = "content">
@@ -9,6 +10,11 @@
           <li ProjectId = "<%= p.id %>" class="span4">
             <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
             <div class="project-div" title=".اضغط مرتين لتذهب لصفحة التصميم" style="background-image: url(<%= p.get_thumbnail %>); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
+              <% if  (!p.cardsorts.empty?) %>
+                <input type=hidden class="cardsort_id" value="<%= p.cardsorts.first.id %>">
+              <% else %>
+                <input type=hidden class="cardsort_id" value="-1">
+              <% end %>
               <div class='x-button'>
                 <%= link_to_function nil,"deleteProject('#{p.id}')" , :class => "ui-icon ui-icon-close"%>
               </div>
@@ -18,6 +24,47 @@
         <div class="span4 add_button" title="مشروع جديد"><img src = "/assets/AddProject_button.png"></img></div>
       </ul>
     </div>
+    <div class="alert" id="project-alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+     اضغط على الدائرة لصنع مشروع جديد.
+    </div>
+    <div class="alert" id="sidebar-alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+     اضغط هنا اظهار اللوحة الجانبية
+    </div>
+    <div class="alert" id="design-alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+     اضغط هنا للذهاب الى صفحة التصميم
+    </div>
+    <div class="alert" id="tabs-alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    اضغط هنا للذهاب للمهام
+    </div>
+    <div class="alert" id="toolbox-alert">
+     <button type="button" class="close" data-dismiss="alert">&times;</button>
+    اضغط هنا لصناعة استطلاع راى جديد
+    </div>
+    <div class="alert" id="image-alert">
+     <button type="button" class="close" data-dismiss="alert">&times;</button>
+      يمكنك الذهاب لترتيب الاوراق من هنا
+    </div>
+    <div class="alert" id="version-alert">
+     <button type="button" class="close" data-dismiss="alert">&times;</button>
+    هنا يمكنك مراجعة الموقع
+    </div>
+    <div class="alert" id="pages-alert">
+       <button type="button" class="close" data-dismiss="alert">&times;</button>
+      اذهب هنا لرؤية المخطط النسيابى للموقع
+    </div>
+    <div class="alert" id="stat-alert">
+       <button type="button" class="close" data-dismiss="alert">&times;</button>
+     هنا توجد جميع الاحصائيات
+    </div>
+    <div class="alert" id="download-alert">
+       <button type="button" class="close" data-dismiss="alert">&times;</button>
+     هنا يمكنك تحميل الموقع
+    </div>
+
   </div>
 
   <div style="float: right;"><img id="slidebutton" src="/assets/slider_button.png" width="38px" height="41px"></div>
@@ -47,8 +94,8 @@
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/card-sort-icon.png" width="55" height="55"><%= link_to_function "", "showCardsortForm()" %>
-        <h3 id = "sidebar-list" style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showCardsortForm()" %></h3>
+        <img class = "side-image" src="/assets/card-sort-icon.png" width="55" height="55"><%= link_to_function "", "showCardsortForm()", :class => "cardsort_link" %>
+        <h3 id = "sidebar-list" style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showCardsortForm()", :class => "cardsort_link" %></h3>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
@@ -154,6 +201,7 @@
           <%= f.label :description, "وصف ترتيب الوراق" %>
           <%= f.text_area :description, :cols => "100", :rows => "5" , :id => "field" %> <br/>
         </p>
+        <%= f.hidden_field :project_id %>
       </div>
       <div class = "pattern_form_down">
         <p class = "save">
@@ -162,5 +210,64 @@
       </div>
     <%end%>
   </div>
-  
+
 </div>
+
+<script type="text/javascript">
+$(document).ready(function (){
+
+  $('.alert').find('.close').click(function (){
+    $.ajax({
+      url: '/projects/take_tour',
+      method: "POST"
+    });
+    $('.alert').remove();
+  });
+  <% if (!current_designer.tour_taken) %>
+    <% if (current_designer.projects.empty?) %>
+      $('#project-alert').fadeIn(400);
+      $('.add_button').click(function (){
+        $('#project-alert').fadeOut(400);
+      });
+    <% else %>
+    $('.project-div').click(function(){
+       $('#sidebar-alert').fadeOut(400);
+       $('#design-alert').fadeIn(400);
+       window.setTimeout(function(){
+        $('#design-alert').fadeOut(400);
+        $('#tabs-alert').fadeIn(400);
+        window.setTimeout(function(){
+          $('#tabs-alert').fadeOut(400);
+        $('#toolbox-alert').fadeIn(400);
+         window.setTimeout(function(){
+          $('#toolbox-alert').fadeOut(400);
+        $('#image-alert').fadeIn(400);
+        window.setTimeout(function(){
+          $('#image-alert').fadeOut(400);
+        $('#version-alert').fadeIn(400);
+         window.setTimeout(function(){
+          $('#version-alert').fadeOut(400);
+        $('#pages-alert').fadeIn(400);
+         window.setTimeout(function(){
+          $('#pages-alert').fadeOut(400);
+        $('#stat-alert').fadeIn(400);
+         window.setTimeout(function(){
+          $('#stat-alert').fadeOut(400);
+        $('#download-alert').fadeIn(400);
+        window.setTimeout(function(){
+          $('#download-alert').fadeOut(400);
+        $('#download-alert').find('.close').click();
+        },2000);
+        },2000);
+        },2000);
+        },2000);
+        },2000);
+        },2000);
+        },2000);
+       },2000);
+    });
+      $('#sidebar-alert').fadeIn(400);
+    <% end %>
+  <% end %>
+});
+</script>

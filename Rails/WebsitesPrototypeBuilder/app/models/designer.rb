@@ -42,7 +42,7 @@ class Designer < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :email, :password, :password_confirmation, :fullname,
     :phone_number, :country,:day_dob,:month_dob, :year_dob,
-    :profession, :gender, :facebook_email, :remember_me, :rpx_identifier
+    :profession, :gender, :facebook_email, :remember_me, :rpx_identifier, :tour_taken
 
   # {"identifier"=>"http://www.facebook.com/profile.php?id=624556624", 
   # "email"=>"offa_4@hotmail.com", "username"=>"AhmadAdelRoshdySoliman", 

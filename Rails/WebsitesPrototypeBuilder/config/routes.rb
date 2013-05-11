@@ -1,4 +1,6 @@
 WebsitesPrototypeBuilder::Application.routes.draw do
+
+  post 'projects/take_tour'
   post 'projects/savePage'
   get 'projects/createPage'
   get 'projects/deletePage'

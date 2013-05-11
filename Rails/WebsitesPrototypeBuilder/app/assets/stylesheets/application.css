@@ -460,3 +460,77 @@ input[type="color"],
 .options h3{
 	font-size: 12px;
 }
+
+#project-alert{
+	left: 32%;
+  position: absolute;
+  top: 15%;
+  display: none;
+}
+
+#toolbox-alert{
+	     display: none;
+    left: 63%;
+    position: absolute;
+    top: 32%;
+}
+
+#design-alert{
+	      display: none;
+    left: 62%;
+    position: absolute;
+    top: 11%;
+}
+
+#image-alert{
+    display: none;
+    left: 63%;
+    position: absolute;
+    top: 42%;
+}
+
+#version-alert{
+      display: none;
+    left: 66%;
+    position: absolute;
+    top: 52%;
+}
+
+#pages-alert{
+  left: 61%;
+  position: absolute;
+  top: 62%;
+  display: none;
+}
+
+#sidebar-alert{
+  left: 7%;
+  position: absolute;
+  top: 9%;
+  display: none;		
+}
+
+#tabs-alert{
+  left: 67%;
+  position: absolute;
+  top: 22%;
+  display: none;
+}
+
+#stat-alert{
+      left: 67%;
+    position: absolute;
+    top: 72%;
+  display: none;
+}
+
+#download-alert{
+  left: 67%;
+  position: absolute;
+  top: 82%;
+  display: none;
+}
+
+.close{
+	float: right;
+}

@@ -5,11 +5,20 @@ function showpopup() {
 function hidepopup() {
   $("#popup-projectbck").fadeOut(400);
   $("#popup-project").fadeOut(400);
+  $("#popup-cardsortbck").fadeOut(400);
+  $(".error").text("");
 }
 
+var cardsortid;
+
 function showCardsortForm(){
-  $("#popup-projectbck").fadeIn(400);
-  $("#popup-cardsortbck").fadeIn(400);
+  if (cardsortid == -1) {
+    $("#popup-projectbck").fadeIn(400);
+    $("#popup-cardsortbck").fadeIn(400);
+  } else {
+    window.location.href = "/cardsorts/show/"+cardsortid;
+  }
+
 }
 function hideCardsortForm(){
   $("#popup-cardsortbck").fadeOut(400);
@@ -56,6 +65,8 @@ $(document).ready(function(){
     if(side_width<=0)
       $('#slidebutton').click();
     var projectid = $(this).attr("ProjectId");
+    $("#cardsort_project_id").val(projectid);
+    cardsortid = $(this).find('.cardsort_id').val();
     var projectname = $(this).attr("ProjectName");
     $ ("#projectName").text(projectname);
     $("#Task").attr("href","projects/" + projectid + "/tasks/");

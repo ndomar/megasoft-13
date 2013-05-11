@@ -356,12 +356,20 @@ class ProjectsController < ApplicationController
   # - void
   #
   def destroy()
+
     @project = Project.find(params[:id])
     @project.destroy
     FileUtils.remove_dir("#{Rails.public_path}/#{@project.id}", :force => true)
     respond_to do |format|
       format.js { render "project_deleted"}
     end
+  end
+
+  def take_tour
+    @designer = Designer.find(current_designer.id)
+    @designer.update_attribute(:tour_taken, "true")
+    @designer.save
+    render :nothing => true
   end
 
 end

@@ -46,6 +46,6 @@ class Cardsort < ActiveRecord::Base
   end
 
   def get_status(id)
-  	CardsortResult.find_by_cardsort_id(self.id) & CardsortResult.find_by_reviewer_id(id)
+  	CardsortResult.find_by_cardsort_id(self.id).reviewer_id == id
   end
 end

@@ -12,7 +12,7 @@ class Media < ActiveRecord::Base
   validates_uniqueness_of :url, :scope => :project_id
 
   def store_media(file_name, data, project_id)
-    @file_content = File.open("#{Rails.public_path}/#{@project_id}/images/#{file_name}", "wb") do |f|
+    @file_content = File.open("public/#{project_id}/images/#{file_name}", "wb") do |f|
       f.write(data)
 		end
   end
