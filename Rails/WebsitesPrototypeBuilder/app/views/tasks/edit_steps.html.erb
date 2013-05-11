@@ -14,7 +14,14 @@
 <script type="text/javascript">
   $(document).ready(function(){
     projectid= <%= @page.project_id %>;
-    updateHtml();
+    window.setTimeout("updateHtml()",300);
+    var heigh= $('.thumbnails').height();
+    var limi= $('footer').offset();
+    if(heigh>(limi.top-51)){
+      $('.the_body').height("auto");
+    }else{
+      $('.the_body').height("100%");
+    }
 });
 
 
