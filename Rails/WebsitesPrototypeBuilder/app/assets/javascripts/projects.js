@@ -116,4 +116,3 @@ function deleteProject (id){
     }
   }); 
 }
-

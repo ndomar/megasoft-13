@@ -159,13 +159,3 @@ function enableImages(){
     $(this).attr('src',"/"+projectid+"/images/myimage.jpg"); 
   });
 }
-
-$(document).ready(function(){
-  var heigh= $('.thumbnails').height();
-  var limi= $('footer').offset();
-  if(heigh>(limi.top-51)){
-    $('.the_body').height("auto");
-  }else{
-    $('.the_body').height("100%");
-  }
-});
