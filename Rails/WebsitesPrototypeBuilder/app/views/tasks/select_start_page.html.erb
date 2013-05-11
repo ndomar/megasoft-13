@@ -7,6 +7,9 @@
     margin-left: auto;
     margin-right:auto;
   }
+  .cloudcarousel{
+    cursor: pointer;
+  }
 </style>
 <%= javascript_include_tag "select_start_page" %>
 <%= javascript_include_tag "cloud-carousel.1.0.5"%> 
@@ -19,18 +22,18 @@
   <div id="myCarousel" style="position: absolute; width:700px;height:250px;margin-left:auto; margin-right:auto;margin-bottom:20px; display: block;">
   <% @pages.each do |page| %>
   <% if page.file_dir_exists? ("app/assets/images/project_#{@id}/page_#{page.page_name}.png") %>
-       <img id = '<%= page.id %>' class="cloudcarousel" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" 
+       <img id = '<%= page.id %>' class="cloudcarousel" data-toggle="tooltip" title="اضغط مرتين لاختيارها" src="/assets/project_<%= @id %>/page_<%= page.page_name %>.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" 
        ondblclick="save_start_page('<%=@project.id %>','<%=@task.id %>','<%= page.id %>')" alt="<%= page.id %>">
   <% else %>
-       <img id = '<%= page.id %>' class="cloudcarousel" src="/assets/newPage.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" 
+       <img id = '<%= page.id %>' class="cloudcarousel"data-toggle="tooltip" title="اضغط مرتين لاختيارها" src="/assets/newPage.png" title="<%= page.page_name %>" style="position: absolute; z-index: 100; width: 150px; height: 150px;border-style:solid; border-width:2px; border-color:#CCCCCC;" 
        ondblclick="save_start_page('<%=@project.id %>','<%=@task.id %>','<%= page.id %>')" alt="<%= page.id %>">
   <% end %>
   <% end %>
   </div>
   <div style = "width:100%">
     <div id = "centering">
-      <input id="left-but" type="button" value="<" style ="text-align: center"/>
-      <input id="right-but" type="button" value=">"/>
+      <input id="left-but"class="bluebutton" type="button" value="<" style ="text-align: center"/>
+      <input id="right-but" class="bluebutton" type="button" value=">"/>
 
       <p id="title-text"></p>
       <p style="visibility: hidden;" id="alt-text"></p>

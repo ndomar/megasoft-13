@@ -8,6 +8,8 @@ $(document).ready(function(){
     altBox: $("#alt-text"),
     titleBox: $("#title-text")
   });
+
+  $(".cloudcarousel").tooltip({ placement: 'top' });
 });
 
 function save_start_page(project, task, page){

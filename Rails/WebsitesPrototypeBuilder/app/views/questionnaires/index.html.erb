@@ -44,7 +44,7 @@
     </div>
   <% end %>
 
-<div class="span4">
+<div class="span4" data-toggle="tooltip" title="إنشاء استبيان جديد">
   <p class="addq"><%= link_to image_tag("/assets/addquestionnaire.png"), {:action => 'new', :controller => 'questionnaires',:project_id => @project }%></p>
 </div>
 

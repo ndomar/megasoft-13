@@ -17,4 +17,9 @@ $(document).ready(function(){
     $(".popup-darkbackground").fadeOut(500);
     $(".popup-createProject").fadeOut(500);
   });
+
+   $(".span4").tooltip({ placement: 'right' });
+
  });
+
+

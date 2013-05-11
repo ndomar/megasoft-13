@@ -22,6 +22,8 @@
     }else{
       $('.the_body').height("100%");
     }
+
+    $("#cursorSwitch").tooltip({ placement: 'bottom' });
 });
 
 
@@ -34,7 +36,7 @@
 
   <div id ="sidebar">
     <div id="side_content">
-      <button id="cursorSwitch"> <img src ="/assets/crosshair_cursor.png"></button>
+      <button id="cursorSwitch" data-toggle="tooltip" title="وضع الاختيار"> <img src ="/assets/crosshair_cursor.png"></button>
       <br/><br/><br><br>
       <div id="add_step" style ="display:none; text-align:left">
         <h2 style = "text-algin:center"> أضف خطوة جديدة </h2>
@@ -63,11 +65,6 @@
   </div>
 
   <div id="content">
-    <div id = "returning_to_home">
-      <%= link_to "العودة إلي صفحة المهمة",project_tasks_path(params[:project_id]) %>
-    </div>
-    <br/>
-
     <div id ="embedded">
     </div>
 
