@@ -8,14 +8,14 @@
         <% @projects.each do |p| %> <!-- loop on the projects created by the logged in designer -->
           <li ProjectId = "<%= p.id %>" class="span4">
             <div class = "Project_Name"><h5><%= p.project_name %></h5></div>
-            <div class="project-div" title=".اضغط مرتين لتذهب لصفحة التصميم" style="background-image: url(<%= p.get_thumbnail %>); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
+            <div class="project-div" data-toggle="tooltip" title=".اضغط مرتين لتذهب لصفحة التصميم" style="background-image: url(<%= p.get_thumbnail %>); background-size:100% 100%;" ProjectId = "<%= p.id %>" , ProjectName = "<%= p.project_name %>">
               <div class='x-button'>
                 <%= link_to_function nil,"deleteProject('#{p.id}')" , :class => "ui-icon ui-icon-close"%>
               </div>
             </div>
           </li>
         <%end%>
-        <div class="span4 add_button" title="مشروع جديد"><img src = "/assets/AddProject_button.png"></img></div>
+        <div class="span4 add_button" data-toggle="tooltip" title="مشروع جديد"><img src = "/assets/AddProject_button.png"></img></div>
       </ul>
     </div>
   </div>
@@ -47,8 +47,10 @@
       </div>
       <div class = "options" style = "height :80px">
         <hr>
-        <img class = "side-image" src="/assets/card-sort-icon.png" width="55" height="55"><%= link_to_function "", "showCardsortForm()" %>
-        <h3 id = "sidebar-list" style ="text-align: center;"><%= link_to_function "ترتيب الأوراق", "showCardsortForm()" %></h3>
+        <a href="#" onclick="showCardsortForm(); return false;">
+        <img class = "side-image" src="/assets/card-sort-icon.png" width="55" height="55">
+        <h3 id = "sidebar-list" style ="text-align: center;">ترتيب الأوراق</h3>
+        </a>
       </div>
       <div class = "options" style = "height :80px">
         <hr>
@@ -123,7 +125,7 @@
   </div>
 </div>
 
- <div id="popup-cardsortbck" class = 'popup-createProject' id='popup-project'>
+ <div id="popup-cardsortbck" class = 'popup-createProject'>
     <%= form_for :cardsort, :url => "cardsorts/create_cardsort", :method => :post, :remote => true do |f| %>
       <div class = "pattern_form_up">
         <%= link_to_function "", "hidepopup()", :class => "icon-remove", :id => "Close" %>

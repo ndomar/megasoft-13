@@ -64,10 +64,9 @@
 }
 
 .save{
-  right:320px;
-  top: 420px;
+  float: left;
+  margin-top: 18px; 
   background-color: blue;
-  position: absolute;
 }
 
 #arrow{
