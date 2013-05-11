@@ -46,6 +46,9 @@ class Cardsort < ActiveRecord::Base
   end
 
   def get_status(id)
-  	CardsortResult.find_by_cardsort_id(self.id).reviewer_id == id
+  	CardsortResult.find_all_by_cardsort_id(self.id).each do |cardsort_result| 
+      return true if cardsort_result.reviewer_id == id
+    end
+    return false
   end
 end
