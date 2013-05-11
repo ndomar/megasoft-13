@@ -50,3 +50,11 @@ canvas{
 	bottom: 0px;
 	position: absolute;
 }
+
+.opt a{
+	text-decoration: none;
+	color: black;
+}
+.opt a:hover{
+	color: white;
+}

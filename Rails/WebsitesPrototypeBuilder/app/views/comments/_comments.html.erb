@@ -3,9 +3,9 @@
 	<!-- title of the side bar-->		
 	<h4>التعليقلت</h4>   
 	<% @page.comments.each do |comment| %>
-		<div id="<%=comment.assigned_part%>" class="comments">
+		<div id="<%=comment.assigned_part%>"  onClick="outlineMe(<%= question.assigned_part %>);"  data-toggle="tooltip" title="اضغط لإظهار موقعها" class="comments pointer">
 			<!-- Getting the comment -->
-			<p onClick="lastm(this);" class="pointer"><%= comment.body %></p>
+			<p class="pointer"><%= comment.body %></p>
         <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=comment.assigned_part%></p> <!-- stores the element's id and used to find its coordinates on click -->
 	      <!-- The deleting method uses AJAX destroy.js.erb -->
 			<%= link_to "امسح", [@page,comment], :method=>:delete,:confirm =>"هل انت متأكد !", :class =>"delete_comment",:remote => true %>

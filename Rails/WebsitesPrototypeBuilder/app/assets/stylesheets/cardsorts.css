@@ -99,7 +99,7 @@
 	margin-left: -44px;
 	display: inline-block;
 	float: left;
-	cursor: hand; cursor: pointer; 
+	cursor:w-resize;
 }
 
 #groups-tag{
@@ -217,7 +217,16 @@
 	background-size: contain;
 	padding: 10px;
 	margin-left: 20px;
+	background: transparent;
+	box-shadow: none;
+	border: none;
 }
+
+
+#trash:hover{
+	opacity: 0.7;
+}
+
 
 .main-wrapper{
 	margin-top: auto;
@@ -241,6 +250,8 @@
 	font-family: arabi-light; src: url('arabi-light.otf');
 	format("opentype");
 	text-align: center; 
+	box-shadow: none;
+	resize: none; 
 }
 
 #main-card-desc{
@@ -254,6 +265,16 @@
   font-family: arabi-light; src: url('arabi-light.otf');
 	format("opentype");
 	text-align: right;
+	box-shadow: none;
+	resize: none; 
+}
+
+#main-group-desc::-webkit-input-placeholder {
+  color: #fdfdfd;
+}
+
+.btn{
+  font-family: arabi-light; src: url('arabi-light.otf');
 }
 
 #main-group{
@@ -277,6 +298,7 @@
 	transform: rotate(7deg);
 	text-align: center;
 	color: white;
+	box-shadow: none;
 }
 
 #main-group-desc{
@@ -293,6 +315,8 @@
 	-webkit-transform: skewY(8deg);
 	color: white;
 	text-align: right;
+	box-shadow: none;
+	resize:none;
 }
 
 .error-box{

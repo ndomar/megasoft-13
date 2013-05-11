@@ -215,8 +215,8 @@ function lastm(x)
   	var doc = document.getElementById('myiframe').contentWindow.document;     // the element is only accessible through iframe
     var myIframe = document.getElementById("myiframe");
     var script25 = myIframe.contentWindow.document.createElement("script");
-	script25.type = "text/javascript";
-	script25.text  = 'var x = document.getElementById(parent.e);var y=x.offsetTop;var z=x.offsetLeft;parent.draw_circle2(y-100,z-50);';  // coordinates calculated then circle is drawn around the element.
+		script25.type = "text/javascript";
+		script25.text  = 'var x = document.getElementById(parent.e);var y=x.offsetTop;var z=x.offsetLeft;parent.draw_circle2(y-100,z-50);';  // coordinates calculated then circle is drawn around the element.
     myIframe.contentWindow.document.body.appendChild(script25);
 }
 
@@ -272,10 +272,12 @@ function delete_all(clear) {
 	}
 }
 
+
 // It takes the id and the object from the Iframe and set the assignedpart value to it.
 function getSelectedItem(elementId,elementObj){
 	var id=elementId;
 	var theobj=elementObj;
+	console.log(elementId);
 	document.getElementById('assignedpart').value=elementId;
 }
 
@@ -290,9 +292,23 @@ function selectItem () {
 		window.frames[0].OnMouseMove(posX,posY);
 	}
 }
+
 function resizeIframe(newHeight)
 {
-    document.getElementById('myiframe').style.height = parseInt(newHeight,10) + 10 + 'px';
+	document.getElementById('myiframe').style.height = parseInt(newHeight,10) + 10 + 'px';
+}
+
+var prssd=true;
+function outlineMe(the_id){
+	var g=the_id.id;
+	if(prssd){
+		window.frames[0].drawOutline(g);
+		background-color: rgba(60,60,60,0.3);
+		prssd=false;
+	}else{
+			window.frames[0].removeMYoutline(g);
+			prssd=true;
+		}
 }
 // Called when started to add the content to the iframe and make the circle draggable and resizable.
 $(document).ready(function() {
@@ -301,7 +317,7 @@ $(document).ready(function() {
 	var myIframe = document.getElementById("myiframe");
 	var script = myIframe.contentWindow.document.createElement("script");
 	script.type = "text/javascript";
-	script.text  = 'var selElem = null;var origBorder = "";parent.resizeIframe(document.body.scrollHeight);function removeoutline(){selElem.style.outline="0px";};window.onload = function() {var anchors =document.getElementsByTagName("a");for (var i = 0; i < anchors.length; i++) {anchors[i].onclick = function() {return(false);};}};function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.outline = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.outline;overElem.style.outline = "1px dashed gray";}parent.getSelectedItem(overElem.id,overElem);}';
+	script.text  = 'var selElem = null;var origBorder = "";function removeMYoutline(ie){document.getElementById(ie).style.outline="0px";};function drawOutline(ie){document.getElementById(ie).style.outline = "3px dashed black";};parent.resizeIframe(document.body.scrollHeight);function removeoutline(){selElem.style.outline="0px";};window.onload = function() {var anchors =document.getElementsByTagName("a");for (var i = 0; i < anchors.length; i++) {anchors[i].onclick = function() {return(false);};}};function OnMouseMove (circleX,circleY) {var posX = circleX, posY = circleY;var overElem = document.elementFromPoint (posX, posY);if (overElem && overElem.tagName === undefined) {overElem = overElem.parentNode;	}if (selElem) {if (selElem == overElem) {return;}selElem.style.outline = origBorder;selElem = null;}if (overElem && overElem.tagName.toLowerCase () != "body" && overElem.tagName.toLowerCase () != "html") {selElem = overElem;	origBorder = overElem.style.outline;overElem.style.outline = "1px dashed gray";}parent.getSelectedItem(overElem.id,overElem);}';
 	myIframe.contentWindow.document.body.appendChild(script);
 	// Make the selecting circle resizable and draggable
 	$("#drag_resize").resizable({
@@ -318,4 +334,23 @@ $(document).ready(function() {
 			containment: "#content",
 			scroll: false
 		});
+
+  $("#tespage").tooltip({ placement: 'left' });
+  $("#adcom").tooltip({ placement: 'top' });
+  $(".pointer").tooltip({ placement: 'bottom' });
+  $(".circle_button").tooltip({ placement: 'bottom' });
+  $(".comments").tooltip({ placement: 'bottom' });
+  $(".thequestion").tooltip({ placement: 'bottom' });
+
+	var pressed=false;
+  $(".sw").click(function(){
+		if(pressed){
+			$('.sw').css({"background-image":"url('/assets/comments.png')"});
+			pressed=false;
+		}else{
+			$('.sw').css({"background-image":"url('/assets/questions.png')"});
+			pressed=true;
+		}
+	});
 });
+

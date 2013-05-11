@@ -10,7 +10,7 @@
 		<div id="side_content">
 			<div onclick="$('#comments').toggle();$('#questions').toggle();$('#questions').toggle();$('#shows').toggle();$('#qshows').toggle()" class="sw" ></div>
 			<div>
-			<div class="add_comment" onclick="draw_circle();">+</div>
+			<div class="add_comment"  id="adcom" data-toggle="tooltip" title="اضغط لإضافة سؤال"  onclick="draw_circle();" onclick="draw_circle();">+</div>
 			<hr>
 
  					 <% array = Array.new %>                 <!-- create new array to store in all comments' divs locations-->
@@ -32,6 +32,7 @@
 			
 			<!-- Fetching comments from the database,just for testing -->
 			<%= render :partial => 'comments/comments' %>
+			<hr>
 			<%= render :partial => 'questions/questions' %>
 			<!-- The + buttom on clicking draw the circle -->
 
@@ -43,8 +44,8 @@
 		<!-- Draw the circle initially hidden -->
 		<div id="drag_resize"><img src="/assets/circle.png"/>
 			<!-- Circle buttons to delete or to add a comment -->
-			<div id="choose_area" class="circle_settings"  onclick="create_note();">+</div>
-			<div id="delete_circle" class="circle_settings"  onclick="delete_circle();">-</div>
+			<div id="choose_area"  data-toggle="tooltip" title="أضف" class="circle_settings"  onclick="create_note();">+</div>
+			<div id="delete_circle" class="circle_settings" data-toggle="tooltip" title="مسح" onclick="delete_circle();">-</div>
 		</div>
 		<!-- The iframe to contain the page to be reviewed-->
 		<iframe id="myiframe" src=<%="../#{@page.project_id}/#{@page.page_name}.html"%> style="overflow:hidden;height:100%;width:100%" height="100%" width="100%"></iframe>
@@ -54,10 +55,10 @@
 			<%= form_for ([@page,@page.questions.build]),:remote => true do |f| %>
 				<p><%= f.text_area :body,:placeholder => "علق هنا"%></p>
 				<p class="hide"><%= f.text_area :assigned_part,:id => "assignedpart"%></p>
-				<%= f.submit "+",:class => 'circle_button',:id => 'submit_comment',:onclick => "delete_all();"%>
+				<%= f.submit "+",:class => 'circle_button', :'data-toggle' =>"tooltip", :title =>"حفظ السؤال" ,:id => 'submit_comment',:onclick => "delete_all();"%>
 			<% end %>
 			<!-- Button to delete the comment -->
-			<div class="circle_button" id="delete_comment" onclick="delete_all(true);">-</div>
+			<div class="circle_button" id="delete_comment"  data-toggle="tooltip" title="مسح"  onclick="delete_all(true);">-</div>
 		</div>
 	</div>
 </div>

@@ -5,8 +5,8 @@
       <!-- show and hide answers -->
 			<p onclick="$('.answers2').toggle();$('#egabat').toggle();" class="pointer">  (&#1592;&#1607;&#1608;&#1585; / &#1573;&#1582;&#1601;&#1575;&#1569;) &#1575;&#1604;&#1573;&#1580;&#1575;&#1576;&#1575;&#1578; </p>
 				<%@page.questions.each do |question|%>
-					<div id="<%=question.assigned_part%>" class ="thequestion">
-						<p onClick="lastm(this);" class="pointer"  style="color:red"><%= question.body %></p>
+					<div id="<%=question.assigned_part%>"  onClick="outlineMe(<%= question.assigned_part %>);" data-toggle="tooltip" title="اضغط لإظهار موقعها"  class ="thequestion pointer">
+						<pclass="pointer"  style="color:red"><%= question.body %></p>
 						 <p onClick="showme(this.innerHTML);" class="koke" style="visibility:hidden" ><%=question.assigned_part%></p>
 						  <%= link_to "امسح", [@page,question], :method=>:delete,:class =>"delete_question",:confirm =>"هل انت متأكد !", :remote => true%>
 					<div id="egabat" style="display:none;">	  	

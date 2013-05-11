@@ -5,6 +5,7 @@ function showpopup() {
 function hidepopup() {
   $("#popup-projectbck").fadeOut(400);
   $("#popup-project").fadeOut(400);
+  $("#popup-cardsortbck").fadeOut(400);
 }
 
 function showCardsortForm(){
@@ -105,7 +106,9 @@ $(document).ready(function(){
     $('.the_body').height("100%");
   }
 
-  $( document ).tooltip();
+  $(".project-div").tooltip({ placement: 'bottom' });
+  $(".add_button").tooltip({ placement: 'bottom' });
+
 });
 
 function deleteProject (id){

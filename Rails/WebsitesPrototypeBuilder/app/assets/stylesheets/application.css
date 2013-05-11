@@ -49,11 +49,12 @@
 }
 
 .sw{
-  background-image:url('\switcher.png');
-	width:180px;
-	height:53px;
+  background-image:url('comments.png');
+	width:380px;
+	height:100px;
 	float: left;
 	margin-right: 0px;
+	margin-top: -20px;
   background-size: contain;
   background-repeat: no-repeat;
   cursor:pointer;
@@ -459,4 +460,16 @@ input[type="color"],
 
 .options h3{
 	font-size: 12px;
+}
+
+.bluebutton{
+	border: none;
+	color: white;
+	box-shadow: none;
+	font-size: 14px;
+	background: rgb(69, 162, 224);
+}
+
+.bluebutton:hover{
+	background: rgb(50, 150, 215);
 }

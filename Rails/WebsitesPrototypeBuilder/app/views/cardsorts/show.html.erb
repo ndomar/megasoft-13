@@ -8,10 +8,10 @@
 			المجموعات
 		</div>
 		<div id='groups-content'>
-			<div class='view-button'>
+			<div class='view-button' data-toggle="tooltip" title="تغيير العرض">
 				<img src='/assets/grid_View_button.png'>
 			</div>
-			<div class='add-button'>
+			<div class='add-button' data-toggle="tooltip" title="إنشاء مجموعة">
 				</div>
 			<ul id='groups-thumbnail'>
 				<% @groups.each_with_index do |group, index| %>
@@ -26,8 +26,7 @@
 						 :name => group.title, :desc => group.description, :id => group.id %>
 					<% end %>
 				</table>
-				<div class='add-button'>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -37,10 +36,10 @@
 			البطاقات
 		</div>
 		<div id='cards-content'>
-			<div class='view-button'>
+			<div class='view-button' data-toggle="tooltip" title="تغيير العرض">
 				<img src='/assets/grid_View_button.png'>
 			</div>
-			<div class='add-button'>
+			<div class='add-button' data-toggle="tooltip" title="إنشاء بطاقة">
 			</div>
 			<ul id='cards-thumbnail'>
 				<% @cards.each_with_index do |card, index| %>
@@ -53,36 +52,35 @@
 						<%= render "card_list", :index => index, :name => card.title, :desc => card.description, :id => card.id%>
 					<% end %>
 				</table>
-				<div class='add-button'>
-				</div>
+
 			</div>
 		</div>
 	</div>
 
 	<div id='content'>
 		<!-- <h3><%= @cardsort.title%></h3> -->
-		<a href='#' title='انتهيت'>
-		<div id='submit-button'>
+		<a href='#' >
+		<div id='submit-button' data-toggle="tooltip" title="انتهيت">
 		</div>
 		</a>
 			<div class='error-box'>
 				asd
 			</div>
-			<div id="trash" class='btn btn-primary'>
+			<div id="trash" data-toggle="tooltip" title="اسحب بطاقة أو مجموعة للحذف" class='btn btn-primary'>
 				<img src='/assets/trash.png'>
 			</div>
 			<div id='main-card' class='main-wrapper'>
 				<%= form_for :card, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_card" do |form| %>
 					<%= form.text_field :title, :placeholder => "اسم البطاقة", :id => "main-card-title", :maxlength => 13%>
 					<%= form.text_area :description, :placeholder => "وصف البطاقة", :id => "main-card-desc", :maxlength => 75%>
-					<%= form.submit :class => "btn btn-primary", :value => "احفظ الكروت" %>
+					<%= form.submit "حفظ البطاقة",:class => "btn btn-primary"%>
 				<% end %>
 			</div>
 			<div id='main-group' class='main-wrapper'>
 				<%= form_for :group, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_group" do |form| %>
 					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title", :maxlength => 20%>
 					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc", :maxlength => 75%>
-					<%= form.submit :class => "btn btn-primary", :value => "احفظ المجموعة" %>
+					<%=form.submit "حفظ المجموعة", :class => "btn btn-primary" %>
 				<% end %>
 			</div>
 	</div>
