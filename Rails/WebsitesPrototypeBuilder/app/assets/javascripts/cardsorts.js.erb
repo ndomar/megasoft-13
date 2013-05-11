@@ -174,3 +174,23 @@ function save(){
 		window.location.href = '/cardsorts/invitations/'+id;
 }
 
+  $(".project-div").click(function(){
+    $('#cardsort-project_id').val($(this).attr("ProjectId"));
+  });
+
+$(document).ready(function(){
+
+  var heigh= $('.thumbnails').height();
+  var limi= $('footer').offset();
+  if(heigh>(limi.top-51)){
+    $('.the_body').height("auto");
+  }else{
+    $('.the_body').height("100%");
+  }
+
+  $("#submit-button").tooltip();
+  $("#trash").tooltip();
+  $(".add-button").tooltip({ placement: 'bottom' });
+  $(".view-button").tooltip({ placement: 'bottom' });
+
+});

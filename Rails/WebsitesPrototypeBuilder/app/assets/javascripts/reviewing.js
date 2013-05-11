@@ -215,8 +215,8 @@ function lastm(x)
   	var doc = document.getElementById('myiframe').contentWindow.document;     // the element is only accessible through iframe
     var myIframe = document.getElementById("myiframe");
     var script25 = myIframe.contentWindow.document.createElement("script");
-	script25.type = "text/javascript";
-	script25.text  = 'var x = document.getElementById(parent.e);var y=x.offsetTop;var z=x.offsetLeft;parent.draw_circle2(y-100,z-50);';  // coordinates calculated then circle is drawn around the element.
+		script25.type = "text/javascript";
+		script25.text  = 'var x = document.getElementById(parent.e);var y=x.offsetTop;var z=x.offsetLeft;parent.draw_circle2(y-100,z-50);';  // coordinates calculated then circle is drawn around the element.
     myIframe.contentWindow.document.body.appendChild(script25);
 }
 
@@ -318,4 +318,21 @@ $(document).ready(function() {
 			containment: "#content",
 			scroll: false
 		});
+
+  $("#tespage").tooltip({ placement: 'left' });
+  $("#adcom").tooltip({ placement: 'top' });
+  $(".pointer").tooltip({ placement: 'bottom' });
+  $(".circle_button").tooltip({ placement: 'bottom' });
+
+
+	var pressed=false;
+  $(".sw").click(function(){
+		if(pressed){
+			$('.sw').css({"background-image":"url('/assets/comments.png')"});
+			pressed=false;
+		}else{
+			$('.sw').css({"background-image":"url('/assets/questions.png')"});
+			pressed=true;
+		}
+	});
 });
