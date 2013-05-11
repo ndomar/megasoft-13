@@ -7,6 +7,29 @@
   #wrapper{
     padding-right: 0px;
   }
+
+  .table th, .table td {
+      border-top: 1px solid #8d8d8d;
+      line-height: 20px;
+      padding: 10px 2px;
+      text-align: left;
+      vertical-align: top;
+  }
+
+  .table-striped tbody tr:nth-child(odd) td,
+  .table-striped tbody tr:nth-child(odd) th {
+    background-color: rgba(60, 60, 60, 0.4);
+  }
+  .table-hover tbody tr:hover td,
+  .table-hover tbody tr:hover th {
+    background-color: rgba(75, 75, 75, 0.4);
+  }
+  .table th  {
+      font-weight: 700;
+      height: 30px;
+      text-transform: uppercase;
+      vertical-align: middle;
+  }
 </style>
 
 <div id="wrapper">
@@ -21,8 +44,9 @@
   <% else %>
     <%= link_to 'مهمة جديدة', new_project_task_path %>
 
-    <table class="table">
+    <table class="table table-hover table-striped">
       <tr>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -33,13 +57,12 @@
       </tr>
       <% @tasks.each do |task| %>
         <tr>
-          <td><input type="image" src="/images/facebook_icon.png" onclick = 'postToFeed("Please take this task", "http://localhost:3000/projects/<%= params[:project_id]%>/tasks/<%=task.id%>/", "<%= task.name %>")'></input></td>
+          <td><input type="image" src="/images/facebook_icon.png" width="41px" height="41px"onclick = 'postToFeed("Please take this task", "http://localhost:3000/projects/<%= params[:project_id]%>/tasks/<%=task.id%>/", "<%= task.name %>")'></input></td>
           <td style="text-align:right;"><%= link_to 'تعديل الخطوات', edit_steps_path(params[:project_id], task) %> </td>
           <td style="text-align:right;"><%= link_to 'النتائج', project_task_path(params[:project_id], task) %></td>
           <td style="text-align:right;"><%= link_to 'تعديل', edit_project_task_path(params[:project_id], task) %></td>
           <td style="text-align:right;"><%= link_to 'الغاء', project_task_path(params[:project_id], task), :method => :delete, :data => { :confirm => 'هل تريد الغاء المهمة' } %></td>
           <td><a data-toggle="modal" href="#<%=task.id%>">ارسل دعوة</a>
-            <div class="container">   
               <div id="<%= task.id%>" class="modal hide fade in" style="display: none; background-color: #000000">  
                 <div class="modal-header">  
                   <a class="close" data-dismiss="modal" >×</a>
@@ -50,7 +73,6 @@
                   <%= render :partial => 'invite', :locals => {:t => task}%> 
                 </div>
               </div>    
-            </div>  
           </td>
           <td style="text-align:right;"><%= task.description %></td>
           <td style="text-align:right;"><%= task.name %></td>

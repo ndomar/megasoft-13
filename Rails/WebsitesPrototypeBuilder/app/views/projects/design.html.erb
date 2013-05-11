@@ -36,7 +36,7 @@
 				<div id='image-panel'>
 					<% @medias.each do |media| %>
 						<div class='thumbnail'>
-							<img src='<%= "/assets/project_#{@project.id}/#{media.url}" %>' />
+							<img src='<%= "/#{@project.id}/images/#{media.url}" %>' />
 						</div>
 					<%end%>
 				</div>
@@ -52,26 +52,26 @@
 	<table>
 	<tr>
 	<table>
-	<thead class="brand"><h3 style="text-align: center">صندوق الأدوات</h3></thead>
+	<thead class="brand"><h3 style="text-align: center">صندوق الأدوات</h3><h6>الصفحة الحالية: </h6></thead>
 	<tbody id = "accordion">
 	<tr class="trc">
 	<td class="tbldevs" align="center">
 	<h6>أزرار</h6>
 	<div width="210px" height="70px" class="accordiondiv">
 	<div id="buttondiv" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
-	<button class="toolboxelement btn childelement" onclick="return false;">زر</button>
+	<a class="toolboxelement btn childelement" onclick="return false;">زر</a>
 	</div>
 	<div id="buttondiv1" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
-	<button class="toolboxelement btn btn-success childelement" onclick="return false;">نجاح</button>
+	<a class="toolboxelement btn btn-success childelement" onclick="return false;">نجاح</a>
 	</div>
 	<div id="buttondiv2" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
-	<button class="toolboxelement btn btn-warning childelement" onclick="return false;">إحذر</button>
+	<a class="toolboxelement btn btn-warning childelement" onclick="return false;">إحذر</a>
 	</div>
 	<div id="buttondiv3" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
-	<button class="toolboxelement btn btn-danger childelement" onclick="return false;">خطر</button>
+	<a class="toolboxelement btn btn-danger childelement" onclick="return false;">خطر</a>
 	</div>
 	<div id="buttondiv4" class="drag toolboxelement text" onclickevent="#" onhoverevent= "#">
-	<button class="toolboxelement btn btn-info childelement" onclick="return false;">إعلم</button>
+	<a class="toolboxelement btn btn-info childelement" onclick="return false;">إعلم</a>
 	</div>
 	</div>
 	</td>

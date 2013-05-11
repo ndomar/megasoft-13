@@ -320,6 +320,7 @@ html,body{
 	z-index: 2;
 	background-color: #222222;
 	opacity:0.8;
+	margin-top: 10px;
 }
 
 .wordTitle{
@@ -329,7 +330,7 @@ html,body{
 	font-size: 25px;
 	font-weight: bold;
 	padding: 10px;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 	position: absolute;
 	z-index: 2;
 	background-color: #222222;

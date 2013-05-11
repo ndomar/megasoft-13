@@ -75,14 +75,14 @@
 				<%= form_for :card, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_card" do |form| %>
 					<%= form.text_field :title, :placeholder => "اسم البطاقة", :id => "main-card-title", :maxlength => 13%>
 					<%= form.text_area :description, :placeholder => "وصف البطاقة", :id => "main-card-desc", :maxlength => 75%>
-					<%= form.submit :class => "btn btn-primary"%>
+					<%= form.submit :class => "btn btn-primary", :value => "احفظ الكروت" %>
 				<% end %>
 			</div>
 			<div id='main-group' class='main-wrapper'>
 				<%= form_for :group, :remote => true, :url => "/cardsorts/#{@cardsort.id}/create_group" do |form| %>
 					<%= form.text_field :title, :placeholder => "اسم لمجموعة", :id => "main-group-title", :maxlength => 20%>
 					<%= form.text_area :description, :placeholder => "وصف لمجموعة", :id => "main-group-desc", :maxlength => 75%>
-					<%= form.submit :class => "btn btn-primary" %>
+					<%= form.submit :class => "btn btn-primary", :value => "احفظ المجموعة" %>
 				<% end %>
 			</div>
 	</div>

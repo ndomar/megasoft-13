@@ -66,37 +66,37 @@ html,body{
 }
 
 @font-face { 
-	font-family: arabi-bold; src: url('arabi-bold.otf');
+	font-family: arabi-bold; src: url('arabi-bold.otf')
 	format("opentype"); 
 }
 
 @font-face { 
-	font-family: arabi-light; src: url('arabi-light.otf');
+	font-family: arabi-light; src: url('arabi-light.otf')
 	format("opentype"); 
 }
 
 @font-face { 
-	font-family: amiri; src: url('Amiri-Regular.ttf');
+	font-family: amiri; src: url('Amiri-Regular.ttf')
 	format("truetype"); 
 }
 
 @font-face { 
-	font-family: dyana; src: url('Dhyana-Regular.ttf');
+	font-family: dyana; src: url('Dhyana-Regular.ttf')
 	format("truetype"); 
 }
 
 @font-face { 
-	font-family: kufi; src: url('DroidKufi-Regular.ttf');
+	font-family: kufi; src: url('DroidKufi-Regular.ttf')
 	format("truetype"); 
 }
 
 @font-face { 
-	font-family: naskh; src: url('DroidNaskh-Regular.ttf');
+	font-family: naskh; src: url('DroidNaskh-Regular.ttf')
 	format("truetype"); 
 }
 
 @font-face { 
-	font-family: lateef; src: url('LateefRegOT.ttf');
+	font-family: lateef; src: url('LateefRegOT.ttf')
 	format("truetype"); 
 }
 

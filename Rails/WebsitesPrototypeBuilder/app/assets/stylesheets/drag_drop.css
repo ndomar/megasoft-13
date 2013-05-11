@@ -18,6 +18,10 @@ body {
 	min-height: 740px;
 }
 
+.drag{
+	margin-bottom: 5px;
+}
+
 #toolbox{
 	width: 239px;
 	height:750px;
@@ -86,6 +90,7 @@ body {
 	text-align: center;
 	display: inline-block;
 	vertical-align: middle; 
+	padding: 0px;
 }
 
 .childelement{
