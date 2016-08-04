@@ -1,0 +1,111 @@
+<html>
+
+	<head>
+		<title>Design Page</title>
+		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript">
+   			google.load("jquery", "1.3.2");
+   			google.load("jqueryui", "1.7.3");
+		</script>
+		<link rel="stylesheet" type="text/css" href="Style1.css">
+		<script type="text/javascript">
+			$(document).ready(function (){
+				counter = 0; //Counts number of elements in the Design Page
+				$(".drag").draggable({
+					helper: 'clone',// clone the dragged element and drag the newly created one
+					containment: 'designpage',// elements should be contained in design page not any other element
+					cancel:false,// drag action not overriten by any other actions (ex. button's onClick event)
+					start: function (event,ui){
+						counter++; //When dragging starts, increment the counter
+					},
+					stop: function(event, ui){
+						var pos = $(ui.helper).offset();
+						var name = "#element"+counter; //new element's name
+						if ($(name).parent().attr("id")!="designpage"){ //check if dragged outside the design page
+							counter--; //number of elements decremented i.e. newly dropped element not counted
+							$(name).remove(); //remove the element
+						}
+						else{
+							$(name).css({ //set position if the new element
+							"left": pos.left,
+							"top": pos.top
+							});
+							$(name).removeClass("drag");
+							$(name).draggable({ //new draggable to avoid cloning elements that are moved within the design page
+								containment: 'parent',
+								cancel:false
+							});
+						}
+					}
+				});
+
+				$("#designpage").droppable({
+					drop: function(event, ui){
+						if (ui.helper.attr('id').search(/element([0-9])/)==-1){ // if it is not an already dragged element
+							var element = $(ui.draggable).clone(); // clone the dragged element
+							element.attr("id","element"+counter); // change its id
+							element.addClass("appended"); // give it class appended
+							$(this).append(element); // add the element to the design page (writing html code to the div)
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<!-- main div containing toolbox and design page -->
+		<div id="main">
+			<!-- toolbox containing elements to add to the design page -->
+			<div id="toolbox">
+				<!-- table with all the available toolbox elements -->
+				<table>
+					<thead><h3 style="text-align: center">Toolbox</h3></thead>
+					<tbody>
+						<tr>
+							<td class="tbldevs">
+								<div id="buttondiv" class="drag toolboxelement">
+									<button>Button</button>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="tbldevs">
+								<div id="imagediv" class="drag toolboxelement">
+									<img src="gimg.jpg" width="20px" hight="20px">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="tbldevs">
+								<div class="drag toolboxelement">
+									<label>Label</label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="tbldevs">
+								<div class="drag toolboxelement">
+									<a href="#">Hyperlink</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="tbldevs">
+								<div class="drag toolboxelement">
+									<textarea>Text Area</textarea>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<!-- empty design page -->
+			<div id="designpage">
+				<p>Design page here</p>
+			</div>
+		</div>
+	</body>
+
+</html>
